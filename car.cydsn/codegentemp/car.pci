@@ -1,0 +1,47 @@
+# car
+# 2016-11-14 07:30:39Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+# IO_3@[IOP=(1)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 3
+dont_use_location comparatorcell -1 -1 1
+dont_use_location comparatorcell -1 -1 3
+dont_use_location sccell -1 -1 0
+dont_use_location sccell -1 -1 1
+dont_use_location sccell -1 -1 2
+dont_use_location sccell -1 -1 3
+dont_use_location vidaccell -1 -1 1
+dont_use_location vidaccell -1 -1 2
+dont_use_location vidaccell -1 -1 3
+dont_use_location sarcell -1 -1 1
+dont_use_location abufcell -1 -1 0
+dont_use_location abufcell -1 -1 2
+dont_use_location abufcell -1 -1 1
+dont_use_location abufcell -1 -1 3
+set_io "Rx_net(0)" iocell 6 6
+set_io "Tx_net(0)" iocell 6 7
+set_io "L_PWM_1(0)" iocell 0 0
+set_io "R_PWM_1(0)" iocell 0 1
+set_io "L_IN_1(0)" iocell 4 0
+set_io "L_IN_2(0)" iocell 12 2
+set_io "R_IN_1(0)" iocell 4 1
+set_io "R_IN_2(0)" iocell 12 3
+set_io "Rx_JY(0)" iocell 4 4
+set_io "Tx_JY(0)" iocell 4 3
+set_io "LED1(0)" iocell 1 6
+set_io "LED2(0)" iocell 1 7
+set_io "LED3(0)" iocell 12 6
+set_io "LED4(0)" iocell 12 7
+set_io "LED5(0)" iocell 5 4
+set_io "LED6(0)" iocell 5 5
+set_io "LED7(0)" iocell 5 6
+set_io "LED8(0)" iocell 5 7
+set_io "IN_C(0)" iocell 4 2
+set_io "IN_D(0)" iocell 3 4
+set_io "Rx_LIDAR(0)" iocell 15 5
+set_io "Tx_LIDAR(0)" iocell 15 4
+set_io "debug_time(0)" iocell 6 3
+set_location "\ADC:SAR:ADC_SAR\" sarcell -1 -1 0

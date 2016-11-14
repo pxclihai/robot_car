@@ -1,0 +1,4967 @@
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Lidar.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Lidar_init,"ax",%progbits
+  19              		.align	2
+  20              		.global	Lidar_init
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Lidar_init, %function
+  24              	Lidar_init:
+  25              	.LFB63:
+  26              		.file 1 ".\\Lidar.c"
+   1:.\Lidar.c     **** /* ========================================
+   2:.\Lidar.c     ****  *
+   3:.\Lidar.c     ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\Lidar.c     ****  * All Rights Reserved
+   5:.\Lidar.c     ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\Lidar.c     ****  *
+   7:.\Lidar.c     ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\Lidar.c     ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\Lidar.c     ****  *
+  10:.\Lidar.c     ****  * ========================================
+  11:.\Lidar.c     **** */
+  12:.\Lidar.c     **** #include "Lidar.h"
+  13:.\Lidar.c     **** #include "uart_net.h"
+  14:.\Lidar.c     **** #include "UART_LIDAR.h"
+  15:.\Lidar.c     **** #include "Transfer.h"
+  16:.\Lidar.c     **** #include <stdio.h>
+  17:.\Lidar.c     **** uint8 nodeBuffer[100];
+  18:.\Lidar.c     **** uint8 net_nodeBuffer[100];
+  19:.\Lidar.c     **** uint8 EXPRESS_SCAN[9] = {0xA5,0x82,0x05,00,00,00,00,00,0x22};
+  20:.\Lidar.c     **** uint8 NORMAL_SCAN[2] =  {0xA5,0x20};
+  21:.\Lidar.c     **** uint8  _is_previous_capsuledataRdy = true;
+  22:.\Lidar.c     **** uint8 rx_lidar_flag =0;
+  23:.\Lidar.c     **** uint8 rx_lidar_count = 0;
+  24:.\Lidar.c     **** rplidar_response_capsule_measurement_nodes_t *node;
+  25:.\Lidar.c     **** uint8 start;
+  26:.\Lidar.c     **** uint8 end;
+  27:.\Lidar.c     **** uint8 normal_size ;
+  28:.\Lidar.c     **** uint8 output_t;
+  29:.\Lidar.c     **** rplidar_response_measurement_node_t test1[500];
+  30:.\Lidar.c     **** rplidar_response_measurement_node_t test2[500];
+  31:.\Lidar.c     **** rplidar_response_measurement_node_t test3[500];
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 2
+
+
+  32:.\Lidar.c     **** float test_f_suzu[500];
+  33:.\Lidar.c     **** static uint8 test_i;
+  34:.\Lidar.c     **** uint8 ascendScanData(rplidar_response_measurement_node_t * nodebuffer, size_t count);
+  35:.\Lidar.c     **** void Lidar_init()
+  36:.\Lidar.c     **** {
+  27              		.loc 1 36 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  37:.\Lidar.c     ****     start = offsetof(rplidar_response_capsule_measurement_nodes_t, start_angle_sync_q6);
+  35              		.loc 1 37 0
+  36 0002 0221     		movs	r1, #2
+  37 0004 054B     		ldr	r3, .L3
+  38 0006 1970     		strb	r1, [r3]
+  38:.\Lidar.c     ****     end   =sizeof(rplidar_response_capsule_measurement_nodes_t);
+  39              		.loc 1 38 0
+  40 0008 5422     		movs	r2, #84
+  41 000a 054B     		ldr	r3, .L3+4
+  42 000c 1A70     		strb	r2, [r3]
+  39:.\Lidar.c     ****     normal_size = sizeof(rplidar_response_measurement_node_t);
+  43              		.loc 1 39 0
+  44 000e 0522     		movs	r2, #5
+  45 0010 044B     		ldr	r3, .L3+8
+  46 0012 1A70     		strb	r2, [r3]
+  40:.\Lidar.c     ****     UART_LIDAR_PutArray(NORMAL_SCAN,sizeof(NORMAL_SCAN));
+  47              		.loc 1 40 0
+  48 0014 0448     		ldr	r0, .L3+12
+  49 0016 FFF7FEFF 		bl	UART_LIDAR_PutArray
+  50              	.LVL0:
+  51 001a 08BD     		pop	{r3, pc}
+  52              	.L4:
+  53              		.align	2
+  54              	.L3:
+  55 001c 00000000 		.word	start
+  56 0020 00000000 		.word	end
+  57 0024 00000000 		.word	normal_size
+  58 0028 00000000 		.word	.LANCHOR0
+  59              		.cfi_endproc
+  60              	.LFE63:
+  61              		.size	Lidar_init, .-Lidar_init
+  62              		.global	__aeabi_ui2f
+  63              		.global	__aeabi_fmul
+  64              		.section	.text.Lidar_Normal_Data_Receive_Prepare,"ax",%progbits
+  65              		.align	2
+  66              		.global	Lidar_Normal_Data_Receive_Prepare
+  67              		.thumb
+  68              		.thumb_func
+  69              		.type	Lidar_Normal_Data_Receive_Prepare, %function
+  70              	Lidar_Normal_Data_Receive_Prepare:
+  71              	.LFB64:
+  41:.\Lidar.c     **** }
+  42:.\Lidar.c     **** int  recvPos = 0;
+  43:.\Lidar.c     **** #define RPLIDAR_RESP_MEASUREMENT_SYNCBIT        (0x1<<0)
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 3
+
+
+  44:.\Lidar.c     **** #define RPLIDAR_RESP_MEASUREMENT_QUALITY_SHIFT  2
+  45:.\Lidar.c     **** #define RPLIDAR_RESP_MEASUREMENT_CHECKBIT       (0x1<<0)
+  46:.\Lidar.c     **** #define RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT    1
+  47:.\Lidar.c     **** rplidar_response_measurement_node_t nodeBuffer1;
+  48:.\Lidar.c     **** //void Lidar_Normal_pc(uint8 data)
+  49:.\Lidar.c     **** //{
+  50:.\Lidar.c     **** //       uint8 currentByte = data;
+  51:.\Lidar.c     **** //    uint8 *nodeBuffer_p ;
+  52:.\Lidar.c     **** //     nodeBuffer_p = &nodeBuffer1;
+  53:.\Lidar.c     **** //      for (size_t pos = 0; pos < 1; ++pos)
+  54:.\Lidar.c     **** //      {
+  55:.\Lidar.c     **** //            switch (recvPos) {
+  56:.\Lidar.c     **** //            case 0: // expect the sync bit and its reverse in this byte
+  57:.\Lidar.c     **** //                {
+  58:.\Lidar.c     **** //                    uint8 tmp = (currentByte>>1);
+  59:.\Lidar.c     **** //                    if ( (tmp ^ currentByte) & 0x1 ) {
+  60:.\Lidar.c     **** //                        // pass
+  61:.\Lidar.c     **** //                    } else {
+  62:.\Lidar.c     **** //                        continue;
+  63:.\Lidar.c     **** //                    }
+  64:.\Lidar.c     **** //
+  65:.\Lidar.c     **** //                }
+  66:.\Lidar.c     **** //                break;
+  67:.\Lidar.c     **** //            case 1: // expect the highest bit to be 1
+  68:.\Lidar.c     **** //                {
+  69:.\Lidar.c     **** //                    if (currentByte & RPLIDAR_RESP_MEASUREMENT_CHECKBIT) {
+  70:.\Lidar.c     **** //                        // pass
+  71:.\Lidar.c     **** //                    } else {
+  72:.\Lidar.c     **** //                        recvPos = 0;
+  73:.\Lidar.c     **** //                        continue;
+  74:.\Lidar.c     **** //                    }
+  75:.\Lidar.c     **** //                }
+  76:.\Lidar.c     **** //                break;
+  77:.\Lidar.c     **** //            }
+  78:.\Lidar.c     **** //            nodeBuffer_p[recvPos++] = currentByte;
+  79:.\Lidar.c     **** //
+  80:.\Lidar.c     **** //            if (recvPos == sizeof(rplidar_response_measurement_node_t)) {
+  81:.\Lidar.c     **** //               // return 1;
+  82:.\Lidar.c     **** //            }
+  83:.\Lidar.c     **** //    }
+  84:.\Lidar.c     **** //}
+  85:.\Lidar.c     **** static int count_time_1ms = 0;
+  86:.\Lidar.c     **** void Lidar_Normal_Data_Receive_Prepare(uint8 data)
+  87:.\Lidar.c     **** {
+  72              		.loc 1 87 0
+  73              		.cfi_startproc
+  74              		@ args = 0, pretend = 0, frame = 0
+  75              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              	.LVL1:
+  77 0000 10B5     		push	{r4, lr}
+  78              		.cfi_def_cfa_offset 8
+  79              		.cfi_offset 4, -8
+  80              		.cfi_offset 14, -4
+  88:.\Lidar.c     ****     uint8 tmp;
+  89:.\Lidar.c     ****     uint16 test;
+  90:.\Lidar.c     ****     float test_f;
+  91:.\Lidar.c     **** 	static uint8 _data_len = 0,_data_cnt = 0;
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 4
+
+
+  92:.\Lidar.c     **** 	static uint8 state = 0;
+  93:.\Lidar.c     ****     
+  94:.\Lidar.c     ****     tmp  = (data>>1);
+  81              		.loc 1 94 0
+  82 0002 4208     		lsrs	r2, r0, #1
+  83              	.LVL2:
+  95:.\Lidar.c     ****   
+  96:.\Lidar.c     **** 	if(state==0&&(tmp ^ data) & 0x1)  //sys1
+  84              		.loc 1 96 0
+  85 0004 324B     		ldr	r3, .L14
+  86 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  87 0008 63B9     		cbnz	r3, .L6
+  88              		.loc 1 96 0 is_stmt 0 discriminator 1
+  89 000a 4240     		eors	r2, r2, r0
+  90              	.LVL3:
+  91 000c 12F0010F 		tst	r2, #1
+  92 0010 08D0     		beq	.L6
+  97:.\Lidar.c     **** 	{
+  98:.\Lidar.c     **** 		state=1;
+  93              		.loc 1 98 0 is_stmt 1
+  94 0012 0123     		movs	r3, #1
+  95 0014 2E4A     		ldr	r2, .L14
+  96 0016 1370     		strb	r3, [r2]
+  99:.\Lidar.c     **** 		nodeBuffer[0]=data;
+  97              		.loc 1 99 0
+  98 0018 2E4A     		ldr	r2, .L14+4
+  99 001a 1070     		strb	r0, [r2]
+ 100:.\Lidar.c     ****       debug_time_Write(1);
+ 100              		.loc 1 100 0
+ 101 001c 1846     		mov	r0, r3
+ 102              	.LVL4:
+ 103 001e FFF7FEFF 		bl	debug_time_Write
+ 104              	.LVL5:
+ 105 0022 10BD     		pop	{r4, pc}
+ 106              	.LVL6:
+ 107              	.L6:
+ 101:.\Lidar.c     **** 	}
+ 102:.\Lidar.c     ****     else if(state == 1 && ((data&0x1) == 1)) //
+ 108              		.loc 1 102 0
+ 109 0024 012B     		cmp	r3, #1
+ 110 0026 0ED1     		bne	.L8
+ 111              		.loc 1 102 0 is_stmt 0 discriminator 1
+ 112 0028 10F0010F 		tst	r0, #1
+ 113 002c 0BD0     		beq	.L8
+ 114              	.LVL7:
+ 103:.\Lidar.c     ****     {
+ 104:.\Lidar.c     ****         test = (tmp&0x1);
+ 105:.\Lidar.c     ****         state=2;
+ 115              		.loc 1 105 0 is_stmt 1
+ 116 002e 284B     		ldr	r3, .L14
+ 117 0030 0222     		movs	r2, #2
+ 118 0032 1A70     		strb	r2, [r3]
+ 106:.\Lidar.c     **** 		nodeBuffer[1]= data;
+ 119              		.loc 1 106 0
+ 120 0034 274A     		ldr	r2, .L14+4
+ 121 0036 5070     		strb	r0, [r2, #1]
+ 107:.\Lidar.c     ****         _data_cnt = 0;
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 5
+
+
+ 122              		.loc 1 107 0
+ 123 0038 0022     		movs	r2, #0
+ 124 003a 5A70     		strb	r2, [r3, #1]
+ 108:.\Lidar.c     ****         _data_len = normal_size-2;
+ 125              		.loc 1 108 0
+ 126 003c 264A     		ldr	r2, .L14+8
+ 127 003e 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 128 0040 023A     		subs	r2, r2, #2
+ 129 0042 9A70     		strb	r2, [r3, #2]
+ 130 0044 10BD     		pop	{r4, pc}
+ 131              	.LVL8:
+ 132              	.L8:
+ 109:.\Lidar.c     ****     }
+ 110:.\Lidar.c     **** 	else if(state== 2 && _data_len>0) //
+ 133              		.loc 1 110 0
+ 134 0046 022B     		cmp	r3, #2
+ 135 0048 3ED1     		bne	.L9
+ 136              		.loc 1 110 0 is_stmt 0 discriminator 1
+ 137 004a 214B     		ldr	r3, .L14
+ 138 004c 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 139 004e 002B     		cmp	r3, #0
+ 140 0050 3AD0     		beq	.L9
+ 111:.\Lidar.c     **** 	{
+ 112:.\Lidar.c     **** 		_data_len--;
+ 141              		.loc 1 112 0 is_stmt 1
+ 142 0052 013B     		subs	r3, r3, #1
+ 143 0054 DBB2     		uxtb	r3, r3
+ 144 0056 1E49     		ldr	r1, .L14
+ 145 0058 8B70     		strb	r3, [r1, #2]
+ 113:.\Lidar.c     **** 		nodeBuffer[2+_data_cnt++] = data;
+ 146              		.loc 1 113 0
+ 147 005a 4A78     		ldrb	r2, [r1, #1]	@ zero_extendqisi2
+ 148 005c 541C     		adds	r4, r2, #1
+ 149 005e 4C70     		strb	r4, [r1, #1]
+ 150 0060 0232     		adds	r2, r2, #2
+ 151 0062 1C49     		ldr	r1, .L14+4
+ 152 0064 8854     		strb	r0, [r1, r2]
+ 114:.\Lidar.c     ****    
+ 115:.\Lidar.c     **** 		if(_data_len == 0)
+ 153              		.loc 1 115 0
+ 154 0066 002B     		cmp	r3, #0
+ 155 0068 31D1     		bne	.L5
+ 116:.\Lidar.c     ****         {
+ 117:.\Lidar.c     ****          
+ 118:.\Lidar.c     ****             if((nodeBuffer[0] & 0x1) ==1)
+ 156              		.loc 1 118 0
+ 157 006a 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
+ 158 006c 13F0010F 		tst	r3, #1
+ 159 0070 02D0     		beq	.L10
+ 119:.\Lidar.c     ****             {
+ 120:.\Lidar.c     ****                  test_i =0;
+ 160              		.loc 1 120 0
+ 161 0072 0022     		movs	r2, #0
+ 162 0074 164B     		ldr	r3, .L14
+ 163 0076 DA70     		strb	r2, [r3, #3]
+ 164              	.L10:
+ 121:.\Lidar.c     ****             }
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 6
+
+
+ 122:.\Lidar.c     ****             test = ((nodeBuffer[2]<<8)|(nodeBuffer[1]))>>1;
+ 165              		.loc 1 122 0
+ 166 0078 164B     		ldr	r3, .L14+4
+ 167 007a 9878     		ldrb	r0, [r3, #2]	@ zero_extendqisi2
+ 168              	.LVL9:
+ 169 007c 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 170 007e 43EA0020 		orr	r0, r3, r0, lsl #8
+ 171              	.LVL10:
+ 123:.\Lidar.c     ****             test_f = ((float)test)/64.0f;
+ 172              		.loc 1 123 0
+ 173 0082 4008     		lsrs	r0, r0, #1
+ 174              	.LVL11:
+ 175 0084 FFF7FEFF 		bl	__aeabi_ui2f
+ 176              	.LVL12:
+ 177 0088 4FF07251 		mov	r1, #1015021568
+ 178 008c FFF7FEFF 		bl	__aeabi_fmul
+ 179              	.LVL13:
+ 124:.\Lidar.c     ****             test_f_suzu[test_i] = test_f; 
+ 180              		.loc 1 124 0
+ 181 0090 0F4B     		ldr	r3, .L14
+ 182 0092 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 183 0094 114A     		ldr	r2, .L14+12
+ 184 0096 42F82300 		str	r0, [r2, r3, lsl #2]	@ float
+ 125:.\Lidar.c     ****             if(test_i == 200)
+ 185              		.loc 1 125 0
+ 186 009a C82B     		cmp	r3, #200
+ 187 009c 04D1     		bne	.L11
+ 126:.\Lidar.c     ****                 {
+ 127:.\Lidar.c     ****                     test_i =0;
+ 188              		.loc 1 127 0
+ 189 009e 0C4B     		ldr	r3, .L14
+ 190 00a0 0022     		movs	r2, #0
+ 191 00a2 DA70     		strb	r2, [r3, #3]
+ 128:.\Lidar.c     ****                     rx_lidar_flag = 1;
+ 192              		.loc 1 128 0
+ 193 00a4 0122     		movs	r2, #1
+ 194 00a6 1A71     		strb	r2, [r3, #4]
+ 195              	.L11:
+ 129:.\Lidar.c     ****                 } 
+ 130:.\Lidar.c     ****             if(rx_lidar_flag == 0)
+ 196              		.loc 1 130 0
+ 197 00a8 094B     		ldr	r3, .L14
+ 198 00aa 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 199 00ac 43B9     		cbnz	r3, .L12
+ 131:.\Lidar.c     ****             {
+ 132:.\Lidar.c     ****                 test_i ++;
+ 200              		.loc 1 132 0
+ 201 00ae 084B     		ldr	r3, .L14
+ 202 00b0 DA78     		ldrb	r2, [r3, #3]	@ zero_extendqisi2
+ 203 00b2 0132     		adds	r2, r2, #1
+ 204 00b4 DA70     		strb	r2, [r3, #3]
+ 133:.\Lidar.c     ****   //              test1[test_i].angle_q6_checkbit = (((nodeBuffer[2]<<8)|(nodeBuffer[1])));
+ 134:.\Lidar.c     ****  //               test1[test_i].sync_quality      =  nodeBuffer[0];
+ 135:.\Lidar.c     **** //                test1[test_i].distance_q2       = ((nodeBuffer[4]<<8)|(nodeBuffer[3]));
+ 136:.\Lidar.c     **** 
+ 137:.\Lidar.c     **** 
+ 138:.\Lidar.c     ****                
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 7
+
+
+ 139:.\Lidar.c     ****         //        printf("%d\n   ",test);
+ 140:.\Lidar.c     ****                 //  memcpy(net_nodeBuffer,nodeBuffer,5); 
+ 141:.\Lidar.c     ****                   rx_lidar_flag = 1; 
+ 205              		.loc 1 141 0
+ 206 00b6 0122     		movs	r2, #1
+ 207 00b8 1A71     		strb	r2, [r3, #4]
+ 142:.\Lidar.c     ****                  debug_time_Write(0);
+ 208              		.loc 1 142 0
+ 209 00ba 0020     		movs	r0, #0
+ 210              	.LVL14:
+ 211 00bc FFF7FEFF 		bl	debug_time_Write
+ 212              	.LVL15:
+ 213              	.L12:
+ 143:.\Lidar.c     **** 
+ 144:.\Lidar.c     ****         }
+ 145:.\Lidar.c     ****             
+ 146:.\Lidar.c     ****             state = 0;
+ 214              		.loc 1 146 0
+ 215 00c0 0022     		movs	r2, #0
+ 216 00c2 034B     		ldr	r3, .L14
+ 217 00c4 1A70     		strb	r2, [r3]
+ 218 00c6 10BD     		pop	{r4, pc}
+ 219              	.LVL16:
+ 220              	.L9:
+ 147:.\Lidar.c     ****         }
+ 148:.\Lidar.c     **** 	}  
+ 149:.\Lidar.c     ****   
+ 150:.\Lidar.c     ****  //                      if(output_t == 0)
+ 151:.\Lidar.c     **** //                   {
+ 152:.\Lidar.c     **** //                   debug_time_Write(1);
+ 153:.\Lidar.c     **** //                   output_t++;
+ 154:.\Lidar.c     **** //                   }
+ 155:.\Lidar.c     **** //                   else
+ 156:.\Lidar.c     **** //                  {
+ 157:.\Lidar.c     **** //                   debug_time_Write(0);
+ 158:.\Lidar.c     **** //                    output_t = 0;
+ 159:.\Lidar.c     **** //                  }
+ 160:.\Lidar.c     ****     else
+ 161:.\Lidar.c     ****     state = 0;
+ 221              		.loc 1 161 0
+ 222 00c8 0022     		movs	r2, #0
+ 223 00ca 014B     		ldr	r3, .L14
+ 224 00cc 1A70     		strb	r2, [r3]
+ 225              	.L5:
+ 226 00ce 10BD     		pop	{r4, pc}
+ 227              	.L15:
+ 228              		.align	2
+ 229              	.L14:
+ 230 00d0 00000000 		.word	.LANCHOR1
+ 231 00d4 00000000 		.word	nodeBuffer
+ 232 00d8 00000000 		.word	normal_size
+ 233 00dc 00000000 		.word	test_f_suzu
+ 234              		.cfi_endproc
+ 235              	.LFE64:
+ 236              		.size	Lidar_Normal_Data_Receive_Prepare, .-Lidar_Normal_Data_Receive_Prepare
+ 237              		.section	.text.Lidar_Normal_Data_Receive_Prepare_2,"ax",%progbits
+ 238              		.align	2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 8
+
+
+ 239              		.global	Lidar_Normal_Data_Receive_Prepare_2
+ 240              		.thumb
+ 241              		.thumb_func
+ 242              		.type	Lidar_Normal_Data_Receive_Prepare_2, %function
+ 243              	Lidar_Normal_Data_Receive_Prepare_2:
+ 244              	.LFB65:
+ 162:.\Lidar.c     ****       
+ 163:.\Lidar.c     **** 
+ 164:.\Lidar.c     **** }
+ 165:.\Lidar.c     **** void Lidar_Normal_Data_Receive_Prepare_2(uint8 data)
+ 166:.\Lidar.c     **** {
+ 245              		.loc 1 166 0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 0
+ 248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 249              	.LVL17:
+ 167:.\Lidar.c     ****     uint8 tmp;
+ 168:.\Lidar.c     ****     uint16 test;
+ 169:.\Lidar.c     ****     float test_f;
+ 170:.\Lidar.c     **** 	static uint8 _data_len = 0,_data_cnt = 0;
+ 171:.\Lidar.c     **** 	static uint8 state = 0;
+ 172:.\Lidar.c     ****     
+ 173:.\Lidar.c     ****      tmp  = (data>>1);
+ 250              		.loc 1 173 0
+ 251 0000 4208     		lsrs	r2, r0, #1
+ 252              	.LVL18:
+ 174:.\Lidar.c     ****     
+ 175:.\Lidar.c     **** 	if(state==0&&(tmp ^ data) & 0x1)  //sys1
+ 253              		.loc 1 175 0
+ 254 0002 434B     		ldr	r3, .L28
+ 255 0004 5B79     		ldrb	r3, [r3, #5]	@ zero_extendqisi2
+ 256 0006 53B9     		cbnz	r3, .L17
+ 257              		.loc 1 175 0 is_stmt 0 discriminator 1
+ 258 0008 82EA0001 		eor	r1, r2, r0
+ 259 000c 11F0010F 		tst	r1, #1
+ 260 0010 05D0     		beq	.L17
+ 176:.\Lidar.c     **** 	{
+ 177:.\Lidar.c     **** 		state=1;
+ 261              		.loc 1 177 0 is_stmt 1
+ 262 0012 0122     		movs	r2, #1
+ 263              	.LVL19:
+ 264 0014 3E4B     		ldr	r3, .L28
+ 265 0016 5A71     		strb	r2, [r3, #5]
+ 178:.\Lidar.c     **** 		nodeBuffer[0]=data;
+ 266              		.loc 1 178 0
+ 267 0018 3E4B     		ldr	r3, .L28+4
+ 268 001a 1870     		strb	r0, [r3]
+ 269 001c 7047     		bx	lr
+ 270              	.LVL20:
+ 271              	.L17:
+ 179:.\Lidar.c     ****       
+ 180:.\Lidar.c     **** 	}
+ 181:.\Lidar.c     ****     else if(state == 1 && ((data&0x1) == 1)) //
+ 272              		.loc 1 181 0
+ 273 001e 012B     		cmp	r3, #1
+ 274 0020 0ED1     		bne	.L19
+ 275              		.loc 1 181 0 is_stmt 0 discriminator 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 9
+
+
+ 276 0022 10F0010F 		tst	r0, #1
+ 277 0026 0BD0     		beq	.L19
+ 278              	.LVL21:
+ 182:.\Lidar.c     ****     {
+ 183:.\Lidar.c     ****         test = (tmp&0x1);
+ 184:.\Lidar.c     ****         state=2;
+ 279              		.loc 1 184 0 is_stmt 1
+ 280 0028 394B     		ldr	r3, .L28
+ 281 002a 0222     		movs	r2, #2
+ 282              	.LVL22:
+ 283 002c 5A71     		strb	r2, [r3, #5]
+ 185:.\Lidar.c     **** 		nodeBuffer[1]= data;
+ 284              		.loc 1 185 0
+ 285 002e 394A     		ldr	r2, .L28+4
+ 286 0030 5070     		strb	r0, [r2, #1]
+ 186:.\Lidar.c     ****         _data_cnt = 0;
+ 287              		.loc 1 186 0
+ 288 0032 0022     		movs	r2, #0
+ 289 0034 9A71     		strb	r2, [r3, #6]
+ 187:.\Lidar.c     ****         _data_len = normal_size-2;
+ 290              		.loc 1 187 0
+ 291 0036 384A     		ldr	r2, .L28+8
+ 292 0038 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 293 003a 023A     		subs	r2, r2, #2
+ 294 003c DA71     		strb	r2, [r3, #7]
+ 295 003e 7047     		bx	lr
+ 296              	.LVL23:
+ 297              	.L19:
+ 188:.\Lidar.c     ****     }
+ 189:.\Lidar.c     **** 	else if(state== 2 && _data_len>0) //
+ 298              		.loc 1 189 0
+ 299 0040 022B     		cmp	r3, #2
+ 300 0042 0ED1     		bne	.L20
+ 301              		.loc 1 189 0 is_stmt 0 discriminator 1
+ 302 0044 3249     		ldr	r1, .L28
+ 303 0046 C979     		ldrb	r1, [r1, #7]	@ zero_extendqisi2
+ 304 0048 59B1     		cbz	r1, .L20
+ 190:.\Lidar.c     **** 	{
+ 191:.\Lidar.c     **** 		_data_len--;
+ 305              		.loc 1 191 0 is_stmt 1
+ 306 004a 314B     		ldr	r3, .L28
+ 307 004c 0139     		subs	r1, r1, #1
+ 308 004e D971     		strb	r1, [r3, #7]
+ 192:.\Lidar.c     **** 		nodeBuffer[2+_data_cnt++] = data;
+ 309              		.loc 1 192 0
+ 310 0050 9A79     		ldrb	r2, [r3, #6]	@ zero_extendqisi2
+ 311              	.LVL24:
+ 312 0052 511C     		adds	r1, r2, #1
+ 313 0054 9971     		strb	r1, [r3, #6]
+ 314 0056 0232     		adds	r2, r2, #2
+ 315 0058 2E49     		ldr	r1, .L28+4
+ 316 005a 8854     		strb	r0, [r1, r2]
+ 193:.\Lidar.c     ****         state = 3;
+ 317              		.loc 1 193 0
+ 318 005c 0322     		movs	r2, #3
+ 319 005e 5A71     		strb	r2, [r3, #5]
+ 320 0060 7047     		bx	lr
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 10
+
+
+ 321              	.LVL25:
+ 322              	.L20:
+ 194:.\Lidar.c     **** 	} 
+ 195:.\Lidar.c     ****     else if(state == 3 && (tmp ^ data) & 0x1)  //sys1
+ 323              		.loc 1 195 0
+ 324 0062 032B     		cmp	r3, #3
+ 325 0064 09D1     		bne	.L21
+ 326              		.loc 1 195 0 is_stmt 0 discriminator 1
+ 327 0066 4240     		eors	r2, r2, r0
+ 328              	.LVL26:
+ 329 0068 12F0010F 		tst	r2, #1
+ 330 006c 05D0     		beq	.L21
+ 196:.\Lidar.c     **** 	{
+ 197:.\Lidar.c     **** 		state = 4;
+ 331              		.loc 1 197 0 is_stmt 1
+ 332 006e 0422     		movs	r2, #4
+ 333 0070 274B     		ldr	r3, .L28
+ 334 0072 5A71     		strb	r2, [r3, #5]
+ 198:.\Lidar.c     **** 		nodeBuffer[5]=data;
+ 335              		.loc 1 198 0
+ 336 0074 274B     		ldr	r3, .L28+4
+ 337 0076 5871     		strb	r0, [r3, #5]
+ 338 0078 7047     		bx	lr
+ 339              	.L21:
+ 199:.\Lidar.c     ****       
+ 200:.\Lidar.c     **** 	}
+ 201:.\Lidar.c     ****     else if(state == 4 && ((data&0x1) == 1)) //
+ 340              		.loc 1 201 0
+ 341 007a 042B     		cmp	r3, #4
+ 342 007c 0ED1     		bne	.L22
+ 343              		.loc 1 201 0 is_stmt 0 discriminator 1
+ 344 007e 10F0010F 		tst	r0, #1
+ 345 0082 0BD0     		beq	.L22
+ 346              	.LVL27:
+ 202:.\Lidar.c     ****     {
+ 203:.\Lidar.c     ****         test = (tmp&0x1);
+ 204:.\Lidar.c     ****         state=5;
+ 347              		.loc 1 204 0 is_stmt 1
+ 348 0084 224B     		ldr	r3, .L28
+ 349 0086 0522     		movs	r2, #5
+ 350 0088 5A71     		strb	r2, [r3, #5]
+ 205:.\Lidar.c     **** 		nodeBuffer[6]= data;
+ 351              		.loc 1 205 0
+ 352 008a 224A     		ldr	r2, .L28+4
+ 353 008c 9071     		strb	r0, [r2, #6]
+ 206:.\Lidar.c     ****         _data_cnt = 0;
+ 354              		.loc 1 206 0
+ 355 008e 0022     		movs	r2, #0
+ 356 0090 9A71     		strb	r2, [r3, #6]
+ 207:.\Lidar.c     ****         _data_len = normal_size-2;
+ 357              		.loc 1 207 0
+ 358 0092 214A     		ldr	r2, .L28+8
+ 359 0094 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 360 0096 023A     		subs	r2, r2, #2
+ 361 0098 DA71     		strb	r2, [r3, #7]
+ 362 009a 7047     		bx	lr
+ 363              	.LVL28:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 11
+
+
+ 364              	.L22:
+ 208:.\Lidar.c     ****     }
+ 209:.\Lidar.c     **** 	else if(state== 5 && _data_len>0) //
+ 365              		.loc 1 209 0
+ 366 009c 052B     		cmp	r3, #5
+ 367 009e 32D1     		bne	.L23
+ 368              		.loc 1 209 0 is_stmt 0 discriminator 1
+ 369 00a0 1B4B     		ldr	r3, .L28
+ 370 00a2 DB79     		ldrb	r3, [r3, #7]	@ zero_extendqisi2
+ 371 00a4 7BB3     		cbz	r3, .L23
+ 166:.\Lidar.c     ****     uint8 tmp;
+ 372              		.loc 1 166 0 is_stmt 1
+ 373 00a6 10B5     		push	{r4, lr}
+ 374              		.cfi_def_cfa_offset 8
+ 375              		.cfi_offset 4, -8
+ 376              		.cfi_offset 14, -4
+ 210:.\Lidar.c     **** 	{
+ 211:.\Lidar.c     **** 		_data_len--;
+ 377              		.loc 1 211 0
+ 378 00a8 013B     		subs	r3, r3, #1
+ 379 00aa DBB2     		uxtb	r3, r3
+ 380 00ac 1849     		ldr	r1, .L28
+ 381 00ae CB71     		strb	r3, [r1, #7]
+ 212:.\Lidar.c     **** 		nodeBuffer[7+_data_cnt++] = data;
+ 382              		.loc 1 212 0
+ 383 00b0 8A79     		ldrb	r2, [r1, #6]	@ zero_extendqisi2
+ 384 00b2 541C     		adds	r4, r2, #1
+ 385 00b4 8C71     		strb	r4, [r1, #6]
+ 386 00b6 0732     		adds	r2, r2, #7
+ 387 00b8 1649     		ldr	r1, .L28+4
+ 388 00ba 8854     		strb	r0, [r1, r2]
+ 213:.\Lidar.c     ****    
+ 214:.\Lidar.c     **** 		if(_data_len == 0)
+ 389              		.loc 1 214 0
+ 390 00bc 3BBB     		cbnz	r3, .L16
+ 215:.\Lidar.c     ****         {
+ 216:.\Lidar.c     ****             if(rx_lidar_flag == 0)
+ 391              		.loc 1 216 0
+ 392 00be 144B     		ldr	r3, .L28
+ 393 00c0 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 394 00c2 E3B9     		cbnz	r3, .L24
+ 217:.\Lidar.c     ****             {		  
+ 218:.\Lidar.c     ****                   if(rx_lidar_flag == 0)
+ 395              		.loc 1 218 0
+ 396 00c4 DBB9     		cbnz	r3, .L24
+ 219:.\Lidar.c     ****                   {
+ 220:.\Lidar.c     ****                    memcpy(net_nodeBuffer,nodeBuffer,10); 
+ 397              		.loc 1 220 0
+ 398 00c6 154B     		ldr	r3, .L28+12
+ 399 00c8 0A46     		mov	r2, r1
+ 400 00ca 0868     		ldr	r0, [r1]	@ unaligned
+ 401              	.LVL29:
+ 402 00cc 4968     		ldr	r1, [r1, #4]	@ unaligned
+ 403              	.LVL30:
+ 404 00ce 1860     		str	r0, [r3]	@ unaligned
+ 405 00d0 5960     		str	r1, [r3, #4]	@ unaligned
+ 406 00d2 1289     		ldrh	r2, [r2, #8]	@ unaligned
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 12
+
+
+ 407              	.LVL31:
+ 408 00d4 1A81     		strh	r2, [r3, #8]	@ unaligned
+ 221:.\Lidar.c     ****                    rx_lidar_flag = 1;
+ 409              		.loc 1 221 0
+ 410 00d6 0122     		movs	r2, #1
+ 411 00d8 0D4B     		ldr	r3, .L28
+ 412 00da 1A71     		strb	r2, [r3, #4]
+ 222:.\Lidar.c     ****                    
+ 223:.\Lidar.c     ****                    if(output_t == 0)
+ 413              		.loc 1 223 0
+ 414 00dc 104B     		ldr	r3, .L28+16
+ 415 00de 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 416 00e0 3BB9     		cbnz	r3, .L25
+ 224:.\Lidar.c     ****                    {
+ 225:.\Lidar.c     ****                    debug_time_Write(1);
+ 417              		.loc 1 225 0
+ 418 00e2 1046     		mov	r0, r2
+ 419 00e4 FFF7FEFF 		bl	debug_time_Write
+ 420              	.LVL32:
+ 226:.\Lidar.c     ****                    output_t++;
+ 421              		.loc 1 226 0
+ 422 00e8 0D4A     		ldr	r2, .L28+16
+ 423 00ea 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 424 00ec 0133     		adds	r3, r3, #1
+ 425 00ee 1370     		strb	r3, [r2]
+ 426 00f0 05E0     		b	.L24
+ 427              	.LVL33:
+ 428              	.L25:
+ 227:.\Lidar.c     ****                    }
+ 228:.\Lidar.c     ****                    else
+ 229:.\Lidar.c     ****                   {
+ 230:.\Lidar.c     ****                     debug_time_Write(0);
+ 429              		.loc 1 230 0
+ 430 00f2 0020     		movs	r0, #0
+ 431 00f4 FFF7FEFF 		bl	debug_time_Write
+ 432              	.LVL34:
+ 231:.\Lidar.c     ****                     output_t = 0;
+ 433              		.loc 1 231 0
+ 434 00f8 0022     		movs	r2, #0
+ 435 00fa 094B     		ldr	r3, .L28+16
+ 436 00fc 1A70     		strb	r2, [r3]
+ 437              	.L24:
+ 232:.\Lidar.c     ****                   }
+ 233:.\Lidar.c     ****                    
+ 234:.\Lidar.c     ****                   }
+ 235:.\Lidar.c     ****             }
+ 236:.\Lidar.c     ****             state = 0;
+ 438              		.loc 1 236 0
+ 439 00fe 0022     		movs	r2, #0
+ 440 0100 034B     		ldr	r3, .L28
+ 441 0102 5A71     		strb	r2, [r3, #5]
+ 442 0104 10BD     		pop	{r4, pc}
+ 443              	.LVL35:
+ 444              	.L23:
+ 445              		.cfi_def_cfa_offset 0
+ 446              		.cfi_restore 4
+ 447              		.cfi_restore 14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 13
+
+
+ 237:.\Lidar.c     ****         }
+ 238:.\Lidar.c     **** 	} 
+ 239:.\Lidar.c     **** 
+ 240:.\Lidar.c     ****     else
+ 241:.\Lidar.c     ****     state = 0;
+ 448              		.loc 1 241 0
+ 449 0106 0022     		movs	r2, #0
+ 450 0108 014B     		ldr	r3, .L28
+ 451 010a 5A71     		strb	r2, [r3, #5]
+ 452 010c 7047     		bx	lr
+ 453              	.L16:
+ 454              		.cfi_def_cfa_offset 8
+ 455              		.cfi_offset 4, -8
+ 456              		.cfi_offset 14, -4
+ 457 010e 10BD     		pop	{r4, pc}
+ 458              	.L29:
+ 459              		.align	2
+ 460              	.L28:
+ 461 0110 00000000 		.word	.LANCHOR1
+ 462 0114 00000000 		.word	nodeBuffer
+ 463 0118 00000000 		.word	normal_size
+ 464 011c 00000000 		.word	net_nodeBuffer
+ 465 0120 00000000 		.word	output_t
+ 466              		.cfi_endproc
+ 467              	.LFE65:
+ 468              		.size	Lidar_Normal_Data_Receive_Prepare_2, .-Lidar_Normal_Data_Receive_Prepare_2
+ 469              		.global	__aeabi_i2f
+ 470              		.section	.text.scan_lidar,"ax",%progbits
+ 471              		.align	2
+ 472              		.global	scan_lidar
+ 473              		.thumb
+ 474              		.thumb_func
+ 475              		.type	scan_lidar, %function
+ 476              	scan_lidar:
+ 477              	.LFB66:
+ 242:.\Lidar.c     **** }
+ 243:.\Lidar.c     **** void scan_lidar()
+ 244:.\Lidar.c     **** {
+ 478              		.loc 1 244 0
+ 479              		.cfi_startproc
+ 480              		@ args = 0, pretend = 0, frame = 0
+ 481              		@ frame_needed = 0, uses_anonymous_args = 0
+ 482 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 483              		.cfi_def_cfa_offset 24
+ 484              		.cfi_offset 3, -24
+ 485              		.cfi_offset 4, -20
+ 486              		.cfi_offset 5, -16
+ 487              		.cfi_offset 6, -12
+ 488              		.cfi_offset 7, -8
+ 489              		.cfi_offset 14, -4
+ 490              	.LVL36:
+ 245:.\Lidar.c     ****     uint16 scan_count = 0;
+ 246:.\Lidar.c     ****     uint8 pos;
+ 247:.\Lidar.c     ****     uint8 i;
+ 248:.\Lidar.c     ****     uint8 tttt;
+ 249:.\Lidar.c     ****     if(rx_lidar_flag == 1)
+ 491              		.loc 1 249 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 14
+
+
+ 492 0002 244B     		ldr	r3, .L41
+ 493 0004 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 494 0006 012B     		cmp	r3, #1
+ 495 0008 3FD1     		bne	.L32
+ 496 000a 3AE0     		b	.L38
+ 497              	.LVL37:
+ 498              	.L37:
+ 250:.\Lidar.c     ****     {
+ 251:.\Lidar.c     ****           for ( pos = 0; pos < 200; ++pos)
+ 252:.\Lidar.c     ****         {
+ 253:.\Lidar.c     ****             if (test1[pos].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT)
+ 499              		.loc 1 253 0
+ 500 000c 2F46     		mov	r7, r5
+ 501 000e 05EB8503 		add	r3, r5, r5, lsl #2
+ 502 0012 214A     		ldr	r2, .L41+4
+ 503 0014 D35C     		ldrb	r3, [r2, r3]	@ zero_extendqisi2
+ 504 0016 13F0010F 		tst	r3, #1
+ 505 001a 1ED0     		beq	.L33
+ 254:.\Lidar.c     ****             {
+ 255:.\Lidar.c     ****                 // only publish the data when it contains a full 360 degree scan 
+ 256:.\Lidar.c     ****                 
+ 257:.\Lidar.c     ****                 if ((test2[0].sync_quality & RPLIDAR_RESP_MEASUREMENT_SYNCBIT)) {
+ 506              		.loc 1 257 0
+ 507 001c 1F4B     		ldr	r3, .L41+8
+ 508 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 509 0020 13F0010F 		tst	r3, #1
+ 510 0024 14D1     		bne	.L39
+ 258:.\Lidar.c     ****                     
+ 259:.\Lidar.c     **** 		
+ 260:.\Lidar.c     ****                   //  memcpy(test3, test1, scan_count*sizeof(rplidar_response_measurement_node_t));
+ 261:.\Lidar.c     ****                     //_cached_scan_node_count = 128;
+ 262:.\Lidar.c     ****                   //  _dataEvt.set();
+ 263:.\Lidar.c     ****                   //  _lock.unlock();
+ 264:.\Lidar.c     ****                   //ascendScanData(test2,scan_count);
+ 265:.\Lidar.c     ****                     for(i = 0;i<scan_count;i++)
+ 266:.\Lidar.c     ****                     {
+ 267:.\Lidar.c     ****                     test_f_suzu[i]= (test2[i].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_S
+ 268:.\Lidar.c     ****                     tttt =1;
+ 269:.\Lidar.c     ****                     }
+ 270:.\Lidar.c     ****                 }
+ 271:.\Lidar.c     ****                 scan_count = 0;
+ 511              		.loc 1 271 0
+ 512 0026 0026     		movs	r6, #0
+ 513              	.LVL38:
+ 514 0028 17E0     		b	.L33
+ 515              	.LVL39:
+ 516              	.L35:
+ 267:.\Lidar.c     ****                     tttt =1;
+ 517              		.loc 1 267 0 discriminator 3
+ 518 002a 04EB8403 		add	r3, r4, r4, lsl #2
+ 519 002e 1B4A     		ldr	r2, .L41+8
+ 520 0030 1344     		add	r3, r3, r2
+ 521 0032 B3F80100 		ldrh	r0, [r3, #1]	@ unaligned
+ 522 0036 4008     		lsrs	r0, r0, #1
+ 523 0038 FFF7FEFF 		bl	__aeabi_i2f
+ 524              	.LVL40:
+ 525 003c 4FF07251 		mov	r1, #1015021568
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 15
+
+
+ 526 0040 FFF7FEFF 		bl	__aeabi_fmul
+ 527              	.LVL41:
+ 528 0044 164B     		ldr	r3, .L41+12
+ 529 0046 43F82400 		str	r0, [r3, r4, lsl #2]	@ float
+ 530              	.LVL42:
+ 265:.\Lidar.c     ****                     {
+ 531              		.loc 1 265 0 discriminator 3
+ 532 004a 0134     		adds	r4, r4, #1
+ 533              	.LVL43:
+ 534 004c E4B2     		uxtb	r4, r4
+ 535              	.LVL44:
+ 536 004e 00E0     		b	.L34
+ 537              	.LVL45:
+ 538              	.L39:
+ 539 0050 0024     		movs	r4, #0
+ 540              	.L34:
+ 541              	.LVL46:
+ 265:.\Lidar.c     ****                     {
+ 542              		.loc 1 265 0 is_stmt 0 discriminator 1
+ 543 0052 A3B2     		uxth	r3, r4
+ 544 0054 B342     		cmp	r3, r6
+ 545 0056 E8D3     		bcc	.L35
+ 546              		.loc 1 271 0 is_stmt 1
+ 547 0058 0026     		movs	r6, #0
+ 548              	.LVL47:
+ 549              	.L33:
+ 272:.\Lidar.c     ****             }
+ 273:.\Lidar.c     ****             test2[scan_count++] = test1[pos];
+ 550              		.loc 1 273 0
+ 551 005a 721C     		adds	r2, r6, #1
+ 552 005c 92B2     		uxth	r2, r2
+ 553              	.LVL48:
+ 554 005e 0F48     		ldr	r0, .L41+8
+ 555 0060 06EB8601 		add	r1, r6, r6, lsl #2
+ 556 0064 4418     		adds	r4, r0, r1
+ 557 0066 07EB8703 		add	r3, r7, r7, lsl #2
+ 558 006a 0B4F     		ldr	r7, .L41+4
+ 559 006c 3B44     		add	r3, r3, r7
+ 560 006e 1F68     		ldr	r7, [r3]	@ unaligned
+ 561 0070 4750     		str	r7, [r0, r1]	@ unaligned
+ 562 0072 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 563 0074 2371     		strb	r3, [r4, #4]
+ 274:.\Lidar.c     **** //			test[scan_count++].angle_q6_checkbit = (local_scan[0].angle_q6_checkbit >>1)/64.0f;
+ 275:.\Lidar.c     ****             if (scan_count >200) scan_count-=1; // prevent overflow
+ 564              		.loc 1 275 0
+ 565 0076 C82A     		cmp	r2, #200
+ 566 0078 00D8     		bhi	.L36
+ 273:.\Lidar.c     **** //			test[scan_count++].angle_q6_checkbit = (local_scan[0].angle_q6_checkbit >>1)/64.0f;
+ 567              		.loc 1 273 0
+ 568 007a 1646     		mov	r6, r2
+ 569              	.L36:
+ 570              	.LVL49:
+ 251:.\Lidar.c     ****         {
+ 571              		.loc 1 251 0 discriminator 2
+ 572 007c 0135     		adds	r5, r5, #1
+ 573              	.LVL50:
+ 574 007e EDB2     		uxtb	r5, r5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 16
+
+
+ 575              	.LVL51:
+ 576 0080 01E0     		b	.L31
+ 577              	.LVL52:
+ 578              	.L38:
+ 579 0082 0025     		movs	r5, #0
+ 580 0084 2E46     		mov	r6, r5
+ 581              	.LVL53:
+ 582              	.L31:
+ 251:.\Lidar.c     ****         {
+ 583              		.loc 1 251 0 is_stmt 0 discriminator 1
+ 584 0086 C72D     		cmp	r5, #199
+ 585 0088 C0D9     		bls	.L37
+ 586              	.LVL54:
+ 587              	.L32:
+ 276:.\Lidar.c     ****         }
+ 277:.\Lidar.c     ****     }
+ 278:.\Lidar.c     ****     rx_lidar_flag = 0;
+ 588              		.loc 1 278 0 is_stmt 1
+ 589 008a 0022     		movs	r2, #0
+ 590 008c 014B     		ldr	r3, .L41
+ 591 008e 1A71     		strb	r2, [r3, #4]
+ 592 0090 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 593              	.L42:
+ 594 0092 00BF     		.align	2
+ 595              	.L41:
+ 596 0094 00000000 		.word	.LANCHOR1
+ 597 0098 00000000 		.word	test1
+ 598 009c 00000000 		.word	test2
+ 599 00a0 00000000 		.word	test_f_suzu
+ 600              		.cfi_endproc
+ 601              	.LFE66:
+ 602              		.size	scan_lidar, .-scan_lidar
+ 603              		.global	__aeabi_ui2d
+ 604              		.global	__aeabi_ddiv
+ 605              		.global	__aeabi_d2f
+ 606              		.global	__aeabi_fsub
+ 607              		.global	__aeabi_fcmplt
+ 608              		.global	__aeabi_f2uiz
+ 609              		.global	__aeabi_fadd
+ 610              		.global	__aeabi_fcmpgt
+ 611              		.section	.text.ascendScanData,"ax",%progbits
+ 612              		.align	2
+ 613              		.global	ascendScanData
+ 614              		.thumb
+ 615              		.thumb_func
+ 616              		.type	ascendScanData, %function
+ 617              	ascendScanData:
+ 618              	.LFB67:
+ 279:.\Lidar.c     **** }
+ 280:.\Lidar.c     **** uint8 ascendScanData(rplidar_response_measurement_node_t * nodebuffer, size_t count)
+ 281:.\Lidar.c     **** {
+ 619              		.loc 1 281 0
+ 620              		.cfi_startproc
+ 621              		@ args = 0, pretend = 0, frame = 16
+ 622              		@ frame_needed = 0, uses_anonymous_args = 0
+ 623              	.LVL55:
+ 624 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 17
+
+
+ 625              		.cfi_def_cfa_offset 36
+ 626              		.cfi_offset 4, -36
+ 627              		.cfi_offset 5, -32
+ 628              		.cfi_offset 6, -28
+ 629              		.cfi_offset 7, -24
+ 630              		.cfi_offset 8, -20
+ 631              		.cfi_offset 9, -16
+ 632              		.cfi_offset 10, -12
+ 633              		.cfi_offset 11, -8
+ 634              		.cfi_offset 14, -4
+ 635 0004 85B0     		sub	sp, sp, #20
+ 636              		.cfi_def_cfa_offset 56
+ 637 0006 0446     		mov	r4, r0
+ 638 0008 0D46     		mov	r5, r1
+ 282:.\Lidar.c     ****     float inc_origin_angle = 360.0/count;
+ 639              		.loc 1 282 0
+ 640 000a 0846     		mov	r0, r1
+ 641              	.LVL56:
+ 642 000c FFF7FEFF 		bl	__aeabi_ui2d
+ 643              	.LVL57:
+ 644 0010 0246     		mov	r2, r0
+ 645 0012 0B46     		mov	r3, r1
+ 646 0014 0020     		movs	r0, #0
+ 647 0016 7349     		ldr	r1, .L75
+ 648 0018 FFF7FEFF 		bl	__aeabi_ddiv
+ 649              	.LVL58:
+ 650 001c FFF7FEFF 		bl	__aeabi_d2f
+ 651              	.LVL59:
+ 652 0020 8046     		mov	r8, r0
+ 653              	.LVL60:
+ 283:.\Lidar.c     ****     size_t i = 0;
+ 284:.\Lidar.c     ****     size_t j;
+ 285:.\Lidar.c     ****     //Tune head
+ 286:.\Lidar.c     ****     for (i = 0; i < count; i++) {
+ 654              		.loc 1 286 0
+ 655 0022 0023     		movs	r3, #0
+ 656 0024 35E0     		b	.L44
+ 657              	.LVL61:
+ 658              	.L50:
+ 287:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 659              		.loc 1 287 0
+ 660 0026 03EB8302 		add	r2, r3, r3, lsl #2
+ 661 002a 2244     		add	r2, r2, r4
+ 662 002c B2F80320 		ldrh	r2, [r2, #3]	@ unaligned
+ 663 0030 62BB     		cbnz	r2, .L46
+ 286:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 664              		.loc 1 286 0
+ 665 0032 0133     		adds	r3, r3, #1
+ 666              	.LVL62:
+ 667 0034 2DE0     		b	.L44
+ 668              	.LVL63:
+ 669              	.L48:
+ 670              	.LBB2:
+ 288:.\Lidar.c     ****             continue;
+ 289:.\Lidar.c     ****         } else {
+ 290:.\Lidar.c     ****             while(i != 0) {
+ 291:.\Lidar.c     ****                 i--;
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 18
+
+
+ 671              		.loc 1 291 0
+ 672 0036 5F1E     		subs	r7, r3, #1
+ 673              	.LVL64:
+ 292:.\Lidar.c     ****                 float expect_angle = (nodebuffer[i+1].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT
+ 674              		.loc 1 292 0
+ 675 0038 03EB8303 		add	r3, r3, r3, lsl #2
+ 676 003c 2344     		add	r3, r3, r4
+ 677 003e B3F80100 		ldrh	r0, [r3, #1]	@ unaligned
+ 678 0042 4008     		lsrs	r0, r0, #1
+ 679 0044 FFF7FEFF 		bl	__aeabi_i2f
+ 680              	.LVL65:
+ 681 0048 4FF07251 		mov	r1, #1015021568
+ 682 004c FFF7FEFF 		bl	__aeabi_fmul
+ 683              	.LVL66:
+ 684 0050 4146     		mov	r1, r8
+ 685 0052 FFF7FEFF 		bl	__aeabi_fsub
+ 686              	.LVL67:
+ 687 0056 8246     		mov	r10, r0
+ 688              	.LVL68:
+ 293:.\Lidar.c     ****                 if (expect_angle < 0.0f) expect_angle = 0.0f;
+ 689              		.loc 1 293 0
+ 690 0058 0021     		movs	r1, #0
+ 691 005a FFF7FEFF 		bl	__aeabi_fcmplt
+ 692              	.LVL69:
+ 693 005e 08B1     		cbz	r0, .L47
+ 694 0060 4FF0000A 		mov	r10, #0
+ 695              	.LVL70:
+ 696              	.L47:
+ 294:.\Lidar.c     ****                 uint16 checkbit = nodebuffer[i].angle_q6_checkbit & RPLIDAR_RESP_MEASUREMENT_CHECKB
+ 697              		.loc 1 294 0
+ 698 0064 07EB8709 		add	r9, r7, r7, lsl #2
+ 699 0068 A144     		add	r9, r9, r4
+ 700 006a B9F80160 		ldrh	r6, [r9, #1]	@ unaligned
+ 701 006e 06F00106 		and	r6, r6, #1
+ 702              	.LVL71:
+ 295:.\Lidar.c     ****                 nodebuffer[i].angle_q6_checkbit = (((uint16)(expect_angle * 64.0f)) << RPLIDAR_RESP
+ 703              		.loc 1 295 0
+ 704 0072 5046     		mov	r0, r10
+ 705 0074 4FF08541 		mov	r1, #1115684864
+ 706 0078 FFF7FEFF 		bl	__aeabi_fmul
+ 707              	.LVL72:
+ 708 007c FFF7FEFF 		bl	__aeabi_f2uiz
+ 709              	.LVL73:
+ 710 0080 80B2     		uxth	r0, r0
+ 711 0082 06EB4006 		add	r6, r6, r0, lsl #1
+ 712              	.LVL74:
+ 713 0086 A9F80160 		strh	r6, [r9, #1]	@ unaligned
+ 291:.\Lidar.c     ****                 float expect_angle = (nodebuffer[i+1].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT
+ 714              		.loc 1 291 0
+ 715 008a 3B46     		mov	r3, r7
+ 716              	.LVL75:
+ 717              	.L46:
+ 718              	.LBE2:
+ 290:.\Lidar.c     ****                 i--;
+ 719              		.loc 1 290 0
+ 720 008c 002B     		cmp	r3, #0
+ 721 008e D2D1     		bne	.L48
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 19
+
+
+ 722 0090 01E0     		b	.L49
+ 723              	.LVL76:
+ 724              	.L44:
+ 286:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 725              		.loc 1 286 0 discriminator 1
+ 726 0092 AB42     		cmp	r3, r5
+ 727 0094 C7D3     		bcc	.L50
+ 728              	.LVL77:
+ 729              	.L49:
+ 296:.\Lidar.c     ****             }
+ 297:.\Lidar.c     ****             break;
+ 298:.\Lidar.c     ****         }
+ 299:.\Lidar.c     ****     }
+ 300:.\Lidar.c     **** 
+ 301:.\Lidar.c     ****     // all the data is invalid
+ 302:.\Lidar.c     ****     if (i == count) return 2;
+ 730              		.loc 1 302 0
+ 731 0096 AB42     		cmp	r3, r5
+ 732 0098 00F09F80 		beq	.L71
+ 303:.\Lidar.c     **** 
+ 304:.\Lidar.c     ****     //Tune tail
+ 305:.\Lidar.c     ****     for (i = count - 1; i > 0; i--) {
+ 733              		.loc 1 305 0
+ 734 009c 05F1FF3A 		add	r10, r5, #-1
+ 735              	.LVL78:
+ 736 00a0 D146     		mov	r9, r10
+ 737 00a2 38E0     		b	.L52
+ 738              	.LVL79:
+ 739              	.L59:
+ 306:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 740              		.loc 1 306 0
+ 741 00a4 09EB8903 		add	r3, r9, r9, lsl #2
+ 742 00a8 2344     		add	r3, r3, r4
+ 743 00aa B3F80330 		ldrh	r3, [r3, #3]	@ unaligned
+ 744 00ae 7BBB     		cbnz	r3, .L54
+ 305:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 745              		.loc 1 305 0
+ 746 00b0 09F1FF39 		add	r9, r9, #-1
+ 747              	.LVL80:
+ 748 00b4 2FE0     		b	.L52
+ 749              	.L57:
+ 750              	.LBB3:
+ 307:.\Lidar.c     ****             continue;
+ 308:.\Lidar.c     ****         } else {
+ 309:.\Lidar.c     ****             while(i != (count - 1)) {
+ 310:.\Lidar.c     ****                 i++;
+ 751              		.loc 1 310 0
+ 752 00b6 09F10109 		add	r9, r9, #1
+ 753              	.LVL81:
+ 311:.\Lidar.c     ****                 float expect_angle = (nodebuffer[i-1].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT
+ 754              		.loc 1 311 0
+ 755 00ba 09EB8906 		add	r6, r9, r9, lsl #2
+ 756 00be 731F     		subs	r3, r6, #5
+ 757 00c0 2344     		add	r3, r3, r4
+ 758 00c2 B3F80100 		ldrh	r0, [r3, #1]	@ unaligned
+ 759 00c6 4008     		lsrs	r0, r0, #1
+ 760 00c8 FFF7FEFF 		bl	__aeabi_i2f
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 20
+
+
+ 761              	.LVL82:
+ 762 00cc 4FF07251 		mov	r1, #1015021568
+ 763 00d0 FFF7FEFF 		bl	__aeabi_fmul
+ 764              	.LVL83:
+ 765 00d4 4146     		mov	r1, r8
+ 766 00d6 FFF7FEFF 		bl	__aeabi_fadd
+ 767              	.LVL84:
+ 768 00da 8346     		mov	fp, r0
+ 769              	.LVL85:
+ 312:.\Lidar.c     ****                 if (expect_angle > 360.0f) expect_angle -= 360.0f;
+ 770              		.loc 1 312 0
+ 771 00dc 4249     		ldr	r1, .L75+4
+ 772 00de FFF7FEFF 		bl	__aeabi_fcmpgt
+ 773              	.LVL86:
+ 774 00e2 20B1     		cbz	r0, .L55
+ 775              		.loc 1 312 0 is_stmt 0 discriminator 1
+ 776 00e4 5846     		mov	r0, fp
+ 777 00e6 4049     		ldr	r1, .L75+4
+ 778 00e8 FFF7FEFF 		bl	__aeabi_fsub
+ 779              	.LVL87:
+ 780 00ec 8346     		mov	fp, r0
+ 781              	.LVL88:
+ 782              	.L55:
+ 313:.\Lidar.c     ****                 uint16 checkbit = nodebuffer[i].angle_q6_checkbit & RPLIDAR_RESP_MEASUREMENT_CHECKB
+ 783              		.loc 1 313 0 is_stmt 1
+ 784 00ee 2644     		add	r6, r6, r4
+ 785 00f0 B6F80170 		ldrh	r7, [r6, #1]	@ unaligned
+ 786 00f4 07F00107 		and	r7, r7, #1
+ 787              	.LVL89:
+ 314:.\Lidar.c     ****                 nodebuffer[i].angle_q6_checkbit = (((uint16)(expect_angle * 64.0f)) << RPLIDAR_RESP
+ 788              		.loc 1 314 0
+ 789 00f8 5846     		mov	r0, fp
+ 790 00fa 4FF08541 		mov	r1, #1115684864
+ 791 00fe FFF7FEFF 		bl	__aeabi_fmul
+ 792              	.LVL90:
+ 793 0102 FFF7FEFF 		bl	__aeabi_f2uiz
+ 794              	.LVL91:
+ 795 0106 80B2     		uxth	r0, r0
+ 796 0108 07EB4007 		add	r7, r7, r0, lsl #1
+ 797              	.LVL92:
+ 798 010c A6F80170 		strh	r7, [r6, #1]	@ unaligned
+ 799              	.LVL93:
+ 800              	.L54:
+ 801              	.LBE3:
+ 309:.\Lidar.c     ****                 i++;
+ 802              		.loc 1 309 0
+ 803 0110 D145     		cmp	r9, r10
+ 804 0112 D0D1     		bne	.L57
+ 805 0114 02E0     		b	.L58
+ 806              	.L52:
+ 305:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 807              		.loc 1 305 0 discriminator 1
+ 808 0116 B9F1000F 		cmp	r9, #0
+ 809 011a C3D1     		bne	.L59
+ 810              	.L58:
+ 315:.\Lidar.c     ****             }
+ 316:.\Lidar.c     ****             break;
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 21
+
+
+ 317:.\Lidar.c     ****         }
+ 318:.\Lidar.c     ****     }
+ 319:.\Lidar.c     **** 
+ 320:.\Lidar.c     ****     //Fill invalid angle in the scan
+ 321:.\Lidar.c     ****     float frontAngle = (nodebuffer[0].angle_q6_checkbit >> RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT)/64
+ 811              		.loc 1 321 0
+ 812 011c B4F80100 		ldrh	r0, [r4, #1]	@ unaligned
+ 813 0120 4008     		lsrs	r0, r0, #1
+ 814 0122 FFF7FEFF 		bl	__aeabi_i2f
+ 815              	.LVL94:
+ 816 0126 4FF07251 		mov	r1, #1015021568
+ 817 012a FFF7FEFF 		bl	__aeabi_fmul
+ 818              	.LVL95:
+ 819 012e 0190     		str	r0, [sp, #4]	@ float
+ 820              	.LVL96:
+ 322:.\Lidar.c     ****     for (i = 1; i < count; i++) {
+ 821              		.loc 1 322 0
+ 822 0130 0126     		movs	r6, #1
+ 823 0132 29E0     		b	.L60
+ 824              	.LVL97:
+ 825              	.L64:
+ 323:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 826              		.loc 1 323 0
+ 827 0134 06EB8607 		add	r7, r6, r6, lsl #2
+ 828 0138 2744     		add	r7, r7, r4
+ 829 013a B7F80330 		ldrh	r3, [r7, #3]	@ unaligned
+ 830 013e 13BB     		cbnz	r3, .L61
+ 831              	.LBB4:
+ 324:.\Lidar.c     ****             float expect_angle =  frontAngle + i * inc_origin_angle;
+ 832              		.loc 1 324 0
+ 833 0140 3046     		mov	r0, r6
+ 834 0142 FFF7FEFF 		bl	__aeabi_ui2f
+ 835              	.LVL98:
+ 836 0146 4146     		mov	r1, r8
+ 837 0148 FFF7FEFF 		bl	__aeabi_fmul
+ 838              	.LVL99:
+ 839 014c 0199     		ldr	r1, [sp, #4]	@ float
+ 840 014e FFF7FEFF 		bl	__aeabi_fadd
+ 841              	.LVL100:
+ 842 0152 8346     		mov	fp, r0
+ 843              	.LVL101:
+ 325:.\Lidar.c     ****             if (expect_angle > 360.0f) expect_angle -= 360.0f;
+ 844              		.loc 1 325 0
+ 845 0154 2449     		ldr	r1, .L75+4
+ 846 0156 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 847              	.LVL102:
+ 848 015a 20B1     		cbz	r0, .L62
+ 849              		.loc 1 325 0 is_stmt 0 discriminator 1
+ 850 015c 5846     		mov	r0, fp
+ 851 015e 2249     		ldr	r1, .L75+4
+ 852 0160 FFF7FEFF 		bl	__aeabi_fsub
+ 853              	.LVL103:
+ 854 0164 8346     		mov	fp, r0
+ 855              	.LVL104:
+ 856              	.L62:
+ 326:.\Lidar.c     ****             uint16 checkbit = nodebuffer[i].angle_q6_checkbit & RPLIDAR_RESP_MEASUREMENT_CHECKBIT;
+ 857              		.loc 1 326 0 is_stmt 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 22
+
+
+ 858 0166 B7F80190 		ldrh	r9, [r7, #1]	@ unaligned
+ 859 016a 09F00109 		and	r9, r9, #1
+ 860              	.LVL105:
+ 327:.\Lidar.c     ****             nodebuffer[i].angle_q6_checkbit = (((uint16)(expect_angle * 64.0f)) << RPLIDAR_RESP_MEA
+ 861              		.loc 1 327 0
+ 862 016e 5846     		mov	r0, fp
+ 863 0170 4FF08541 		mov	r1, #1115684864
+ 864 0174 FFF7FEFF 		bl	__aeabi_fmul
+ 865              	.LVL106:
+ 866 0178 FFF7FEFF 		bl	__aeabi_f2uiz
+ 867              	.LVL107:
+ 868 017c 80B2     		uxth	r0, r0
+ 869 017e 09EB4009 		add	r9, r9, r0, lsl #1
+ 870              	.LVL108:
+ 871 0182 A7F80190 		strh	r9, [r7, #1]	@ unaligned
+ 872              	.LVL109:
+ 873              	.L61:
+ 874              	.LBE4:
+ 322:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 875              		.loc 1 322 0 discriminator 2
+ 876 0186 0136     		adds	r6, r6, #1
+ 877              	.LVL110:
+ 878              	.L60:
+ 322:.\Lidar.c     ****         if(nodebuffer[i].distance_q2 == 0) {
+ 879              		.loc 1 322 0 is_stmt 0 discriminator 1
+ 880 0188 AE42     		cmp	r6, r5
+ 881 018a D3D3     		bcc	.L64
+ 882 018c 4FF0000E 		mov	lr, #0
+ 883 0190 1FE0     		b	.L65
+ 884              	.LVL111:
+ 885              	.L69:
+ 328:.\Lidar.c     ****         }
+ 329:.\Lidar.c     ****     }
+ 330:.\Lidar.c     **** 
+ 331:.\Lidar.c     ****     // Reorder the scan according to the angle value
+ 332:.\Lidar.c     ****     for (i = 0; i < (count-1); i++){
+ 333:.\Lidar.c     ****         for (j = (i+1); j < count; j++){
+ 886              		.loc 1 333 0 is_stmt 1
+ 887 0192 0EF10108 		add	r8, lr, #1
+ 888              	.LVL112:
+ 889 0196 4346     		mov	r3, r8
+ 890 0198 18E0     		b	.L66
+ 891              	.LVL113:
+ 892              	.L68:
+ 334:.\Lidar.c     ****             if(nodebuffer[i].angle_q6_checkbit > nodebuffer[j].angle_q6_checkbit){
+ 893              		.loc 1 334 0
+ 894 019a 0EEB8E07 		add	r7, lr, lr, lsl #2
+ 895 019e E119     		adds	r1, r4, r7
+ 896 01a0 B1F801C0 		ldrh	ip, [r1, #1]	@ unaligned
+ 897 01a4 03EB8306 		add	r6, r3, r3, lsl #2
+ 898 01a8 A219     		adds	r2, r4, r6
+ 899 01aa B2F80100 		ldrh	r0, [r2, #1]	@ unaligned
+ 900 01ae 8445     		cmp	ip, r0
+ 901 01b0 0BD9     		bls	.L67
+ 902              	.LBB5:
+ 335:.\Lidar.c     ****                 rplidar_response_measurement_node_t temp = nodebuffer[i];
+ 903              		.loc 1 335 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 23
+
+
+ 904 01b2 0868     		ldr	r0, [r1]	@ unaligned
+ 905 01b4 0290     		str	r0, [sp, #8]	@ unaligned
+ 906 01b6 91F804C0 		ldrb	ip, [r1, #4]	@ zero_extendqisi2
+ 336:.\Lidar.c     ****                 nodebuffer[i] = nodebuffer[j];
+ 907              		.loc 1 336 0
+ 908 01ba 1068     		ldr	r0, [r2]	@ unaligned
+ 909 01bc E051     		str	r0, [r4, r7]	@ unaligned
+ 910 01be 1079     		ldrb	r0, [r2, #4]	@ zero_extendqisi2
+ 911 01c0 0871     		strb	r0, [r1, #4]
+ 337:.\Lidar.c     ****                 nodebuffer[j] = temp;
+ 912              		.loc 1 337 0
+ 913 01c2 0298     		ldr	r0, [sp, #8]	@ unaligned
+ 914 01c4 A051     		str	r0, [r4, r6]	@ unaligned
+ 915 01c6 82F804C0 		strb	ip, [r2, #4]
+ 916              	.L67:
+ 917              	.LBE5:
+ 333:.\Lidar.c     ****             if(nodebuffer[i].angle_q6_checkbit > nodebuffer[j].angle_q6_checkbit){
+ 918              		.loc 1 333 0 discriminator 2
+ 919 01ca 0133     		adds	r3, r3, #1
+ 920              	.LVL114:
+ 921              	.L66:
+ 333:.\Lidar.c     ****             if(nodebuffer[i].angle_q6_checkbit > nodebuffer[j].angle_q6_checkbit){
+ 922              		.loc 1 333 0 is_stmt 0 discriminator 1
+ 923 01cc AB42     		cmp	r3, r5
+ 924 01ce E4D3     		bcc	.L68
+ 332:.\Lidar.c     ****         for (j = (i+1); j < count; j++){
+ 925              		.loc 1 332 0 is_stmt 1
+ 926 01d0 C646     		mov	lr, r8
+ 927              	.LVL115:
+ 928              	.L65:
+ 332:.\Lidar.c     ****         for (j = (i+1); j < count; j++){
+ 929              		.loc 1 332 0 is_stmt 0 discriminator 1
+ 930 01d2 D645     		cmp	lr, r10
+ 931 01d4 DDD3     		bcc	.L69
+ 338:.\Lidar.c     ****             }
+ 339:.\Lidar.c     ****         }
+ 340:.\Lidar.c     ****     }
+ 341:.\Lidar.c     **** 
+ 342:.\Lidar.c     ****     return 1;
+ 932              		.loc 1 342 0 is_stmt 1
+ 933 01d6 0120     		movs	r0, #1
+ 934 01d8 00E0     		b	.L51
+ 935              	.LVL116:
+ 936              	.L71:
+ 302:.\Lidar.c     **** 
+ 937              		.loc 1 302 0
+ 938 01da 0220     		movs	r0, #2
+ 939              	.LVL117:
+ 940              	.L51:
+ 343:.\Lidar.c     **** }
+ 941              		.loc 1 343 0
+ 942 01dc 05B0     		add	sp, sp, #20
+ 943              		.cfi_def_cfa_offset 36
+ 944              		@ sp needed
+ 945 01de BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 946              	.LVL118:
+ 947              	.L76:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 24
+
+
+ 948 01e2 00BF     		.align	2
+ 949              	.L75:
+ 950 01e4 00807640 		.word	1081507840
+ 951 01e8 0000B443 		.word	1135869952
+ 952              		.cfi_endproc
+ 953              	.LFE67:
+ 954              		.size	ascendScanData, .-ascendScanData
+ 955              		.section	.text.Lidar_Data_Receive_Prepare,"ax",%progbits
+ 956              		.align	2
+ 957              		.global	Lidar_Data_Receive_Prepare
+ 958              		.thumb
+ 959              		.thumb_func
+ 960              		.type	Lidar_Data_Receive_Prepare, %function
+ 961              	Lidar_Data_Receive_Prepare:
+ 962              	.LFB68:
+ 344:.\Lidar.c     **** 
+ 345:.\Lidar.c     **** void Lidar_Data_Receive_Prepare(uint8 data)
+ 346:.\Lidar.c     **** {
+ 963              		.loc 1 346 0
+ 964              		.cfi_startproc
+ 965              		@ args = 0, pretend = 0, frame = 0
+ 966              		@ frame_needed = 0, uses_anonymous_args = 0
+ 967              	.LVL119:
+ 968 0000 10B5     		push	{r4, lr}
+ 969              		.cfi_def_cfa_offset 8
+ 970              		.cfi_offset 4, -8
+ 971              		.cfi_offset 14, -4
+ 972              	.LVL120:
+ 347:.\Lidar.c     ****  
+ 348:.\Lidar.c     ****     uint8 temp_sys;
+ 349:.\Lidar.c     **** 	static uint8 _data_len = 0,_data_cnt = 0;
+ 350:.\Lidar.c     **** 	static uint8 state = 0;
+ 351:.\Lidar.c     ****     temp_sys= offsetof(rplidar_response_capsule_measurement_nodes_t, start_angle_sync_q6);
+ 352:.\Lidar.c     **** 	temp_sys = data>>4;
+ 973              		.loc 1 352 0
+ 974 0002 0209     		lsrs	r2, r0, #4
+ 975              	.LVL121:
+ 353:.\Lidar.c     ****     
+ 354:.\Lidar.c     **** 	if(state==0&&temp_sys==0xA)  //sys1
+ 976              		.loc 1 354 0
+ 977 0004 2D4B     		ldr	r3, .L87
+ 978 0006 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+ 979 0008 3BB9     		cbnz	r3, .L78
+ 980              		.loc 1 354 0 is_stmt 0 discriminator 1
+ 981 000a 0A2A     		cmp	r2, #10
+ 982 000c 05D1     		bne	.L78
+ 355:.\Lidar.c     **** 	{
+ 356:.\Lidar.c     **** 		state=1;
+ 983              		.loc 1 356 0 is_stmt 1
+ 984 000e 0122     		movs	r2, #1
+ 985              	.LVL122:
+ 986 0010 2A4B     		ldr	r3, .L87
+ 987 0012 1A72     		strb	r2, [r3, #8]
+ 357:.\Lidar.c     **** 		nodeBuffer[0]=data;
+ 988              		.loc 1 357 0
+ 989 0014 2A4B     		ldr	r3, .L87+4
+ 990 0016 1870     		strb	r0, [r3]
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 25
+
+
+ 991 0018 10BD     		pop	{r4, pc}
+ 992              	.LVL123:
+ 993              	.L78:
+ 358:.\Lidar.c     **** 	}
+ 359:.\Lidar.c     **** 
+ 360:.\Lidar.c     **** 	else if(state==1&&temp_sys==0x5) //sys2
+ 994              		.loc 1 360 0
+ 995 001a 012B     		cmp	r3, #1
+ 996 001c 0CD1     		bne	.L80
+ 997              		.loc 1 360 0 is_stmt 0 discriminator 1
+ 998 001e 052A     		cmp	r2, #5
+ 999 0020 0AD1     		bne	.L80
+ 361:.\Lidar.c     **** 	{
+ 362:.\Lidar.c     **** 		state=2;
+ 1000              		.loc 1 362 0 is_stmt 1
+ 1001 0022 264B     		ldr	r3, .L87
+ 1002 0024 0222     		movs	r2, #2
+ 1003              	.LVL124:
+ 1004 0026 1A72     		strb	r2, [r3, #8]
+ 363:.\Lidar.c     **** 		nodeBuffer[1]=data>>1;
+ 1005              		.loc 1 363 0
+ 1006 0028 4008     		lsrs	r0, r0, #1
+ 1007              	.LVL125:
+ 1008 002a 254A     		ldr	r2, .L87+4
+ 1009 002c 5070     		strb	r0, [r2, #1]
+ 364:.\Lidar.c     ****         _data_cnt = 0;
+ 1010              		.loc 1 364 0
+ 1011 002e 0022     		movs	r2, #0
+ 1012 0030 5A72     		strb	r2, [r3, #9]
+ 365:.\Lidar.c     ****         _data_len = sizeof(rplidar_response_capsule_measurement_nodes_t);
+ 1013              		.loc 1 365 0
+ 1014 0032 5422     		movs	r2, #84
+ 1015 0034 9A72     		strb	r2, [r3, #10]
+ 1016 0036 10BD     		pop	{r4, pc}
+ 1017              	.LVL126:
+ 1018              	.L80:
+ 366:.\Lidar.c     **** 	}
+ 367:.\Lidar.c     **** 	else if(state == 2&&_data_len>0)//data
+ 1019              		.loc 1 367 0
+ 1020 0038 022B     		cmp	r3, #2
+ 1021 003a 12D1     		bne	.L81
+ 1022              		.loc 1 367 0 is_stmt 0 discriminator 1
+ 1023 003c 1F4A     		ldr	r2, .L87
+ 1024              	.LVL127:
+ 1025 003e 927A     		ldrb	r2, [r2, #10]	@ zero_extendqisi2
+ 1026 0040 7AB1     		cbz	r2, .L81
+ 368:.\Lidar.c     **** 	{
+ 369:.\Lidar.c     **** 		_data_len--;
+ 1027              		.loc 1 369 0 is_stmt 1
+ 1028 0042 531E     		subs	r3, r2, #1
+ 1029 0044 DBB2     		uxtb	r3, r3
+ 1030 0046 1D49     		ldr	r1, .L87
+ 1031 0048 8B72     		strb	r3, [r1, #10]
+ 370:.\Lidar.c     **** 		nodeBuffer[2+_data_cnt++] = data;
+ 1032              		.loc 1 370 0
+ 1033 004a 4A7A     		ldrb	r2, [r1, #9]	@ zero_extendqisi2
+ 1034 004c 541C     		adds	r4, r2, #1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 26
+
+
+ 1035 004e 4C72     		strb	r4, [r1, #9]
+ 1036 0050 0232     		adds	r2, r2, #2
+ 1037 0052 1B49     		ldr	r1, .L87+4
+ 1038 0054 8854     		strb	r0, [r1, r2]
+ 371:.\Lidar.c     **** 		if(_data_len == 0)
+ 1039              		.loc 1 371 0
+ 1040 0056 002B     		cmp	r3, #0
+ 1041 0058 2ED1     		bne	.L77
+ 372:.\Lidar.c     **** 		state = 3;
+ 1042              		.loc 1 372 0
+ 1043 005a 0322     		movs	r2, #3
+ 1044 005c 174B     		ldr	r3, .L87
+ 1045 005e 1A72     		strb	r2, [r3, #8]
+ 1046 0060 10BD     		pop	{r4, pc}
+ 1047              	.L81:
+ 373:.\Lidar.c     **** 
+ 374:.\Lidar.c     **** 	}
+ 375:.\Lidar.c     **** 	else if(state == 3)//sum
+ 1048              		.loc 1 375 0
+ 1049 0062 032B     		cmp	r3, #3
+ 1050 0064 25D1     		bne	.L82
+ 1051              	.LBB6:
+ 376:.\Lidar.c     **** 	{
+ 377:.\Lidar.c     ****      //  UART_net_PutChar(0);
+ 378:.\Lidar.c     **** 		state = 0;
+ 1052              		.loc 1 378 0
+ 1053 0066 0023     		movs	r3, #0
+ 1054 0068 144A     		ldr	r2, .L87
+ 1055 006a 1372     		strb	r3, [r2, #8]
+ 1056              	.LVL128:
+ 379:.\Lidar.c     ****         size_t cpos; // = offsetof(rplidar_response_capsule_measurement_nodes_t, start_angle_sync_q
+ 380:.\Lidar.c     ****         
+ 381:.\Lidar.c     ****         uint8 checksum = 0;
+ 382:.\Lidar.c     ****         node = (rplidar_response_capsule_measurement_nodes_t *)nodeBuffer;
+ 1057              		.loc 1 382 0
+ 1058 006c 1449     		ldr	r1, .L87+4
+ 1059 006e 154A     		ldr	r2, .L87+8
+ 1060 0070 1160     		str	r1, [r2]
+ 383:.\Lidar.c     ****         
+ 384:.\Lidar.c     ****         uint8 recvChecksum = ((node->s_checksum_1 & 0xF) | (node->s_checksum_2<<4)); //取得较验
+ 1061              		.loc 1 384 0
+ 1062 0072 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+ 1063 0074 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 1064 0076 02F00F02 		and	r2, r2, #15
+ 1065 007a 42EA0111 		orr	r1, r2, r1, lsl #4
+ 1066 007e C9B2     		uxtb	r1, r1
+ 1067              	.LVL129:
+ 385:.\Lidar.c     ****         for ( cpos = 2 ;cpos < end; ++cpos)
+ 1068              		.loc 1 385 0
+ 1069 0080 0224     		movs	r4, #2
+ 1070 0082 03E0     		b	.L83
+ 1071              	.LVL130:
+ 1072              	.L84:
+ 386:.\Lidar.c     ****             {
+ 387:.\Lidar.c     ****                 checksum ^= nodeBuffer[cpos];
+ 1073              		.loc 1 387 0 discriminator 3
+ 1074 0084 0E4A     		ldr	r2, .L87+4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 27
+
+
+ 1075 0086 125D     		ldrb	r2, [r2, r4]	@ zero_extendqisi2
+ 1076 0088 5340     		eors	r3, r3, r2
+ 1077              	.LVL131:
+ 385:.\Lidar.c     ****         for ( cpos = 2 ;cpos < end; ++cpos)
+ 1078              		.loc 1 385 0 discriminator 3
+ 1079 008a 0134     		adds	r4, r4, #1
+ 1080              	.LVL132:
+ 1081              	.L83:
+ 385:.\Lidar.c     ****         for ( cpos = 2 ;cpos < end; ++cpos)
+ 1082              		.loc 1 385 0 is_stmt 0 discriminator 1
+ 1083 008c 0E4A     		ldr	r2, .L87+12
+ 1084 008e 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 1085 0090 A242     		cmp	r2, r4
+ 1086 0092 F7D8     		bhi	.L84
+ 388:.\Lidar.c     ****                
+ 389:.\Lidar.c     ****             }
+ 390:.\Lidar.c     ****             if (recvChecksum == checksum)
+ 1087              		.loc 1 390 0 is_stmt 1
+ 1088 0094 9942     		cmp	r1, r3
+ 1089 0096 0FD1     		bne	.L77
+ 391:.\Lidar.c     ****             {
+ 392:.\Lidar.c     ****                 // only consider vaild if the checksum matches...
+ 393:.\Lidar.c     ****                 if (node->start_angle_sync_q6 & RPLIDAR_RESP_MEASUREMENT_EXP_SYNCBIT) 
+ 394:.\Lidar.c     ****                 {
+ 395:.\Lidar.c     ****                     // this is the first capsule frame in logic, discard the previous cached data..
+ 396:.\Lidar.c     ****                 //    _is_previous_capsuledataRdy = false;
+ 397:.\Lidar.c     ****                     
+ 398:.\Lidar.c     ****                 }
+ 399:.\Lidar.c     ****                 if(rx_lidar_flag == 0)
+ 1090              		.loc 1 399 0
+ 1091 0098 084B     		ldr	r3, .L87
+ 1092              	.LVL133:
+ 1093 009a 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1094 009c 23B9     		cbnz	r3, .L85
+ 400:.\Lidar.c     ****                 {
+ 401:.\Lidar.c     ****                  memcpy(net_nodeBuffer,nodeBuffer,84);
+ 1095              		.loc 1 401 0
+ 1096 009e 0B48     		ldr	r0, .L87+16
+ 1097              	.LVL134:
+ 1098 00a0 0749     		ldr	r1, .L87+4
+ 1099              	.LVL135:
+ 1100 00a2 5422     		movs	r2, #84
+ 1101 00a4 FFF7FEFF 		bl	memcpy
+ 1102              	.LVL136:
+ 1103              	.L85:
+ 402:.\Lidar.c     ****                 }
+ 403:.\Lidar.c     ****                  rx_lidar_flag = 1;
+ 1104              		.loc 1 403 0
+ 1105 00a8 044B     		ldr	r3, .L87
+ 1106 00aa 0122     		movs	r2, #1
+ 1107 00ac 1A71     		strb	r2, [r3, #4]
+ 404:.\Lidar.c     ****                  rx_lidar_count = cpos;
+ 1108              		.loc 1 404 0
+ 1109 00ae DC72     		strb	r4, [r3, #11]
+ 1110 00b0 10BD     		pop	{r4, pc}
+ 1111              	.LVL137:
+ 1112              	.L82:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 28
+
+
+ 1113              	.LBE6:
+ 405:.\Lidar.c     ****                //UART_net_PutChar('A');
+ 406:.\Lidar.c     ****             }
+ 407:.\Lidar.c     **** 	}
+ 408:.\Lidar.c     **** 	else
+ 409:.\Lidar.c     **** 		state = 0;
+ 1114              		.loc 1 409 0
+ 1115 00b2 0022     		movs	r2, #0
+ 1116 00b4 014B     		ldr	r3, .L87
+ 1117 00b6 1A72     		strb	r2, [r3, #8]
+ 1118              	.L77:
+ 1119 00b8 10BD     		pop	{r4, pc}
+ 1120              	.L88:
+ 1121 00ba 00BF     		.align	2
+ 1122              	.L87:
+ 1123 00bc 00000000 		.word	.LANCHOR1
+ 1124 00c0 00000000 		.word	nodeBuffer
+ 1125 00c4 00000000 		.word	node
+ 1126 00c8 00000000 		.word	end
+ 1127 00cc 00000000 		.word	net_nodeBuffer
+ 1128              		.cfi_endproc
+ 1129              	.LFE68:
+ 1130              		.size	Lidar_Data_Receive_Prepare, .-Lidar_Data_Receive_Prepare
+ 1131              		.comm	nodeBuffer1,5,4
+ 1132              		.global	recvPos
+ 1133              		.comm	test_f_suzu,2000,4
+ 1134              		.comm	test3,2500,4
+ 1135              		.comm	test2,2500,4
+ 1136              		.comm	test1,2500,4
+ 1137              		.comm	output_t,1,1
+ 1138              		.comm	normal_size,1,1
+ 1139              		.comm	end,1,1
+ 1140              		.comm	start,1,1
+ 1141              		.comm	node,4,4
+ 1142              		.global	rx_lidar_count
+ 1143              		.global	rx_lidar_flag
+ 1144              		.global	_is_previous_capsuledataRdy
+ 1145              		.global	NORMAL_SCAN
+ 1146              		.global	EXPRESS_SCAN
+ 1147              		.comm	net_nodeBuffer,100,4
+ 1148              		.comm	nodeBuffer,100,4
+ 1149              		.comm	S_IMU,20,4
+ 1150              		.comm	g_Car,30,4
+ 1151              		.data
+ 1152              		.align	2
+ 1153              		.set	.LANCHOR0,. + 0
+ 1154              		.type	NORMAL_SCAN, %object
+ 1155              		.size	NORMAL_SCAN, 2
+ 1156              	NORMAL_SCAN:
+ 1157 0000 A5       		.byte	-91
+ 1158 0001 20       		.byte	32
+ 1159 0002 0000     		.space	2
+ 1160              		.type	EXPRESS_SCAN, %object
+ 1161              		.size	EXPRESS_SCAN, 9
+ 1162              	EXPRESS_SCAN:
+ 1163 0004 A5       		.byte	-91
+ 1164 0005 82       		.byte	-126
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 29
+
+
+ 1165 0006 05       		.byte	5
+ 1166 0007 00       		.byte	0
+ 1167 0008 00       		.byte	0
+ 1168 0009 00       		.byte	0
+ 1169 000a 00       		.byte	0
+ 1170 000b 00       		.byte	0
+ 1171 000c 22       		.byte	34
+ 1172 000d 000000   		.bss
+ 1173              		.align	2
+ 1174              		.set	.LANCHOR1,. + 0
+ 1175              		.type	state.7370, %object
+ 1176              		.size	state.7370, 1
+ 1177              	state.7370:
+ 1178 0000 00       		.space	1
+ 1179              		.type	_data_cnt.7369, %object
+ 1180              		.size	_data_cnt.7369, 1
+ 1181              	_data_cnt.7369:
+ 1182 0001 00       		.space	1
+ 1183              		.type	_data_len.7368, %object
+ 1184              		.size	_data_len.7368, 1
+ 1185              	_data_len.7368:
+ 1186 0002 00       		.space	1
+ 1187              		.type	test_i, %object
+ 1188              		.size	test_i, 1
+ 1189              	test_i:
+ 1190 0003 00       		.space	1
+ 1191              		.type	rx_lidar_flag, %object
+ 1192              		.size	rx_lidar_flag, 1
+ 1193              	rx_lidar_flag:
+ 1194 0004 00       		.space	1
+ 1195              		.type	state.7379, %object
+ 1196              		.size	state.7379, 1
+ 1197              	state.7379:
+ 1198 0005 00       		.space	1
+ 1199              		.type	_data_cnt.7378, %object
+ 1200              		.size	_data_cnt.7378, 1
+ 1201              	_data_cnt.7378:
+ 1202 0006 00       		.space	1
+ 1203              		.type	_data_len.7377, %object
+ 1204              		.size	_data_len.7377, 1
+ 1205              	_data_len.7377:
+ 1206 0007 00       		.space	1
+ 1207              		.type	state.7436, %object
+ 1208              		.size	state.7436, 1
+ 1209              	state.7436:
+ 1210 0008 00       		.space	1
+ 1211              		.type	_data_cnt.7435, %object
+ 1212              		.size	_data_cnt.7435, 1
+ 1213              	_data_cnt.7435:
+ 1214 0009 00       		.space	1
+ 1215              		.type	_data_len.7434, %object
+ 1216              		.size	_data_len.7434, 1
+ 1217              	_data_len.7434:
+ 1218 000a 00       		.space	1
+ 1219              		.type	rx_lidar_count, %object
+ 1220              		.size	rx_lidar_count, 1
+ 1221              	rx_lidar_count:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 30
+
+
+ 1222 000b 00       		.space	1
+ 1223              		.type	recvPos, %object
+ 1224              		.size	recvPos, 4
+ 1225              	recvPos:
+ 1226 000c 00000000 		.space	4
+ 1227              		.type	_is_previous_capsuledataRdy, %object
+ 1228              		.size	_is_previous_capsuledataRdy, 1
+ 1229              	_is_previous_capsuledataRdy:
+ 1230 0010 00       		.space	1
+ 1231 0011 000000   		.text
+ 1232              	.Letext0:
+ 1233              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1234              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1235              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 1236              		.file 5 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1237              		.file 6 ".\\Lidar.h"
+ 1238              		.file 7 ".\\car.h"
+ 1239              		.file 8 ".\\Transfer.h"
+ 1240              		.file 9 "Generated_Source\\PSoC5/core_cm3.h"
+ 1241              		.file 10 "Generated_Source\\PSoC5/UART_LIDAR.h"
+ 1242              		.file 11 "Generated_Source\\PSoC5/debug_time.h"
+ 1243              		.section	.debug_info,"",%progbits
+ 1244              	.Ldebug_info0:
+ 1245 0000 3A090000 		.4byte	0x93a
+ 1246 0004 0400     		.2byte	0x4
+ 1247 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1248 000a 04       		.byte	0x4
+ 1249 000b 01       		.uleb128 0x1
+ 1250 000c B0040000 		.4byte	.LASF120
+ 1251 0010 01       		.byte	0x1
+ 1252 0011 38000000 		.4byte	.LASF121
+ 1253 0015 A7030000 		.4byte	.LASF122
+ 1254 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1255 001d 00000000 		.4byte	0
+ 1256 0021 00000000 		.4byte	.Ldebug_line0
+ 1257 0025 02       		.uleb128 0x2
+ 1258 0026 01       		.byte	0x1
+ 1259 0027 06       		.byte	0x6
+ 1260 0028 E2050000 		.4byte	.LASF0
+ 1261 002c 02       		.uleb128 0x2
+ 1262 002d 01       		.byte	0x1
+ 1263 002e 08       		.byte	0x8
+ 1264 002f A2040000 		.4byte	.LASF1
+ 1265 0033 02       		.uleb128 0x2
+ 1266 0034 02       		.byte	0x2
+ 1267 0035 05       		.byte	0x5
+ 1268 0036 87030000 		.4byte	.LASF2
+ 1269 003a 02       		.uleb128 0x2
+ 1270 003b 02       		.byte	0x2
+ 1271 003c 07       		.byte	0x7
+ 1272 003d F4050000 		.4byte	.LASF3
+ 1273 0041 03       		.uleb128 0x3
+ 1274 0042 7A000000 		.4byte	.LASF9
+ 1275 0046 02       		.byte	0x2
+ 1276 0047 3F       		.byte	0x3f
+ 1277 0048 4C000000 		.4byte	0x4c
+ 1278 004c 02       		.uleb128 0x2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 31
+
+
+ 1279 004d 04       		.byte	0x4
+ 1280 004e 05       		.byte	0x5
+ 1281 004f 91030000 		.4byte	.LASF4
+ 1282 0053 02       		.uleb128 0x2
+ 1283 0054 04       		.byte	0x4
+ 1284 0055 07       		.byte	0x7
+ 1285 0056 2B040000 		.4byte	.LASF5
+ 1286 005a 02       		.uleb128 0x2
+ 1287 005b 08       		.byte	0x8
+ 1288 005c 05       		.byte	0x5
+ 1289 005d B1020000 		.4byte	.LASF6
+ 1290 0061 02       		.uleb128 0x2
+ 1291 0062 08       		.byte	0x8
+ 1292 0063 07       		.byte	0x7
+ 1293 0064 1F010000 		.4byte	.LASF7
+ 1294 0068 04       		.uleb128 0x4
+ 1295 0069 04       		.byte	0x4
+ 1296 006a 05       		.byte	0x5
+ 1297 006b 696E7400 		.ascii	"int\000"
+ 1298 006f 02       		.uleb128 0x2
+ 1299 0070 04       		.byte	0x4
+ 1300 0071 07       		.byte	0x7
+ 1301 0072 64000000 		.4byte	.LASF8
+ 1302 0076 03       		.uleb128 0x3
+ 1303 0077 49040000 		.4byte	.LASF10
+ 1304 007b 03       		.byte	0x3
+ 1305 007c 2C       		.byte	0x2c
+ 1306 007d 41000000 		.4byte	0x41
+ 1307 0081 03       		.uleb128 0x3
+ 1308 0082 53060000 		.4byte	.LASF11
+ 1309 0086 04       		.byte	0x4
+ 1310 0087 C2       		.byte	0xc2
+ 1311 0088 2C000000 		.4byte	0x2c
+ 1312 008c 03       		.uleb128 0x3
+ 1313 008d 2A020000 		.4byte	.LASF12
+ 1314 0091 04       		.byte	0x4
+ 1315 0092 C3       		.byte	0xc3
+ 1316 0093 3A000000 		.4byte	0x3a
+ 1317 0097 03       		.uleb128 0x3
+ 1318 0098 84000000 		.4byte	.LASF13
+ 1319 009c 04       		.byte	0x4
+ 1320 009d C6       		.byte	0xc6
+ 1321 009e 33000000 		.4byte	0x33
+ 1322 00a2 02       		.uleb128 0x2
+ 1323 00a3 04       		.byte	0x4
+ 1324 00a4 04       		.byte	0x4
+ 1325 00a5 FF000000 		.4byte	.LASF14
+ 1326 00a9 02       		.uleb128 0x2
+ 1327 00aa 08       		.byte	0x8
+ 1328 00ab 04       		.byte	0x4
+ 1329 00ac 59060000 		.4byte	.LASF15
+ 1330 00b0 02       		.uleb128 0x2
+ 1331 00b1 01       		.byte	0x1
+ 1332 00b2 08       		.byte	0x8
+ 1333 00b3 13020000 		.4byte	.LASF16
+ 1334 00b7 03       		.uleb128 0x3
+ 1335 00b8 AC010000 		.4byte	.LASF17
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 32
+
+
+ 1336 00bc 05       		.byte	0x5
+ 1337 00bd D4       		.byte	0xd4
+ 1338 00be 6F000000 		.4byte	0x6f
+ 1339 00c2 02       		.uleb128 0x2
+ 1340 00c3 04       		.byte	0x4
+ 1341 00c4 07       		.byte	0x7
+ 1342 00c5 22040000 		.4byte	.LASF18
+ 1343 00c9 05       		.uleb128 0x5
+ 1344 00ca 04       		.byte	0x4
+ 1345 00cb 06       		.uleb128 0x6
+ 1346 00cc E6030000 		.4byte	.LASF23
+ 1347 00d0 05       		.byte	0x5
+ 1348 00d1 06       		.byte	0x6
+ 1349 00d2 19       		.byte	0x19
+ 1350 00d3 FC000000 		.4byte	0xfc
+ 1351 00d7 07       		.uleb128 0x7
+ 1352 00d8 3D010000 		.4byte	.LASF19
+ 1353 00dc 06       		.byte	0x6
+ 1354 00dd 1A       		.byte	0x1a
+ 1355 00de 81000000 		.4byte	0x81
+ 1356 00e2 00       		.byte	0
+ 1357 00e3 07       		.uleb128 0x7
+ 1358 00e4 C5000000 		.4byte	.LASF20
+ 1359 00e8 06       		.byte	0x6
+ 1360 00e9 1B       		.byte	0x1b
+ 1361 00ea 8C000000 		.4byte	0x8c
+ 1362 00ee 01       		.byte	0x1
+ 1363 00ef 07       		.uleb128 0x7
+ 1364 00f0 42000000 		.4byte	.LASF21
+ 1365 00f4 06       		.byte	0x6
+ 1366 00f5 1C       		.byte	0x1c
+ 1367 00f6 8C000000 		.4byte	0x8c
+ 1368 00fa 03       		.byte	0x3
+ 1369 00fb 00       		.byte	0
+ 1370 00fc 03       		.uleb128 0x3
+ 1371 00fd 88010000 		.4byte	.LASF22
+ 1372 0101 06       		.byte	0x6
+ 1373 0102 1D       		.byte	0x1d
+ 1374 0103 CB000000 		.4byte	0xcb
+ 1375 0107 06       		.uleb128 0x6
+ 1376 0108 2B030000 		.4byte	.LASF24
+ 1377 010c 05       		.byte	0x5
+ 1378 010d 06       		.byte	0x6
+ 1379 010e 1E       		.byte	0x1e
+ 1380 010f 38010000 		.4byte	0x138
+ 1381 0113 07       		.uleb128 0x7
+ 1382 0114 CA010000 		.4byte	.LASF25
+ 1383 0118 06       		.byte	0x6
+ 1384 0119 1F       		.byte	0x1f
+ 1385 011a 8C000000 		.4byte	0x8c
+ 1386 011e 00       		.byte	0
+ 1387 011f 07       		.uleb128 0x7
+ 1388 0120 DB010000 		.4byte	.LASF26
+ 1389 0124 06       		.byte	0x6
+ 1390 0125 20       		.byte	0x20
+ 1391 0126 8C000000 		.4byte	0x8c
+ 1392 012a 02       		.byte	0x2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 33
+
+
+ 1393 012b 07       		.uleb128 0x7
+ 1394 012c 51010000 		.4byte	.LASF27
+ 1395 0130 06       		.byte	0x6
+ 1396 0131 21       		.byte	0x21
+ 1397 0132 81000000 		.4byte	0x81
+ 1398 0136 04       		.byte	0x4
+ 1399 0137 00       		.byte	0
+ 1400 0138 03       		.uleb128 0x3
+ 1401 0139 E8020000 		.4byte	.LASF28
+ 1402 013d 06       		.byte	0x6
+ 1403 013e 22       		.byte	0x22
+ 1404 013f 07010000 		.4byte	0x107
+ 1405 0143 06       		.uleb128 0x6
+ 1406 0144 83020000 		.4byte	.LASF29
+ 1407 0148 54       		.byte	0x54
+ 1408 0149 06       		.byte	0x6
+ 1409 014a 23       		.byte	0x23
+ 1410 014b 80010000 		.4byte	0x180
+ 1411 014f 07       		.uleb128 0x7
+ 1412 0150 39060000 		.4byte	.LASF30
+ 1413 0154 06       		.byte	0x6
+ 1414 0155 24       		.byte	0x24
+ 1415 0156 81000000 		.4byte	0x81
+ 1416 015a 00       		.byte	0
+ 1417 015b 07       		.uleb128 0x7
+ 1418 015c 46060000 		.4byte	.LASF31
+ 1419 0160 06       		.byte	0x6
+ 1420 0161 25       		.byte	0x25
+ 1421 0162 81000000 		.4byte	0x81
+ 1422 0166 01       		.byte	0x1
+ 1423 0167 07       		.uleb128 0x7
+ 1424 0168 0C060000 		.4byte	.LASF32
+ 1425 016c 06       		.byte	0x6
+ 1426 016d 26       		.byte	0x26
+ 1427 016e 8C000000 		.4byte	0x8c
+ 1428 0172 02       		.byte	0x2
+ 1429 0173 07       		.uleb128 0x7
+ 1430 0174 BE000000 		.4byte	.LASF33
+ 1431 0178 06       		.byte	0x6
+ 1432 0179 27       		.byte	0x27
+ 1433 017a 80010000 		.4byte	0x180
+ 1434 017e 04       		.byte	0x4
+ 1435 017f 00       		.byte	0
+ 1436 0180 08       		.uleb128 0x8
+ 1437 0181 38010000 		.4byte	0x138
+ 1438 0185 90010000 		.4byte	0x190
+ 1439 0189 09       		.uleb128 0x9
+ 1440 018a C2000000 		.4byte	0xc2
+ 1441 018e 0F       		.byte	0xf
+ 1442 018f 00       		.byte	0
+ 1443 0190 03       		.uleb128 0x3
+ 1444 0191 75040000 		.4byte	.LASF34
+ 1445 0195 06       		.byte	0x6
+ 1446 0196 28       		.byte	0x28
+ 1447 0197 43010000 		.4byte	0x143
+ 1448 019b 0A       		.uleb128 0xa
+ 1449 019c B3010000 		.4byte	.LASF44
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 34
+
+
+ 1450 01a0 01       		.byte	0x1
+ 1451 01a1 07       		.byte	0x7
+ 1452 01a2 0F       		.byte	0xf
+ 1453 01a3 E3010000 		.4byte	0x1e3
+ 1454 01a7 0B       		.uleb128 0xb
+ 1455 01a8 555000   		.ascii	"UP\000"
+ 1456 01ab 00       		.sleb128 0
+ 1457 01ac 0C       		.uleb128 0xc
+ 1458 01ad 07060000 		.4byte	.LASF35
+ 1459 01b1 01       		.sleb128 1
+ 1460 01b2 0C       		.uleb128 0xc
+ 1461 01b3 4A020000 		.4byte	.LASF36
+ 1462 01b7 02       		.sleb128 2
+ 1463 01b8 0C       		.uleb128 0xc
+ 1464 01b9 4F020000 		.4byte	.LASF37
+ 1465 01bd 03       		.sleb128 3
+ 1466 01be 0C       		.uleb128 0xc
+ 1467 01bf A7000000 		.4byte	.LASF38
+ 1468 01c3 04       		.sleb128 4
+ 1469 01c4 0C       		.uleb128 0xc
+ 1470 01c5 00000000 		.4byte	.LASF39
+ 1471 01c9 05       		.sleb128 5
+ 1472 01ca 0C       		.uleb128 0xc
+ 1473 01cb DC030000 		.4byte	.LASF40
+ 1474 01cf 06       		.sleb128 6
+ 1475 01d0 0C       		.uleb128 0xc
+ 1476 01d1 0E010000 		.4byte	.LASF41
+ 1477 01d5 07       		.sleb128 7
+ 1478 01d6 0C       		.uleb128 0xc
+ 1479 01d7 22000000 		.4byte	.LASF42
+ 1480 01db 08       		.sleb128 8
+ 1481 01dc 0C       		.uleb128 0xc
+ 1482 01dd 5F050000 		.4byte	.LASF43
+ 1483 01e1 09       		.sleb128 9
+ 1484 01e2 00       		.byte	0
+ 1485 01e3 0A       		.uleb128 0xa
+ 1486 01e4 1B030000 		.4byte	.LASF45
+ 1487 01e8 01       		.byte	0x1
+ 1488 01e9 07       		.byte	0x7
+ 1489 01ea 14       		.byte	0x14
+ 1490 01eb 02020000 		.4byte	0x202
+ 1491 01ef 0C       		.uleb128 0xc
+ 1492 01f0 EC000000 		.4byte	.LASF46
+ 1493 01f4 00       		.sleb128 0
+ 1494 01f5 0C       		.uleb128 0xc
+ 1495 01f6 0A020000 		.4byte	.LASF47
+ 1496 01fa 01       		.sleb128 1
+ 1497 01fb 0C       		.uleb128 0xc
+ 1498 01fc 6E020000 		.4byte	.LASF48
+ 1499 0200 02       		.sleb128 2
+ 1500 0201 00       		.byte	0
+ 1501 0202 0D       		.uleb128 0xd
+ 1502 0203 04       		.byte	0x4
+ 1503 0204 07       		.byte	0x7
+ 1504 0205 16       		.byte	0x16
+ 1505 0206 23020000 		.4byte	0x223
+ 1506 020a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 35
+
+
+ 1507 020b 70776D00 		.ascii	"pwm\000"
+ 1508 020f 07       		.byte	0x7
+ 1509 0210 18       		.byte	0x18
+ 1510 0211 8C000000 		.4byte	0x8c
+ 1511 0215 00       		.byte	0
+ 1512 0216 0E       		.uleb128 0xe
+ 1513 0217 64697200 		.ascii	"dir\000"
+ 1514 021b 07       		.byte	0x7
+ 1515 021c 19       		.byte	0x19
+ 1516 021d E3010000 		.4byte	0x1e3
+ 1517 0221 02       		.byte	0x2
+ 1518 0222 00       		.byte	0
+ 1519 0223 03       		.uleb128 0x3
+ 1520 0224 55020000 		.4byte	.LASF49
+ 1521 0228 07       		.byte	0x7
+ 1522 0229 1A       		.byte	0x1a
+ 1523 022a 02020000 		.4byte	0x202
+ 1524 022e 0D       		.uleb128 0xd
+ 1525 022f 1E       		.byte	0x1e
+ 1526 0230 07       		.byte	0x7
+ 1527 0231 1B       		.byte	0x1b
+ 1528 0232 C7020000 		.4byte	0x2c7
+ 1529 0236 07       		.uleb128 0x7
+ 1530 0237 11040000 		.4byte	.LASF50
+ 1531 023b 07       		.byte	0x7
+ 1532 023c 1D       		.byte	0x1d
+ 1533 023d 81000000 		.4byte	0x81
+ 1534 0241 00       		.byte	0
+ 1535 0242 07       		.uleb128 0x7
+ 1536 0243 1A040000 		.4byte	.LASF51
+ 1537 0247 07       		.byte	0x7
+ 1538 0248 1E       		.byte	0x1e
+ 1539 0249 9B010000 		.4byte	0x19b
+ 1540 024d 01       		.byte	0x1
+ 1541 024e 07       		.uleb128 0x7
+ 1542 024f D7000000 		.4byte	.LASF52
+ 1543 0253 07       		.byte	0x7
+ 1544 0254 1F       		.byte	0x1f
+ 1545 0255 9B010000 		.4byte	0x19b
+ 1546 0259 02       		.byte	0x2
+ 1547 025a 07       		.uleb128 0x7
+ 1548 025b 14000000 		.4byte	.LASF53
+ 1549 025f 07       		.byte	0x7
+ 1550 0260 20       		.byte	0x20
+ 1551 0261 8C000000 		.4byte	0x8c
+ 1552 0265 04       		.byte	0x4
+ 1553 0266 07       		.uleb128 0x7
+ 1554 0267 62010000 		.4byte	.LASF54
+ 1555 026b 07       		.byte	0x7
+ 1556 026c 21       		.byte	0x21
+ 1557 026d 23020000 		.4byte	0x223
+ 1558 0271 06       		.byte	0x6
+ 1559 0272 07       		.uleb128 0x7
+ 1560 0273 88050000 		.4byte	.LASF55
+ 1561 0277 07       		.byte	0x7
+ 1562 0278 22       		.byte	0x22
+ 1563 0279 23020000 		.4byte	0x223
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 36
+
+
+ 1564 027d 0A       		.byte	0xa
+ 1565 027e 07       		.uleb128 0x7
+ 1566 027f 4B030000 		.4byte	.LASF56
+ 1567 0283 07       		.byte	0x7
+ 1568 0284 23       		.byte	0x23
+ 1569 0285 23020000 		.4byte	0x223
+ 1570 0289 0E       		.byte	0xe
+ 1571 028a 07       		.uleb128 0x7
+ 1572 028b EC010000 		.4byte	.LASF57
+ 1573 028f 07       		.byte	0x7
+ 1574 0290 24       		.byte	0x24
+ 1575 0291 23020000 		.4byte	0x223
+ 1576 0295 12       		.byte	0x12
+ 1577 0296 07       		.uleb128 0x7
+ 1578 0297 B6050000 		.4byte	.LASF58
+ 1579 029b 07       		.byte	0x7
+ 1580 029c 25       		.byte	0x25
+ 1581 029d 8C000000 		.4byte	0x8c
+ 1582 02a1 16       		.byte	0x16
+ 1583 02a2 07       		.uleb128 0x7
+ 1584 02a3 4E000000 		.4byte	.LASF59
+ 1585 02a7 07       		.byte	0x7
+ 1586 02a8 26       		.byte	0x26
+ 1587 02a9 8C000000 		.4byte	0x8c
+ 1588 02ad 18       		.byte	0x18
+ 1589 02ae 07       		.uleb128 0x7
+ 1590 02af CC050000 		.4byte	.LASF60
+ 1591 02b3 07       		.byte	0x7
+ 1592 02b4 27       		.byte	0x27
+ 1593 02b5 8C000000 		.4byte	0x8c
+ 1594 02b9 1A       		.byte	0x1a
+ 1595 02ba 07       		.uleb128 0x7
+ 1596 02bb 3E050000 		.4byte	.LASF61
+ 1597 02bf 07       		.byte	0x7
+ 1598 02c0 28       		.byte	0x28
+ 1599 02c1 8C000000 		.4byte	0x8c
+ 1600 02c5 1C       		.byte	0x1c
+ 1601 02c6 00       		.byte	0
+ 1602 02c7 03       		.uleb128 0x3
+ 1603 02c8 0B040000 		.4byte	.LASF62
+ 1604 02cc 07       		.byte	0x7
+ 1605 02cd 2A       		.byte	0x2a
+ 1606 02ce 2E020000 		.4byte	0x22e
+ 1607 02d2 0D       		.uleb128 0xd
+ 1608 02d3 14       		.byte	0x14
+ 1609 02d4 08       		.byte	0x8
+ 1610 02d5 18       		.byte	0x18
+ 1611 02d6 51030000 		.4byte	0x351
+ 1612 02da 07       		.uleb128 0x7
+ 1613 02db 76050000 		.4byte	.LASF63
+ 1614 02df 08       		.byte	0x8
+ 1615 02e0 1A       		.byte	0x1a
+ 1616 02e1 97000000 		.4byte	0x97
+ 1617 02e5 00       		.byte	0
+ 1618 02e6 07       		.uleb128 0x7
+ 1619 02e7 7C050000 		.4byte	.LASF64
+ 1620 02eb 08       		.byte	0x8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 37
+
+
+ 1621 02ec 1B       		.byte	0x1b
+ 1622 02ed 97000000 		.4byte	0x97
+ 1623 02f1 02       		.byte	0x2
+ 1624 02f2 07       		.uleb128 0x7
+ 1625 02f3 82050000 		.4byte	.LASF65
+ 1626 02f7 08       		.byte	0x8
+ 1627 02f8 1C       		.byte	0x1c
+ 1628 02f9 97000000 		.4byte	0x97
+ 1629 02fd 04       		.byte	0x4
+ 1630 02fe 07       		.uleb128 0x7
+ 1631 02ff 18020000 		.4byte	.LASF66
+ 1632 0303 08       		.byte	0x8
+ 1633 0304 1D       		.byte	0x1d
+ 1634 0305 97000000 		.4byte	0x97
+ 1635 0309 06       		.byte	0x6
+ 1636 030a 07       		.uleb128 0x7
+ 1637 030b 1E020000 		.4byte	.LASF67
+ 1638 030f 08       		.byte	0x8
+ 1639 0310 1E       		.byte	0x1e
+ 1640 0311 97000000 		.4byte	0x97
+ 1641 0315 08       		.byte	0x8
+ 1642 0316 07       		.uleb128 0x7
+ 1643 0317 24020000 		.4byte	.LASF68
+ 1644 031b 08       		.byte	0x8
+ 1645 031c 1F       		.byte	0x1f
+ 1646 031d 97000000 		.4byte	0x97
+ 1647 0321 0A       		.byte	0xa
+ 1648 0322 07       		.uleb128 0x7
+ 1649 0323 8A000000 		.4byte	.LASF69
+ 1650 0327 08       		.byte	0x8
+ 1651 0328 20       		.byte	0x20
+ 1652 0329 97000000 		.4byte	0x97
+ 1653 032d 0C       		.byte	0xc
+ 1654 032e 07       		.uleb128 0x7
+ 1655 032f 45020000 		.4byte	.LASF70
+ 1656 0333 08       		.byte	0x8
+ 1657 0334 21       		.byte	0x21
+ 1658 0335 97000000 		.4byte	0x97
+ 1659 0339 0E       		.byte	0xe
+ 1660 033a 0E       		.uleb128 0xe
+ 1661 033b 79617700 		.ascii	"yaw\000"
+ 1662 033f 08       		.byte	0x8
+ 1663 0340 22       		.byte	0x22
+ 1664 0341 97000000 		.4byte	0x97
+ 1665 0345 10       		.byte	0x10
+ 1666 0346 0E       		.uleb128 0xe
+ 1667 0347 5400     		.ascii	"T\000"
+ 1668 0349 08       		.byte	0x8
+ 1669 034a 24       		.byte	0x24
+ 1670 034b 97000000 		.4byte	0x97
+ 1671 034f 12       		.byte	0x12
+ 1672 0350 00       		.byte	0
+ 1673 0351 0F       		.uleb128 0xf
+ 1674 0352 494D5500 		.ascii	"IMU\000"
+ 1675 0356 08       		.byte	0x8
+ 1676 0357 25       		.byte	0x25
+ 1677 0358 D2020000 		.4byte	0x2d2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 38
+
+
+ 1678 035c 10       		.uleb128 0x10
+ 1679 035d A1060000 		.4byte	.LASF79
+ 1680 0361 01       		.byte	0x1
+ 1681 0362 23       		.byte	0x23
+ 1682 0363 00000000 		.4byte	.LFB63
+ 1683 0367 2C000000 		.4byte	.LFE63-.LFB63
+ 1684 036b 01       		.uleb128 0x1
+ 1685 036c 9C       		.byte	0x9c
+ 1686 036d 8A030000 		.4byte	0x38a
+ 1687 0371 11       		.uleb128 0x11
+ 1688 0372 1A000000 		.4byte	.LVL0
+ 1689 0376 E7080000 		.4byte	0x8e7
+ 1690 037a 12       		.uleb128 0x12
+ 1691 037b 01       		.uleb128 0x1
+ 1692 037c 51       		.byte	0x51
+ 1693 037d 01       		.uleb128 0x1
+ 1694 037e 32       		.byte	0x32
+ 1695 037f 12       		.uleb128 0x12
+ 1696 0380 01       		.uleb128 0x1
+ 1697 0381 50       		.byte	0x50
+ 1698 0382 05       		.uleb128 0x5
+ 1699 0383 03       		.byte	0x3
+ 1700 0384 00000000 		.4byte	.LANCHOR0
+ 1701 0388 00       		.byte	0
+ 1702 0389 00       		.byte	0
+ 1703 038a 13       		.uleb128 0x13
+ 1704 038b 7F060000 		.4byte	.LASF76
+ 1705 038f 01       		.byte	0x1
+ 1706 0390 56       		.byte	0x56
+ 1707 0391 00000000 		.4byte	.LFB64
+ 1708 0395 E0000000 		.4byte	.LFE64-.LFB64
+ 1709 0399 01       		.uleb128 0x1
+ 1710 039a 9C       		.byte	0x9c
+ 1711 039b 31040000 		.4byte	0x431
+ 1712 039f 14       		.uleb128 0x14
+ 1713 03a0 31020000 		.4byte	.LASF78
+ 1714 03a4 01       		.byte	0x1
+ 1715 03a5 56       		.byte	0x56
+ 1716 03a6 81000000 		.4byte	0x81
+ 1717 03aa 00000000 		.4byte	.LLST0
+ 1718 03ae 15       		.uleb128 0x15
+ 1719 03af 746D7000 		.ascii	"tmp\000"
+ 1720 03b3 01       		.byte	0x1
+ 1721 03b4 58       		.byte	0x58
+ 1722 03b5 81000000 		.4byte	0x81
+ 1723 03b9 65000000 		.4byte	.LLST1
+ 1724 03bd 16       		.uleb128 0x16
+ 1725 03be 90000000 		.4byte	.LASF71
+ 1726 03c2 01       		.byte	0x1
+ 1727 03c3 59       		.byte	0x59
+ 1728 03c4 8C000000 		.4byte	0x8c
+ 1729 03c8 A5000000 		.4byte	.LLST2
+ 1730 03cc 16       		.uleb128 0x16
+ 1731 03cd 36010000 		.4byte	.LASF72
+ 1732 03d1 01       		.byte	0x1
+ 1733 03d2 5A       		.byte	0x5a
+ 1734 03d3 A2000000 		.4byte	0xa2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 39
+
+
+ 1735 03d7 EC000000 		.4byte	.LLST3
+ 1736 03db 17       		.uleb128 0x17
+ 1737 03dc 79020000 		.4byte	.LASF73
+ 1738 03e0 01       		.byte	0x1
+ 1739 03e1 5B       		.byte	0x5b
+ 1740 03e2 81000000 		.4byte	0x81
+ 1741 03e6 05       		.uleb128 0x5
+ 1742 03e7 03       		.byte	0x3
+ 1743 03e8 02000000 		.4byte	_data_len.7368
+ 1744 03ec 17       		.uleb128 0x17
+ 1745 03ed D0020000 		.4byte	.LASF74
+ 1746 03f1 01       		.byte	0x1
+ 1747 03f2 5B       		.byte	0x5b
+ 1748 03f3 81000000 		.4byte	0x81
+ 1749 03f7 05       		.uleb128 0x5
+ 1750 03f8 03       		.byte	0x3
+ 1751 03f9 01000000 		.4byte	_data_cnt.7369
+ 1752 03fd 17       		.uleb128 0x17
+ 1753 03fe 70050000 		.4byte	.LASF75
+ 1754 0402 01       		.byte	0x1
+ 1755 0403 5C       		.byte	0x5c
+ 1756 0404 81000000 		.4byte	0x81
+ 1757 0408 05       		.uleb128 0x5
+ 1758 0409 03       		.byte	0x3
+ 1759 040a 00000000 		.4byte	state.7370
+ 1760 040e 18       		.uleb128 0x18
+ 1761 040f 22000000 		.4byte	.LVL5
+ 1762 0413 08090000 		.4byte	0x908
+ 1763 0417 21040000 		.4byte	0x421
+ 1764 041b 12       		.uleb128 0x12
+ 1765 041c 01       		.uleb128 0x1
+ 1766 041d 50       		.byte	0x50
+ 1767 041e 01       		.uleb128 0x1
+ 1768 041f 31       		.byte	0x31
+ 1769 0420 00       		.byte	0
+ 1770 0421 11       		.uleb128 0x11
+ 1771 0422 C0000000 		.4byte	.LVL15
+ 1772 0426 08090000 		.4byte	0x908
+ 1773 042a 12       		.uleb128 0x12
+ 1774 042b 01       		.uleb128 0x1
+ 1775 042c 50       		.byte	0x50
+ 1776 042d 01       		.uleb128 0x1
+ 1777 042e 30       		.byte	0x30
+ 1778 042f 00       		.byte	0
+ 1779 0430 00       		.byte	0
+ 1780 0431 19       		.uleb128 0x19
+ 1781 0432 51040000 		.4byte	.LASF77
+ 1782 0436 01       		.byte	0x1
+ 1783 0437 A5       		.byte	0xa5
+ 1784 0438 00000000 		.4byte	.LFB65
+ 1785 043c 24010000 		.4byte	.LFE65-.LFB65
+ 1786 0440 01       		.uleb128 0x1
+ 1787 0441 9C       		.byte	0x9c
+ 1788 0442 D4040000 		.4byte	0x4d4
+ 1789 0446 14       		.uleb128 0x14
+ 1790 0447 31020000 		.4byte	.LASF78
+ 1791 044b 01       		.byte	0x1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 40
+
+
+ 1792 044c A5       		.byte	0xa5
+ 1793 044d 81000000 		.4byte	0x81
+ 1794 0451 1B010000 		.4byte	.LLST4
+ 1795 0455 15       		.uleb128 0x15
+ 1796 0456 746D7000 		.ascii	"tmp\000"
+ 1797 045a 01       		.byte	0x1
+ 1798 045b A7       		.byte	0xa7
+ 1799 045c 81000000 		.4byte	0x81
+ 1800 0460 9B010000 		.4byte	.LLST5
+ 1801 0464 16       		.uleb128 0x16
+ 1802 0465 90000000 		.4byte	.LASF71
+ 1803 0469 01       		.byte	0x1
+ 1804 046a A8       		.byte	0xa8
+ 1805 046b 8C000000 		.4byte	0x8c
+ 1806 046f 1A020000 		.4byte	.LLST6
+ 1807 0473 1A       		.uleb128 0x1a
+ 1808 0474 36010000 		.4byte	.LASF72
+ 1809 0478 01       		.byte	0x1
+ 1810 0479 A9       		.byte	0xa9
+ 1811 047a A2000000 		.4byte	0xa2
+ 1812 047e 17       		.uleb128 0x17
+ 1813 047f 79020000 		.4byte	.LASF73
+ 1814 0483 01       		.byte	0x1
+ 1815 0484 AA       		.byte	0xaa
+ 1816 0485 81000000 		.4byte	0x81
+ 1817 0489 05       		.uleb128 0x5
+ 1818 048a 03       		.byte	0x3
+ 1819 048b 07000000 		.4byte	_data_len.7377
+ 1820 048f 17       		.uleb128 0x17
+ 1821 0490 D0020000 		.4byte	.LASF74
+ 1822 0494 01       		.byte	0x1
+ 1823 0495 AA       		.byte	0xaa
+ 1824 0496 81000000 		.4byte	0x81
+ 1825 049a 05       		.uleb128 0x5
+ 1826 049b 03       		.byte	0x3
+ 1827 049c 06000000 		.4byte	_data_cnt.7378
+ 1828 04a0 17       		.uleb128 0x17
+ 1829 04a1 70050000 		.4byte	.LASF75
+ 1830 04a5 01       		.byte	0x1
+ 1831 04a6 AB       		.byte	0xab
+ 1832 04a7 81000000 		.4byte	0x81
+ 1833 04ab 05       		.uleb128 0x5
+ 1834 04ac 03       		.byte	0x3
+ 1835 04ad 05000000 		.4byte	state.7379
+ 1836 04b1 18       		.uleb128 0x18
+ 1837 04b2 E8000000 		.4byte	.LVL32
+ 1838 04b6 08090000 		.4byte	0x908
+ 1839 04ba C4040000 		.4byte	0x4c4
+ 1840 04be 12       		.uleb128 0x12
+ 1841 04bf 01       		.uleb128 0x1
+ 1842 04c0 50       		.byte	0x50
+ 1843 04c1 01       		.uleb128 0x1
+ 1844 04c2 31       		.byte	0x31
+ 1845 04c3 00       		.byte	0
+ 1846 04c4 11       		.uleb128 0x11
+ 1847 04c5 F8000000 		.4byte	.LVL34
+ 1848 04c9 08090000 		.4byte	0x908
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 41
+
+
+ 1849 04cd 12       		.uleb128 0x12
+ 1850 04ce 01       		.uleb128 0x1
+ 1851 04cf 50       		.byte	0x50
+ 1852 04d0 01       		.uleb128 0x1
+ 1853 04d1 30       		.byte	0x30
+ 1854 04d2 00       		.byte	0
+ 1855 04d3 00       		.byte	0
+ 1856 04d4 1B       		.uleb128 0x1b
+ 1857 04d5 09000000 		.4byte	.LASF80
+ 1858 04d9 01       		.byte	0x1
+ 1859 04da F3       		.byte	0xf3
+ 1860 04db 00000000 		.4byte	.LFB66
+ 1861 04df A4000000 		.4byte	.LFE66-.LFB66
+ 1862 04e3 01       		.uleb128 0x1
+ 1863 04e4 9C       		.byte	0x9c
+ 1864 04e5 24050000 		.4byte	0x524
+ 1865 04e9 16       		.uleb128 0x16
+ 1866 04ea F4000000 		.4byte	.LASF81
+ 1867 04ee 01       		.byte	0x1
+ 1868 04ef F5       		.byte	0xf5
+ 1869 04f0 8C000000 		.4byte	0x8c
+ 1870 04f4 5C020000 		.4byte	.LLST7
+ 1871 04f8 15       		.uleb128 0x15
+ 1872 04f9 706F7300 		.ascii	"pos\000"
+ 1873 04fd 01       		.byte	0x1
+ 1874 04fe F6       		.byte	0xf6
+ 1875 04ff 81000000 		.4byte	0x81
+ 1876 0503 B3020000 		.4byte	.LLST8
+ 1877 0507 15       		.uleb128 0x15
+ 1878 0508 6900     		.ascii	"i\000"
+ 1879 050a 01       		.byte	0x1
+ 1880 050b F7       		.byte	0xf7
+ 1881 050c 81000000 		.4byte	0x81
+ 1882 0510 DC020000 		.4byte	.LLST9
+ 1883 0514 16       		.uleb128 0x16
+ 1884 0515 95000000 		.4byte	.LASF82
+ 1885 0519 01       		.byte	0x1
+ 1886 051a F8       		.byte	0xf8
+ 1887 051b 81000000 		.4byte	0x81
+ 1888 051f 05030000 		.4byte	.LLST10
+ 1889 0523 00       		.byte	0
+ 1890 0524 1C       		.uleb128 0x1c
+ 1891 0525 5D030000 		.4byte	.LASF123
+ 1892 0529 01       		.byte	0x1
+ 1893 052a 1801     		.2byte	0x118
+ 1894 052c 81000000 		.4byte	0x81
+ 1895 0530 00000000 		.4byte	.LFB67
+ 1896 0534 EC010000 		.4byte	.LFE67-.LFB67
+ 1897 0538 01       		.uleb128 0x1
+ 1898 0539 9C       		.byte	0x9c
+ 1899 053a 3E060000 		.4byte	0x63e
+ 1900 053e 1D       		.uleb128 0x1d
+ 1901 053f FF010000 		.4byte	.LASF83
+ 1902 0543 01       		.byte	0x1
+ 1903 0544 1801     		.2byte	0x118
+ 1904 0546 3E060000 		.4byte	0x63e
+ 1905 054a 19030000 		.4byte	.LLST11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 42
+
+
+ 1906 054e 1D       		.uleb128 0x1d
+ 1907 054f 19010000 		.4byte	.LASF84
+ 1908 0553 01       		.byte	0x1
+ 1909 0554 1801     		.2byte	0x118
+ 1910 0556 B7000000 		.4byte	0xb7
+ 1911 055a 45030000 		.4byte	.LLST12
+ 1912 055e 1E       		.uleb128 0x1e
+ 1913 055f 27000000 		.4byte	.LASF85
+ 1914 0563 01       		.byte	0x1
+ 1915 0564 1A01     		.2byte	0x11a
+ 1916 0566 A2000000 		.4byte	0xa2
+ 1917 056a 71030000 		.4byte	.LLST13
+ 1918 056e 1F       		.uleb128 0x1f
+ 1919 056f 6900     		.ascii	"i\000"
+ 1920 0571 01       		.byte	0x1
+ 1921 0572 1B01     		.2byte	0x11b
+ 1922 0574 B7000000 		.4byte	0xb7
+ 1923 0578 B0030000 		.4byte	.LLST14
+ 1924 057c 1F       		.uleb128 0x1f
+ 1925 057d 6A00     		.ascii	"j\000"
+ 1926 057f 01       		.byte	0x1
+ 1927 0580 1C01     		.2byte	0x11c
+ 1928 0582 B7000000 		.4byte	0xb7
+ 1929 0586 28040000 		.4byte	.LLST15
+ 1930 058a 1E       		.uleb128 0x1e
+ 1931 058b 54050000 		.4byte	.LASF86
+ 1932 058f 01       		.byte	0x1
+ 1933 0590 4101     		.2byte	0x141
+ 1934 0592 A2000000 		.4byte	0xa2
+ 1935 0596 46040000 		.4byte	.LLST16
+ 1936 059a 20       		.uleb128 0x20
+ 1937 059b 36000000 		.4byte	.LBB2
+ 1938 059f 56000000 		.4byte	.LBE2-.LBB2
+ 1939 05a3 C8050000 		.4byte	0x5c8
+ 1940 05a7 1E       		.uleb128 0x1e
+ 1941 05a8 DF000000 		.4byte	.LASF87
+ 1942 05ac 01       		.byte	0x1
+ 1943 05ad 2401     		.2byte	0x124
+ 1944 05af A2000000 		.4byte	0xa2
+ 1945 05b3 65040000 		.4byte	.LLST17
+ 1946 05b7 1E       		.uleb128 0x1e
+ 1947 05b8 C9030000 		.4byte	.LASF88
+ 1948 05bc 01       		.byte	0x1
+ 1949 05bd 2601     		.2byte	0x126
+ 1950 05bf 8C000000 		.4byte	0x8c
+ 1951 05c3 83040000 		.4byte	.LLST18
+ 1952 05c7 00       		.byte	0
+ 1953 05c8 20       		.uleb128 0x20
+ 1954 05c9 B6000000 		.4byte	.LBB3
+ 1955 05cd 5A000000 		.4byte	.LBE3-.LBB3
+ 1956 05d1 F6050000 		.4byte	0x5f6
+ 1957 05d5 1E       		.uleb128 0x1e
+ 1958 05d6 DF000000 		.4byte	.LASF87
+ 1959 05da 01       		.byte	0x1
+ 1960 05db 3701     		.2byte	0x137
+ 1961 05dd A2000000 		.4byte	0xa2
+ 1962 05e1 96040000 		.4byte	.LLST19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 43
+
+
+ 1963 05e5 1E       		.uleb128 0x1e
+ 1964 05e6 C9030000 		.4byte	.LASF88
+ 1965 05ea 01       		.byte	0x1
+ 1966 05eb 3901     		.2byte	0x139
+ 1967 05ed 8C000000 		.4byte	0x8c
+ 1968 05f1 B4040000 		.4byte	.LLST20
+ 1969 05f5 00       		.byte	0
+ 1970 05f6 20       		.uleb128 0x20
+ 1971 05f7 40010000 		.4byte	.LBB4
+ 1972 05fb 46000000 		.4byte	.LBE4-.LBB4
+ 1973 05ff 24060000 		.4byte	0x624
+ 1974 0603 1E       		.uleb128 0x1e
+ 1975 0604 DF000000 		.4byte	.LASF87
+ 1976 0608 01       		.byte	0x1
+ 1977 0609 4401     		.2byte	0x144
+ 1978 060b A2000000 		.4byte	0xa2
+ 1979 060f C7040000 		.4byte	.LLST21
+ 1980 0613 1E       		.uleb128 0x1e
+ 1981 0614 C9030000 		.4byte	.LASF88
+ 1982 0618 01       		.byte	0x1
+ 1983 0619 4601     		.2byte	0x146
+ 1984 061b 8C000000 		.4byte	0x8c
+ 1985 061f E5040000 		.4byte	.LLST22
+ 1986 0623 00       		.byte	0
+ 1987 0624 21       		.uleb128 0x21
+ 1988 0625 B2010000 		.4byte	.LBB5
+ 1989 0629 18000000 		.4byte	.LBE5-.LBB5
+ 1990 062d 22       		.uleb128 0x22
+ 1991 062e D2030000 		.4byte	.LASF89
+ 1992 0632 01       		.byte	0x1
+ 1993 0633 4F01     		.2byte	0x14f
+ 1994 0635 FC000000 		.4byte	0xfc
+ 1995 0639 02       		.uleb128 0x2
+ 1996 063a 91       		.byte	0x91
+ 1997 063b 50       		.sleb128 -48
+ 1998 063c 00       		.byte	0
+ 1999 063d 00       		.byte	0
+ 2000 063e 23       		.uleb128 0x23
+ 2001 063f 04       		.byte	0x4
+ 2002 0640 FC000000 		.4byte	0xfc
+ 2003 0644 24       		.uleb128 0x24
+ 2004 0645 6C030000 		.4byte	.LASF90
+ 2005 0649 01       		.byte	0x1
+ 2006 064a 5901     		.2byte	0x159
+ 2007 064c 00000000 		.4byte	.LFB68
+ 2008 0650 D0000000 		.4byte	.LFE68-.LFB68
+ 2009 0654 01       		.uleb128 0x1
+ 2010 0655 9C       		.byte	0x9c
+ 2011 0656 0D070000 		.4byte	0x70d
+ 2012 065a 1D       		.uleb128 0x1d
+ 2013 065b 31020000 		.4byte	.LASF78
+ 2014 065f 01       		.byte	0x1
+ 2015 0660 5901     		.2byte	0x159
+ 2016 0662 81000000 		.4byte	0x81
+ 2017 0666 F8040000 		.4byte	.LLST23
+ 2018 066a 1E       		.uleb128 0x1e
+ 2019 066b 73010000 		.4byte	.LASF91
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 44
+
+
+ 2020 066f 01       		.byte	0x1
+ 2021 0670 5C01     		.2byte	0x15c
+ 2022 0672 81000000 		.4byte	0x81
+ 2023 0676 3D050000 		.4byte	.LLST24
+ 2024 067a 22       		.uleb128 0x22
+ 2025 067b 79020000 		.4byte	.LASF73
+ 2026 067f 01       		.byte	0x1
+ 2027 0680 5D01     		.2byte	0x15d
+ 2028 0682 81000000 		.4byte	0x81
+ 2029 0686 05       		.uleb128 0x5
+ 2030 0687 03       		.byte	0x3
+ 2031 0688 0A000000 		.4byte	_data_len.7434
+ 2032 068c 22       		.uleb128 0x22
+ 2033 068d D0020000 		.4byte	.LASF74
+ 2034 0691 01       		.byte	0x1
+ 2035 0692 5D01     		.2byte	0x15d
+ 2036 0694 81000000 		.4byte	0x81
+ 2037 0698 05       		.uleb128 0x5
+ 2038 0699 03       		.byte	0x3
+ 2039 069a 09000000 		.4byte	_data_cnt.7435
+ 2040 069e 22       		.uleb128 0x22
+ 2041 069f 70050000 		.4byte	.LASF75
+ 2042 06a3 01       		.byte	0x1
+ 2043 06a4 5E01     		.2byte	0x15e
+ 2044 06a6 81000000 		.4byte	0x81
+ 2045 06aa 05       		.uleb128 0x5
+ 2046 06ab 03       		.byte	0x3
+ 2047 06ac 08000000 		.4byte	state.7436
+ 2048 06b0 21       		.uleb128 0x21
+ 2049 06b1 66000000 		.4byte	.LBB6
+ 2050 06b5 4C000000 		.4byte	.LBE6-.LBB6
+ 2051 06b9 1E       		.uleb128 0x1e
+ 2052 06ba CB020000 		.4byte	.LASF92
+ 2053 06be 01       		.byte	0x1
+ 2054 06bf 7B01     		.2byte	0x17b
+ 2055 06c1 B7000000 		.4byte	0xb7
+ 2056 06c5 AE050000 		.4byte	.LLST25
+ 2057 06c9 1E       		.uleb128 0x1e
+ 2058 06ca 05010000 		.4byte	.LASF93
+ 2059 06ce 01       		.byte	0x1
+ 2060 06cf 7D01     		.2byte	0x17d
+ 2061 06d1 81000000 		.4byte	0x81
+ 2062 06d5 CD050000 		.4byte	.LLST26
+ 2063 06d9 1E       		.uleb128 0x1e
+ 2064 06da 9A000000 		.4byte	.LASF94
+ 2065 06de 01       		.byte	0x1
+ 2066 06df 8001     		.2byte	0x180
+ 2067 06e1 81000000 		.4byte	0x81
+ 2068 06e5 EC050000 		.4byte	.LLST27
+ 2069 06e9 11       		.uleb128 0x11
+ 2070 06ea A8000000 		.4byte	.LVL136
+ 2071 06ee 19090000 		.4byte	0x919
+ 2072 06f2 12       		.uleb128 0x12
+ 2073 06f3 01       		.uleb128 0x1
+ 2074 06f4 52       		.byte	0x52
+ 2075 06f5 02       		.uleb128 0x2
+ 2076 06f6 08       		.byte	0x8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 45
+
+
+ 2077 06f7 54       		.byte	0x54
+ 2078 06f8 12       		.uleb128 0x12
+ 2079 06f9 01       		.uleb128 0x1
+ 2080 06fa 51       		.byte	0x51
+ 2081 06fb 05       		.uleb128 0x5
+ 2082 06fc 03       		.byte	0x3
+ 2083 06fd 00000000 		.4byte	nodeBuffer
+ 2084 0701 12       		.uleb128 0x12
+ 2085 0702 01       		.uleb128 0x1
+ 2086 0703 50       		.byte	0x50
+ 2087 0704 05       		.uleb128 0x5
+ 2088 0705 03       		.byte	0x3
+ 2089 0706 00000000 		.4byte	net_nodeBuffer
+ 2090 070a 00       		.byte	0
+ 2091 070b 00       		.byte	0
+ 2092 070c 00       		.byte	0
+ 2093 070d 17       		.uleb128 0x17
+ 2094 070e 4A010000 		.4byte	.LASF95
+ 2095 0712 01       		.byte	0x1
+ 2096 0713 21       		.byte	0x21
+ 2097 0714 81000000 		.4byte	0x81
+ 2098 0718 05       		.uleb128 0x5
+ 2099 0719 03       		.byte	0x3
+ 2100 071a 03000000 		.4byte	test_i
+ 2101 071e 25       		.uleb128 0x25
+ 2102 071f AF000000 		.4byte	.LASF96
+ 2103 0723 01       		.byte	0x1
+ 2104 0724 55       		.byte	0x55
+ 2105 0725 68000000 		.4byte	0x68
+ 2106 0729 00       		.byte	0
+ 2107 072a 26       		.uleb128 0x26
+ 2108 072b 9A030000 		.4byte	.LASF97
+ 2109 072f 09       		.byte	0x9
+ 2110 0730 2A06     		.2byte	0x62a
+ 2111 0732 36070000 		.4byte	0x736
+ 2112 0736 27       		.uleb128 0x27
+ 2113 0737 76000000 		.4byte	0x76
+ 2114 073b 08       		.uleb128 0x8
+ 2115 073c 81000000 		.4byte	0x81
+ 2116 0740 4B070000 		.4byte	0x74b
+ 2117 0744 09       		.uleb128 0x9
+ 2118 0745 C2000000 		.4byte	0xc2
+ 2119 0749 63       		.byte	0x63
+ 2120 074a 00       		.byte	0
+ 2121 074b 28       		.uleb128 0x28
+ 2122 074c AC060000 		.4byte	.LASF98
+ 2123 0750 01       		.byte	0x1
+ 2124 0751 11       		.byte	0x11
+ 2125 0752 3B070000 		.4byte	0x73b
+ 2126 0756 05       		.uleb128 0x5
+ 2127 0757 03       		.byte	0x3
+ 2128 0758 00000000 		.4byte	nodeBuffer
+ 2129 075c 28       		.uleb128 0x28
+ 2130 075d BB010000 		.4byte	.LASF99
+ 2131 0761 01       		.byte	0x1
+ 2132 0762 12       		.byte	0x12
+ 2133 0763 3B070000 		.4byte	0x73b
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 46
+
+
+ 2134 0767 05       		.uleb128 0x5
+ 2135 0768 03       		.byte	0x3
+ 2136 0769 00000000 		.4byte	net_nodeBuffer
+ 2137 076d 28       		.uleb128 0x28
+ 2138 076e DA020000 		.4byte	.LASF100
+ 2139 0772 01       		.byte	0x1
+ 2140 0773 16       		.byte	0x16
+ 2141 0774 81000000 		.4byte	0x81
+ 2142 0778 05       		.uleb128 0x5
+ 2143 0779 03       		.byte	0x3
+ 2144 077a 00000000 		.4byte	rx_lidar_flag
+ 2145 077e 28       		.uleb128 0x28
+ 2146 077f 36020000 		.4byte	.LASF101
+ 2147 0783 01       		.byte	0x1
+ 2148 0784 17       		.byte	0x17
+ 2149 0785 81000000 		.4byte	0x81
+ 2150 0789 05       		.uleb128 0x5
+ 2151 078a 03       		.byte	0x3
+ 2152 078b 00000000 		.4byte	rx_lidar_count
+ 2153 078f 28       		.uleb128 0x28
+ 2154 0790 EE050000 		.4byte	.LASF102
+ 2155 0794 07       		.byte	0x7
+ 2156 0795 2B       		.byte	0x2b
+ 2157 0796 C7020000 		.4byte	0x2c7
+ 2158 079a 05       		.uleb128 0x5
+ 2159 079b 03       		.byte	0x3
+ 2160 079c 00000000 		.4byte	g_Car
+ 2161 07a0 28       		.uleb128 0x28
+ 2162 07a1 27060000 		.4byte	.LASF103
+ 2163 07a5 08       		.byte	0x8
+ 2164 07a6 26       		.byte	0x26
+ 2165 07a7 51030000 		.4byte	0x351
+ 2166 07ab 05       		.uleb128 0x5
+ 2167 07ac 03       		.byte	0x3
+ 2168 07ad 00000000 		.4byte	S_IMU
+ 2169 07b1 08       		.uleb128 0x8
+ 2170 07b2 81000000 		.4byte	0x81
+ 2171 07b6 C1070000 		.4byte	0x7c1
+ 2172 07ba 09       		.uleb128 0x9
+ 2173 07bb C2000000 		.4byte	0xc2
+ 2174 07bf 08       		.byte	0x8
+ 2175 07c0 00       		.byte	0
+ 2176 07c1 28       		.uleb128 0x28
+ 2177 07c2 72060000 		.4byte	.LASF104
+ 2178 07c6 01       		.byte	0x1
+ 2179 07c7 13       		.byte	0x13
+ 2180 07c8 B1070000 		.4byte	0x7b1
+ 2181 07cc 05       		.uleb128 0x5
+ 2182 07cd 03       		.byte	0x3
+ 2183 07ce 00000000 		.4byte	EXPRESS_SCAN
+ 2184 07d2 08       		.uleb128 0x8
+ 2185 07d3 81000000 		.4byte	0x81
+ 2186 07d7 E2070000 		.4byte	0x7e2
+ 2187 07db 09       		.uleb128 0x9
+ 2188 07dc C2000000 		.4byte	0xc2
+ 2189 07e0 01       		.byte	0x1
+ 2190 07e1 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 47
+
+
+ 2191 07e2 28       		.uleb128 0x28
+ 2192 07e3 BF020000 		.4byte	.LASF105
+ 2193 07e7 01       		.byte	0x1
+ 2194 07e8 14       		.byte	0x14
+ 2195 07e9 D2070000 		.4byte	0x7d2
+ 2196 07ed 05       		.uleb128 0x5
+ 2197 07ee 03       		.byte	0x3
+ 2198 07ef 00000000 		.4byte	NORMAL_SCAN
+ 2199 07f3 28       		.uleb128 0x28
+ 2200 07f4 9A050000 		.4byte	.LASF106
+ 2201 07f8 01       		.byte	0x1
+ 2202 07f9 15       		.byte	0x15
+ 2203 07fa 81000000 		.4byte	0x81
+ 2204 07fe 05       		.uleb128 0x5
+ 2205 07ff 03       		.byte	0x3
+ 2206 0800 00000000 		.4byte	_is_previous_capsuledataRdy
+ 2207 0804 28       		.uleb128 0x28
+ 2208 0805 D7030000 		.4byte	.LASF107
+ 2209 0809 01       		.byte	0x1
+ 2210 080a 18       		.byte	0x18
+ 2211 080b 15080000 		.4byte	0x815
+ 2212 080f 05       		.uleb128 0x5
+ 2213 0810 03       		.byte	0x3
+ 2214 0811 00000000 		.4byte	node
+ 2215 0815 23       		.uleb128 0x23
+ 2216 0816 04       		.byte	0x4
+ 2217 0817 90010000 		.4byte	0x190
+ 2218 081b 28       		.uleb128 0x28
+ 2219 081c 25030000 		.4byte	.LASF108
+ 2220 0820 01       		.byte	0x1
+ 2221 0821 19       		.byte	0x19
+ 2222 0822 81000000 		.4byte	0x81
+ 2223 0826 05       		.uleb128 0x5
+ 2224 0827 03       		.byte	0x3
+ 2225 0828 00000000 		.4byte	start
+ 2226 082c 29       		.uleb128 0x29
+ 2227 082d 656E6400 		.ascii	"end\000"
+ 2228 0831 01       		.byte	0x1
+ 2229 0832 1A       		.byte	0x1a
+ 2230 0833 81000000 		.4byte	0x81
+ 2231 0837 05       		.uleb128 0x5
+ 2232 0838 03       		.byte	0x3
+ 2233 0839 00000000 		.4byte	end
+ 2234 083d 28       		.uleb128 0x28
+ 2235 083e 3D040000 		.4byte	.LASF109
+ 2236 0842 01       		.byte	0x1
+ 2237 0843 1B       		.byte	0x1b
+ 2238 0844 81000000 		.4byte	0x81
+ 2239 0848 05       		.uleb128 0x5
+ 2240 0849 03       		.byte	0x3
+ 2241 084a 00000000 		.4byte	normal_size
+ 2242 084e 28       		.uleb128 0x28
+ 2243 084f 71000000 		.4byte	.LASF110
+ 2244 0853 01       		.byte	0x1
+ 2245 0854 1C       		.byte	0x1c
+ 2246 0855 81000000 		.4byte	0x81
+ 2247 0859 05       		.uleb128 0x5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 48
+
+
+ 2248 085a 03       		.byte	0x3
+ 2249 085b 00000000 		.4byte	output_t
+ 2250 085f 08       		.uleb128 0x8
+ 2251 0860 FC000000 		.4byte	0xfc
+ 2252 0864 70080000 		.4byte	0x870
+ 2253 0868 2A       		.uleb128 0x2a
+ 2254 0869 C2000000 		.4byte	0xc2
+ 2255 086d F301     		.2byte	0x1f3
+ 2256 086f 00       		.byte	0
+ 2257 0870 28       		.uleb128 0x28
+ 2258 0871 60060000 		.4byte	.LASF111
+ 2259 0875 01       		.byte	0x1
+ 2260 0876 1D       		.byte	0x1d
+ 2261 0877 5F080000 		.4byte	0x85f
+ 2262 087b 05       		.uleb128 0x5
+ 2263 087c 03       		.byte	0x3
+ 2264 087d 00000000 		.4byte	test1
+ 2265 0881 28       		.uleb128 0x28
+ 2266 0882 66060000 		.4byte	.LASF112
+ 2267 0886 01       		.byte	0x1
+ 2268 0887 1E       		.byte	0x1e
+ 2269 0888 5F080000 		.4byte	0x85f
+ 2270 088c 05       		.uleb128 0x5
+ 2271 088d 03       		.byte	0x3
+ 2272 088e 00000000 		.4byte	test2
+ 2273 0892 28       		.uleb128 0x28
+ 2274 0893 6C060000 		.4byte	.LASF113
+ 2275 0897 01       		.byte	0x1
+ 2276 0898 1F       		.byte	0x1f
+ 2277 0899 5F080000 		.4byte	0x85f
+ 2278 089d 05       		.uleb128 0x5
+ 2279 089e 03       		.byte	0x3
+ 2280 089f 00000000 		.4byte	test3
+ 2281 08a3 08       		.uleb128 0x8
+ 2282 08a4 A2000000 		.4byte	0xa2
+ 2283 08a8 B4080000 		.4byte	0x8b4
+ 2284 08ac 2A       		.uleb128 0x2a
+ 2285 08ad C2000000 		.4byte	0xc2
+ 2286 08b1 F301     		.2byte	0x1f3
+ 2287 08b3 00       		.byte	0
+ 2288 08b4 28       		.uleb128 0x28
+ 2289 08b5 7C010000 		.4byte	.LASF114
+ 2290 08b9 01       		.byte	0x1
+ 2291 08ba 20       		.byte	0x20
+ 2292 08bb A3080000 		.4byte	0x8a3
+ 2293 08bf 05       		.uleb128 0x5
+ 2294 08c0 03       		.byte	0x3
+ 2295 08c1 00000000 		.4byte	test_f_suzu
+ 2296 08c5 28       		.uleb128 0x28
+ 2297 08c6 68050000 		.4byte	.LASF115
+ 2298 08ca 01       		.byte	0x1
+ 2299 08cb 2A       		.byte	0x2a
+ 2300 08cc 68000000 		.4byte	0x68
+ 2301 08d0 05       		.uleb128 0x5
+ 2302 08d1 03       		.byte	0x3
+ 2303 08d2 00000000 		.4byte	recvPos
+ 2304 08d6 28       		.uleb128 0x28
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 49
+
+
+ 2305 08d7 2D060000 		.4byte	.LASF116
+ 2306 08db 01       		.byte	0x1
+ 2307 08dc 2F       		.byte	0x2f
+ 2308 08dd FC000000 		.4byte	0xfc
+ 2309 08e1 05       		.uleb128 0x5
+ 2310 08e2 03       		.byte	0x3
+ 2311 08e3 00000000 		.4byte	nodeBuffer1
+ 2312 08e7 2B       		.uleb128 0x2b
+ 2313 08e8 07030000 		.4byte	.LASF117
+ 2314 08ec 0A       		.byte	0xa
+ 2315 08ed 8C       		.byte	0x8c
+ 2316 08ee FD080000 		.4byte	0x8fd
+ 2317 08f2 2C       		.uleb128 0x2c
+ 2318 08f3 FD080000 		.4byte	0x8fd
+ 2319 08f7 2C       		.uleb128 0x2c
+ 2320 08f8 81000000 		.4byte	0x81
+ 2321 08fc 00       		.byte	0
+ 2322 08fd 23       		.uleb128 0x23
+ 2323 08fe 04       		.byte	0x4
+ 2324 08ff 03090000 		.4byte	0x903
+ 2325 0903 2D       		.uleb128 0x2d
+ 2326 0904 81000000 		.4byte	0x81
+ 2327 0908 2B       		.uleb128 0x2b
+ 2328 0909 5D020000 		.4byte	.LASF118
+ 2329 090d 0B       		.byte	0xb
+ 2330 090e 28       		.byte	0x28
+ 2331 090f 19090000 		.4byte	0x919
+ 2332 0913 2C       		.uleb128 0x2c
+ 2333 0914 81000000 		.4byte	0x81
+ 2334 0918 00       		.byte	0
+ 2335 0919 2E       		.uleb128 0x2e
+ 2336 091a 20060000 		.4byte	.LASF119
+ 2337 091e C9000000 		.4byte	0xc9
+ 2338 0922 36090000 		.4byte	0x936
+ 2339 0926 2C       		.uleb128 0x2c
+ 2340 0927 C9000000 		.4byte	0xc9
+ 2341 092b 2C       		.uleb128 0x2c
+ 2342 092c 36090000 		.4byte	0x936
+ 2343 0930 2C       		.uleb128 0x2c
+ 2344 0931 C2000000 		.4byte	0xc2
+ 2345 0935 00       		.byte	0
+ 2346 0936 23       		.uleb128 0x23
+ 2347 0937 04       		.byte	0x4
+ 2348 0938 3C090000 		.4byte	0x93c
+ 2349 093c 2F       		.uleb128 0x2f
+ 2350 093d 00       		.byte	0
+ 2351              		.section	.debug_abbrev,"",%progbits
+ 2352              	.Ldebug_abbrev0:
+ 2353 0000 01       		.uleb128 0x1
+ 2354 0001 11       		.uleb128 0x11
+ 2355 0002 01       		.byte	0x1
+ 2356 0003 25       		.uleb128 0x25
+ 2357 0004 0E       		.uleb128 0xe
+ 2358 0005 13       		.uleb128 0x13
+ 2359 0006 0B       		.uleb128 0xb
+ 2360 0007 03       		.uleb128 0x3
+ 2361 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 50
+
+
+ 2362 0009 1B       		.uleb128 0x1b
+ 2363 000a 0E       		.uleb128 0xe
+ 2364 000b 55       		.uleb128 0x55
+ 2365 000c 17       		.uleb128 0x17
+ 2366 000d 11       		.uleb128 0x11
+ 2367 000e 01       		.uleb128 0x1
+ 2368 000f 10       		.uleb128 0x10
+ 2369 0010 17       		.uleb128 0x17
+ 2370 0011 00       		.byte	0
+ 2371 0012 00       		.byte	0
+ 2372 0013 02       		.uleb128 0x2
+ 2373 0014 24       		.uleb128 0x24
+ 2374 0015 00       		.byte	0
+ 2375 0016 0B       		.uleb128 0xb
+ 2376 0017 0B       		.uleb128 0xb
+ 2377 0018 3E       		.uleb128 0x3e
+ 2378 0019 0B       		.uleb128 0xb
+ 2379 001a 03       		.uleb128 0x3
+ 2380 001b 0E       		.uleb128 0xe
+ 2381 001c 00       		.byte	0
+ 2382 001d 00       		.byte	0
+ 2383 001e 03       		.uleb128 0x3
+ 2384 001f 16       		.uleb128 0x16
+ 2385 0020 00       		.byte	0
+ 2386 0021 03       		.uleb128 0x3
+ 2387 0022 0E       		.uleb128 0xe
+ 2388 0023 3A       		.uleb128 0x3a
+ 2389 0024 0B       		.uleb128 0xb
+ 2390 0025 3B       		.uleb128 0x3b
+ 2391 0026 0B       		.uleb128 0xb
+ 2392 0027 49       		.uleb128 0x49
+ 2393 0028 13       		.uleb128 0x13
+ 2394 0029 00       		.byte	0
+ 2395 002a 00       		.byte	0
+ 2396 002b 04       		.uleb128 0x4
+ 2397 002c 24       		.uleb128 0x24
+ 2398 002d 00       		.byte	0
+ 2399 002e 0B       		.uleb128 0xb
+ 2400 002f 0B       		.uleb128 0xb
+ 2401 0030 3E       		.uleb128 0x3e
+ 2402 0031 0B       		.uleb128 0xb
+ 2403 0032 03       		.uleb128 0x3
+ 2404 0033 08       		.uleb128 0x8
+ 2405 0034 00       		.byte	0
+ 2406 0035 00       		.byte	0
+ 2407 0036 05       		.uleb128 0x5
+ 2408 0037 0F       		.uleb128 0xf
+ 2409 0038 00       		.byte	0
+ 2410 0039 0B       		.uleb128 0xb
+ 2411 003a 0B       		.uleb128 0xb
+ 2412 003b 00       		.byte	0
+ 2413 003c 00       		.byte	0
+ 2414 003d 06       		.uleb128 0x6
+ 2415 003e 13       		.uleb128 0x13
+ 2416 003f 01       		.byte	0x1
+ 2417 0040 03       		.uleb128 0x3
+ 2418 0041 0E       		.uleb128 0xe
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 51
+
+
+ 2419 0042 0B       		.uleb128 0xb
+ 2420 0043 0B       		.uleb128 0xb
+ 2421 0044 3A       		.uleb128 0x3a
+ 2422 0045 0B       		.uleb128 0xb
+ 2423 0046 3B       		.uleb128 0x3b
+ 2424 0047 0B       		.uleb128 0xb
+ 2425 0048 01       		.uleb128 0x1
+ 2426 0049 13       		.uleb128 0x13
+ 2427 004a 00       		.byte	0
+ 2428 004b 00       		.byte	0
+ 2429 004c 07       		.uleb128 0x7
+ 2430 004d 0D       		.uleb128 0xd
+ 2431 004e 00       		.byte	0
+ 2432 004f 03       		.uleb128 0x3
+ 2433 0050 0E       		.uleb128 0xe
+ 2434 0051 3A       		.uleb128 0x3a
+ 2435 0052 0B       		.uleb128 0xb
+ 2436 0053 3B       		.uleb128 0x3b
+ 2437 0054 0B       		.uleb128 0xb
+ 2438 0055 49       		.uleb128 0x49
+ 2439 0056 13       		.uleb128 0x13
+ 2440 0057 38       		.uleb128 0x38
+ 2441 0058 0B       		.uleb128 0xb
+ 2442 0059 00       		.byte	0
+ 2443 005a 00       		.byte	0
+ 2444 005b 08       		.uleb128 0x8
+ 2445 005c 01       		.uleb128 0x1
+ 2446 005d 01       		.byte	0x1
+ 2447 005e 49       		.uleb128 0x49
+ 2448 005f 13       		.uleb128 0x13
+ 2449 0060 01       		.uleb128 0x1
+ 2450 0061 13       		.uleb128 0x13
+ 2451 0062 00       		.byte	0
+ 2452 0063 00       		.byte	0
+ 2453 0064 09       		.uleb128 0x9
+ 2454 0065 21       		.uleb128 0x21
+ 2455 0066 00       		.byte	0
+ 2456 0067 49       		.uleb128 0x49
+ 2457 0068 13       		.uleb128 0x13
+ 2458 0069 2F       		.uleb128 0x2f
+ 2459 006a 0B       		.uleb128 0xb
+ 2460 006b 00       		.byte	0
+ 2461 006c 00       		.byte	0
+ 2462 006d 0A       		.uleb128 0xa
+ 2463 006e 04       		.uleb128 0x4
+ 2464 006f 01       		.byte	0x1
+ 2465 0070 03       		.uleb128 0x3
+ 2466 0071 0E       		.uleb128 0xe
+ 2467 0072 0B       		.uleb128 0xb
+ 2468 0073 0B       		.uleb128 0xb
+ 2469 0074 3A       		.uleb128 0x3a
+ 2470 0075 0B       		.uleb128 0xb
+ 2471 0076 3B       		.uleb128 0x3b
+ 2472 0077 0B       		.uleb128 0xb
+ 2473 0078 01       		.uleb128 0x1
+ 2474 0079 13       		.uleb128 0x13
+ 2475 007a 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 52
+
+
+ 2476 007b 00       		.byte	0
+ 2477 007c 0B       		.uleb128 0xb
+ 2478 007d 28       		.uleb128 0x28
+ 2479 007e 00       		.byte	0
+ 2480 007f 03       		.uleb128 0x3
+ 2481 0080 08       		.uleb128 0x8
+ 2482 0081 1C       		.uleb128 0x1c
+ 2483 0082 0D       		.uleb128 0xd
+ 2484 0083 00       		.byte	0
+ 2485 0084 00       		.byte	0
+ 2486 0085 0C       		.uleb128 0xc
+ 2487 0086 28       		.uleb128 0x28
+ 2488 0087 00       		.byte	0
+ 2489 0088 03       		.uleb128 0x3
+ 2490 0089 0E       		.uleb128 0xe
+ 2491 008a 1C       		.uleb128 0x1c
+ 2492 008b 0D       		.uleb128 0xd
+ 2493 008c 00       		.byte	0
+ 2494 008d 00       		.byte	0
+ 2495 008e 0D       		.uleb128 0xd
+ 2496 008f 13       		.uleb128 0x13
+ 2497 0090 01       		.byte	0x1
+ 2498 0091 0B       		.uleb128 0xb
+ 2499 0092 0B       		.uleb128 0xb
+ 2500 0093 3A       		.uleb128 0x3a
+ 2501 0094 0B       		.uleb128 0xb
+ 2502 0095 3B       		.uleb128 0x3b
+ 2503 0096 0B       		.uleb128 0xb
+ 2504 0097 01       		.uleb128 0x1
+ 2505 0098 13       		.uleb128 0x13
+ 2506 0099 00       		.byte	0
+ 2507 009a 00       		.byte	0
+ 2508 009b 0E       		.uleb128 0xe
+ 2509 009c 0D       		.uleb128 0xd
+ 2510 009d 00       		.byte	0
+ 2511 009e 03       		.uleb128 0x3
+ 2512 009f 08       		.uleb128 0x8
+ 2513 00a0 3A       		.uleb128 0x3a
+ 2514 00a1 0B       		.uleb128 0xb
+ 2515 00a2 3B       		.uleb128 0x3b
+ 2516 00a3 0B       		.uleb128 0xb
+ 2517 00a4 49       		.uleb128 0x49
+ 2518 00a5 13       		.uleb128 0x13
+ 2519 00a6 38       		.uleb128 0x38
+ 2520 00a7 0B       		.uleb128 0xb
+ 2521 00a8 00       		.byte	0
+ 2522 00a9 00       		.byte	0
+ 2523 00aa 0F       		.uleb128 0xf
+ 2524 00ab 16       		.uleb128 0x16
+ 2525 00ac 00       		.byte	0
+ 2526 00ad 03       		.uleb128 0x3
+ 2527 00ae 08       		.uleb128 0x8
+ 2528 00af 3A       		.uleb128 0x3a
+ 2529 00b0 0B       		.uleb128 0xb
+ 2530 00b1 3B       		.uleb128 0x3b
+ 2531 00b2 0B       		.uleb128 0xb
+ 2532 00b3 49       		.uleb128 0x49
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 53
+
+
+ 2533 00b4 13       		.uleb128 0x13
+ 2534 00b5 00       		.byte	0
+ 2535 00b6 00       		.byte	0
+ 2536 00b7 10       		.uleb128 0x10
+ 2537 00b8 2E       		.uleb128 0x2e
+ 2538 00b9 01       		.byte	0x1
+ 2539 00ba 3F       		.uleb128 0x3f
+ 2540 00bb 19       		.uleb128 0x19
+ 2541 00bc 03       		.uleb128 0x3
+ 2542 00bd 0E       		.uleb128 0xe
+ 2543 00be 3A       		.uleb128 0x3a
+ 2544 00bf 0B       		.uleb128 0xb
+ 2545 00c0 3B       		.uleb128 0x3b
+ 2546 00c1 0B       		.uleb128 0xb
+ 2547 00c2 11       		.uleb128 0x11
+ 2548 00c3 01       		.uleb128 0x1
+ 2549 00c4 12       		.uleb128 0x12
+ 2550 00c5 06       		.uleb128 0x6
+ 2551 00c6 40       		.uleb128 0x40
+ 2552 00c7 18       		.uleb128 0x18
+ 2553 00c8 9742     		.uleb128 0x2117
+ 2554 00ca 19       		.uleb128 0x19
+ 2555 00cb 01       		.uleb128 0x1
+ 2556 00cc 13       		.uleb128 0x13
+ 2557 00cd 00       		.byte	0
+ 2558 00ce 00       		.byte	0
+ 2559 00cf 11       		.uleb128 0x11
+ 2560 00d0 898201   		.uleb128 0x4109
+ 2561 00d3 01       		.byte	0x1
+ 2562 00d4 11       		.uleb128 0x11
+ 2563 00d5 01       		.uleb128 0x1
+ 2564 00d6 31       		.uleb128 0x31
+ 2565 00d7 13       		.uleb128 0x13
+ 2566 00d8 00       		.byte	0
+ 2567 00d9 00       		.byte	0
+ 2568 00da 12       		.uleb128 0x12
+ 2569 00db 8A8201   		.uleb128 0x410a
+ 2570 00de 00       		.byte	0
+ 2571 00df 02       		.uleb128 0x2
+ 2572 00e0 18       		.uleb128 0x18
+ 2573 00e1 9142     		.uleb128 0x2111
+ 2574 00e3 18       		.uleb128 0x18
+ 2575 00e4 00       		.byte	0
+ 2576 00e5 00       		.byte	0
+ 2577 00e6 13       		.uleb128 0x13
+ 2578 00e7 2E       		.uleb128 0x2e
+ 2579 00e8 01       		.byte	0x1
+ 2580 00e9 3F       		.uleb128 0x3f
+ 2581 00ea 19       		.uleb128 0x19
+ 2582 00eb 03       		.uleb128 0x3
+ 2583 00ec 0E       		.uleb128 0xe
+ 2584 00ed 3A       		.uleb128 0x3a
+ 2585 00ee 0B       		.uleb128 0xb
+ 2586 00ef 3B       		.uleb128 0x3b
+ 2587 00f0 0B       		.uleb128 0xb
+ 2588 00f1 27       		.uleb128 0x27
+ 2589 00f2 19       		.uleb128 0x19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 54
+
+
+ 2590 00f3 11       		.uleb128 0x11
+ 2591 00f4 01       		.uleb128 0x1
+ 2592 00f5 12       		.uleb128 0x12
+ 2593 00f6 06       		.uleb128 0x6
+ 2594 00f7 40       		.uleb128 0x40
+ 2595 00f8 18       		.uleb128 0x18
+ 2596 00f9 9642     		.uleb128 0x2116
+ 2597 00fb 19       		.uleb128 0x19
+ 2598 00fc 01       		.uleb128 0x1
+ 2599 00fd 13       		.uleb128 0x13
+ 2600 00fe 00       		.byte	0
+ 2601 00ff 00       		.byte	0
+ 2602 0100 14       		.uleb128 0x14
+ 2603 0101 05       		.uleb128 0x5
+ 2604 0102 00       		.byte	0
+ 2605 0103 03       		.uleb128 0x3
+ 2606 0104 0E       		.uleb128 0xe
+ 2607 0105 3A       		.uleb128 0x3a
+ 2608 0106 0B       		.uleb128 0xb
+ 2609 0107 3B       		.uleb128 0x3b
+ 2610 0108 0B       		.uleb128 0xb
+ 2611 0109 49       		.uleb128 0x49
+ 2612 010a 13       		.uleb128 0x13
+ 2613 010b 02       		.uleb128 0x2
+ 2614 010c 17       		.uleb128 0x17
+ 2615 010d 00       		.byte	0
+ 2616 010e 00       		.byte	0
+ 2617 010f 15       		.uleb128 0x15
+ 2618 0110 34       		.uleb128 0x34
+ 2619 0111 00       		.byte	0
+ 2620 0112 03       		.uleb128 0x3
+ 2621 0113 08       		.uleb128 0x8
+ 2622 0114 3A       		.uleb128 0x3a
+ 2623 0115 0B       		.uleb128 0xb
+ 2624 0116 3B       		.uleb128 0x3b
+ 2625 0117 0B       		.uleb128 0xb
+ 2626 0118 49       		.uleb128 0x49
+ 2627 0119 13       		.uleb128 0x13
+ 2628 011a 02       		.uleb128 0x2
+ 2629 011b 17       		.uleb128 0x17
+ 2630 011c 00       		.byte	0
+ 2631 011d 00       		.byte	0
+ 2632 011e 16       		.uleb128 0x16
+ 2633 011f 34       		.uleb128 0x34
+ 2634 0120 00       		.byte	0
+ 2635 0121 03       		.uleb128 0x3
+ 2636 0122 0E       		.uleb128 0xe
+ 2637 0123 3A       		.uleb128 0x3a
+ 2638 0124 0B       		.uleb128 0xb
+ 2639 0125 3B       		.uleb128 0x3b
+ 2640 0126 0B       		.uleb128 0xb
+ 2641 0127 49       		.uleb128 0x49
+ 2642 0128 13       		.uleb128 0x13
+ 2643 0129 02       		.uleb128 0x2
+ 2644 012a 17       		.uleb128 0x17
+ 2645 012b 00       		.byte	0
+ 2646 012c 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 55
+
+
+ 2647 012d 17       		.uleb128 0x17
+ 2648 012e 34       		.uleb128 0x34
+ 2649 012f 00       		.byte	0
+ 2650 0130 03       		.uleb128 0x3
+ 2651 0131 0E       		.uleb128 0xe
+ 2652 0132 3A       		.uleb128 0x3a
+ 2653 0133 0B       		.uleb128 0xb
+ 2654 0134 3B       		.uleb128 0x3b
+ 2655 0135 0B       		.uleb128 0xb
+ 2656 0136 49       		.uleb128 0x49
+ 2657 0137 13       		.uleb128 0x13
+ 2658 0138 02       		.uleb128 0x2
+ 2659 0139 18       		.uleb128 0x18
+ 2660 013a 00       		.byte	0
+ 2661 013b 00       		.byte	0
+ 2662 013c 18       		.uleb128 0x18
+ 2663 013d 898201   		.uleb128 0x4109
+ 2664 0140 01       		.byte	0x1
+ 2665 0141 11       		.uleb128 0x11
+ 2666 0142 01       		.uleb128 0x1
+ 2667 0143 31       		.uleb128 0x31
+ 2668 0144 13       		.uleb128 0x13
+ 2669 0145 01       		.uleb128 0x1
+ 2670 0146 13       		.uleb128 0x13
+ 2671 0147 00       		.byte	0
+ 2672 0148 00       		.byte	0
+ 2673 0149 19       		.uleb128 0x19
+ 2674 014a 2E       		.uleb128 0x2e
+ 2675 014b 01       		.byte	0x1
+ 2676 014c 3F       		.uleb128 0x3f
+ 2677 014d 19       		.uleb128 0x19
+ 2678 014e 03       		.uleb128 0x3
+ 2679 014f 0E       		.uleb128 0xe
+ 2680 0150 3A       		.uleb128 0x3a
+ 2681 0151 0B       		.uleb128 0xb
+ 2682 0152 3B       		.uleb128 0x3b
+ 2683 0153 0B       		.uleb128 0xb
+ 2684 0154 27       		.uleb128 0x27
+ 2685 0155 19       		.uleb128 0x19
+ 2686 0156 11       		.uleb128 0x11
+ 2687 0157 01       		.uleb128 0x1
+ 2688 0158 12       		.uleb128 0x12
+ 2689 0159 06       		.uleb128 0x6
+ 2690 015a 40       		.uleb128 0x40
+ 2691 015b 18       		.uleb128 0x18
+ 2692 015c 9742     		.uleb128 0x2117
+ 2693 015e 19       		.uleb128 0x19
+ 2694 015f 01       		.uleb128 0x1
+ 2695 0160 13       		.uleb128 0x13
+ 2696 0161 00       		.byte	0
+ 2697 0162 00       		.byte	0
+ 2698 0163 1A       		.uleb128 0x1a
+ 2699 0164 34       		.uleb128 0x34
+ 2700 0165 00       		.byte	0
+ 2701 0166 03       		.uleb128 0x3
+ 2702 0167 0E       		.uleb128 0xe
+ 2703 0168 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 56
+
+
+ 2704 0169 0B       		.uleb128 0xb
+ 2705 016a 3B       		.uleb128 0x3b
+ 2706 016b 0B       		.uleb128 0xb
+ 2707 016c 49       		.uleb128 0x49
+ 2708 016d 13       		.uleb128 0x13
+ 2709 016e 00       		.byte	0
+ 2710 016f 00       		.byte	0
+ 2711 0170 1B       		.uleb128 0x1b
+ 2712 0171 2E       		.uleb128 0x2e
+ 2713 0172 01       		.byte	0x1
+ 2714 0173 3F       		.uleb128 0x3f
+ 2715 0174 19       		.uleb128 0x19
+ 2716 0175 03       		.uleb128 0x3
+ 2717 0176 0E       		.uleb128 0xe
+ 2718 0177 3A       		.uleb128 0x3a
+ 2719 0178 0B       		.uleb128 0xb
+ 2720 0179 3B       		.uleb128 0x3b
+ 2721 017a 0B       		.uleb128 0xb
+ 2722 017b 11       		.uleb128 0x11
+ 2723 017c 01       		.uleb128 0x1
+ 2724 017d 12       		.uleb128 0x12
+ 2725 017e 06       		.uleb128 0x6
+ 2726 017f 40       		.uleb128 0x40
+ 2727 0180 18       		.uleb128 0x18
+ 2728 0181 9642     		.uleb128 0x2116
+ 2729 0183 19       		.uleb128 0x19
+ 2730 0184 01       		.uleb128 0x1
+ 2731 0185 13       		.uleb128 0x13
+ 2732 0186 00       		.byte	0
+ 2733 0187 00       		.byte	0
+ 2734 0188 1C       		.uleb128 0x1c
+ 2735 0189 2E       		.uleb128 0x2e
+ 2736 018a 01       		.byte	0x1
+ 2737 018b 3F       		.uleb128 0x3f
+ 2738 018c 19       		.uleb128 0x19
+ 2739 018d 03       		.uleb128 0x3
+ 2740 018e 0E       		.uleb128 0xe
+ 2741 018f 3A       		.uleb128 0x3a
+ 2742 0190 0B       		.uleb128 0xb
+ 2743 0191 3B       		.uleb128 0x3b
+ 2744 0192 05       		.uleb128 0x5
+ 2745 0193 27       		.uleb128 0x27
+ 2746 0194 19       		.uleb128 0x19
+ 2747 0195 49       		.uleb128 0x49
+ 2748 0196 13       		.uleb128 0x13
+ 2749 0197 11       		.uleb128 0x11
+ 2750 0198 01       		.uleb128 0x1
+ 2751 0199 12       		.uleb128 0x12
+ 2752 019a 06       		.uleb128 0x6
+ 2753 019b 40       		.uleb128 0x40
+ 2754 019c 18       		.uleb128 0x18
+ 2755 019d 9642     		.uleb128 0x2116
+ 2756 019f 19       		.uleb128 0x19
+ 2757 01a0 01       		.uleb128 0x1
+ 2758 01a1 13       		.uleb128 0x13
+ 2759 01a2 00       		.byte	0
+ 2760 01a3 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 57
+
+
+ 2761 01a4 1D       		.uleb128 0x1d
+ 2762 01a5 05       		.uleb128 0x5
+ 2763 01a6 00       		.byte	0
+ 2764 01a7 03       		.uleb128 0x3
+ 2765 01a8 0E       		.uleb128 0xe
+ 2766 01a9 3A       		.uleb128 0x3a
+ 2767 01aa 0B       		.uleb128 0xb
+ 2768 01ab 3B       		.uleb128 0x3b
+ 2769 01ac 05       		.uleb128 0x5
+ 2770 01ad 49       		.uleb128 0x49
+ 2771 01ae 13       		.uleb128 0x13
+ 2772 01af 02       		.uleb128 0x2
+ 2773 01b0 17       		.uleb128 0x17
+ 2774 01b1 00       		.byte	0
+ 2775 01b2 00       		.byte	0
+ 2776 01b3 1E       		.uleb128 0x1e
+ 2777 01b4 34       		.uleb128 0x34
+ 2778 01b5 00       		.byte	0
+ 2779 01b6 03       		.uleb128 0x3
+ 2780 01b7 0E       		.uleb128 0xe
+ 2781 01b8 3A       		.uleb128 0x3a
+ 2782 01b9 0B       		.uleb128 0xb
+ 2783 01ba 3B       		.uleb128 0x3b
+ 2784 01bb 05       		.uleb128 0x5
+ 2785 01bc 49       		.uleb128 0x49
+ 2786 01bd 13       		.uleb128 0x13
+ 2787 01be 02       		.uleb128 0x2
+ 2788 01bf 17       		.uleb128 0x17
+ 2789 01c0 00       		.byte	0
+ 2790 01c1 00       		.byte	0
+ 2791 01c2 1F       		.uleb128 0x1f
+ 2792 01c3 34       		.uleb128 0x34
+ 2793 01c4 00       		.byte	0
+ 2794 01c5 03       		.uleb128 0x3
+ 2795 01c6 08       		.uleb128 0x8
+ 2796 01c7 3A       		.uleb128 0x3a
+ 2797 01c8 0B       		.uleb128 0xb
+ 2798 01c9 3B       		.uleb128 0x3b
+ 2799 01ca 05       		.uleb128 0x5
+ 2800 01cb 49       		.uleb128 0x49
+ 2801 01cc 13       		.uleb128 0x13
+ 2802 01cd 02       		.uleb128 0x2
+ 2803 01ce 17       		.uleb128 0x17
+ 2804 01cf 00       		.byte	0
+ 2805 01d0 00       		.byte	0
+ 2806 01d1 20       		.uleb128 0x20
+ 2807 01d2 0B       		.uleb128 0xb
+ 2808 01d3 01       		.byte	0x1
+ 2809 01d4 11       		.uleb128 0x11
+ 2810 01d5 01       		.uleb128 0x1
+ 2811 01d6 12       		.uleb128 0x12
+ 2812 01d7 06       		.uleb128 0x6
+ 2813 01d8 01       		.uleb128 0x1
+ 2814 01d9 13       		.uleb128 0x13
+ 2815 01da 00       		.byte	0
+ 2816 01db 00       		.byte	0
+ 2817 01dc 21       		.uleb128 0x21
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 58
+
+
+ 2818 01dd 0B       		.uleb128 0xb
+ 2819 01de 01       		.byte	0x1
+ 2820 01df 11       		.uleb128 0x11
+ 2821 01e0 01       		.uleb128 0x1
+ 2822 01e1 12       		.uleb128 0x12
+ 2823 01e2 06       		.uleb128 0x6
+ 2824 01e3 00       		.byte	0
+ 2825 01e4 00       		.byte	0
+ 2826 01e5 22       		.uleb128 0x22
+ 2827 01e6 34       		.uleb128 0x34
+ 2828 01e7 00       		.byte	0
+ 2829 01e8 03       		.uleb128 0x3
+ 2830 01e9 0E       		.uleb128 0xe
+ 2831 01ea 3A       		.uleb128 0x3a
+ 2832 01eb 0B       		.uleb128 0xb
+ 2833 01ec 3B       		.uleb128 0x3b
+ 2834 01ed 05       		.uleb128 0x5
+ 2835 01ee 49       		.uleb128 0x49
+ 2836 01ef 13       		.uleb128 0x13
+ 2837 01f0 02       		.uleb128 0x2
+ 2838 01f1 18       		.uleb128 0x18
+ 2839 01f2 00       		.byte	0
+ 2840 01f3 00       		.byte	0
+ 2841 01f4 23       		.uleb128 0x23
+ 2842 01f5 0F       		.uleb128 0xf
+ 2843 01f6 00       		.byte	0
+ 2844 01f7 0B       		.uleb128 0xb
+ 2845 01f8 0B       		.uleb128 0xb
+ 2846 01f9 49       		.uleb128 0x49
+ 2847 01fa 13       		.uleb128 0x13
+ 2848 01fb 00       		.byte	0
+ 2849 01fc 00       		.byte	0
+ 2850 01fd 24       		.uleb128 0x24
+ 2851 01fe 2E       		.uleb128 0x2e
+ 2852 01ff 01       		.byte	0x1
+ 2853 0200 3F       		.uleb128 0x3f
+ 2854 0201 19       		.uleb128 0x19
+ 2855 0202 03       		.uleb128 0x3
+ 2856 0203 0E       		.uleb128 0xe
+ 2857 0204 3A       		.uleb128 0x3a
+ 2858 0205 0B       		.uleb128 0xb
+ 2859 0206 3B       		.uleb128 0x3b
+ 2860 0207 05       		.uleb128 0x5
+ 2861 0208 27       		.uleb128 0x27
+ 2862 0209 19       		.uleb128 0x19
+ 2863 020a 11       		.uleb128 0x11
+ 2864 020b 01       		.uleb128 0x1
+ 2865 020c 12       		.uleb128 0x12
+ 2866 020d 06       		.uleb128 0x6
+ 2867 020e 40       		.uleb128 0x40
+ 2868 020f 18       		.uleb128 0x18
+ 2869 0210 9742     		.uleb128 0x2117
+ 2870 0212 19       		.uleb128 0x19
+ 2871 0213 01       		.uleb128 0x1
+ 2872 0214 13       		.uleb128 0x13
+ 2873 0215 00       		.byte	0
+ 2874 0216 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 59
+
+
+ 2875 0217 25       		.uleb128 0x25
+ 2876 0218 34       		.uleb128 0x34
+ 2877 0219 00       		.byte	0
+ 2878 021a 03       		.uleb128 0x3
+ 2879 021b 0E       		.uleb128 0xe
+ 2880 021c 3A       		.uleb128 0x3a
+ 2881 021d 0B       		.uleb128 0xb
+ 2882 021e 3B       		.uleb128 0x3b
+ 2883 021f 0B       		.uleb128 0xb
+ 2884 0220 49       		.uleb128 0x49
+ 2885 0221 13       		.uleb128 0x13
+ 2886 0222 1C       		.uleb128 0x1c
+ 2887 0223 0B       		.uleb128 0xb
+ 2888 0224 00       		.byte	0
+ 2889 0225 00       		.byte	0
+ 2890 0226 26       		.uleb128 0x26
+ 2891 0227 34       		.uleb128 0x34
+ 2892 0228 00       		.byte	0
+ 2893 0229 03       		.uleb128 0x3
+ 2894 022a 0E       		.uleb128 0xe
+ 2895 022b 3A       		.uleb128 0x3a
+ 2896 022c 0B       		.uleb128 0xb
+ 2897 022d 3B       		.uleb128 0x3b
+ 2898 022e 05       		.uleb128 0x5
+ 2899 022f 49       		.uleb128 0x49
+ 2900 0230 13       		.uleb128 0x13
+ 2901 0231 3F       		.uleb128 0x3f
+ 2902 0232 19       		.uleb128 0x19
+ 2903 0233 3C       		.uleb128 0x3c
+ 2904 0234 19       		.uleb128 0x19
+ 2905 0235 00       		.byte	0
+ 2906 0236 00       		.byte	0
+ 2907 0237 27       		.uleb128 0x27
+ 2908 0238 35       		.uleb128 0x35
+ 2909 0239 00       		.byte	0
+ 2910 023a 49       		.uleb128 0x49
+ 2911 023b 13       		.uleb128 0x13
+ 2912 023c 00       		.byte	0
+ 2913 023d 00       		.byte	0
+ 2914 023e 28       		.uleb128 0x28
+ 2915 023f 34       		.uleb128 0x34
+ 2916 0240 00       		.byte	0
+ 2917 0241 03       		.uleb128 0x3
+ 2918 0242 0E       		.uleb128 0xe
+ 2919 0243 3A       		.uleb128 0x3a
+ 2920 0244 0B       		.uleb128 0xb
+ 2921 0245 3B       		.uleb128 0x3b
+ 2922 0246 0B       		.uleb128 0xb
+ 2923 0247 49       		.uleb128 0x49
+ 2924 0248 13       		.uleb128 0x13
+ 2925 0249 3F       		.uleb128 0x3f
+ 2926 024a 19       		.uleb128 0x19
+ 2927 024b 02       		.uleb128 0x2
+ 2928 024c 18       		.uleb128 0x18
+ 2929 024d 00       		.byte	0
+ 2930 024e 00       		.byte	0
+ 2931 024f 29       		.uleb128 0x29
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 60
+
+
+ 2932 0250 34       		.uleb128 0x34
+ 2933 0251 00       		.byte	0
+ 2934 0252 03       		.uleb128 0x3
+ 2935 0253 08       		.uleb128 0x8
+ 2936 0254 3A       		.uleb128 0x3a
+ 2937 0255 0B       		.uleb128 0xb
+ 2938 0256 3B       		.uleb128 0x3b
+ 2939 0257 0B       		.uleb128 0xb
+ 2940 0258 49       		.uleb128 0x49
+ 2941 0259 13       		.uleb128 0x13
+ 2942 025a 3F       		.uleb128 0x3f
+ 2943 025b 19       		.uleb128 0x19
+ 2944 025c 02       		.uleb128 0x2
+ 2945 025d 18       		.uleb128 0x18
+ 2946 025e 00       		.byte	0
+ 2947 025f 00       		.byte	0
+ 2948 0260 2A       		.uleb128 0x2a
+ 2949 0261 21       		.uleb128 0x21
+ 2950 0262 00       		.byte	0
+ 2951 0263 49       		.uleb128 0x49
+ 2952 0264 13       		.uleb128 0x13
+ 2953 0265 2F       		.uleb128 0x2f
+ 2954 0266 05       		.uleb128 0x5
+ 2955 0267 00       		.byte	0
+ 2956 0268 00       		.byte	0
+ 2957 0269 2B       		.uleb128 0x2b
+ 2958 026a 2E       		.uleb128 0x2e
+ 2959 026b 01       		.byte	0x1
+ 2960 026c 3F       		.uleb128 0x3f
+ 2961 026d 19       		.uleb128 0x19
+ 2962 026e 03       		.uleb128 0x3
+ 2963 026f 0E       		.uleb128 0xe
+ 2964 0270 3A       		.uleb128 0x3a
+ 2965 0271 0B       		.uleb128 0xb
+ 2966 0272 3B       		.uleb128 0x3b
+ 2967 0273 0B       		.uleb128 0xb
+ 2968 0274 27       		.uleb128 0x27
+ 2969 0275 19       		.uleb128 0x19
+ 2970 0276 3C       		.uleb128 0x3c
+ 2971 0277 19       		.uleb128 0x19
+ 2972 0278 01       		.uleb128 0x1
+ 2973 0279 13       		.uleb128 0x13
+ 2974 027a 00       		.byte	0
+ 2975 027b 00       		.byte	0
+ 2976 027c 2C       		.uleb128 0x2c
+ 2977 027d 05       		.uleb128 0x5
+ 2978 027e 00       		.byte	0
+ 2979 027f 49       		.uleb128 0x49
+ 2980 0280 13       		.uleb128 0x13
+ 2981 0281 00       		.byte	0
+ 2982 0282 00       		.byte	0
+ 2983 0283 2D       		.uleb128 0x2d
+ 2984 0284 26       		.uleb128 0x26
+ 2985 0285 00       		.byte	0
+ 2986 0286 49       		.uleb128 0x49
+ 2987 0287 13       		.uleb128 0x13
+ 2988 0288 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 61
+
+
+ 2989 0289 00       		.byte	0
+ 2990 028a 2E       		.uleb128 0x2e
+ 2991 028b 2E       		.uleb128 0x2e
+ 2992 028c 01       		.byte	0x1
+ 2993 028d 3F       		.uleb128 0x3f
+ 2994 028e 19       		.uleb128 0x19
+ 2995 028f 03       		.uleb128 0x3
+ 2996 0290 0E       		.uleb128 0xe
+ 2997 0291 27       		.uleb128 0x27
+ 2998 0292 19       		.uleb128 0x19
+ 2999 0293 49       		.uleb128 0x49
+ 3000 0294 13       		.uleb128 0x13
+ 3001 0295 34       		.uleb128 0x34
+ 3002 0296 19       		.uleb128 0x19
+ 3003 0297 3C       		.uleb128 0x3c
+ 3004 0298 19       		.uleb128 0x19
+ 3005 0299 01       		.uleb128 0x1
+ 3006 029a 13       		.uleb128 0x13
+ 3007 029b 00       		.byte	0
+ 3008 029c 00       		.byte	0
+ 3009 029d 2F       		.uleb128 0x2f
+ 3010 029e 26       		.uleb128 0x26
+ 3011 029f 00       		.byte	0
+ 3012 02a0 00       		.byte	0
+ 3013 02a1 00       		.byte	0
+ 3014 02a2 00       		.byte	0
+ 3015              		.section	.debug_loc,"",%progbits
+ 3016              	.Ldebug_loc0:
+ 3017              	.LLST0:
+ 3018 0000 00000000 		.4byte	.LVL1
+ 3019 0004 1E000000 		.4byte	.LVL4
+ 3020 0008 0100     		.2byte	0x1
+ 3021 000a 50       		.byte	0x50
+ 3022 000b 1E000000 		.4byte	.LVL4
+ 3023 000f 21000000 		.4byte	.LVL5-1
+ 3024 0013 0500     		.2byte	0x5
+ 3025 0015 03       		.byte	0x3
+ 3026 0016 00000000 		.4byte	nodeBuffer
+ 3027 001a 21000000 		.4byte	.LVL5-1
+ 3028 001e 24000000 		.4byte	.LVL6
+ 3029 0022 0400     		.2byte	0x4
+ 3030 0024 F3       		.byte	0xf3
+ 3031 0025 01       		.uleb128 0x1
+ 3032 0026 50       		.byte	0x50
+ 3033 0027 9F       		.byte	0x9f
+ 3034 0028 24000000 		.4byte	.LVL6
+ 3035 002c 7C000000 		.4byte	.LVL9
+ 3036 0030 0100     		.2byte	0x1
+ 3037 0032 50       		.byte	0x50
+ 3038 0033 7C000000 		.4byte	.LVL9
+ 3039 0037 87000000 		.4byte	.LVL12-1
+ 3040 003b 0700     		.2byte	0x7
+ 3041 003d 71       		.byte	0x71
+ 3042 003e 00       		.sleb128 0
+ 3043 003f 74       		.byte	0x74
+ 3044 0040 00       		.sleb128 0
+ 3045 0041 22       		.byte	0x22
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 62
+
+
+ 3046 0042 23       		.byte	0x23
+ 3047 0043 01       		.uleb128 0x1
+ 3048 0044 87000000 		.4byte	.LVL12-1
+ 3049 0048 C8000000 		.4byte	.LVL16
+ 3050 004c 0400     		.2byte	0x4
+ 3051 004e F3       		.byte	0xf3
+ 3052 004f 01       		.uleb128 0x1
+ 3053 0050 50       		.byte	0x50
+ 3054 0051 9F       		.byte	0x9f
+ 3055 0052 C8000000 		.4byte	.LVL16
+ 3056 0056 E0000000 		.4byte	.LFE64
+ 3057 005a 0100     		.2byte	0x1
+ 3058 005c 50       		.byte	0x50
+ 3059 005d 00000000 		.4byte	0
+ 3060 0061 00000000 		.4byte	0
+ 3061              	.LLST1:
+ 3062 0065 04000000 		.4byte	.LVL2
+ 3063 0069 0C000000 		.4byte	.LVL3
+ 3064 006d 0100     		.2byte	0x1
+ 3065 006f 52       		.byte	0x52
+ 3066 0070 0C000000 		.4byte	.LVL3
+ 3067 0074 1E000000 		.4byte	.LVL4
+ 3068 0078 0500     		.2byte	0x5
+ 3069 007a 70       		.byte	0x70
+ 3070 007b 00       		.sleb128 0
+ 3071 007c 31       		.byte	0x31
+ 3072 007d 25       		.byte	0x25
+ 3073 007e 9F       		.byte	0x9f
+ 3074 007f 24000000 		.4byte	.LVL6
+ 3075 0083 7C000000 		.4byte	.LVL9
+ 3076 0087 0500     		.2byte	0x5
+ 3077 0089 70       		.byte	0x70
+ 3078 008a 00       		.sleb128 0
+ 3079 008b 31       		.byte	0x31
+ 3080 008c 25       		.byte	0x25
+ 3081 008d 9F       		.byte	0x9f
+ 3082 008e C8000000 		.4byte	.LVL16
+ 3083 0092 E0000000 		.4byte	.LFE64
+ 3084 0096 0500     		.2byte	0x5
+ 3085 0098 70       		.byte	0x70
+ 3086 0099 00       		.sleb128 0
+ 3087 009a 31       		.byte	0x31
+ 3088 009b 25       		.byte	0x25
+ 3089 009c 9F       		.byte	0x9f
+ 3090 009d 00000000 		.4byte	0
+ 3091 00a1 00000000 		.4byte	0
+ 3092              	.LLST2:
+ 3093 00a5 2E000000 		.4byte	.LVL7
+ 3094 00a9 46000000 		.4byte	.LVL8
+ 3095 00ad 0A00     		.2byte	0xa
+ 3096 00af 70       		.byte	0x70
+ 3097 00b0 00       		.sleb128 0
+ 3098 00b1 31       		.byte	0x31
+ 3099 00b2 25       		.byte	0x25
+ 3100 00b3 31       		.byte	0x31
+ 3101 00b4 1A       		.byte	0x1a
+ 3102 00b5 08       		.byte	0x8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 63
+
+
+ 3103 00b6 FF       		.byte	0xff
+ 3104 00b7 1A       		.byte	0x1a
+ 3105 00b8 9F       		.byte	0x9f
+ 3106 00b9 82000000 		.4byte	.LVL10
+ 3107 00bd 84000000 		.4byte	.LVL11
+ 3108 00c1 0500     		.2byte	0x5
+ 3109 00c3 70       		.byte	0x70
+ 3110 00c4 00       		.sleb128 0
+ 3111 00c5 31       		.byte	0x31
+ 3112 00c6 25       		.byte	0x25
+ 3113 00c7 9F       		.byte	0x9f
+ 3114 00c8 84000000 		.4byte	.LVL11
+ 3115 00cc 87000000 		.4byte	.LVL12-1
+ 3116 00d0 1200     		.2byte	0x12
+ 3117 00d2 03       		.byte	0x3
+ 3118 00d3 02000000 		.4byte	nodeBuffer+2
+ 3119 00d7 94       		.byte	0x94
+ 3120 00d8 01       		.byte	0x1
+ 3121 00d9 08       		.byte	0x8
+ 3122 00da FF       		.byte	0xff
+ 3123 00db 1A       		.byte	0x1a
+ 3124 00dc 38       		.byte	0x38
+ 3125 00dd 24       		.byte	0x24
+ 3126 00de 73       		.byte	0x73
+ 3127 00df 00       		.sleb128 0
+ 3128 00e0 21       		.byte	0x21
+ 3129 00e1 31       		.byte	0x31
+ 3130 00e2 25       		.byte	0x25
+ 3131 00e3 9F       		.byte	0x9f
+ 3132 00e4 00000000 		.4byte	0
+ 3133 00e8 00000000 		.4byte	0
+ 3134              	.LLST3:
+ 3135 00ec 90000000 		.4byte	.LVL13
+ 3136 00f0 BC000000 		.4byte	.LVL14
+ 3137 00f4 0100     		.2byte	0x1
+ 3138 00f6 50       		.byte	0x50
+ 3139 00f7 BC000000 		.4byte	.LVL14
+ 3140 00fb BF000000 		.4byte	.LVL15-1
+ 3141 00ff 1200     		.2byte	0x12
+ 3142 0101 03       		.byte	0x3
+ 3143 0102 03000000 		.4byte	test_i
+ 3144 0106 94       		.byte	0x94
+ 3145 0107 01       		.byte	0x1
+ 3146 0108 08       		.byte	0x8
+ 3147 0109 FF       		.byte	0xff
+ 3148 010a 1A       		.byte	0x1a
+ 3149 010b 32       		.byte	0x32
+ 3150 010c 24       		.byte	0x24
+ 3151 010d 03       		.byte	0x3
+ 3152 010e 00000000 		.4byte	test_f_suzu
+ 3153 0112 22       		.byte	0x22
+ 3154 0113 00000000 		.4byte	0
+ 3155 0117 00000000 		.4byte	0
+ 3156              	.LLST4:
+ 3157 011b 00000000 		.4byte	.LVL17
+ 3158 011f CC000000 		.4byte	.LVL29
+ 3159 0123 0100     		.2byte	0x1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 64
+
+
+ 3160 0125 50       		.byte	0x50
+ 3161 0126 CC000000 		.4byte	.LVL29
+ 3162 012a CE000000 		.4byte	.LVL30
+ 3163 012e 0700     		.2byte	0x7
+ 3164 0130 71       		.byte	0x71
+ 3165 0131 00       		.sleb128 0
+ 3166 0132 74       		.byte	0x74
+ 3167 0133 00       		.sleb128 0
+ 3168 0134 22       		.byte	0x22
+ 3169 0135 23       		.byte	0x23
+ 3170 0136 06       		.uleb128 0x6
+ 3171 0137 CE000000 		.4byte	.LVL30
+ 3172 013b D4000000 		.4byte	.LVL31
+ 3173 013f 0700     		.2byte	0x7
+ 3174 0141 72       		.byte	0x72
+ 3175 0142 00       		.sleb128 0
+ 3176 0143 74       		.byte	0x74
+ 3177 0144 00       		.sleb128 0
+ 3178 0145 22       		.byte	0x22
+ 3179 0146 23       		.byte	0x23
+ 3180 0147 06       		.uleb128 0x6
+ 3181 0148 D4000000 		.4byte	.LVL31
+ 3182 014c E7000000 		.4byte	.LVL32-1
+ 3183 0150 0800     		.2byte	0x8
+ 3184 0152 74       		.byte	0x74
+ 3185 0153 00       		.sleb128 0
+ 3186 0154 03       		.byte	0x3
+ 3187 0155 06000000 		.4byte	nodeBuffer+6
+ 3188 0159 22       		.byte	0x22
+ 3189 015a E7000000 		.4byte	.LVL32-1
+ 3190 015e F2000000 		.4byte	.LVL33
+ 3191 0162 0400     		.2byte	0x4
+ 3192 0164 F3       		.byte	0xf3
+ 3193 0165 01       		.uleb128 0x1
+ 3194 0166 50       		.byte	0x50
+ 3195 0167 9F       		.byte	0x9f
+ 3196 0168 F2000000 		.4byte	.LVL33
+ 3197 016c F7000000 		.4byte	.LVL34-1
+ 3198 0170 0800     		.2byte	0x8
+ 3199 0172 74       		.byte	0x74
+ 3200 0173 00       		.sleb128 0
+ 3201 0174 03       		.byte	0x3
+ 3202 0175 06000000 		.4byte	nodeBuffer+6
+ 3203 0179 22       		.byte	0x22
+ 3204 017a F7000000 		.4byte	.LVL34-1
+ 3205 017e 06010000 		.4byte	.LVL35
+ 3206 0182 0400     		.2byte	0x4
+ 3207 0184 F3       		.byte	0xf3
+ 3208 0185 01       		.uleb128 0x1
+ 3209 0186 50       		.byte	0x50
+ 3210 0187 9F       		.byte	0x9f
+ 3211 0188 06010000 		.4byte	.LVL35
+ 3212 018c 24010000 		.4byte	.LFE65
+ 3213 0190 0100     		.2byte	0x1
+ 3214 0192 50       		.byte	0x50
+ 3215 0193 00000000 		.4byte	0
+ 3216 0197 00000000 		.4byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 65
+
+
+ 3217              	.LLST5:
+ 3218 019b 02000000 		.4byte	.LVL18
+ 3219 019f 14000000 		.4byte	.LVL19
+ 3220 01a3 0100     		.2byte	0x1
+ 3221 01a5 52       		.byte	0x52
+ 3222 01a6 14000000 		.4byte	.LVL19
+ 3223 01aa 1E000000 		.4byte	.LVL20
+ 3224 01ae 0500     		.2byte	0x5
+ 3225 01b0 70       		.byte	0x70
+ 3226 01b1 00       		.sleb128 0
+ 3227 01b2 31       		.byte	0x31
+ 3228 01b3 25       		.byte	0x25
+ 3229 01b4 9F       		.byte	0x9f
+ 3230 01b5 1E000000 		.4byte	.LVL20
+ 3231 01b9 2C000000 		.4byte	.LVL22
+ 3232 01bd 0100     		.2byte	0x1
+ 3233 01bf 52       		.byte	0x52
+ 3234 01c0 2C000000 		.4byte	.LVL22
+ 3235 01c4 40000000 		.4byte	.LVL23
+ 3236 01c8 0500     		.2byte	0x5
+ 3237 01ca 70       		.byte	0x70
+ 3238 01cb 00       		.sleb128 0
+ 3239 01cc 31       		.byte	0x31
+ 3240 01cd 25       		.byte	0x25
+ 3241 01ce 9F       		.byte	0x9f
+ 3242 01cf 40000000 		.4byte	.LVL23
+ 3243 01d3 52000000 		.4byte	.LVL24
+ 3244 01d7 0100     		.2byte	0x1
+ 3245 01d9 52       		.byte	0x52
+ 3246 01da 52000000 		.4byte	.LVL24
+ 3247 01de 62000000 		.4byte	.LVL25
+ 3248 01e2 0500     		.2byte	0x5
+ 3249 01e4 70       		.byte	0x70
+ 3250 01e5 00       		.sleb128 0
+ 3251 01e6 31       		.byte	0x31
+ 3252 01e7 25       		.byte	0x25
+ 3253 01e8 9F       		.byte	0x9f
+ 3254 01e9 62000000 		.4byte	.LVL25
+ 3255 01ed 68000000 		.4byte	.LVL26
+ 3256 01f1 0100     		.2byte	0x1
+ 3257 01f3 52       		.byte	0x52
+ 3258 01f4 68000000 		.4byte	.LVL26
+ 3259 01f8 CC000000 		.4byte	.LVL29
+ 3260 01fc 0500     		.2byte	0x5
+ 3261 01fe 70       		.byte	0x70
+ 3262 01ff 00       		.sleb128 0
+ 3263 0200 31       		.byte	0x31
+ 3264 0201 25       		.byte	0x25
+ 3265 0202 9F       		.byte	0x9f
+ 3266 0203 06010000 		.4byte	.LVL35
+ 3267 0207 24010000 		.4byte	.LFE65
+ 3268 020b 0500     		.2byte	0x5
+ 3269 020d 70       		.byte	0x70
+ 3270 020e 00       		.sleb128 0
+ 3271 020f 31       		.byte	0x31
+ 3272 0210 25       		.byte	0x25
+ 3273 0211 9F       		.byte	0x9f
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 66
+
+
+ 3274 0212 00000000 		.4byte	0
+ 3275 0216 00000000 		.4byte	0
+ 3276              	.LLST6:
+ 3277 021a 28000000 		.4byte	.LVL21
+ 3278 021e 2C000000 		.4byte	.LVL22
+ 3279 0222 0800     		.2byte	0x8
+ 3280 0224 72       		.byte	0x72
+ 3281 0225 00       		.sleb128 0
+ 3282 0226 31       		.byte	0x31
+ 3283 0227 1A       		.byte	0x1a
+ 3284 0228 08       		.byte	0x8
+ 3285 0229 FF       		.byte	0xff
+ 3286 022a 1A       		.byte	0x1a
+ 3287 022b 9F       		.byte	0x9f
+ 3288 022c 2C000000 		.4byte	.LVL22
+ 3289 0230 40000000 		.4byte	.LVL23
+ 3290 0234 0A00     		.2byte	0xa
+ 3291 0236 70       		.byte	0x70
+ 3292 0237 00       		.sleb128 0
+ 3293 0238 31       		.byte	0x31
+ 3294 0239 25       		.byte	0x25
+ 3295 023a 31       		.byte	0x31
+ 3296 023b 1A       		.byte	0x1a
+ 3297 023c 08       		.byte	0x8
+ 3298 023d FF       		.byte	0xff
+ 3299 023e 1A       		.byte	0x1a
+ 3300 023f 9F       		.byte	0x9f
+ 3301 0240 84000000 		.4byte	.LVL27
+ 3302 0244 9C000000 		.4byte	.LVL28
+ 3303 0248 0A00     		.2byte	0xa
+ 3304 024a 70       		.byte	0x70
+ 3305 024b 00       		.sleb128 0
+ 3306 024c 31       		.byte	0x31
+ 3307 024d 25       		.byte	0x25
+ 3308 024e 31       		.byte	0x31
+ 3309 024f 1A       		.byte	0x1a
+ 3310 0250 08       		.byte	0x8
+ 3311 0251 FF       		.byte	0xff
+ 3312 0252 1A       		.byte	0x1a
+ 3313 0253 9F       		.byte	0x9f
+ 3314 0254 00000000 		.4byte	0
+ 3315 0258 00000000 		.4byte	0
+ 3316              	.LLST7:
+ 3317 025c 02000000 		.4byte	.LVL36
+ 3318 0260 0C000000 		.4byte	.LVL37
+ 3319 0264 0200     		.2byte	0x2
+ 3320 0266 30       		.byte	0x30
+ 3321 0267 9F       		.byte	0x9f
+ 3322 0268 0C000000 		.4byte	.LVL37
+ 3323 026c 28000000 		.4byte	.LVL38
+ 3324 0270 0100     		.2byte	0x1
+ 3325 0272 56       		.byte	0x56
+ 3326 0273 2A000000 		.4byte	.LVL39
+ 3327 0277 5E000000 		.4byte	.LVL48
+ 3328 027b 0100     		.2byte	0x1
+ 3329 027d 56       		.byte	0x56
+ 3330 027e 5E000000 		.4byte	.LVL48
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 67
+
+
+ 3331 0282 7C000000 		.4byte	.LVL49
+ 3332 0286 0100     		.2byte	0x1
+ 3333 0288 52       		.byte	0x52
+ 3334 0289 7C000000 		.4byte	.LVL49
+ 3335 028d 82000000 		.4byte	.LVL52
+ 3336 0291 0100     		.2byte	0x1
+ 3337 0293 56       		.byte	0x56
+ 3338 0294 82000000 		.4byte	.LVL52
+ 3339 0298 86000000 		.4byte	.LVL53
+ 3340 029c 0200     		.2byte	0x2
+ 3341 029e 30       		.byte	0x30
+ 3342 029f 9F       		.byte	0x9f
+ 3343 02a0 86000000 		.4byte	.LVL53
+ 3344 02a4 8A000000 		.4byte	.LVL54
+ 3345 02a8 0100     		.2byte	0x1
+ 3346 02aa 56       		.byte	0x56
+ 3347 02ab 00000000 		.4byte	0
+ 3348 02af 00000000 		.4byte	0
+ 3349              	.LLST8:
+ 3350 02b3 0C000000 		.4byte	.LVL37
+ 3351 02b7 7E000000 		.4byte	.LVL50
+ 3352 02bb 0100     		.2byte	0x1
+ 3353 02bd 55       		.byte	0x55
+ 3354 02be 80000000 		.4byte	.LVL51
+ 3355 02c2 82000000 		.4byte	.LVL52
+ 3356 02c6 0100     		.2byte	0x1
+ 3357 02c8 55       		.byte	0x55
+ 3358 02c9 86000000 		.4byte	.LVL53
+ 3359 02cd 8A000000 		.4byte	.LVL54
+ 3360 02d1 0100     		.2byte	0x1
+ 3361 02d3 55       		.byte	0x55
+ 3362 02d4 00000000 		.4byte	0
+ 3363 02d8 00000000 		.4byte	0
+ 3364              	.LLST9:
+ 3365 02dc 2A000000 		.4byte	.LVL39
+ 3366 02e0 4C000000 		.4byte	.LVL43
+ 3367 02e4 0100     		.2byte	0x1
+ 3368 02e6 54       		.byte	0x54
+ 3369 02e7 4E000000 		.4byte	.LVL44
+ 3370 02eb 50000000 		.4byte	.LVL45
+ 3371 02ef 0100     		.2byte	0x1
+ 3372 02f1 54       		.byte	0x54
+ 3373 02f2 52000000 		.4byte	.LVL46
+ 3374 02f6 5A000000 		.4byte	.LVL47
+ 3375 02fa 0100     		.2byte	0x1
+ 3376 02fc 54       		.byte	0x54
+ 3377 02fd 00000000 		.4byte	0
+ 3378 0301 00000000 		.4byte	0
+ 3379              	.LLST10:
+ 3380 0305 4A000000 		.4byte	.LVL42
+ 3381 0309 50000000 		.4byte	.LVL45
+ 3382 030d 0200     		.2byte	0x2
+ 3383 030f 31       		.byte	0x31
+ 3384 0310 9F       		.byte	0x9f
+ 3385 0311 00000000 		.4byte	0
+ 3386 0315 00000000 		.4byte	0
+ 3387              	.LLST11:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 68
+
+
+ 3388 0319 00000000 		.4byte	.LVL55
+ 3389 031d 0C000000 		.4byte	.LVL56
+ 3390 0321 0100     		.2byte	0x1
+ 3391 0323 50       		.byte	0x50
+ 3392 0324 0C000000 		.4byte	.LVL56
+ 3393 0328 E2010000 		.4byte	.LVL118
+ 3394 032c 0100     		.2byte	0x1
+ 3395 032e 54       		.byte	0x54
+ 3396 032f E2010000 		.4byte	.LVL118
+ 3397 0333 EC010000 		.4byte	.LFE67
+ 3398 0337 0400     		.2byte	0x4
+ 3399 0339 F3       		.byte	0xf3
+ 3400 033a 01       		.uleb128 0x1
+ 3401 033b 50       		.byte	0x50
+ 3402 033c 9F       		.byte	0x9f
+ 3403 033d 00000000 		.4byte	0
+ 3404 0341 00000000 		.4byte	0
+ 3405              	.LLST12:
+ 3406 0345 00000000 		.4byte	.LVL55
+ 3407 0349 0F000000 		.4byte	.LVL57-1
+ 3408 034d 0100     		.2byte	0x1
+ 3409 034f 51       		.byte	0x51
+ 3410 0350 0F000000 		.4byte	.LVL57-1
+ 3411 0354 E2010000 		.4byte	.LVL118
+ 3412 0358 0100     		.2byte	0x1
+ 3413 035a 55       		.byte	0x55
+ 3414 035b E2010000 		.4byte	.LVL118
+ 3415 035f EC010000 		.4byte	.LFE67
+ 3416 0363 0400     		.2byte	0x4
+ 3417 0365 F3       		.byte	0xf3
+ 3418 0366 01       		.uleb128 0x1
+ 3419 0367 51       		.byte	0x51
+ 3420 0368 9F       		.byte	0x9f
+ 3421 0369 00000000 		.4byte	0
+ 3422 036d 00000000 		.4byte	0
+ 3423              	.LLST13:
+ 3424 0371 22000000 		.4byte	.LVL60
+ 3425 0375 36000000 		.4byte	.LVL63
+ 3426 0379 0100     		.2byte	0x1
+ 3427 037b 50       		.byte	0x50
+ 3428 037c 36000000 		.4byte	.LVL63
+ 3429 0380 92000000 		.4byte	.LVL76
+ 3430 0384 0100     		.2byte	0x1
+ 3431 0386 58       		.byte	0x58
+ 3432 0387 92000000 		.4byte	.LVL76
+ 3433 038b 96000000 		.4byte	.LVL77
+ 3434 038f 0100     		.2byte	0x1
+ 3435 0391 50       		.byte	0x50
+ 3436 0392 96000000 		.4byte	.LVL77
+ 3437 0396 92010000 		.4byte	.LVL111
+ 3438 039a 0100     		.2byte	0x1
+ 3439 039c 58       		.byte	0x58
+ 3440 039d DA010000 		.4byte	.LVL116
+ 3441 03a1 DC010000 		.4byte	.LVL117
+ 3442 03a5 0100     		.2byte	0x1
+ 3443 03a7 58       		.byte	0x58
+ 3444 03a8 00000000 		.4byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 69
+
+
+ 3445 03ac 00000000 		.4byte	0
+ 3446              	.LLST14:
+ 3447 03b0 22000000 		.4byte	.LVL60
+ 3448 03b4 26000000 		.4byte	.LVL61
+ 3449 03b8 0200     		.2byte	0x2
+ 3450 03ba 30       		.byte	0x30
+ 3451 03bb 9F       		.byte	0x9f
+ 3452 03bc 26000000 		.4byte	.LVL61
+ 3453 03c0 38000000 		.4byte	.LVL64
+ 3454 03c4 0100     		.2byte	0x1
+ 3455 03c6 53       		.byte	0x53
+ 3456 03c7 38000000 		.4byte	.LVL64
+ 3457 03cb 8C000000 		.4byte	.LVL75
+ 3458 03cf 0100     		.2byte	0x1
+ 3459 03d1 57       		.byte	0x57
+ 3460 03d2 8C000000 		.4byte	.LVL75
+ 3461 03d6 A0000000 		.4byte	.LVL78
+ 3462 03da 0100     		.2byte	0x1
+ 3463 03dc 53       		.byte	0x53
+ 3464 03dd A0000000 		.4byte	.LVL78
+ 3465 03e1 A4000000 		.4byte	.LVL79
+ 3466 03e5 0100     		.2byte	0x1
+ 3467 03e7 5A       		.byte	0x5a
+ 3468 03e8 A4000000 		.4byte	.LVL79
+ 3469 03ec 30010000 		.4byte	.LVL96
+ 3470 03f0 0100     		.2byte	0x1
+ 3471 03f2 59       		.byte	0x59
+ 3472 03f3 30010000 		.4byte	.LVL96
+ 3473 03f7 34010000 		.4byte	.LVL97
+ 3474 03fb 0200     		.2byte	0x2
+ 3475 03fd 31       		.byte	0x31
+ 3476 03fe 9F       		.byte	0x9f
+ 3477 03ff 34010000 		.4byte	.LVL97
+ 3478 0403 92010000 		.4byte	.LVL111
+ 3479 0407 0100     		.2byte	0x1
+ 3480 0409 56       		.byte	0x56
+ 3481 040a 92010000 		.4byte	.LVL111
+ 3482 040e DA010000 		.4byte	.LVL116
+ 3483 0412 0100     		.2byte	0x1
+ 3484 0414 5E       		.byte	0x5e
+ 3485 0415 DA010000 		.4byte	.LVL116
+ 3486 0419 DC010000 		.4byte	.LVL117
+ 3487 041d 0100     		.2byte	0x1
+ 3488 041f 53       		.byte	0x53
+ 3489 0420 00000000 		.4byte	0
+ 3490 0424 00000000 		.4byte	0
+ 3491              	.LLST15:
+ 3492 0428 96010000 		.4byte	.LVL112
+ 3493 042c 9A010000 		.4byte	.LVL113
+ 3494 0430 0100     		.2byte	0x1
+ 3495 0432 58       		.byte	0x58
+ 3496 0433 9A010000 		.4byte	.LVL113
+ 3497 0437 D2010000 		.4byte	.LVL115
+ 3498 043b 0100     		.2byte	0x1
+ 3499 043d 53       		.byte	0x53
+ 3500 043e 00000000 		.4byte	0
+ 3501 0442 00000000 		.4byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 70
+
+
+ 3502              	.LLST16:
+ 3503 0446 30010000 		.4byte	.LVL96
+ 3504 044a 34010000 		.4byte	.LVL97
+ 3505 044e 0100     		.2byte	0x1
+ 3506 0450 50       		.byte	0x50
+ 3507 0451 34010000 		.4byte	.LVL97
+ 3508 0455 DA010000 		.4byte	.LVL116
+ 3509 0459 0200     		.2byte	0x2
+ 3510 045b 91       		.byte	0x91
+ 3511 045c 4C       		.sleb128 -52
+ 3512 045d 00000000 		.4byte	0
+ 3513 0461 00000000 		.4byte	0
+ 3514              	.LLST17:
+ 3515 0465 58000000 		.4byte	.LVL68
+ 3516 0469 5D000000 		.4byte	.LVL69-1
+ 3517 046d 0100     		.2byte	0x1
+ 3518 046f 50       		.byte	0x50
+ 3519 0470 5D000000 		.4byte	.LVL69-1
+ 3520 0474 8C000000 		.4byte	.LVL75
+ 3521 0478 0100     		.2byte	0x1
+ 3522 047a 5A       		.byte	0x5a
+ 3523 047b 00000000 		.4byte	0
+ 3524 047f 00000000 		.4byte	0
+ 3525              	.LLST18:
+ 3526 0483 72000000 		.4byte	.LVL71
+ 3527 0487 86000000 		.4byte	.LVL74
+ 3528 048b 0100     		.2byte	0x1
+ 3529 048d 56       		.byte	0x56
+ 3530 048e 00000000 		.4byte	0
+ 3531 0492 00000000 		.4byte	0
+ 3532              	.LLST19:
+ 3533 0496 DC000000 		.4byte	.LVL85
+ 3534 049a E1000000 		.4byte	.LVL86-1
+ 3535 049e 0100     		.2byte	0x1
+ 3536 04a0 50       		.byte	0x50
+ 3537 04a1 E1000000 		.4byte	.LVL86-1
+ 3538 04a5 10010000 		.4byte	.LVL93
+ 3539 04a9 0100     		.2byte	0x1
+ 3540 04ab 5B       		.byte	0x5b
+ 3541 04ac 00000000 		.4byte	0
+ 3542 04b0 00000000 		.4byte	0
+ 3543              	.LLST20:
+ 3544 04b4 F8000000 		.4byte	.LVL89
+ 3545 04b8 0C010000 		.4byte	.LVL92
+ 3546 04bc 0100     		.2byte	0x1
+ 3547 04be 57       		.byte	0x57
+ 3548 04bf 00000000 		.4byte	0
+ 3549 04c3 00000000 		.4byte	0
+ 3550              	.LLST21:
+ 3551 04c7 54010000 		.4byte	.LVL101
+ 3552 04cb 59010000 		.4byte	.LVL102-1
+ 3553 04cf 0100     		.2byte	0x1
+ 3554 04d1 50       		.byte	0x50
+ 3555 04d2 59010000 		.4byte	.LVL102-1
+ 3556 04d6 86010000 		.4byte	.LVL109
+ 3557 04da 0100     		.2byte	0x1
+ 3558 04dc 5B       		.byte	0x5b
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 71
+
+
+ 3559 04dd 00000000 		.4byte	0
+ 3560 04e1 00000000 		.4byte	0
+ 3561              	.LLST22:
+ 3562 04e5 6E010000 		.4byte	.LVL105
+ 3563 04e9 82010000 		.4byte	.LVL108
+ 3564 04ed 0100     		.2byte	0x1
+ 3565 04ef 59       		.byte	0x59
+ 3566 04f0 00000000 		.4byte	0
+ 3567 04f4 00000000 		.4byte	0
+ 3568              	.LLST23:
+ 3569 04f8 00000000 		.4byte	.LVL119
+ 3570 04fc 2A000000 		.4byte	.LVL125
+ 3571 0500 0100     		.2byte	0x1
+ 3572 0502 50       		.byte	0x50
+ 3573 0503 2A000000 		.4byte	.LVL125
+ 3574 0507 38000000 		.4byte	.LVL126
+ 3575 050b 0400     		.2byte	0x4
+ 3576 050d F3       		.byte	0xf3
+ 3577 050e 01       		.uleb128 0x1
+ 3578 050f 50       		.byte	0x50
+ 3579 0510 9F       		.byte	0x9f
+ 3580 0511 38000000 		.4byte	.LVL126
+ 3581 0515 A0000000 		.4byte	.LVL134
+ 3582 0519 0100     		.2byte	0x1
+ 3583 051b 50       		.byte	0x50
+ 3584 051c A0000000 		.4byte	.LVL134
+ 3585 0520 B2000000 		.4byte	.LVL137
+ 3586 0524 0400     		.2byte	0x4
+ 3587 0526 F3       		.byte	0xf3
+ 3588 0527 01       		.uleb128 0x1
+ 3589 0528 50       		.byte	0x50
+ 3590 0529 9F       		.byte	0x9f
+ 3591 052a B2000000 		.4byte	.LVL137
+ 3592 052e D0000000 		.4byte	.LFE68
+ 3593 0532 0100     		.2byte	0x1
+ 3594 0534 50       		.byte	0x50
+ 3595 0535 00000000 		.4byte	0
+ 3596 0539 00000000 		.4byte	0
+ 3597              	.LLST24:
+ 3598 053d 02000000 		.4byte	.LVL120
+ 3599 0541 04000000 		.4byte	.LVL121
+ 3600 0545 0200     		.2byte	0x2
+ 3601 0547 32       		.byte	0x32
+ 3602 0548 9F       		.byte	0x9f
+ 3603 0549 04000000 		.4byte	.LVL121
+ 3604 054d 10000000 		.4byte	.LVL122
+ 3605 0551 0100     		.2byte	0x1
+ 3606 0553 52       		.byte	0x52
+ 3607 0554 10000000 		.4byte	.LVL122
+ 3608 0558 1A000000 		.4byte	.LVL123
+ 3609 055c 0500     		.2byte	0x5
+ 3610 055e 70       		.byte	0x70
+ 3611 055f 00       		.sleb128 0
+ 3612 0560 34       		.byte	0x34
+ 3613 0561 25       		.byte	0x25
+ 3614 0562 9F       		.byte	0x9f
+ 3615 0563 1A000000 		.4byte	.LVL123
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 72
+
+
+ 3616 0567 26000000 		.4byte	.LVL124
+ 3617 056b 0100     		.2byte	0x1
+ 3618 056d 52       		.byte	0x52
+ 3619 056e 26000000 		.4byte	.LVL124
+ 3620 0572 2A000000 		.4byte	.LVL125
+ 3621 0576 0500     		.2byte	0x5
+ 3622 0578 70       		.byte	0x70
+ 3623 0579 00       		.sleb128 0
+ 3624 057a 34       		.byte	0x34
+ 3625 057b 25       		.byte	0x25
+ 3626 057c 9F       		.byte	0x9f
+ 3627 057d 38000000 		.4byte	.LVL126
+ 3628 0581 3E000000 		.4byte	.LVL127
+ 3629 0585 0100     		.2byte	0x1
+ 3630 0587 52       		.byte	0x52
+ 3631 0588 3E000000 		.4byte	.LVL127
+ 3632 058c A0000000 		.4byte	.LVL134
+ 3633 0590 0500     		.2byte	0x5
+ 3634 0592 70       		.byte	0x70
+ 3635 0593 00       		.sleb128 0
+ 3636 0594 34       		.byte	0x34
+ 3637 0595 25       		.byte	0x25
+ 3638 0596 9F       		.byte	0x9f
+ 3639 0597 B2000000 		.4byte	.LVL137
+ 3640 059b D0000000 		.4byte	.LFE68
+ 3641 059f 0500     		.2byte	0x5
+ 3642 05a1 70       		.byte	0x70
+ 3643 05a2 00       		.sleb128 0
+ 3644 05a3 34       		.byte	0x34
+ 3645 05a4 25       		.byte	0x25
+ 3646 05a5 9F       		.byte	0x9f
+ 3647 05a6 00000000 		.4byte	0
+ 3648 05aa 00000000 		.4byte	0
+ 3649              	.LLST25:
+ 3650 05ae 80000000 		.4byte	.LVL129
+ 3651 05b2 84000000 		.4byte	.LVL130
+ 3652 05b6 0200     		.2byte	0x2
+ 3653 05b8 32       		.byte	0x32
+ 3654 05b9 9F       		.byte	0x9f
+ 3655 05ba 84000000 		.4byte	.LVL130
+ 3656 05be B2000000 		.4byte	.LVL137
+ 3657 05c2 0100     		.2byte	0x1
+ 3658 05c4 54       		.byte	0x54
+ 3659 05c5 00000000 		.4byte	0
+ 3660 05c9 00000000 		.4byte	0
+ 3661              	.LLST26:
+ 3662 05cd 6C000000 		.4byte	.LVL128
+ 3663 05d1 84000000 		.4byte	.LVL130
+ 3664 05d5 0200     		.2byte	0x2
+ 3665 05d7 30       		.byte	0x30
+ 3666 05d8 9F       		.byte	0x9f
+ 3667 05d9 84000000 		.4byte	.LVL130
+ 3668 05dd 9A000000 		.4byte	.LVL133
+ 3669 05e1 0100     		.2byte	0x1
+ 3670 05e3 53       		.byte	0x53
+ 3671 05e4 00000000 		.4byte	0
+ 3672 05e8 00000000 		.4byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 73
+
+
+ 3673              	.LLST27:
+ 3674 05ec 80000000 		.4byte	.LVL129
+ 3675 05f0 A2000000 		.4byte	.LVL135
+ 3676 05f4 0100     		.2byte	0x1
+ 3677 05f6 51       		.byte	0x51
+ 3678 05f7 A2000000 		.4byte	.LVL135
+ 3679 05fb A7000000 		.4byte	.LVL136-1
+ 3680 05ff 1A00     		.2byte	0x1a
+ 3681 0601 03       		.byte	0x3
+ 3682 0602 01000000 		.4byte	nodeBuffer+1
+ 3683 0606 94       		.byte	0x94
+ 3684 0607 01       		.byte	0x1
+ 3685 0608 08       		.byte	0x8
+ 3686 0609 FF       		.byte	0xff
+ 3687 060a 1A       		.byte	0x1a
+ 3688 060b 34       		.byte	0x34
+ 3689 060c 24       		.byte	0x24
+ 3690 060d 03       		.byte	0x3
+ 3691 060e 00000000 		.4byte	nodeBuffer
+ 3692 0612 94       		.byte	0x94
+ 3693 0613 01       		.byte	0x1
+ 3694 0614 3F       		.byte	0x3f
+ 3695 0615 1A       		.byte	0x1a
+ 3696 0616 08       		.byte	0x8
+ 3697 0617 FF       		.byte	0xff
+ 3698 0618 1A       		.byte	0x1a
+ 3699 0619 21       		.byte	0x21
+ 3700 061a 9F       		.byte	0x9f
+ 3701 061b 00000000 		.4byte	0
+ 3702 061f 00000000 		.4byte	0
+ 3703              		.section	.debug_aranges,"",%progbits
+ 3704 0000 44000000 		.4byte	0x44
+ 3705 0004 0200     		.2byte	0x2
+ 3706 0006 00000000 		.4byte	.Ldebug_info0
+ 3707 000a 04       		.byte	0x4
+ 3708 000b 00       		.byte	0
+ 3709 000c 0000     		.2byte	0
+ 3710 000e 0000     		.2byte	0
+ 3711 0010 00000000 		.4byte	.LFB63
+ 3712 0014 2C000000 		.4byte	.LFE63-.LFB63
+ 3713 0018 00000000 		.4byte	.LFB64
+ 3714 001c E0000000 		.4byte	.LFE64-.LFB64
+ 3715 0020 00000000 		.4byte	.LFB65
+ 3716 0024 24010000 		.4byte	.LFE65-.LFB65
+ 3717 0028 00000000 		.4byte	.LFB66
+ 3718 002c A4000000 		.4byte	.LFE66-.LFB66
+ 3719 0030 00000000 		.4byte	.LFB67
+ 3720 0034 EC010000 		.4byte	.LFE67-.LFB67
+ 3721 0038 00000000 		.4byte	.LFB68
+ 3722 003c D0000000 		.4byte	.LFE68-.LFB68
+ 3723 0040 00000000 		.4byte	0
+ 3724 0044 00000000 		.4byte	0
+ 3725              		.section	.debug_ranges,"",%progbits
+ 3726              	.Ldebug_ranges0:
+ 3727 0000 00000000 		.4byte	.LFB63
+ 3728 0004 2C000000 		.4byte	.LFE63
+ 3729 0008 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 74
+
+
+ 3730 000c E0000000 		.4byte	.LFE64
+ 3731 0010 00000000 		.4byte	.LFB65
+ 3732 0014 24010000 		.4byte	.LFE65
+ 3733 0018 00000000 		.4byte	.LFB66
+ 3734 001c A4000000 		.4byte	.LFE66
+ 3735 0020 00000000 		.4byte	.LFB67
+ 3736 0024 EC010000 		.4byte	.LFE67
+ 3737 0028 00000000 		.4byte	.LFB68
+ 3738 002c D0000000 		.4byte	.LFE68
+ 3739 0030 00000000 		.4byte	0
+ 3740 0034 00000000 		.4byte	0
+ 3741              		.section	.debug_line,"",%progbits
+ 3742              	.Ldebug_line0:
+ 3743 0000 DB030000 		.section	.debug_str,"MS",%progbits,1
+ 3743      02001402 
+ 3743      00000201 
+ 3743      FB0E0D00 
+ 3743      01010101 
+ 3744              	.LASF39:
+ 3745 0000 55505F52 		.ascii	"UP_RIGHT\000"
+ 3745      49474854 
+ 3745      00
+ 3746              	.LASF80:
+ 3747 0009 7363616E 		.ascii	"scan_lidar\000"
+ 3747      5F6C6964 
+ 3747      617200
+ 3748              	.LASF53:
+ 3749 0014 7365745F 		.ascii	"set_car_speed\000"
+ 3749      6361725F 
+ 3749      73706565 
+ 3749      6400
+ 3750              	.LASF42:
+ 3751 0022 53544F50 		.ascii	"STOP\000"
+ 3751      00
+ 3752              	.LASF85:
+ 3753 0027 696E635F 		.ascii	"inc_origin_angle\000"
+ 3753      6F726967 
+ 3753      696E5F61 
+ 3753      6E676C65 
+ 3753      00
+ 3754              	.LASF121:
+ 3755 0038 2E5C4C69 		.ascii	".\\Lidar.c\000"
+ 3755      6461722E 
+ 3755      6300
+ 3756              	.LASF21:
+ 3757 0042 64697374 		.ascii	"distance_q2\000"
+ 3757      616E6365 
+ 3757      5F713200 
+ 3758              	.LASF59:
+ 3759 004e 73746565 		.ascii	"steering_set_positon1\000"
+ 3759      72696E67 
+ 3759      5F736574 
+ 3759      5F706F73 
+ 3759      69746F6E 
+ 3760              	.LASF8:
+ 3761 0064 756E7369 		.ascii	"unsigned int\000"
+ 3761      676E6564 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 75
+
+
+ 3761      20696E74 
+ 3761      00
+ 3762              	.LASF110:
+ 3763 0071 6F757470 		.ascii	"output_t\000"
+ 3763      75745F74 
+ 3763      00
+ 3764              	.LASF9:
+ 3765 007a 5F5F696E 		.ascii	"__int32_t\000"
+ 3765      7433325F 
+ 3765      7400
+ 3766              	.LASF13:
+ 3767 0084 696E7431 		.ascii	"int16\000"
+ 3767      3600
+ 3768              	.LASF69:
+ 3769 008a 70697463 		.ascii	"pitch\000"
+ 3769      6800
+ 3770              	.LASF71:
+ 3771 0090 74657374 		.ascii	"test\000"
+ 3771      00
+ 3772              	.LASF82:
+ 3773 0095 74747474 		.ascii	"tttt\000"
+ 3773      00
+ 3774              	.LASF94:
+ 3775 009a 72656376 		.ascii	"recvChecksum\000"
+ 3775      43686563 
+ 3775      6B73756D 
+ 3775      00
+ 3776              	.LASF38:
+ 3777 00a7 55505F4C 		.ascii	"UP_LEFT\000"
+ 3777      45465400 
+ 3778              	.LASF96:
+ 3779 00af 636F756E 		.ascii	"count_time_1ms\000"
+ 3779      745F7469 
+ 3779      6D655F31 
+ 3779      6D7300
+ 3780              	.LASF33:
+ 3781 00be 63616269 		.ascii	"cabins\000"
+ 3781      6E7300
+ 3782              	.LASF20:
+ 3783 00c5 616E676C 		.ascii	"angle_q6_checkbit\000"
+ 3783      655F7136 
+ 3783      5F636865 
+ 3783      636B6269 
+ 3783      7400
+ 3784              	.LASF52:
+ 3785 00d7 7072655F 		.ascii	"pre_dir\000"
+ 3785      64697200 
+ 3786              	.LASF87:
+ 3787 00df 65787065 		.ascii	"expect_angle\000"
+ 3787      63745F61 
+ 3787      6E676C65 
+ 3787      00
+ 3788              	.LASF46:
+ 3789 00ec 464F5257 		.ascii	"FORWARD\000"
+ 3789      41524400 
+ 3790              	.LASF81:
+ 3791 00f4 7363616E 		.ascii	"scan_count\000"
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 76
+
+
+ 3791      5F636F75 
+ 3791      6E7400
+ 3792              	.LASF14:
+ 3793 00ff 666C6F61 		.ascii	"float\000"
+ 3793      7400
+ 3794              	.LASF93:
+ 3795 0105 63686563 		.ascii	"checksum\000"
+ 3795      6B73756D 
+ 3795      00
+ 3796              	.LASF41:
+ 3797 010e 444F574E 		.ascii	"DOWN_RIGHT\000"
+ 3797      5F524947 
+ 3797      485400
+ 3798              	.LASF84:
+ 3799 0119 636F756E 		.ascii	"count\000"
+ 3799      7400
+ 3800              	.LASF7:
+ 3801 011f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3801      206C6F6E 
+ 3801      6720756E 
+ 3801      7369676E 
+ 3801      65642069 
+ 3802              	.LASF72:
+ 3803 0136 74657374 		.ascii	"test_f\000"
+ 3803      5F6600
+ 3804              	.LASF19:
+ 3805 013d 73796E63 		.ascii	"sync_quality\000"
+ 3805      5F717561 
+ 3805      6C697479 
+ 3805      00
+ 3806              	.LASF95:
+ 3807 014a 74657374 		.ascii	"test_i\000"
+ 3807      5F6900
+ 3808              	.LASF27:
+ 3809 0151 6F666673 		.ascii	"offset_angles_q3\000"
+ 3809      65745F61 
+ 3809      6E676C65 
+ 3809      735F7133 
+ 3809      00
+ 3810              	.LASF54:
+ 3811 0162 6C656674 		.ascii	"left_front_wheel\000"
+ 3811      5F66726F 
+ 3811      6E745F77 
+ 3811      6865656C 
+ 3811      00
+ 3812              	.LASF91:
+ 3813 0173 74656D70 		.ascii	"temp_sys\000"
+ 3813      5F737973 
+ 3813      00
+ 3814              	.LASF114:
+ 3815 017c 74657374 		.ascii	"test_f_suzu\000"
+ 3815      5F665F73 
+ 3815      757A7500 
+ 3816              	.LASF22:
+ 3817 0188 72706C69 		.ascii	"rplidar_response_measurement_node_t\000"
+ 3817      6461725F 
+ 3817      72657370 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 77
+
+
+ 3817      6F6E7365 
+ 3817      5F6D6561 
+ 3818              	.LASF17:
+ 3819 01ac 73697A65 		.ascii	"size_t\000"
+ 3819      5F7400
+ 3820              	.LASF44:
+ 3821 01b3 4341525F 		.ascii	"CAR_DIR\000"
+ 3821      44495200 
+ 3822              	.LASF99:
+ 3823 01bb 6E65745F 		.ascii	"net_nodeBuffer\000"
+ 3823      6E6F6465 
+ 3823      42756666 
+ 3823      657200
+ 3824              	.LASF25:
+ 3825 01ca 64697374 		.ascii	"distance_angle_1\000"
+ 3825      616E6365 
+ 3825      5F616E67 
+ 3825      6C655F31 
+ 3825      00
+ 3826              	.LASF26:
+ 3827 01db 64697374 		.ascii	"distance_angle_2\000"
+ 3827      616E6365 
+ 3827      5F616E67 
+ 3827      6C655F32 
+ 3827      00
+ 3828              	.LASF57:
+ 3829 01ec 72696768 		.ascii	"right_behind_wheel\000"
+ 3829      745F6265 
+ 3829      68696E64 
+ 3829      5F776865 
+ 3829      656C00
+ 3830              	.LASF83:
+ 3831 01ff 6E6F6465 		.ascii	"nodebuffer\000"
+ 3831      62756666 
+ 3831      657200
+ 3832              	.LASF47:
+ 3833 020a 52455645 		.ascii	"REVERSAL\000"
+ 3833      5253414C 
+ 3833      00
+ 3834              	.LASF16:
+ 3835 0213 63686172 		.ascii	"char\000"
+ 3835      00
+ 3836              	.LASF66:
+ 3837 0218 6779725F 		.ascii	"gyr_x\000"
+ 3837      7800
+ 3838              	.LASF67:
+ 3839 021e 6779725F 		.ascii	"gyr_y\000"
+ 3839      7900
+ 3840              	.LASF68:
+ 3841 0224 6779725F 		.ascii	"gyr_z\000"
+ 3841      7A00
+ 3842              	.LASF12:
+ 3843 022a 75696E74 		.ascii	"uint16\000"
+ 3843      313600
+ 3844              	.LASF78:
+ 3845 0231 64617461 		.ascii	"data\000"
+ 3845      00
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 78
+
+
+ 3846              	.LASF101:
+ 3847 0236 72785F6C 		.ascii	"rx_lidar_count\000"
+ 3847      69646172 
+ 3847      5F636F75 
+ 3847      6E7400
+ 3848              	.LASF70:
+ 3849 0245 726F6C6C 		.ascii	"roll\000"
+ 3849      00
+ 3850              	.LASF36:
+ 3851 024a 4C454654 		.ascii	"LEFT\000"
+ 3851      00
+ 3852              	.LASF37:
+ 3853 024f 52494748 		.ascii	"RIGHT\000"
+ 3853      5400
+ 3854              	.LASF49:
+ 3855 0255 535F5748 		.ascii	"S_WHEEL\000"
+ 3855      45454C00 
+ 3856              	.LASF118:
+ 3857 025d 64656275 		.ascii	"debug_time_Write\000"
+ 3857      675F7469 
+ 3857      6D655F57 
+ 3857      72697465 
+ 3857      00
+ 3858              	.LASF48:
+ 3859 026e 57484545 		.ascii	"WHEEL_STOP\000"
+ 3859      4C5F5354 
+ 3859      4F5000
+ 3860              	.LASF73:
+ 3861 0279 5F646174 		.ascii	"_data_len\000"
+ 3861      615F6C65 
+ 3861      6E00
+ 3862              	.LASF29:
+ 3863 0283 5F72706C 		.ascii	"_rplidar_response_capsule_measurement_nodes_t\000"
+ 3863      69646172 
+ 3863      5F726573 
+ 3863      706F6E73 
+ 3863      655F6361 
+ 3864              	.LASF6:
+ 3865 02b1 6C6F6E67 		.ascii	"long long int\000"
+ 3865      206C6F6E 
+ 3865      6720696E 
+ 3865      7400
+ 3866              	.LASF105:
+ 3867 02bf 4E4F524D 		.ascii	"NORMAL_SCAN\000"
+ 3867      414C5F53 
+ 3867      43414E00 
+ 3868              	.LASF92:
+ 3869 02cb 63706F73 		.ascii	"cpos\000"
+ 3869      00
+ 3870              	.LASF74:
+ 3871 02d0 5F646174 		.ascii	"_data_cnt\000"
+ 3871      615F636E 
+ 3871      7400
+ 3872              	.LASF100:
+ 3873 02da 72785F6C 		.ascii	"rx_lidar_flag\000"
+ 3873      69646172 
+ 3873      5F666C61 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 79
+
+
+ 3873      6700
+ 3874              	.LASF28:
+ 3875 02e8 72706C69 		.ascii	"rplidar_response_cabin_nodes_t\000"
+ 3875      6461725F 
+ 3875      72657370 
+ 3875      6F6E7365 
+ 3875      5F636162 
+ 3876              	.LASF117:
+ 3877 0307 55415254 		.ascii	"UART_LIDAR_PutArray\000"
+ 3877      5F4C4944 
+ 3877      41525F50 
+ 3877      75744172 
+ 3877      72617900 
+ 3878              	.LASF45:
+ 3879 031b 57484545 		.ascii	"WHEEL_DIR\000"
+ 3879      4C5F4449 
+ 3879      5200
+ 3880              	.LASF108:
+ 3881 0325 73746172 		.ascii	"start\000"
+ 3881      7400
+ 3882              	.LASF24:
+ 3883 032b 5F72706C 		.ascii	"_rplidar_response_cabin_nodes_t\000"
+ 3883      69646172 
+ 3883      5F726573 
+ 3883      706F6E73 
+ 3883      655F6361 
+ 3884              	.LASF56:
+ 3885 034b 72696768 		.ascii	"right_front_wheel\000"
+ 3885      745F6672 
+ 3885      6F6E745F 
+ 3885      77686565 
+ 3885      6C00
+ 3886              	.LASF123:
+ 3887 035d 61736365 		.ascii	"ascendScanData\000"
+ 3887      6E645363 
+ 3887      616E4461 
+ 3887      746100
+ 3888              	.LASF90:
+ 3889 036c 4C696461 		.ascii	"Lidar_Data_Receive_Prepare\000"
+ 3889      725F4461 
+ 3889      74615F52 
+ 3889      65636569 
+ 3889      76655F50 
+ 3890              	.LASF2:
+ 3891 0387 73686F72 		.ascii	"short int\000"
+ 3891      7420696E 
+ 3891      7400
+ 3892              	.LASF4:
+ 3893 0391 6C6F6E67 		.ascii	"long int\000"
+ 3893      20696E74 
+ 3893      00
+ 3894              	.LASF97:
+ 3895 039a 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3895      52784275 
+ 3895      66666572 
+ 3895      00
+ 3896              	.LASF122:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 80
+
+
+ 3897 03a7 443A5C72 		.ascii	"D:\\robot\\code\\robot-car\\car.cydsn\000"
+ 3897      6F626F74 
+ 3897      5C636F64 
+ 3897      655C726F 
+ 3897      626F742D 
+ 3898              	.LASF88:
+ 3899 03c9 63686563 		.ascii	"checkbit\000"
+ 3899      6B626974 
+ 3899      00
+ 3900              	.LASF89:
+ 3901 03d2 74656D70 		.ascii	"temp\000"
+ 3901      00
+ 3902              	.LASF107:
+ 3903 03d7 6E6F6465 		.ascii	"node\000"
+ 3903      00
+ 3904              	.LASF40:
+ 3905 03dc 444F574E 		.ascii	"DOWN_LEFT\000"
+ 3905      5F4C4546 
+ 3905      5400
+ 3906              	.LASF23:
+ 3907 03e6 5F72706C 		.ascii	"_rplidar_response_measurement_node_t\000"
+ 3907      69646172 
+ 3907      5F726573 
+ 3907      706F6E73 
+ 3907      655F6D65 
+ 3908              	.LASF62:
+ 3909 040b 535F4341 		.ascii	"S_CAR\000"
+ 3909      5200
+ 3910              	.LASF50:
+ 3911 0411 4361725F 		.ascii	"Car_lock\000"
+ 3911      6C6F636B 
+ 3911      00
+ 3912              	.LASF51:
+ 3913 041a 7365745F 		.ascii	"set_dir\000"
+ 3913      64697200 
+ 3914              	.LASF18:
+ 3915 0422 73697A65 		.ascii	"sizetype\000"
+ 3915      74797065 
+ 3915      00
+ 3916              	.LASF5:
+ 3917 042b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3917      20756E73 
+ 3917      69676E65 
+ 3917      6420696E 
+ 3917      7400
+ 3918              	.LASF109:
+ 3919 043d 6E6F726D 		.ascii	"normal_size\000"
+ 3919      616C5F73 
+ 3919      697A6500 
+ 3920              	.LASF10:
+ 3921 0449 696E7433 		.ascii	"int32_t\000"
+ 3921      325F7400 
+ 3922              	.LASF77:
+ 3923 0451 4C696461 		.ascii	"Lidar_Normal_Data_Receive_Prepare_2\000"
+ 3923      725F4E6F 
+ 3923      726D616C 
+ 3923      5F446174 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 81
+
+
+ 3923      615F5265 
+ 3924              	.LASF34:
+ 3925 0475 72706C69 		.ascii	"rplidar_response_capsule_measurement_nodes_t\000"
+ 3925      6461725F 
+ 3925      72657370 
+ 3925      6F6E7365 
+ 3925      5F636170 
+ 3926              	.LASF1:
+ 3927 04a2 756E7369 		.ascii	"unsigned char\000"
+ 3927      676E6564 
+ 3927      20636861 
+ 3927      7200
+ 3928              	.LASF120:
+ 3929 04b0 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3929      4320342E 
+ 3929      392E3320 
+ 3929      32303135 
+ 3929      30333033 
+ 3930 04e3 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3930      20726576 
+ 3930      6973696F 
+ 3930      6E203232 
+ 3930      31323230 
+ 3931 0516 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3931      66756E63 
+ 3931      74696F6E 
+ 3931      2D736563 
+ 3931      74696F6E 
+ 3932              	.LASF61:
+ 3933 053e 73746565 		.ascii	"steering_set_positon2\000"
+ 3933      72696E67 
+ 3933      5F736574 
+ 3933      5F706F73 
+ 3933      69746F6E 
+ 3934              	.LASF86:
+ 3935 0554 66726F6E 		.ascii	"frontAngle\000"
+ 3935      74416E67 
+ 3935      6C6500
+ 3936              	.LASF43:
+ 3937 055f 57414954 		.ascii	"WAIT_DIR\000"
+ 3937      5F444952 
+ 3937      00
+ 3938              	.LASF115:
+ 3939 0568 72656376 		.ascii	"recvPos\000"
+ 3939      506F7300 
+ 3940              	.LASF75:
+ 3941 0570 73746174 		.ascii	"state\000"
+ 3941      6500
+ 3942              	.LASF63:
+ 3943 0576 6163635F 		.ascii	"acc_x\000"
+ 3943      7800
+ 3944              	.LASF64:
+ 3945 057c 6163635F 		.ascii	"acc_y\000"
+ 3945      7900
+ 3946              	.LASF65:
+ 3947 0582 6163635F 		.ascii	"acc_z\000"
+ 3947      7A00
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 82
+
+
+ 3948              	.LASF55:
+ 3949 0588 6C656674 		.ascii	"left_behind_wheel\000"
+ 3949      5F626568 
+ 3949      696E645F 
+ 3949      77686565 
+ 3949      6C00
+ 3950              	.LASF106:
+ 3951 059a 5F69735F 		.ascii	"_is_previous_capsuledataRdy\000"
+ 3951      70726576 
+ 3951      696F7573 
+ 3951      5F636170 
+ 3951      73756C65 
+ 3952              	.LASF58:
+ 3953 05b6 73746565 		.ascii	"steering_cur_positon1\000"
+ 3953      72696E67 
+ 3953      5F637572 
+ 3953      5F706F73 
+ 3953      69746F6E 
+ 3954              	.LASF60:
+ 3955 05cc 73746565 		.ascii	"steering_cur_positon2\000"
+ 3955      72696E67 
+ 3955      5F637572 
+ 3955      5F706F73 
+ 3955      69746F6E 
+ 3956              	.LASF0:
+ 3957 05e2 7369676E 		.ascii	"signed char\000"
+ 3957      65642063 
+ 3957      68617200 
+ 3958              	.LASF102:
+ 3959 05ee 675F4361 		.ascii	"g_Car\000"
+ 3959      7200
+ 3960              	.LASF3:
+ 3961 05f4 73686F72 		.ascii	"short unsigned int\000"
+ 3961      7420756E 
+ 3961      7369676E 
+ 3961      65642069 
+ 3961      6E7400
+ 3962              	.LASF35:
+ 3963 0607 444F574E 		.ascii	"DOWN\000"
+ 3963      00
+ 3964              	.LASF32:
+ 3965 060c 73746172 		.ascii	"start_angle_sync_q6\000"
+ 3965      745F616E 
+ 3965      676C655F 
+ 3965      73796E63 
+ 3965      5F713600 
+ 3966              	.LASF119:
+ 3967 0620 6D656D63 		.ascii	"memcpy\000"
+ 3967      707900
+ 3968              	.LASF103:
+ 3969 0627 535F494D 		.ascii	"S_IMU\000"
+ 3969      5500
+ 3970              	.LASF116:
+ 3971 062d 6E6F6465 		.ascii	"nodeBuffer1\000"
+ 3971      42756666 
+ 3971      65723100 
+ 3972              	.LASF30:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc4gvHjO.s 			page 83
+
+
+ 3973 0639 735F6368 		.ascii	"s_checksum_1\000"
+ 3973      65636B73 
+ 3973      756D5F31 
+ 3973      00
+ 3974              	.LASF31:
+ 3975 0646 735F6368 		.ascii	"s_checksum_2\000"
+ 3975      65636B73 
+ 3975      756D5F32 
+ 3975      00
+ 3976              	.LASF11:
+ 3977 0653 75696E74 		.ascii	"uint8\000"
+ 3977      3800
+ 3978              	.LASF15:
+ 3979 0659 646F7562 		.ascii	"double\000"
+ 3979      6C6500
+ 3980              	.LASF111:
+ 3981 0660 74657374 		.ascii	"test1\000"
+ 3981      3100
+ 3982              	.LASF112:
+ 3983 0666 74657374 		.ascii	"test2\000"
+ 3983      3200
+ 3984              	.LASF113:
+ 3985 066c 74657374 		.ascii	"test3\000"
+ 3985      3300
+ 3986              	.LASF104:
+ 3987 0672 45585052 		.ascii	"EXPRESS_SCAN\000"
+ 3987      4553535F 
+ 3987      5343414E 
+ 3987      00
+ 3988              	.LASF76:
+ 3989 067f 4C696461 		.ascii	"Lidar_Normal_Data_Receive_Prepare\000"
+ 3989      725F4E6F 
+ 3989      726D616C 
+ 3989      5F446174 
+ 3989      615F5265 
+ 3990              	.LASF79:
+ 3991 06a1 4C696461 		.ascii	"Lidar_init\000"
+ 3991      725F696E 
+ 3991      697400
+ 3992              	.LASF98:
+ 3993 06ac 6E6F6465 		.ascii	"nodeBuffer\000"
+ 3993      42756666 
+ 3993      657200
+ 3994              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
