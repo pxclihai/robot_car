@@ -168,11 +168,14 @@ CY_ISR(isr_rx_LIDAR_Interrupt)
     /*  Place your Interrupt code here. */
     /* `#START isr_rx_LIDAR_Interrupt` */
     uint8 data;
+
     data = UART_LIDAR_GetChar();
+
    // UART_net_PutChar(data);
     
    // UART_net_PutChar(data);
-    Lidar_Normal_Data_Receive_Prepare(data);
+    Lidar_Normal_Data_Receive_Prepare_4(data);
+    
 
     /* `#END` */
 }

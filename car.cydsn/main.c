@@ -20,7 +20,7 @@ int16 contronl_steering(uint16 set_position,uint16 cur_postion,uint16 step);
 extern uint8 time_5ms_state;
 extern uint8 time_1s_state;
 extern uint16 time_100ms_state;
-int16 temp;
+    int16 temp;
 float tset;
 uint16 test;
 uint16 send_count_test;
@@ -35,6 +35,7 @@ int main()
     UART_JY_Start();
     UART_LIDAR_Start();
     isr_rx_net_Start();
+    isr_tx_net_Start();
     isr_rx_jy_Start();
     isr_rx_LIDAR_Start();
 
@@ -61,6 +62,7 @@ int main()
     Monitor_Battery_Init();
     
     CyGlobalIntEnable; /* Enable global interrupts. */
+    CyDelay(500);
     Lidar_init();
   //  UART_net_PutString("----------------------OK!");
     for(;;)
@@ -78,10 +80,10 @@ int main()
         //C_V = ((Get_C_Battery_ADvalue() * 825)>>10);
         if(time_5ms_state == 1)
         { 
-            DT_Data_Exchange();
+        //    DT_Data_Exchange();
             Control_Car();
             time_5ms_state = 0;
-           // test = Get_Gap_ADvalue();//还没测试
+// test = Get_Gap_ADvalue();//还没测试
 //           temp = contronl_steering(g_Car.steering_set_positon1,g_Car.steering_cur_positon1,1);
 //           PWM_STEERING_WriteCompare1(g_Car.steering_cur_positon1+temp);
 //          temp = contronl_steering(g_Car.steering_set_positon2,g_Car.steering_cur_positon2,1);
@@ -91,7 +93,6 @@ int main()
 //        send_count_test++;
 //        DT_Send_Lidar_normal(net_nodeBuffer);
 //        }
-    
         }
         if(time_100ms_state == 1)
         {
@@ -102,8 +103,15 @@ int main()
         }
 
        // scan_lidar();
-        
-    }
+       if(rx_lidar_flag == 1)
+    {
+          debug_time_Write(1);
+          DT_Send_Lidar_normal(net_nodeBuffer); 
+          rx_lidar_flag = 0; 
+          debug_time_Write(0);
+     } 
+ 
+    }   
 }
 
 

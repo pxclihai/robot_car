@@ -75,6 +75,7 @@
 #include "CONTRAL_LIDAR.h"
 #include "debug_time_aliases.h"
 #include "debug_time.h"
+#include "Clock_1.h"
 #include "UART_net_IntClock.h"
 #include "UART_JY_IntClock.h"
 #include "ADC_SAR.h"

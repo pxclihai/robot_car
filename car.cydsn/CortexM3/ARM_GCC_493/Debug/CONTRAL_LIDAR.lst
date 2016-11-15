@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
   29:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** * Summary:
   30:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** * Parameters:  
@@ -80,20 +80,20 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
   33              		.loc 1 41 0
   34 0000 044A     		ldr	r2, .L2
   35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  36 0004 03F0FB03 		and	r3, r3, #251
+  36 0004 03F0DF03 		and	r3, r3, #223
   37              	.LVL1:
   42:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c ****     CONTRAL_LIDAR_DR = staticBits | ((uint8)(value << CONTRAL_LIDAR_SHIFT) & CONTRAL_LIDAR_MASK);
   38              		.loc 1 42 0
-  39 0008 8000     		lsls	r0, r0, #2
+  39 0008 4001     		lsls	r0, r0, #5
   40              	.LVL2:
-  41 000a 00F00400 		and	r0, r0, #4
+  41 000a 00F02000 		and	r0, r0, #32
   42 000e 1843     		orrs	r0, r0, r3
   43 0010 1070     		strb	r0, [r2]
   44 0012 7047     		bx	lr
   45              	.L3:
   46              		.align	2
   47              	.L2:
-  48 0014 00510040 		.word	1073762560
+  48 0014 30510040 		.word	1073762608
   49              		.cfi_endproc
   50              	.LFE0:
   51              		.size	CONTRAL_LIDAR_Write, .-CONTRAL_LIDAR_Write
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
   53:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** * Parameters:  
   54:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *  mode:  Change the pins to one of the following drive modes.
   55:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 3
 
 
   56:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *  CONTRAL_LIDAR_DM_STRONG     Strong Drive 
@@ -155,7 +155,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
   75              	.L6:
   76 0012 00BF     		.align	2
   77              	.L5:
-  78 0014 02500040 		.word	1073762306
+  78 0014 1D500040 		.word	1073762333
   79              		.cfi_endproc
   80              	.LFE1:
   81              		.size	CONTRAL_LIDAR_SetDriveMode, .-CONTRAL_LIDAR_SetDriveMode
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
   80:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *  Read the current value on the pins of the Digital Port in right justified 
   81:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *  form.
   82:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 4
 
 
   83:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** * Parameters:  
@@ -204,12 +204,12 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
   97 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
   96:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** }
   98              		.loc 1 96 0
-  99 0004 C0F38000 		ubfx	r0, r0, #2, #1
+  99 0004 C0F34010 		ubfx	r0, r0, #5, #1
  100 0008 7047     		bx	lr
  101              	.L9:
  102 000a 00BF     		.align	2
  103              	.L8:
- 104 000c 01510040 		.word	1073762561
+ 104 000c 31510040 		.word	1073762609
  105              		.cfi_endproc
  106              	.LFE2:
  107              		.size	CONTRAL_LIDAR_Read, .-CONTRAL_LIDAR_Read
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  111:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *  
  112:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** *******************************************************************************/
  113:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** uint8 CONTRAL_LIDAR_ReadDataReg(void) 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 5
 
 
  114:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** {
@@ -253,12 +253,12 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  123 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  116:.\Generated_Source\PSoC5/CONTRAL_LIDAR.c **** }
  124              		.loc 1 116 0
- 125 0004 C0F38000 		ubfx	r0, r0, #2, #1
+ 125 0004 C0F34010 		ubfx	r0, r0, #5, #1
  126 0008 7047     		bx	lr
  127              	.L12:
  128 000a 00BF     		.align	2
  129              	.L11:
- 130 000c 00510040 		.word	1073762560
+ 130 000c 30510040 		.word	1073762608
  131              		.cfi_endproc
  132              	.LFE3:
  133              		.size	CONTRAL_LIDAR_ReadDataReg, .-CONTRAL_LIDAR_ReadDataReg
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  167 0041 02       		.uleb128 0x2
  168 0042 04       		.byte	0x4
  169 0043 05       		.byte	0x5
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 6
 
 
  170 0044 AE010000 		.4byte	.LASF4
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  224 00b1 08       		.uleb128 0x8
  225 00b2 1A000000 		.4byte	.LASF16
  226 00b6 01       		.byte	0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 7
 
 
  227 00b7 27       		.byte	0x27
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  281 0006 0B       		.uleb128 0xb
  282 0007 03       		.uleb128 0x3
  283 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 8
 
 
  284 0009 1B       		.uleb128 0x1b
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  338 003f 49       		.uleb128 0x49
  339 0040 13       		.uleb128 0x13
  340 0041 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 9
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 9
 
 
  341 0042 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  395 0079 0B       		.uleb128 0xb
  396 007a 3B       		.uleb128 0x3b
  397 007b 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 10
 
 
  398 007c 49       		.uleb128 0x49
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  452 0030 18000000 		.4byte	.LFE1
  453 0034 0400     		.2byte	0x4
  454 0036 F3       		.byte	0xf3
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 11
 
 
  455 0037 01       		.uleb128 0x1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  498      747300
  499              	.LASF18:
  500 002b 434F4E54 		.ascii	"CONTRAL_LIDAR_Read\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 12
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 12
 
 
  500      52414C5F 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 1
  520      676E6564 
  520      20696E74 
  520      00
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchw4UtY.s 			page 13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckgo7Mq.s 			page 13
 
 
  521              	.LASF7:

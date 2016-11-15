@@ -2,7 +2,7 @@
 --	Conversion of car.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Nov 14 15:30:37 2016
+--	Tue Nov 15 11:56:53 2016
 --
 
 USE cypress.cypress.all;
@@ -1197,6 +1197,7 @@ TERMINAL tmpSIOVREF__LED4_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__LED4_net_0 : bit;
 SIGNAL \PWM_LED:PWMUDB:km_run\ : bit;
 SIGNAL \PWM_LED:PWMUDB:min_kill_reg\ : bit;
+SIGNAL Net_4602 : bit;
 SIGNAL \PWM_LED:PWMUDB:ClockOutFromEnBlock\ : bit;
 SIGNAL \PWM_LED:PWMUDB:control_7\ : bit;
 SIGNAL \PWM_LED:PWMUDB:control_6\ : bit;
@@ -5885,7 +5886,7 @@ LED4:cy_psoc3_pins_v1_10
 		interrupt=>tmpINTERRUPT_0__LED4_net_0);
 \PWM_LED:PWMUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_4440,
+	PORT MAP(clock_in=>Net_4602,
 		enable=>one,
 		clock_out=>\PWM_LED:PWMUDB:ClockOutFromEnBlock\);
 \PWM_LED:PWMUDB:genblk1:ctrlreg\:cy_psoc3_control
@@ -6090,7 +6091,7 @@ LED4:cy_psoc3_pins_v1_10
 		y=>\PWM_LED:PWMUDB:MODULE_13:g2:a0:g1:z1:s0:g1:u0:c_8\);
 \PWM_LED_1:PWMUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_4440,
+	PORT MAP(clock_in=>Net_4602,
 		enable=>one,
 		clock_out=>\PWM_LED_1:PWMUDB:ClockOutFromEnBlock\);
 \PWM_LED_1:PWMUDB:genblk1:ctrlreg\:cy_psoc3_control
@@ -6645,7 +6646,7 @@ IN_C:cy_psoc3_pins_v1_10
 		interrupt=>tmpINTERRUPT_0__IN_C_net_0);
 \PWM_STEERING:PWMUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_4440,
+	PORT MAP(clock_in=>Net_4602,
 		enable=>one,
 		clock_out=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\);
 \PWM_STEERING:PWMUDB:genblk1:ctrlreg\:cy_psoc3_control
@@ -6662,7 +6663,7 @@ IN_C:cy_psoc3_pins_v1_10
 	GENERIC MAP(cy_force_order=>'1',
 		cy_md_select=>"0100111",
 		cy_int_mask=>"1111111")
-	PORT MAP(reset=>Net_4440,
+	PORT MAP(reset=>Net_4602,
 		clock=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		status=>(zero, \PWM_STEERING:PWMUDB:status_5\, zero, \PWM_STEERING:PWMUDB:status_3\,
 			\PWM_STEERING:PWMUDB:status_2\, \PWM_STEERING:PWMUDB:status_1\, \PWM_STEERING:PWMUDB:status_0\),
@@ -6691,7 +6692,7 @@ IN_C:cy_psoc3_pins_v1_10
 		f1_blk_sync=>'1')
 	PORT MAP(reset=>zero,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
-		cs_addr=>(\PWM_STEERING:PWMUDB:tc_i\, \PWM_STEERING:PWMUDB:runmode_enable\, Net_4440),
+		cs_addr=>(\PWM_STEERING:PWMUDB:tc_i\, \PWM_STEERING:PWMUDB:runmode_enable\, Net_4602),
 		route_si=>zero,
 		route_ci=>zero,
 		f0_load=>zero,
@@ -6777,7 +6778,7 @@ IN_C:cy_psoc3_pins_v1_10
 		f1_blk_sync=>'1')
 	PORT MAP(reset=>zero,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
-		cs_addr=>(\PWM_STEERING:PWMUDB:tc_i\, \PWM_STEERING:PWMUDB:runmode_enable\, Net_4440),
+		cs_addr=>(\PWM_STEERING:PWMUDB:tc_i\, \PWM_STEERING:PWMUDB:runmode_enable\, Net_4602),
 		route_si=>zero,
 		route_ci=>zero,
 		f0_load=>zero,
@@ -6996,7 +6997,7 @@ Clock_6:cy_clock_v1_0
 		period=>"41666666.6666667",
 		is_direct=>'0',
 		is_digital=>'1')
-	PORT MAP(clock_out=>Net_4440,
+	PORT MAP(clock_out=>Net_4602,
 		dig_domain_out=>open);
 IN_D:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"b5d89da1-a139-4e4c-bc5b-7c64c9d129d5",
@@ -7715,9 +7716,9 @@ isr_rx_LIDAR:cy_isr_v1_0
 	PORT MAP(int_signal=>Net_4330);
 CONTRAL_LIDAR:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"4dd887bc-bfde-459d-b433-322f64d85337",
-		drive_mode=>"011",
+		drive_mode=>"110",
 		ibuf_enabled=>"1",
-		init_dr_st=>"1",
+		init_dr_st=>"0",
 		input_sync=>"1",
 		input_clk_en=>'0',
 		input_sync_mode=>"0",
@@ -7730,7 +7731,7 @@ CONTRAL_LIDAR:cy_psoc3_pins_v1_10
 		invert_out_reset=>'0',
 		io_voltage=>"",
 		layout_mode=>"CONTIGUOUS",
-		output_conn=>"0",
+		output_conn=>"1",
 		output_sync=>"0",
 		output_clk_en=>'0',
 		output_mode=>"0",
@@ -7770,7 +7771,7 @@ CONTRAL_LIDAR:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>(zero),
+		y=>Net_4595,
 		fb=>(tmpFB_0__CONTRAL_LIDAR_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__CONTRAL_LIDAR_net_0),
@@ -7853,6 +7854,16 @@ debug_time:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__debug_time_net_0);
+Clock_1:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"1805de26-bbf5-460a-a9c4-a8e467807bfa",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"1000000000",
+		is_direct=>'0',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_4440,
+		dig_domain_out=>open);
 \UART_net:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\UART_net:BUART:clock_op\,
@@ -8340,7 +8351,7 @@ Net_2112:cy_dff
 \PWM_STEERING:PWMUDB:min_kill_reg\:cy_dsrff
 	PORT MAP(d=>one,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:min_kill_reg\);
 \PWM_STEERING:PWMUDB:prevCapture\:cy_dff
@@ -8354,7 +8365,7 @@ Net_2112:cy_dff
 \PWM_STEERING:PWMUDB:runmode_enable\:cy_dsrff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:control_7\,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:runmode_enable\);
 \PWM_STEERING:PWMUDB:sc_kill_tmp\:cy_dff
@@ -8364,19 +8375,19 @@ Net_2112:cy_dff
 \PWM_STEERING:PWMUDB:ltch_kill_reg\:cy_dsrff
 	PORT MAP(d=>one,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:ltch_kill_reg\);
 \PWM_STEERING:PWMUDB:dith_count_1\:cy_dsrff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:dith_count_1\\D\,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:dith_count_1\);
 \PWM_STEERING:PWMUDB:dith_count_0\:cy_dsrff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:dith_count_0\\D\,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:dith_count_0\);
 \PWM_STEERING:PWMUDB:prevCompare1\:cy_dff
@@ -8390,19 +8401,19 @@ Net_2112:cy_dff
 \PWM_STEERING:PWMUDB:cmp1_status_reg\:cy_dsrff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:cmp1_status\,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:status_0\);
 \PWM_STEERING:PWMUDB:cmp2_status_reg\:cy_dsrff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:cmp2_status\,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:status_1\);
 \PWM_STEERING:PWMUDB:final_kill_reg\:cy_dsrff
 	PORT MAP(d=>zero,
 		s=>zero,
-		r=>Net_4440,
+		r=>Net_4602,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
 		q=>\PWM_STEERING:PWMUDB:status_5\);
 \PWM_STEERING:PWMUDB:pwm_i_reg\:cy_dff
@@ -8412,7 +8423,7 @@ Net_2112:cy_dff
 \PWM_STEERING:PWMUDB:pwm1_i_reg\:cy_dff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:pwm1_i\,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,
-		q=>\PWM_STEERING:PWMUDB:pwm1_i_reg\);
+		q=>Net_4595);
 \PWM_STEERING:PWMUDB:pwm2_i_reg\:cy_dff
 	PORT MAP(d=>\PWM_STEERING:PWMUDB:pwm2_i\,
 		clk=>\PWM_STEERING:PWMUDB:ClockOutFromEnBlock\,

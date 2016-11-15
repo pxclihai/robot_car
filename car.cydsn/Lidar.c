@@ -16,8 +16,10 @@
 #include <stdio.h>
 uint8 nodeBuffer[100];
 uint8 net_nodeBuffer[100];
+uint8 arrtest[5] = {0x01,0x02,0x03,0x04,0x05};
 uint8 EXPRESS_SCAN[9] = {0xA5,0x82,0x05,00,00,00,00,00,0x22};
 uint8 NORMAL_SCAN[2] =  {0xA5,0x20};
+uint8 GET_HEALTH[2] =  {0xA5,0x52};
 uint8  _is_previous_capsuledataRdy = true;
 uint8 rx_lidar_flag =0;
 uint8 rx_lidar_count = 0;
@@ -30,14 +32,18 @@ rplidar_response_measurement_node_t test1[500];
 rplidar_response_measurement_node_t test2[500];
 rplidar_response_measurement_node_t test3[500];
 float test_f_suzu[500];
-static uint8 test_i;
+static uint8 test_i = 0;
+static uint16 count;
 uint8 ascendScanData(rplidar_response_measurement_node_t * nodebuffer, size_t count);
 void Lidar_init()
 {
     start = offsetof(rplidar_response_capsule_measurement_nodes_t, start_angle_sync_q6);
     end   =sizeof(rplidar_response_capsule_measurement_nodes_t);
     normal_size = sizeof(rplidar_response_measurement_node_t);
+   // UART_LIDAR_PutArray(GET_HEALTH,sizeof(GET_HEALTH));
+    
     UART_LIDAR_PutArray(NORMAL_SCAN,sizeof(NORMAL_SCAN));
+    
 }
 int  recvPos = 0;
 #define RPLIDAR_RESP_MEASUREMENT_SYNCBIT        (0x1<<0)
@@ -45,6 +51,93 @@ int  recvPos = 0;
 #define RPLIDAR_RESP_MEASUREMENT_CHECKBIT       (0x1<<0)
 #define RPLIDAR_RESP_MEASUREMENT_ANGLE_SHIFT    1
 rplidar_response_measurement_node_t nodeBuffer1;
+void Lidar_Normal_Data_Receive_Prepare_4(uint8 data)
+{
+    uint8 tmp;
+    uint16 test;
+    float test_f;
+	static uint8 _data_len = 0,_data_cnt = 0;
+	static uint8 state = 0;
+    
+    tmp  = (data>>1);
+  
+	if(state==0&&(tmp ^ data) & 0x1)  //sys1
+	{
+        debug_time_Write(1);
+		state=1;
+		nodeBuffer[0]=data;
+       //debug_time_Write(1);
+	}
+    else if(state == 1 && ((data&0x1) == 1)) //
+    {
+        test = (tmp&0x1);
+        state=2;
+		nodeBuffer[1]= data;
+        _data_cnt = 0;
+        _data_len = normal_size-2;
+    }
+	else if(state== 2 && _data_len>0) //
+	{
+		_data_len--;
+		nodeBuffer[2+_data_cnt++] = data;
+   
+		if(_data_len == 0)
+        {
+            count++;
+            if((nodeBuffer[0] & 0x1) ==1)
+            {
+                 count =0;
+            }
+//            test = ((nodeBuffer[2]<<8)|(nodeBuffer[1]))>>1;
+//            test_f = ((float)test)/64.0f;
+//            test_f_suzu[test_i] = test_f; 
+//            if(test_i == 200)
+//            {
+//                test_i =0;
+//                rx_lidar_flag = 1;
+//            } 
+       
+           // if(rx_lidar_flag == 0)
+          //  {
+              
+//           test1[test_i].angle_q6_checkbit = (((nodeBuffer[2]<<8)|(nodeBuffer[1])));
+//           test1[test_i].sync_quality      =  nodeBuffer[0];
+//           test1[test_i].distance_q2       = ((nodeBuffer[4]<<8)|(nodeBuffer[3]));               
+          //      printf("%d\n   ",test);
+          // 
+              memcpy(net_nodeBuffer+test_i*5,nodeBuffer,5);
+              test_i ++;
+              if(test_i == 5)
+              {  
+                
+                   rx_lidar_flag = 1; 
+                 
+                   test_i = 0;
+              }
+              //   
+                
+
+            // }
+         
+            
+            state = 0;
+        }
+	}  
+  
+ //                      if(output_t == 0)
+//                   {
+//                   debug_time_Write(1);
+//                   output_t++;
+//                   }
+//                   else
+//                  {
+//                   debug_time_Write(0);
+//                    output_t = 0;
+//                  }
+    else
+    state = 0;
+     
+}
 //void Lidar_Normal_pc(uint8 data)
 //{
 //       uint8 currentByte = data;
@@ -97,7 +190,7 @@ void Lidar_Normal_Data_Receive_Prepare(uint8 data)
 	{
 		state=1;
 		nodeBuffer[0]=data;
-      debug_time_Write(1);
+       //debug_time_Write(1);
 	}
     else if(state == 1 && ((data&0x1) == 1)) //
     {
@@ -114,34 +207,39 @@ void Lidar_Normal_Data_Receive_Prepare(uint8 data)
    
 		if(_data_len == 0)
         {
-         
-            if((nodeBuffer[0] & 0x1) ==1)
-            {
-                 test_i =0;
-            }
-            test = ((nodeBuffer[2]<<8)|(nodeBuffer[1]))>>1;
-            test_f = ((float)test)/64.0f;
-            test_f_suzu[test_i] = test_f; 
-            if(test_i == 200)
-                {
-                    test_i =0;
-                    rx_lidar_flag = 1;
-                } 
+          
+//            if((nodeBuffer[0] & 0x1) ==1)
+//            {
+//                 test_i =0;
+//            }
+//            test = ((nodeBuffer[2]<<8)|(nodeBuffer[1]))>>1;
+//            test_f = ((float)test)/64.0f;
+//            test_f_suzu[test_i] = test_f; 
+//            if(test_i == 200)
+//            {
+//                test_i =0;
+//                rx_lidar_flag = 1;
+//            } 
+          
             if(rx_lidar_flag == 0)
             {
-                test_i ++;
-  //              test1[test_i].angle_q6_checkbit = (((nodeBuffer[2]<<8)|(nodeBuffer[1])));
- //               test1[test_i].sync_quality      =  nodeBuffer[0];
-//                test1[test_i].distance_q2       = ((nodeBuffer[4]<<8)|(nodeBuffer[3]));
+              
+//           test1[test_i].angle_q6_checkbit = (((nodeBuffer[2]<<8)|(nodeBuffer[1])));
+//           test1[test_i].sync_quality      =  nodeBuffer[0];
+//           test1[test_i].distance_q2       = ((nodeBuffer[4]<<8)|(nodeBuffer[3]));               
+          //      printf("%d\n   ",test);
+                 //memcpy(net_nodeBuffer,nodeBuffer,5);
+              //  if(test_i < 100)
+              //  { 
+                   test_i ++;
+                   debug_time_Write(1);
+                   DT_Send_Lidar_normal(nodeBuffer); 
+                   debug_time_Write(0);
+            //    }
+              //   rx_lidar_flag = 1; 
+                
 
-
-               
-        //        printf("%d\n   ",test);
-                //  memcpy(net_nodeBuffer,nodeBuffer,5); 
-                  rx_lidar_flag = 1; 
-                 debug_time_Write(0);
-
-        }
+             }
             
             state = 0;
         }
@@ -159,8 +257,7 @@ void Lidar_Normal_Data_Receive_Prepare(uint8 data)
 //                  }
     else
     state = 0;
-      
-
+     
 }
 void Lidar_Normal_Data_Receive_Prepare_2(uint8 data)
 {

@@ -23,7 +23,7 @@ void DT_Data_Exchange(void)
     
 	static uint8 cnt = 0;
 	static uint8 senser_cnt 	=   10;
-	static uint8 status_cnt 	=   1;
+	static uint8 status_cnt 	=   11;
 	static uint8 rcdata_cnt 	=   20;
 	static uint8 motopwm_cnt	=   20;
 	static uint8 power_cnt		=	50;
@@ -54,11 +54,11 @@ void DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-  	DT_Send_Status(0,g_Car.set_dir,g_Car.set_car_speed);
+    	DT_Send_Status(0,g_Car.set_dir,g_Car.set_car_speed);
 //        if(rx_lidar_flag == 1)
 //        {
-//        DT_Send_Lidar_normal(net_nodeBuffer);
-//        rx_lidar_flag = 0;
+//            DT_Send_Lidar_normal(net_nodeBuffer);
+//            rx_lidar_flag = 0;
 //        }
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
@@ -697,6 +697,30 @@ void DT_Send_Lidar_normal(uint8 * temp_nodebuf)
     data_to_send[_cnt++]=temp_nodebuf[1];
     data_to_send[_cnt++]=temp_nodebuf[4];
     data_to_send[_cnt++]=temp_nodebuf[3];
+    
+    data_to_send[_cnt++]=temp_nodebuf[5];
+    data_to_send[_cnt++]=temp_nodebuf[7];
+    data_to_send[_cnt++]=temp_nodebuf[6];
+    data_to_send[_cnt++]=temp_nodebuf[9];
+    data_to_send[_cnt++]=temp_nodebuf[8];
+    
+    data_to_send[_cnt++]=temp_nodebuf[10];
+    data_to_send[_cnt++]=temp_nodebuf[12];
+    data_to_send[_cnt++]=temp_nodebuf[11];
+    data_to_send[_cnt++]=temp_nodebuf[14];
+    data_to_send[_cnt++]=temp_nodebuf[13];
+    
+    data_to_send[_cnt++]=temp_nodebuf[15];
+    data_to_send[_cnt++]=temp_nodebuf[17];
+    data_to_send[_cnt++]=temp_nodebuf[16];
+    data_to_send[_cnt++]=temp_nodebuf[19];
+    data_to_send[_cnt++]=temp_nodebuf[18];
+    
+    data_to_send[_cnt++]=temp_nodebuf[20];
+    data_to_send[_cnt++]=temp_nodebuf[22];
+    data_to_send[_cnt++]=temp_nodebuf[21];
+    data_to_send[_cnt++]=temp_nodebuf[24];
+    data_to_send[_cnt++]=temp_nodebuf[23];
 	data_to_send[3] = _cnt-4;
 	
 	uint8 sum = 0;

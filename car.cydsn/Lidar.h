@@ -44,6 +44,7 @@ void Lidar_Normal_pc(uint8 data) ;
 void Lidar_Data_Receive_Prepare(uint8 data)  ;  
 void Lidar_Normal_Data_Receive_Prepare(uint8 data);
 void Lidar_Normal_Data_Receive_Prepare_2(uint8 data);
+void Lidar_Normal_Data_Receive_Prepare_4(uint8 data);
 void scan_lidar();
 #endif
 /* [] END OF FILE */
