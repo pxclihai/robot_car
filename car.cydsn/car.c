@@ -14,17 +14,103 @@
 static void Command_Car_UP(uint16 speed);
 static void Command_Car_Down(uint16 speed);
 void Car_Dir(S_CAR car);
+void Car_PTZ_DIR(S_CAR car);
+void Command_Car_brake();
+void Command_Car_Left(uint16 speed);
+void Command_Car_Right(uint16 speed);
+
+static uint8 togle_flag;
 static void Set_Left_Front_Speed_Turn(uint16 speed,enum WHEEL_DIR turn);
 static void Set_Left_Behind_Speed_Turn(uint16 speed,enum WHEEL_DIR turn);
 static void Set_Right_Front_Speed_Turn(uint16 speed,enum WHEEL_DIR turn);
 static void Set_Right_Behind_Speed_Turn(uint16 speed,enum WHEEL_DIR turn);
-void Command_Car_brake();
-void Command_Car_Left(uint16 speed);
-void Command_Car_Right(uint16 speed);
+static void ptz_control(uint8 choose,enum WHEEL_DIR dir);
+void Car_init()
+{
+      
+    g_Car.pre_dir = STOP;
+    g_Car.set_car_speed = 14000;
+    g_Car.set_dir = STOP;
+    g_Car.set_ptz_dir = STOP;  
+    PTZ_UP_EN_Write(1);
+    PTZ_UP_DIR_Write(0);
+    PTZ_UP_STEP_Write(0);
+    PTZ_DOWN_EN_Write(1);
+    PTZ_DOWN_DIR_Write(0);
+    PTZ_DOWN_STEP_Write(0);
+}
 void Control_Car()
 {
     Car_Dir(g_Car); 
+    Car_PTZ_DIR(g_Car); 
     
+}
+void Car_PTZ_DIR(S_CAR car)
+{
+    if(car.set_ptz_dir == UP)
+    {
+         ptz_control(0,FORWARD);
+    }
+    else if(car.set_ptz_dir == DOWN)
+    {
+         ptz_control(0,REVERSAL);
+    }
+    else if(car.set_ptz_dir == LEFT)
+    {
+         ptz_control(1,FORWARD);
+    }
+    else if(car.set_ptz_dir == RIGHT)
+    {
+         ptz_control(1,REVERSAL);
+    }
+    else 
+    {
+        ptz_control(0,WHEEL_STOP);
+        ptz_control(1,WHEEL_STOP);
+    }
+
+}
+void ptz_control(uint8 choose,enum WHEEL_DIR dir)
+{
+    if(choose == 0 && dir != WHEEL_STOP)
+    {
+       PTZ_UP_EN_Write(0);
+        PTZ_UP_DIR_Write(dir);
+        
+        if(togle_flag == 0)
+        {
+            PTZ_UP_STEP_Write(1);
+            togle_flag = 1;
+        }
+        else
+        {
+            PTZ_UP_STEP_Write(0);
+            togle_flag = 0;
+        }
+        
+    }
+    else if(choose == 1 && dir != WHEEL_STOP)
+    {
+        
+        PTZ_DOWN_EN_Write(0);
+        PTZ_DOWN_DIR_Write(dir);
+        if(togle_flag == 0)
+        {
+            PTZ_DOWN_STEP_Write(1);
+          
+            togle_flag = 1;
+        }
+        else
+        {
+            PTZ_DOWN_STEP_Write(0);
+            togle_flag = 0;
+        } 
+    }
+    else
+    {
+        PTZ_UP_EN_Write(1);
+        PTZ_DOWN_EN_Write(1);
+    }
 }
 uint8 deal_break(S_CAR car)
 {

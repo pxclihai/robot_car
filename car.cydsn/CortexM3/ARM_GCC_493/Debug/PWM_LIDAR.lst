@@ -1,0 +1,2706 @@
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_LIDAR.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.PWM_LIDAR_Enable,"ax",%progbits
+  19              		.align	2
+  20              		.global	PWM_LIDAR_Enable
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	PWM_LIDAR_Enable, %function
+  24              	PWM_LIDAR_Enable:
+  25              	.LFB2:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\PWM_LIDAR.c"
+   1:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * File Name: PWM_LIDAR.c
+   3:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+   5:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Description:
+   6:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  The compare value output may be configured to be active when the present
+  11:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  counter is less than or less than/equal to the compare value.
+  12:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  width wide when the counter is equal to zero.
+  14:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  15:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Note:
+  16:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  17:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************
+  18:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * the software package with which this file was provided.
+  22:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************/
+  23:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  24:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #include "PWM_LIDAR.h"
+  25:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  26:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /* Error message for removed <resource> through optimization */
+  27:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #ifdef PWM_LIDAR_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:.\Generated_Source\PSoC5/PWM_LIDAR.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* PWM_LIDAR_PWMUDB_genblk1_ctrlreg__REMOVED */
+  31:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/PWM_LIDAR.c **** uint8 PWM_LIDAR_initVar = 0u;
+  33:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  34:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  35:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+  36:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Function Name: PWM_LIDAR_Start
+  37:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************
+  38:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  39:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Summary:
+  40:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  The start function initializes the pwm with the default values, the
+  41:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  44:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Parameters:
+  45:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+  46:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  47:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Return:
+  48:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+  49:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  50:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Global variables:
+  51:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  PWM_LIDAR_initVar: Is modified when this function is called for the
+  52:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  54:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************/
+  55:.\Generated_Source\PSoC5/PWM_LIDAR.c **** void PWM_LIDAR_Start(void) 
+  56:.\Generated_Source\PSoC5/PWM_LIDAR.c **** {
+  57:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     if(PWM_LIDAR_initVar == 0u)
+  59:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+  60:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_Init();
+  61:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_initVar = 1u;
+  62:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+  63:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     PWM_LIDAR_Enable();
+  64:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  65:.\Generated_Source\PSoC5/PWM_LIDAR.c **** }
+  66:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  67:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  68:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+  69:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Function Name: PWM_LIDAR_Init
+  70:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************
+  71:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  72:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Summary:
+  73:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  PWM_LIDAR_Start().
+  76:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  77:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Parameters:
+  78:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+  79:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  80:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Return:
+  81:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+  82:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+  83:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************/
+  84:.\Generated_Source\PSoC5/PWM_LIDAR.c **** void PWM_LIDAR_Init(void) 
+  85:.\Generated_Source\PSoC5/PWM_LIDAR.c **** {
+  86:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UsingFixedFunction || PWM_LIDAR_UseControl)
+  87:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         uint8 ctrl;
+  88:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction || PWM_LIDAR_UseControl) */
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  90:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if(!PWM_LIDAR_UsingFixedFunction)
+  91:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(PWM_LIDAR_UseStatus)
+  92:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Interrupt State Backup for Critical Region*/
+  93:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             uint8 PWM_LIDAR_interruptState;
+  94:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UseStatus) */
+  95:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (!PWM_LIDAR_UsingFixedFunction) */
+  96:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+  97:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UsingFixedFunction)
+  98:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* You are allowed to write the compare value (FF only) */
+  99:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_CONTROL |= PWM_LIDAR_CFG0_MODE;
+ 100:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_DeadBand2_4)
+ 101:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_CONTROL |= PWM_LIDAR_CFG0_DB;
+ 102:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_DeadBand2_4) */
+ 103:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 104:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         ctrl = PWM_LIDAR_CONTROL3 & ((uint8 )(~PWM_LIDAR_CTRL_CMPMODE1_MASK));
+ 105:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_CONTROL3 = ctrl | PWM_LIDAR_DEFAULT_COMPARE1_MODE;
+ 106:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 107:.\Generated_Source\PSoC5/PWM_LIDAR.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_RT1 &= ((uint8)(~PWM_LIDAR_RT1_MASK));
+ 109:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_RT1 |= PWM_LIDAR_SYNC;
+ 110:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 111:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_RT1 &= ((uint8)(~PWM_LIDAR_SYNCDSI_MASK));
+ 113:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_RT1 |= PWM_LIDAR_SYNCDSI_EN;
+ 114:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 115:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #elif (PWM_LIDAR_UseControl)
+ 116:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* Set the default compare mode defined in the parameter */
+ 117:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         ctrl = PWM_LIDAR_CONTROL & ((uint8)(~PWM_LIDAR_CTRL_CMPMODE2_MASK)) &
+ 118:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 ((uint8)(~PWM_LIDAR_CTRL_CMPMODE1_MASK));
+ 119:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_CONTROL = ctrl | PWM_LIDAR_DEFAULT_COMPARE2_MODE |
+ 120:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                    PWM_LIDAR_DEFAULT_COMPARE1_MODE;
+ 121:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 122:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 123:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (!PWM_LIDAR_UsingFixedFunction)
+ 124:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_Resolution == 8)
+ 125:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_AUX_CONTROLDP0 |= (PWM_LIDAR_AUX_CTRL_FIFO0_CLR);
+ 127:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else /* (PWM_LIDAR_Resolution == 16)*/
+ 128:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_AUX_CONTROLDP0 |= (PWM_LIDAR_AUX_CTRL_FIFO0_CLR);
+ 130:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_AUX_CONTROLDP1 |= (PWM_LIDAR_AUX_CTRL_FIFO0_CLR);
+ 131:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_Resolution == 8) */
+ 132:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 133:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_WriteCounter(PWM_LIDAR_INIT_PERIOD_VALUE);
+ 134:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (!PWM_LIDAR_UsingFixedFunction) */
+ 135:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 136:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     PWM_LIDAR_WritePeriod(PWM_LIDAR_INIT_PERIOD_VALUE);
+ 137:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 138:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_UseOneCompareMode)
+ 139:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_WriteCompare(PWM_LIDAR_INIT_COMPARE_VALUE1);
+ 140:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 141:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_WriteCompare1(PWM_LIDAR_INIT_COMPARE_VALUE1);
+ 142:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_WriteCompare2(PWM_LIDAR_INIT_COMPARE_VALUE2);
+ 143:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UseOneCompareMode) */
+ 144:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 145:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_KillModeMinTime)
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 4
+
+
+ 146:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_WriteKillTime(PWM_LIDAR_MinimumKillTime);
+ 147:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_KillModeMinTime) */
+ 148:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 149:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_DeadBandUsed)
+ 150:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_WriteDeadTime(PWM_LIDAR_INIT_DEAD_TIME);
+ 151:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_DeadBandUsed) */
+ 152:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 153:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UseStatus || PWM_LIDAR_UsingFixedFunction)
+ 154:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_SetInterruptMode(PWM_LIDAR_INIT_INTERRUPTS_MODE);
+ 155:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UseStatus || PWM_LIDAR_UsingFixedFunction) */
+ 156:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 157:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UsingFixedFunction)
+ 158:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_GLOBAL_ENABLE |= PWM_LIDAR_BLOCK_EN_MASK;
+ 160:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* Set the Interrupt source to come from the status register */
+ 161:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_CONTROL2 |= PWM_LIDAR_CTRL2_IRQ_SEL;
+ 162:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #else
+ 163:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(PWM_LIDAR_UseStatus)
+ 164:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 165:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Enter Critical Region*/
+ 167:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_interruptState = CyEnterCriticalSection();
+ 168:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_STATUS_AUX_CTRL |= PWM_LIDAR_STATUS_ACTL_INT_EN_MASK;
+ 170:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 171:.\Generated_Source\PSoC5/PWM_LIDAR.c ****              /* Exit Critical Region*/
+ 172:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CyExitCriticalSection(PWM_LIDAR_interruptState);
+ 173:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 174:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Clear the FIFO to enable the PWM_LIDAR_STATUS_FIFOFULL
+ 175:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                    bit to be set on FIFO full. */
+ 176:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_ClearFIFO();
+ 177:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UseStatus) */
+ 178:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 179:.\Generated_Source\PSoC5/PWM_LIDAR.c **** }
+ 180:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 181:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 182:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+ 183:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Function Name: PWM_LIDAR_Enable
+ 184:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************
+ 185:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 186:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Summary:
+ 187:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  Enables the PWM block operation
+ 188:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 189:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Parameters:
+ 190:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+ 191:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 192:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Return:
+ 193:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+ 194:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 195:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Side Effects:
+ 196:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  This works only if software enable mode is chosen
+ 197:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 198:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************/
+ 199:.\Generated_Source\PSoC5/PWM_LIDAR.c **** void PWM_LIDAR_Enable(void) 
+ 200:.\Generated_Source\PSoC5/PWM_LIDAR.c **** {
+  27              		.loc 1 200 0
+  28              		.cfi_startproc
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 5
+
+
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+ 201:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UsingFixedFunction)
+ 203:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_GLOBAL_ENABLE |= PWM_LIDAR_BLOCK_EN_MASK;
+ 204:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_GLOBAL_STBY_ENABLE |= PWM_LIDAR_BLOCK_STBY_EN_MASK;
+ 205:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 206:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 207:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /* Enable the PWM from the control register  */
+ 208:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UseControl || PWM_LIDAR_UsingFixedFunction)
+ 209:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_CONTROL |= PWM_LIDAR_CTRL_ENABLE;
+  32              		.loc 1 209 0
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  35 0004 43F08003 		orr	r3, r3, #128
+  36 0008 1370     		strb	r3, [r2]
+  37 000a 7047     		bx	lr
+  38              	.L3:
+  39              		.align	2
+  40              	.L2:
+  41 000c 77640040 		.word	1073767543
+  42              		.cfi_endproc
+  43              	.LFE2:
+  44              		.size	PWM_LIDAR_Enable, .-PWM_LIDAR_Enable
+  45              		.section	.text.PWM_LIDAR_Stop,"ax",%progbits
+  46              		.align	2
+  47              		.global	PWM_LIDAR_Stop
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	PWM_LIDAR_Stop, %function
+  51              	PWM_LIDAR_Stop:
+  52              	.LFB3:
+ 210:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UseControl || PWM_LIDAR_UsingFixedFunction) */
+ 211:.\Generated_Source\PSoC5/PWM_LIDAR.c **** }
+ 212:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 213:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 214:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+ 215:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Function Name: PWM_LIDAR_Stop
+ 216:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************
+ 217:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 218:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Summary:
+ 219:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  interrupts.
+ 221:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 222:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Parameters:
+ 223:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+ 224:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 225:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Return:
+ 226:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+ 227:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 228:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Side Effects:
+ 229:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  has no effect on the operation of the PWM
+ 231:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 232:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************/
+ 233:.\Generated_Source\PSoC5/PWM_LIDAR.c **** void PWM_LIDAR_Stop(void) 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 6
+
+
+ 234:.\Generated_Source\PSoC5/PWM_LIDAR.c **** {
+  53              		.loc 1 234 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+ 235:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UseControl || PWM_LIDAR_UsingFixedFunction)
+ 236:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_CONTROL &= ((uint8)(~PWM_LIDAR_CTRL_ENABLE));
+  58              		.loc 1 236 0
+  59 0000 024A     		ldr	r2, .L5
+  60 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  61 0004 03F07F03 		and	r3, r3, #127
+  62 0008 1370     		strb	r3, [r2]
+  63 000a 7047     		bx	lr
+  64              	.L6:
+  65              		.align	2
+  66              	.L5:
+  67 000c 77640040 		.word	1073767543
+  68              		.cfi_endproc
+  69              	.LFE3:
+  70              		.size	PWM_LIDAR_Stop, .-PWM_LIDAR_Stop
+  71              		.section	.text.PWM_LIDAR_WriteCounter,"ax",%progbits
+  72              		.align	2
+  73              		.global	PWM_LIDAR_WriteCounter
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	PWM_LIDAR_WriteCounter, %function
+  77              	PWM_LIDAR_WriteCounter:
+  78              	.LFB4:
+ 237:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UseControl || PWM_LIDAR_UsingFixedFunction) */
+ 238:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 239:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UsingFixedFunction)
+ 241:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_GLOBAL_ENABLE &= ((uint8)(~PWM_LIDAR_BLOCK_EN_MASK));
+ 242:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_LIDAR_BLOCK_STBY_EN_MASK));
+ 243:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 244:.\Generated_Source\PSoC5/PWM_LIDAR.c **** }
+ 245:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 246:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_UseOneCompareMode)
+ 247:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_CompareMode1SW)
+ 248:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 249:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 250:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /*******************************************************************************
+ 251:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Function Name: PWM_LIDAR_SetCompareMode
+ 252:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         ********************************************************************************
+ 253:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 254:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Summary:
+ 255:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  Center Align Mode or One Output Mode.
+ 257:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 258:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Parameters:
+ 259:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *                defined in the H file as input arguments.
+ 261:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 262:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Return:
+ 263:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  None
+ 264:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 7
+
+
+ 265:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *******************************************************************************/
+ 266:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         void PWM_LIDAR_SetCompareMode(uint8 comparemode) 
+ 267:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         {
+ 268:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #if(PWM_LIDAR_UsingFixedFunction)
+ 269:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 270:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #if(0 != PWM_LIDAR_CTRL_CMPMODE1_SHIFT)
+ 271:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_LIDAR_CTRL_CMPMODE
+ 272:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #else
+ 273:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                     uint8 comparemodemasked = comparemode;
+ 274:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #endif /* (0 != PWM_LIDAR_CTRL_CMPMODE1_SHIFT) */
+ 275:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 276:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_CONTROL3 &= ((uint8)(~PWM_LIDAR_CTRL_CMPMODE1_MASK)); /*Clear Existing Da
+ 277:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_CONTROL3 |= comparemodemasked;
+ 278:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 279:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #elif (PWM_LIDAR_UseControl)
+ 280:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 281:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #if(0 != PWM_LIDAR_CTRL_CMPMODE1_SHIFT)
+ 282:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_LIDAR_CTRL_CMPMOD
+ 283:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                                 PWM_LIDAR_CTRL_CMPMODE1_MASK;
+ 284:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #else
+ 285:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                     uint8 comparemode1masked = comparemode & PWM_LIDAR_CTRL_CMPMODE1_MASK;
+ 286:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #endif /* (0 != PWM_LIDAR_CTRL_CMPMODE1_SHIFT) */
+ 287:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 288:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #if(0 != PWM_LIDAR_CTRL_CMPMODE2_SHIFT)
+ 289:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << PWM_LIDAR_CTRL_CMPMOD
+ 290:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                                PWM_LIDAR_CTRL_CMPMODE2_MASK;
+ 291:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #else
+ 292:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                     uint8 comparemode2masked = comparemode & PWM_LIDAR_CTRL_CMPMODE2_MASK;
+ 293:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 #endif /* (0 != PWM_LIDAR_CTRL_CMPMODE2_SHIFT) */
+ 294:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 295:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 /*Clear existing mode */
+ 296:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_CONTROL &= ((uint8)(~(PWM_LIDAR_CTRL_CMPMODE1_MASK |
+ 297:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                             PWM_LIDAR_CTRL_CMPMODE2_MASK)));
+ 298:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 300:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #else
+ 301:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 uint8 temp = comparemode;
+ 302:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 303:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         }
+ 304:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* PWM_LIDAR_CompareMode1SW */
+ 305:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 306:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #else /* UseOneCompareMode */
+ 307:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 308:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_CompareMode1SW)
+ 309:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 310:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 311:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /*******************************************************************************
+ 312:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Function Name: PWM_LIDAR_SetCompareMode1
+ 313:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         ********************************************************************************
+ 314:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 315:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Summary:
+ 316:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 318:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Parameters:
+ 319:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *                defined in the H file as input arguments.
+ 321:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 8
+
+
+ 322:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Return:
+ 323:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  None
+ 324:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 325:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *******************************************************************************/
+ 326:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         void PWM_LIDAR_SetCompareMode1(uint8 comparemode) 
+ 327:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         {
+ 328:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #if(0 != PWM_LIDAR_CTRL_CMPMODE1_SHIFT)
+ 329:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_LIDAR_CTRL_CMPMODE1_SH
+ 330:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                            PWM_LIDAR_CTRL_CMPMODE1_MASK;
+ 331:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #else
+ 332:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 uint8 comparemodemasked = comparemode & PWM_LIDAR_CTRL_CMPMODE1_MASK;
+ 333:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #endif /* (0 != PWM_LIDAR_CTRL_CMPMODE1_SHIFT) */
+ 334:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 335:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #if (PWM_LIDAR_UseControl)
+ 336:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_CONTROL &= ((uint8)(~PWM_LIDAR_CTRL_CMPMODE1_MASK)); /*Clear existing mod
+ 337:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_CONTROL |= comparemodemasked;
+ 338:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #endif /* (PWM_LIDAR_UseControl) */
+ 339:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         }
+ 340:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* PWM_LIDAR_CompareMode1SW */
+ 341:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 342:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_CompareMode2SW)
+ 343:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 344:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 345:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 346:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_SetCompareMode2
+ 347:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 348:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 349:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 350:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 352:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 353:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *                defined in the H file as input arguments.
+ 355:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 356:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 357:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 358:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 359:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 360:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_SetCompareMode2(uint8 comparemode) 
+ 361:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 362:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 363:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(0 != PWM_LIDAR_CTRL_CMPMODE2_SHIFT)
+ 364:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_LIDAR_CTRL_CMPMODE2_SHIFT)
+ 365:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                                  PWM_LIDAR_CTRL_CMPMODE2_MASK;
+ 366:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 367:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             uint8 comparemodemasked = comparemode & PWM_LIDAR_CTRL_CMPMODE2_MASK;
+ 368:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (0 != PWM_LIDAR_CTRL_CMPMODE2_SHIFT) */
+ 369:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 370:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_UseControl)
+ 371:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_CONTROL &= ((uint8)(~PWM_LIDAR_CTRL_CMPMODE2_MASK)); /*Clear existing mode */
+ 372:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_CONTROL |= comparemodemasked;
+ 373:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UseControl) */
+ 374:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 375:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /*PWM_LIDAR_CompareMode2SW */
+ 376:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 377:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* UseOneCompareMode */
+ 378:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 9
+
+
+ 379:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 380:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (!PWM_LIDAR_UsingFixedFunction)
+ 381:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 382:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 383:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 384:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_WriteCounter
+ 385:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 386:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 387:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 388:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  implemented for that currently running period and only that period. This API
+ 390:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  PWM implementation.
+ 392:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 393:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 394:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  counter:  The period new period counter value.
+ 395:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 396:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 397:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 398:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 399:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Side Effects:
+ 400:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 402:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 403:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_WriteCounter(uint8 counter) \
+ 404:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                        
+ 405:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+  79              		.loc 1 405 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84              	.LVL0:
+ 406:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         CY_SET_REG8(PWM_LIDAR_COUNTER_LSB_PTR, counter);
+  85              		.loc 1 406 0
+  86 0000 014B     		ldr	r3, .L8
+  87 0002 1870     		strb	r0, [r3]
+  88 0004 7047     		bx	lr
+  89              	.L9:
+  90 0006 00BF     		.align	2
+  91              	.L8:
+  92 0008 04650040 		.word	1073767684
+  93              		.cfi_endproc
+  94              	.LFE4:
+  95              		.size	PWM_LIDAR_WriteCounter, .-PWM_LIDAR_WriteCounter
+  96              		.section	.text.PWM_LIDAR_ReadCounter,"ax",%progbits
+  97              		.align	2
+  98              		.global	PWM_LIDAR_ReadCounter
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	PWM_LIDAR_ReadCounter, %function
+ 102              	PWM_LIDAR_ReadCounter:
+ 103              	.LFB5:
+ 407:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 408:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 409:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 410:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 10
+
+
+ 411:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadCounter
+ 412:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 413:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 414:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 415:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  if the counter is enabled or running.
+ 417:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 418:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 419:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 420:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 421:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 422:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  The current value of the counter.
+ 423:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 424:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 425:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadCounter(void) 
+ 426:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 104              		.loc 1 426 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              		@ link register save eliminated.
+ 427:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* Force capture by reading Accumulator */
+ 428:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* Must first do a software capture to be able to read the counter */
+ 429:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:.\Generated_Source\PSoC5/PWM_LIDAR.c ****           (void)CY_GET_REG8(PWM_LIDAR_COUNTERCAP_LSB_PTR_8BIT);
+ 109              		.loc 1 430 0
+ 110 0000 024B     		ldr	r3, .L11
+ 111 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 431:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 432:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* Read the data from the FIFO */
+ 433:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (CY_GET_REG8(PWM_LIDAR_CAPTURE_LSB_PTR));
+ 112              		.loc 1 433 0
+ 113 0004 024B     		ldr	r3, .L11+4
+ 114 0006 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 434:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 115              		.loc 1 434 0
+ 116 0008 7047     		bx	lr
+ 117              	.L12:
+ 118 000a 00BF     		.align	2
+ 119              	.L11:
+ 120 000c 14650040 		.word	1073767700
+ 121 0010 54650040 		.word	1073767764
+ 122              		.cfi_endproc
+ 123              	.LFE5:
+ 124              		.size	PWM_LIDAR_ReadCounter, .-PWM_LIDAR_ReadCounter
+ 125              		.section	.text.PWM_LIDAR_WritePeriod,"ax",%progbits
+ 126              		.align	2
+ 127              		.global	PWM_LIDAR_WritePeriod
+ 128              		.thumb
+ 129              		.thumb_func
+ 130              		.type	PWM_LIDAR_WritePeriod, %function
+ 131              	PWM_LIDAR_WritePeriod:
+ 132              	.LFB7:
+ 435:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 436:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UseStatus)
+ 437:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 438:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 11
+
+
+ 439:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /*******************************************************************************
+ 440:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Function Name: PWM_LIDAR_ClearFIFO
+ 441:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         ********************************************************************************
+ 442:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 443:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Summary:
+ 444:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  This function clears all capture data from the capture FIFO
+ 445:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 446:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Parameters:
+ 447:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  None
+ 448:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 449:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         * Return:
+ 450:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *  None
+ 451:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *
+ 452:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         *******************************************************************************/
+ 453:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         void PWM_LIDAR_ClearFIFO(void) 
+ 454:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         {
+ 455:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             while(0u != (PWM_LIDAR_ReadStatusRegister() & PWM_LIDAR_STATUS_FIFONEMPTY))
+ 456:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             {
+ 457:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 (void)PWM_LIDAR_ReadCapture();
+ 458:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             }
+ 459:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         }
+ 460:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 461:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* PWM_LIDAR_UseStatus */
+ 462:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 463:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* !PWM_LIDAR_UsingFixedFunction */
+ 464:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 465:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 466:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+ 467:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Function Name: PWM_LIDAR_WritePeriod
+ 468:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************
+ 469:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 470:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Summary:
+ 471:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  This function is used to change the period of the counter.  The new period
+ 472:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  will be loaded the next time terminal count is detected.
+ 473:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 474:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Parameters:
+ 475:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *           will result in the counter remaining at zero.
+ 477:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 478:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Return:
+ 479:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+ 480:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 481:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************/
+ 482:.\Generated_Source\PSoC5/PWM_LIDAR.c **** void PWM_LIDAR_WritePeriod(uint8 period) 
+ 483:.\Generated_Source\PSoC5/PWM_LIDAR.c **** {
+ 133              		.loc 1 483 0
+ 134              		.cfi_startproc
+ 135              		@ args = 0, pretend = 0, frame = 0
+ 136              		@ frame_needed = 0, uses_anonymous_args = 0
+ 137              		@ link register save eliminated.
+ 138              	.LVL1:
+ 484:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if(PWM_LIDAR_UsingFixedFunction)
+ 485:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         CY_SET_REG16(PWM_LIDAR_PERIOD_LSB_PTR, (uint16)period);
+ 486:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #else
+ 487:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         CY_SET_REG8(PWM_LIDAR_PERIOD_LSB_PTR, period);
+ 139              		.loc 1 487 0
+ 140 0000 014B     		ldr	r3, .L14
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 12
+
+
+ 141 0002 1870     		strb	r0, [r3]
+ 142 0004 7047     		bx	lr
+ 143              	.L15:
+ 144 0006 00BF     		.align	2
+ 145              	.L14:
+ 146 0008 44650040 		.word	1073767748
+ 147              		.cfi_endproc
+ 148              	.LFE7:
+ 149              		.size	PWM_LIDAR_WritePeriod, .-PWM_LIDAR_WritePeriod
+ 150              		.section	.text.PWM_LIDAR_WriteCompare1,"ax",%progbits
+ 151              		.align	2
+ 152              		.global	PWM_LIDAR_WriteCompare1
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.type	PWM_LIDAR_WriteCompare1, %function
+ 156              	PWM_LIDAR_WriteCompare1:
+ 157              	.LFB8:
+ 488:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 489:.\Generated_Source\PSoC5/PWM_LIDAR.c **** }
+ 490:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 491:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_UseOneCompareMode)
+ 492:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 493:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 494:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 495:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_WriteCompare
+ 496:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 497:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 498:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 499:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  The compare output will be driven high when the present counter value is
+ 502:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Dither Mode.
+ 504:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 505:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 506:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  compare:  New compare value.
+ 507:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 508:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 509:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 510:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 511:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Side Effects:
+ 512:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 515:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 516:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_WriteCompare(uint8 compare) \
+ 517:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                        
+ 518:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 519:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(PWM_LIDAR_UsingFixedFunction)
+ 520:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG16(PWM_LIDAR_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 522:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG8(PWM_LIDAR_COMPARE1_LSB_PTR, compare);
+ 523:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 524:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 525:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if (PWM_LIDAR_PWMMode == PWM_LIDAR__B_PWM__DITHER)
+ 526:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #if(PWM_LIDAR_UsingFixedFunction)
+ 527:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 CY_SET_REG16(PWM_LIDAR_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 13
+
+
+ 528:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #else
+ 529:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 CY_SET_REG8(PWM_LIDAR_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 531:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_PWMMode == PWM_LIDAR__B_PWM__DITHER) */
+ 532:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 533:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 534:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 535:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #else
+ 536:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 537:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 538:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 539:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_WriteCompare1
+ 540:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 541:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 542:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 543:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ 544:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  driven high when the present counter value is less than or less than or
+ 546:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  equal to the compare register, depending on the mode.
+ 547:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 548:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 549:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  compare:  New compare value.
+ 550:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 551:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 552:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 553:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 554:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 555:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_WriteCompare1(uint8 compare) \
+ 556:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                         
+ 557:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 158              		.loc 1 557 0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 0
+ 161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 162              		@ link register save eliminated.
+ 163              	.LVL2:
+ 558:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(PWM_LIDAR_UsingFixedFunction)
+ 559:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG16(PWM_LIDAR_COMPARE1_LSB_PTR, (uint16)compare);
+ 560:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 561:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG8(PWM_LIDAR_COMPARE1_LSB_PTR, compare);
+ 164              		.loc 1 561 0
+ 165 0000 014B     		ldr	r3, .L17
+ 166 0002 1870     		strb	r0, [r3]
+ 167 0004 7047     		bx	lr
+ 168              	.L18:
+ 169 0006 00BF     		.align	2
+ 170              	.L17:
+ 171 0008 24650040 		.word	1073767716
+ 172              		.cfi_endproc
+ 173              	.LFE8:
+ 174              		.size	PWM_LIDAR_WriteCompare1, .-PWM_LIDAR_WriteCompare1
+ 175              		.section	.text.PWM_LIDAR_WriteCompare2,"ax",%progbits
+ 176              		.align	2
+ 177              		.global	PWM_LIDAR_WriteCompare2
+ 178              		.thumb
+ 179              		.thumb_func
+ 180              		.type	PWM_LIDAR_WriteCompare2, %function
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 14
+
+
+ 181              	PWM_LIDAR_WriteCompare2:
+ 182              	.LFB9:
+ 562:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 563:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 564:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 565:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 566:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 567:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_WriteCompare2
+ 568:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 569:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 570:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 571:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  The compare output will be driven high when the present counter value is
+ 574:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  mode.
+ 576:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 577:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 578:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  compare:  New compare value.
+ 579:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 580:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 581:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 582:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 583:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 584:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_WriteCompare2(uint8 compare) \
+ 585:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                         
+ 586:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 183              		.loc 1 586 0
+ 184              		.cfi_startproc
+ 185              		@ args = 0, pretend = 0, frame = 0
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187              		@ link register save eliminated.
+ 188              	.LVL3:
+ 587:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(PWM_LIDAR_UsingFixedFunction)
+ 588:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG16(PWM_LIDAR_COMPARE2_LSB_PTR, compare);
+ 589:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 590:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG8(PWM_LIDAR_COMPARE2_LSB_PTR, compare);
+ 189              		.loc 1 590 0
+ 190 0000 014B     		ldr	r3, .L20
+ 191 0002 1870     		strb	r0, [r3]
+ 192 0004 7047     		bx	lr
+ 193              	.L21:
+ 194 0006 00BF     		.align	2
+ 195              	.L20:
+ 196 0008 34650040 		.word	1073767732
+ 197              		.cfi_endproc
+ 198              	.LFE9:
+ 199              		.size	PWM_LIDAR_WriteCompare2, .-PWM_LIDAR_WriteCompare2
+ 200              		.section	.text.PWM_LIDAR_SetInterruptMode,"ax",%progbits
+ 201              		.align	2
+ 202              		.global	PWM_LIDAR_SetInterruptMode
+ 203              		.thumb
+ 204              		.thumb_func
+ 205              		.type	PWM_LIDAR_SetInterruptMode, %function
+ 206              	PWM_LIDAR_SetInterruptMode:
+ 207              	.LFB10:
+ 591:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 15
+
+
+ 592:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 593:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* UseOneCompareMode */
+ 594:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 595:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_DeadBandUsed)
+ 596:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 597:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 598:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 599:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_WriteDeadTime
+ 600:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 601:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 602:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 603:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 605:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 606:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  deadtime:  Number of counts for dead time
+ 607:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 608:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 609:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 610:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 611:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 612:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_WriteDeadTime(uint8 deadtime) 
+ 613:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 614:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(!PWM_LIDAR_DeadBand2_4)
+ 616:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             CY_SET_REG8(PWM_LIDAR_DEADBAND_COUNT_PTR, deadtime);
+ 617:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 618:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Otherwise the data has to be masked and offset */
+ 619:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Clear existing data */
+ 620:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_DEADBAND_COUNT &= ((uint8)(~PWM_LIDAR_DEADBAND_COUNT_MASK));
+ 621:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 622:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Set new dead time */
+ 623:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #if(PWM_LIDAR_DEADBAND_COUNT_SHIFT)
+ 624:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << PWM_LIDAR_DEADBAND_COUNT_SH
+ 625:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                                     PWM_LIDAR_DEADBAND_COUNT_MASK;
+ 626:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #else
+ 627:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 PWM_LIDAR_DEADBAND_COUNT |= deadtime & PWM_LIDAR_DEADBAND_COUNT_MASK;
+ 628:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #endif /* (PWM_LIDAR_DEADBAND_COUNT_SHIFT) */
+ 629:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 630:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (!PWM_LIDAR_DeadBand2_4) */
+ 631:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 632:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 633:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 634:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 635:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadDeadTime
+ 636:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 637:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 638:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 639:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 641:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 642:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 643:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 644:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 645:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Dead Band Counts
+ 646:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 647:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 648:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadDeadTime(void) 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 16
+
+
+ 649:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 650:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(!PWM_LIDAR_DeadBand2_4)
+ 652:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             return (CY_GET_REG8(PWM_LIDAR_DEADBAND_COUNT_PTR));
+ 653:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 654:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 655:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Otherwise the data has to be masked and offset */
+ 656:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #if(PWM_LIDAR_DEADBAND_COUNT_SHIFT)
+ 657:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 return ((uint8)(((uint8)(PWM_LIDAR_DEADBAND_COUNT & PWM_LIDAR_DEADBAND_COUNT_MASK))
+ 658:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                                                            PWM_LIDAR_DEADBAND_COUNT
+ 659:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #else
+ 660:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 return (PWM_LIDAR_DEADBAND_COUNT & PWM_LIDAR_DEADBAND_COUNT_MASK);
+ 661:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             #endif /* (PWM_LIDAR_DEADBAND_COUNT_SHIFT) */
+ 662:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (!PWM_LIDAR_DeadBand2_4) */
+ 663:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 664:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* DeadBandUsed */
+ 665:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 666:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_UseStatus || PWM_LIDAR_UsingFixedFunction)
+ 667:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 668:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 669:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 670:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_SetInterruptMode
+ 671:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 672:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 673:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 674:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  source status register.
+ 676:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 677:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 678:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ 679:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 680:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 681:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 682:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 683:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 684:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_SetInterruptMode(uint8 interruptMode) 
+ 685:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 208              		.loc 1 685 0
+ 209              		.cfi_startproc
+ 210              		@ args = 0, pretend = 0, frame = 0
+ 211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 212              		@ link register save eliminated.
+ 213              	.LVL4:
+ 686:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         CY_SET_REG8(PWM_LIDAR_STATUS_MASK_PTR, interruptMode);
+ 214              		.loc 1 686 0
+ 215 0000 014B     		ldr	r3, .L23
+ 216 0002 1870     		strb	r0, [r3]
+ 217 0004 7047     		bx	lr
+ 218              	.L24:
+ 219 0006 00BF     		.align	2
+ 220              	.L23:
+ 221 0008 84650040 		.word	1073767812
+ 222              		.cfi_endproc
+ 223              	.LFE10:
+ 224              		.size	PWM_LIDAR_SetInterruptMode, .-PWM_LIDAR_SetInterruptMode
+ 225              		.section	.text.PWM_LIDAR_ReadStatusRegister,"ax",%progbits
+ 226              		.align	2
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 17
+
+
+ 227              		.global	PWM_LIDAR_ReadStatusRegister
+ 228              		.thumb
+ 229              		.thumb_func
+ 230              		.type	PWM_LIDAR_ReadStatusRegister, %function
+ 231              	PWM_LIDAR_ReadStatusRegister:
+ 232              	.LFB11:
+ 687:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 688:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 689:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 690:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 691:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadStatusRegister
+ 692:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 693:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 694:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 695:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  This function returns the current state of the status register.
+ 696:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 697:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 698:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 699:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 700:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 701:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [7:6] : Unused(0)
+ 703:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [5]   : Kill event output
+ 704:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [4]   : FIFO not empty
+ 705:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [3]   : FIFO full
+ 706:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [2]   : Terminal count
+ 707:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [1]   : Compare output 2
+ 708:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [0]   : Compare output 1
+ 709:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 710:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 711:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadStatusRegister(void) 
+ 712:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 233              		.loc 1 712 0
+ 234              		.cfi_startproc
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237              		@ link register save eliminated.
+ 713:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (CY_GET_REG8(PWM_LIDAR_STATUS_PTR));
+ 238              		.loc 1 713 0
+ 239 0000 014B     		ldr	r3, .L26
+ 240 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 714:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 241              		.loc 1 714 0
+ 242 0004 7047     		bx	lr
+ 243              	.L27:
+ 244 0006 00BF     		.align	2
+ 245              	.L26:
+ 246 0008 64650040 		.word	1073767780
+ 247              		.cfi_endproc
+ 248              	.LFE11:
+ 249              		.size	PWM_LIDAR_ReadStatusRegister, .-PWM_LIDAR_ReadStatusRegister
+ 250              		.section	.text.PWM_LIDAR_ReadControlRegister,"ax",%progbits
+ 251              		.align	2
+ 252              		.global	PWM_LIDAR_ReadControlRegister
+ 253              		.thumb
+ 254              		.thumb_func
+ 255              		.type	PWM_LIDAR_ReadControlRegister, %function
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 18
+
+
+ 256              	PWM_LIDAR_ReadControlRegister:
+ 257              	.LFB12:
+ 715:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 716:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* (PWM_LIDAR_UseStatus || PWM_LIDAR_UsingFixedFunction) */
+ 717:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 718:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 719:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_UseControl)
+ 720:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 721:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 722:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 723:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadControlRegister
+ 724:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 725:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 726:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 727:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Returns the current state of the control register. This API is available
+ 728:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  only if the control register is not removed.
+ 729:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 730:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 731:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 732:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 733:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 734:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8 : Current control register value
+ 735:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 736:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 737:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadControlRegister(void) 
+ 738:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 258              		.loc 1 738 0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 0, uses_anonymous_args = 0
+ 262              		@ link register save eliminated.
+ 739:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         uint8 result;
+ 740:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 741:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         result = CY_GET_REG8(PWM_LIDAR_CONTROL_PTR);
+ 263              		.loc 1 741 0
+ 264 0000 014B     		ldr	r3, .L29
+ 265 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 266              	.LVL5:
+ 742:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (result);
+ 743:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 267              		.loc 1 743 0
+ 268 0004 7047     		bx	lr
+ 269              	.L30:
+ 270 0006 00BF     		.align	2
+ 271              	.L29:
+ 272 0008 77640040 		.word	1073767543
+ 273              		.cfi_endproc
+ 274              	.LFE12:
+ 275              		.size	PWM_LIDAR_ReadControlRegister, .-PWM_LIDAR_ReadControlRegister
+ 276              		.section	.text.PWM_LIDAR_WriteControlRegister,"ax",%progbits
+ 277              		.align	2
+ 278              		.global	PWM_LIDAR_WriteControlRegister
+ 279              		.thumb
+ 280              		.thumb_func
+ 281              		.type	PWM_LIDAR_WriteControlRegister, %function
+ 282              	PWM_LIDAR_WriteControlRegister:
+ 283              	.LFB13:
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 19
+
+
+ 744:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 745:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 746:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 747:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_WriteControlRegister
+ 748:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 749:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 750:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 751:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  the control register is not removed.
+ 753:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 754:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 755:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [7]   : PWM Enable
+ 757:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [6]   : Reset
+ 758:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [5:3] : Compare Mode2
+ 759:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  [2:0] : Compare Mode2
+ 760:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 761:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 762:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 763:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 764:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 765:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     void PWM_LIDAR_WriteControlRegister(uint8 control) 
+ 766:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 284              		.loc 1 766 0
+ 285              		.cfi_startproc
+ 286              		@ args = 0, pretend = 0, frame = 0
+ 287              		@ frame_needed = 0, uses_anonymous_args = 0
+ 288              		@ link register save eliminated.
+ 289              	.LVL6:
+ 767:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         CY_SET_REG8(PWM_LIDAR_CONTROL_PTR, control);
+ 290              		.loc 1 767 0
+ 291 0000 014B     		ldr	r3, .L32
+ 292 0002 1870     		strb	r0, [r3]
+ 293 0004 7047     		bx	lr
+ 294              	.L33:
+ 295 0006 00BF     		.align	2
+ 296              	.L32:
+ 297 0008 77640040 		.word	1073767543
+ 298              		.cfi_endproc
+ 299              	.LFE13:
+ 300              		.size	PWM_LIDAR_WriteControlRegister, .-PWM_LIDAR_WriteControlRegister
+ 301              		.section	.text.PWM_LIDAR_ReadCapture,"ax",%progbits
+ 302              		.align	2
+ 303              		.global	PWM_LIDAR_ReadCapture
+ 304              		.thumb
+ 305              		.thumb_func
+ 306              		.type	PWM_LIDAR_ReadCapture, %function
+ 307              	PWM_LIDAR_ReadCapture:
+ 308              	.LFB14:
+ 768:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 769:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 770:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* (PWM_LIDAR_UseControl) */
+ 771:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 772:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 773:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (!PWM_LIDAR_UsingFixedFunction)
+ 774:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 775:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 20
+
+
+ 776:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 777:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadCapture
+ 778:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 779:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 780:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 781:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Reads the capture value from the capture FIFO.
+ 782:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 783:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 784:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 785:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 786:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 787:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8/uint16: The current capture value
+ 788:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 789:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 790:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadCapture(void) 
+ 791:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 309              		.loc 1 791 0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 0, uses_anonymous_args = 0
+ 313              		@ link register save eliminated.
+ 792:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (CY_GET_REG8(PWM_LIDAR_CAPTURE_LSB_PTR));
+ 314              		.loc 1 792 0
+ 315 0000 014B     		ldr	r3, .L35
+ 316 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 793:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 317              		.loc 1 793 0
+ 318 0004 7047     		bx	lr
+ 319              	.L36:
+ 320 0006 00BF     		.align	2
+ 321              	.L35:
+ 322 0008 54650040 		.word	1073767764
+ 323              		.cfi_endproc
+ 324              	.LFE14:
+ 325              		.size	PWM_LIDAR_ReadCapture, .-PWM_LIDAR_ReadCapture
+ 326              		.section	.text.PWM_LIDAR_ClearFIFO,"ax",%progbits
+ 327              		.align	2
+ 328              		.global	PWM_LIDAR_ClearFIFO
+ 329              		.thumb
+ 330              		.thumb_func
+ 331              		.type	PWM_LIDAR_ClearFIFO, %function
+ 332              	PWM_LIDAR_ClearFIFO:
+ 333              	.LFB6:
+ 454:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             while(0u != (PWM_LIDAR_ReadStatusRegister() & PWM_LIDAR_STATUS_FIFONEMPTY))
+ 334              		.loc 1 454 0
+ 335              		.cfi_startproc
+ 336              		@ args = 0, pretend = 0, frame = 0
+ 337              		@ frame_needed = 0, uses_anonymous_args = 0
+ 338 0000 08B5     		push	{r3, lr}
+ 339              		.cfi_def_cfa_offset 8
+ 340              		.cfi_offset 3, -8
+ 341              		.cfi_offset 14, -4
+ 455:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             {
+ 342              		.loc 1 455 0
+ 343 0002 01E0     		b	.L38
+ 344              	.L39:
+ 457:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             }
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 21
+
+
+ 345              		.loc 1 457 0
+ 346 0004 FFF7FEFF 		bl	PWM_LIDAR_ReadCapture
+ 347              	.LVL7:
+ 348              	.L38:
+ 455:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             {
+ 349              		.loc 1 455 0
+ 350 0008 FFF7FEFF 		bl	PWM_LIDAR_ReadStatusRegister
+ 351              	.LVL8:
+ 352 000c 10F0100F 		tst	r0, #16
+ 353 0010 F8D1     		bne	.L39
+ 459:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 354              		.loc 1 459 0
+ 355 0012 08BD     		pop	{r3, pc}
+ 356              		.cfi_endproc
+ 357              	.LFE6:
+ 358              		.size	PWM_LIDAR_ClearFIFO, .-PWM_LIDAR_ClearFIFO
+ 359              		.section	.text.PWM_LIDAR_Init,"ax",%progbits
+ 360              		.align	2
+ 361              		.global	PWM_LIDAR_Init
+ 362              		.thumb
+ 363              		.thumb_func
+ 364              		.type	PWM_LIDAR_Init, %function
+ 365              	PWM_LIDAR_Init:
+ 366              	.LFB1:
+  85:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if (PWM_LIDAR_UsingFixedFunction || PWM_LIDAR_UseControl)
+ 367              		.loc 1 85 0
+ 368              		.cfi_startproc
+ 369              		@ args = 0, pretend = 0, frame = 0
+ 370              		@ frame_needed = 0, uses_anonymous_args = 0
+ 371 0000 10B5     		push	{r4, lr}
+ 372              		.cfi_def_cfa_offset 8
+ 373              		.cfi_offset 4, -8
+ 374              		.cfi_offset 14, -4
+ 117:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                 ((uint8)(~PWM_LIDAR_CTRL_CMPMODE1_MASK));
+ 375              		.loc 1 117 0
+ 376 0002 134A     		ldr	r2, .L43
+ 377 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 378 0006 03F0C003 		and	r3, r3, #192
+ 379              	.LVL9:
+ 119:.\Generated_Source\PSoC5/PWM_LIDAR.c ****                                    PWM_LIDAR_DEFAULT_COMPARE1_MODE;
+ 380              		.loc 1 119 0
+ 381 000a 43F00903 		orr	r3, r3, #9
+ 382              	.LVL10:
+ 383 000e 1370     		strb	r3, [r2]
+ 126:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else /* (PWM_LIDAR_Resolution == 16)*/
+ 384              		.loc 1 126 0
+ 385 0010 104C     		ldr	r4, .L43+4
+ 386 0012 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 387 0014 43F00103 		orr	r3, r3, #1
+ 388 0018 2370     		strb	r3, [r4]
+ 133:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (!PWM_LIDAR_UsingFixedFunction) */
+ 389              		.loc 1 133 0
+ 390 001a 2820     		movs	r0, #40
+ 391 001c FFF7FEFF 		bl	PWM_LIDAR_WriteCounter
+ 392              	.LVL11:
+ 136:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 393              		.loc 1 136 0
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 22
+
+
+ 394 0020 2820     		movs	r0, #40
+ 395 0022 FFF7FEFF 		bl	PWM_LIDAR_WritePeriod
+ 396              	.LVL12:
+ 141:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             PWM_LIDAR_WriteCompare2(PWM_LIDAR_INIT_COMPARE_VALUE2);
+ 397              		.loc 1 141 0
+ 398 0026 2720     		movs	r0, #39
+ 399 0028 FFF7FEFF 		bl	PWM_LIDAR_WriteCompare1
+ 400              	.LVL13:
+ 142:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UseOneCompareMode) */
+ 401              		.loc 1 142 0
+ 402 002c 1420     		movs	r0, #20
+ 403 002e FFF7FEFF 		bl	PWM_LIDAR_WriteCompare2
+ 404              	.LVL14:
+ 154:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UseStatus || PWM_LIDAR_UsingFixedFunction) */
+ 405              		.loc 1 154 0
+ 406 0032 0020     		movs	r0, #0
+ 407 0034 FFF7FEFF 		bl	PWM_LIDAR_SetInterruptMode
+ 408              	.LVL15:
+ 167:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 409              		.loc 1 167 0
+ 410 0038 FFF7FEFF 		bl	CyEnterCriticalSection
+ 411              	.LVL16:
+ 169:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 412              		.loc 1 169 0
+ 413 003c 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 414 003e 43F01003 		orr	r3, r3, #16
+ 415 0042 2370     		strb	r3, [r4]
+ 172:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 416              		.loc 1 172 0
+ 417 0044 FFF7FEFF 		bl	CyExitCriticalSection
+ 418              	.LVL17:
+ 176:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UseStatus) */
+ 419              		.loc 1 176 0
+ 420 0048 FFF7FEFF 		bl	PWM_LIDAR_ClearFIFO
+ 421              	.LVL18:
+ 422 004c 10BD     		pop	{r4, pc}
+ 423              	.L44:
+ 424 004e 00BF     		.align	2
+ 425              	.L43:
+ 426 0050 77640040 		.word	1073767543
+ 427 0054 94650040 		.word	1073767828
+ 428              		.cfi_endproc
+ 429              	.LFE1:
+ 430              		.size	PWM_LIDAR_Init, .-PWM_LIDAR_Init
+ 431              		.section	.text.PWM_LIDAR_Start,"ax",%progbits
+ 432              		.align	2
+ 433              		.global	PWM_LIDAR_Start
+ 434              		.thumb
+ 435              		.thumb_func
+ 436              		.type	PWM_LIDAR_Start, %function
+ 437              	PWM_LIDAR_Start:
+ 438              	.LFB0:
+  56:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /* If not Initialized then initialize all required hardware and software */
+ 439              		.loc 1 56 0
+ 440              		.cfi_startproc
+ 441              		@ args = 0, pretend = 0, frame = 0
+ 442              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 23
+
+
+ 443 0000 08B5     		push	{r3, lr}
+ 444              		.cfi_def_cfa_offset 8
+ 445              		.cfi_offset 3, -8
+ 446              		.cfi_offset 14, -4
+  58:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 447              		.loc 1 58 0
+ 448 0002 054B     		ldr	r3, .L48
+ 449 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 450 0006 23B9     		cbnz	r3, .L46
+  60:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         PWM_LIDAR_initVar = 1u;
+ 451              		.loc 1 60 0
+ 452 0008 FFF7FEFF 		bl	PWM_LIDAR_Init
+ 453              	.LVL19:
+  61:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 454              		.loc 1 61 0
+ 455 000c 0122     		movs	r2, #1
+ 456 000e 024B     		ldr	r3, .L48
+ 457 0010 1A70     		strb	r2, [r3]
+ 458              	.L46:
+  63:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 459              		.loc 1 63 0
+ 460 0012 FFF7FEFF 		bl	PWM_LIDAR_Enable
+ 461              	.LVL20:
+ 462 0016 08BD     		pop	{r3, pc}
+ 463              	.L49:
+ 464              		.align	2
+ 465              	.L48:
+ 466 0018 00000000 		.word	.LANCHOR0
+ 467              		.cfi_endproc
+ 468              	.LFE0:
+ 469              		.size	PWM_LIDAR_Start, .-PWM_LIDAR_Start
+ 470              		.section	.text.PWM_LIDAR_ReadCompare1,"ax",%progbits
+ 471              		.align	2
+ 472              		.global	PWM_LIDAR_ReadCompare1
+ 473              		.thumb
+ 474              		.thumb_func
+ 475              		.type	PWM_LIDAR_ReadCompare1, %function
+ 476              	PWM_LIDAR_ReadCompare1:
+ 477              	.LFB15:
+ 794:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 795:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* (!PWM_LIDAR_UsingFixedFunction) */
+ 796:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 797:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 798:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #if (PWM_LIDAR_UseOneCompareMode)
+ 799:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 800:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 801:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 802:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadCompare
+ 803:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 804:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 805:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 806:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 809:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 810:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 811:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 24
+
+
+ 812:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 813:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8/uint16: Current compare value
+ 814:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 815:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 816:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadCompare(void) 
+ 817:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 818:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #if(PWM_LIDAR_UsingFixedFunction)
+ 819:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             return ((uint8)CY_GET_REG16(PWM_LIDAR_COMPARE1_LSB_PTR));
+ 820:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #else
+ 821:.\Generated_Source\PSoC5/PWM_LIDAR.c ****             return (CY_GET_REG8(PWM_LIDAR_COMPARE1_LSB_PTR));
+ 822:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 823:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 824:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 825:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #else
+ 826:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 827:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 828:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 829:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadCompare1
+ 830:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 831:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 832:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 833:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Reads the compare value for the compare1 output.
+ 834:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 835:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 836:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 837:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 838:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 839:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8/uint16: Current compare value.
+ 840:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 841:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 842:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadCompare1(void) 
+ 843:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 478              		.loc 1 843 0
+ 479              		.cfi_startproc
+ 480              		@ args = 0, pretend = 0, frame = 0
+ 481              		@ frame_needed = 0, uses_anonymous_args = 0
+ 482              		@ link register save eliminated.
+ 844:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (CY_GET_REG8(PWM_LIDAR_COMPARE1_LSB_PTR));
+ 483              		.loc 1 844 0
+ 484 0000 014B     		ldr	r3, .L51
+ 485 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 845:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 486              		.loc 1 845 0
+ 487 0004 7047     		bx	lr
+ 488              	.L52:
+ 489 0006 00BF     		.align	2
+ 490              	.L51:
+ 491 0008 24650040 		.word	1073767716
+ 492              		.cfi_endproc
+ 493              	.LFE15:
+ 494              		.size	PWM_LIDAR_ReadCompare1, .-PWM_LIDAR_ReadCompare1
+ 495              		.section	.text.PWM_LIDAR_ReadCompare2,"ax",%progbits
+ 496              		.align	2
+ 497              		.global	PWM_LIDAR_ReadCompare2
+ 498              		.thumb
+ 499              		.thumb_func
+ 500              		.type	PWM_LIDAR_ReadCompare2, %function
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 25
+
+
+ 501              	PWM_LIDAR_ReadCompare2:
+ 502              	.LFB16:
+ 846:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 847:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 848:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     /*******************************************************************************
+ 849:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Function Name: PWM_LIDAR_ReadCompare2
+ 850:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     ********************************************************************************
+ 851:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 852:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Summary:
+ 853:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  Reads the compare value for the compare2 output.
+ 854:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 855:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Parameters:
+ 856:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  None
+ 857:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 858:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     * Return:
+ 859:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *  uint8/uint16: Current compare value.
+ 860:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *
+ 861:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     *******************************************************************************/
+ 862:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     uint8 PWM_LIDAR_ReadCompare2(void) 
+ 863:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     {
+ 503              		.loc 1 863 0
+ 504              		.cfi_startproc
+ 505              		@ args = 0, pretend = 0, frame = 0
+ 506              		@ frame_needed = 0, uses_anonymous_args = 0
+ 507              		@ link register save eliminated.
+ 864:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (CY_GET_REG8(PWM_LIDAR_COMPARE2_LSB_PTR));
+ 508              		.loc 1 864 0
+ 509 0000 014B     		ldr	r3, .L54
+ 510 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 865:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     }
+ 511              		.loc 1 865 0
+ 512 0004 7047     		bx	lr
+ 513              	.L55:
+ 514 0006 00BF     		.align	2
+ 515              	.L54:
+ 516 0008 34650040 		.word	1073767732
+ 517              		.cfi_endproc
+ 518              	.LFE16:
+ 519              		.size	PWM_LIDAR_ReadCompare2, .-PWM_LIDAR_ReadCompare2
+ 520              		.section	.text.PWM_LIDAR_ReadPeriod,"ax",%progbits
+ 521              		.align	2
+ 522              		.global	PWM_LIDAR_ReadPeriod
+ 523              		.thumb
+ 524              		.thumb_func
+ 525              		.type	PWM_LIDAR_ReadPeriod, %function
+ 526              	PWM_LIDAR_ReadPeriod:
+ 527              	.LFB17:
+ 866:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 867:.\Generated_Source\PSoC5/PWM_LIDAR.c **** #endif /* (PWM_LIDAR_UseOneCompareMode) */
+ 868:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 869:.\Generated_Source\PSoC5/PWM_LIDAR.c **** 
+ 870:.\Generated_Source\PSoC5/PWM_LIDAR.c **** /*******************************************************************************
+ 871:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Function Name: PWM_LIDAR_ReadPeriod
+ 872:.\Generated_Source\PSoC5/PWM_LIDAR.c **** ********************************************************************************
+ 873:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 874:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Summary:
+ 875:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  Reads the period value used by the PWM hardware.
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 26
+
+
+ 876:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 877:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Parameters:
+ 878:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  None
+ 879:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 880:.\Generated_Source\PSoC5/PWM_LIDAR.c **** * Return:
+ 881:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *  uint8/16: Period value
+ 882:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *
+ 883:.\Generated_Source\PSoC5/PWM_LIDAR.c **** *******************************************************************************/
+ 884:.\Generated_Source\PSoC5/PWM_LIDAR.c **** uint8 PWM_LIDAR_ReadPeriod(void) 
+ 885:.\Generated_Source\PSoC5/PWM_LIDAR.c **** {
+ 528              		.loc 1 885 0
+ 529              		.cfi_startproc
+ 530              		@ args = 0, pretend = 0, frame = 0
+ 531              		@ frame_needed = 0, uses_anonymous_args = 0
+ 532              		@ link register save eliminated.
+ 886:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #if(PWM_LIDAR_UsingFixedFunction)
+ 887:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return ((uint8)CY_GET_REG16(PWM_LIDAR_PERIOD_LSB_PTR));
+ 888:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #else
+ 889:.\Generated_Source\PSoC5/PWM_LIDAR.c ****         return (CY_GET_REG8(PWM_LIDAR_PERIOD_LSB_PTR));
+ 533              		.loc 1 889 0
+ 534 0000 014B     		ldr	r3, .L57
+ 535 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 890:.\Generated_Source\PSoC5/PWM_LIDAR.c ****     #endif /* (PWM_LIDAR_UsingFixedFunction) */
+ 891:.\Generated_Source\PSoC5/PWM_LIDAR.c **** }
+ 536              		.loc 1 891 0
+ 537 0004 7047     		bx	lr
+ 538              	.L58:
+ 539 0006 00BF     		.align	2
+ 540              	.L57:
+ 541 0008 44650040 		.word	1073767748
+ 542              		.cfi_endproc
+ 543              	.LFE17:
+ 544              		.size	PWM_LIDAR_ReadPeriod, .-PWM_LIDAR_ReadPeriod
+ 545              		.global	PWM_LIDAR_initVar
+ 546              		.bss
+ 547              		.set	.LANCHOR0,. + 0
+ 548              		.type	PWM_LIDAR_initVar, %object
+ 549              		.size	PWM_LIDAR_initVar, 1
+ 550              	PWM_LIDAR_initVar:
+ 551 0000 00       		.space	1
+ 552              		.text
+ 553              	.Letext0:
+ 554              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 555              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 556              		.section	.debug_info,"",%progbits
+ 557              	.Ldebug_info0:
+ 558 0000 78030000 		.4byte	0x378
+ 559 0004 0400     		.2byte	0x4
+ 560 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 561 000a 04       		.byte	0x4
+ 562 000b 01       		.uleb128 0x1
+ 563 000c 6A020000 		.4byte	.LASF40
+ 564 0010 01       		.byte	0x1
+ 565 0011 21010000 		.4byte	.LASF41
+ 566 0015 7B000000 		.4byte	.LASF42
+ 567 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 568 001d 00000000 		.4byte	0
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 27
+
+
+ 569 0021 00000000 		.4byte	.Ldebug_line0
+ 570 0025 02       		.uleb128 0x2
+ 571 0026 01       		.byte	0x1
+ 572 0027 06       		.byte	0x6
+ 573 0028 5C030000 		.4byte	.LASF0
+ 574 002c 02       		.uleb128 0x2
+ 575 002d 01       		.byte	0x1
+ 576 002e 08       		.byte	0x8
+ 577 002f 04010000 		.4byte	.LASF1
+ 578 0033 02       		.uleb128 0x2
+ 579 0034 02       		.byte	0x2
+ 580 0035 05       		.byte	0x5
+ 581 0036 28030000 		.4byte	.LASF2
+ 582 003a 02       		.uleb128 0x2
+ 583 003b 02       		.byte	0x2
+ 584 003c 07       		.byte	0x7
+ 585 003d A7000000 		.4byte	.LASF3
+ 586 0041 02       		.uleb128 0x2
+ 587 0042 04       		.byte	0x4
+ 588 0043 05       		.byte	0x5
+ 589 0044 4E030000 		.4byte	.LASF4
+ 590 0048 02       		.uleb128 0x2
+ 591 0049 04       		.byte	0x4
+ 592 004a 07       		.byte	0x7
+ 593 004b 46010000 		.4byte	.LASF5
+ 594 004f 02       		.uleb128 0x2
+ 595 0050 08       		.byte	0x8
+ 596 0051 05       		.byte	0x5
+ 597 0052 F8020000 		.4byte	.LASF6
+ 598 0056 02       		.uleb128 0x2
+ 599 0057 08       		.byte	0x8
+ 600 0058 07       		.byte	0x7
+ 601 0059 ED000000 		.4byte	.LASF7
+ 602 005d 03       		.uleb128 0x3
+ 603 005e 04       		.byte	0x4
+ 604 005f 05       		.byte	0x5
+ 605 0060 696E7400 		.ascii	"int\000"
+ 606 0064 02       		.uleb128 0x2
+ 607 0065 04       		.byte	0x4
+ 608 0066 07       		.byte	0x7
+ 609 0067 DA010000 		.4byte	.LASF8
+ 610 006b 04       		.uleb128 0x4
+ 611 006c 58010000 		.4byte	.LASF12
+ 612 0070 02       		.byte	0x2
+ 613 0071 C2       		.byte	0xc2
+ 614 0072 2C000000 		.4byte	0x2c
+ 615 0076 02       		.uleb128 0x2
+ 616 0077 04       		.byte	0x4
+ 617 0078 04       		.byte	0x4
+ 618 0079 DF000000 		.4byte	.LASF9
+ 619 007d 02       		.uleb128 0x2
+ 620 007e 08       		.byte	0x8
+ 621 007f 04       		.byte	0x4
+ 622 0080 66010000 		.4byte	.LASF10
+ 623 0084 02       		.uleb128 0x2
+ 624 0085 01       		.byte	0x1
+ 625 0086 08       		.byte	0x8
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 28
+
+
+ 626 0087 57030000 		.4byte	.LASF11
+ 627 008b 05       		.uleb128 0x5
+ 628 008c 5C020000 		.4byte	.LASF13
+ 629 0090 02       		.byte	0x2
+ 630 0091 6C01     		.2byte	0x16c
+ 631 0093 97000000 		.4byte	0x97
+ 632 0097 06       		.uleb128 0x6
+ 633 0098 6B000000 		.4byte	0x6b
+ 634 009c 02       		.uleb128 0x2
+ 635 009d 04       		.byte	0x4
+ 636 009e 07       		.byte	0x7
+ 637 009f 61020000 		.4byte	.LASF14
+ 638 00a3 07       		.uleb128 0x7
+ 639 00a4 3C020000 		.4byte	.LASF15
+ 640 00a8 01       		.byte	0x1
+ 641 00a9 C7       		.byte	0xc7
+ 642 00aa 00000000 		.4byte	.LFB2
+ 643 00ae 10000000 		.4byte	.LFE2-.LFB2
+ 644 00b2 01       		.uleb128 0x1
+ 645 00b3 9C       		.byte	0x9c
+ 646 00b4 07       		.uleb128 0x7
+ 647 00b5 4D020000 		.4byte	.LASF16
+ 648 00b9 01       		.byte	0x1
+ 649 00ba E9       		.byte	0xe9
+ 650 00bb 00000000 		.4byte	.LFB3
+ 651 00bf 10000000 		.4byte	.LFE3-.LFB3
+ 652 00c3 01       		.uleb128 0x1
+ 653 00c4 9C       		.byte	0x9c
+ 654 00c5 08       		.uleb128 0x8
+ 655 00c6 0F020000 		.4byte	.LASF17
+ 656 00ca 01       		.byte	0x1
+ 657 00cb 9301     		.2byte	0x193
+ 658 00cd 00000000 		.4byte	.LFB4
+ 659 00d1 0C000000 		.4byte	.LFE4-.LFB4
+ 660 00d5 01       		.uleb128 0x1
+ 661 00d6 9C       		.byte	0x9c
+ 662 00d7 EA000000 		.4byte	0xea
+ 663 00db 09       		.uleb128 0x9
+ 664 00dc E5000000 		.4byte	.LASF19
+ 665 00e0 01       		.byte	0x1
+ 666 00e1 9301     		.2byte	0x193
+ 667 00e3 6B000000 		.4byte	0x6b
+ 668 00e7 01       		.uleb128 0x1
+ 669 00e8 50       		.byte	0x50
+ 670 00e9 00       		.byte	0
+ 671 00ea 0A       		.uleb128 0xa
+ 672 00eb 68030000 		.4byte	.LASF26
+ 673 00ef 01       		.byte	0x1
+ 674 00f0 A901     		.2byte	0x1a9
+ 675 00f2 6B000000 		.4byte	0x6b
+ 676 00f6 00000000 		.4byte	.LFB5
+ 677 00fa 14000000 		.4byte	.LFE5-.LFB5
+ 678 00fe 01       		.uleb128 0x1
+ 679 00ff 9C       		.byte	0x9c
+ 680 0100 08       		.uleb128 0x8
+ 681 0101 5E000000 		.4byte	.LASF18
+ 682 0105 01       		.byte	0x1
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 29
+
+
+ 683 0106 E201     		.2byte	0x1e2
+ 684 0108 00000000 		.4byte	.LFB7
+ 685 010c 0C000000 		.4byte	.LFE7-.LFB7
+ 686 0110 01       		.uleb128 0x1
+ 687 0111 9C       		.byte	0x9c
+ 688 0112 25010000 		.4byte	0x125
+ 689 0116 09       		.uleb128 0x9
+ 690 0117 74000000 		.4byte	.LASF20
+ 691 011b 01       		.byte	0x1
+ 692 011c E201     		.2byte	0x1e2
+ 693 011e 6B000000 		.4byte	0x6b
+ 694 0122 01       		.uleb128 0x1
+ 695 0123 50       		.byte	0x50
+ 696 0124 00       		.byte	0
+ 697 0125 08       		.uleb128 0x8
+ 698 0126 6D010000 		.4byte	.LASF21
+ 699 012a 01       		.byte	0x1
+ 700 012b 2B02     		.2byte	0x22b
+ 701 012d 00000000 		.4byte	.LFB8
+ 702 0131 0C000000 		.4byte	.LFE8-.LFB8
+ 703 0135 01       		.uleb128 0x1
+ 704 0136 9C       		.byte	0x9c
+ 705 0137 4A010000 		.4byte	0x14a
+ 706 013b 09       		.uleb128 0x9
+ 707 013c D7000000 		.4byte	.LASF22
+ 708 0140 01       		.byte	0x1
+ 709 0141 2B02     		.2byte	0x22b
+ 710 0143 6B000000 		.4byte	0x6b
+ 711 0147 01       		.uleb128 0x1
+ 712 0148 50       		.byte	0x50
+ 713 0149 00       		.byte	0
+ 714 014a 08       		.uleb128 0x8
+ 715 014b 85010000 		.4byte	.LASF23
+ 716 014f 01       		.byte	0x1
+ 717 0150 4802     		.2byte	0x248
+ 718 0152 00000000 		.4byte	.LFB9
+ 719 0156 0C000000 		.4byte	.LFE9-.LFB9
+ 720 015a 01       		.uleb128 0x1
+ 721 015b 9C       		.byte	0x9c
+ 722 015c 6F010000 		.4byte	0x16f
+ 723 0160 09       		.uleb128 0x9
+ 724 0161 D7000000 		.4byte	.LASF22
+ 725 0165 01       		.byte	0x1
+ 726 0166 4802     		.2byte	0x248
+ 727 0168 6B000000 		.4byte	0x6b
+ 728 016c 01       		.uleb128 0x1
+ 729 016d 50       		.byte	0x50
+ 730 016e 00       		.byte	0
+ 731 016f 08       		.uleb128 0x8
+ 732 0170 93030000 		.4byte	.LASF24
+ 733 0174 01       		.byte	0x1
+ 734 0175 AC02     		.2byte	0x2ac
+ 735 0177 00000000 		.4byte	.LFB10
+ 736 017b 0C000000 		.4byte	.LFE10-.LFB10
+ 737 017f 01       		.uleb128 0x1
+ 738 0180 9C       		.byte	0x9c
+ 739 0181 94010000 		.4byte	0x194
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 30
+
+
+ 740 0185 09       		.uleb128 0x9
+ 741 0186 1A030000 		.4byte	.LASF25
+ 742 018a 01       		.byte	0x1
+ 743 018b AC02     		.2byte	0x2ac
+ 744 018d 6B000000 		.4byte	0x6b
+ 745 0191 01       		.uleb128 0x1
+ 746 0192 50       		.byte	0x50
+ 747 0193 00       		.byte	0
+ 748 0194 0A       		.uleb128 0xa
+ 749 0195 BA000000 		.4byte	.LASF27
+ 750 0199 01       		.byte	0x1
+ 751 019a C702     		.2byte	0x2c7
+ 752 019c 6B000000 		.4byte	0x6b
+ 753 01a0 00000000 		.4byte	.LFB11
+ 754 01a4 0C000000 		.4byte	.LFE11-.LFB11
+ 755 01a8 01       		.uleb128 0x1
+ 756 01a9 9C       		.byte	0x9c
+ 757 01aa 0B       		.uleb128 0xb
+ 758 01ab 40000000 		.4byte	.LASF43
+ 759 01af 01       		.byte	0x1
+ 760 01b0 E102     		.2byte	0x2e1
+ 761 01b2 6B000000 		.4byte	0x6b
+ 762 01b6 00000000 		.4byte	.LFB12
+ 763 01ba 0C000000 		.4byte	.LFE12-.LFB12
+ 764 01be 01       		.uleb128 0x1
+ 765 01bf 9C       		.byte	0x9c
+ 766 01c0 D3010000 		.4byte	0x1d3
+ 767 01c4 0C       		.uleb128 0xc
+ 768 01c5 9D010000 		.4byte	.LASF33
+ 769 01c9 01       		.byte	0x1
+ 770 01ca E302     		.2byte	0x2e3
+ 771 01cc 6B000000 		.4byte	0x6b
+ 772 01d0 01       		.uleb128 0x1
+ 773 01d1 50       		.byte	0x50
+ 774 01d2 00       		.byte	0
+ 775 01d3 08       		.uleb128 0x8
+ 776 01d4 A4010000 		.4byte	.LASF28
+ 777 01d8 01       		.byte	0x1
+ 778 01d9 FD02     		.2byte	0x2fd
+ 779 01db 00000000 		.4byte	.LFB13
+ 780 01df 0C000000 		.4byte	.LFE13-.LFB13
+ 781 01e3 01       		.uleb128 0x1
+ 782 01e4 9C       		.byte	0x9c
+ 783 01e5 F8010000 		.4byte	0x1f8
+ 784 01e9 09       		.uleb128 0x9
+ 785 01ea 5E010000 		.4byte	.LASF29
+ 786 01ee 01       		.byte	0x1
+ 787 01ef FD02     		.2byte	0x2fd
+ 788 01f1 6B000000 		.4byte	0x6b
+ 789 01f5 01       		.uleb128 0x1
+ 790 01f6 50       		.byte	0x50
+ 791 01f7 00       		.byte	0
+ 792 01f8 0A       		.uleb128 0xa
+ 793 01f9 26020000 		.4byte	.LASF30
+ 794 01fd 01       		.byte	0x1
+ 795 01fe 1603     		.2byte	0x316
+ 796 0200 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 31
+
+
+ 797 0204 00000000 		.4byte	.LFB14
+ 798 0208 0C000000 		.4byte	.LFE14-.LFB14
+ 799 020c 01       		.uleb128 0x1
+ 800 020d 9C       		.byte	0x9c
+ 801 020e 08       		.uleb128 0x8
+ 802 020f 06030000 		.4byte	.LASF31
+ 803 0213 01       		.byte	0x1
+ 804 0214 C501     		.2byte	0x1c5
+ 805 0216 00000000 		.4byte	.LFB6
+ 806 021a 14000000 		.4byte	.LFE6-.LFB6
+ 807 021e 01       		.uleb128 0x1
+ 808 021f 9C       		.byte	0x9c
+ 809 0220 37020000 		.4byte	0x237
+ 810 0224 0D       		.uleb128 0xd
+ 811 0225 08000000 		.4byte	.LVL7
+ 812 0229 F8010000 		.4byte	0x1f8
+ 813 022d 0D       		.uleb128 0xd
+ 814 022e 0C000000 		.4byte	.LVL8
+ 815 0232 94010000 		.4byte	0x194
+ 816 0236 00       		.byte	0
+ 817 0237 0E       		.uleb128 0xe
+ 818 0238 12010000 		.4byte	.LASF32
+ 819 023c 01       		.byte	0x1
+ 820 023d 54       		.byte	0x54
+ 821 023e 00000000 		.4byte	.LFB1
+ 822 0242 58000000 		.4byte	.LFE1-.LFB1
+ 823 0246 01       		.uleb128 0x1
+ 824 0247 9C       		.byte	0x9c
+ 825 0248 E8020000 		.4byte	0x2e8
+ 826 024c 0F       		.uleb128 0xf
+ 827 024d 49030000 		.4byte	.LASF34
+ 828 0251 01       		.byte	0x1
+ 829 0252 57       		.byte	0x57
+ 830 0253 6B000000 		.4byte	0x6b
+ 831 0257 00000000 		.4byte	.LLST0
+ 832 025b 0F       		.uleb128 0xf
+ 833 025c 27000000 		.4byte	.LASF35
+ 834 0260 01       		.byte	0x1
+ 835 0261 5D       		.byte	0x5d
+ 836 0262 6B000000 		.4byte	0x6b
+ 837 0266 13000000 		.4byte	.LLST1
+ 838 026a 10       		.uleb128 0x10
+ 839 026b 20000000 		.4byte	.LVL11
+ 840 026f C5000000 		.4byte	0xc5
+ 841 0273 7E020000 		.4byte	0x27e
+ 842 0277 11       		.uleb128 0x11
+ 843 0278 01       		.uleb128 0x1
+ 844 0279 50       		.byte	0x50
+ 845 027a 02       		.uleb128 0x2
+ 846 027b 08       		.byte	0x8
+ 847 027c 28       		.byte	0x28
+ 848 027d 00       		.byte	0
+ 849 027e 10       		.uleb128 0x10
+ 850 027f 26000000 		.4byte	.LVL12
+ 851 0283 00010000 		.4byte	0x100
+ 852 0287 92020000 		.4byte	0x292
+ 853 028b 11       		.uleb128 0x11
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 32
+
+
+ 854 028c 01       		.uleb128 0x1
+ 855 028d 50       		.byte	0x50
+ 856 028e 02       		.uleb128 0x2
+ 857 028f 08       		.byte	0x8
+ 858 0290 28       		.byte	0x28
+ 859 0291 00       		.byte	0
+ 860 0292 10       		.uleb128 0x10
+ 861 0293 2C000000 		.4byte	.LVL13
+ 862 0297 25010000 		.4byte	0x125
+ 863 029b A6020000 		.4byte	0x2a6
+ 864 029f 11       		.uleb128 0x11
+ 865 02a0 01       		.uleb128 0x1
+ 866 02a1 50       		.byte	0x50
+ 867 02a2 02       		.uleb128 0x2
+ 868 02a3 08       		.byte	0x8
+ 869 02a4 27       		.byte	0x27
+ 870 02a5 00       		.byte	0
+ 871 02a6 10       		.uleb128 0x10
+ 872 02a7 32000000 		.4byte	.LVL14
+ 873 02ab 4A010000 		.4byte	0x14a
+ 874 02af B9020000 		.4byte	0x2b9
+ 875 02b3 11       		.uleb128 0x11
+ 876 02b4 01       		.uleb128 0x1
+ 877 02b5 50       		.byte	0x50
+ 878 02b6 01       		.uleb128 0x1
+ 879 02b7 44       		.byte	0x44
+ 880 02b8 00       		.byte	0
+ 881 02b9 10       		.uleb128 0x10
+ 882 02ba 38000000 		.4byte	.LVL15
+ 883 02be 6F010000 		.4byte	0x16f
+ 884 02c2 CC020000 		.4byte	0x2cc
+ 885 02c6 11       		.uleb128 0x11
+ 886 02c7 01       		.uleb128 0x1
+ 887 02c8 50       		.byte	0x50
+ 888 02c9 01       		.uleb128 0x1
+ 889 02ca 30       		.byte	0x30
+ 890 02cb 00       		.byte	0
+ 891 02cc 0D       		.uleb128 0xd
+ 892 02cd 3C000000 		.4byte	.LVL16
+ 893 02d1 63030000 		.4byte	0x363
+ 894 02d5 0D       		.uleb128 0xd
+ 895 02d6 48000000 		.4byte	.LVL17
+ 896 02da 6E030000 		.4byte	0x36e
+ 897 02de 0D       		.uleb128 0xd
+ 898 02df 4C000000 		.4byte	.LVL18
+ 899 02e3 0E020000 		.4byte	0x20e
+ 900 02e7 00       		.byte	0
+ 901 02e8 0E       		.uleb128 0xe
+ 902 02e9 17000000 		.4byte	.LASF36
+ 903 02ed 01       		.byte	0x1
+ 904 02ee 37       		.byte	0x37
+ 905 02ef 00000000 		.4byte	.LFB0
+ 906 02f3 1C000000 		.4byte	.LFE0-.LFB0
+ 907 02f7 01       		.uleb128 0x1
+ 908 02f8 9C       		.byte	0x9c
+ 909 02f9 10030000 		.4byte	0x310
+ 910 02fd 0D       		.uleb128 0xd
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 33
+
+
+ 911 02fe 0C000000 		.4byte	.LVL19
+ 912 0302 37020000 		.4byte	0x237
+ 913 0306 0D       		.uleb128 0xd
+ 914 0307 16000000 		.4byte	.LVL20
+ 915 030b A3000000 		.4byte	0xa3
+ 916 030f 00       		.byte	0
+ 917 0310 0A       		.uleb128 0xa
+ 918 0311 00000000 		.4byte	.LASF37
+ 919 0315 01       		.byte	0x1
+ 920 0316 4A03     		.2byte	0x34a
+ 921 0318 6B000000 		.4byte	0x6b
+ 922 031c 00000000 		.4byte	.LFB15
+ 923 0320 0C000000 		.4byte	.LFE15-.LFB15
+ 924 0324 01       		.uleb128 0x1
+ 925 0325 9C       		.byte	0x9c
+ 926 0326 0A       		.uleb128 0xa
+ 927 0327 32030000 		.4byte	.LASF38
+ 928 032b 01       		.byte	0x1
+ 929 032c 5E03     		.2byte	0x35e
+ 930 032e 6B000000 		.4byte	0x6b
+ 931 0332 00000000 		.4byte	.LFB16
+ 932 0336 0C000000 		.4byte	.LFE16-.LFB16
+ 933 033a 01       		.uleb128 0x1
+ 934 033b 9C       		.byte	0x9c
+ 935 033c 0A       		.uleb128 0xa
+ 936 033d 7E030000 		.4byte	.LASF39
+ 937 0341 01       		.byte	0x1
+ 938 0342 7403     		.2byte	0x374
+ 939 0344 6B000000 		.4byte	0x6b
+ 940 0348 00000000 		.4byte	.LFB17
+ 941 034c 0C000000 		.4byte	.LFE17-.LFB17
+ 942 0350 01       		.uleb128 0x1
+ 943 0351 9C       		.byte	0x9c
+ 944 0352 12       		.uleb128 0x12
+ 945 0353 E7010000 		.4byte	.LASF44
+ 946 0357 01       		.byte	0x1
+ 947 0358 20       		.byte	0x20
+ 948 0359 6B000000 		.4byte	0x6b
+ 949 035d 05       		.uleb128 0x5
+ 950 035e 03       		.byte	0x3
+ 951 035f 00000000 		.4byte	PWM_LIDAR_initVar
+ 952 0363 13       		.uleb128 0x13
+ 953 0364 C3010000 		.4byte	.LASF45
+ 954 0368 03       		.byte	0x3
+ 955 0369 7E       		.byte	0x7e
+ 956 036a 6B000000 		.4byte	0x6b
+ 957 036e 14       		.uleb128 0x14
+ 958 036f F9010000 		.4byte	.LASF46
+ 959 0373 03       		.byte	0x3
+ 960 0374 7F       		.byte	0x7f
+ 961 0375 15       		.uleb128 0x15
+ 962 0376 6B000000 		.4byte	0x6b
+ 963 037a 00       		.byte	0
+ 964 037b 00       		.byte	0
+ 965              		.section	.debug_abbrev,"",%progbits
+ 966              	.Ldebug_abbrev0:
+ 967 0000 01       		.uleb128 0x1
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 34
+
+
+ 968 0001 11       		.uleb128 0x11
+ 969 0002 01       		.byte	0x1
+ 970 0003 25       		.uleb128 0x25
+ 971 0004 0E       		.uleb128 0xe
+ 972 0005 13       		.uleb128 0x13
+ 973 0006 0B       		.uleb128 0xb
+ 974 0007 03       		.uleb128 0x3
+ 975 0008 0E       		.uleb128 0xe
+ 976 0009 1B       		.uleb128 0x1b
+ 977 000a 0E       		.uleb128 0xe
+ 978 000b 55       		.uleb128 0x55
+ 979 000c 17       		.uleb128 0x17
+ 980 000d 11       		.uleb128 0x11
+ 981 000e 01       		.uleb128 0x1
+ 982 000f 10       		.uleb128 0x10
+ 983 0010 17       		.uleb128 0x17
+ 984 0011 00       		.byte	0
+ 985 0012 00       		.byte	0
+ 986 0013 02       		.uleb128 0x2
+ 987 0014 24       		.uleb128 0x24
+ 988 0015 00       		.byte	0
+ 989 0016 0B       		.uleb128 0xb
+ 990 0017 0B       		.uleb128 0xb
+ 991 0018 3E       		.uleb128 0x3e
+ 992 0019 0B       		.uleb128 0xb
+ 993 001a 03       		.uleb128 0x3
+ 994 001b 0E       		.uleb128 0xe
+ 995 001c 00       		.byte	0
+ 996 001d 00       		.byte	0
+ 997 001e 03       		.uleb128 0x3
+ 998 001f 24       		.uleb128 0x24
+ 999 0020 00       		.byte	0
+ 1000 0021 0B       		.uleb128 0xb
+ 1001 0022 0B       		.uleb128 0xb
+ 1002 0023 3E       		.uleb128 0x3e
+ 1003 0024 0B       		.uleb128 0xb
+ 1004 0025 03       		.uleb128 0x3
+ 1005 0026 08       		.uleb128 0x8
+ 1006 0027 00       		.byte	0
+ 1007 0028 00       		.byte	0
+ 1008 0029 04       		.uleb128 0x4
+ 1009 002a 16       		.uleb128 0x16
+ 1010 002b 00       		.byte	0
+ 1011 002c 03       		.uleb128 0x3
+ 1012 002d 0E       		.uleb128 0xe
+ 1013 002e 3A       		.uleb128 0x3a
+ 1014 002f 0B       		.uleb128 0xb
+ 1015 0030 3B       		.uleb128 0x3b
+ 1016 0031 0B       		.uleb128 0xb
+ 1017 0032 49       		.uleb128 0x49
+ 1018 0033 13       		.uleb128 0x13
+ 1019 0034 00       		.byte	0
+ 1020 0035 00       		.byte	0
+ 1021 0036 05       		.uleb128 0x5
+ 1022 0037 16       		.uleb128 0x16
+ 1023 0038 00       		.byte	0
+ 1024 0039 03       		.uleb128 0x3
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 35
+
+
+ 1025 003a 0E       		.uleb128 0xe
+ 1026 003b 3A       		.uleb128 0x3a
+ 1027 003c 0B       		.uleb128 0xb
+ 1028 003d 3B       		.uleb128 0x3b
+ 1029 003e 05       		.uleb128 0x5
+ 1030 003f 49       		.uleb128 0x49
+ 1031 0040 13       		.uleb128 0x13
+ 1032 0041 00       		.byte	0
+ 1033 0042 00       		.byte	0
+ 1034 0043 06       		.uleb128 0x6
+ 1035 0044 35       		.uleb128 0x35
+ 1036 0045 00       		.byte	0
+ 1037 0046 49       		.uleb128 0x49
+ 1038 0047 13       		.uleb128 0x13
+ 1039 0048 00       		.byte	0
+ 1040 0049 00       		.byte	0
+ 1041 004a 07       		.uleb128 0x7
+ 1042 004b 2E       		.uleb128 0x2e
+ 1043 004c 00       		.byte	0
+ 1044 004d 3F       		.uleb128 0x3f
+ 1045 004e 19       		.uleb128 0x19
+ 1046 004f 03       		.uleb128 0x3
+ 1047 0050 0E       		.uleb128 0xe
+ 1048 0051 3A       		.uleb128 0x3a
+ 1049 0052 0B       		.uleb128 0xb
+ 1050 0053 3B       		.uleb128 0x3b
+ 1051 0054 0B       		.uleb128 0xb
+ 1052 0055 27       		.uleb128 0x27
+ 1053 0056 19       		.uleb128 0x19
+ 1054 0057 11       		.uleb128 0x11
+ 1055 0058 01       		.uleb128 0x1
+ 1056 0059 12       		.uleb128 0x12
+ 1057 005a 06       		.uleb128 0x6
+ 1058 005b 40       		.uleb128 0x40
+ 1059 005c 18       		.uleb128 0x18
+ 1060 005d 9742     		.uleb128 0x2117
+ 1061 005f 19       		.uleb128 0x19
+ 1062 0060 00       		.byte	0
+ 1063 0061 00       		.byte	0
+ 1064 0062 08       		.uleb128 0x8
+ 1065 0063 2E       		.uleb128 0x2e
+ 1066 0064 01       		.byte	0x1
+ 1067 0065 3F       		.uleb128 0x3f
+ 1068 0066 19       		.uleb128 0x19
+ 1069 0067 03       		.uleb128 0x3
+ 1070 0068 0E       		.uleb128 0xe
+ 1071 0069 3A       		.uleb128 0x3a
+ 1072 006a 0B       		.uleb128 0xb
+ 1073 006b 3B       		.uleb128 0x3b
+ 1074 006c 05       		.uleb128 0x5
+ 1075 006d 27       		.uleb128 0x27
+ 1076 006e 19       		.uleb128 0x19
+ 1077 006f 11       		.uleb128 0x11
+ 1078 0070 01       		.uleb128 0x1
+ 1079 0071 12       		.uleb128 0x12
+ 1080 0072 06       		.uleb128 0x6
+ 1081 0073 40       		.uleb128 0x40
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 36
+
+
+ 1082 0074 18       		.uleb128 0x18
+ 1083 0075 9742     		.uleb128 0x2117
+ 1084 0077 19       		.uleb128 0x19
+ 1085 0078 01       		.uleb128 0x1
+ 1086 0079 13       		.uleb128 0x13
+ 1087 007a 00       		.byte	0
+ 1088 007b 00       		.byte	0
+ 1089 007c 09       		.uleb128 0x9
+ 1090 007d 05       		.uleb128 0x5
+ 1091 007e 00       		.byte	0
+ 1092 007f 03       		.uleb128 0x3
+ 1093 0080 0E       		.uleb128 0xe
+ 1094 0081 3A       		.uleb128 0x3a
+ 1095 0082 0B       		.uleb128 0xb
+ 1096 0083 3B       		.uleb128 0x3b
+ 1097 0084 05       		.uleb128 0x5
+ 1098 0085 49       		.uleb128 0x49
+ 1099 0086 13       		.uleb128 0x13
+ 1100 0087 02       		.uleb128 0x2
+ 1101 0088 18       		.uleb128 0x18
+ 1102 0089 00       		.byte	0
+ 1103 008a 00       		.byte	0
+ 1104 008b 0A       		.uleb128 0xa
+ 1105 008c 2E       		.uleb128 0x2e
+ 1106 008d 00       		.byte	0
+ 1107 008e 3F       		.uleb128 0x3f
+ 1108 008f 19       		.uleb128 0x19
+ 1109 0090 03       		.uleb128 0x3
+ 1110 0091 0E       		.uleb128 0xe
+ 1111 0092 3A       		.uleb128 0x3a
+ 1112 0093 0B       		.uleb128 0xb
+ 1113 0094 3B       		.uleb128 0x3b
+ 1114 0095 05       		.uleb128 0x5
+ 1115 0096 27       		.uleb128 0x27
+ 1116 0097 19       		.uleb128 0x19
+ 1117 0098 49       		.uleb128 0x49
+ 1118 0099 13       		.uleb128 0x13
+ 1119 009a 11       		.uleb128 0x11
+ 1120 009b 01       		.uleb128 0x1
+ 1121 009c 12       		.uleb128 0x12
+ 1122 009d 06       		.uleb128 0x6
+ 1123 009e 40       		.uleb128 0x40
+ 1124 009f 18       		.uleb128 0x18
+ 1125 00a0 9742     		.uleb128 0x2117
+ 1126 00a2 19       		.uleb128 0x19
+ 1127 00a3 00       		.byte	0
+ 1128 00a4 00       		.byte	0
+ 1129 00a5 0B       		.uleb128 0xb
+ 1130 00a6 2E       		.uleb128 0x2e
+ 1131 00a7 01       		.byte	0x1
+ 1132 00a8 3F       		.uleb128 0x3f
+ 1133 00a9 19       		.uleb128 0x19
+ 1134 00aa 03       		.uleb128 0x3
+ 1135 00ab 0E       		.uleb128 0xe
+ 1136 00ac 3A       		.uleb128 0x3a
+ 1137 00ad 0B       		.uleb128 0xb
+ 1138 00ae 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 37
+
+
+ 1139 00af 05       		.uleb128 0x5
+ 1140 00b0 27       		.uleb128 0x27
+ 1141 00b1 19       		.uleb128 0x19
+ 1142 00b2 49       		.uleb128 0x49
+ 1143 00b3 13       		.uleb128 0x13
+ 1144 00b4 11       		.uleb128 0x11
+ 1145 00b5 01       		.uleb128 0x1
+ 1146 00b6 12       		.uleb128 0x12
+ 1147 00b7 06       		.uleb128 0x6
+ 1148 00b8 40       		.uleb128 0x40
+ 1149 00b9 18       		.uleb128 0x18
+ 1150 00ba 9742     		.uleb128 0x2117
+ 1151 00bc 19       		.uleb128 0x19
+ 1152 00bd 01       		.uleb128 0x1
+ 1153 00be 13       		.uleb128 0x13
+ 1154 00bf 00       		.byte	0
+ 1155 00c0 00       		.byte	0
+ 1156 00c1 0C       		.uleb128 0xc
+ 1157 00c2 34       		.uleb128 0x34
+ 1158 00c3 00       		.byte	0
+ 1159 00c4 03       		.uleb128 0x3
+ 1160 00c5 0E       		.uleb128 0xe
+ 1161 00c6 3A       		.uleb128 0x3a
+ 1162 00c7 0B       		.uleb128 0xb
+ 1163 00c8 3B       		.uleb128 0x3b
+ 1164 00c9 05       		.uleb128 0x5
+ 1165 00ca 49       		.uleb128 0x49
+ 1166 00cb 13       		.uleb128 0x13
+ 1167 00cc 02       		.uleb128 0x2
+ 1168 00cd 18       		.uleb128 0x18
+ 1169 00ce 00       		.byte	0
+ 1170 00cf 00       		.byte	0
+ 1171 00d0 0D       		.uleb128 0xd
+ 1172 00d1 898201   		.uleb128 0x4109
+ 1173 00d4 00       		.byte	0
+ 1174 00d5 11       		.uleb128 0x11
+ 1175 00d6 01       		.uleb128 0x1
+ 1176 00d7 31       		.uleb128 0x31
+ 1177 00d8 13       		.uleb128 0x13
+ 1178 00d9 00       		.byte	0
+ 1179 00da 00       		.byte	0
+ 1180 00db 0E       		.uleb128 0xe
+ 1181 00dc 2E       		.uleb128 0x2e
+ 1182 00dd 01       		.byte	0x1
+ 1183 00de 3F       		.uleb128 0x3f
+ 1184 00df 19       		.uleb128 0x19
+ 1185 00e0 03       		.uleb128 0x3
+ 1186 00e1 0E       		.uleb128 0xe
+ 1187 00e2 3A       		.uleb128 0x3a
+ 1188 00e3 0B       		.uleb128 0xb
+ 1189 00e4 3B       		.uleb128 0x3b
+ 1190 00e5 0B       		.uleb128 0xb
+ 1191 00e6 27       		.uleb128 0x27
+ 1192 00e7 19       		.uleb128 0x19
+ 1193 00e8 11       		.uleb128 0x11
+ 1194 00e9 01       		.uleb128 0x1
+ 1195 00ea 12       		.uleb128 0x12
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 38
+
+
+ 1196 00eb 06       		.uleb128 0x6
+ 1197 00ec 40       		.uleb128 0x40
+ 1198 00ed 18       		.uleb128 0x18
+ 1199 00ee 9742     		.uleb128 0x2117
+ 1200 00f0 19       		.uleb128 0x19
+ 1201 00f1 01       		.uleb128 0x1
+ 1202 00f2 13       		.uleb128 0x13
+ 1203 00f3 00       		.byte	0
+ 1204 00f4 00       		.byte	0
+ 1205 00f5 0F       		.uleb128 0xf
+ 1206 00f6 34       		.uleb128 0x34
+ 1207 00f7 00       		.byte	0
+ 1208 00f8 03       		.uleb128 0x3
+ 1209 00f9 0E       		.uleb128 0xe
+ 1210 00fa 3A       		.uleb128 0x3a
+ 1211 00fb 0B       		.uleb128 0xb
+ 1212 00fc 3B       		.uleb128 0x3b
+ 1213 00fd 0B       		.uleb128 0xb
+ 1214 00fe 49       		.uleb128 0x49
+ 1215 00ff 13       		.uleb128 0x13
+ 1216 0100 02       		.uleb128 0x2
+ 1217 0101 17       		.uleb128 0x17
+ 1218 0102 00       		.byte	0
+ 1219 0103 00       		.byte	0
+ 1220 0104 10       		.uleb128 0x10
+ 1221 0105 898201   		.uleb128 0x4109
+ 1222 0108 01       		.byte	0x1
+ 1223 0109 11       		.uleb128 0x11
+ 1224 010a 01       		.uleb128 0x1
+ 1225 010b 31       		.uleb128 0x31
+ 1226 010c 13       		.uleb128 0x13
+ 1227 010d 01       		.uleb128 0x1
+ 1228 010e 13       		.uleb128 0x13
+ 1229 010f 00       		.byte	0
+ 1230 0110 00       		.byte	0
+ 1231 0111 11       		.uleb128 0x11
+ 1232 0112 8A8201   		.uleb128 0x410a
+ 1233 0115 00       		.byte	0
+ 1234 0116 02       		.uleb128 0x2
+ 1235 0117 18       		.uleb128 0x18
+ 1236 0118 9142     		.uleb128 0x2111
+ 1237 011a 18       		.uleb128 0x18
+ 1238 011b 00       		.byte	0
+ 1239 011c 00       		.byte	0
+ 1240 011d 12       		.uleb128 0x12
+ 1241 011e 34       		.uleb128 0x34
+ 1242 011f 00       		.byte	0
+ 1243 0120 03       		.uleb128 0x3
+ 1244 0121 0E       		.uleb128 0xe
+ 1245 0122 3A       		.uleb128 0x3a
+ 1246 0123 0B       		.uleb128 0xb
+ 1247 0124 3B       		.uleb128 0x3b
+ 1248 0125 0B       		.uleb128 0xb
+ 1249 0126 49       		.uleb128 0x49
+ 1250 0127 13       		.uleb128 0x13
+ 1251 0128 3F       		.uleb128 0x3f
+ 1252 0129 19       		.uleb128 0x19
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 39
+
+
+ 1253 012a 02       		.uleb128 0x2
+ 1254 012b 18       		.uleb128 0x18
+ 1255 012c 00       		.byte	0
+ 1256 012d 00       		.byte	0
+ 1257 012e 13       		.uleb128 0x13
+ 1258 012f 2E       		.uleb128 0x2e
+ 1259 0130 00       		.byte	0
+ 1260 0131 3F       		.uleb128 0x3f
+ 1261 0132 19       		.uleb128 0x19
+ 1262 0133 03       		.uleb128 0x3
+ 1263 0134 0E       		.uleb128 0xe
+ 1264 0135 3A       		.uleb128 0x3a
+ 1265 0136 0B       		.uleb128 0xb
+ 1266 0137 3B       		.uleb128 0x3b
+ 1267 0138 0B       		.uleb128 0xb
+ 1268 0139 27       		.uleb128 0x27
+ 1269 013a 19       		.uleb128 0x19
+ 1270 013b 49       		.uleb128 0x49
+ 1271 013c 13       		.uleb128 0x13
+ 1272 013d 3C       		.uleb128 0x3c
+ 1273 013e 19       		.uleb128 0x19
+ 1274 013f 00       		.byte	0
+ 1275 0140 00       		.byte	0
+ 1276 0141 14       		.uleb128 0x14
+ 1277 0142 2E       		.uleb128 0x2e
+ 1278 0143 01       		.byte	0x1
+ 1279 0144 3F       		.uleb128 0x3f
+ 1280 0145 19       		.uleb128 0x19
+ 1281 0146 03       		.uleb128 0x3
+ 1282 0147 0E       		.uleb128 0xe
+ 1283 0148 3A       		.uleb128 0x3a
+ 1284 0149 0B       		.uleb128 0xb
+ 1285 014a 3B       		.uleb128 0x3b
+ 1286 014b 0B       		.uleb128 0xb
+ 1287 014c 27       		.uleb128 0x27
+ 1288 014d 19       		.uleb128 0x19
+ 1289 014e 3C       		.uleb128 0x3c
+ 1290 014f 19       		.uleb128 0x19
+ 1291 0150 00       		.byte	0
+ 1292 0151 00       		.byte	0
+ 1293 0152 15       		.uleb128 0x15
+ 1294 0153 05       		.uleb128 0x5
+ 1295 0154 00       		.byte	0
+ 1296 0155 49       		.uleb128 0x49
+ 1297 0156 13       		.uleb128 0x13
+ 1298 0157 00       		.byte	0
+ 1299 0158 00       		.byte	0
+ 1300 0159 00       		.byte	0
+ 1301              		.section	.debug_loc,"",%progbits
+ 1302              	.Ldebug_loc0:
+ 1303              	.LLST0:
+ 1304 0000 0A000000 		.4byte	.LVL9
+ 1305 0004 0E000000 		.4byte	.LVL10
+ 1306 0008 0100     		.2byte	0x1
+ 1307 000a 53       		.byte	0x53
+ 1308 000b 00000000 		.4byte	0
+ 1309 000f 00000000 		.4byte	0
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 40
+
+
+ 1310              	.LLST1:
+ 1311 0013 3C000000 		.4byte	.LVL16
+ 1312 0017 47000000 		.4byte	.LVL17-1
+ 1313 001b 0100     		.2byte	0x1
+ 1314 001d 50       		.byte	0x50
+ 1315 001e 00000000 		.4byte	0
+ 1316 0022 00000000 		.4byte	0
+ 1317              		.section	.debug_aranges,"",%progbits
+ 1318 0000 A4000000 		.4byte	0xa4
+ 1319 0004 0200     		.2byte	0x2
+ 1320 0006 00000000 		.4byte	.Ldebug_info0
+ 1321 000a 04       		.byte	0x4
+ 1322 000b 00       		.byte	0
+ 1323 000c 0000     		.2byte	0
+ 1324 000e 0000     		.2byte	0
+ 1325 0010 00000000 		.4byte	.LFB2
+ 1326 0014 10000000 		.4byte	.LFE2-.LFB2
+ 1327 0018 00000000 		.4byte	.LFB3
+ 1328 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1329 0020 00000000 		.4byte	.LFB4
+ 1330 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1331 0028 00000000 		.4byte	.LFB5
+ 1332 002c 14000000 		.4byte	.LFE5-.LFB5
+ 1333 0030 00000000 		.4byte	.LFB7
+ 1334 0034 0C000000 		.4byte	.LFE7-.LFB7
+ 1335 0038 00000000 		.4byte	.LFB8
+ 1336 003c 0C000000 		.4byte	.LFE8-.LFB8
+ 1337 0040 00000000 		.4byte	.LFB9
+ 1338 0044 0C000000 		.4byte	.LFE9-.LFB9
+ 1339 0048 00000000 		.4byte	.LFB10
+ 1340 004c 0C000000 		.4byte	.LFE10-.LFB10
+ 1341 0050 00000000 		.4byte	.LFB11
+ 1342 0054 0C000000 		.4byte	.LFE11-.LFB11
+ 1343 0058 00000000 		.4byte	.LFB12
+ 1344 005c 0C000000 		.4byte	.LFE12-.LFB12
+ 1345 0060 00000000 		.4byte	.LFB13
+ 1346 0064 0C000000 		.4byte	.LFE13-.LFB13
+ 1347 0068 00000000 		.4byte	.LFB14
+ 1348 006c 0C000000 		.4byte	.LFE14-.LFB14
+ 1349 0070 00000000 		.4byte	.LFB6
+ 1350 0074 14000000 		.4byte	.LFE6-.LFB6
+ 1351 0078 00000000 		.4byte	.LFB1
+ 1352 007c 58000000 		.4byte	.LFE1-.LFB1
+ 1353 0080 00000000 		.4byte	.LFB0
+ 1354 0084 1C000000 		.4byte	.LFE0-.LFB0
+ 1355 0088 00000000 		.4byte	.LFB15
+ 1356 008c 0C000000 		.4byte	.LFE15-.LFB15
+ 1357 0090 00000000 		.4byte	.LFB16
+ 1358 0094 0C000000 		.4byte	.LFE16-.LFB16
+ 1359 0098 00000000 		.4byte	.LFB17
+ 1360 009c 0C000000 		.4byte	.LFE17-.LFB17
+ 1361 00a0 00000000 		.4byte	0
+ 1362 00a4 00000000 		.4byte	0
+ 1363              		.section	.debug_ranges,"",%progbits
+ 1364              	.Ldebug_ranges0:
+ 1365 0000 00000000 		.4byte	.LFB2
+ 1366 0004 10000000 		.4byte	.LFE2
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 41
+
+
+ 1367 0008 00000000 		.4byte	.LFB3
+ 1368 000c 10000000 		.4byte	.LFE3
+ 1369 0010 00000000 		.4byte	.LFB4
+ 1370 0014 0C000000 		.4byte	.LFE4
+ 1371 0018 00000000 		.4byte	.LFB5
+ 1372 001c 14000000 		.4byte	.LFE5
+ 1373 0020 00000000 		.4byte	.LFB7
+ 1374 0024 0C000000 		.4byte	.LFE7
+ 1375 0028 00000000 		.4byte	.LFB8
+ 1376 002c 0C000000 		.4byte	.LFE8
+ 1377 0030 00000000 		.4byte	.LFB9
+ 1378 0034 0C000000 		.4byte	.LFE9
+ 1379 0038 00000000 		.4byte	.LFB10
+ 1380 003c 0C000000 		.4byte	.LFE10
+ 1381 0040 00000000 		.4byte	.LFB11
+ 1382 0044 0C000000 		.4byte	.LFE11
+ 1383 0048 00000000 		.4byte	.LFB12
+ 1384 004c 0C000000 		.4byte	.LFE12
+ 1385 0050 00000000 		.4byte	.LFB13
+ 1386 0054 0C000000 		.4byte	.LFE13
+ 1387 0058 00000000 		.4byte	.LFB14
+ 1388 005c 0C000000 		.4byte	.LFE14
+ 1389 0060 00000000 		.4byte	.LFB6
+ 1390 0064 14000000 		.4byte	.LFE6
+ 1391 0068 00000000 		.4byte	.LFB1
+ 1392 006c 58000000 		.4byte	.LFE1
+ 1393 0070 00000000 		.4byte	.LFB0
+ 1394 0074 1C000000 		.4byte	.LFE0
+ 1395 0078 00000000 		.4byte	.LFB15
+ 1396 007c 0C000000 		.4byte	.LFE15
+ 1397 0080 00000000 		.4byte	.LFB16
+ 1398 0084 0C000000 		.4byte	.LFE16
+ 1399 0088 00000000 		.4byte	.LFB17
+ 1400 008c 0C000000 		.4byte	.LFE17
+ 1401 0090 00000000 		.4byte	0
+ 1402 0094 00000000 		.4byte	0
+ 1403              		.section	.debug_line,"",%progbits
+ 1404              	.Ldebug_line0:
+ 1405 0000 AB010000 		.section	.debug_str,"MS",%progbits,1
+ 1405      02005300 
+ 1405      00000201 
+ 1405      FB0E0D00 
+ 1405      01010101 
+ 1406              	.LASF37:
+ 1407 0000 50574D5F 		.ascii	"PWM_LIDAR_ReadCompare1\000"
+ 1407      4C494441 
+ 1407      525F5265 
+ 1407      6164436F 
+ 1407      6D706172 
+ 1408              	.LASF36:
+ 1409 0017 50574D5F 		.ascii	"PWM_LIDAR_Start\000"
+ 1409      4C494441 
+ 1409      525F5374 
+ 1409      61727400 
+ 1410              	.LASF35:
+ 1411 0027 50574D5F 		.ascii	"PWM_LIDAR_interruptState\000"
+ 1411      4C494441 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 42
+
+
+ 1411      525F696E 
+ 1411      74657272 
+ 1411      75707453 
+ 1412              	.LASF43:
+ 1413 0040 50574D5F 		.ascii	"PWM_LIDAR_ReadControlRegister\000"
+ 1413      4C494441 
+ 1413      525F5265 
+ 1413      6164436F 
+ 1413      6E74726F 
+ 1414              	.LASF18:
+ 1415 005e 50574D5F 		.ascii	"PWM_LIDAR_WritePeriod\000"
+ 1415      4C494441 
+ 1415      525F5772 
+ 1415      69746550 
+ 1415      6572696F 
+ 1416              	.LASF20:
+ 1417 0074 70657269 		.ascii	"period\000"
+ 1417      6F6400
+ 1418              	.LASF42:
+ 1419 007b 433A5C55 		.ascii	"C:\\Users\\li\\Desktop\\pxc\\robot-car\\car.cydsn\000"
+ 1419      73657273 
+ 1419      5C6C695C 
+ 1419      4465736B 
+ 1419      746F705C 
+ 1420              	.LASF3:
+ 1421 00a7 73686F72 		.ascii	"short unsigned int\000"
+ 1421      7420756E 
+ 1421      7369676E 
+ 1421      65642069 
+ 1421      6E7400
+ 1422              	.LASF27:
+ 1423 00ba 50574D5F 		.ascii	"PWM_LIDAR_ReadStatusRegister\000"
+ 1423      4C494441 
+ 1423      525F5265 
+ 1423      61645374 
+ 1423      61747573 
+ 1424              	.LASF22:
+ 1425 00d7 636F6D70 		.ascii	"compare\000"
+ 1425      61726500 
+ 1426              	.LASF9:
+ 1427 00df 666C6F61 		.ascii	"float\000"
+ 1427      7400
+ 1428              	.LASF19:
+ 1429 00e5 636F756E 		.ascii	"counter\000"
+ 1429      74657200 
+ 1430              	.LASF7:
+ 1431 00ed 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1431      206C6F6E 
+ 1431      6720756E 
+ 1431      7369676E 
+ 1431      65642069 
+ 1432              	.LASF1:
+ 1433 0104 756E7369 		.ascii	"unsigned char\000"
+ 1433      676E6564 
+ 1433      20636861 
+ 1433      7200
+ 1434              	.LASF32:
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 43
+
+
+ 1435 0112 50574D5F 		.ascii	"PWM_LIDAR_Init\000"
+ 1435      4C494441 
+ 1435      525F496E 
+ 1435      697400
+ 1436              	.LASF41:
+ 1437 0121 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PWM_LIDAR.c\000"
+ 1437      6E657261 
+ 1437      7465645F 
+ 1437      536F7572 
+ 1437      63655C50 
+ 1438              	.LASF5:
+ 1439 0146 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1439      20756E73 
+ 1439      69676E65 
+ 1439      6420696E 
+ 1439      7400
+ 1440              	.LASF12:
+ 1441 0158 75696E74 		.ascii	"uint8\000"
+ 1441      3800
+ 1442              	.LASF29:
+ 1443 015e 636F6E74 		.ascii	"control\000"
+ 1443      726F6C00 
+ 1444              	.LASF10:
+ 1445 0166 646F7562 		.ascii	"double\000"
+ 1445      6C6500
+ 1446              	.LASF21:
+ 1447 016d 50574D5F 		.ascii	"PWM_LIDAR_WriteCompare1\000"
+ 1447      4C494441 
+ 1447      525F5772 
+ 1447      69746543 
+ 1447      6F6D7061 
+ 1448              	.LASF23:
+ 1449 0185 50574D5F 		.ascii	"PWM_LIDAR_WriteCompare2\000"
+ 1449      4C494441 
+ 1449      525F5772 
+ 1449      69746543 
+ 1449      6F6D7061 
+ 1450              	.LASF33:
+ 1451 019d 72657375 		.ascii	"result\000"
+ 1451      6C7400
+ 1452              	.LASF28:
+ 1453 01a4 50574D5F 		.ascii	"PWM_LIDAR_WriteControlRegister\000"
+ 1453      4C494441 
+ 1453      525F5772 
+ 1453      69746543 
+ 1453      6F6E7472 
+ 1454              	.LASF45:
+ 1455 01c3 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1455      74657243 
+ 1455      72697469 
+ 1455      63616C53 
+ 1455      65637469 
+ 1456              	.LASF8:
+ 1457 01da 756E7369 		.ascii	"unsigned int\000"
+ 1457      676E6564 
+ 1457      20696E74 
+ 1457      00
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 44
+
+
+ 1458              	.LASF44:
+ 1459 01e7 50574D5F 		.ascii	"PWM_LIDAR_initVar\000"
+ 1459      4C494441 
+ 1459      525F696E 
+ 1459      69745661 
+ 1459      7200
+ 1460              	.LASF46:
+ 1461 01f9 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1461      69744372 
+ 1461      69746963 
+ 1461      616C5365 
+ 1461      6374696F 
+ 1462              	.LASF17:
+ 1463 020f 50574D5F 		.ascii	"PWM_LIDAR_WriteCounter\000"
+ 1463      4C494441 
+ 1463      525F5772 
+ 1463      69746543 
+ 1463      6F756E74 
+ 1464              	.LASF30:
+ 1465 0226 50574D5F 		.ascii	"PWM_LIDAR_ReadCapture\000"
+ 1465      4C494441 
+ 1465      525F5265 
+ 1465      61644361 
+ 1465      70747572 
+ 1466              	.LASF15:
+ 1467 023c 50574D5F 		.ascii	"PWM_LIDAR_Enable\000"
+ 1467      4C494441 
+ 1467      525F456E 
+ 1467      61626C65 
+ 1467      00
+ 1468              	.LASF16:
+ 1469 024d 50574D5F 		.ascii	"PWM_LIDAR_Stop\000"
+ 1469      4C494441 
+ 1469      525F5374 
+ 1469      6F7000
+ 1470              	.LASF13:
+ 1471 025c 72656738 		.ascii	"reg8\000"
+ 1471      00
+ 1472              	.LASF14:
+ 1473 0261 73697A65 		.ascii	"sizetype\000"
+ 1473      74797065 
+ 1473      00
+ 1474              	.LASF40:
+ 1475 026a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1475      4320342E 
+ 1475      392E3320 
+ 1475      32303135 
+ 1475      30333033 
+ 1476 029d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1476      20726576 
+ 1476      6973696F 
+ 1476      6E203232 
+ 1476      31323230 
+ 1477 02d0 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1477      66756E63 
+ 1477      74696F6E 
+ 1477      2D736563 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 45
+
+
+ 1477      74696F6E 
+ 1478              	.LASF6:
+ 1479 02f8 6C6F6E67 		.ascii	"long long int\000"
+ 1479      206C6F6E 
+ 1479      6720696E 
+ 1479      7400
+ 1480              	.LASF31:
+ 1481 0306 50574D5F 		.ascii	"PWM_LIDAR_ClearFIFO\000"
+ 1481      4C494441 
+ 1481      525F436C 
+ 1481      65617246 
+ 1481      49464F00 
+ 1482              	.LASF25:
+ 1483 031a 696E7465 		.ascii	"interruptMode\000"
+ 1483      72727570 
+ 1483      744D6F64 
+ 1483      6500
+ 1484              	.LASF2:
+ 1485 0328 73686F72 		.ascii	"short int\000"
+ 1485      7420696E 
+ 1485      7400
+ 1486              	.LASF38:
+ 1487 0332 50574D5F 		.ascii	"PWM_LIDAR_ReadCompare2\000"
+ 1487      4C494441 
+ 1487      525F5265 
+ 1487      6164436F 
+ 1487      6D706172 
+ 1488              	.LASF34:
+ 1489 0349 6374726C 		.ascii	"ctrl\000"
+ 1489      00
+ 1490              	.LASF4:
+ 1491 034e 6C6F6E67 		.ascii	"long int\000"
+ 1491      20696E74 
+ 1491      00
+ 1492              	.LASF11:
+ 1493 0357 63686172 		.ascii	"char\000"
+ 1493      00
+ 1494              	.LASF0:
+ 1495 035c 7369676E 		.ascii	"signed char\000"
+ 1495      65642063 
+ 1495      68617200 
+ 1496              	.LASF26:
+ 1497 0368 50574D5F 		.ascii	"PWM_LIDAR_ReadCounter\000"
+ 1497      4C494441 
+ 1497      525F5265 
+ 1497      6164436F 
+ 1497      756E7465 
+ 1498              	.LASF39:
+ 1499 037e 50574D5F 		.ascii	"PWM_LIDAR_ReadPeriod\000"
+ 1499      4C494441 
+ 1499      525F5265 
+ 1499      61645065 
+ 1499      72696F64 
+ 1500              	.LASF24:
+ 1501 0393 50574D5F 		.ascii	"PWM_LIDAR_SetInterruptMode\000"
+ 1501      4C494441 
+ 1501      525F5365 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccUNdoQG.s 			page 46
+
+
+ 1501      74496E74 
+ 1501      65727275 
+ 1502              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

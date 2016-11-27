@@ -226,9 +226,9 @@ void PWM_LED_RestoreConfig(void) ;
 /***************************************
 *         Initialization Values
 **************************************/
-#define PWM_LED_INIT_PERIOD_VALUE          (959u)
-#define PWM_LED_INIT_COMPARE_VALUE1        (400u)
-#define PWM_LED_INIT_COMPARE_VALUE2        (400u)
+#define PWM_LED_INIT_PERIOD_VALUE          (10000u)
+#define PWM_LED_INIT_COMPARE_VALUE1        (10000u)
+#define PWM_LED_INIT_COMPARE_VALUE2        (10000u)
 #define PWM_LED_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_LED_STATUS_TC_INT_EN_MASK_SHIFT)) | \
                                                     (uint8)((uint8)(0u <<  \

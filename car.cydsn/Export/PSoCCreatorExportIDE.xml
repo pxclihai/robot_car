@@ -25,7 +25,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="car" Path="D:\robot\code\robot-car\car.cydsn" Version="5.20" Type="Normal">
+  <Project Name="car" Path="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" Version="5.20" Type="Normal">
     <CMSIS_SVD_File>car.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -34,8 +34,8 @@
       <LinkerFile Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\Cm3Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="BUILD" Path="D:\robot\code\robot-car\car.cydsn">
-        <Files Root="D:\robot\code\robot-car\car.cydsn">
+      <Folder BuildType="BUILD" Path="C:\Users\li\Desktop\pxc\robot-car\car.cydsn">
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn">
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\Transfer.c</File>
           <File BuildType="BUILD" Toolchain="">.\car.c</File>
@@ -48,8 +48,8 @@
           <File BuildType="BUILD" Toolchain="">.\Lidar.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="D:\robot\code\robot-car\car.cydsn\Generated_Source\PSoC5">
-        <Files Root="D:\robot\code\robot-car\car.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\li\Desktop\pxc\robot-car\car.cydsn\Generated_Source\PSoC5">
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn">
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cymetadata.c</File>
@@ -99,8 +99,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_tx_net.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_rx_net.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_rx_net.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\L_PWM_1_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\L_PWM_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\L_PWM_1.h</File>
@@ -166,15 +164,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED8_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED8.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED8.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_STEERING.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_STEERING.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_STEERING_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\STEERING_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\STEERING_1.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\STEERING_1.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\STEERING_2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\STEERING_2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\STEERING_2.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_6.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_6.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IN_C_aliases.h</File>
@@ -199,66 +188,104 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_FinalBuf_dma.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_tx_LIDAR.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_tx_LIDAR.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR_INT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR_BOOT.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_rx_LIDAR.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_rx_LIDAR.h</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR_IntClock.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_LIDAR_IntClock.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CONTRAL_LIDAR_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CONTRAL_LIDAR.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CONTRAL_LIDAR.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\debug_time_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\debug_time.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\debug_time.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_EN_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_EN.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_EN.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_STEP_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_STEP.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_STEP.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_DIR_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_DIR.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_UP_DIR.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_EN_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_EN.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_EN.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_STEP_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_STEP.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_STEP.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_DIR_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_DIR.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PTZ_DOWN_DIR.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IN_P_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IN_P.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\IN_P.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_TRG_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_TRG_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_TRG_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_05_Timer.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_05_Timer.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_05_Timer_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_srf_front.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_srf_front.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_ECHO_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_ECHO_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_ECHO_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_srf_back.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\isr_srf_back.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_ECHO_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_ECHO_2.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_ECHO_2.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_TRG_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_TRG_2.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_TRG_2.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_05_Timer_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_05_Timer_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SRF_05_Timer_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CHANGE_PWR_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CHANGE_PWR.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CHANGE_PWR.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_LIDAR.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_LIDAR.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_LIDAR_PM.c</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="D:\robot\code\robot-car\car.cydsn\Export\ARM_GCC_Generic">
-        <Files Root="D:\robot\code\robot-car\car.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\li\Desktop\pxc\robot-car\car.cydsn\Export\ARM_GCC_Generic">
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC Generic">.\Export\ARM_GCC_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="D:\robot\code\robot-car\car.cydsn\Export\ARM_MDK_Generic">
-        <Files Root="D:\robot\code\robot-car\car.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\li\Desktop\pxc\robot-car\car.cydsn\Export\ARM_MDK_Generic">
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn">
           <File BuildType="BUILD" Toolchain="ARM MDK Generic">.\Export\ARM_MDK_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="D:\robot\code\robot-car\car.cydsn\Export\ARM_IAR_Generic">
-        <Files Root="D:\robot\code\robot-car\car.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\li\Desktop\pxc\robot-car\car.cydsn\Export\ARM_IAR_Generic">
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn">
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Export\ARM_IAR_Generic\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_952">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC3">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\Generated_Source\PSoC4">
-        <Files Root="D:\robot\code\robot-car\car.cydsn" />
+        <Files Root="C:\Users\li\Desktop\pxc\robot-car\car.cydsn" />
       </Folder>
     </Folders>
   </Project>

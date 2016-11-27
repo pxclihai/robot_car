@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
   29:.\Generated_Source\PSoC5/PWM_STEERING.c ****          constant 1 for reset. This will prevent the component from operating.
   30:.\Generated_Source\PSoC5/PWM_STEERING.c **** #endif /* PWM_STEERING_PWMUDB_genblk1_ctrlreg__REMOVED */
   31:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/PWM_STEERING.c **** uint8 PWM_STEERING_initVar = 0u;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
   86:.\Generated_Source\PSoC5/PWM_STEERING.c ****     #if (PWM_STEERING_UsingFixedFunction || PWM_STEERING_UseControl)
   87:.\Generated_Source\PSoC5/PWM_STEERING.c ****         uint8 ctrl;
   88:.\Generated_Source\PSoC5/PWM_STEERING.c ****     #endif /* (PWM_STEERING_UsingFixedFunction || PWM_STEERING_UseControl) */
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 3
 
 
   89:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  143:.\Generated_Source\PSoC5/PWM_STEERING.c ****         #endif /* (PWM_STEERING_UseOneCompareMode) */
  144:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  145:.\Generated_Source\PSoC5/PWM_STEERING.c ****         #if (PWM_STEERING_KillModeMinTime)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 4
 
 
  146:.\Generated_Source\PSoC5/PWM_STEERING.c ****             PWM_STEERING_WriteKillTime(PWM_STEERING_MinimumKillTime);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  200:.\Generated_Source\PSoC5/PWM_STEERING.c **** {
   27              		.loc 1 200 0
   28              		.cfi_startproc
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 5
 
 
   29              		@ args = 0, pretend = 0, frame = 0
@@ -262,7 +262,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
   38              	.L3:
   39              		.align	2
   40              	.L2:
-  41 000c 78650040 		.word	1073767800
+  41 000c 72640040 		.word	1073767538
   42              		.cfi_endproc
   43              	.LFE2:
   44              		.size	PWM_STEERING_Enable, .-PWM_STEERING_Enable
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  231:.\Generated_Source\PSoC5/PWM_STEERING.c **** *
  232:.\Generated_Source\PSoC5/PWM_STEERING.c **** *******************************************************************************/
  233:.\Generated_Source\PSoC5/PWM_STEERING.c **** void PWM_STEERING_Stop(void) 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 6
 
 
  234:.\Generated_Source\PSoC5/PWM_STEERING.c **** {
@@ -318,7 +318,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
   64              	.L6:
   65              		.align	2
   66              	.L5:
-  67 000c 78650040 		.word	1073767800
+  67 000c 72640040 		.word	1073767538
   68              		.cfi_endproc
   69              	.LFE3:
   70              		.size	PWM_STEERING_Stop, .-PWM_STEERING_Stop
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  262:.\Generated_Source\PSoC5/PWM_STEERING.c ****         * Return:
  263:.\Generated_Source\PSoC5/PWM_STEERING.c ****         *  None
  264:.\Generated_Source\PSoC5/PWM_STEERING.c ****         *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 7
 
 
  265:.\Generated_Source\PSoC5/PWM_STEERING.c ****         *******************************************************************************/
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  319:.\Generated_Source\PSoC5/PWM_STEERING.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
  320:.\Generated_Source\PSoC5/PWM_STEERING.c ****         *                defined in the H file as input arguments.
  321:.\Generated_Source\PSoC5/PWM_STEERING.c ****         *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 8
 
 
  322:.\Generated_Source\PSoC5/PWM_STEERING.c ****         * Return:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  376:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  377:.\Generated_Source\PSoC5/PWM_STEERING.c **** #endif /* UseOneCompareMode */
  378:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 9
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 9
 
 
  379:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
@@ -522,7 +522,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
   89              	.L9:
   90 0006 00BF     		.align	2
   91              	.L8:
-  92 0008 14680040 		.word	1073768468
+  92 0008 00680040 		.word	1073768448
   93              		.cfi_endproc
   94              	.LFE4:
   95              		.size	PWM_STEERING_WriteCounter, .-PWM_STEERING_WriteCounter
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  408:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  409:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  410:.\Generated_Source\PSoC5/PWM_STEERING.c ****     /*******************************************************************************
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 10
 
 
  411:.\Generated_Source\PSoC5/PWM_STEERING.c ****     * Function Name: PWM_STEERING_ReadCounter
@@ -582,8 +582,8 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  118              	.L12:
  119              		.align	2
  120              	.L11:
- 121 000c 1A640040 		.word	1073767450
- 122 0010 B4680040 		.word	1073768628
+ 121 000c 10640040 		.word	1073767440
+ 122 0010 A0680040 		.word	1073768608
  123              		.cfi_endproc
  124              	.LFE5:
  125              		.size	PWM_STEERING_ReadCounter, .-PWM_STEERING_ReadCounter
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  435:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  436:.\Generated_Source\PSoC5/PWM_STEERING.c ****     #if (PWM_STEERING_UseStatus)
  437:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 11
 
 
  438:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  486:.\Generated_Source\PSoC5/PWM_STEERING.c ****     #else
  487:.\Generated_Source\PSoC5/PWM_STEERING.c ****         CY_SET_REG16(PWM_STEERING_PERIOD_LSB_PTR, period);
  140              		.loc 1 487 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 12
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 12
 
 
  141 0000 014B     		ldr	r3, .L14
@@ -667,7 +667,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  144              	.L15:
  145 0006 00BF     		.align	2
  146              	.L14:
- 147 0008 94680040 		.word	1073768596
+ 147 0008 80680040 		.word	1073768576
  148              		.cfi_endproc
  149              	.LFE7:
  150              		.size	PWM_STEERING_WritePeriod, .-PWM_STEERING_WritePeriod
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  524:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  525:.\Generated_Source\PSoC5/PWM_STEERING.c ****         #if (PWM_STEERING_PWMMode == PWM_STEERING__B_PWM__DITHER)
  526:.\Generated_Source\PSoC5/PWM_STEERING.c ****             #if(PWM_STEERING_UsingFixedFunction)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 13
 
 
  527:.\Generated_Source\PSoC5/PWM_STEERING.c ****                 CY_SET_REG16(PWM_STEERING_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
@@ -769,7 +769,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  169              	.L18:
  170 0006 00BF     		.align	2
  171              	.L17:
- 172 0008 54680040 		.word	1073768532
+ 172 0008 40680040 		.word	1073768512
  173              		.cfi_endproc
  174              	.LFE8:
  175              		.size	PWM_STEERING_WriteCompare1, .-PWM_STEERING_WriteCompare1
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  178              		.global	PWM_STEERING_WriteCompare2
  179              		.thumb
  180              		.thumb_func
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 14
 
 
  181              		.type	PWM_STEERING_WriteCompare2, %function
@@ -826,7 +826,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  194              	.L21:
  195 0006 00BF     		.align	2
  196              	.L20:
- 197 0008 74680040 		.word	1073768564
+ 197 0008 60680040 		.word	1073768544
  198              		.cfi_endproc
  199              	.LFE9:
  200              		.size	PWM_STEERING_WriteCompare2, .-PWM_STEERING_WriteCompare2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  206              		.type	PWM_STEERING_SetInterruptMode, %function
  207              	PWM_STEERING_SetInterruptMode:
  208              	.LFB10:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 15
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 15
 
 
  591:.\Generated_Source\PSoC5/PWM_STEERING.c ****         #endif /* (PWM_STEERING_UsingFixedFunction) */
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  645:.\Generated_Source\PSoC5/PWM_STEERING.c ****     *  Dead Band Counts
  646:.\Generated_Source\PSoC5/PWM_STEERING.c ****     *
  647:.\Generated_Source\PSoC5/PWM_STEERING.c ****     *******************************************************************************/
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 16
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 16
 
 
  648:.\Generated_Source\PSoC5/PWM_STEERING.c ****     uint8 PWM_STEERING_ReadDeadTime(void) 
@@ -953,12 +953,12 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  219              	.L24:
  220 0006 00BF     		.align	2
  221              	.L23:
- 222 0008 8B650040 		.word	1073767819
+ 222 0008 82640040 		.word	1073767554
  223              		.cfi_endproc
  224              	.LFE10:
  225              		.size	PWM_STEERING_SetInterruptMode, .-PWM_STEERING_SetInterruptMode
  226              		.section	.text.PWM_STEERING_ReadStatusRegister,"ax",%progbits
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 17
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 17
 
 
  227              		.align	2
@@ -1009,7 +1009,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  244              	.L27:
  245 0006 00BF     		.align	2
  246              	.L26:
- 247 0008 6B650040 		.word	1073767787
+ 247 0008 62640040 		.word	1073767522
  248              		.cfi_endproc
  249              	.LFE11:
  250              		.size	PWM_STEERING_ReadStatusRegister, .-PWM_STEERING_ReadStatusRegister
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  253              		.global	PWM_STEERING_ReadControlRegister
  254              		.thumb
  255              		.thumb_func
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 18
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 18
 
 
  256              		.type	PWM_STEERING_ReadControlRegister, %function
@@ -1067,7 +1067,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  270              	.L30:
  271 0006 00BF     		.align	2
  272              	.L29:
- 273 0008 78650040 		.word	1073767800
+ 273 0008 72640040 		.word	1073767538
  274              		.cfi_endproc
  275              	.LFE12:
  276              		.size	PWM_STEERING_ReadControlRegister, .-PWM_STEERING_ReadControlRegister
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  281              		.thumb_func
  282              		.type	PWM_STEERING_WriteControlRegister, %function
  283              	PWM_STEERING_WriteControlRegister:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 19
 
 
  284              	.LFB13:
@@ -1119,7 +1119,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  295              	.L33:
  296 0006 00BF     		.align	2
  297              	.L32:
- 298 0008 78650040 		.word	1073767800
+ 298 0008 72640040 		.word	1073767538
  299              		.cfi_endproc
  300              	.LFE13:
  301              		.size	PWM_STEERING_WriteControlRegister, .-PWM_STEERING_WriteControlRegister
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  772:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  773:.\Generated_Source\PSoC5/PWM_STEERING.c **** #if (!PWM_STEERING_UsingFixedFunction)
  774:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 20
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 20
 
 
  775:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
@@ -1174,7 +1174,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  321              	.L36:
  322              		.align	2
  323              	.L35:
- 324 0008 B4680040 		.word	1073768628
+ 324 0008 A0680040 		.word	1073768608
  325              		.cfi_endproc
  326              	.LFE14:
  327              		.size	PWM_STEERING_ReadCapture, .-PWM_STEERING_ReadCapture
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  455:.\Generated_Source\PSoC5/PWM_STEERING.c ****             {
  344              		.loc 1 455 0
  345 0002 01E0     		b	.L38
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 21
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 21
 
 
  346              	.L39:
@@ -1249,7 +1249,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  385 000e 1370     		strb	r3, [r2]
  129:.\Generated_Source\PSoC5/PWM_STEERING.c ****             PWM_STEERING_AUX_CONTROLDP1 |= (PWM_STEERING_AUX_CTRL_FIFO0_CLR);
  386              		.loc 1 129 0
- 387 0010 DE3A     		subs	r2, r2, #222
+ 387 0010 1E32     		adds	r2, r2, #30
  388 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  389 0014 43F00103 		orr	r3, r3, #1
  390 0018 1370     		strb	r3, [r2]
@@ -1258,18 +1258,18 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  392 001a 0132     		adds	r2, r2, #1
  393 001c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  394 001e 43F00103 		orr	r3, r3, #1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 22
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 22
 
 
  395 0022 1370     		strb	r3, [r2]
  133:.\Generated_Source\PSoC5/PWM_STEERING.c ****     #endif /* (!PWM_STEERING_UsingFixedFunction) */
  396              		.loc 1 133 0
- 397 0024 40F2BF30 		movw	r0, #959
+ 397 0024 41F28830 		movw	r0, #5000
  398 0028 FFF7FEFF 		bl	PWM_STEERING_WriteCounter
  399              	.LVL11:
  136:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  400              		.loc 1 136 0
- 401 002c 40F2BF30 		movw	r0, #959
+ 401 002c 41F28830 		movw	r0, #5000
  402 0030 FFF7FEFF 		bl	PWM_STEERING_WritePeriod
  403              	.LVL12:
  141:.\Generated_Source\PSoC5/PWM_STEERING.c ****             PWM_STEERING_WriteCompare2(PWM_STEERING_INIT_COMPARE_VALUE2);
@@ -1279,38 +1279,38 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  407              	.LVL13:
  142:.\Generated_Source\PSoC5/PWM_STEERING.c ****         #endif /* (PWM_STEERING_UseOneCompareMode) */
  408              		.loc 1 142 0
- 409 003a 0020     		movs	r0, #0
- 410 003c FFF7FEFF 		bl	PWM_STEERING_WriteCompare2
+ 409 003a 40F6C410 		movw	r0, #2500
+ 410 003e FFF7FEFF 		bl	PWM_STEERING_WriteCompare2
  411              	.LVL14:
  154:.\Generated_Source\PSoC5/PWM_STEERING.c ****     #endif /* (PWM_STEERING_UseStatus || PWM_STEERING_UsingFixedFunction) */
  412              		.loc 1 154 0
- 413 0040 0020     		movs	r0, #0
- 414 0042 FFF7FEFF 		bl	PWM_STEERING_SetInterruptMode
+ 413 0042 0020     		movs	r0, #0
+ 414 0044 FFF7FEFF 		bl	PWM_STEERING_SetInterruptMode
  415              	.LVL15:
  167:.\Generated_Source\PSoC5/PWM_STEERING.c ****             /* Use the interrupt output of the status register for IRQ output */
  416              		.loc 1 167 0
- 417 0046 FFF7FEFF 		bl	CyEnterCriticalSection
+ 417 0048 FFF7FEFF 		bl	CyEnterCriticalSection
  418              	.LVL16:
  169:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  419              		.loc 1 169 0
- 420 004a 064A     		ldr	r2, .L43+4
- 421 004c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
- 422 004e 43F01003 		orr	r3, r3, #16
- 423 0052 1370     		strb	r3, [r2]
+ 420 004c 054A     		ldr	r2, .L43+4
+ 421 004e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 422 0050 43F01003 		orr	r3, r3, #16
+ 423 0054 1370     		strb	r3, [r2]
  172:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  424              		.loc 1 172 0
- 425 0054 FFF7FEFF 		bl	CyExitCriticalSection
+ 425 0056 FFF7FEFF 		bl	CyExitCriticalSection
  426              	.LVL17:
  176:.\Generated_Source\PSoC5/PWM_STEERING.c ****         #endif /* (PWM_STEERING_UseStatus) */
  427              		.loc 1 176 0
- 428 0058 FFF7FEFF 		bl	PWM_STEERING_ClearFIFO
+ 428 005a FFF7FEFF 		bl	PWM_STEERING_ClearFIFO
  429              	.LVL18:
- 430 005c 08BD     		pop	{r3, pc}
+ 430 005e 08BD     		pop	{r3, pc}
  431              	.L44:
- 432 005e 00BF     		.align	2
+ 432              		.align	2
  433              	.L43:
- 434 0060 78650040 		.word	1073767800
- 435 0064 9B650040 		.word	1073767835
+ 434 0060 72640040 		.word	1073767538
+ 435 0064 92640040 		.word	1073767570
  436              		.cfi_endproc
  437              	.LFE1:
  438              		.size	PWM_STEERING_Init, .-PWM_STEERING_Init
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  440              		.align	2
  441              		.global	PWM_STEERING_Start
  442              		.thumb
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 23
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 23
 
 
  443              		.thumb_func
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  800:.\Generated_Source\PSoC5/PWM_STEERING.c **** 
  801:.\Generated_Source\PSoC5/PWM_STEERING.c ****     /*******************************************************************************
  802:.\Generated_Source\PSoC5/PWM_STEERING.c ****     * Function Name: PWM_STEERING_ReadCompare
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 24
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 24
 
 
  803:.\Generated_Source\PSoC5/PWM_STEERING.c ****     ********************************************************************************
@@ -1438,10 +1438,10 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  497              	.L52:
  498              		.align	2
  499              	.L51:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 25
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 25
 
 
- 500 0008 54680040 		.word	1073768532
+ 500 0008 40680040 		.word	1073768512
  501              		.cfi_endproc
  502              	.LFE15:
  503              		.size	PWM_STEERING_ReadCompare1, .-PWM_STEERING_ReadCompare1
@@ -1487,7 +1487,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  523              	.L55:
  524              		.align	2
  525              	.L54:
- 526 0008 74680040 		.word	1073768564
+ 526 0008 60680040 		.word	1073768544
  527              		.cfi_endproc
  528              	.LFE16:
  529              		.size	PWM_STEERING_ReadCompare2, .-PWM_STEERING_ReadCompare2
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  534              		.thumb_func
  535              		.type	PWM_STEERING_ReadPeriod, %function
  536              	PWM_STEERING_ReadPeriod:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 26
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 26
 
 
  537              	.LFB17:
@@ -1542,7 +1542,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  549              	.L58:
  550              		.align	2
  551              	.L57:
- 552 0008 94680040 		.word	1073768596
+ 552 0008 80680040 		.word	1073768576
  553              		.cfi_endproc
  554              	.LFE17:
  555              		.size	PWM_STEERING_ReadPeriod, .-PWM_STEERING_ReadPeriod
@@ -1558,54 +1558,54 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  565              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
  566              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
  567              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 27
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 27
 
 
  568              	.Ldebug_info0:
- 569 0000 95030000 		.4byte	0x395
+ 569 0000 97030000 		.4byte	0x397
  570 0004 0400     		.2byte	0x4
  571 0006 00000000 		.4byte	.Ldebug_abbrev0
  572 000a 04       		.byte	0x4
  573 000b 01       		.uleb128 0x1
- 574 000c 99010000 		.4byte	.LASF42
+ 574 000c 92010000 		.4byte	.LASF42
  575 0010 01       		.byte	0x1
- 576 0011 9D000000 		.4byte	.LASF43
- 577 0015 7B020000 		.4byte	.LASF44
+ 576 0011 96000000 		.4byte	.LASF43
+ 577 0015 44020000 		.4byte	.LASF44
  578 0019 00000000 		.4byte	.Ldebug_ranges0+0
  579 001d 00000000 		.4byte	0
  580 0021 00000000 		.4byte	.Ldebug_line0
  581 0025 02       		.uleb128 0x2
  582 0026 01       		.byte	0x1
  583 0027 06       		.byte	0x6
- 584 0028 B3030000 		.4byte	.LASF0
+ 584 0028 C6030000 		.4byte	.LASF0
  585 002c 02       		.uleb128 0x2
  586 002d 01       		.byte	0x1
  587 002e 08       		.byte	0x8
- 588 002f 0F010000 		.4byte	.LASF1
+ 588 002f 08010000 		.4byte	.LASF1
  589 0033 02       		.uleb128 0x2
  590 0034 02       		.byte	0x2
  591 0035 05       		.byte	0x5
- 592 0036 61030000 		.4byte	.LASF2
+ 592 0036 74030000 		.4byte	.LASF2
  593 003a 02       		.uleb128 0x2
  594 003b 02       		.byte	0x2
  595 003c 07       		.byte	0x7
- 596 003d 2D000000 		.4byte	.LASF3
+ 596 003d 26000000 		.4byte	.LASF3
  597 0041 02       		.uleb128 0x2
  598 0042 04       		.byte	0x4
  599 0043 05       		.byte	0x5
- 600 0044 6B030000 		.4byte	.LASF4
+ 600 0044 7E030000 		.4byte	.LASF4
  601 0048 02       		.uleb128 0x2
  602 0049 04       		.byte	0x4
  603 004a 07       		.byte	0x7
- 604 004b 22010000 		.4byte	.LASF5
+ 604 004b 1B010000 		.4byte	.LASF5
  605 004f 02       		.uleb128 0x2
  606 0050 08       		.byte	0x8
  607 0051 05       		.byte	0x5
- 608 0052 DD020000 		.4byte	.LASF6
+ 608 0052 F0020000 		.4byte	.LASF6
  609 0056 02       		.uleb128 0x2
  610 0057 08       		.byte	0x8
  611 0058 07       		.byte	0x7
- 612 0059 F8000000 		.4byte	.LASF7
+ 612 0059 F1000000 		.4byte	.LASF7
  613 005d 03       		.uleb128 0x3
  614 005e 04       		.byte	0x4
  615 005f 05       		.byte	0x5
@@ -1613,34 +1613,34 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  617 0064 02       		.uleb128 0x2
  618 0065 04       		.byte	0x4
  619 0066 07       		.byte	0x7
- 620 0067 3E020000 		.4byte	.LASF8
+ 620 0067 37020000 		.4byte	.LASF8
  621 006b 04       		.uleb128 0x4
- 622 006c 34010000 		.4byte	.LASF9
+ 622 006c 2D010000 		.4byte	.LASF9
  623 0070 02       		.byte	0x2
  624 0071 C2       		.byte	0xc2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 28
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 28
 
 
  625 0072 2C000000 		.4byte	0x2c
  626 0076 04       		.uleb128 0x4
- 627 0077 92010000 		.4byte	.LASF10
+ 627 0077 8B010000 		.4byte	.LASF10
  628 007b 02       		.byte	0x2
  629 007c C3       		.byte	0xc3
  630 007d 3A000000 		.4byte	0x3a
  631 0081 02       		.uleb128 0x2
  632 0082 04       		.byte	0x4
  633 0083 04       		.byte	0x4
- 634 0084 0D000000 		.4byte	.LASF11
+ 634 0084 06000000 		.4byte	.LASF11
  635 0088 02       		.uleb128 0x2
  636 0089 08       		.byte	0x8
  637 008a 04       		.byte	0x4
- 638 008b 8B010000 		.4byte	.LASF12
+ 638 008b 84010000 		.4byte	.LASF12
  639 008f 02       		.uleb128 0x2
  640 0090 01       		.byte	0x1
  641 0091 08       		.byte	0x8
- 642 0092 74030000 		.4byte	.LASF13
+ 642 0092 87030000 		.4byte	.LASF13
  643 0096 05       		.uleb128 0x5
- 644 0097 1D010000 		.4byte	.LASF14
+ 644 0097 16010000 		.4byte	.LASF14
  645 009b 02       		.byte	0x2
  646 009c 6C01     		.2byte	0x16c
  647 009e A2000000 		.4byte	0xa2
@@ -1656,9 +1656,9 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  657 00b8 02       		.uleb128 0x2
  658 00b9 04       		.byte	0x4
  659 00ba 07       		.byte	0x7
- 660 00bb D4020000 		.4byte	.LASF16
+ 660 00bb E7020000 		.4byte	.LASF16
  661 00bf 07       		.uleb128 0x7
- 662 00c0 9D020000 		.4byte	.LASF17
+ 662 00c0 B0020000 		.4byte	.LASF17
  663 00c4 01       		.byte	0x1
  664 00c5 C7       		.byte	0xc7
  665 00c6 00000000 		.4byte	.LFB2
@@ -1666,7 +1666,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  667 00ce 01       		.uleb128 0x1
  668 00cf 9C       		.byte	0x9c
  669 00d0 07       		.uleb128 0x7
- 670 00d1 DE000000 		.4byte	.LASF18
+ 670 00d1 D7000000 		.4byte	.LASF18
  671 00d5 01       		.byte	0x1
  672 00d6 E9       		.byte	0xe9
  673 00d7 00000000 		.4byte	.LFB3
@@ -1674,11 +1674,11 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  675 00df 01       		.uleb128 0x1
  676 00e0 9C       		.byte	0x9c
  677 00e1 08       		.uleb128 0x8
- 678 00e2 4B020000 		.4byte	.LASF19
+ 678 00e2 79020000 		.4byte	.LASF19
  679 00e6 01       		.byte	0x1
  680 00e7 9301     		.2byte	0x193
  681 00e9 00000000 		.4byte	.LFB4
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 29
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 29
 
 
  682 00ed 0C000000 		.4byte	.LFE4-.LFB4
@@ -1686,7 +1686,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  684 00f2 9C       		.byte	0x9c
  685 00f3 06010000 		.4byte	0x106
  686 00f7 09       		.uleb128 0x9
- 687 00f8 F0000000 		.4byte	.LASF21
+ 687 00f8 E9000000 		.4byte	.LASF21
  688 00fc 01       		.byte	0x1
  689 00fd 9301     		.2byte	0x193
  690 00ff 76000000 		.4byte	0x76
@@ -1694,7 +1694,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  692 0104 50       		.byte	0x50
  693 0105 00       		.byte	0
  694 0106 0A       		.uleb128 0xa
- 695 0107 72010000 		.4byte	.LASF28
+ 695 0107 6B010000 		.4byte	.LASF28
  696 010b 01       		.byte	0x1
  697 010c A901     		.2byte	0x1a9
  698 010e 76000000 		.4byte	0x76
@@ -1703,7 +1703,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  701 011a 01       		.uleb128 0x1
  702 011b 9C       		.byte	0x9c
  703 011c 08       		.uleb128 0x8
- 704 011d F9020000 		.4byte	.LASF20
+ 704 011d 0C030000 		.4byte	.LASF20
  705 0121 01       		.byte	0x1
  706 0122 E201     		.2byte	0x1e2
  707 0124 00000000 		.4byte	.LFB7
@@ -1712,7 +1712,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  710 012d 9C       		.byte	0x9c
  711 012e 41010000 		.4byte	0x141
  712 0132 09       		.uleb128 0x9
- 713 0133 26000000 		.4byte	.LASF22
+ 713 0133 1F000000 		.4byte	.LASF22
  714 0137 01       		.byte	0x1
  715 0138 E201     		.2byte	0x1e2
  716 013a 76000000 		.4byte	0x76
@@ -1720,7 +1720,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  718 013f 50       		.byte	0x50
  719 0140 00       		.byte	0
  720 0141 08       		.uleb128 0x8
- 721 0142 12030000 		.4byte	.LASF23
+ 721 0142 25030000 		.4byte	.LASF23
  722 0146 01       		.byte	0x1
  723 0147 2B02     		.2byte	0x22b
  724 0149 00000000 		.4byte	.LFB8
@@ -1729,7 +1729,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  727 0152 9C       		.byte	0x9c
  728 0153 66010000 		.4byte	0x166
  729 0157 09       		.uleb128 0x9
- 730 0158 BF030000 		.4byte	.LASF24
+ 730 0158 D2030000 		.4byte	.LASF24
  731 015c 01       		.byte	0x1
  732 015d 2B02     		.2byte	0x22b
  733 015f 76000000 		.4byte	0x76
@@ -1737,8 +1737,8 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  735 0164 50       		.byte	0x50
  736 0165 00       		.byte	0
  737 0166 08       		.uleb128 0x8
- 738 0167 42010000 		.4byte	.LASF25
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 30
+ 738 0167 3B010000 		.4byte	.LASF25
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 30
 
 
  739 016b 01       		.byte	0x1
@@ -1749,7 +1749,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  744 0177 9C       		.byte	0x9c
  745 0178 8B010000 		.4byte	0x18b
  746 017c 09       		.uleb128 0x9
- 747 017d BF030000 		.4byte	.LASF24
+ 747 017d D2030000 		.4byte	.LASF24
  748 0181 01       		.byte	0x1
  749 0182 4802     		.2byte	0x248
  750 0184 76000000 		.4byte	0x76
@@ -1757,7 +1757,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  752 0189 50       		.byte	0x50
  753 018a 00       		.byte	0
  754 018b 08       		.uleb128 0x8
- 755 018c B1020000 		.4byte	.LASF26
+ 755 018c C4020000 		.4byte	.LASF26
  756 0190 01       		.byte	0x1
  757 0191 AC02     		.2byte	0x2ac
  758 0193 00000000 		.4byte	.LFB10
@@ -1766,7 +1766,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  761 019c 9C       		.byte	0x9c
  762 019d B0010000 		.4byte	0x1b0
  763 01a1 09       		.uleb128 0x9
- 764 01a2 EB020000 		.4byte	.LASF27
+ 764 01a2 FE020000 		.4byte	.LASF27
  765 01a6 01       		.byte	0x1
  766 01a7 AC02     		.2byte	0x2ac
  767 01a9 6B000000 		.4byte	0x6b
@@ -1774,7 +1774,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  769 01ae 50       		.byte	0x50
  770 01af 00       		.byte	0
  771 01b0 0A       		.uleb128 0xa
- 772 01b1 7D000000 		.4byte	.LASF29
+ 772 01b1 76000000 		.4byte	.LASF29
  773 01b5 01       		.byte	0x1
  774 01b6 C702     		.2byte	0x2c7
  775 01b8 6B000000 		.4byte	0x6b
@@ -1783,7 +1783,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  778 01c4 01       		.uleb128 0x1
  779 01c5 9C       		.byte	0x9c
  780 01c6 0B       		.uleb128 0xb
- 781 01c7 40000000 		.4byte	.LASF45
+ 781 01c7 39000000 		.4byte	.LASF45
  782 01cb 01       		.byte	0x1
  783 01cc E102     		.2byte	0x2e1
  784 01ce 6B000000 		.4byte	0x6b
@@ -1793,18 +1793,18 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  788 01db 9C       		.byte	0x9c
  789 01dc EF010000 		.4byte	0x1ef
  790 01e0 0C       		.uleb128 0xc
- 791 01e1 06000000 		.4byte	.LASF35
+ 791 01e1 A9020000 		.4byte	.LASF35
  792 01e5 01       		.byte	0x1
  793 01e6 E302     		.2byte	0x2e3
  794 01e8 6B000000 		.4byte	0x6b
  795 01ec 01       		.uleb128 0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 31
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 31
 
 
  796 01ed 50       		.byte	0x50
  797 01ee 00       		.byte	0
  798 01ef 08       		.uleb128 0x8
- 799 01f0 79030000 		.4byte	.LASF30
+ 799 01f0 8C030000 		.4byte	.LASF30
  800 01f4 01       		.byte	0x1
  801 01f5 FD02     		.2byte	0x2fd
  802 01f7 00000000 		.4byte	.LFB13
@@ -1813,7 +1813,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  805 0200 9C       		.byte	0x9c
  806 0201 14020000 		.4byte	0x214
  807 0205 09       		.uleb128 0x9
- 808 0206 3A010000 		.4byte	.LASF31
+ 808 0206 33010000 		.4byte	.LASF31
  809 020a 01       		.byte	0x1
  810 020b FD02     		.2byte	0x2fd
  811 020d 6B000000 		.4byte	0x6b
@@ -1821,7 +1821,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  813 0212 50       		.byte	0x50
  814 0213 00       		.byte	0
  815 0214 0A       		.uleb128 0xa
- 816 0215 C5000000 		.4byte	.LASF32
+ 816 0215 BE000000 		.4byte	.LASF32
  817 0219 01       		.byte	0x1
  818 021a 1603     		.2byte	0x316
  819 021c 76000000 		.4byte	0x76
@@ -1830,7 +1830,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  822 0228 01       		.uleb128 0x1
  823 0229 9C       		.byte	0x9c
  824 022a 08       		.uleb128 0x8
- 825 022b C7030000 		.4byte	.LASF33
+ 825 022b DA030000 		.4byte	.LASF33
  826 022f 01       		.byte	0x1
  827 0230 C501     		.2byte	0x1c5
  828 0232 00000000 		.4byte	.LFB6
@@ -1846,25 +1846,25 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  838 024e B0010000 		.4byte	0x1b0
  839 0252 00       		.byte	0
  840 0253 0E       		.uleb128 0xe
- 841 0254 DE030000 		.4byte	.LASF34
+ 841 0254 F1030000 		.4byte	.LASF34
  842 0258 01       		.byte	0x1
  843 0259 54       		.byte	0x54
  844 025a 00000000 		.4byte	.LFB1
  845 025e 68000000 		.4byte	.LFE1-.LFB1
  846 0262 01       		.uleb128 0x1
  847 0263 9C       		.byte	0x9c
- 848 0264 05030000 		.4byte	0x305
+ 848 0264 07030000 		.4byte	0x307
  849 0268 0F       		.uleb128 0xf
- 850 0269 CF020000 		.4byte	.LASF36
+ 850 0269 E2020000 		.4byte	.LASF36
  851 026d 01       		.byte	0x1
  852 026e 57       		.byte	0x57
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 32
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 32
 
 
  853 026f 6B000000 		.4byte	0x6b
  854 0273 00000000 		.4byte	.LLST0
  855 0277 0F       		.uleb128 0xf
- 856 0278 61000000 		.4byte	.LASF37
+ 856 0278 5A000000 		.4byte	.LASF37
  857 027c 01       		.byte	0x1
  858 027d 5D       		.byte	0x5d
  859 027e 6B000000 		.4byte	0x6b
@@ -1878,7 +1878,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  867 0295 50       		.byte	0x50
  868 0296 03       		.uleb128 0x3
  869 0297 0A       		.byte	0xa
- 870 0298 BF03     		.2byte	0x3bf
+ 870 0298 8813     		.2byte	0x1388
  871 029a 00       		.byte	0
  872 029b 10       		.uleb128 0x10
  873 029c 34000000 		.4byte	.LVL12
@@ -1889,7 +1889,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  878 02aa 50       		.byte	0x50
  879 02ab 03       		.uleb128 0x3
  880 02ac 0A       		.byte	0xa
- 881 02ad BF03     		.2byte	0x3bf
+ 881 02ad 8813     		.2byte	0x1388
  882 02af 00       		.byte	0
  883 02b0 10       		.uleb128 0x10
  884 02b1 3A000000 		.4byte	.LVL13
@@ -1902,837 +1902,840 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 1
  891 02c1 30       		.byte	0x30
  892 02c2 00       		.byte	0
  893 02c3 10       		.uleb128 0x10
- 894 02c4 40000000 		.4byte	.LVL14
+ 894 02c4 42000000 		.4byte	.LVL14
  895 02c8 66010000 		.4byte	0x166
- 896 02cc D6020000 		.4byte	0x2d6
+ 896 02cc D8020000 		.4byte	0x2d8
  897 02d0 11       		.uleb128 0x11
  898 02d1 01       		.uleb128 0x1
  899 02d2 50       		.byte	0x50
- 900 02d3 01       		.uleb128 0x1
- 901 02d4 30       		.byte	0x30
- 902 02d5 00       		.byte	0
- 903 02d6 10       		.uleb128 0x10
- 904 02d7 46000000 		.4byte	.LVL15
- 905 02db 8B010000 		.4byte	0x18b
- 906 02df E9020000 		.4byte	0x2e9
- 907 02e3 11       		.uleb128 0x11
- 908 02e4 01       		.uleb128 0x1
- 909 02e5 50       		.byte	0x50
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 33
+ 900 02d3 03       		.uleb128 0x3
+ 901 02d4 0A       		.byte	0xa
+ 902 02d5 C409     		.2byte	0x9c4
+ 903 02d7 00       		.byte	0
+ 904 02d8 10       		.uleb128 0x10
+ 905 02d9 48000000 		.4byte	.LVL15
+ 906 02dd 8B010000 		.4byte	0x18b
+ 907 02e1 EB020000 		.4byte	0x2eb
+ 908 02e5 11       		.uleb128 0x11
+ 909 02e6 01       		.uleb128 0x1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 33
 
 
- 910 02e6 01       		.uleb128 0x1
- 911 02e7 30       		.byte	0x30
- 912 02e8 00       		.byte	0
- 913 02e9 0D       		.uleb128 0xd
- 914 02ea 4A000000 		.4byte	.LVL16
- 915 02ee 80030000 		.4byte	0x380
- 916 02f2 0D       		.uleb128 0xd
- 917 02f3 58000000 		.4byte	.LVL17
- 918 02f7 8B030000 		.4byte	0x38b
- 919 02fb 0D       		.uleb128 0xd
- 920 02fc 5C000000 		.4byte	.LVL18
- 921 0300 2A020000 		.4byte	0x22a
- 922 0304 00       		.byte	0
- 923 0305 0E       		.uleb128 0xe
- 924 0306 13000000 		.4byte	.LASF38
- 925 030a 01       		.byte	0x1
- 926 030b 37       		.byte	0x37
- 927 030c 00000000 		.4byte	.LFB0
- 928 0310 1C000000 		.4byte	.LFE0-.LFB0
- 929 0314 01       		.uleb128 0x1
- 930 0315 9C       		.byte	0x9c
- 931 0316 2D030000 		.4byte	0x32d
- 932 031a 0D       		.uleb128 0xd
- 933 031b 0C000000 		.4byte	.LVL19
- 934 031f 53020000 		.4byte	0x253
- 935 0323 0D       		.uleb128 0xd
- 936 0324 16000000 		.4byte	.LVL20
- 937 0328 BF000000 		.4byte	0xbf
- 938 032c 00       		.byte	0
- 939 032d 0A       		.uleb128 0xa
- 940 032e 2D030000 		.4byte	.LASF39
- 941 0332 01       		.byte	0x1
- 942 0333 4A03     		.2byte	0x34a
- 943 0335 76000000 		.4byte	0x76
- 944 0339 00000000 		.4byte	.LFB15
- 945 033d 0C000000 		.4byte	.LFE15-.LFB15
- 946 0341 01       		.uleb128 0x1
- 947 0342 9C       		.byte	0x9c
- 948 0343 0A       		.uleb128 0xa
- 949 0344 47030000 		.4byte	.LASF40
- 950 0348 01       		.byte	0x1
- 951 0349 5E03     		.2byte	0x35e
- 952 034b 76000000 		.4byte	0x76
- 953 034f 00000000 		.4byte	.LFB16
- 954 0353 0C000000 		.4byte	.LFE16-.LFB16
- 955 0357 01       		.uleb128 0x1
- 956 0358 9C       		.byte	0x9c
- 957 0359 0A       		.uleb128 0xa
- 958 035a 9B030000 		.4byte	.LASF41
- 959 035e 01       		.byte	0x1
- 960 035f 7403     		.2byte	0x374
- 961 0361 76000000 		.4byte	0x76
- 962 0365 00000000 		.4byte	.LFB17
- 963 0369 0C000000 		.4byte	.LFE17-.LFB17
- 964 036d 01       		.uleb128 0x1
- 965 036e 9C       		.byte	0x9c
- 966 036f 12       		.uleb128 0x12
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 34
+ 910 02e7 50       		.byte	0x50
+ 911 02e8 01       		.uleb128 0x1
+ 912 02e9 30       		.byte	0x30
+ 913 02ea 00       		.byte	0
+ 914 02eb 0D       		.uleb128 0xd
+ 915 02ec 4C000000 		.4byte	.LVL16
+ 916 02f0 82030000 		.4byte	0x382
+ 917 02f4 0D       		.uleb128 0xd
+ 918 02f5 5A000000 		.4byte	.LVL17
+ 919 02f9 8D030000 		.4byte	0x38d
+ 920 02fd 0D       		.uleb128 0xd
+ 921 02fe 5E000000 		.4byte	.LVL18
+ 922 0302 2A020000 		.4byte	0x22a
+ 923 0306 00       		.byte	0
+ 924 0307 0E       		.uleb128 0xe
+ 925 0308 0C000000 		.4byte	.LASF38
+ 926 030c 01       		.byte	0x1
+ 927 030d 37       		.byte	0x37
+ 928 030e 00000000 		.4byte	.LFB0
+ 929 0312 1C000000 		.4byte	.LFE0-.LFB0
+ 930 0316 01       		.uleb128 0x1
+ 931 0317 9C       		.byte	0x9c
+ 932 0318 2F030000 		.4byte	0x32f
+ 933 031c 0D       		.uleb128 0xd
+ 934 031d 0C000000 		.4byte	.LVL19
+ 935 0321 53020000 		.4byte	0x253
+ 936 0325 0D       		.uleb128 0xd
+ 937 0326 16000000 		.4byte	.LVL20
+ 938 032a BF000000 		.4byte	0xbf
+ 939 032e 00       		.byte	0
+ 940 032f 0A       		.uleb128 0xa
+ 941 0330 40030000 		.4byte	.LASF39
+ 942 0334 01       		.byte	0x1
+ 943 0335 4A03     		.2byte	0x34a
+ 944 0337 76000000 		.4byte	0x76
+ 945 033b 00000000 		.4byte	.LFB15
+ 946 033f 0C000000 		.4byte	.LFE15-.LFB15
+ 947 0343 01       		.uleb128 0x1
+ 948 0344 9C       		.byte	0x9c
+ 949 0345 0A       		.uleb128 0xa
+ 950 0346 5A030000 		.4byte	.LASF40
+ 951 034a 01       		.byte	0x1
+ 952 034b 5E03     		.2byte	0x35e
+ 953 034d 76000000 		.4byte	0x76
+ 954 0351 00000000 		.4byte	.LFB16
+ 955 0355 0C000000 		.4byte	.LFE16-.LFB16
+ 956 0359 01       		.uleb128 0x1
+ 957 035a 9C       		.byte	0x9c
+ 958 035b 0A       		.uleb128 0xa
+ 959 035c AE030000 		.4byte	.LASF41
+ 960 0360 01       		.byte	0x1
+ 961 0361 7403     		.2byte	0x374
+ 962 0363 76000000 		.4byte	0x76
+ 963 0367 00000000 		.4byte	.LFB17
+ 964 036b 0C000000 		.4byte	.LFE17-.LFB17
+ 965 036f 01       		.uleb128 0x1
+ 966 0370 9C       		.byte	0x9c
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 34
 
 
- 967 0370 5D010000 		.4byte	.LASF46
- 968 0374 01       		.byte	0x1
- 969 0375 20       		.byte	0x20
- 970 0376 6B000000 		.4byte	0x6b
- 971 037a 05       		.uleb128 0x5
- 972 037b 03       		.byte	0x3
- 973 037c 00000000 		.4byte	PWM_STEERING_initVar
- 974 0380 13       		.uleb128 0x13
- 975 0381 27020000 		.4byte	.LASF47
- 976 0385 03       		.byte	0x3
- 977 0386 7E       		.byte	0x7e
- 978 0387 6B000000 		.4byte	0x6b
- 979 038b 14       		.uleb128 0x14
- 980 038c 65020000 		.4byte	.LASF48
- 981 0390 03       		.byte	0x3
- 982 0391 7F       		.byte	0x7f
- 983 0392 15       		.uleb128 0x15
- 984 0393 6B000000 		.4byte	0x6b
- 985 0397 00       		.byte	0
- 986 0398 00       		.byte	0
- 987              		.section	.debug_abbrev,"",%progbits
- 988              	.Ldebug_abbrev0:
- 989 0000 01       		.uleb128 0x1
- 990 0001 11       		.uleb128 0x11
- 991 0002 01       		.byte	0x1
- 992 0003 25       		.uleb128 0x25
- 993 0004 0E       		.uleb128 0xe
- 994 0005 13       		.uleb128 0x13
- 995 0006 0B       		.uleb128 0xb
- 996 0007 03       		.uleb128 0x3
- 997 0008 0E       		.uleb128 0xe
- 998 0009 1B       		.uleb128 0x1b
- 999 000a 0E       		.uleb128 0xe
- 1000 000b 55       		.uleb128 0x55
- 1001 000c 17       		.uleb128 0x17
- 1002 000d 11       		.uleb128 0x11
- 1003 000e 01       		.uleb128 0x1
- 1004 000f 10       		.uleb128 0x10
- 1005 0010 17       		.uleb128 0x17
- 1006 0011 00       		.byte	0
- 1007 0012 00       		.byte	0
- 1008 0013 02       		.uleb128 0x2
- 1009 0014 24       		.uleb128 0x24
- 1010 0015 00       		.byte	0
- 1011 0016 0B       		.uleb128 0xb
- 1012 0017 0B       		.uleb128 0xb
- 1013 0018 3E       		.uleb128 0x3e
- 1014 0019 0B       		.uleb128 0xb
- 1015 001a 03       		.uleb128 0x3
- 1016 001b 0E       		.uleb128 0xe
- 1017 001c 00       		.byte	0
- 1018 001d 00       		.byte	0
- 1019 001e 03       		.uleb128 0x3
- 1020 001f 24       		.uleb128 0x24
- 1021 0020 00       		.byte	0
- 1022 0021 0B       		.uleb128 0xb
- 1023 0022 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 35
+ 967 0371 12       		.uleb128 0x12
+ 968 0372 56010000 		.4byte	.LASF46
+ 969 0376 01       		.byte	0x1
+ 970 0377 20       		.byte	0x20
+ 971 0378 6B000000 		.4byte	0x6b
+ 972 037c 05       		.uleb128 0x5
+ 973 037d 03       		.byte	0x3
+ 974 037e 00000000 		.4byte	PWM_STEERING_initVar
+ 975 0382 13       		.uleb128 0x13
+ 976 0383 20020000 		.4byte	.LASF47
+ 977 0387 03       		.byte	0x3
+ 978 0388 7E       		.byte	0x7e
+ 979 0389 6B000000 		.4byte	0x6b
+ 980 038d 14       		.uleb128 0x14
+ 981 038e 93020000 		.4byte	.LASF48
+ 982 0392 03       		.byte	0x3
+ 983 0393 7F       		.byte	0x7f
+ 984 0394 15       		.uleb128 0x15
+ 985 0395 6B000000 		.4byte	0x6b
+ 986 0399 00       		.byte	0
+ 987 039a 00       		.byte	0
+ 988              		.section	.debug_abbrev,"",%progbits
+ 989              	.Ldebug_abbrev0:
+ 990 0000 01       		.uleb128 0x1
+ 991 0001 11       		.uleb128 0x11
+ 992 0002 01       		.byte	0x1
+ 993 0003 25       		.uleb128 0x25
+ 994 0004 0E       		.uleb128 0xe
+ 995 0005 13       		.uleb128 0x13
+ 996 0006 0B       		.uleb128 0xb
+ 997 0007 03       		.uleb128 0x3
+ 998 0008 0E       		.uleb128 0xe
+ 999 0009 1B       		.uleb128 0x1b
+ 1000 000a 0E       		.uleb128 0xe
+ 1001 000b 55       		.uleb128 0x55
+ 1002 000c 17       		.uleb128 0x17
+ 1003 000d 11       		.uleb128 0x11
+ 1004 000e 01       		.uleb128 0x1
+ 1005 000f 10       		.uleb128 0x10
+ 1006 0010 17       		.uleb128 0x17
+ 1007 0011 00       		.byte	0
+ 1008 0012 00       		.byte	0
+ 1009 0013 02       		.uleb128 0x2
+ 1010 0014 24       		.uleb128 0x24
+ 1011 0015 00       		.byte	0
+ 1012 0016 0B       		.uleb128 0xb
+ 1013 0017 0B       		.uleb128 0xb
+ 1014 0018 3E       		.uleb128 0x3e
+ 1015 0019 0B       		.uleb128 0xb
+ 1016 001a 03       		.uleb128 0x3
+ 1017 001b 0E       		.uleb128 0xe
+ 1018 001c 00       		.byte	0
+ 1019 001d 00       		.byte	0
+ 1020 001e 03       		.uleb128 0x3
+ 1021 001f 24       		.uleb128 0x24
+ 1022 0020 00       		.byte	0
+ 1023 0021 0B       		.uleb128 0xb
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 35
 
 
- 1024 0023 3E       		.uleb128 0x3e
- 1025 0024 0B       		.uleb128 0xb
- 1026 0025 03       		.uleb128 0x3
- 1027 0026 08       		.uleb128 0x8
- 1028 0027 00       		.byte	0
- 1029 0028 00       		.byte	0
- 1030 0029 04       		.uleb128 0x4
- 1031 002a 16       		.uleb128 0x16
- 1032 002b 00       		.byte	0
- 1033 002c 03       		.uleb128 0x3
- 1034 002d 0E       		.uleb128 0xe
- 1035 002e 3A       		.uleb128 0x3a
- 1036 002f 0B       		.uleb128 0xb
- 1037 0030 3B       		.uleb128 0x3b
- 1038 0031 0B       		.uleb128 0xb
- 1039 0032 49       		.uleb128 0x49
- 1040 0033 13       		.uleb128 0x13
- 1041 0034 00       		.byte	0
- 1042 0035 00       		.byte	0
- 1043 0036 05       		.uleb128 0x5
- 1044 0037 16       		.uleb128 0x16
- 1045 0038 00       		.byte	0
- 1046 0039 03       		.uleb128 0x3
- 1047 003a 0E       		.uleb128 0xe
- 1048 003b 3A       		.uleb128 0x3a
- 1049 003c 0B       		.uleb128 0xb
- 1050 003d 3B       		.uleb128 0x3b
- 1051 003e 05       		.uleb128 0x5
- 1052 003f 49       		.uleb128 0x49
- 1053 0040 13       		.uleb128 0x13
- 1054 0041 00       		.byte	0
- 1055 0042 00       		.byte	0
- 1056 0043 06       		.uleb128 0x6
- 1057 0044 35       		.uleb128 0x35
- 1058 0045 00       		.byte	0
- 1059 0046 49       		.uleb128 0x49
- 1060 0047 13       		.uleb128 0x13
- 1061 0048 00       		.byte	0
- 1062 0049 00       		.byte	0
- 1063 004a 07       		.uleb128 0x7
- 1064 004b 2E       		.uleb128 0x2e
- 1065 004c 00       		.byte	0
- 1066 004d 3F       		.uleb128 0x3f
- 1067 004e 19       		.uleb128 0x19
- 1068 004f 03       		.uleb128 0x3
- 1069 0050 0E       		.uleb128 0xe
- 1070 0051 3A       		.uleb128 0x3a
- 1071 0052 0B       		.uleb128 0xb
- 1072 0053 3B       		.uleb128 0x3b
- 1073 0054 0B       		.uleb128 0xb
- 1074 0055 27       		.uleb128 0x27
- 1075 0056 19       		.uleb128 0x19
- 1076 0057 11       		.uleb128 0x11
- 1077 0058 01       		.uleb128 0x1
- 1078 0059 12       		.uleb128 0x12
- 1079 005a 06       		.uleb128 0x6
- 1080 005b 40       		.uleb128 0x40
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 36
+ 1024 0022 0B       		.uleb128 0xb
+ 1025 0023 3E       		.uleb128 0x3e
+ 1026 0024 0B       		.uleb128 0xb
+ 1027 0025 03       		.uleb128 0x3
+ 1028 0026 08       		.uleb128 0x8
+ 1029 0027 00       		.byte	0
+ 1030 0028 00       		.byte	0
+ 1031 0029 04       		.uleb128 0x4
+ 1032 002a 16       		.uleb128 0x16
+ 1033 002b 00       		.byte	0
+ 1034 002c 03       		.uleb128 0x3
+ 1035 002d 0E       		.uleb128 0xe
+ 1036 002e 3A       		.uleb128 0x3a
+ 1037 002f 0B       		.uleb128 0xb
+ 1038 0030 3B       		.uleb128 0x3b
+ 1039 0031 0B       		.uleb128 0xb
+ 1040 0032 49       		.uleb128 0x49
+ 1041 0033 13       		.uleb128 0x13
+ 1042 0034 00       		.byte	0
+ 1043 0035 00       		.byte	0
+ 1044 0036 05       		.uleb128 0x5
+ 1045 0037 16       		.uleb128 0x16
+ 1046 0038 00       		.byte	0
+ 1047 0039 03       		.uleb128 0x3
+ 1048 003a 0E       		.uleb128 0xe
+ 1049 003b 3A       		.uleb128 0x3a
+ 1050 003c 0B       		.uleb128 0xb
+ 1051 003d 3B       		.uleb128 0x3b
+ 1052 003e 05       		.uleb128 0x5
+ 1053 003f 49       		.uleb128 0x49
+ 1054 0040 13       		.uleb128 0x13
+ 1055 0041 00       		.byte	0
+ 1056 0042 00       		.byte	0
+ 1057 0043 06       		.uleb128 0x6
+ 1058 0044 35       		.uleb128 0x35
+ 1059 0045 00       		.byte	0
+ 1060 0046 49       		.uleb128 0x49
+ 1061 0047 13       		.uleb128 0x13
+ 1062 0048 00       		.byte	0
+ 1063 0049 00       		.byte	0
+ 1064 004a 07       		.uleb128 0x7
+ 1065 004b 2E       		.uleb128 0x2e
+ 1066 004c 00       		.byte	0
+ 1067 004d 3F       		.uleb128 0x3f
+ 1068 004e 19       		.uleb128 0x19
+ 1069 004f 03       		.uleb128 0x3
+ 1070 0050 0E       		.uleb128 0xe
+ 1071 0051 3A       		.uleb128 0x3a
+ 1072 0052 0B       		.uleb128 0xb
+ 1073 0053 3B       		.uleb128 0x3b
+ 1074 0054 0B       		.uleb128 0xb
+ 1075 0055 27       		.uleb128 0x27
+ 1076 0056 19       		.uleb128 0x19
+ 1077 0057 11       		.uleb128 0x11
+ 1078 0058 01       		.uleb128 0x1
+ 1079 0059 12       		.uleb128 0x12
+ 1080 005a 06       		.uleb128 0x6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 36
 
 
- 1081 005c 18       		.uleb128 0x18
- 1082 005d 9742     		.uleb128 0x2117
- 1083 005f 19       		.uleb128 0x19
- 1084 0060 00       		.byte	0
- 1085 0061 00       		.byte	0
- 1086 0062 08       		.uleb128 0x8
- 1087 0063 2E       		.uleb128 0x2e
- 1088 0064 01       		.byte	0x1
- 1089 0065 3F       		.uleb128 0x3f
- 1090 0066 19       		.uleb128 0x19
- 1091 0067 03       		.uleb128 0x3
- 1092 0068 0E       		.uleb128 0xe
- 1093 0069 3A       		.uleb128 0x3a
- 1094 006a 0B       		.uleb128 0xb
- 1095 006b 3B       		.uleb128 0x3b
- 1096 006c 05       		.uleb128 0x5
- 1097 006d 27       		.uleb128 0x27
- 1098 006e 19       		.uleb128 0x19
- 1099 006f 11       		.uleb128 0x11
- 1100 0070 01       		.uleb128 0x1
- 1101 0071 12       		.uleb128 0x12
- 1102 0072 06       		.uleb128 0x6
- 1103 0073 40       		.uleb128 0x40
- 1104 0074 18       		.uleb128 0x18
- 1105 0075 9742     		.uleb128 0x2117
- 1106 0077 19       		.uleb128 0x19
- 1107 0078 01       		.uleb128 0x1
- 1108 0079 13       		.uleb128 0x13
- 1109 007a 00       		.byte	0
- 1110 007b 00       		.byte	0
- 1111 007c 09       		.uleb128 0x9
- 1112 007d 05       		.uleb128 0x5
- 1113 007e 00       		.byte	0
- 1114 007f 03       		.uleb128 0x3
- 1115 0080 0E       		.uleb128 0xe
- 1116 0081 3A       		.uleb128 0x3a
- 1117 0082 0B       		.uleb128 0xb
- 1118 0083 3B       		.uleb128 0x3b
- 1119 0084 05       		.uleb128 0x5
- 1120 0085 49       		.uleb128 0x49
- 1121 0086 13       		.uleb128 0x13
- 1122 0087 02       		.uleb128 0x2
- 1123 0088 18       		.uleb128 0x18
- 1124 0089 00       		.byte	0
- 1125 008a 00       		.byte	0
- 1126 008b 0A       		.uleb128 0xa
- 1127 008c 2E       		.uleb128 0x2e
- 1128 008d 00       		.byte	0
- 1129 008e 3F       		.uleb128 0x3f
- 1130 008f 19       		.uleb128 0x19
- 1131 0090 03       		.uleb128 0x3
- 1132 0091 0E       		.uleb128 0xe
- 1133 0092 3A       		.uleb128 0x3a
- 1134 0093 0B       		.uleb128 0xb
- 1135 0094 3B       		.uleb128 0x3b
- 1136 0095 05       		.uleb128 0x5
- 1137 0096 27       		.uleb128 0x27
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 37
+ 1081 005b 40       		.uleb128 0x40
+ 1082 005c 18       		.uleb128 0x18
+ 1083 005d 9742     		.uleb128 0x2117
+ 1084 005f 19       		.uleb128 0x19
+ 1085 0060 00       		.byte	0
+ 1086 0061 00       		.byte	0
+ 1087 0062 08       		.uleb128 0x8
+ 1088 0063 2E       		.uleb128 0x2e
+ 1089 0064 01       		.byte	0x1
+ 1090 0065 3F       		.uleb128 0x3f
+ 1091 0066 19       		.uleb128 0x19
+ 1092 0067 03       		.uleb128 0x3
+ 1093 0068 0E       		.uleb128 0xe
+ 1094 0069 3A       		.uleb128 0x3a
+ 1095 006a 0B       		.uleb128 0xb
+ 1096 006b 3B       		.uleb128 0x3b
+ 1097 006c 05       		.uleb128 0x5
+ 1098 006d 27       		.uleb128 0x27
+ 1099 006e 19       		.uleb128 0x19
+ 1100 006f 11       		.uleb128 0x11
+ 1101 0070 01       		.uleb128 0x1
+ 1102 0071 12       		.uleb128 0x12
+ 1103 0072 06       		.uleb128 0x6
+ 1104 0073 40       		.uleb128 0x40
+ 1105 0074 18       		.uleb128 0x18
+ 1106 0075 9742     		.uleb128 0x2117
+ 1107 0077 19       		.uleb128 0x19
+ 1108 0078 01       		.uleb128 0x1
+ 1109 0079 13       		.uleb128 0x13
+ 1110 007a 00       		.byte	0
+ 1111 007b 00       		.byte	0
+ 1112 007c 09       		.uleb128 0x9
+ 1113 007d 05       		.uleb128 0x5
+ 1114 007e 00       		.byte	0
+ 1115 007f 03       		.uleb128 0x3
+ 1116 0080 0E       		.uleb128 0xe
+ 1117 0081 3A       		.uleb128 0x3a
+ 1118 0082 0B       		.uleb128 0xb
+ 1119 0083 3B       		.uleb128 0x3b
+ 1120 0084 05       		.uleb128 0x5
+ 1121 0085 49       		.uleb128 0x49
+ 1122 0086 13       		.uleb128 0x13
+ 1123 0087 02       		.uleb128 0x2
+ 1124 0088 18       		.uleb128 0x18
+ 1125 0089 00       		.byte	0
+ 1126 008a 00       		.byte	0
+ 1127 008b 0A       		.uleb128 0xa
+ 1128 008c 2E       		.uleb128 0x2e
+ 1129 008d 00       		.byte	0
+ 1130 008e 3F       		.uleb128 0x3f
+ 1131 008f 19       		.uleb128 0x19
+ 1132 0090 03       		.uleb128 0x3
+ 1133 0091 0E       		.uleb128 0xe
+ 1134 0092 3A       		.uleb128 0x3a
+ 1135 0093 0B       		.uleb128 0xb
+ 1136 0094 3B       		.uleb128 0x3b
+ 1137 0095 05       		.uleb128 0x5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 37
 
 
- 1138 0097 19       		.uleb128 0x19
- 1139 0098 49       		.uleb128 0x49
- 1140 0099 13       		.uleb128 0x13
- 1141 009a 11       		.uleb128 0x11
- 1142 009b 01       		.uleb128 0x1
- 1143 009c 12       		.uleb128 0x12
- 1144 009d 06       		.uleb128 0x6
- 1145 009e 40       		.uleb128 0x40
- 1146 009f 18       		.uleb128 0x18
- 1147 00a0 9742     		.uleb128 0x2117
- 1148 00a2 19       		.uleb128 0x19
- 1149 00a3 00       		.byte	0
- 1150 00a4 00       		.byte	0
- 1151 00a5 0B       		.uleb128 0xb
- 1152 00a6 2E       		.uleb128 0x2e
- 1153 00a7 01       		.byte	0x1
- 1154 00a8 3F       		.uleb128 0x3f
- 1155 00a9 19       		.uleb128 0x19
- 1156 00aa 03       		.uleb128 0x3
- 1157 00ab 0E       		.uleb128 0xe
- 1158 00ac 3A       		.uleb128 0x3a
- 1159 00ad 0B       		.uleb128 0xb
- 1160 00ae 3B       		.uleb128 0x3b
- 1161 00af 05       		.uleb128 0x5
- 1162 00b0 27       		.uleb128 0x27
- 1163 00b1 19       		.uleb128 0x19
- 1164 00b2 49       		.uleb128 0x49
- 1165 00b3 13       		.uleb128 0x13
- 1166 00b4 11       		.uleb128 0x11
- 1167 00b5 01       		.uleb128 0x1
- 1168 00b6 12       		.uleb128 0x12
- 1169 00b7 06       		.uleb128 0x6
- 1170 00b8 40       		.uleb128 0x40
- 1171 00b9 18       		.uleb128 0x18
- 1172 00ba 9742     		.uleb128 0x2117
- 1173 00bc 19       		.uleb128 0x19
- 1174 00bd 01       		.uleb128 0x1
- 1175 00be 13       		.uleb128 0x13
- 1176 00bf 00       		.byte	0
- 1177 00c0 00       		.byte	0
- 1178 00c1 0C       		.uleb128 0xc
- 1179 00c2 34       		.uleb128 0x34
- 1180 00c3 00       		.byte	0
- 1181 00c4 03       		.uleb128 0x3
- 1182 00c5 0E       		.uleb128 0xe
- 1183 00c6 3A       		.uleb128 0x3a
- 1184 00c7 0B       		.uleb128 0xb
- 1185 00c8 3B       		.uleb128 0x3b
- 1186 00c9 05       		.uleb128 0x5
- 1187 00ca 49       		.uleb128 0x49
- 1188 00cb 13       		.uleb128 0x13
- 1189 00cc 02       		.uleb128 0x2
- 1190 00cd 18       		.uleb128 0x18
- 1191 00ce 00       		.byte	0
- 1192 00cf 00       		.byte	0
- 1193 00d0 0D       		.uleb128 0xd
- 1194 00d1 898201   		.uleb128 0x4109
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 38
+ 1138 0096 27       		.uleb128 0x27
+ 1139 0097 19       		.uleb128 0x19
+ 1140 0098 49       		.uleb128 0x49
+ 1141 0099 13       		.uleb128 0x13
+ 1142 009a 11       		.uleb128 0x11
+ 1143 009b 01       		.uleb128 0x1
+ 1144 009c 12       		.uleb128 0x12
+ 1145 009d 06       		.uleb128 0x6
+ 1146 009e 40       		.uleb128 0x40
+ 1147 009f 18       		.uleb128 0x18
+ 1148 00a0 9742     		.uleb128 0x2117
+ 1149 00a2 19       		.uleb128 0x19
+ 1150 00a3 00       		.byte	0
+ 1151 00a4 00       		.byte	0
+ 1152 00a5 0B       		.uleb128 0xb
+ 1153 00a6 2E       		.uleb128 0x2e
+ 1154 00a7 01       		.byte	0x1
+ 1155 00a8 3F       		.uleb128 0x3f
+ 1156 00a9 19       		.uleb128 0x19
+ 1157 00aa 03       		.uleb128 0x3
+ 1158 00ab 0E       		.uleb128 0xe
+ 1159 00ac 3A       		.uleb128 0x3a
+ 1160 00ad 0B       		.uleb128 0xb
+ 1161 00ae 3B       		.uleb128 0x3b
+ 1162 00af 05       		.uleb128 0x5
+ 1163 00b0 27       		.uleb128 0x27
+ 1164 00b1 19       		.uleb128 0x19
+ 1165 00b2 49       		.uleb128 0x49
+ 1166 00b3 13       		.uleb128 0x13
+ 1167 00b4 11       		.uleb128 0x11
+ 1168 00b5 01       		.uleb128 0x1
+ 1169 00b6 12       		.uleb128 0x12
+ 1170 00b7 06       		.uleb128 0x6
+ 1171 00b8 40       		.uleb128 0x40
+ 1172 00b9 18       		.uleb128 0x18
+ 1173 00ba 9742     		.uleb128 0x2117
+ 1174 00bc 19       		.uleb128 0x19
+ 1175 00bd 01       		.uleb128 0x1
+ 1176 00be 13       		.uleb128 0x13
+ 1177 00bf 00       		.byte	0
+ 1178 00c0 00       		.byte	0
+ 1179 00c1 0C       		.uleb128 0xc
+ 1180 00c2 34       		.uleb128 0x34
+ 1181 00c3 00       		.byte	0
+ 1182 00c4 03       		.uleb128 0x3
+ 1183 00c5 0E       		.uleb128 0xe
+ 1184 00c6 3A       		.uleb128 0x3a
+ 1185 00c7 0B       		.uleb128 0xb
+ 1186 00c8 3B       		.uleb128 0x3b
+ 1187 00c9 05       		.uleb128 0x5
+ 1188 00ca 49       		.uleb128 0x49
+ 1189 00cb 13       		.uleb128 0x13
+ 1190 00cc 02       		.uleb128 0x2
+ 1191 00cd 18       		.uleb128 0x18
+ 1192 00ce 00       		.byte	0
+ 1193 00cf 00       		.byte	0
+ 1194 00d0 0D       		.uleb128 0xd
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 38
 
 
- 1195 00d4 00       		.byte	0
- 1196 00d5 11       		.uleb128 0x11
- 1197 00d6 01       		.uleb128 0x1
- 1198 00d7 31       		.uleb128 0x31
- 1199 00d8 13       		.uleb128 0x13
- 1200 00d9 00       		.byte	0
- 1201 00da 00       		.byte	0
- 1202 00db 0E       		.uleb128 0xe
- 1203 00dc 2E       		.uleb128 0x2e
- 1204 00dd 01       		.byte	0x1
- 1205 00de 3F       		.uleb128 0x3f
- 1206 00df 19       		.uleb128 0x19
- 1207 00e0 03       		.uleb128 0x3
- 1208 00e1 0E       		.uleb128 0xe
- 1209 00e2 3A       		.uleb128 0x3a
- 1210 00e3 0B       		.uleb128 0xb
- 1211 00e4 3B       		.uleb128 0x3b
- 1212 00e5 0B       		.uleb128 0xb
- 1213 00e6 27       		.uleb128 0x27
- 1214 00e7 19       		.uleb128 0x19
- 1215 00e8 11       		.uleb128 0x11
- 1216 00e9 01       		.uleb128 0x1
- 1217 00ea 12       		.uleb128 0x12
- 1218 00eb 06       		.uleb128 0x6
- 1219 00ec 40       		.uleb128 0x40
- 1220 00ed 18       		.uleb128 0x18
- 1221 00ee 9742     		.uleb128 0x2117
- 1222 00f0 19       		.uleb128 0x19
- 1223 00f1 01       		.uleb128 0x1
- 1224 00f2 13       		.uleb128 0x13
- 1225 00f3 00       		.byte	0
- 1226 00f4 00       		.byte	0
- 1227 00f5 0F       		.uleb128 0xf
- 1228 00f6 34       		.uleb128 0x34
- 1229 00f7 00       		.byte	0
- 1230 00f8 03       		.uleb128 0x3
- 1231 00f9 0E       		.uleb128 0xe
- 1232 00fa 3A       		.uleb128 0x3a
- 1233 00fb 0B       		.uleb128 0xb
- 1234 00fc 3B       		.uleb128 0x3b
- 1235 00fd 0B       		.uleb128 0xb
- 1236 00fe 49       		.uleb128 0x49
- 1237 00ff 13       		.uleb128 0x13
- 1238 0100 02       		.uleb128 0x2
- 1239 0101 17       		.uleb128 0x17
- 1240 0102 00       		.byte	0
- 1241 0103 00       		.byte	0
- 1242 0104 10       		.uleb128 0x10
- 1243 0105 898201   		.uleb128 0x4109
- 1244 0108 01       		.byte	0x1
- 1245 0109 11       		.uleb128 0x11
- 1246 010a 01       		.uleb128 0x1
- 1247 010b 31       		.uleb128 0x31
- 1248 010c 13       		.uleb128 0x13
- 1249 010d 01       		.uleb128 0x1
- 1250 010e 13       		.uleb128 0x13
- 1251 010f 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 39
+ 1195 00d1 898201   		.uleb128 0x4109
+ 1196 00d4 00       		.byte	0
+ 1197 00d5 11       		.uleb128 0x11
+ 1198 00d6 01       		.uleb128 0x1
+ 1199 00d7 31       		.uleb128 0x31
+ 1200 00d8 13       		.uleb128 0x13
+ 1201 00d9 00       		.byte	0
+ 1202 00da 00       		.byte	0
+ 1203 00db 0E       		.uleb128 0xe
+ 1204 00dc 2E       		.uleb128 0x2e
+ 1205 00dd 01       		.byte	0x1
+ 1206 00de 3F       		.uleb128 0x3f
+ 1207 00df 19       		.uleb128 0x19
+ 1208 00e0 03       		.uleb128 0x3
+ 1209 00e1 0E       		.uleb128 0xe
+ 1210 00e2 3A       		.uleb128 0x3a
+ 1211 00e3 0B       		.uleb128 0xb
+ 1212 00e4 3B       		.uleb128 0x3b
+ 1213 00e5 0B       		.uleb128 0xb
+ 1214 00e6 27       		.uleb128 0x27
+ 1215 00e7 19       		.uleb128 0x19
+ 1216 00e8 11       		.uleb128 0x11
+ 1217 00e9 01       		.uleb128 0x1
+ 1218 00ea 12       		.uleb128 0x12
+ 1219 00eb 06       		.uleb128 0x6
+ 1220 00ec 40       		.uleb128 0x40
+ 1221 00ed 18       		.uleb128 0x18
+ 1222 00ee 9742     		.uleb128 0x2117
+ 1223 00f0 19       		.uleb128 0x19
+ 1224 00f1 01       		.uleb128 0x1
+ 1225 00f2 13       		.uleb128 0x13
+ 1226 00f3 00       		.byte	0
+ 1227 00f4 00       		.byte	0
+ 1228 00f5 0F       		.uleb128 0xf
+ 1229 00f6 34       		.uleb128 0x34
+ 1230 00f7 00       		.byte	0
+ 1231 00f8 03       		.uleb128 0x3
+ 1232 00f9 0E       		.uleb128 0xe
+ 1233 00fa 3A       		.uleb128 0x3a
+ 1234 00fb 0B       		.uleb128 0xb
+ 1235 00fc 3B       		.uleb128 0x3b
+ 1236 00fd 0B       		.uleb128 0xb
+ 1237 00fe 49       		.uleb128 0x49
+ 1238 00ff 13       		.uleb128 0x13
+ 1239 0100 02       		.uleb128 0x2
+ 1240 0101 17       		.uleb128 0x17
+ 1241 0102 00       		.byte	0
+ 1242 0103 00       		.byte	0
+ 1243 0104 10       		.uleb128 0x10
+ 1244 0105 898201   		.uleb128 0x4109
+ 1245 0108 01       		.byte	0x1
+ 1246 0109 11       		.uleb128 0x11
+ 1247 010a 01       		.uleb128 0x1
+ 1248 010b 31       		.uleb128 0x31
+ 1249 010c 13       		.uleb128 0x13
+ 1250 010d 01       		.uleb128 0x1
+ 1251 010e 13       		.uleb128 0x13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 39
 
 
- 1252 0110 00       		.byte	0
- 1253 0111 11       		.uleb128 0x11
- 1254 0112 8A8201   		.uleb128 0x410a
- 1255 0115 00       		.byte	0
- 1256 0116 02       		.uleb128 0x2
- 1257 0117 18       		.uleb128 0x18
- 1258 0118 9142     		.uleb128 0x2111
- 1259 011a 18       		.uleb128 0x18
- 1260 011b 00       		.byte	0
- 1261 011c 00       		.byte	0
- 1262 011d 12       		.uleb128 0x12
- 1263 011e 34       		.uleb128 0x34
- 1264 011f 00       		.byte	0
- 1265 0120 03       		.uleb128 0x3
- 1266 0121 0E       		.uleb128 0xe
- 1267 0122 3A       		.uleb128 0x3a
- 1268 0123 0B       		.uleb128 0xb
- 1269 0124 3B       		.uleb128 0x3b
- 1270 0125 0B       		.uleb128 0xb
- 1271 0126 49       		.uleb128 0x49
- 1272 0127 13       		.uleb128 0x13
- 1273 0128 3F       		.uleb128 0x3f
- 1274 0129 19       		.uleb128 0x19
- 1275 012a 02       		.uleb128 0x2
- 1276 012b 18       		.uleb128 0x18
- 1277 012c 00       		.byte	0
- 1278 012d 00       		.byte	0
- 1279 012e 13       		.uleb128 0x13
- 1280 012f 2E       		.uleb128 0x2e
- 1281 0130 00       		.byte	0
- 1282 0131 3F       		.uleb128 0x3f
- 1283 0132 19       		.uleb128 0x19
- 1284 0133 03       		.uleb128 0x3
- 1285 0134 0E       		.uleb128 0xe
- 1286 0135 3A       		.uleb128 0x3a
- 1287 0136 0B       		.uleb128 0xb
- 1288 0137 3B       		.uleb128 0x3b
- 1289 0138 0B       		.uleb128 0xb
- 1290 0139 27       		.uleb128 0x27
- 1291 013a 19       		.uleb128 0x19
- 1292 013b 49       		.uleb128 0x49
- 1293 013c 13       		.uleb128 0x13
- 1294 013d 3C       		.uleb128 0x3c
- 1295 013e 19       		.uleb128 0x19
- 1296 013f 00       		.byte	0
- 1297 0140 00       		.byte	0
- 1298 0141 14       		.uleb128 0x14
- 1299 0142 2E       		.uleb128 0x2e
- 1300 0143 01       		.byte	0x1
- 1301 0144 3F       		.uleb128 0x3f
- 1302 0145 19       		.uleb128 0x19
- 1303 0146 03       		.uleb128 0x3
- 1304 0147 0E       		.uleb128 0xe
- 1305 0148 3A       		.uleb128 0x3a
- 1306 0149 0B       		.uleb128 0xb
- 1307 014a 3B       		.uleb128 0x3b
- 1308 014b 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 40
+ 1252 010f 00       		.byte	0
+ 1253 0110 00       		.byte	0
+ 1254 0111 11       		.uleb128 0x11
+ 1255 0112 8A8201   		.uleb128 0x410a
+ 1256 0115 00       		.byte	0
+ 1257 0116 02       		.uleb128 0x2
+ 1258 0117 18       		.uleb128 0x18
+ 1259 0118 9142     		.uleb128 0x2111
+ 1260 011a 18       		.uleb128 0x18
+ 1261 011b 00       		.byte	0
+ 1262 011c 00       		.byte	0
+ 1263 011d 12       		.uleb128 0x12
+ 1264 011e 34       		.uleb128 0x34
+ 1265 011f 00       		.byte	0
+ 1266 0120 03       		.uleb128 0x3
+ 1267 0121 0E       		.uleb128 0xe
+ 1268 0122 3A       		.uleb128 0x3a
+ 1269 0123 0B       		.uleb128 0xb
+ 1270 0124 3B       		.uleb128 0x3b
+ 1271 0125 0B       		.uleb128 0xb
+ 1272 0126 49       		.uleb128 0x49
+ 1273 0127 13       		.uleb128 0x13
+ 1274 0128 3F       		.uleb128 0x3f
+ 1275 0129 19       		.uleb128 0x19
+ 1276 012a 02       		.uleb128 0x2
+ 1277 012b 18       		.uleb128 0x18
+ 1278 012c 00       		.byte	0
+ 1279 012d 00       		.byte	0
+ 1280 012e 13       		.uleb128 0x13
+ 1281 012f 2E       		.uleb128 0x2e
+ 1282 0130 00       		.byte	0
+ 1283 0131 3F       		.uleb128 0x3f
+ 1284 0132 19       		.uleb128 0x19
+ 1285 0133 03       		.uleb128 0x3
+ 1286 0134 0E       		.uleb128 0xe
+ 1287 0135 3A       		.uleb128 0x3a
+ 1288 0136 0B       		.uleb128 0xb
+ 1289 0137 3B       		.uleb128 0x3b
+ 1290 0138 0B       		.uleb128 0xb
+ 1291 0139 27       		.uleb128 0x27
+ 1292 013a 19       		.uleb128 0x19
+ 1293 013b 49       		.uleb128 0x49
+ 1294 013c 13       		.uleb128 0x13
+ 1295 013d 3C       		.uleb128 0x3c
+ 1296 013e 19       		.uleb128 0x19
+ 1297 013f 00       		.byte	0
+ 1298 0140 00       		.byte	0
+ 1299 0141 14       		.uleb128 0x14
+ 1300 0142 2E       		.uleb128 0x2e
+ 1301 0143 01       		.byte	0x1
+ 1302 0144 3F       		.uleb128 0x3f
+ 1303 0145 19       		.uleb128 0x19
+ 1304 0146 03       		.uleb128 0x3
+ 1305 0147 0E       		.uleb128 0xe
+ 1306 0148 3A       		.uleb128 0x3a
+ 1307 0149 0B       		.uleb128 0xb
+ 1308 014a 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 40
 
 
- 1309 014c 27       		.uleb128 0x27
- 1310 014d 19       		.uleb128 0x19
- 1311 014e 3C       		.uleb128 0x3c
- 1312 014f 19       		.uleb128 0x19
- 1313 0150 00       		.byte	0
- 1314 0151 00       		.byte	0
- 1315 0152 15       		.uleb128 0x15
- 1316 0153 05       		.uleb128 0x5
- 1317 0154 00       		.byte	0
- 1318 0155 49       		.uleb128 0x49
- 1319 0156 13       		.uleb128 0x13
- 1320 0157 00       		.byte	0
- 1321 0158 00       		.byte	0
- 1322 0159 00       		.byte	0
- 1323              		.section	.debug_loc,"",%progbits
- 1324              	.Ldebug_loc0:
- 1325              	.LLST0:
- 1326 0000 0A000000 		.4byte	.LVL9
- 1327 0004 0E000000 		.4byte	.LVL10
- 1328 0008 0100     		.2byte	0x1
- 1329 000a 53       		.byte	0x53
- 1330 000b 00000000 		.4byte	0
- 1331 000f 00000000 		.4byte	0
- 1332              	.LLST1:
- 1333 0013 4A000000 		.4byte	.LVL16
- 1334 0017 57000000 		.4byte	.LVL17-1
- 1335 001b 0100     		.2byte	0x1
- 1336 001d 50       		.byte	0x50
- 1337 001e 00000000 		.4byte	0
- 1338 0022 00000000 		.4byte	0
- 1339              		.section	.debug_aranges,"",%progbits
- 1340 0000 A4000000 		.4byte	0xa4
- 1341 0004 0200     		.2byte	0x2
- 1342 0006 00000000 		.4byte	.Ldebug_info0
- 1343 000a 04       		.byte	0x4
- 1344 000b 00       		.byte	0
- 1345 000c 0000     		.2byte	0
- 1346 000e 0000     		.2byte	0
- 1347 0010 00000000 		.4byte	.LFB2
- 1348 0014 10000000 		.4byte	.LFE2-.LFB2
- 1349 0018 00000000 		.4byte	.LFB3
- 1350 001c 10000000 		.4byte	.LFE3-.LFB3
- 1351 0020 00000000 		.4byte	.LFB4
- 1352 0024 0C000000 		.4byte	.LFE4-.LFB4
- 1353 0028 00000000 		.4byte	.LFB5
- 1354 002c 14000000 		.4byte	.LFE5-.LFB5
- 1355 0030 00000000 		.4byte	.LFB7
- 1356 0034 0C000000 		.4byte	.LFE7-.LFB7
- 1357 0038 00000000 		.4byte	.LFB8
- 1358 003c 0C000000 		.4byte	.LFE8-.LFB8
- 1359 0040 00000000 		.4byte	.LFB9
- 1360 0044 0C000000 		.4byte	.LFE9-.LFB9
- 1361 0048 00000000 		.4byte	.LFB10
- 1362 004c 0C000000 		.4byte	.LFE10-.LFB10
- 1363 0050 00000000 		.4byte	.LFB11
- 1364 0054 0C000000 		.4byte	.LFE11-.LFB11
- 1365 0058 00000000 		.4byte	.LFB12
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 41
+ 1309 014b 0B       		.uleb128 0xb
+ 1310 014c 27       		.uleb128 0x27
+ 1311 014d 19       		.uleb128 0x19
+ 1312 014e 3C       		.uleb128 0x3c
+ 1313 014f 19       		.uleb128 0x19
+ 1314 0150 00       		.byte	0
+ 1315 0151 00       		.byte	0
+ 1316 0152 15       		.uleb128 0x15
+ 1317 0153 05       		.uleb128 0x5
+ 1318 0154 00       		.byte	0
+ 1319 0155 49       		.uleb128 0x49
+ 1320 0156 13       		.uleb128 0x13
+ 1321 0157 00       		.byte	0
+ 1322 0158 00       		.byte	0
+ 1323 0159 00       		.byte	0
+ 1324              		.section	.debug_loc,"",%progbits
+ 1325              	.Ldebug_loc0:
+ 1326              	.LLST0:
+ 1327 0000 0A000000 		.4byte	.LVL9
+ 1328 0004 0E000000 		.4byte	.LVL10
+ 1329 0008 0100     		.2byte	0x1
+ 1330 000a 53       		.byte	0x53
+ 1331 000b 00000000 		.4byte	0
+ 1332 000f 00000000 		.4byte	0
+ 1333              	.LLST1:
+ 1334 0013 4C000000 		.4byte	.LVL16
+ 1335 0017 59000000 		.4byte	.LVL17-1
+ 1336 001b 0100     		.2byte	0x1
+ 1337 001d 50       		.byte	0x50
+ 1338 001e 00000000 		.4byte	0
+ 1339 0022 00000000 		.4byte	0
+ 1340              		.section	.debug_aranges,"",%progbits
+ 1341 0000 A4000000 		.4byte	0xa4
+ 1342 0004 0200     		.2byte	0x2
+ 1343 0006 00000000 		.4byte	.Ldebug_info0
+ 1344 000a 04       		.byte	0x4
+ 1345 000b 00       		.byte	0
+ 1346 000c 0000     		.2byte	0
+ 1347 000e 0000     		.2byte	0
+ 1348 0010 00000000 		.4byte	.LFB2
+ 1349 0014 10000000 		.4byte	.LFE2-.LFB2
+ 1350 0018 00000000 		.4byte	.LFB3
+ 1351 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1352 0020 00000000 		.4byte	.LFB4
+ 1353 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1354 0028 00000000 		.4byte	.LFB5
+ 1355 002c 14000000 		.4byte	.LFE5-.LFB5
+ 1356 0030 00000000 		.4byte	.LFB7
+ 1357 0034 0C000000 		.4byte	.LFE7-.LFB7
+ 1358 0038 00000000 		.4byte	.LFB8
+ 1359 003c 0C000000 		.4byte	.LFE8-.LFB8
+ 1360 0040 00000000 		.4byte	.LFB9
+ 1361 0044 0C000000 		.4byte	.LFE9-.LFB9
+ 1362 0048 00000000 		.4byte	.LFB10
+ 1363 004c 0C000000 		.4byte	.LFE10-.LFB10
+ 1364 0050 00000000 		.4byte	.LFB11
+ 1365 0054 0C000000 		.4byte	.LFE11-.LFB11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 41
 
 
- 1366 005c 0C000000 		.4byte	.LFE12-.LFB12
- 1367 0060 00000000 		.4byte	.LFB13
- 1368 0064 0C000000 		.4byte	.LFE13-.LFB13
- 1369 0068 00000000 		.4byte	.LFB14
- 1370 006c 0C000000 		.4byte	.LFE14-.LFB14
- 1371 0070 00000000 		.4byte	.LFB6
- 1372 0074 14000000 		.4byte	.LFE6-.LFB6
- 1373 0078 00000000 		.4byte	.LFB1
- 1374 007c 68000000 		.4byte	.LFE1-.LFB1
- 1375 0080 00000000 		.4byte	.LFB0
- 1376 0084 1C000000 		.4byte	.LFE0-.LFB0
- 1377 0088 00000000 		.4byte	.LFB15
- 1378 008c 0C000000 		.4byte	.LFE15-.LFB15
- 1379 0090 00000000 		.4byte	.LFB16
- 1380 0094 0C000000 		.4byte	.LFE16-.LFB16
- 1381 0098 00000000 		.4byte	.LFB17
- 1382 009c 0C000000 		.4byte	.LFE17-.LFB17
- 1383 00a0 00000000 		.4byte	0
- 1384 00a4 00000000 		.4byte	0
- 1385              		.section	.debug_ranges,"",%progbits
- 1386              	.Ldebug_ranges0:
- 1387 0000 00000000 		.4byte	.LFB2
- 1388 0004 10000000 		.4byte	.LFE2
- 1389 0008 00000000 		.4byte	.LFB3
- 1390 000c 10000000 		.4byte	.LFE3
- 1391 0010 00000000 		.4byte	.LFB4
- 1392 0014 0C000000 		.4byte	.LFE4
- 1393 0018 00000000 		.4byte	.LFB5
- 1394 001c 14000000 		.4byte	.LFE5
- 1395 0020 00000000 		.4byte	.LFB7
- 1396 0024 0C000000 		.4byte	.LFE7
- 1397 0028 00000000 		.4byte	.LFB8
- 1398 002c 0C000000 		.4byte	.LFE8
- 1399 0030 00000000 		.4byte	.LFB9
- 1400 0034 0C000000 		.4byte	.LFE9
- 1401 0038 00000000 		.4byte	.LFB10
- 1402 003c 0C000000 		.4byte	.LFE10
- 1403 0040 00000000 		.4byte	.LFB11
- 1404 0044 0C000000 		.4byte	.LFE11
- 1405 0048 00000000 		.4byte	.LFB12
- 1406 004c 0C000000 		.4byte	.LFE12
- 1407 0050 00000000 		.4byte	.LFB13
- 1408 0054 0C000000 		.4byte	.LFE13
- 1409 0058 00000000 		.4byte	.LFB14
- 1410 005c 0C000000 		.4byte	.LFE14
- 1411 0060 00000000 		.4byte	.LFB6
- 1412 0064 14000000 		.4byte	.LFE6
- 1413 0068 00000000 		.4byte	.LFB1
- 1414 006c 68000000 		.4byte	.LFE1
- 1415 0070 00000000 		.4byte	.LFB0
- 1416 0074 1C000000 		.4byte	.LFE0
- 1417 0078 00000000 		.4byte	.LFB15
- 1418 007c 0C000000 		.4byte	.LFE15
- 1419 0080 00000000 		.4byte	.LFB16
- 1420 0084 0C000000 		.4byte	.LFE16
- 1421 0088 00000000 		.4byte	.LFB17
- 1422 008c 0C000000 		.4byte	.LFE17
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 42
+ 1366 0058 00000000 		.4byte	.LFB12
+ 1367 005c 0C000000 		.4byte	.LFE12-.LFB12
+ 1368 0060 00000000 		.4byte	.LFB13
+ 1369 0064 0C000000 		.4byte	.LFE13-.LFB13
+ 1370 0068 00000000 		.4byte	.LFB14
+ 1371 006c 0C000000 		.4byte	.LFE14-.LFB14
+ 1372 0070 00000000 		.4byte	.LFB6
+ 1373 0074 14000000 		.4byte	.LFE6-.LFB6
+ 1374 0078 00000000 		.4byte	.LFB1
+ 1375 007c 68000000 		.4byte	.LFE1-.LFB1
+ 1376 0080 00000000 		.4byte	.LFB0
+ 1377 0084 1C000000 		.4byte	.LFE0-.LFB0
+ 1378 0088 00000000 		.4byte	.LFB15
+ 1379 008c 0C000000 		.4byte	.LFE15-.LFB15
+ 1380 0090 00000000 		.4byte	.LFB16
+ 1381 0094 0C000000 		.4byte	.LFE16-.LFB16
+ 1382 0098 00000000 		.4byte	.LFB17
+ 1383 009c 0C000000 		.4byte	.LFE17-.LFB17
+ 1384 00a0 00000000 		.4byte	0
+ 1385 00a4 00000000 		.4byte	0
+ 1386              		.section	.debug_ranges,"",%progbits
+ 1387              	.Ldebug_ranges0:
+ 1388 0000 00000000 		.4byte	.LFB2
+ 1389 0004 10000000 		.4byte	.LFE2
+ 1390 0008 00000000 		.4byte	.LFB3
+ 1391 000c 10000000 		.4byte	.LFE3
+ 1392 0010 00000000 		.4byte	.LFB4
+ 1393 0014 0C000000 		.4byte	.LFE4
+ 1394 0018 00000000 		.4byte	.LFB5
+ 1395 001c 14000000 		.4byte	.LFE5
+ 1396 0020 00000000 		.4byte	.LFB7
+ 1397 0024 0C000000 		.4byte	.LFE7
+ 1398 0028 00000000 		.4byte	.LFB8
+ 1399 002c 0C000000 		.4byte	.LFE8
+ 1400 0030 00000000 		.4byte	.LFB9
+ 1401 0034 0C000000 		.4byte	.LFE9
+ 1402 0038 00000000 		.4byte	.LFB10
+ 1403 003c 0C000000 		.4byte	.LFE10
+ 1404 0040 00000000 		.4byte	.LFB11
+ 1405 0044 0C000000 		.4byte	.LFE11
+ 1406 0048 00000000 		.4byte	.LFB12
+ 1407 004c 0C000000 		.4byte	.LFE12
+ 1408 0050 00000000 		.4byte	.LFB13
+ 1409 0054 0C000000 		.4byte	.LFE13
+ 1410 0058 00000000 		.4byte	.LFB14
+ 1411 005c 0C000000 		.4byte	.LFE14
+ 1412 0060 00000000 		.4byte	.LFB6
+ 1413 0064 14000000 		.4byte	.LFE6
+ 1414 0068 00000000 		.4byte	.LFB1
+ 1415 006c 68000000 		.4byte	.LFE1
+ 1416 0070 00000000 		.4byte	.LFB0
+ 1417 0074 1C000000 		.4byte	.LFE0
+ 1418 0078 00000000 		.4byte	.LFB15
+ 1419 007c 0C000000 		.4byte	.LFE15
+ 1420 0080 00000000 		.4byte	.LFB16
+ 1421 0084 0C000000 		.4byte	.LFE16
+ 1422 0088 00000000 		.4byte	.LFB17
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 42
 
 
- 1423 0090 00000000 		.4byte	0
- 1424 0094 00000000 		.4byte	0
- 1425              		.section	.debug_line,"",%progbits
- 1426              	.Ldebug_line0:
- 1427 0000 B1010000 		.section	.debug_str,"MS",%progbits,1
- 1427      02005600 
- 1427      00000201 
- 1427      FB0E0D00 
- 1427      01010101 
- 1428              	.LASF15:
- 1429 0000 72656731 		.ascii	"reg16\000"
- 1429      3600
- 1430              	.LASF35:
- 1431 0006 72657375 		.ascii	"result\000"
- 1431      6C7400
- 1432              	.LASF11:
- 1433 000d 666C6F61 		.ascii	"float\000"
- 1433      7400
- 1434              	.LASF38:
- 1435 0013 50574D5F 		.ascii	"PWM_STEERING_Start\000"
- 1435      53544545 
- 1435      52494E47 
- 1435      5F537461 
- 1435      727400
- 1436              	.LASF22:
- 1437 0026 70657269 		.ascii	"period\000"
- 1437      6F6400
- 1438              	.LASF3:
- 1439 002d 73686F72 		.ascii	"short unsigned int\000"
- 1439      7420756E 
- 1439      7369676E 
- 1439      65642069 
- 1439      6E7400
- 1440              	.LASF45:
- 1441 0040 50574D5F 		.ascii	"PWM_STEERING_ReadControlRegister\000"
- 1441      53544545 
- 1441      52494E47 
- 1441      5F526561 
- 1441      64436F6E 
- 1442              	.LASF37:
- 1443 0061 50574D5F 		.ascii	"PWM_STEERING_interruptState\000"
- 1443      53544545 
- 1443      52494E47 
- 1443      5F696E74 
- 1443      65727275 
- 1444              	.LASF29:
- 1445 007d 50574D5F 		.ascii	"PWM_STEERING_ReadStatusRegister\000"
- 1445      53544545 
- 1445      52494E47 
- 1445      5F526561 
- 1445      64537461 
- 1446              	.LASF43:
- 1447 009d 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PWM_STEERING.c\000"
- 1447      6E657261 
- 1447      7465645F 
- 1447      536F7572 
- 1447      63655C50 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 43
+ 1423 008c 0C000000 		.4byte	.LFE17
+ 1424 0090 00000000 		.4byte	0
+ 1425 0094 00000000 		.4byte	0
+ 1426              		.section	.debug_line,"",%progbits
+ 1427              	.Ldebug_line0:
+ 1428 0000 B1010000 		.section	.debug_str,"MS",%progbits,1
+ 1428      02005600 
+ 1428      00000201 
+ 1428      FB0E0D00 
+ 1428      01010101 
+ 1429              	.LASF15:
+ 1430 0000 72656731 		.ascii	"reg16\000"
+ 1430      3600
+ 1431              	.LASF11:
+ 1432 0006 666C6F61 		.ascii	"float\000"
+ 1432      7400
+ 1433              	.LASF38:
+ 1434 000c 50574D5F 		.ascii	"PWM_STEERING_Start\000"
+ 1434      53544545 
+ 1434      52494E47 
+ 1434      5F537461 
+ 1434      727400
+ 1435              	.LASF22:
+ 1436 001f 70657269 		.ascii	"period\000"
+ 1436      6F6400
+ 1437              	.LASF3:
+ 1438 0026 73686F72 		.ascii	"short unsigned int\000"
+ 1438      7420756E 
+ 1438      7369676E 
+ 1438      65642069 
+ 1438      6E7400
+ 1439              	.LASF45:
+ 1440 0039 50574D5F 		.ascii	"PWM_STEERING_ReadControlRegister\000"
+ 1440      53544545 
+ 1440      52494E47 
+ 1440      5F526561 
+ 1440      64436F6E 
+ 1441              	.LASF37:
+ 1442 005a 50574D5F 		.ascii	"PWM_STEERING_interruptState\000"
+ 1442      53544545 
+ 1442      52494E47 
+ 1442      5F696E74 
+ 1442      65727275 
+ 1443              	.LASF29:
+ 1444 0076 50574D5F 		.ascii	"PWM_STEERING_ReadStatusRegister\000"
+ 1444      53544545 
+ 1444      52494E47 
+ 1444      5F526561 
+ 1444      64537461 
+ 1445              	.LASF43:
+ 1446 0096 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PWM_STEERING.c\000"
+ 1446      6E657261 
+ 1446      7465645F 
+ 1446      536F7572 
+ 1446      63655C50 
+ 1447              	.LASF32:
+ 1448 00be 50574D5F 		.ascii	"PWM_STEERING_ReadCapture\000"
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 43
 
 
- 1448              	.LASF32:
- 1449 00c5 50574D5F 		.ascii	"PWM_STEERING_ReadCapture\000"
- 1449      53544545 
- 1449      52494E47 
- 1449      5F526561 
- 1449      64436170 
- 1450              	.LASF18:
- 1451 00de 50574D5F 		.ascii	"PWM_STEERING_Stop\000"
- 1451      53544545 
- 1451      52494E47 
- 1451      5F53746F 
- 1451      7000
- 1452              	.LASF21:
- 1453 00f0 636F756E 		.ascii	"counter\000"
- 1453      74657200 
- 1454              	.LASF7:
- 1455 00f8 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1455      206C6F6E 
- 1455      6720756E 
- 1455      7369676E 
- 1455      65642069 
- 1456              	.LASF1:
- 1457 010f 756E7369 		.ascii	"unsigned char\000"
- 1457      676E6564 
- 1457      20636861 
- 1457      7200
- 1458              	.LASF14:
- 1459 011d 72656738 		.ascii	"reg8\000"
- 1459      00
- 1460              	.LASF5:
- 1461 0122 6C6F6E67 		.ascii	"long unsigned int\000"
- 1461      20756E73 
- 1461      69676E65 
- 1461      6420696E 
- 1461      7400
- 1462              	.LASF9:
- 1463 0134 75696E74 		.ascii	"uint8\000"
- 1463      3800
- 1464              	.LASF31:
- 1465 013a 636F6E74 		.ascii	"control\000"
- 1465      726F6C00 
- 1466              	.LASF25:
- 1467 0142 50574D5F 		.ascii	"PWM_STEERING_WriteCompare2\000"
- 1467      53544545 
- 1467      52494E47 
- 1467      5F577269 
- 1467      7465436F 
- 1468              	.LASF46:
- 1469 015d 50574D5F 		.ascii	"PWM_STEERING_initVar\000"
- 1469      53544545 
- 1469      52494E47 
- 1469      5F696E69 
- 1469      74566172 
- 1470              	.LASF28:
- 1471 0172 50574D5F 		.ascii	"PWM_STEERING_ReadCounter\000"
- 1471      53544545 
- 1471      52494E47 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 44
+ 1448      53544545 
+ 1448      52494E47 
+ 1448      5F526561 
+ 1448      64436170 
+ 1449              	.LASF18:
+ 1450 00d7 50574D5F 		.ascii	"PWM_STEERING_Stop\000"
+ 1450      53544545 
+ 1450      52494E47 
+ 1450      5F53746F 
+ 1450      7000
+ 1451              	.LASF21:
+ 1452 00e9 636F756E 		.ascii	"counter\000"
+ 1452      74657200 
+ 1453              	.LASF7:
+ 1454 00f1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1454      206C6F6E 
+ 1454      6720756E 
+ 1454      7369676E 
+ 1454      65642069 
+ 1455              	.LASF1:
+ 1456 0108 756E7369 		.ascii	"unsigned char\000"
+ 1456      676E6564 
+ 1456      20636861 
+ 1456      7200
+ 1457              	.LASF14:
+ 1458 0116 72656738 		.ascii	"reg8\000"
+ 1458      00
+ 1459              	.LASF5:
+ 1460 011b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1460      20756E73 
+ 1460      69676E65 
+ 1460      6420696E 
+ 1460      7400
+ 1461              	.LASF9:
+ 1462 012d 75696E74 		.ascii	"uint8\000"
+ 1462      3800
+ 1463              	.LASF31:
+ 1464 0133 636F6E74 		.ascii	"control\000"
+ 1464      726F6C00 
+ 1465              	.LASF25:
+ 1466 013b 50574D5F 		.ascii	"PWM_STEERING_WriteCompare2\000"
+ 1466      53544545 
+ 1466      52494E47 
+ 1466      5F577269 
+ 1466      7465436F 
+ 1467              	.LASF46:
+ 1468 0156 50574D5F 		.ascii	"PWM_STEERING_initVar\000"
+ 1468      53544545 
+ 1468      52494E47 
+ 1468      5F696E69 
+ 1468      74566172 
+ 1469              	.LASF28:
+ 1470 016b 50574D5F 		.ascii	"PWM_STEERING_ReadCounter\000"
+ 1470      53544545 
+ 1470      52494E47 
+ 1470      5F526561 
+ 1470      64436F75 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 44
 
 
- 1471      5F526561 
- 1471      64436F75 
- 1472              	.LASF12:
- 1473 018b 646F7562 		.ascii	"double\000"
- 1473      6C6500
- 1474              	.LASF10:
- 1475 0192 75696E74 		.ascii	"uint16\000"
- 1475      313600
- 1476              	.LASF42:
- 1477 0199 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1477      4320342E 
- 1477      392E3320 
- 1477      32303135 
- 1477      30333033 
- 1478 01cc 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1478      20726576 
- 1478      6973696F 
- 1478      6E203232 
- 1478      31323230 
- 1479 01ff 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1479      66756E63 
- 1479      74696F6E 
- 1479      2D736563 
- 1479      74696F6E 
- 1480              	.LASF47:
- 1481 0227 4379456E 		.ascii	"CyEnterCriticalSection\000"
- 1481      74657243 
- 1481      72697469 
- 1481      63616C53 
- 1481      65637469 
- 1482              	.LASF8:
- 1483 023e 756E7369 		.ascii	"unsigned int\000"
- 1483      676E6564 
- 1483      20696E74 
- 1483      00
- 1484              	.LASF19:
- 1485 024b 50574D5F 		.ascii	"PWM_STEERING_WriteCounter\000"
- 1485      53544545 
- 1485      52494E47 
- 1485      5F577269 
- 1485      7465436F 
- 1486              	.LASF48:
- 1487 0265 43794578 		.ascii	"CyExitCriticalSection\000"
- 1487      69744372 
- 1487      69746963 
- 1487      616C5365 
- 1487      6374696F 
- 1488              	.LASF44:
- 1489 027b 443A5C72 		.ascii	"D:\\robot\\code\\robot-car\\car.cydsn\000"
- 1489      6F626F74 
- 1489      5C636F64 
- 1489      655C726F 
- 1489      626F742D 
- 1490              	.LASF17:
- 1491 029d 50574D5F 		.ascii	"PWM_STEERING_Enable\000"
- 1491      53544545 
- 1491      52494E47 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 45
+ 1471              	.LASF12:
+ 1472 0184 646F7562 		.ascii	"double\000"
+ 1472      6C6500
+ 1473              	.LASF10:
+ 1474 018b 75696E74 		.ascii	"uint16\000"
+ 1474      313600
+ 1475              	.LASF42:
+ 1476 0192 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1476      4320342E 
+ 1476      392E3320 
+ 1476      32303135 
+ 1476      30333033 
+ 1477 01c5 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1477      20726576 
+ 1477      6973696F 
+ 1477      6E203232 
+ 1477      31323230 
+ 1478 01f8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1478      66756E63 
+ 1478      74696F6E 
+ 1478      2D736563 
+ 1478      74696F6E 
+ 1479              	.LASF47:
+ 1480 0220 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1480      74657243 
+ 1480      72697469 
+ 1480      63616C53 
+ 1480      65637469 
+ 1481              	.LASF8:
+ 1482 0237 756E7369 		.ascii	"unsigned int\000"
+ 1482      676E6564 
+ 1482      20696E74 
+ 1482      00
+ 1483              	.LASF44:
+ 1484 0244 433A5C55 		.ascii	"C:\\Users\\pxc\\Desktop\\linshiceshi\\robot-car\\ca"
+ 1484      73657273 
+ 1484      5C707863 
+ 1484      5C446573 
+ 1484      6B746F70 
+ 1485 0271 722E6379 		.ascii	"r.cydsn\000"
+ 1485      64736E00 
+ 1486              	.LASF19:
+ 1487 0279 50574D5F 		.ascii	"PWM_STEERING_WriteCounter\000"
+ 1487      53544545 
+ 1487      52494E47 
+ 1487      5F577269 
+ 1487      7465436F 
+ 1488              	.LASF48:
+ 1489 0293 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1489      69744372 
+ 1489      69746963 
+ 1489      616C5365 
+ 1489      6374696F 
+ 1490              	.LASF35:
+ 1491 02a9 72657375 		.ascii	"result\000"
+ 1491      6C7400
+ 1492              	.LASF17:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 45
 
 
- 1491      5F456E61 
- 1491      626C6500 
- 1492              	.LASF26:
- 1493 02b1 50574D5F 		.ascii	"PWM_STEERING_SetInterruptMode\000"
+ 1493 02b0 50574D5F 		.ascii	"PWM_STEERING_Enable\000"
  1493      53544545 
  1493      52494E47 
- 1493      5F536574 
- 1493      496E7465 
- 1494              	.LASF36:
- 1495 02cf 6374726C 		.ascii	"ctrl\000"
- 1495      00
- 1496              	.LASF16:
- 1497 02d4 73697A65 		.ascii	"sizetype\000"
- 1497      74797065 
+ 1493      5F456E61 
+ 1493      626C6500 
+ 1494              	.LASF26:
+ 1495 02c4 50574D5F 		.ascii	"PWM_STEERING_SetInterruptMode\000"
+ 1495      53544545 
+ 1495      52494E47 
+ 1495      5F536574 
+ 1495      496E7465 
+ 1496              	.LASF36:
+ 1497 02e2 6374726C 		.ascii	"ctrl\000"
  1497      00
- 1498              	.LASF6:
- 1499 02dd 6C6F6E67 		.ascii	"long long int\000"
- 1499      206C6F6E 
- 1499      6720696E 
- 1499      7400
- 1500              	.LASF27:
- 1501 02eb 696E7465 		.ascii	"interruptMode\000"
- 1501      72727570 
- 1501      744D6F64 
- 1501      6500
- 1502              	.LASF20:
- 1503 02f9 50574D5F 		.ascii	"PWM_STEERING_WritePeriod\000"
- 1503      53544545 
- 1503      52494E47 
- 1503      5F577269 
- 1503      74655065 
- 1504              	.LASF23:
- 1505 0312 50574D5F 		.ascii	"PWM_STEERING_WriteCompare1\000"
+ 1498              	.LASF16:
+ 1499 02e7 73697A65 		.ascii	"sizetype\000"
+ 1499      74797065 
+ 1499      00
+ 1500              	.LASF6:
+ 1501 02f0 6C6F6E67 		.ascii	"long long int\000"
+ 1501      206C6F6E 
+ 1501      6720696E 
+ 1501      7400
+ 1502              	.LASF27:
+ 1503 02fe 696E7465 		.ascii	"interruptMode\000"
+ 1503      72727570 
+ 1503      744D6F64 
+ 1503      6500
+ 1504              	.LASF20:
+ 1505 030c 50574D5F 		.ascii	"PWM_STEERING_WritePeriod\000"
  1505      53544545 
  1505      52494E47 
  1505      5F577269 
- 1505      7465436F 
- 1506              	.LASF39:
- 1507 032d 50574D5F 		.ascii	"PWM_STEERING_ReadCompare1\000"
+ 1505      74655065 
+ 1506              	.LASF23:
+ 1507 0325 50574D5F 		.ascii	"PWM_STEERING_WriteCompare1\000"
  1507      53544545 
  1507      52494E47 
- 1507      5F526561 
- 1507      64436F6D 
- 1508              	.LASF40:
- 1509 0347 50574D5F 		.ascii	"PWM_STEERING_ReadCompare2\000"
+ 1507      5F577269 
+ 1507      7465436F 
+ 1508              	.LASF39:
+ 1509 0340 50574D5F 		.ascii	"PWM_STEERING_ReadCompare1\000"
  1509      53544545 
  1509      52494E47 
  1509      5F526561 
  1509      64436F6D 
- 1510              	.LASF2:
- 1511 0361 73686F72 		.ascii	"short int\000"
- 1511      7420696E 
- 1511      7400
- 1512              	.LASF4:
- 1513 036b 6C6F6E67 		.ascii	"long int\000"
- 1513      20696E74 
- 1513      00
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cct6sULK.s 			page 46
+ 1510              	.LASF40:
+ 1511 035a 50574D5F 		.ascii	"PWM_STEERING_ReadCompare2\000"
+ 1511      53544545 
+ 1511      52494E47 
+ 1511      5F526561 
+ 1511      64436F6D 
+ 1512              	.LASF2:
+ 1513 0374 73686F72 		.ascii	"short int\000"
+ 1513      7420696E 
+ 1513      7400
+ 1514              	.LASF4:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccfSIJtK.s 			page 46
 
 
- 1514              	.LASF13:
- 1515 0374 63686172 		.ascii	"char\000"
+ 1515 037e 6C6F6E67 		.ascii	"long int\000"
+ 1515      20696E74 
  1515      00
- 1516              	.LASF30:
- 1517 0379 50574D5F 		.ascii	"PWM_STEERING_WriteControlRegister\000"
- 1517      53544545 
- 1517      52494E47 
- 1517      5F577269 
- 1517      7465436F 
- 1518              	.LASF41:
- 1519 039b 50574D5F 		.ascii	"PWM_STEERING_ReadPeriod\000"
+ 1516              	.LASF13:
+ 1517 0387 63686172 		.ascii	"char\000"
+ 1517      00
+ 1518              	.LASF30:
+ 1519 038c 50574D5F 		.ascii	"PWM_STEERING_WriteControlRegister\000"
  1519      53544545 
  1519      52494E47 
- 1519      5F526561 
- 1519      64506572 
- 1520              	.LASF0:
- 1521 03b3 7369676E 		.ascii	"signed char\000"
- 1521      65642063 
- 1521      68617200 
- 1522              	.LASF24:
- 1523 03bf 636F6D70 		.ascii	"compare\000"
- 1523      61726500 
- 1524              	.LASF33:
- 1525 03c7 50574D5F 		.ascii	"PWM_STEERING_ClearFIFO\000"
- 1525      53544545 
- 1525      52494E47 
- 1525      5F436C65 
- 1525      61724649 
- 1526              	.LASF34:
- 1527 03de 50574D5F 		.ascii	"PWM_STEERING_Init\000"
+ 1519      5F577269 
+ 1519      7465436F 
+ 1520              	.LASF41:
+ 1521 03ae 50574D5F 		.ascii	"PWM_STEERING_ReadPeriod\000"
+ 1521      53544545 
+ 1521      52494E47 
+ 1521      5F526561 
+ 1521      64506572 
+ 1522              	.LASF0:
+ 1523 03c6 7369676E 		.ascii	"signed char\000"
+ 1523      65642063 
+ 1523      68617200 
+ 1524              	.LASF24:
+ 1525 03d2 636F6D70 		.ascii	"compare\000"
+ 1525      61726500 
+ 1526              	.LASF33:
+ 1527 03da 50574D5F 		.ascii	"PWM_STEERING_ClearFIFO\000"
  1527      53544545 
  1527      52494E47 
- 1527      5F496E69 
- 1527      7400
- 1528              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 1527      5F436C65 
+ 1527      61724649 
+ 1528              	.LASF34:
+ 1529 03f1 50574D5F 		.ascii	"PWM_STEERING_Init\000"
+ 1529      53544545 
+ 1529      52494E47 
+ 1529      5F496E69 
+ 1529      7400
+ 1530              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

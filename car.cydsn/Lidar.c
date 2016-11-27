@@ -42,7 +42,7 @@ void Lidar_init()
     normal_size = sizeof(rplidar_response_measurement_node_t);
    // UART_LIDAR_PutArray(GET_HEALTH,sizeof(GET_HEALTH));
     
-    UART_LIDAR_PutArray(NORMAL_SCAN,sizeof(NORMAL_SCAN));
+//    UART_LIDAR_PutArray(NORMAL_SCAN,sizeof(NORMAL_SCAN));
     
 }
 int  recvPos = 0;
@@ -97,14 +97,14 @@ void Lidar_Normal_Data_Receive_Prepare_4(uint8 data)
 //                rx_lidar_flag = 1;
 //            } 
        
-           // if(rx_lidar_flag == 0)
-          //  {
+            // if(rx_lidar_flag == 0)
+            //  {
               
 //           test1[test_i].angle_q6_checkbit = (((nodeBuffer[2]<<8)|(nodeBuffer[1])));
 //           test1[test_i].sync_quality      =  nodeBuffer[0];
 //           test1[test_i].distance_q2       = ((nodeBuffer[4]<<8)|(nodeBuffer[3]));               
-          //      printf("%d\n   ",test);
-          // 
+//           printf("%d\n   ",test);
+// 
               memcpy(net_nodeBuffer+test_i*5,nodeBuffer,5);
               test_i ++;
               if(test_i == 5)
@@ -175,6 +175,10 @@ void Lidar_Normal_Data_Receive_Prepare_4(uint8 data)
 //            }
 //    }
 //}
+
+
+
+
 static int count_time_1ms = 0;
 void Lidar_Normal_Data_Receive_Prepare(uint8 data)
 {
@@ -486,7 +490,7 @@ void Lidar_Data_Receive_Prepare(uint8 data)
             }
             if (recvChecksum == checksum)
             {
-                // only consider vaild if the checksum matches...
+                
                 if (node->start_angle_sync_q6 & RPLIDAR_RESP_MEASUREMENT_EXP_SYNCBIT) 
                 {
                     // this is the first capsule frame in logic, discard the previous cached data...

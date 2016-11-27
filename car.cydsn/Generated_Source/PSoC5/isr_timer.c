@@ -28,6 +28,7 @@
 ********************************************************************************/
 /* `#START isr_timer_intc` */
 uint16 time_1ms;
+uint16 time_1ms_state;
 uint16 time_5ms;   
 uint8  time_5ms_state;
 uint16 time_1s;  
@@ -173,7 +174,7 @@ CY_ISR(isr_timer_Interrupt)
     /* `#START isr_timer_Interrupt` */
     time_5ms++;
     time_1s++;
-    time_1ms = 1;
+    time_1ms ++;
     time_100ms++;
     if(time_1s >1000)
     {
@@ -189,6 +190,11 @@ CY_ISR(isr_timer_Interrupt)
     {
         time_100ms = 0;
         time_100ms_state = 1;
+    }
+     if(time_1ms >3 )
+    {
+        time_1ms = 0;
+        time_1ms_state = 1;
     }
     /* `#END` */
 }
