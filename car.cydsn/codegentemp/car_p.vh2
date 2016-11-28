@@ -1,5 +1,5 @@
 -- Project:   car
--- Generated: 11/27/2016 12:55:08
+-- Generated: 11/28/2016 10:29:11
 -- PSoC Creator  3.3
 
 ENTITY car IS
@@ -104,7 +104,6 @@ ARCHITECTURE __DEFAULT__ OF car IS
     SIGNAL Net_5353 : bit;
     SIGNAL Net_5362 : bit;
     SIGNAL Net_5374 : bit;
-    SIGNAL Net_5488 : bit;
     SIGNAL Net_554 : bit;
     SIGNAL Net_559 : bit;
     SIGNAL Net_591 : bit;
@@ -799,7 +798,6 @@ ARCHITECTURE __DEFAULT__ OF car IS
     ATTRIBUTE lib_model OF \PWM_LIDAR:PWMUDB:prevCompare2\ : LABEL IS "macrocell168";
     ATTRIBUTE lib_model OF \PWM_LIDAR:PWMUDB:status_0\ : LABEL IS "macrocell169";
     ATTRIBUTE lib_model OF \PWM_LIDAR:PWMUDB:status_1\ : LABEL IS "macrocell170";
-    ATTRIBUTE lib_model OF Net_5488 : LABEL IS "macrocell171";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -3087,7 +3085,7 @@ BEGIN
             oe_sync => "0",
             output_clk_en => 0,
             output_clock_mode => "0",
-            output_conn => "1",
+            output_conn => "0",
             output_mode => "0",
             output_reset => 0,
             output_sync => "0",
@@ -3141,12 +3139,10 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "CONTRAL_LIDAR",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
         PORT MAP(
             pa_out => CONTRAL_LIDAR(0)__PA,
             oe => open,
-            pin_input => Net_5488,
-            pad_out => CONTRAL_LIDAR(0)_PAD,
             pad_in => CONTRAL_LIDAR(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
@@ -7996,16 +7992,5 @@ BEGIN
             clock_0 => Net_4641,
             main_0 => \PWM_LIDAR:PWMUDB:prevCompare2\,
             main_1 => \PWM_LIDAR:PWMUDB:cmp2_less\);
-
-    Net_5488:macrocell
-        GENERIC MAP(
-            eqn_main => "(main_0 * main_1)",
-            clk_inv => '0',
-            clken_mode => 1)
-        PORT MAP(
-            q => Net_5488,
-            clock_0 => Net_4641,
-            main_0 => \PWM_LIDAR:PWMUDB:runmode_enable\,
-            main_1 => \PWM_LIDAR:PWMUDB:cmp1_less\);
 
 END __DEFAULT__;

@@ -75,7 +75,7 @@ int main()
    
     SRF_TRG_1_Write(0);
     SRF_TRG_2_Write(0);
-   // CONTRAL_LIDAR_Write(0);
+   CONTRAL_LIDAR_Write(1);
     
    // SRF_ECH_1_Write(1);
     for(;;)
@@ -84,20 +84,21 @@ int main()
       
      
      
-        if(time_1s_state == 1)
+        if(time_1s_state == 1 )
         {
             
   
          // Timer_1_Start();
           time_1s_state = 0;
-          if(g_Car.hearting == 1)
+          if(g_Car.hearting == 1  )
           {
              g_Car.hearting = 0;
           }
           else
           {
-//            g_Car.set_car_speed = 0;
-//            g_Car.set_dir = STOP;
+          //  g_Car.set_car_speed = 0;
+          //  g_Car.hearting = 1;
+          //  g_Car.set_dir = STOP;
           }  
   
         } 
@@ -152,8 +153,14 @@ int main()
         //test-!
         if(time_1ms_state == 1)
         { 
+           if(g_Car.Car_lock == 0)
+          {
              Control_Car();
-
+          }   
+          else
+          {
+            g_Car.set_dir = STOP;
+          }
             time_1ms_state = 0;
         }
  

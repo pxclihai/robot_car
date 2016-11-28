@@ -4,17 +4,11 @@
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="RX_UART_net_RX_ADDRESS1" address="0x40006423" bitWidth="8" desc="RX Address1 Register" hidden="false" />
-    <register name="RX_UART_net_RX_ADDRESS2" address="0x40006433" bitWidth="8" desc="RX Address2 Register" hidden="false" />
-    <register name="RX_UART_net_RX_DATA" address="0x40006443" bitWidth="8" desc="RX Data Register" hidden="false" />
-    <register name="TX_UART_net_TX_DATA" address="0x40006446" bitWidth="8" desc="TX Data Register" hidden="false" />
-    <register name="TX_UART_net_TX_STATUS" address="0x40006466" bitWidth="8" desc="TX status register" hidden="false">
-      <field name="UART_net_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
-      <field name="UART_net_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
-      <field name="UART_net_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="UART_net_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
-    </register>
-    <register name="RX_UART_net_RX_STATUS" address="0x40006565" bitWidth="8" desc="RX status register" hidden="false">
+    <register name="RX_UART_net_RX_ADDRESS1" address="0x4000642F" bitWidth="8" desc="RX Address1 Register" hidden="false" />
+    <register name="RX_UART_net_RX_ADDRESS2" address="0x4000643F" bitWidth="8" desc="RX Address2 Register" hidden="false" />
+    <register name="TX_UART_net_TX_DATA" address="0x40006447" bitWidth="8" desc="TX Data Register" hidden="false" />
+    <register name="RX_UART_net_RX_DATA" address="0x4000644F" bitWidth="8" desc="RX Data Register" hidden="false" />
+    <register name="RX_UART_net_RX_STATUS" address="0x4000646F" bitWidth="8" desc="RX status register" hidden="false">
       <field name="UART_net_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" />
       <field name="UART_net_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" />
       <field name="UART_net_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" />
@@ -22,6 +16,12 @@
       <field name="UART_net_RX_STS_OVERRUN" from="4" to="4" access="R" resetVal="" desc="" />
       <field name="UART_net_RX_STS_FIFO_NOTEMPTY" from="5" to="5" access="R" resetVal="" desc="" />
       <field name="UART_net_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" />
+    </register>
+    <register name="TX_UART_net_TX_STATUS" address="0x40006567" bitWidth="8" desc="TX status register" hidden="false">
+      <field name="UART_net_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
+      <field name="UART_net_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
+      <field name="UART_net_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="UART_net_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
     </register>
   </block>
   <block name="IN_C" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -86,22 +86,15 @@
     <block name="TimerUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="SRF_05_Timer_1_COUNTER" address="0x4000640E" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
-    <register name="SRF_05_Timer_1_PERIOD" address="0x4000642E" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
-    <register name="SRF_05_Timer_1_Control_Reg" address="0x4000647F" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
-      <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the Timer" />
-      <field name="CTRL_CMODE" from="6" to="5" access="RW" resetVal="" desc="Capture Mode" />
-      <field name="CTRL_TEN" from="4" to="4" access="RW" resetVal="" desc="Trigger Enable Bit" />
-      <field name="CTRL_TMODE" from="3" to="2" access="RW" resetVal="" desc="Trigger Mode" />
-      <field name="CTRL_IC" from="1" to="0" access="RW" resetVal="" desc="Interrupt Count" />
-    </register>
-    <register name="SRF_05_Timer_1_STATUS_MASK" address="0x4000648F" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="SRF_05_Timer_1_COUNTER" address="0x4000640C" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
+    <register name="SRF_05_Timer_1_PERIOD" address="0x4000642C" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
+    <register name="SRF_05_Timer_1_STATUS_MASK" address="0x4000648E" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="TIMER_STS_TC" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on TC" />
       <field name="TIMER_STS_CAPT" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Capture" />
       <field name="TIMER_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="FIFO Full Status " />
       <field name="TIMER_STS_FIFO_NEMPTY" from="3" to="3" access="R" resetVal="" desc="FIFO Empty status " />
     </register>
-    <register name="SRF_05_Timer_1_STATUS_AUX_CTRL" address="0x4000649F" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="SRF_05_Timer_1_STATUS_AUX_CTRL" address="0x4000649E" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -127,6 +120,13 @@
         <value name="E_CNT_START1" value="1" desc="Enable counter" />
       </field>
     </register>
+    <register name="SRF_05_Timer_1_Control_Reg" address="0x40006579" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+      <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the Timer" />
+      <field name="CTRL_CMODE" from="6" to="5" access="RW" resetVal="" desc="Capture Mode" />
+      <field name="CTRL_TEN" from="4" to="4" access="RW" resetVal="" desc="Trigger Enable Bit" />
+      <field name="CTRL_TMODE" from="3" to="2" access="RW" resetVal="" desc="Trigger Mode" />
+      <field name="CTRL_IC" from="1" to="0" access="RW" resetVal="" desc="Interrupt Count" />
+    </register>
   </block>
   <block name="CONTRAL_LIDAR" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="debug_time" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -145,22 +145,22 @@
     <block name="TimerUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="SRF_05_Timer_COUNTER" address="0x4000640A" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
-    <register name="SRF_05_Timer_PERIOD" address="0x4000642A" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
-    <register name="SRF_05_Timer_Control_Reg" address="0x4000647E" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+    <register name="SRF_05_Timer_COUNTER" address="0x40006402" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
+    <register name="SRF_05_Timer_PERIOD" address="0x40006422" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
+    <register name="SRF_05_Timer_Control_Reg" address="0x40006476" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the Timer" />
       <field name="CTRL_CMODE" from="6" to="5" access="RW" resetVal="" desc="Capture Mode" />
       <field name="CTRL_TEN" from="4" to="4" access="RW" resetVal="" desc="Trigger Enable Bit" />
       <field name="CTRL_TMODE" from="3" to="2" access="RW" resetVal="" desc="Trigger Mode" />
       <field name="CTRL_IC" from="1" to="0" access="RW" resetVal="" desc="Interrupt Count" />
     </register>
-    <register name="SRF_05_Timer_STATUS_MASK" address="0x4000648E" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="SRF_05_Timer_STATUS_MASK" address="0x40006482" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="TIMER_STS_TC" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on TC" />
       <field name="TIMER_STS_CAPT" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Capture" />
       <field name="TIMER_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="FIFO Full Status " />
       <field name="TIMER_STS_FIFO_NEMPTY" from="3" to="3" access="R" resetVal="" desc="FIFO Empty status " />
     </register>
-    <register name="SRF_05_Timer_STATUS_AUX_CTRL" address="0x4000649E" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="SRF_05_Timer_STATUS_AUX_CTRL" address="0x40006492" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -202,21 +202,21 @@
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="FFKillMux" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+    <register name="PWM_LIDAR__COMPARE1" address="0x40006426" bitWidth="8" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
+    <register name="PWM_LIDAR__COMPARE2" address="0x40006436" bitWidth="8" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
     <register name="PWM_LIDAR_Control_Reg" address="0x40006477" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the PWM" />
       <field name="CTRL_CMPMODE2" from="5" to="3" access="RW" resetVal="" desc="Compare mode 2" />
       <field name="CTRL_CMPMODE1" from="2" to="0" access="RW" resetVal="" desc="Compare mode 1" />
     </register>
-    <register name="PWM_LIDAR__COMPARE1" address="0x40006524" bitWidth="8" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
-    <register name="PWM_LIDAR__COMPARE2" address="0x40006534" bitWidth="8" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
-    <register name="PWM_LIDAR_STATUS_MASK" address="0x40006584" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="PWM_LIDAR_STATUS_MASK" address="0x40006486" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="PWM_STS_CMP1" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on Compare 1" />
       <field name="PWM_STS_CMP2" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Compare 2" />
       <field name="PWM_STS_TC" from="2" to="2" access="R" resetVal="" desc="Enables the Interrupt on Terminal Count" />
       <field name="PWM_STS_FIFO_FULL" from="3" to="3" access="R" resetVal="" desc="FIFO Full Status Mask " />
       <field name="PWM_STS_KILL" from="5" to="5" access="R" resetVal="" desc="Enables the Interrupt on Kill" />
     </register>
-    <register name="PWM_LIDAR_STATUS_AUX_CTRL" address="0x40006594" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_LIDAR_STATUS_AUX_CTRL" address="0x40006496" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -259,21 +259,21 @@
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="FFKillMux" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="PWM_MOTOR_COMPARE_1" address="0x4000652A" bitWidth="16" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
-    <register name="PWM_MOTOR_COMPARE_2" address="0x4000653A" bitWidth="16" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
-    <register name="PWM_MOTOR_Control_Reg" address="0x40006577" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+    <register name="PWM_MOTOR_Control_Reg" address="0x40006472" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the PWM" />
       <field name="CTRL_CMPMODE2" from="5" to="3" access="RW" resetVal="" desc="Compare mode 2" />
       <field name="CTRL_CMPMODE1" from="2" to="0" access="RW" resetVal="" desc="Compare mode 1" />
     </register>
-    <register name="PWM_MOTOR_STATUS_MASK" address="0x4000658B" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="PWM_MOTOR_COMPARE_1" address="0x40006525" bitWidth="16" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
+    <register name="PWM_MOTOR_COMPARE_2" address="0x40006535" bitWidth="16" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
+    <register name="PWM_MOTOR_STATUS_MASK" address="0x40006586" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="PWM_STS_CMP1" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on Compare 1" />
       <field name="PWM_STS_CMP2" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Compare 2" />
       <field name="PWM_STS_TC" from="2" to="2" access="R" resetVal="" desc="Enables the Interrupt on Terminal Count" />
       <field name="PWM_STS_FIFO_FULL" from="3" to="3" access="R" resetVal="" desc="FIFO Full Status Mask " />
       <field name="PWM_STS_KILL" from="5" to="5" access="R" resetVal="" desc="Enables the Interrupt on Kill" />
     </register>
-    <register name="PWM_MOTOR_STATUS_AUX_CTRLDP0" address="0x4000659A" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_MOTOR_STATUS_AUX_CTRLDP0" address="0x40006595" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -299,7 +299,7 @@
         <value name="E_CNT_START1" value="1" desc="Enable counter" />
       </field>
     </register>
-    <register name="PWM_MOTOR_STATUS_AUX_CTRLDP1" address="0x4000659B" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_MOTOR_STATUS_AUX_CTRLDP1" address="0x40006596" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -341,8 +341,8 @@
     <block name="TimerUDB" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="Timer_1_COUNTER" address="0x40006408" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
-    <register name="Timer_1_PERIOD" address="0x40006428" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
+    <register name="Timer_1_COUNTER" address="0x4000640A" bitWidth="16" desc="UDB.A0 - Current Down Counter Value" hidden="false" />
+    <register name="Timer_1_PERIOD" address="0x4000642A" bitWidth="16" desc="UDB.D0 - Assigned Period" hidden="false" />
     <register name="Timer_1_Control_Reg" address="0x40006479" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the Timer" />
       <field name="CTRL_CMODE" from="6" to="5" access="RW" resetVal="" desc="Capture Mode" />
@@ -350,13 +350,13 @@
       <field name="CTRL_TMODE" from="3" to="2" access="RW" resetVal="" desc="Trigger Mode" />
       <field name="CTRL_IC" from="1" to="0" access="RW" resetVal="" desc="Interrupt Count" />
     </register>
-    <register name="Timer_1_STATUS_MASK" address="0x40006489" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="Timer_1_STATUS_MASK" address="0x4000648A" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="TIMER_STS_TC" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on TC" />
       <field name="TIMER_STS_CAPT" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Capture" />
       <field name="TIMER_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="FIFO Full Status " />
       <field name="TIMER_STS_FIFO_NEMPTY" from="3" to="3" access="R" resetVal="" desc="FIFO Empty status " />
     </register>
-    <register name="Timer_1_STATUS_AUX_CTRL" address="0x40006499" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="Timer_1_STATUS_AUX_CTRL" address="0x4000649A" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -388,11 +388,17 @@
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="RX_UART_JY_RX_ADDRESS1" address="0x40006421" bitWidth="8" desc="RX Address1 Register" hidden="false" />
-    <register name="RX_UART_JY_RX_ADDRESS2" address="0x40006431" bitWidth="8" desc="RX Address2 Register" hidden="false" />
-    <register name="RX_UART_JY_RX_DATA" address="0x40006441" bitWidth="8" desc="RX Data Register" hidden="false" />
-    <register name="TX_UART_JY_TX_DATA" address="0x40006447" bitWidth="8" desc="TX Data Register" hidden="false" />
-    <register name="RX_UART_JY_RX_STATUS" address="0x40006462" bitWidth="8" desc="RX status register" hidden="false">
+    <register name="RX_UART_JY_RX_ADDRESS1" address="0x40006424" bitWidth="8" desc="RX Address1 Register" hidden="false" />
+    <register name="RX_UART_JY_RX_ADDRESS2" address="0x40006434" bitWidth="8" desc="RX Address2 Register" hidden="false" />
+    <register name="RX_UART_JY_RX_DATA" address="0x40006444" bitWidth="8" desc="RX Data Register" hidden="false" />
+    <register name="TX_UART_JY_TX_DATA" address="0x40006544" bitWidth="8" desc="TX Data Register" hidden="false" />
+    <register name="TX_UART_JY_TX_STATUS" address="0x40006564" bitWidth="8" desc="TX status register" hidden="false">
+      <field name="UART_JY_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
+      <field name="UART_JY_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
+      <field name="UART_JY_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="UART_JY_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
+    </register>
+    <register name="RX_UART_JY_RX_STATUS" address="0x40006568" bitWidth="8" desc="RX status register" hidden="false">
       <field name="UART_JY_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" />
       <field name="UART_JY_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" />
       <field name="UART_JY_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" />
@@ -400,12 +406,6 @@
       <field name="UART_JY_RX_STS_OVERRUN" from="4" to="4" access="R" resetVal="" desc="" />
       <field name="UART_JY_RX_STS_FIFO_NOTEMPTY" from="5" to="5" access="R" resetVal="" desc="" />
       <field name="UART_JY_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" />
-    </register>
-    <register name="TX_UART_JY_TX_STATUS" address="0x40006568" bitWidth="8" desc="TX status register" hidden="false">
-      <field name="UART_JY_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
-      <field name="UART_JY_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
-      <field name="UART_JY_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="UART_JY_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
     </register>
   </block>
   <block name="Rx_JY" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -423,21 +423,21 @@
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="FFKillMux" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="PWM_LED_COMPARE_1" address="0x40006528" bitWidth="16" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
-    <register name="PWM_LED_COMPARE_2" address="0x40006538" bitWidth="16" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
-    <register name="PWM_LED_Control_Reg" address="0x40006579" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+    <register name="PWM_LED_COMPARE_1" address="0x4000652A" bitWidth="16" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
+    <register name="PWM_LED_COMPARE_2" address="0x4000653A" bitWidth="16" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
+    <register name="PWM_LED_Control_Reg" address="0x4000657A" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the PWM" />
       <field name="CTRL_CMPMODE2" from="5" to="3" access="RW" resetVal="" desc="Compare mode 2" />
       <field name="CTRL_CMPMODE1" from="2" to="0" access="RW" resetVal="" desc="Compare mode 1" />
     </register>
-    <register name="PWM_LED_STATUS_MASK" address="0x40006589" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="PWM_LED_STATUS_MASK" address="0x4000658A" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="PWM_STS_CMP1" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on Compare 1" />
       <field name="PWM_STS_CMP2" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Compare 2" />
       <field name="PWM_STS_TC" from="2" to="2" access="R" resetVal="" desc="Enables the Interrupt on Terminal Count" />
       <field name="PWM_STS_FIFO_FULL" from="3" to="3" access="R" resetVal="" desc="FIFO Full Status Mask " />
       <field name="PWM_STS_KILL" from="5" to="5" access="R" resetVal="" desc="Enables the Interrupt on Kill" />
     </register>
-    <register name="PWM_LED_STATUS_AUX_CTRLDP0" address="0x40006598" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_LED_STATUS_AUX_CTRLDP0" address="0x4000659A" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -463,7 +463,7 @@
         <value name="E_CNT_START1" value="1" desc="Enable counter" />
       </field>
     </register>
-    <register name="PWM_LED_STATUS_AUX_CTRLDP1" address="0x40006599" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_LED_STATUS_AUX_CTRLDP1" address="0x4000659B" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -498,21 +498,21 @@
     <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="FFKillMux" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-    <register name="PWM_LED_1_COMPARE_1" address="0x40006526" bitWidth="16" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
-    <register name="PWM_LED_1_COMPARE_2" address="0x40006536" bitWidth="16" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
-    <register name="PWM_LED_1_Control_Reg" address="0x40006574" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
+    <register name="PWM_LED_1_COMPARE_1" address="0x40006528" bitWidth="16" desc="UDB.D0 - Assigned Compare1 Value" hidden="false" />
+    <register name="PWM_LED_1_COMPARE_2" address="0x40006538" bitWidth="16" desc="UDB.D1 - Assigned Compare2 Value" hidden="false" />
+    <register name="PWM_LED_1_Control_Reg" address="0x40006576" bitWidth="8" desc="UDB Control Register - Assigned Control Register Value" hidden="false">
       <field name="CTRL_ENABLE" from="7" to="7" access="RW" resetVal="" desc="Enable the PWM" />
       <field name="CTRL_CMPMODE2" from="5" to="3" access="RW" resetVal="" desc="Compare mode 2" />
       <field name="CTRL_CMPMODE1" from="2" to="0" access="RW" resetVal="" desc="Compare mode 1" />
     </register>
-    <register name="PWM_LED_1_STATUS_MASK" address="0x40006587" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
+    <register name="PWM_LED_1_STATUS_MASK" address="0x40006589" bitWidth="8" desc="UDB Status bits Interrupt Mask Enable Register" hidden="false">
       <field name="PWM_STS_CMP1" from="0" to="0" access="R" resetVal="" desc="Enables the Interrupt on Compare 1" />
       <field name="PWM_STS_CMP2" from="1" to="1" access="R" resetVal="" desc="Enables the Interrupt on Compare 2" />
       <field name="PWM_STS_TC" from="2" to="2" access="R" resetVal="" desc="Enables the Interrupt on Terminal Count" />
       <field name="PWM_STS_FIFO_FULL" from="3" to="3" access="R" resetVal="" desc="FIFO Full Status Mask " />
       <field name="PWM_STS_KILL" from="5" to="5" access="R" resetVal="" desc="Enables the Interrupt on Kill" />
     </register>
-    <register name="PWM_LED_1_STATUS_AUX_CTRLDP0" address="0x40006596" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_LED_1_STATUS_AUX_CTRLDP0" address="0x40006598" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />
@@ -538,7 +538,7 @@
         <value name="E_CNT_START1" value="1" desc="Enable counter" />
       </field>
     </register>
-    <register name="PWM_LED_1_STATUS_AUX_CTRLDP1" address="0x40006597" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
+    <register name="PWM_LED_1_STATUS_AUX_CTRLDP1" address="0x40006599" bitWidth="8" desc="UDB Auxilliary Control Register" hidden="false">
       <field name="FIFO0_CLR" from="0" to="0" access="RW" resetVal="" desc="FIFO0 clear">
         <value name="E_FIFO_CLR_0" value="0" desc="Normal FIFO operation" />
         <value name="E_FIFO_CLR_1" value="1" desc="Clear FIFO state" />

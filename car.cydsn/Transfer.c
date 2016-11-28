@@ -171,7 +171,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
 	
 	if(*(data_buf+2)==0X01)
 	{
-   
+       g_Car.Car_lock = *(data_buf+4);
 	}
 	
 	if(*(data_buf+2)==0X02)

@@ -1,6 +1,6 @@
 // ======================================================================
 // car.v generated from TopDesign.cysch
-// 11/27/2016 at 12:53
+// 11/28/2016 at 10:28
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -1724,12 +1724,12 @@ module top ;
           wire  Net_5778;
           wire  Net_5777;
           wire  Net_5776;
+          wire  Net_5488;
           wire  Net_5775;
           wire  Net_5378;
           wire  Net_5377;
           wire  Net_5376;
           wire  Net_5375;
-          wire  Net_5488;
           wire  Net_5388;
           wire  Net_5385;
           wire  Net_5384;
@@ -3697,7 +3697,7 @@ module top ;
 		  .oe_sync(1'b0),
 		  .output_clk_en(0),
 		  .output_clock_mode(1'b0),
-		  .output_conn(1'b1),
+		  .output_conn(1'b0),
 		  .output_mode(1'b0),
 		  .output_reset(0),
 		  .output_sync(1'b0),
@@ -3728,7 +3728,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		CONTRAL_LIDAR
 		 (.oe(tmpOE__CONTRAL_LIDAR_net),
-		  .y({Net_5488}),
+		  .y({1'b0}),
 		  .fb({tmpFB_0__CONTRAL_LIDAR_net[0:0]}),
 		  .io({tmpIO_0__CONTRAL_LIDAR_net[0:0]}),
 		  .siovref(tmpSIOVREF__CONTRAL_LIDAR_net),

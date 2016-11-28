@@ -227,8 +227,8 @@ void PWM_LIDAR_RestoreConfig(void) ;
 *         Initialization Values
 **************************************/
 #define PWM_LIDAR_INIT_PERIOD_VALUE          (40u)
-#define PWM_LIDAR_INIT_COMPARE_VALUE1        (39u)
-#define PWM_LIDAR_INIT_COMPARE_VALUE2        (20u)
+#define PWM_LIDAR_INIT_COMPARE_VALUE1        (40u)
+#define PWM_LIDAR_INIT_COMPARE_VALUE2        (40u)
 #define PWM_LIDAR_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_LIDAR_STATUS_TC_INT_EN_MASK_SHIFT)) | \
                                                     (uint8)((uint8)(0u <<  \

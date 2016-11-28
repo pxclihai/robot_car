@@ -2,7 +2,7 @@
 --	Conversion of car.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Sun Nov 27 12:54:13 2016
+--	Mon Nov 28 10:29:02 2016
 --
 
 USE cypress.cypress.all;
@@ -2841,7 +2841,6 @@ ATTRIBUTE port_state_att of \SRF_05_Timer_1:TimerUDB:sT16:timerdp:f1_blk_stat_re
 SIGNAL \SRF_05_Timer_1:Net_102\ : bit;
 SIGNAL \SRF_05_Timer_1:Net_266\ : bit;
 SIGNAL tmpOE__CONTRAL_LIDAR_net_0 : bit;
-SIGNAL Net_5488 : bit;
 SIGNAL tmpFB_0__CONTRAL_LIDAR_net_0 : bit;
 SIGNAL tmpIO_0__CONTRAL_LIDAR_net_0 : bit;
 TERMINAL tmpSIOVREF__CONTRAL_LIDAR_net_0 : bit;
@@ -3315,6 +3314,7 @@ SIGNAL \PWM_LIDAR:PWMUDB:pwm2_i\ : bit;
 SIGNAL \PWM_LIDAR:PWMUDB:tc_i_reg\ : bit;
 SIGNAL \PWM_LIDAR:Net_101\ : bit;
 SIGNAL \PWM_LIDAR:Net_96\ : bit;
+SIGNAL Net_5488 : bit;
 SIGNAL Net_5776 : bit;
 SIGNAL \PWM_LIDAR:PWMUDB:pwm_temp\ : bit;
 SIGNAL \PWM_LIDAR:PWMUDB:MODULE_19:b_31\ : bit;
@@ -7575,7 +7575,7 @@ CONTRAL_LIDAR:cy_psoc3_pins_v1_10
 		invert_out_reset=>'0',
 		io_voltage=>"",
 		layout_mode=>"CONTIGUOUS",
-		output_conn=>"1",
+		output_conn=>"0",
 		output_sync=>"0",
 		output_clk_en=>'0',
 		output_mode=>"0",
@@ -7615,7 +7615,7 @@ CONTRAL_LIDAR:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>Net_5488,
+		y=>(zero),
 		fb=>(tmpFB_0__CONTRAL_LIDAR_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__CONTRAL_LIDAR_net_0),
@@ -9787,7 +9787,7 @@ Net_2112:cy_dff
 \PWM_LIDAR:PWMUDB:pwm1_i_reg\:cy_dff
 	PORT MAP(d=>\PWM_LIDAR:PWMUDB:pwm1_i\,
 		clk=>\PWM_LIDAR:PWMUDB:ClockOutFromEnBlock\,
-		q=>Net_5488);
+		q=>\PWM_LIDAR:PWMUDB:pwm1_i_reg\);
 \PWM_LIDAR:PWMUDB:pwm2_i_reg\:cy_dff
 	PORT MAP(d=>\PWM_LIDAR:PWMUDB:pwm2_i\,
 		clk=>\PWM_LIDAR:PWMUDB:ClockOutFromEnBlock\,
