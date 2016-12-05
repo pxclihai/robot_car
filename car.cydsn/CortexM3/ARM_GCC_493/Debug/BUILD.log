@@ -1,95 +1,91 @@
---------------- Build Started: 11/28/2016 10:28:42 Project: car, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
-cydsfit.exe -.appdatapath "C:\Users\li\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p D:\pxc\robot-car\car.cydsn\car.cyprj -d CY8C5267AXI-LP051 -s D:\pxc\robot-car\car.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
-Elaborating Design...
-ADD: sdb.M0065: information: Analog terminal "vdac_ref" on ADC_SAR_SEQ_v2_0 is unconnected.
- * C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\ADC_SAR_SEQ_v2_0\PSoC5\ADC_SAR_SEQ_v2_0.cysch (Signal: vdac_ref)
- * C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\ADC_SAR_SEQ_v2_0\PSoC5\ADC_SAR_SEQ_v2_0.cysch (Shape_798)
- * C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\ADC_SAR_SEQ_v2_0\PSoC5\ADC_SAR_SEQ_v2_0.cysch (Shape_885)
-ADD: pft.M0028: warning: Clock Warning: (UART_net_IntClock's accuracy range '923.077 kHz +/- 5%, (876.923 kHz - 969.231 kHz)' is not within the specified tolerance range '921.6 kHz +/- 3.937%, (885.313 kHz - 957.887 kHz)'.).
- * C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\UART_v2_50\UART_v2_50.cysch (Instance:IntClock)
- * D:\pxc\robot-car\car.cydsn\car.cydwr (UART_net_IntClock)
-ADD: pft.M0028: warning: Clock Warning: (UART_JY_IntClock's accuracy range '923.077 kHz +/- 5%, (876.923 kHz - 969.231 kHz)' is not within the specified tolerance range '921.6 kHz +/- 3.937%, (885.313 kHz - 957.887 kHz)'.).
- * C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\UART_v2_50\UART_v2_50.cysch (Instance:IntClock)
- * D:\pxc\robot-car\car.cydsn\car.cydwr (UART_JY_IntClock)
-HDL Generation ...
-Synthesis ...
-Place and Route ...
-Tech mapping ...
-ADD: pft.M0040: information: The following 2 pin(s) will be assigned a location by the fitter: debug_time(0), IN_D(0)
-Analog Placement ...
-Info: apr.M0002: Analog signal "Net_4138" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4140" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4142" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4143" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4145" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4147" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4148" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4150" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4152" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4153" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4155" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4157" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4158" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4160" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4162" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4163" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4165" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4167" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4168" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4170" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4172" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4173" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4175" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4177" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4178" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4180" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4182" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4183" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4185" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4187" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4188" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4190" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4192" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4193" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4195" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4197" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4198" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4200" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4202" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4203" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4205" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4207" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4208" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4210" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4212" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4213" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4214" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4215" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4216" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4217" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4218" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4219" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4220" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4221" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4222" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4223" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4224" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4225" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4226" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4227" is connected to one terminal only. (App=cydsfit)
-Info: apr.M0002: Analog signal "Net_4228" is connected to one terminal only. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 46% done. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 98% done. (App=cydsfit)
-Analog Routing ...
-Analog Code Generation ...
-Digital Placement ...
-Digital Routing ...
-Bitstream Generation ...
-Static timing analysis ...
-API Generation ...
-Dependency Generation ...
-Clean Temporary Files ...
-The compile step is up to date, no work needs to be done.
+--------------- Build Started: 11/30/2016 01:28:03 Project: car, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\main.c -o .\CortexM3\ARM_GCC_493\Debug\main.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Transfer.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Transfer.c -o .\CortexM3\ARM_GCC_493\Debug\Transfer.o
+.\Transfer.c: In function 'DT_Send_Lidar_normal':
+.\Transfer.c:533:8: warning: unused variable '_temp' [-Wunused-variable]
+  int16 _temp;
+        ^
+.\Transfer.c: In function 'DT_Send_Lidar':
+.\Transfer.c:586:8: warning: unused variable '_temp' [-Wunused-variable]
+  int16 _temp;
+        ^
+.\Transfer.c:585:8: warning: unused variable '_cnt' [-Wunused-variable]
+  uint8 _cnt=0;
+        ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/car.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\car.c -o .\CortexM3\ARM_GCC_493\Debug\car.o
+.\car.c:265:6: warning: 'Set_Right_Front_Speed_Turn' defined but not used [-Wunused-function]
+ void Set_Right_Front_Speed_Turn(uint16 speed,enum WHEEL_DIR turn)
+      ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Lidar.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Lidar.c -o .\CortexM3\ARM_GCC_493\Debug\Lidar.o
+.\Lidar.c: In function 'Lidar_Normal_Data_Receive_Prepare_4':
+.\Lidar.c:58:11: warning: unused variable 'test_f' [-Wunused-variable]
+     float test_f;
+           ^
+.\Lidar.c:57:12: warning: variable 'test' set but not used [-Wunused-but-set-variable]
+     uint16 test;
+            ^
+.\Lidar.c: In function 'Lidar_Normal_Data_Receive_Prepare':
+.\Lidar.c:187:11: warning: unused variable 'test_f' [-Wunused-variable]
+     float test_f;
+           ^
+.\Lidar.c:186:12: warning: variable 'test' set but not used [-Wunused-but-set-variable]
+     uint16 test;
+            ^
+.\Lidar.c: In function 'Lidar_Normal_Data_Receive_Prepare_2':
+.\Lidar.c:270:11: warning: unused variable 'test_f' [-Wunused-variable]
+     float test_f;
+           ^
+.\Lidar.c:269:12: warning: variable 'test' set but not used [-Wunused-but-set-variable]
+     uint16 test;
+            ^
+.\Lidar.c: In function 'scan_lidar':
+.\Lidar.c:349:11: warning: variable 'tttt' set but not used [-Wunused-but-set-variable]
+     uint8 tttt;
+           ^
+.\Lidar.c: At top level:
+.\Lidar.c:182:12: warning: 'count_time_1ms' defined but not used [-Wunused-variable]
+ static int count_time_1ms = 0;
+            ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/isr_rx_net.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\isr_rx_net.c -o .\CortexM3\ARM_GCC_493\Debug\isr_rx_net.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/isr_rx_jy.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\isr_rx_jy.c -o .\CortexM3\ARM_GCC_493\Debug\isr_rx_jy.o
+.\Generated_Source\PSoC5\isr_rx_jy.c: In function 'isr_rx_jy_Interrupt':
+.\Generated_Source\PSoC5\isr_rx_jy.c:172:11: warning: unused variable 'data' [-Wunused-variable]
+     uint8 data; 
+           ^
+.\Generated_Source\PSoC5\isr_rx_jy.c:171:19: warning: variable 'sign' set but not used [-Wunused-but-set-variable]
+     unsigned char sign;
+                   ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/isr_srf_front.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\isr_srf_front.c -o .\CortexM3\ARM_GCC_493\Debug\isr_srf_front.o
+.\Generated_Source\PSoC5\isr_srf_front.c: In function 'isr_srf_front_Interrupt':
+.\Generated_Source\PSoC5\isr_srf_front.c:176:9: warning: unused variable 'i' [-Wunused-variable]
+     int i ;
+         ^
+.\Generated_Source\PSoC5\isr_srf_front.c:174:11: warning: unused variable 'sum' [-Wunused-variable]
+     int32 sum;
+           ^
+.\Generated_Source\PSoC5\isr_srf_front.c: At top level:
+.\Generated_Source\PSoC5\isr_srf_front.c:35:16: warning: 'distance' defined but not used [-Wunused-variable]
+ static  uint16 distance[4];
+                ^
+.\Generated_Source\PSoC5\isr_srf_front.c:36:15: warning: 'sample_count' defined but not used [-Wunused-variable]
+ static  uint8 sample_count;
+               ^
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/isr_srf_back.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC5\isr_srf_back.c -o .\CortexM3\ARM_GCC_493\Debug\isr_srf_back.o
+.\Generated_Source\PSoC5\isr_srf_back.c: In function 'isr_srf_back_Interrupt':
+.\Generated_Source\PSoC5\isr_srf_back.c:176:9: warning: unused variable 'i' [-Wunused-variable]
+     int i ;
+         ^
+.\Generated_Source\PSoC5\isr_srf_back.c:174:11: warning: unused variable 'sum' [-Wunused-variable]
+     int32 sum;
+           ^
+.\Generated_Source\PSoC5\isr_srf_back.c: At top level:
+.\Generated_Source\PSoC5\isr_srf_back.c:35:16: warning: 'distance' defined but not used [-Wunused-variable]
+ static  uint16 distance[4];
+                ^
+.\Generated_Source\PSoC5\isr_srf_back.c:36:15: warning: 'sample_count' defined but not used [-Wunused-variable]
+ static  uint8 sample_count;
+               ^
 arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_493\Debug\car.a .\CortexM3\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM3\ARM_GCC_493\Debug\CyDmac.o .\CortexM3\ARM_GCC_493\Debug\CyFlash.o .\CortexM3\ARM_GCC_493\Debug\CyLib.o .\CortexM3\ARM_GCC_493\Debug\cyPm.o .\CortexM3\ARM_GCC_493\Debug\CySpc.o .\CortexM3\ARM_GCC_493\Debug\cyutils.o .\CortexM3\ARM_GCC_493\Debug\UART_net.o .\CortexM3\ARM_GCC_493\Debug\UART_net_PM.o .\CortexM3\ARM_GCC_493\Debug\UART_net_INT.o .\CortexM3\ARM_GCC_493\Debug\UART_net_BOOT.o .\CortexM3\ARM_GCC_493\Debug\UART_net_IntClock.o .\CortexM3\ARM_GCC_493\Debug\isr_tx_net.o .\CortexM3\ARM_GCC_493\Debug\isr_rx_net.o .\CortexM3\ARM_GCC_493\Debug\L_PWM_1.o .\CortexM3\ARM_GCC_493\Debug\R_PWM_1.o .\CortexM3\ARM_GCC_493\Debug\L_IN_1.o .\CortexM3\ARM_GCC_493\Debug\L_IN_2.o .\CortexM3\ARM_GCC_493\Debug\R_IN_1.o .\CortexM3\ARM_GCC_493\Debug\R_IN_2.o .\CortexM3\ARM_GCC_493\Debug\PWM_MOTOR.o .\CortexM3\ARM_GCC_493\Debug\PWM_MOTOR_PM.o .\CortexM3\ARM_GCC_493\Debug\Timer_1.o .\CortexM3\ARM_GCC_493\Debug\Timer_1_PM.o .\CortexM3\ARM_GCC_493\Debug\isr_timer.o .\CortexM3\ARM_GCC_493\Debug\UART_JY.o .\CortexM3\ARM_GCC_493\Debug\UART_JY_PM.o .\CortexM3\ARM_GCC_493\Debug\UART_JY_INT.o .\CortexM3\ARM_GCC_493\Debug\UART_JY_BOOT.o .\CortexM3\ARM_GCC_493\Debug\isr_rx_jy.o .\CortexM3\ARM_GCC_493\Debug\UART_JY_IntClock.o .\CortexM3\ARM_GCC_493\Debug\LED1.o .\CortexM3\ARM_GCC_493\Debug\LED2.o .\CortexM3\ARM_GCC_493\Debug\LED3.o .\CortexM3\ARM_GCC_493\Debug\LED4.o .\CortexM3\ARM_GCC_493\Debug\PWM_LED.o .\CortexM3\ARM_GCC_493\Debug\PWM_LED_PM.o .\CortexM3\ARM_GCC_493\Debug\PWM_LED_1.o .\CortexM3\ARM_GCC_493\Debug\PWM_LED_1_PM.o .\CortexM3\ARM_GCC_493\Debug\LED5.o .\CortexM3\ARM_GCC_493\Debug\LED6.o .\CortexM3\ARM_GCC_493\Debug\LED7.o .\CortexM3\ARM_GCC_493\Debug\LED8.o .\CortexM3\ARM_GCC_493\Debug\Clock_6.o .\CortexM3\ARM_GCC_493\Debug\IN_C.o .\CortexM3\ARM_GCC_493\Debug\IN_D.o .\CortexM3\ARM_GCC_493\Debug\ADC.o .\CortexM3\ARM_GCC_493\Debug\ADC_PM.o .\CortexM3\ARM_GCC_493\Debug\ADC_INT.o .\CortexM3\ARM_GCC_493\Debug\ADC_SAR.o .\CortexM3\ARM_GCC_493\Debug\ADC_SAR_INT.o .\CortexM3\ARM_GCC_493\Debug\ADC_SAR_PM.o .\CortexM3\ARM_GCC_493\Debug\ADC_IntClock.o .\CortexM3\ARM_GCC_493\Debug\ADC_TempBuf_dma.o .\CortexM3\ARM_GCC_493\Debug\ADC_FinalBuf_dma.o .\CortexM3\ARM_GCC_493\Debug\ADC_IRQ.o .\CortexM3\ARM_GCC_493\Debug\CONTRAL_LIDAR.o .\CortexM3\ARM_GCC_493\Debug\debug_time.o .\CortexM3\ARM_GCC_493\Debug\PTZ_UP_EN.o .\CortexM3\ARM_GCC_493\Debug\PTZ_UP_STEP.o .\CortexM3\ARM_GCC_493\Debug\PTZ_UP_DIR.o .\CortexM3\ARM_GCC_493\Debug\PTZ_DOWN_EN.o .\CortexM3\ARM_GCC_493\Debug\PTZ_DOWN_STEP.o .\CortexM3\ARM_GCC_493\Debug\PTZ_DOWN_DIR.o .\CortexM3\ARM_GCC_493\Debug\IN_P.o .\CortexM3\ARM_GCC_493\Debug\SRF_TRG_1.o .\CortexM3\ARM_GCC_493\Debug\SRF_05_Timer.o .\CortexM3\ARM_GCC_493\Debug\SRF_05_Timer_PM.o .\CortexM3\ARM_GCC_493\Debug\isr_srf_front.o .\CortexM3\ARM_GCC_493\Debug\SRF_ECHO_1.o .\CortexM3\ARM_GCC_493\Debug\isr_srf_back.o .\CortexM3\ARM_GCC_493\Debug\SRF_ECHO_2.o .\CortexM3\ARM_GCC_493\Debug\SRF_TRG_2.o .\CortexM3\ARM_GCC_493\Debug\SRF_05_Timer_1.o .\CortexM3\ARM_GCC_493\Debug\SRF_05_Timer_1_PM.o .\CortexM3\ARM_GCC_493\Debug\CHANGE_PWR.o .\CortexM3\ARM_GCC_493\Debug\PWM_LIDAR.o .\CortexM3\ARM_GCC_493\Debug\PWM_LIDAR_PM.o
 arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_493\Debug\car.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM3\ARM_GCC_493\Debug\car.elf .\CortexM3\ARM_GCC_493\Debug\main.o .\CortexM3\ARM_GCC_493\Debug\Transfer.o .\CortexM3\ARM_GCC_493\Debug\car.o .\CortexM3\ARM_GCC_493\Debug\battery.o .\CortexM3\ARM_GCC_493\Debug\Lidar.o .\CortexM3\ARM_GCC_493\Debug\cymetadata.o .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o .\CortexM3\ARM_GCC_493\Debug\car.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -g -ffunction-sections -Og -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_493\Debug/car.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
@@ -97,4 +93,4 @@ cyelftool.exe -C D:\pxc\robot-car\car.cydsn\CortexM3\ARM_GCC_493\Debug\car.elf -
 cyelftool.exe -S D:\pxc\robot-car\car.cydsn\CortexM3\ARM_GCC_493\Debug\car.elf
 Flash used: 11776 of 131072 bytes (9.0%).
 SRAM used: 12941 of 32768 bytes (39.5%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 11/28/2016 10:29:50 ---------------
+--------------- Build Succeeded: 11/30/2016 01:28:10 ---------------

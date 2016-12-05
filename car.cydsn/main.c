@@ -25,7 +25,7 @@ extern uint16 time_1ms_state;
 float tset;
 uint16 test;
 uint16 send_count_test;
-
+uint8 error;
 ///feng
 uint16 count;
 //uint8 togle_flag;
@@ -93,12 +93,13 @@ int main()
           if(g_Car.hearting == 1  )
           {
              g_Car.hearting = 0;
+             error = 0;
           }
           else
           {
           //  g_Car.set_car_speed = 0;
-          //  g_Car.hearting = 1;
-          //  g_Car.set_dir = STOP;
+            error = 1;
+           // g_Car.set_dir = STOP;
           }  
   
         } 
@@ -153,13 +154,14 @@ int main()
         //test-!
         if(time_1ms_state == 1)
         { 
-           if(g_Car.Car_lock == 0)
+           if(error == 0)
           {
              Control_Car();
           }   
           else
           {
             g_Car.set_dir = STOP;
+            Command_Car_brake();
           }
             time_1ms_state = 0;
         }

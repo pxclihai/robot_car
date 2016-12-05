@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
   29:.\Generated_Source\PSoC5/isr_timer.c **** /* `#START isr_timer_intc` */
   30:.\Generated_Source\PSoC5/isr_timer.c **** uint16 time_1ms;
   31:.\Generated_Source\PSoC5/isr_timer.c **** uint16 time_1ms_state;
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 2
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/isr_timer.c **** uint16 time_5ms;   
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
   86:.\Generated_Source\PSoC5/isr_timer.c **** ********************************************************************************
   87:.\Generated_Source\PSoC5/isr_timer.c **** *
   88:.\Generated_Source\PSoC5/isr_timer.c **** * Summary:
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 3
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 3
 
 
   89:.\Generated_Source\PSoC5/isr_timer.c **** *  Sets up the interrupt and enables it. This function disables the interrupt,
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  143:.\Generated_Source\PSoC5/isr_timer.c ****     /* Disable this interrupt. */
  144:.\Generated_Source\PSoC5/isr_timer.c ****     isr_timer_Disable();
  145:.\Generated_Source\PSoC5/isr_timer.c **** 
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 4
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 4
 
 
  146:.\Generated_Source\PSoC5/isr_timer.c ****     /* Set the ISR to point to the passive one. */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
   49 0018 1388     		ldrh	r3, [r2]
   50 001a 0133     		adds	r3, r3, #1
   51 001c 9BB2     		uxth	r3, r3
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 5
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 5
 
 
   52 001e 1380     		strh	r3, [r2]	@ movhi
@@ -249,9 +249,9 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
   56 0024 0132     		adds	r2, r2, #1
   57 0026 92B2     		uxth	r2, r2
   58 0028 2280     		strh	r2, [r4]	@ movhi
- 179:.\Generated_Source\PSoC5/isr_timer.c ****     if(time_1s >1000)
+ 179:.\Generated_Source\PSoC5/isr_timer.c ****     if(time_1s >2000)
   59              		.loc 1 179 0
-  60 002a B0F57A7F 		cmp	r0, #1000
+  60 002a B0F5FA6F 		cmp	r0, #2000
   61 002e 05D9     		bls	.L2
  180:.\Generated_Source\PSoC5/isr_timer.c ****     {
  181:.\Generated_Source\PSoC5/isr_timer.c ****         time_1s_state = 1;
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
   91 0056 0121     		movs	r1, #1
   92 0058 0C4A     		ldr	r2, .L7+24
   93 005a 1180     		strh	r1, [r2]	@ movhi
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 6
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 6
 
 
   94              	.L4:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  207:.\Generated_Source\PSoC5/isr_timer.c **** * Summary:
  208:.\Generated_Source\PSoC5/isr_timer.c **** *   Change the ISR vector for the Interrupt. Note calling isr_timer_Start
  209:.\Generated_Source\PSoC5/isr_timer.c **** *   will override any effect this method would have had. To set the vector 
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 7
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 7
 
 
  210:.\Generated_Source\PSoC5/isr_timer.c **** *   before the component has been started use isr_timer_StartEx instead.
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  161              	.LFB5:
  237:.\Generated_Source\PSoC5/isr_timer.c **** }
  238:.\Generated_Source\PSoC5/isr_timer.c **** 
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 8
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 8
 
 
  239:.\Generated_Source\PSoC5/isr_timer.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  266:.\Generated_Source\PSoC5/isr_timer.c **** ********************************************************************************
  267:.\Generated_Source\PSoC5/isr_timer.c **** *
  268:.\Generated_Source\PSoC5/isr_timer.c **** * Summary:
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 9
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 9
 
 
  269:.\Generated_Source\PSoC5/isr_timer.c **** *   Sets the Priority of the Interrupt. 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  295:.\Generated_Source\PSoC5/isr_timer.c **** * Function Name: isr_timer_GetPriority
  296:.\Generated_Source\PSoC5/isr_timer.c **** ********************************************************************************
  297:.\Generated_Source\PSoC5/isr_timer.c **** *
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 10
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 10
 
 
  298:.\Generated_Source\PSoC5/isr_timer.c **** * Summary:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  324:.\Generated_Source\PSoC5/isr_timer.c **** *
  325:.\Generated_Source\PSoC5/isr_timer.c **** * Summary:
  326:.\Generated_Source\PSoC5/isr_timer.c **** *   Enables the interrupt to the interrupt controller. Do not call this function
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 11
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 11
 
 
  327:.\Generated_Source\PSoC5/isr_timer.c **** *   unless ISR_Start() has been called or the functionality of the ISR_Start() 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  356:.\Generated_Source\PSoC5/isr_timer.c **** *
  357:.\Generated_Source\PSoC5/isr_timer.c **** *******************************************************************************/
  358:.\Generated_Source\PSoC5/isr_timer.c **** uint8 isr_timer_GetState(void)
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 12
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 12
 
 
  359:.\Generated_Source\PSoC5/isr_timer.c **** {
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  302              		.cfi_startproc
  303              		@ args = 0, pretend = 0, frame = 0
  304              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 13
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 13
 
 
  305              		@ link register save eliminated.
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  352 0018 00000000 		.word	isr_timer_Interrupt
  353              		.cfi_endproc
  354              	.LFE0:
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 14
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 14
 
 
  355              		.size	isr_timer_Start, .-isr_timer_Start
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  403              		@ frame_needed = 0, uses_anonymous_args = 0
  404 0000 08B5     		push	{r3, lr}
  405              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 15
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 15
 
 
  406              		.cfi_offset 3, -8
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  433              		@ args = 0, pretend = 0, frame = 0
  434              		@ frame_needed = 0, uses_anonymous_args = 0
  435              		@ link register save eliminated.
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 16
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 16
 
 
  408:.\Generated_Source\PSoC5/isr_timer.c ****     *isr_timer_INTC_SET_PD = isr_timer__INTC_MASK;
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  464 0004 1A60     		str	r2, [r3]
  465 0006 7047     		bx	lr
  466              	.L47:
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 17
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 17
 
 
  467              		.align	2
@@ -985,10 +985,10 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  488 0006 00000000 		.4byte	.Ldebug_abbrev0
  489 000a 04       		.byte	0x4
  490 000b 01       		.uleb128 0x1
- 491 000c 91010000 		.4byte	.LASF42
+ 491 000c 65010000 		.4byte	.LASF42
  492 0010 01       		.byte	0x1
- 493 0011 C1020000 		.4byte	.LASF43
- 494 0015 4F000000 		.4byte	.LASF44
+ 493 0011 95020000 		.4byte	.LASF43
+ 494 0015 D4020000 		.4byte	.LASF44
  495 0019 00000000 		.4byte	.Ldebug_ranges0+0
  496 001d 00000000 		.4byte	0
  497 0021 00000000 		.4byte	.Ldebug_line0
@@ -999,46 +999,46 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  502 002c 03       		.uleb128 0x3
  503 002d 04       		.byte	0x4
  504 002e 07       		.byte	0x7
- 505 002f 1F020000 		.4byte	.LASF0
+ 505 002f F3010000 		.4byte	.LASF0
  506 0033 03       		.uleb128 0x3
  507 0034 01       		.byte	0x1
  508 0035 06       		.byte	0x6
- 509 0036 12030000 		.4byte	.LASF1
+ 509 0036 01030000 		.4byte	.LASF1
  510 003a 03       		.uleb128 0x3
  511 003b 01       		.byte	0x1
  512 003c 08       		.byte	0x8
- 513 003d 3E010000 		.4byte	.LASF2
+ 513 003d 12010000 		.4byte	.LASF2
  514 0041 03       		.uleb128 0x3
  515 0042 02       		.byte	0x2
  516 0043 05       		.byte	0x5
- 517 0044 69010000 		.4byte	.LASF3
+ 517 0044 3D010000 		.4byte	.LASF3
  518 0048 03       		.uleb128 0x3
  519 0049 02       		.byte	0x2
  520 004a 07       		.byte	0x7
- 521 004b 7B000000 		.4byte	.LASF4
+ 521 004b 4F000000 		.4byte	.LASF4
  522 004f 03       		.uleb128 0x3
  523 0050 04       		.byte	0x4
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 18
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 18
 
 
  524 0051 05       		.byte	0x5
- 525 0052 00030000 		.4byte	.LASF5
+ 525 0052 EF020000 		.4byte	.LASF5
  526 0056 03       		.uleb128 0x3
  527 0057 04       		.byte	0x4
  528 0058 07       		.byte	0x7
- 529 0059 09010000 		.4byte	.LASF6
+ 529 0059 DD000000 		.4byte	.LASF6
  530 005d 03       		.uleb128 0x3
  531 005e 08       		.byte	0x8
  532 005f 05       		.byte	0x5
- 533 0060 89020000 		.4byte	.LASF7
+ 533 0060 5D020000 		.4byte	.LASF7
  534 0064 03       		.uleb128 0x3
  535 0065 08       		.byte	0x8
  536 0066 07       		.byte	0x7
- 537 0067 34020000 		.4byte	.LASF8
+ 537 0067 08020000 		.4byte	.LASF8
  538 006b 03       		.uleb128 0x3
  539 006c 04       		.byte	0x4
  540 006d 07       		.byte	0x7
- 541 006e 80020000 		.4byte	.LASF9
+ 541 006e 54020000 		.4byte	.LASF9
  542 0072 04       		.uleb128 0x4
  543 0073 04       		.byte	0x4
  544 0074 78000000 		.4byte	0x78
@@ -1046,39 +1046,39 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  546 0079 03       		.uleb128 0x3
  547 007a 01       		.byte	0x1
  548 007b 08       		.byte	0x8
- 549 007c AD020000 		.4byte	.LASF10
+ 549 007c 81020000 		.4byte	.LASF10
  550 0080 06       		.uleb128 0x6
- 551 0081 1B010000 		.4byte	.LASF11
+ 551 0081 EF000000 		.4byte	.LASF11
  552 0085 02       		.byte	0x2
  553 0086 C2       		.byte	0xc2
  554 0087 3A000000 		.4byte	0x3a
  555 008b 06       		.uleb128 0x6
- 556 008c 73010000 		.4byte	.LASF12
+ 556 008c 47010000 		.4byte	.LASF12
  557 0090 02       		.byte	0x2
  558 0091 C3       		.byte	0xc3
  559 0092 48000000 		.4byte	0x48
  560 0096 06       		.uleb128 0x6
- 561 0097 8A010000 		.4byte	.LASF13
+ 561 0097 5E010000 		.4byte	.LASF13
  562 009b 02       		.byte	0x2
  563 009c C4       		.byte	0xc4
  564 009d 56000000 		.4byte	0x56
  565 00a1 03       		.uleb128 0x3
  566 00a2 04       		.byte	0x4
  567 00a3 04       		.byte	0x4
- 568 00a4 E5000000 		.4byte	.LASF14
+ 568 00a4 B9000000 		.4byte	.LASF14
  569 00a8 03       		.uleb128 0x3
  570 00a9 08       		.byte	0x8
  571 00aa 04       		.byte	0x4
- 572 00ab 62010000 		.4byte	.LASF15
+ 572 00ab 36010000 		.4byte	.LASF15
  573 00af 07       		.uleb128 0x7
- 574 00b0 04010000 		.4byte	.LASF16
+ 574 00b0 D8000000 		.4byte	.LASF16
  575 00b4 02       		.byte	0x2
  576 00b5 6C01     		.2byte	0x16c
  577 00b7 BB000000 		.4byte	0xbb
  578 00bb 08       		.uleb128 0x8
  579 00bc 80000000 		.4byte	0x80
  580 00c0 07       		.uleb128 0x7
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 19
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 19
 
 
  581 00c1 14000000 		.4byte	.LASF17
@@ -1088,12 +1088,12 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  585 00cc 08       		.uleb128 0x8
  586 00cd 96000000 		.4byte	0x96
  587 00d1 07       		.uleb128 0x7
- 588 00d2 4B020000 		.4byte	.LASF18
+ 588 00d2 1F020000 		.4byte	.LASF18
  589 00d6 02       		.byte	0x2
  590 00d7 7E01     		.2byte	0x17e
  591 00d9 72000000 		.4byte	0x72
  592 00dd 09       		.uleb128 0x9
- 593 00de 21010000 		.4byte	.LASF26
+ 593 00de F5000000 		.4byte	.LASF26
  594 00e2 01       		.byte	0x1
  595 00e3 A7       		.byte	0xa7
  596 00e4 00000000 		.4byte	.LFB3
@@ -1110,14 +1110,14 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  607 00fe 9C       		.byte	0x9c
  608 00ff 1E010000 		.4byte	0x11e
  609 0103 0B       		.uleb128 0xb
- 610 0104 2C020000 		.4byte	.LASF22
+ 610 0104 00020000 		.4byte	.LASF22
  611 0108 01       		.byte	0x1
  612 0109 E6       		.byte	0xe6
  613 010a D1000000 		.4byte	0xd1
  614 010e 01       		.uleb128 0x1
  615 010f 50       		.byte	0x50
  616 0110 0C       		.uleb128 0xc
- 617 0111 B2020000 		.4byte	.LASF19
+ 617 0111 86020000 		.4byte	.LASF19
  618 0115 01       		.byte	0x1
  619 0116 E8       		.byte	0xe8
  620 0117 1E010000 		.4byte	0x11e
@@ -1138,10 +1138,10 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  635 0138 9C       		.byte	0x9c
  636 0139 4C010000 		.4byte	0x14c
  637 013d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 20
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 20
 
 
- 638 013e B2020000 		.4byte	.LASF19
+ 638 013e 86020000 		.4byte	.LASF19
  639 0142 01       		.byte	0x1
  640 0143 0001     		.2byte	0x100
  641 0145 1E010000 		.4byte	0x11e
@@ -1149,7 +1149,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  643 014a 53       		.byte	0x53
  644 014b 00       		.byte	0
  645 014c 0F       		.uleb128 0xf
- 646 014d 97020000 		.4byte	.LASF21
+ 646 014d 6B020000 		.4byte	.LASF21
  647 0151 01       		.byte	0x1
  648 0152 2001     		.2byte	0x120
  649 0154 00000000 		.4byte	.LFB6
@@ -1158,14 +1158,14 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  652 015d 9C       		.byte	0x9c
  653 015e 73010000 		.4byte	0x173
  654 0162 10       		.uleb128 0x10
- 655 0163 35010000 		.4byte	.LASF23
+ 655 0163 09010000 		.4byte	.LASF23
  656 0167 01       		.byte	0x1
  657 0168 2001     		.2byte	0x120
  658 016a 80000000 		.4byte	0x80
  659 016e 00000000 		.4byte	.LLST0
  660 0172 00       		.byte	0
  661 0173 11       		.uleb128 0x11
- 662 0174 4C010000 		.4byte	.LASF25
+ 662 0174 20010000 		.4byte	.LASF25
  663 0178 01       		.byte	0x1
  664 0179 3601     		.2byte	0x136
  665 017b 80000000 		.4byte	0x80
@@ -1175,14 +1175,14 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  669 0188 9C       		.byte	0x9c
  670 0189 9E010000 		.4byte	0x19e
  671 018d 12       		.uleb128 0x12
- 672 018e 35010000 		.4byte	.LASF23
+ 672 018e 09010000 		.4byte	.LASF23
  673 0192 01       		.byte	0x1
  674 0193 3801     		.2byte	0x138
  675 0195 80000000 		.4byte	0x80
  676 0199 21000000 		.4byte	.LLST1
  677 019d 00       		.byte	0
  678 019e 13       		.uleb128 0x13
- 679 019f 58020000 		.4byte	.LASF27
+ 679 019f 2C020000 		.4byte	.LASF27
  680 01a3 01       		.byte	0x1
  681 01a4 5101     		.2byte	0x151
  682 01a6 00000000 		.4byte	.LFB8
@@ -1198,11 +1198,11 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  692 01c0 18000000 		.4byte	.LFE9-.LFB9
  693 01c4 01       		.uleb128 0x1
  694 01c5 9C       		.byte	0x9c
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 21
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 21
 
 
  695 01c6 13       		.uleb128 0x13
- 696 01c7 8E000000 		.4byte	.LASF28
+ 696 01c7 62000000 		.4byte	.LASF28
  697 01cb 01       		.byte	0x1
  698 01cc 7B01     		.2byte	0x17b
  699 01ce 00000000 		.4byte	.LFB10
@@ -1210,7 +1210,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  701 01d6 01       		.uleb128 0x1
  702 01d7 9C       		.byte	0x9c
  703 01d8 0A       		.uleb128 0xa
- 704 01d9 7A010000 		.4byte	.LASF29
+ 704 01d9 4E010000 		.4byte	.LASF29
  705 01dd 01       		.byte	0x1
  706 01de 44       		.byte	0x44
  707 01df 00000000 		.4byte	.LFB0
@@ -1247,7 +1247,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  738 0225 9E010000 		.4byte	0x19e
  739 0229 00       		.byte	0
  740 022a 0A       		.uleb128 0xa
- 741 022b BE000000 		.4byte	.LASF30
+ 741 022b 92000000 		.4byte	.LASF30
  742 022f 01       		.byte	0x1
  743 0230 6F       		.byte	0x6f
  744 0231 00000000 		.4byte	.LFB1
@@ -1256,9 +1256,9 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  747 023a 9C       		.byte	0x9c
  748 023b 88020000 		.4byte	0x288
  749 023f 18       		.uleb128 0x18
- 750 0240 2C020000 		.4byte	.LASF22
+ 750 0240 00020000 		.4byte	.LASF22
  751 0244 01       		.byte	0x1
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 22
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 22
 
 
  752 0245 6F       		.byte	0x6f
@@ -1293,7 +1293,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  781 0283 9E010000 		.4byte	0x19e
  782 0287 00       		.byte	0
  783 0288 0A       		.uleb128 0xa
- 784 0289 E6020000 		.4byte	.LASF31
+ 784 0289 BA020000 		.4byte	.LASF31
  785 028d 01       		.byte	0x1
  786 028e 8D       		.byte	0x8d
  787 028f 00000000 		.4byte	.LFB2
@@ -1309,7 +1309,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  797 02ab EE000000 		.4byte	0xee
  798 02af 00       		.byte	0
  799 02b0 13       		.uleb128 0x13
- 800 02b1 D0000000 		.4byte	.LASF32
+ 800 02b1 A4000000 		.4byte	.LASF32
  801 02b5 01       		.byte	0x1
  802 02b6 9601     		.2byte	0x196
  803 02b8 00000000 		.4byte	.LFB11
@@ -1317,8 +1317,8 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  805 02c0 01       		.uleb128 0x1
  806 02c1 9C       		.byte	0x9c
  807 02c2 13       		.uleb128 0x13
- 808 02c3 69020000 		.4byte	.LASF33
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 23
+ 808 02c3 3D020000 		.4byte	.LASF33
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 23
 
 
  809 02c7 01       		.byte	0x1
@@ -1328,7 +1328,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  813 02d2 01       		.uleb128 0x1
  814 02d3 9C       		.byte	0x9c
  815 02d4 19       		.uleb128 0x19
- 816 02d5 09030000 		.4byte	.LASF34
+ 816 02d5 F8020000 		.4byte	.LASF34
  817 02d9 01       		.byte	0x1
  818 02da 1E       		.byte	0x1e
  819 02db 8B000000 		.4byte	0x8b
@@ -1336,7 +1336,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  821 02e0 03       		.byte	0x3
  822 02e1 00000000 		.4byte	time_1ms
  823 02e5 19       		.uleb128 0x19
- 824 02e6 AF000000 		.4byte	.LASF35
+ 824 02e6 83000000 		.4byte	.LASF35
  825 02ea 01       		.byte	0x1
  826 02eb 1F       		.byte	0x1f
  827 02ec 8B000000 		.4byte	0x8b
@@ -1344,7 +1344,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  829 02f1 03       		.byte	0x3
  830 02f2 00000000 		.4byte	time_1ms_state
  831 02f6 19       		.uleb128 0x19
- 832 02f7 1E030000 		.4byte	.LASF36
+ 832 02f7 0D030000 		.4byte	.LASF36
  833 02fb 01       		.byte	0x1
  834 02fc 20       		.byte	0x20
  835 02fd 8B000000 		.4byte	0x8b
@@ -1352,7 +1352,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  837 0302 03       		.byte	0x3
  838 0303 00000000 		.4byte	time_5ms
  839 0307 19       		.uleb128 0x19
- 840 0308 A0000000 		.4byte	.LASF37
+ 840 0308 74000000 		.4byte	.LASF37
  841 030c 01       		.byte	0x1
  842 030d 21       		.byte	0x21
  843 030e 80000000 		.4byte	0x80
@@ -1360,7 +1360,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  845 0313 03       		.byte	0x3
  846 0314 00000000 		.4byte	time_5ms_state
  847 0318 19       		.uleb128 0x19
- 848 0319 FC000000 		.4byte	.LASF38
+ 848 0319 D0000000 		.4byte	.LASF38
  849 031d 01       		.byte	0x1
  850 031e 22       		.byte	0x22
  851 031f 8B000000 		.4byte	0x8b
@@ -1376,9 +1376,9 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  861 0335 03       		.byte	0x3
  862 0336 00000000 		.4byte	time_1s_state
  863 033a 19       		.uleb128 0x19
- 864 033b F5020000 		.4byte	.LASF40
+ 864 033b C9020000 		.4byte	.LASF40
  865 033f 01       		.byte	0x1
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 24
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 24
 
 
  866 0340 24       		.byte	0x24
@@ -1387,7 +1387,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  869 0346 03       		.byte	0x3
  870 0347 00000000 		.4byte	time_100ms
  871 034b 19       		.uleb128 0x19
- 872 034c EB000000 		.4byte	.LASF41
+ 872 034c BF000000 		.4byte	.LASF41
  873 0350 01       		.byte	0x1
  874 0351 25       		.byte	0x25
  875 0352 8B000000 		.4byte	0x8b
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  920 0026 0E       		.uleb128 0xe
  921 0027 00       		.byte	0
  922 0028 00       		.byte	0
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 25
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 25
 
 
  923 0029 04       		.uleb128 0x4
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  977 005f 03       		.uleb128 0x3
  978 0060 0E       		.uleb128 0xe
  979 0061 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 26
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 26
 
 
  980 0062 0B       		.uleb128 0xb
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1034 009a 00       		.byte	0
  1035 009b 0C       		.uleb128 0xc
  1036 009c 34       		.uleb128 0x34
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 27
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 27
 
 
  1037 009d 00       		.byte	0
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1091 00d4 00       		.byte	0
  1092 00d5 0F       		.uleb128 0xf
  1093 00d6 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 28
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 28
 
 
  1094 00d7 01       		.byte	0x1
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1148 010e 01       		.uleb128 0x1
  1149 010f 12       		.uleb128 0x12
  1150 0110 06       		.uleb128 0x6
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 29
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 29
 
 
  1151 0111 40       		.uleb128 0x40
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1205 0149 0B       		.uleb128 0xb
  1206 014a 3B       		.uleb128 0x3b
  1207 014b 05       		.uleb128 0x5
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 30
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 30
 
 
  1208 014c 27       		.uleb128 0x27
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1262 018a 02       		.uleb128 0x2
  1263 018b 17       		.uleb128 0x17
  1264 018c 00       		.byte	0
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 31
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 31
 
 
  1265 018d 00       		.byte	0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1319 004d 54       		.byte	0x54
  1320 004e 00000000 		.4byte	0
  1321 0052 00000000 		.4byte	0
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 32
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 32
 
 
  1322              		.section	.debug_aranges,"",%progbits
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1376 0040 00000000 		.4byte	.LFB0
  1377 0044 1C000000 		.4byte	.LFE0
  1378 0048 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 33
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 33
 
 
  1379 004c 1A000000 		.4byte	.LFE1
@@ -1963,220 +1963,220 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 1
  1400      5F31735F 
  1400      73746174 
  1400      6500
- 1401              	.LASF44:
- 1402 004f 433A5C55 		.ascii	"C:\\Users\\li\\Desktop\\pxc\\robot-car\\car.cydsn\000"
- 1402      73657273 
- 1402      5C6C695C 
- 1402      4465736B 
- 1402      746F705C 
- 1403              	.LASF4:
- 1404 007b 73686F72 		.ascii	"short unsigned int\000"
- 1404      7420756E 
- 1404      7369676E 
- 1404      65642069 
- 1404      6E7400
- 1405              	.LASF28:
- 1406 008e 6973725F 		.ascii	"isr_timer_Disable\000"
- 1406      74696D65 
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 34
+ 1401              	.LASF4:
+ 1402 004f 73686F72 		.ascii	"short unsigned int\000"
+ 1402      7420756E 
+ 1402      7369676E 
+ 1402      65642069 
+ 1402      6E7400
+ 1403              	.LASF28:
+ 1404 0062 6973725F 		.ascii	"isr_timer_Disable\000"
+ 1404      74696D65 
+ 1404      725F4469 
+ 1404      7361626C 
+ 1404      6500
+ 1405              	.LASF37:
+ 1406 0074 74696D65 		.ascii	"time_5ms_state\000"
+ 1406      5F356D73 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 34
 
 
- 1406      725F4469 
- 1406      7361626C 
- 1406      6500
- 1407              	.LASF37:
- 1408 00a0 74696D65 		.ascii	"time_5ms_state\000"
- 1408      5F356D73 
+ 1406      5F737461 
+ 1406      746500
+ 1407              	.LASF35:
+ 1408 0083 74696D65 		.ascii	"time_1ms_state\000"
+ 1408      5F316D73 
  1408      5F737461 
  1408      746500
- 1409              	.LASF35:
- 1410 00af 74696D65 		.ascii	"time_1ms_state\000"
- 1410      5F316D73 
- 1410      5F737461 
- 1410      746500
- 1411              	.LASF30:
- 1412 00be 6973725F 		.ascii	"isr_timer_StartEx\000"
+ 1409              	.LASF30:
+ 1410 0092 6973725F 		.ascii	"isr_timer_StartEx\000"
+ 1410      74696D65 
+ 1410      725F5374 
+ 1410      61727445 
+ 1410      7800
+ 1411              	.LASF32:
+ 1412 00a4 6973725F 		.ascii	"isr_timer_SetPending\000"
  1412      74696D65 
- 1412      725F5374 
- 1412      61727445 
- 1412      7800
- 1413              	.LASF32:
- 1414 00d0 6973725F 		.ascii	"isr_timer_SetPending\000"
- 1414      74696D65 
- 1414      725F5365 
- 1414      7450656E 
- 1414      64696E67 
- 1415              	.LASF14:
- 1416 00e5 666C6F61 		.ascii	"float\000"
- 1416      7400
- 1417              	.LASF41:
- 1418 00eb 74696D65 		.ascii	"time_100ms_state\000"
- 1418      5F313030 
- 1418      6D735F73 
- 1418      74617465 
- 1418      00
- 1419              	.LASF38:
- 1420 00fc 74696D65 		.ascii	"time_1s\000"
- 1420      5F317300 
- 1421              	.LASF16:
- 1422 0104 72656738 		.ascii	"reg8\000"
- 1422      00
- 1423              	.LASF6:
- 1424 0109 6C6F6E67 		.ascii	"long unsigned int\000"
- 1424      20756E73 
- 1424      69676E65 
- 1424      6420696E 
- 1424      7400
- 1425              	.LASF11:
- 1426 011b 75696E74 		.ascii	"uint8\000"
- 1426      3800
- 1427              	.LASF26:
- 1428 0121 6973725F 		.ascii	"isr_timer_Interrupt\000"
- 1428      74696D65 
- 1428      725F496E 
- 1428      74657272 
- 1428      75707400 
- 1429              	.LASF23:
- 1430 0135 7072696F 		.ascii	"priority\000"
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 35
+ 1412      725F5365 
+ 1412      7450656E 
+ 1412      64696E67 
+ 1413              	.LASF14:
+ 1414 00b9 666C6F61 		.ascii	"float\000"
+ 1414      7400
+ 1415              	.LASF41:
+ 1416 00bf 74696D65 		.ascii	"time_100ms_state\000"
+ 1416      5F313030 
+ 1416      6D735F73 
+ 1416      74617465 
+ 1416      00
+ 1417              	.LASF38:
+ 1418 00d0 74696D65 		.ascii	"time_1s\000"
+ 1418      5F317300 
+ 1419              	.LASF16:
+ 1420 00d8 72656738 		.ascii	"reg8\000"
+ 1420      00
+ 1421              	.LASF6:
+ 1422 00dd 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1422      20756E73 
+ 1422      69676E65 
+ 1422      6420696E 
+ 1422      7400
+ 1423              	.LASF11:
+ 1424 00ef 75696E74 		.ascii	"uint8\000"
+ 1424      3800
+ 1425              	.LASF26:
+ 1426 00f5 6973725F 		.ascii	"isr_timer_Interrupt\000"
+ 1426      74696D65 
+ 1426      725F496E 
+ 1426      74657272 
+ 1426      75707400 
+ 1427              	.LASF23:
+ 1428 0109 7072696F 		.ascii	"priority\000"
+ 1428      72697479 
+ 1428      00
+ 1429              	.LASF2:
+ 1430 0112 756E7369 		.ascii	"unsigned char\000"
+ 1430      676E6564 
+ 1430      20636861 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 35
 
 
- 1430      72697479 
- 1430      00
- 1431              	.LASF2:
- 1432 013e 756E7369 		.ascii	"unsigned char\000"
- 1432      676E6564 
- 1432      20636861 
- 1432      7200
- 1433              	.LASF25:
- 1434 014c 6973725F 		.ascii	"isr_timer_GetPriority\000"
- 1434      74696D65 
- 1434      725F4765 
- 1434      74507269 
- 1434      6F726974 
- 1435              	.LASF15:
- 1436 0162 646F7562 		.ascii	"double\000"
- 1436      6C6500
- 1437              	.LASF3:
- 1438 0169 73686F72 		.ascii	"short int\000"
- 1438      7420696E 
- 1438      7400
- 1439              	.LASF12:
- 1440 0173 75696E74 		.ascii	"uint16\000"
- 1440      313600
- 1441              	.LASF29:
- 1442 017a 6973725F 		.ascii	"isr_timer_Start\000"
- 1442      74696D65 
- 1442      725F5374 
- 1442      61727400 
- 1443              	.LASF13:
- 1444 018a 75696E74 		.ascii	"uint32\000"
- 1444      333200
- 1445              	.LASF42:
- 1446 0191 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 1446      4320342E 
- 1446      392E3320 
- 1446      32303135 
- 1446      30333033 
- 1447 01c4 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 1447      20726576 
- 1447      6973696F 
- 1447      6E203232 
- 1447      31323230 
- 1448 01f7 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1448      66756E63 
- 1448      74696F6E 
- 1448      2D736563 
- 1448      74696F6E 
- 1449              	.LASF0:
- 1450 021f 756E7369 		.ascii	"unsigned int\000"
- 1450      676E6564 
- 1450      20696E74 
- 1450      00
- 1451              	.LASF22:
- 1452 022c 61646472 		.ascii	"address\000"
- 1452      65737300 
- 1453              	.LASF8:
- 1454 0234 6C6F6E67 		.ascii	"long long unsigned int\000"
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 36
+ 1430      7200
+ 1431              	.LASF25:
+ 1432 0120 6973725F 		.ascii	"isr_timer_GetPriority\000"
+ 1432      74696D65 
+ 1432      725F4765 
+ 1432      74507269 
+ 1432      6F726974 
+ 1433              	.LASF15:
+ 1434 0136 646F7562 		.ascii	"double\000"
+ 1434      6C6500
+ 1435              	.LASF3:
+ 1436 013d 73686F72 		.ascii	"short int\000"
+ 1436      7420696E 
+ 1436      7400
+ 1437              	.LASF12:
+ 1438 0147 75696E74 		.ascii	"uint16\000"
+ 1438      313600
+ 1439              	.LASF29:
+ 1440 014e 6973725F 		.ascii	"isr_timer_Start\000"
+ 1440      74696D65 
+ 1440      725F5374 
+ 1440      61727400 
+ 1441              	.LASF13:
+ 1442 015e 75696E74 		.ascii	"uint32\000"
+ 1442      333200
+ 1443              	.LASF42:
+ 1444 0165 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1444      4320342E 
+ 1444      392E3320 
+ 1444      32303135 
+ 1444      30333033 
+ 1445 0198 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1445      20726576 
+ 1445      6973696F 
+ 1445      6E203232 
+ 1445      31323230 
+ 1446 01cb 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1446      66756E63 
+ 1446      74696F6E 
+ 1446      2D736563 
+ 1446      74696F6E 
+ 1447              	.LASF0:
+ 1448 01f3 756E7369 		.ascii	"unsigned int\000"
+ 1448      676E6564 
+ 1448      20696E74 
+ 1448      00
+ 1449              	.LASF22:
+ 1450 0200 61646472 		.ascii	"address\000"
+ 1450      65737300 
+ 1451              	.LASF8:
+ 1452 0208 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1452      206C6F6E 
+ 1452      6720756E 
+ 1452      7369676E 
+ 1452      65642069 
+ 1453              	.LASF18:
+ 1454 021f 63796973 		.ascii	"cyisraddress\000"
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 36
 
 
- 1454      206C6F6E 
- 1454      6720756E 
- 1454      7369676E 
- 1454      65642069 
- 1455              	.LASF18:
- 1456 024b 63796973 		.ascii	"cyisraddress\000"
- 1456      72616464 
- 1456      72657373 
+ 1454      72616464 
+ 1454      72657373 
+ 1454      00
+ 1455              	.LASF27:
+ 1456 022c 6973725F 		.ascii	"isr_timer_Enable\000"
+ 1456      74696D65 
+ 1456      725F456E 
+ 1456      61626C65 
  1456      00
- 1457              	.LASF27:
- 1458 0258 6973725F 		.ascii	"isr_timer_Enable\000"
+ 1457              	.LASF33:
+ 1458 023d 6973725F 		.ascii	"isr_timer_ClearPending\000"
  1458      74696D65 
- 1458      725F456E 
- 1458      61626C65 
- 1458      00
- 1459              	.LASF33:
- 1460 0269 6973725F 		.ascii	"isr_timer_ClearPending\000"
- 1460      74696D65 
- 1460      725F436C 
- 1460      65617250 
- 1460      656E6469 
- 1461              	.LASF9:
- 1462 0280 73697A65 		.ascii	"sizetype\000"
- 1462      74797065 
- 1462      00
- 1463              	.LASF7:
- 1464 0289 6C6F6E67 		.ascii	"long long int\000"
- 1464      206C6F6E 
- 1464      6720696E 
- 1464      7400
- 1465              	.LASF21:
- 1466 0297 6973725F 		.ascii	"isr_timer_SetPriority\000"
- 1466      74696D65 
- 1466      725F5365 
- 1466      74507269 
- 1466      6F726974 
- 1467              	.LASF10:
- 1468 02ad 63686172 		.ascii	"char\000"
- 1468      00
- 1469              	.LASF19:
- 1470 02b2 72616D56 		.ascii	"ramVectorTable\000"
- 1470      6563746F 
- 1470      72546162 
- 1470      6C6500
- 1471              	.LASF43:
- 1472 02c1 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\isr_timer.c\000"
- 1472      6E657261 
- 1472      7465645F 
- 1472      536F7572 
- 1472      63655C50 
- 1473              	.LASF31:
- 1474 02e6 6973725F 		.ascii	"isr_timer_Stop\000"
- 1474      74696D65 
- 1474      725F5374 
- 1474      6F7000
- 1475              	.LASF40:
- 1476 02f5 74696D65 		.ascii	"time_100ms\000"
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccdbYecn.s 			page 37
+ 1458      725F436C 
+ 1458      65617250 
+ 1458      656E6469 
+ 1459              	.LASF9:
+ 1460 0254 73697A65 		.ascii	"sizetype\000"
+ 1460      74797065 
+ 1460      00
+ 1461              	.LASF7:
+ 1462 025d 6C6F6E67 		.ascii	"long long int\000"
+ 1462      206C6F6E 
+ 1462      6720696E 
+ 1462      7400
+ 1463              	.LASF21:
+ 1464 026b 6973725F 		.ascii	"isr_timer_SetPriority\000"
+ 1464      74696D65 
+ 1464      725F5365 
+ 1464      74507269 
+ 1464      6F726974 
+ 1465              	.LASF10:
+ 1466 0281 63686172 		.ascii	"char\000"
+ 1466      00
+ 1467              	.LASF19:
+ 1468 0286 72616D56 		.ascii	"ramVectorTable\000"
+ 1468      6563746F 
+ 1468      72546162 
+ 1468      6C6500
+ 1469              	.LASF43:
+ 1470 0295 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\isr_timer.c\000"
+ 1470      6E657261 
+ 1470      7465645F 
+ 1470      536F7572 
+ 1470      63655C50 
+ 1471              	.LASF31:
+ 1472 02ba 6973725F 		.ascii	"isr_timer_Stop\000"
+ 1472      74696D65 
+ 1472      725F5374 
+ 1472      6F7000
+ 1473              	.LASF40:
+ 1474 02c9 74696D65 		.ascii	"time_100ms\000"
+ 1474      5F313030 
+ 1474      6D7300
+ 1475              	.LASF44:
+ 1476 02d4 443A5C70 		.ascii	"D:\\pxc\\robot-car\\car.cydsn\000"
+ 1476      78635C72 
+ 1476      6F626F74 
+ARM GAS  C:\Users\li\AppData\Local\Temp\ccRhKxoU.s 			page 37
 
 
- 1476      5F313030 
- 1476      6D7300
+ 1476      2D636172 
+ 1476      5C636172 
  1477              	.LASF5:
- 1478 0300 6C6F6E67 		.ascii	"long int\000"
+ 1478 02ef 6C6F6E67 		.ascii	"long int\000"
  1478      20696E74 
  1478      00
  1479              	.LASF34:
- 1480 0309 74696D65 		.ascii	"time_1ms\000"
+ 1480 02f8 74696D65 		.ascii	"time_1ms\000"
  1480      5F316D73 
  1480      00
  1481              	.LASF1:
- 1482 0312 7369676E 		.ascii	"signed char\000"
+ 1482 0301 7369676E 		.ascii	"signed char\000"
  1482      65642063 
  1482      68617200 
  1483              	.LASF36:
- 1484 031e 74696D65 		.ascii	"time_5ms\000"
+ 1484 030d 74696D65 		.ascii	"time_5ms\000"
  1484      5F356D73 
  1484      00
  1485              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

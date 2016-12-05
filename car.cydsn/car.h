@@ -47,7 +47,7 @@ typedef struct
 }S_CAR;
 S_CAR g_Car;
 void Car_init();
-
+void Command_Car_brake();
 void Control_Car();
 #endif
 /* [] END OF FILE */
