@@ -176,7 +176,7 @@ CY_ISR(isr_timer_Interrupt)
     time_1s++;
     time_1ms ++;
     time_100ms++;
-    if(time_1s >1000)
+    if(time_1s >2000)
     {
         time_1s_state = 1;
         time_1s = 0;
@@ -196,6 +196,7 @@ CY_ISR(isr_timer_Interrupt)
         time_1ms = 0;
         time_1ms_state = 1;
     }
+     timer_ticks();
     /* `#END` */
 }
 

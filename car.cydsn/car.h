@@ -26,7 +26,19 @@ typedef struct
 }S_WHEEL;  
 typedef struct 
 {
+    uint32    NULL_S;
+    uint16    totol_run_count;
+    uint16    cur_run_time;
+    uint16    car_runing_time;
+    uint16    last_run_time;
+    uint32    totol_run_time;
+    uint16    hardware_ver;
+    uint16    software_ver;    
+}S_SYSTEMINFO;
+typedef struct 
+{
     uint8 Car_lock;
+    uint8 error;
     enum CAR_DIR set_dir;
     enum CAR_DIR set_ptz_dir;
     enum CAR_DIR pre_dir;
@@ -42,12 +54,16 @@ typedef struct
     uint8    hearting;
     uint16   distance_front;  
     uint16   distance_back;
-    
     uint8    measure_distance_flag;
+    
+    S_SYSTEMINFO systeminfo;
 }S_CAR;
+
+
 S_CAR g_Car;
 void Car_init();
 void Command_Car_brake();
-void Control_Car();
+void Car_Control_Loop();
+void Car_Hearting_Loop();
 #endif
 /* [] END OF FILE */

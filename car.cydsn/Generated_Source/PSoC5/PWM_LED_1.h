@@ -29,17 +29,17 @@ extern uint8 PWM_LED_1_initVar;
 * Conditional Compilation Parameters
 ***************************************/
 #define PWM_LED_1_Resolution                     (16u)
-#define PWM_LED_1_UsingFixedFunction             (0u)
+#define PWM_LED_1_UsingFixedFunction             (1u)
 #define PWM_LED_1_DeadBandMode                   (0u)
 #define PWM_LED_1_KillModeMinTime                (0u)
-#define PWM_LED_1_KillMode                       (0u)
-#define PWM_LED_1_PWMMode                        (1u)
+#define PWM_LED_1_KillMode                       (1u)
+#define PWM_LED_1_PWMMode                        (0u)
 #define PWM_LED_1_PWMModeIsCenterAligned         (0u)
 #define PWM_LED_1_DeadBandUsed                   (0u)
 #define PWM_LED_1_DeadBand2_4                    (0u)
 
 #if !defined(PWM_LED_1_PWMUDB_genblk8_stsreg__REMOVED)
-    #define PWM_LED_1_UseStatus                  (1u)
+    #define PWM_LED_1_UseStatus                  (0u)
 #else
     #define PWM_LED_1_UseStatus                  (0u)
 #endif /* !defined(PWM_LED_1_PWMUDB_genblk8_stsreg__REMOVED) */
@@ -50,7 +50,7 @@ extern uint8 PWM_LED_1_initVar;
     #define PWM_LED_1_UseControl                 (0u)
 #endif /* !defined(PWM_LED_1_PWMUDB_genblk1_ctrlreg__REMOVED) */
 
-#define PWM_LED_1_UseOneCompareMode              (0u)
+#define PWM_LED_1_UseOneCompareMode              (1u)
 #define PWM_LED_1_MinimumKillTime                (1u)
 #define PWM_LED_1_EnableMode                     (0u)
 
@@ -228,7 +228,7 @@ void PWM_LED_1_RestoreConfig(void) ;
 **************************************/
 #define PWM_LED_1_INIT_PERIOD_VALUE          (10000u)
 #define PWM_LED_1_INIT_COMPARE_VALUE1        (10000u)
-#define PWM_LED_1_INIT_COMPARE_VALUE2        (10000u)
+#define PWM_LED_1_INIT_COMPARE_VALUE2        (63u)
 #define PWM_LED_1_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_LED_1_STATUS_TC_INT_EN_MASK_SHIFT)) | \
                                                     (uint8)((uint8)(0u <<  \
@@ -239,7 +239,7 @@ void PWM_LED_1_RestoreConfig(void) ;
                                                     PWM_LED_1_STATUS_KILL_INT_EN_MASK_SHIFT )))
 #define PWM_LED_1_DEFAULT_COMPARE2_MODE      (uint8)((uint8)1u <<  PWM_LED_1_CTRL_CMPMODE2_SHIFT)
 #define PWM_LED_1_DEFAULT_COMPARE1_MODE      (uint8)((uint8)1u <<  PWM_LED_1_CTRL_CMPMODE1_SHIFT)
-#define PWM_LED_1_INIT_DEAD_TIME             (1u)
+#define PWM_LED_1_INIT_DEAD_TIME             (3u)
 
 
 /********************************

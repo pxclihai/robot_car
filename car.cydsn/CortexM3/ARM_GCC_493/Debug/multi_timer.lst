@@ -1,0 +1,1354 @@
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"multi_timer.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.timer_init,"ax",%progbits
+  19              		.align	2
+  20              		.global	timer_init
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	timer_init, %function
+  24              	timer_init:
+  25              	.LFB63:
+  26              		.file 1 ".\\multi_timer.c"
+   1:.\multi_timer.c **** /* ========================================
+   2:.\multi_timer.c ****  *
+   3:.\multi_timer.c ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\multi_timer.c ****  * All Rights Reserved
+   5:.\multi_timer.c ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\multi_timer.c ****  *
+   7:.\multi_timer.c ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\multi_timer.c ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\multi_timer.c ****  *
+  10:.\multi_timer.c ****  * ========================================
+  11:.\multi_timer.c **** */
+  12:.\multi_timer.c **** #include "multi_timer.h"
+  13:.\multi_timer.c **** 
+  14:.\multi_timer.c **** //timer handle list head.
+  15:.\multi_timer.c **** static struct Timer* head_handle = NULL;
+  16:.\multi_timer.c **** 
+  17:.\multi_timer.c **** //Timer ticks
+  18:.\multi_timer.c **** static uint32_t _timer_ticks = 0;
+  19:.\multi_timer.c **** 
+  20:.\multi_timer.c **** /**
+  21:.\multi_timer.c ****   * @brief  Initializes the timer struct handle.
+  22:.\multi_timer.c ****   * @param  handle: the timer handle strcut.
+  23:.\multi_timer.c ****   * @param  timeout_cb: timeout callback.
+  24:.\multi_timer.c ****   * @param  repeat: repeat interval time.
+  25:.\multi_timer.c ****   * @retval None
+  26:.\multi_timer.c ****   */
+  27:.\multi_timer.c **** void timer_init(struct Timer* handle, void(*timeout_cb)(), uint32_t timeout, uint32_t repeat)
+  28:.\multi_timer.c **** {
+  27              		.loc 1 28 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 2
+
+
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  29:.\multi_timer.c **** 	// memset(handle, sizeof(struct Timer), 0);
+  30:.\multi_timer.c **** 	handle->timeout_cb = timeout_cb;
+  33              		.loc 1 30 0
+  34 0000 8160     		str	r1, [r0, #8]
+  31:.\multi_timer.c **** 	handle->timeout = _timer_ticks + timeout;
+  35              		.loc 1 31 0
+  36 0002 0349     		ldr	r1, .L2
+  37              	.LVL1:
+  38 0004 0968     		ldr	r1, [r1]
+  39 0006 0A44     		add	r2, r2, r1
+  40              	.LVL2:
+  41 0008 0260     		str	r2, [r0]
+  32:.\multi_timer.c **** 	handle->repeat = repeat;
+  42              		.loc 1 32 0
+  43 000a 4360     		str	r3, [r0, #4]
+  44 000c 7047     		bx	lr
+  45              	.L3:
+  46 000e 00BF     		.align	2
+  47              	.L2:
+  48 0010 00000000 		.word	.LANCHOR0
+  49              		.cfi_endproc
+  50              	.LFE63:
+  51              		.size	timer_init, .-timer_init
+  52              		.section	.text.timer_start,"ax",%progbits
+  53              		.align	2
+  54              		.global	timer_start
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	timer_start, %function
+  58              	timer_start:
+  59              	.LFB64:
+  33:.\multi_timer.c **** }
+  34:.\multi_timer.c **** 
+  35:.\multi_timer.c **** /**
+  36:.\multi_timer.c ****   * @brief  Start the timer work, add the handle into work list.
+  37:.\multi_timer.c ****   * @param  btn: target handle strcut.
+  38:.\multi_timer.c ****   * @retval 0: succeed. -1: already exist.
+  39:.\multi_timer.c ****   */
+  40:.\multi_timer.c **** int timer_start(struct Timer* handle)
+  41:.\multi_timer.c **** {
+  60              		.loc 1 41 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65              	.LVL3:
+  42:.\multi_timer.c **** 	struct Timer* target = head_handle;
+  66              		.loc 1 42 0
+  67 0000 084B     		ldr	r3, .L9
+  68 0002 5A68     		ldr	r2, [r3, #4]
+  69              	.LVL4:
+  70 0004 1346     		mov	r3, r2
+  43:.\multi_timer.c **** 	while(target) {
+  71              		.loc 1 43 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 3
+
+
+  72 0006 02E0     		b	.L5
+  73              	.LVL5:
+  74              	.L7:
+  44:.\multi_timer.c **** 		if(target == handle) return -1;	//already exist.
+  75              		.loc 1 44 0
+  76 0008 8342     		cmp	r3, r0
+  77 000a 07D0     		beq	.L8
+  45:.\multi_timer.c **** 		target = target->next;
+  78              		.loc 1 45 0
+  79 000c DB68     		ldr	r3, [r3, #12]
+  80              	.LVL6:
+  81              	.L5:
+  43:.\multi_timer.c **** 	while(target) {
+  82              		.loc 1 43 0
+  83 000e 002B     		cmp	r3, #0
+  84 0010 FAD1     		bne	.L7
+  46:.\multi_timer.c **** 	}
+  47:.\multi_timer.c **** 	handle->next = head_handle;
+  85              		.loc 1 47 0
+  86 0012 C260     		str	r2, [r0, #12]
+  48:.\multi_timer.c **** 	head_handle = handle;
+  87              		.loc 1 48 0
+  88 0014 034B     		ldr	r3, .L9
+  89              	.LVL7:
+  90 0016 5860     		str	r0, [r3, #4]
+  49:.\multi_timer.c **** 	return 0;
+  91              		.loc 1 49 0
+  92 0018 0020     		movs	r0, #0
+  93              	.LVL8:
+  94 001a 7047     		bx	lr
+  95              	.LVL9:
+  96              	.L8:
+  44:.\multi_timer.c **** 		target = target->next;
+  97              		.loc 1 44 0
+  98 001c 4FF0FF30 		mov	r0, #-1
+  99              	.LVL10:
+  50:.\multi_timer.c **** }
+ 100              		.loc 1 50 0
+ 101 0020 7047     		bx	lr
+ 102              	.L10:
+ 103 0022 00BF     		.align	2
+ 104              	.L9:
+ 105 0024 00000000 		.word	.LANCHOR0
+ 106              		.cfi_endproc
+ 107              	.LFE64:
+ 108              		.size	timer_start, .-timer_start
+ 109              		.section	.text.timer_stop,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	timer_stop
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	timer_stop, %function
+ 115              	timer_stop:
+ 116              	.LFB65:
+  51:.\multi_timer.c **** 
+  52:.\multi_timer.c **** /**
+  53:.\multi_timer.c ****   * @brief  Stop the timer work, remove the handle off work list.
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 4
+
+
+  54:.\multi_timer.c ****   * @param  handle: target handle strcut.
+  55:.\multi_timer.c ****   * @retval None
+  56:.\multi_timer.c ****   */
+  57:.\multi_timer.c **** void timer_stop(struct Timer* handle)
+  58:.\multi_timer.c **** {
+ 117              		.loc 1 58 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121              		@ link register save eliminated.
+ 122              	.LVL11:
+  59:.\multi_timer.c **** 	struct Timer** curr;
+  60:.\multi_timer.c **** 	for(curr = &head_handle; *curr; ) {
+ 123              		.loc 1 60 0
+ 124 0000 064A     		ldr	r2, .L16
+ 125 0002 06E0     		b	.L12
+ 126              	.LVL12:
+ 127              	.L15:
+ 128              	.LBB2:
+  61:.\multi_timer.c **** 		struct Timer* entry = *curr;
+  62:.\multi_timer.c **** 		if (entry == handle) {
+ 129              		.loc 1 62 0
+ 130 0004 8342     		cmp	r3, r0
+ 131 0006 02D1     		bne	.L13
+  63:.\multi_timer.c **** 			*curr = entry->next;
+ 132              		.loc 1 63 0
+ 133 0008 DB68     		ldr	r3, [r3, #12]
+ 134              	.LVL13:
+ 135 000a 1360     		str	r3, [r2]
+ 136              	.LVL14:
+ 137 000c 01E0     		b	.L12
+ 138              	.LVL15:
+ 139              	.L13:
+  64:.\multi_timer.c **** //			free(entry);
+  65:.\multi_timer.c **** 		} else
+  66:.\multi_timer.c **** 			curr = &entry->next;
+ 140              		.loc 1 66 0
+ 141 000e 03F10C02 		add	r2, r3, #12
+ 142              	.LVL16:
+ 143              	.L12:
+ 144              	.LBE2:
+  60:.\multi_timer.c **** 		struct Timer* entry = *curr;
+ 145              		.loc 1 60 0 discriminator 1
+ 146 0012 1368     		ldr	r3, [r2]
+ 147 0014 002B     		cmp	r3, #0
+ 148 0016 F5D1     		bne	.L15
+  67:.\multi_timer.c **** 	}
+  68:.\multi_timer.c **** }
+ 149              		.loc 1 68 0
+ 150 0018 7047     		bx	lr
+ 151              	.L17:
+ 152 001a 00BF     		.align	2
+ 153              	.L16:
+ 154 001c 04000000 		.word	.LANCHOR0+4
+ 155              		.cfi_endproc
+ 156              	.LFE65:
+ 157              		.size	timer_stop, .-timer_stop
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 5
+
+
+ 158              		.section	.text.timer_loop,"ax",%progbits
+ 159              		.align	2
+ 160              		.global	timer_loop
+ 161              		.thumb
+ 162              		.thumb_func
+ 163              		.type	timer_loop, %function
+ 164              	timer_loop:
+ 165              	.LFB66:
+  69:.\multi_timer.c **** 
+  70:.\multi_timer.c **** /**
+  71:.\multi_timer.c ****   * @brief  main loop.
+  72:.\multi_timer.c ****   * @param  None.
+  73:.\multi_timer.c ****   * @retval None
+  74:.\multi_timer.c ****   */
+  75:.\multi_timer.c **** void timer_loop()
+  76:.\multi_timer.c **** {
+ 166              		.loc 1 76 0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 10B5     		push	{r4, lr}
+ 171              		.cfi_def_cfa_offset 8
+ 172              		.cfi_offset 4, -8
+ 173              		.cfi_offset 14, -4
+  77:.\multi_timer.c **** 	struct Timer* target;
+  78:.\multi_timer.c **** 	for(target=head_handle; target; target=target->next) {
+ 174              		.loc 1 78 0
+ 175 0002 0B4B     		ldr	r3, .L25
+ 176 0004 5C68     		ldr	r4, [r3, #4]
+ 177              	.LVL17:
+ 178 0006 0FE0     		b	.L19
+ 179              	.L23:
+  79:.\multi_timer.c **** 		if(_timer_ticks >= target->timeout) {
+ 180              		.loc 1 79 0
+ 181 0008 2268     		ldr	r2, [r4]
+ 182 000a 094B     		ldr	r3, .L25
+ 183 000c 1B68     		ldr	r3, [r3]
+ 184 000e 9A42     		cmp	r2, r3
+ 185 0010 09D8     		bhi	.L20
+  80:.\multi_timer.c **** 			if(target->repeat == 0) {
+ 186              		.loc 1 80 0
+ 187 0012 6268     		ldr	r2, [r4, #4]
+ 188 0014 1AB9     		cbnz	r2, .L21
+  81:.\multi_timer.c **** 				timer_stop(target);
+ 189              		.loc 1 81 0
+ 190 0016 2046     		mov	r0, r4
+ 191 0018 FFF7FEFF 		bl	timer_stop
+ 192              	.LVL18:
+ 193 001c 01E0     		b	.L22
+ 194              	.L21:
+  82:.\multi_timer.c **** 			} else {
+  83:.\multi_timer.c **** 				target->timeout = _timer_ticks + target->repeat;
+ 195              		.loc 1 83 0
+ 196 001e 1344     		add	r3, r3, r2
+ 197 0020 2360     		str	r3, [r4]
+ 198              	.L22:
+  84:.\multi_timer.c **** 			}
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 6
+
+
+  85:.\multi_timer.c **** 			target->timeout_cb();
+ 199              		.loc 1 85 0
+ 200 0022 A368     		ldr	r3, [r4, #8]
+ 201 0024 9847     		blx	r3
+ 202              	.LVL19:
+ 203              	.L20:
+  78:.\multi_timer.c **** 		if(_timer_ticks >= target->timeout) {
+ 204              		.loc 1 78 0 discriminator 2
+ 205 0026 E468     		ldr	r4, [r4, #12]
+ 206              	.LVL20:
+ 207              	.L19:
+  78:.\multi_timer.c **** 		if(_timer_ticks >= target->timeout) {
+ 208              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 209 0028 002C     		cmp	r4, #0
+ 210 002a EDD1     		bne	.L23
+  86:.\multi_timer.c **** 		}
+  87:.\multi_timer.c **** 	}
+  88:.\multi_timer.c **** }
+ 211              		.loc 1 88 0 is_stmt 1
+ 212 002c 10BD     		pop	{r4, pc}
+ 213              	.LVL21:
+ 214              	.L26:
+ 215 002e 00BF     		.align	2
+ 216              	.L25:
+ 217 0030 00000000 		.word	.LANCHOR0
+ 218              		.cfi_endproc
+ 219              	.LFE66:
+ 220              		.size	timer_loop, .-timer_loop
+ 221              		.section	.text.timer_ticks,"ax",%progbits
+ 222              		.align	2
+ 223              		.global	timer_ticks
+ 224              		.thumb
+ 225              		.thumb_func
+ 226              		.type	timer_ticks, %function
+ 227              	timer_ticks:
+ 228              	.LFB67:
+  89:.\multi_timer.c **** 
+  90:.\multi_timer.c **** /**
+  91:.\multi_timer.c ****   * @brief  background ticks, timer repeat invoking interval 1ms.
+  92:.\multi_timer.c ****   * @param  None.
+  93:.\multi_timer.c ****   * @retval None.
+  94:.\multi_timer.c ****   */
+  95:.\multi_timer.c **** void timer_ticks()
+  96:.\multi_timer.c **** {
+ 229              		.loc 1 96 0
+ 230              		.cfi_startproc
+ 231              		@ args = 0, pretend = 0, frame = 0
+ 232              		@ frame_needed = 0, uses_anonymous_args = 0
+ 233              		@ link register save eliminated.
+  97:.\multi_timer.c **** 	_timer_ticks++;
+ 234              		.loc 1 97 0
+ 235 0000 024A     		ldr	r2, .L28
+ 236 0002 1368     		ldr	r3, [r2]
+ 237 0004 0133     		adds	r3, r3, #1
+ 238 0006 1360     		str	r3, [r2]
+ 239 0008 7047     		bx	lr
+ 240              	.L29:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 7
+
+
+ 241 000a 00BF     		.align	2
+ 242              	.L28:
+ 243 000c 00000000 		.word	.LANCHOR0
+ 244              		.cfi_endproc
+ 245              	.LFE67:
+ 246              		.size	timer_ticks, .-timer_ticks
+ 247              		.bss
+ 248              		.align	2
+ 249              		.set	.LANCHOR0,. + 0
+ 250              		.type	_timer_ticks, %object
+ 251              		.size	_timer_ticks, 4
+ 252              	_timer_ticks:
+ 253 0000 00000000 		.space	4
+ 254              		.type	head_handle, %object
+ 255              		.size	head_handle, 4
+ 256              	head_handle:
+ 257 0004 00000000 		.space	4
+ 258              		.text
+ 259              	.Letext0:
+ 260              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 261              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 262              		.file 4 ".\\multi_timer.h"
+ 263              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 264              		.section	.debug_info,"",%progbits
+ 265              	.Ldebug_info0:
+ 266 0000 57020000 		.4byte	0x257
+ 267 0004 0400     		.2byte	0x4
+ 268 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 269 000a 04       		.byte	0x4
+ 270 000b 01       		.uleb128 0x1
+ 271 000c F7000000 		.4byte	.LASF30
+ 272 0010 01       		.byte	0x1
+ 273 0011 30000000 		.4byte	.LASF31
+ 274 0015 00000000 		.4byte	.LASF32
+ 275 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 276 001d 00000000 		.4byte	0
+ 277 0021 00000000 		.4byte	.Ldebug_line0
+ 278 0025 02       		.uleb128 0x2
+ 279 0026 01       		.byte	0x1
+ 280 0027 06       		.byte	0x6
+ 281 0028 06020000 		.4byte	.LASF0
+ 282 002c 02       		.uleb128 0x2
+ 283 002d 01       		.byte	0x1
+ 284 002e 08       		.byte	0x8
+ 285 002f 6F000000 		.4byte	.LASF1
+ 286 0033 02       		.uleb128 0x2
+ 287 0034 02       		.byte	0x2
+ 288 0035 05       		.byte	0x5
+ 289 0036 DF010000 		.4byte	.LASF2
+ 290 003a 02       		.uleb128 0x2
+ 291 003b 02       		.byte	0x2
+ 292 003c 07       		.byte	0x7
+ 293 003d 96000000 		.4byte	.LASF3
+ 294 0041 03       		.uleb128 0x3
+ 295 0042 40000000 		.4byte	.LASF5
+ 296 0046 02       		.byte	0x2
+ 297 0047 3F       		.byte	0x3f
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 8
+
+
+ 298 0048 4C000000 		.4byte	0x4c
+ 299 004c 02       		.uleb128 0x2
+ 300 004d 04       		.byte	0x4
+ 301 004e 05       		.byte	0x5
+ 302 004f F2010000 		.4byte	.LASF4
+ 303 0053 03       		.uleb128 0x3
+ 304 0054 E0000000 		.4byte	.LASF6
+ 305 0058 02       		.byte	0x2
+ 306 0059 41       		.byte	0x41
+ 307 005a 5E000000 		.4byte	0x5e
+ 308 005e 02       		.uleb128 0x2
+ 309 005f 04       		.byte	0x4
+ 310 0060 07       		.byte	0x7
+ 311 0061 84000000 		.4byte	.LASF7
+ 312 0065 02       		.uleb128 0x2
+ 313 0066 08       		.byte	0x8
+ 314 0067 05       		.byte	0x5
+ 315 0068 CC010000 		.4byte	.LASF8
+ 316 006c 02       		.uleb128 0x2
+ 317 006d 08       		.byte	0x8
+ 318 006e 07       		.byte	0x7
+ 319 006f 92010000 		.4byte	.LASF9
+ 320 0073 04       		.uleb128 0x4
+ 321 0074 04       		.byte	0x4
+ 322 0075 05       		.byte	0x5
+ 323 0076 696E7400 		.ascii	"int\000"
+ 324 007a 02       		.uleb128 0x2
+ 325 007b 04       		.byte	0x4
+ 326 007c 07       		.byte	0x7
+ 327 007d 85010000 		.4byte	.LASF10
+ 328 0081 03       		.uleb128 0x3
+ 329 0082 BB010000 		.4byte	.LASF11
+ 330 0086 03       		.byte	0x3
+ 331 0087 2C       		.byte	0x2c
+ 332 0088 41000000 		.4byte	0x41
+ 333 008c 03       		.uleb128 0x3
+ 334 008d E9010000 		.4byte	.LASF12
+ 335 0091 03       		.byte	0x3
+ 336 0092 2D       		.byte	0x2d
+ 337 0093 53000000 		.4byte	0x53
+ 338 0097 02       		.uleb128 0x2
+ 339 0098 04       		.byte	0x4
+ 340 0099 04       		.byte	0x4
+ 341 009a 57000000 		.4byte	.LASF13
+ 342 009e 02       		.uleb128 0x2
+ 343 009f 08       		.byte	0x8
+ 344 00a0 04       		.byte	0x4
+ 345 00a1 12020000 		.4byte	.LASF14
+ 346 00a5 02       		.uleb128 0x2
+ 347 00a6 01       		.byte	0x1
+ 348 00a7 08       		.byte	0x8
+ 349 00a8 DA010000 		.4byte	.LASF15
+ 350 00ac 05       		.uleb128 0x5
+ 351 00ad 04       		.byte	0x4
+ 352 00ae B2000000 		.4byte	0xb2
+ 353 00b2 06       		.uleb128 0x6
+ 354 00b3 02       		.uleb128 0x2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 9
+
+
+ 355 00b4 04       		.byte	0x4
+ 356 00b5 07       		.byte	0x7
+ 357 00b6 C3010000 		.4byte	.LASF16
+ 358 00ba 07       		.uleb128 0x7
+ 359 00bb B5010000 		.4byte	.LASF33
+ 360 00bf 10       		.byte	0x10
+ 361 00c0 04       		.byte	0x4
+ 362 00c1 13       		.byte	0x13
+ 363 00c2 F7000000 		.4byte	0xf7
+ 364 00c6 08       		.uleb128 0x8
+ 365 00c7 CD000000 		.4byte	.LASF17
+ 366 00cb 04       		.byte	0x4
+ 367 00cc 14       		.byte	0x14
+ 368 00cd 8C000000 		.4byte	0x8c
+ 369 00d1 00       		.byte	0
+ 370 00d2 08       		.uleb128 0x8
+ 371 00d3 5D000000 		.4byte	.LASF18
+ 372 00d7 04       		.byte	0x4
+ 373 00d8 15       		.byte	0x15
+ 374 00d9 8C000000 		.4byte	0x8c
+ 375 00dd 04       		.byte	0x4
+ 376 00de 08       		.uleb128 0x8
+ 377 00df FB010000 		.4byte	.LASF19
+ 378 00e3 04       		.byte	0x4
+ 379 00e4 16       		.byte	0x16
+ 380 00e5 AC000000 		.4byte	0xac
+ 381 00e9 08       		.byte	0x8
+ 382 00ea 08       		.uleb128 0x8
+ 383 00eb 26000000 		.4byte	.LASF20
+ 384 00ef 04       		.byte	0x4
+ 385 00f0 17       		.byte	0x17
+ 386 00f1 F7000000 		.4byte	0xf7
+ 387 00f5 0C       		.byte	0xc
+ 388 00f6 00       		.byte	0
+ 389 00f7 05       		.uleb128 0x5
+ 390 00f8 04       		.byte	0x4
+ 391 00f9 BA000000 		.4byte	0xba
+ 392 00fd 09       		.uleb128 0x9
+ 393 00fe 64000000 		.4byte	.LASF22
+ 394 0102 01       		.byte	0x1
+ 395 0103 1B       		.byte	0x1b
+ 396 0104 00000000 		.4byte	.LFB63
+ 397 0108 14000000 		.4byte	.LFE63-.LFB63
+ 398 010c 01       		.uleb128 0x1
+ 399 010d 9C       		.byte	0x9c
+ 400 010e 4B010000 		.4byte	0x14b
+ 401 0112 0A       		.uleb128 0xa
+ 402 0113 7D000000 		.4byte	.LASF21
+ 403 0117 01       		.byte	0x1
+ 404 0118 1B       		.byte	0x1b
+ 405 0119 F7000000 		.4byte	0xf7
+ 406 011d 01       		.uleb128 0x1
+ 407 011e 50       		.byte	0x50
+ 408 011f 0B       		.uleb128 0xb
+ 409 0120 FB010000 		.4byte	.LASF19
+ 410 0124 01       		.byte	0x1
+ 411 0125 1B       		.byte	0x1b
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 10
+
+
+ 412 0126 52010000 		.4byte	0x152
+ 413 012a 00000000 		.4byte	.LLST0
+ 414 012e 0B       		.uleb128 0xb
+ 415 012f CD000000 		.4byte	.LASF17
+ 416 0133 01       		.byte	0x1
+ 417 0134 1B       		.byte	0x1b
+ 418 0135 8C000000 		.4byte	0x8c
+ 419 0139 1F000000 		.4byte	.LLST1
+ 420 013d 0A       		.uleb128 0xa
+ 421 013e 5D000000 		.4byte	.LASF18
+ 422 0142 01       		.byte	0x1
+ 423 0143 1B       		.byte	0x1b
+ 424 0144 8C000000 		.4byte	0x8c
+ 425 0148 01       		.uleb128 0x1
+ 426 0149 53       		.byte	0x53
+ 427 014a 00       		.byte	0
+ 428 014b 0C       		.uleb128 0xc
+ 429 014c 52010000 		.4byte	0x152
+ 430 0150 0D       		.uleb128 0xd
+ 431 0151 00       		.byte	0
+ 432 0152 05       		.uleb128 0x5
+ 433 0153 04       		.byte	0x4
+ 434 0154 4B010000 		.4byte	0x14b
+ 435 0158 0E       		.uleb128 0xe
+ 436 0159 EB000000 		.4byte	.LASF34
+ 437 015d 01       		.byte	0x1
+ 438 015e 28       		.byte	0x28
+ 439 015f 73000000 		.4byte	0x73
+ 440 0163 00000000 		.4byte	.LFB64
+ 441 0167 28000000 		.4byte	.LFE64-.LFB64
+ 442 016b 01       		.uleb128 0x1
+ 443 016c 9C       		.byte	0x9c
+ 444 016d 90010000 		.4byte	0x190
+ 445 0171 0B       		.uleb128 0xb
+ 446 0172 7D000000 		.4byte	.LASF21
+ 447 0176 01       		.byte	0x1
+ 448 0177 28       		.byte	0x28
+ 449 0178 F7000000 		.4byte	0xf7
+ 450 017c 40000000 		.4byte	.LLST2
+ 451 0180 0F       		.uleb128 0xf
+ 452 0181 50000000 		.4byte	.LASF24
+ 453 0185 01       		.byte	0x1
+ 454 0186 2A       		.byte	0x2a
+ 455 0187 F7000000 		.4byte	0xf7
+ 456 018b 7B000000 		.4byte	.LLST3
+ 457 018f 00       		.byte	0
+ 458 0190 09       		.uleb128 0x9
+ 459 0191 D5000000 		.4byte	.LASF23
+ 460 0195 01       		.byte	0x1
+ 461 0196 39       		.byte	0x39
+ 462 0197 00000000 		.4byte	.LFB65
+ 463 019b 20000000 		.4byte	.LFE65-.LFB65
+ 464 019f 01       		.uleb128 0x1
+ 465 01a0 9C       		.byte	0x9c
+ 466 01a1 DB010000 		.4byte	0x1db
+ 467 01a5 0A       		.uleb128 0xa
+ 468 01a6 7D000000 		.4byte	.LASF21
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 11
+
+
+ 469 01aa 01       		.byte	0x1
+ 470 01ab 39       		.byte	0x39
+ 471 01ac F7000000 		.4byte	0xf7
+ 472 01b0 01       		.uleb128 0x1
+ 473 01b1 50       		.byte	0x50
+ 474 01b2 0F       		.uleb128 0xf
+ 475 01b3 2B000000 		.4byte	.LASF25
+ 476 01b7 01       		.byte	0x1
+ 477 01b8 3B       		.byte	0x3b
+ 478 01b9 DB010000 		.4byte	0x1db
+ 479 01bd A4000000 		.4byte	.LLST4
+ 480 01c1 10       		.uleb128 0x10
+ 481 01c2 04000000 		.4byte	.LBB2
+ 482 01c6 0E000000 		.4byte	.LBE2-.LBB2
+ 483 01ca 0F       		.uleb128 0xf
+ 484 01cb 4A000000 		.4byte	.LASF26
+ 485 01cf 01       		.byte	0x1
+ 486 01d0 3D       		.byte	0x3d
+ 487 01d1 F7000000 		.4byte	0xf7
+ 488 01d5 C7000000 		.4byte	.LLST5
+ 489 01d9 00       		.byte	0
+ 490 01da 00       		.byte	0
+ 491 01db 05       		.uleb128 0x5
+ 492 01dc 04       		.byte	0x4
+ 493 01dd F7000000 		.4byte	0xf7
+ 494 01e1 11       		.uleb128 0x11
+ 495 01e2 B6000000 		.4byte	.LASF27
+ 496 01e6 01       		.byte	0x1
+ 497 01e7 4B       		.byte	0x4b
+ 498 01e8 00000000 		.4byte	.LFB66
+ 499 01ec 34000000 		.4byte	.LFE66-.LFB66
+ 500 01f0 01       		.uleb128 0x1
+ 501 01f1 9C       		.byte	0x9c
+ 502 01f2 16020000 		.4byte	0x216
+ 503 01f6 0F       		.uleb128 0xf
+ 504 01f7 50000000 		.4byte	.LASF24
+ 505 01fb 01       		.byte	0x1
+ 506 01fc 4D       		.byte	0x4d
+ 507 01fd F7000000 		.4byte	0xf7
+ 508 0201 F1000000 		.4byte	.LLST6
+ 509 0205 12       		.uleb128 0x12
+ 510 0206 1C000000 		.4byte	.LVL18
+ 511 020a 90010000 		.4byte	0x190
+ 512 020e 13       		.uleb128 0x13
+ 513 020f 01       		.uleb128 0x1
+ 514 0210 50       		.byte	0x50
+ 515 0211 02       		.uleb128 0x2
+ 516 0212 74       		.byte	0x74
+ 517 0213 00       		.sleb128 0
+ 518 0214 00       		.byte	0
+ 519 0215 00       		.byte	0
+ 520 0216 14       		.uleb128 0x14
+ 521 0217 C1000000 		.4byte	.LASF35
+ 522 021b 01       		.byte	0x1
+ 523 021c 5F       		.byte	0x5f
+ 524 021d 00000000 		.4byte	.LFB67
+ 525 0221 10000000 		.4byte	.LFE67-.LFB67
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 12
+
+
+ 526 0225 01       		.uleb128 0x1
+ 527 0226 9C       		.byte	0x9c
+ 528 0227 15       		.uleb128 0x15
+ 529 0228 A9010000 		.4byte	.LASF28
+ 530 022c 01       		.byte	0x1
+ 531 022d 0F       		.byte	0xf
+ 532 022e F7000000 		.4byte	0xf7
+ 533 0232 05       		.uleb128 0x5
+ 534 0233 03       		.byte	0x3
+ 535 0234 04000000 		.4byte	head_handle
+ 536 0238 15       		.uleb128 0x15
+ 537 0239 19020000 		.4byte	.LASF29
+ 538 023d 01       		.byte	0x1
+ 539 023e 12       		.byte	0x12
+ 540 023f 8C000000 		.4byte	0x8c
+ 541 0243 05       		.uleb128 0x5
+ 542 0244 03       		.byte	0x3
+ 543 0245 00000000 		.4byte	_timer_ticks
+ 544 0249 16       		.uleb128 0x16
+ 545 024a A9000000 		.4byte	.LASF36
+ 546 024e 05       		.byte	0x5
+ 547 024f 2A06     		.2byte	0x62a
+ 548 0251 55020000 		.4byte	0x255
+ 549 0255 17       		.uleb128 0x17
+ 550 0256 81000000 		.4byte	0x81
+ 551 025a 00       		.byte	0
+ 552              		.section	.debug_abbrev,"",%progbits
+ 553              	.Ldebug_abbrev0:
+ 554 0000 01       		.uleb128 0x1
+ 555 0001 11       		.uleb128 0x11
+ 556 0002 01       		.byte	0x1
+ 557 0003 25       		.uleb128 0x25
+ 558 0004 0E       		.uleb128 0xe
+ 559 0005 13       		.uleb128 0x13
+ 560 0006 0B       		.uleb128 0xb
+ 561 0007 03       		.uleb128 0x3
+ 562 0008 0E       		.uleb128 0xe
+ 563 0009 1B       		.uleb128 0x1b
+ 564 000a 0E       		.uleb128 0xe
+ 565 000b 55       		.uleb128 0x55
+ 566 000c 17       		.uleb128 0x17
+ 567 000d 11       		.uleb128 0x11
+ 568 000e 01       		.uleb128 0x1
+ 569 000f 10       		.uleb128 0x10
+ 570 0010 17       		.uleb128 0x17
+ 571 0011 00       		.byte	0
+ 572 0012 00       		.byte	0
+ 573 0013 02       		.uleb128 0x2
+ 574 0014 24       		.uleb128 0x24
+ 575 0015 00       		.byte	0
+ 576 0016 0B       		.uleb128 0xb
+ 577 0017 0B       		.uleb128 0xb
+ 578 0018 3E       		.uleb128 0x3e
+ 579 0019 0B       		.uleb128 0xb
+ 580 001a 03       		.uleb128 0x3
+ 581 001b 0E       		.uleb128 0xe
+ 582 001c 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 13
+
+
+ 583 001d 00       		.byte	0
+ 584 001e 03       		.uleb128 0x3
+ 585 001f 16       		.uleb128 0x16
+ 586 0020 00       		.byte	0
+ 587 0021 03       		.uleb128 0x3
+ 588 0022 0E       		.uleb128 0xe
+ 589 0023 3A       		.uleb128 0x3a
+ 590 0024 0B       		.uleb128 0xb
+ 591 0025 3B       		.uleb128 0x3b
+ 592 0026 0B       		.uleb128 0xb
+ 593 0027 49       		.uleb128 0x49
+ 594 0028 13       		.uleb128 0x13
+ 595 0029 00       		.byte	0
+ 596 002a 00       		.byte	0
+ 597 002b 04       		.uleb128 0x4
+ 598 002c 24       		.uleb128 0x24
+ 599 002d 00       		.byte	0
+ 600 002e 0B       		.uleb128 0xb
+ 601 002f 0B       		.uleb128 0xb
+ 602 0030 3E       		.uleb128 0x3e
+ 603 0031 0B       		.uleb128 0xb
+ 604 0032 03       		.uleb128 0x3
+ 605 0033 08       		.uleb128 0x8
+ 606 0034 00       		.byte	0
+ 607 0035 00       		.byte	0
+ 608 0036 05       		.uleb128 0x5
+ 609 0037 0F       		.uleb128 0xf
+ 610 0038 00       		.byte	0
+ 611 0039 0B       		.uleb128 0xb
+ 612 003a 0B       		.uleb128 0xb
+ 613 003b 49       		.uleb128 0x49
+ 614 003c 13       		.uleb128 0x13
+ 615 003d 00       		.byte	0
+ 616 003e 00       		.byte	0
+ 617 003f 06       		.uleb128 0x6
+ 618 0040 15       		.uleb128 0x15
+ 619 0041 00       		.byte	0
+ 620 0042 27       		.uleb128 0x27
+ 621 0043 19       		.uleb128 0x19
+ 622 0044 00       		.byte	0
+ 623 0045 00       		.byte	0
+ 624 0046 07       		.uleb128 0x7
+ 625 0047 13       		.uleb128 0x13
+ 626 0048 01       		.byte	0x1
+ 627 0049 03       		.uleb128 0x3
+ 628 004a 0E       		.uleb128 0xe
+ 629 004b 0B       		.uleb128 0xb
+ 630 004c 0B       		.uleb128 0xb
+ 631 004d 3A       		.uleb128 0x3a
+ 632 004e 0B       		.uleb128 0xb
+ 633 004f 3B       		.uleb128 0x3b
+ 634 0050 0B       		.uleb128 0xb
+ 635 0051 01       		.uleb128 0x1
+ 636 0052 13       		.uleb128 0x13
+ 637 0053 00       		.byte	0
+ 638 0054 00       		.byte	0
+ 639 0055 08       		.uleb128 0x8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 14
+
+
+ 640 0056 0D       		.uleb128 0xd
+ 641 0057 00       		.byte	0
+ 642 0058 03       		.uleb128 0x3
+ 643 0059 0E       		.uleb128 0xe
+ 644 005a 3A       		.uleb128 0x3a
+ 645 005b 0B       		.uleb128 0xb
+ 646 005c 3B       		.uleb128 0x3b
+ 647 005d 0B       		.uleb128 0xb
+ 648 005e 49       		.uleb128 0x49
+ 649 005f 13       		.uleb128 0x13
+ 650 0060 38       		.uleb128 0x38
+ 651 0061 0B       		.uleb128 0xb
+ 652 0062 00       		.byte	0
+ 653 0063 00       		.byte	0
+ 654 0064 09       		.uleb128 0x9
+ 655 0065 2E       		.uleb128 0x2e
+ 656 0066 01       		.byte	0x1
+ 657 0067 3F       		.uleb128 0x3f
+ 658 0068 19       		.uleb128 0x19
+ 659 0069 03       		.uleb128 0x3
+ 660 006a 0E       		.uleb128 0xe
+ 661 006b 3A       		.uleb128 0x3a
+ 662 006c 0B       		.uleb128 0xb
+ 663 006d 3B       		.uleb128 0x3b
+ 664 006e 0B       		.uleb128 0xb
+ 665 006f 27       		.uleb128 0x27
+ 666 0070 19       		.uleb128 0x19
+ 667 0071 11       		.uleb128 0x11
+ 668 0072 01       		.uleb128 0x1
+ 669 0073 12       		.uleb128 0x12
+ 670 0074 06       		.uleb128 0x6
+ 671 0075 40       		.uleb128 0x40
+ 672 0076 18       		.uleb128 0x18
+ 673 0077 9742     		.uleb128 0x2117
+ 674 0079 19       		.uleb128 0x19
+ 675 007a 01       		.uleb128 0x1
+ 676 007b 13       		.uleb128 0x13
+ 677 007c 00       		.byte	0
+ 678 007d 00       		.byte	0
+ 679 007e 0A       		.uleb128 0xa
+ 680 007f 05       		.uleb128 0x5
+ 681 0080 00       		.byte	0
+ 682 0081 03       		.uleb128 0x3
+ 683 0082 0E       		.uleb128 0xe
+ 684 0083 3A       		.uleb128 0x3a
+ 685 0084 0B       		.uleb128 0xb
+ 686 0085 3B       		.uleb128 0x3b
+ 687 0086 0B       		.uleb128 0xb
+ 688 0087 49       		.uleb128 0x49
+ 689 0088 13       		.uleb128 0x13
+ 690 0089 02       		.uleb128 0x2
+ 691 008a 18       		.uleb128 0x18
+ 692 008b 00       		.byte	0
+ 693 008c 00       		.byte	0
+ 694 008d 0B       		.uleb128 0xb
+ 695 008e 05       		.uleb128 0x5
+ 696 008f 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 15
+
+
+ 697 0090 03       		.uleb128 0x3
+ 698 0091 0E       		.uleb128 0xe
+ 699 0092 3A       		.uleb128 0x3a
+ 700 0093 0B       		.uleb128 0xb
+ 701 0094 3B       		.uleb128 0x3b
+ 702 0095 0B       		.uleb128 0xb
+ 703 0096 49       		.uleb128 0x49
+ 704 0097 13       		.uleb128 0x13
+ 705 0098 02       		.uleb128 0x2
+ 706 0099 17       		.uleb128 0x17
+ 707 009a 00       		.byte	0
+ 708 009b 00       		.byte	0
+ 709 009c 0C       		.uleb128 0xc
+ 710 009d 15       		.uleb128 0x15
+ 711 009e 01       		.byte	0x1
+ 712 009f 01       		.uleb128 0x1
+ 713 00a0 13       		.uleb128 0x13
+ 714 00a1 00       		.byte	0
+ 715 00a2 00       		.byte	0
+ 716 00a3 0D       		.uleb128 0xd
+ 717 00a4 18       		.uleb128 0x18
+ 718 00a5 00       		.byte	0
+ 719 00a6 00       		.byte	0
+ 720 00a7 00       		.byte	0
+ 721 00a8 0E       		.uleb128 0xe
+ 722 00a9 2E       		.uleb128 0x2e
+ 723 00aa 01       		.byte	0x1
+ 724 00ab 3F       		.uleb128 0x3f
+ 725 00ac 19       		.uleb128 0x19
+ 726 00ad 03       		.uleb128 0x3
+ 727 00ae 0E       		.uleb128 0xe
+ 728 00af 3A       		.uleb128 0x3a
+ 729 00b0 0B       		.uleb128 0xb
+ 730 00b1 3B       		.uleb128 0x3b
+ 731 00b2 0B       		.uleb128 0xb
+ 732 00b3 27       		.uleb128 0x27
+ 733 00b4 19       		.uleb128 0x19
+ 734 00b5 49       		.uleb128 0x49
+ 735 00b6 13       		.uleb128 0x13
+ 736 00b7 11       		.uleb128 0x11
+ 737 00b8 01       		.uleb128 0x1
+ 738 00b9 12       		.uleb128 0x12
+ 739 00ba 06       		.uleb128 0x6
+ 740 00bb 40       		.uleb128 0x40
+ 741 00bc 18       		.uleb128 0x18
+ 742 00bd 9742     		.uleb128 0x2117
+ 743 00bf 19       		.uleb128 0x19
+ 744 00c0 01       		.uleb128 0x1
+ 745 00c1 13       		.uleb128 0x13
+ 746 00c2 00       		.byte	0
+ 747 00c3 00       		.byte	0
+ 748 00c4 0F       		.uleb128 0xf
+ 749 00c5 34       		.uleb128 0x34
+ 750 00c6 00       		.byte	0
+ 751 00c7 03       		.uleb128 0x3
+ 752 00c8 0E       		.uleb128 0xe
+ 753 00c9 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 16
+
+
+ 754 00ca 0B       		.uleb128 0xb
+ 755 00cb 3B       		.uleb128 0x3b
+ 756 00cc 0B       		.uleb128 0xb
+ 757 00cd 49       		.uleb128 0x49
+ 758 00ce 13       		.uleb128 0x13
+ 759 00cf 02       		.uleb128 0x2
+ 760 00d0 17       		.uleb128 0x17
+ 761 00d1 00       		.byte	0
+ 762 00d2 00       		.byte	0
+ 763 00d3 10       		.uleb128 0x10
+ 764 00d4 0B       		.uleb128 0xb
+ 765 00d5 01       		.byte	0x1
+ 766 00d6 11       		.uleb128 0x11
+ 767 00d7 01       		.uleb128 0x1
+ 768 00d8 12       		.uleb128 0x12
+ 769 00d9 06       		.uleb128 0x6
+ 770 00da 00       		.byte	0
+ 771 00db 00       		.byte	0
+ 772 00dc 11       		.uleb128 0x11
+ 773 00dd 2E       		.uleb128 0x2e
+ 774 00de 01       		.byte	0x1
+ 775 00df 3F       		.uleb128 0x3f
+ 776 00e0 19       		.uleb128 0x19
+ 777 00e1 03       		.uleb128 0x3
+ 778 00e2 0E       		.uleb128 0xe
+ 779 00e3 3A       		.uleb128 0x3a
+ 780 00e4 0B       		.uleb128 0xb
+ 781 00e5 3B       		.uleb128 0x3b
+ 782 00e6 0B       		.uleb128 0xb
+ 783 00e7 27       		.uleb128 0x27
+ 784 00e8 19       		.uleb128 0x19
+ 785 00e9 11       		.uleb128 0x11
+ 786 00ea 01       		.uleb128 0x1
+ 787 00eb 12       		.uleb128 0x12
+ 788 00ec 06       		.uleb128 0x6
+ 789 00ed 40       		.uleb128 0x40
+ 790 00ee 18       		.uleb128 0x18
+ 791 00ef 9642     		.uleb128 0x2116
+ 792 00f1 19       		.uleb128 0x19
+ 793 00f2 01       		.uleb128 0x1
+ 794 00f3 13       		.uleb128 0x13
+ 795 00f4 00       		.byte	0
+ 796 00f5 00       		.byte	0
+ 797 00f6 12       		.uleb128 0x12
+ 798 00f7 898201   		.uleb128 0x4109
+ 799 00fa 01       		.byte	0x1
+ 800 00fb 11       		.uleb128 0x11
+ 801 00fc 01       		.uleb128 0x1
+ 802 00fd 31       		.uleb128 0x31
+ 803 00fe 13       		.uleb128 0x13
+ 804 00ff 00       		.byte	0
+ 805 0100 00       		.byte	0
+ 806 0101 13       		.uleb128 0x13
+ 807 0102 8A8201   		.uleb128 0x410a
+ 808 0105 00       		.byte	0
+ 809 0106 02       		.uleb128 0x2
+ 810 0107 18       		.uleb128 0x18
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 17
+
+
+ 811 0108 9142     		.uleb128 0x2111
+ 812 010a 18       		.uleb128 0x18
+ 813 010b 00       		.byte	0
+ 814 010c 00       		.byte	0
+ 815 010d 14       		.uleb128 0x14
+ 816 010e 2E       		.uleb128 0x2e
+ 817 010f 00       		.byte	0
+ 818 0110 3F       		.uleb128 0x3f
+ 819 0111 19       		.uleb128 0x19
+ 820 0112 03       		.uleb128 0x3
+ 821 0113 0E       		.uleb128 0xe
+ 822 0114 3A       		.uleb128 0x3a
+ 823 0115 0B       		.uleb128 0xb
+ 824 0116 3B       		.uleb128 0x3b
+ 825 0117 0B       		.uleb128 0xb
+ 826 0118 27       		.uleb128 0x27
+ 827 0119 19       		.uleb128 0x19
+ 828 011a 11       		.uleb128 0x11
+ 829 011b 01       		.uleb128 0x1
+ 830 011c 12       		.uleb128 0x12
+ 831 011d 06       		.uleb128 0x6
+ 832 011e 40       		.uleb128 0x40
+ 833 011f 18       		.uleb128 0x18
+ 834 0120 9742     		.uleb128 0x2117
+ 835 0122 19       		.uleb128 0x19
+ 836 0123 00       		.byte	0
+ 837 0124 00       		.byte	0
+ 838 0125 15       		.uleb128 0x15
+ 839 0126 34       		.uleb128 0x34
+ 840 0127 00       		.byte	0
+ 841 0128 03       		.uleb128 0x3
+ 842 0129 0E       		.uleb128 0xe
+ 843 012a 3A       		.uleb128 0x3a
+ 844 012b 0B       		.uleb128 0xb
+ 845 012c 3B       		.uleb128 0x3b
+ 846 012d 0B       		.uleb128 0xb
+ 847 012e 49       		.uleb128 0x49
+ 848 012f 13       		.uleb128 0x13
+ 849 0130 02       		.uleb128 0x2
+ 850 0131 18       		.uleb128 0x18
+ 851 0132 00       		.byte	0
+ 852 0133 00       		.byte	0
+ 853 0134 16       		.uleb128 0x16
+ 854 0135 34       		.uleb128 0x34
+ 855 0136 00       		.byte	0
+ 856 0137 03       		.uleb128 0x3
+ 857 0138 0E       		.uleb128 0xe
+ 858 0139 3A       		.uleb128 0x3a
+ 859 013a 0B       		.uleb128 0xb
+ 860 013b 3B       		.uleb128 0x3b
+ 861 013c 05       		.uleb128 0x5
+ 862 013d 49       		.uleb128 0x49
+ 863 013e 13       		.uleb128 0x13
+ 864 013f 3F       		.uleb128 0x3f
+ 865 0140 19       		.uleb128 0x19
+ 866 0141 3C       		.uleb128 0x3c
+ 867 0142 19       		.uleb128 0x19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 18
+
+
+ 868 0143 00       		.byte	0
+ 869 0144 00       		.byte	0
+ 870 0145 17       		.uleb128 0x17
+ 871 0146 35       		.uleb128 0x35
+ 872 0147 00       		.byte	0
+ 873 0148 49       		.uleb128 0x49
+ 874 0149 13       		.uleb128 0x13
+ 875 014a 00       		.byte	0
+ 876 014b 00       		.byte	0
+ 877 014c 00       		.byte	0
+ 878              		.section	.debug_loc,"",%progbits
+ 879              	.Ldebug_loc0:
+ 880              	.LLST0:
+ 881 0000 00000000 		.4byte	.LVL0
+ 882 0004 04000000 		.4byte	.LVL1
+ 883 0008 0100     		.2byte	0x1
+ 884 000a 51       		.byte	0x51
+ 885 000b 04000000 		.4byte	.LVL1
+ 886 000f 14000000 		.4byte	.LFE63
+ 887 0013 0200     		.2byte	0x2
+ 888 0015 70       		.byte	0x70
+ 889 0016 08       		.sleb128 8
+ 890 0017 00000000 		.4byte	0
+ 891 001b 00000000 		.4byte	0
+ 892              	.LLST1:
+ 893 001f 00000000 		.4byte	.LVL0
+ 894 0023 08000000 		.4byte	.LVL2
+ 895 0027 0100     		.2byte	0x1
+ 896 0029 52       		.byte	0x52
+ 897 002a 08000000 		.4byte	.LVL2
+ 898 002e 14000000 		.4byte	.LFE63
+ 899 0032 0400     		.2byte	0x4
+ 900 0034 F3       		.byte	0xf3
+ 901 0035 01       		.uleb128 0x1
+ 902 0036 52       		.byte	0x52
+ 903 0037 9F       		.byte	0x9f
+ 904 0038 00000000 		.4byte	0
+ 905 003c 00000000 		.4byte	0
+ 906              	.LLST2:
+ 907 0040 00000000 		.4byte	.LVL3
+ 908 0044 1A000000 		.4byte	.LVL8
+ 909 0048 0100     		.2byte	0x1
+ 910 004a 50       		.byte	0x50
+ 911 004b 1A000000 		.4byte	.LVL8
+ 912 004f 1C000000 		.4byte	.LVL9
+ 913 0053 0500     		.2byte	0x5
+ 914 0055 03       		.byte	0x3
+ 915 0056 04000000 		.4byte	head_handle
+ 916 005a 1C000000 		.4byte	.LVL9
+ 917 005e 20000000 		.4byte	.LVL10
+ 918 0062 0100     		.2byte	0x1
+ 919 0064 50       		.byte	0x50
+ 920 0065 20000000 		.4byte	.LVL10
+ 921 0069 28000000 		.4byte	.LFE64
+ 922 006d 0400     		.2byte	0x4
+ 923 006f F3       		.byte	0xf3
+ 924 0070 01       		.uleb128 0x1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 19
+
+
+ 925 0071 50       		.byte	0x50
+ 926 0072 9F       		.byte	0x9f
+ 927 0073 00000000 		.4byte	0
+ 928 0077 00000000 		.4byte	0
+ 929              	.LLST3:
+ 930 007b 04000000 		.4byte	.LVL4
+ 931 007f 08000000 		.4byte	.LVL5
+ 932 0083 0100     		.2byte	0x1
+ 933 0085 52       		.byte	0x52
+ 934 0086 08000000 		.4byte	.LVL5
+ 935 008a 16000000 		.4byte	.LVL7
+ 936 008e 0100     		.2byte	0x1
+ 937 0090 53       		.byte	0x53
+ 938 0091 1C000000 		.4byte	.LVL9
+ 939 0095 28000000 		.4byte	.LFE64
+ 940 0099 0100     		.2byte	0x1
+ 941 009b 53       		.byte	0x53
+ 942 009c 00000000 		.4byte	0
+ 943 00a0 00000000 		.4byte	0
+ 944              	.LLST4:
+ 945 00a4 00000000 		.4byte	.LVL11
+ 946 00a8 04000000 		.4byte	.LVL12
+ 947 00ac 0600     		.2byte	0x6
+ 948 00ae 03       		.byte	0x3
+ 949 00af 04000000 		.4byte	head_handle
+ 950 00b3 9F       		.byte	0x9f
+ 951 00b4 04000000 		.4byte	.LVL12
+ 952 00b8 20000000 		.4byte	.LFE65
+ 953 00bc 0100     		.2byte	0x1
+ 954 00be 52       		.byte	0x52
+ 955 00bf 00000000 		.4byte	0
+ 956 00c3 00000000 		.4byte	0
+ 957              	.LLST5:
+ 958 00c7 04000000 		.4byte	.LVL12
+ 959 00cb 0A000000 		.4byte	.LVL13
+ 960 00cf 0100     		.2byte	0x1
+ 961 00d1 53       		.byte	0x53
+ 962 00d2 0A000000 		.4byte	.LVL13
+ 963 00d6 0C000000 		.4byte	.LVL14
+ 964 00da 0200     		.2byte	0x2
+ 965 00dc 72       		.byte	0x72
+ 966 00dd 00       		.sleb128 0
+ 967 00de 0E000000 		.4byte	.LVL15
+ 968 00e2 12000000 		.4byte	.LVL16
+ 969 00e6 0100     		.2byte	0x1
+ 970 00e8 53       		.byte	0x53
+ 971 00e9 00000000 		.4byte	0
+ 972 00ed 00000000 		.4byte	0
+ 973              	.LLST6:
+ 974 00f1 06000000 		.4byte	.LVL17
+ 975 00f5 2E000000 		.4byte	.LVL21
+ 976 00f9 0100     		.2byte	0x1
+ 977 00fb 54       		.byte	0x54
+ 978 00fc 00000000 		.4byte	0
+ 979 0100 00000000 		.4byte	0
+ 980              		.section	.debug_aranges,"",%progbits
+ 981 0000 3C000000 		.4byte	0x3c
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 20
+
+
+ 982 0004 0200     		.2byte	0x2
+ 983 0006 00000000 		.4byte	.Ldebug_info0
+ 984 000a 04       		.byte	0x4
+ 985 000b 00       		.byte	0
+ 986 000c 0000     		.2byte	0
+ 987 000e 0000     		.2byte	0
+ 988 0010 00000000 		.4byte	.LFB63
+ 989 0014 14000000 		.4byte	.LFE63-.LFB63
+ 990 0018 00000000 		.4byte	.LFB64
+ 991 001c 28000000 		.4byte	.LFE64-.LFB64
+ 992 0020 00000000 		.4byte	.LFB65
+ 993 0024 20000000 		.4byte	.LFE65-.LFB65
+ 994 0028 00000000 		.4byte	.LFB66
+ 995 002c 34000000 		.4byte	.LFE66-.LFB66
+ 996 0030 00000000 		.4byte	.LFB67
+ 997 0034 10000000 		.4byte	.LFE67-.LFB67
+ 998 0038 00000000 		.4byte	0
+ 999 003c 00000000 		.4byte	0
+ 1000              		.section	.debug_ranges,"",%progbits
+ 1001              	.Ldebug_ranges0:
+ 1002 0000 00000000 		.4byte	.LFB63
+ 1003 0004 14000000 		.4byte	.LFE63
+ 1004 0008 00000000 		.4byte	.LFB64
+ 1005 000c 28000000 		.4byte	.LFE64
+ 1006 0010 00000000 		.4byte	.LFB65
+ 1007 0014 20000000 		.4byte	.LFE65
+ 1008 0018 00000000 		.4byte	.LFB66
+ 1009 001c 34000000 		.4byte	.LFE66
+ 1010 0020 00000000 		.4byte	.LFB67
+ 1011 0024 10000000 		.4byte	.LFE67
+ 1012 0028 00000000 		.4byte	0
+ 1013 002c 00000000 		.4byte	0
+ 1014              		.section	.debug_line,"",%progbits
+ 1015              	.Ldebug_line0:
+ 1016 0000 DA010000 		.section	.debug_str,"MS",%progbits,1
+ 1016      02005601 
+ 1016      00000201 
+ 1016      FB0E0D00 
+ 1016      01010101 
+ 1017              	.LASF32:
+ 1018 0000 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car\\car.cydsn\000"
+ 1018      6F626F74 
+ 1018      5C676974 
+ 1018      5F636F64 
+ 1018      655C726F 
+ 1019              	.LASF20:
+ 1020 0026 6E657874 		.ascii	"next\000"
+ 1020      00
+ 1021              	.LASF25:
+ 1022 002b 63757272 		.ascii	"curr\000"
+ 1022      00
+ 1023              	.LASF31:
+ 1024 0030 2E5C6D75 		.ascii	".\\multi_timer.c\000"
+ 1024      6C74695F 
+ 1024      74696D65 
+ 1024      722E6300 
+ 1025              	.LASF5:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 21
+
+
+ 1026 0040 5F5F696E 		.ascii	"__int32_t\000"
+ 1026      7433325F 
+ 1026      7400
+ 1027              	.LASF26:
+ 1028 004a 656E7472 		.ascii	"entry\000"
+ 1028      7900
+ 1029              	.LASF24:
+ 1030 0050 74617267 		.ascii	"target\000"
+ 1030      657400
+ 1031              	.LASF13:
+ 1032 0057 666C6F61 		.ascii	"float\000"
+ 1032      7400
+ 1033              	.LASF18:
+ 1034 005d 72657065 		.ascii	"repeat\000"
+ 1034      617400
+ 1035              	.LASF22:
+ 1036 0064 74696D65 		.ascii	"timer_init\000"
+ 1036      725F696E 
+ 1036      697400
+ 1037              	.LASF1:
+ 1038 006f 756E7369 		.ascii	"unsigned char\000"
+ 1038      676E6564 
+ 1038      20636861 
+ 1038      7200
+ 1039              	.LASF21:
+ 1040 007d 68616E64 		.ascii	"handle\000"
+ 1040      6C6500
+ 1041              	.LASF7:
+ 1042 0084 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1042      20756E73 
+ 1042      69676E65 
+ 1042      6420696E 
+ 1042      7400
+ 1043              	.LASF3:
+ 1044 0096 73686F72 		.ascii	"short unsigned int\000"
+ 1044      7420756E 
+ 1044      7369676E 
+ 1044      65642069 
+ 1044      6E7400
+ 1045              	.LASF36:
+ 1046 00a9 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1046      52784275 
+ 1046      66666572 
+ 1046      00
+ 1047              	.LASF27:
+ 1048 00b6 74696D65 		.ascii	"timer_loop\000"
+ 1048      725F6C6F 
+ 1048      6F7000
+ 1049              	.LASF35:
+ 1050 00c1 74696D65 		.ascii	"timer_ticks\000"
+ 1050      725F7469 
+ 1050      636B7300 
+ 1051              	.LASF17:
+ 1052 00cd 74696D65 		.ascii	"timeout\000"
+ 1052      6F757400 
+ 1053              	.LASF23:
+ 1054 00d5 74696D65 		.ascii	"timer_stop\000"
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 22
+
+
+ 1054      725F7374 
+ 1054      6F7000
+ 1055              	.LASF6:
+ 1056 00e0 5F5F7569 		.ascii	"__uint32_t\000"
+ 1056      6E743332 
+ 1056      5F7400
+ 1057              	.LASF34:
+ 1058 00eb 74696D65 		.ascii	"timer_start\000"
+ 1058      725F7374 
+ 1058      61727400 
+ 1059              	.LASF30:
+ 1060 00f7 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1060      4320342E 
+ 1060      392E3320 
+ 1060      32303135 
+ 1060      30333033 
+ 1061 012a 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1061      20726576 
+ 1061      6973696F 
+ 1061      6E203232 
+ 1061      31323230 
+ 1062 015d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1062      66756E63 
+ 1062      74696F6E 
+ 1062      2D736563 
+ 1062      74696F6E 
+ 1063              	.LASF10:
+ 1064 0185 756E7369 		.ascii	"unsigned int\000"
+ 1064      676E6564 
+ 1064      20696E74 
+ 1064      00
+ 1065              	.LASF9:
+ 1066 0192 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1066      206C6F6E 
+ 1066      6720756E 
+ 1066      7369676E 
+ 1066      65642069 
+ 1067              	.LASF28:
+ 1068 01a9 68656164 		.ascii	"head_handle\000"
+ 1068      5F68616E 
+ 1068      646C6500 
+ 1069              	.LASF33:
+ 1070 01b5 54696D65 		.ascii	"Timer\000"
+ 1070      7200
+ 1071              	.LASF11:
+ 1072 01bb 696E7433 		.ascii	"int32_t\000"
+ 1072      325F7400 
+ 1073              	.LASF16:
+ 1074 01c3 73697A65 		.ascii	"sizetype\000"
+ 1074      74797065 
+ 1074      00
+ 1075              	.LASF8:
+ 1076 01cc 6C6F6E67 		.ascii	"long long int\000"
+ 1076      206C6F6E 
+ 1076      6720696E 
+ 1076      7400
+ 1077              	.LASF15:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxCFlqa.s 			page 23
+
+
+ 1078 01da 63686172 		.ascii	"char\000"
+ 1078      00
+ 1079              	.LASF2:
+ 1080 01df 73686F72 		.ascii	"short int\000"
+ 1080      7420696E 
+ 1080      7400
+ 1081              	.LASF12:
+ 1082 01e9 75696E74 		.ascii	"uint32_t\000"
+ 1082      33325F74 
+ 1082      00
+ 1083              	.LASF4:
+ 1084 01f2 6C6F6E67 		.ascii	"long int\000"
+ 1084      20696E74 
+ 1084      00
+ 1085              	.LASF19:
+ 1086 01fb 74696D65 		.ascii	"timeout_cb\000"
+ 1086      6F75745F 
+ 1086      636200
+ 1087              	.LASF0:
+ 1088 0206 7369676E 		.ascii	"signed char\000"
+ 1088      65642063 
+ 1088      68617200 
+ 1089              	.LASF14:
+ 1090 0212 646F7562 		.ascii	"double\000"
+ 1090      6C6500
+ 1091              	.LASF29:
+ 1092 0219 5F74696D 		.ascii	"_timer_ticks\000"
+ 1092      65725F74 
+ 1092      69636B73 
+ 1092      00
+ 1093              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

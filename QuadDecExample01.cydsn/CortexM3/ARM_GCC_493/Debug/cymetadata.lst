@@ -1,0 +1,1300 @@
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"cymetadata.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	cy_meta_configecc
+  19              		.section	.cyconfigecc,"a",%progbits
+  20              		.align	2
+  21              		.type	cy_meta_configecc, %object
+  22              		.size	cy_meta_configecc, 768
+  23              	cy_meta_configecc:
+  24 0000 01       		.byte	1
+  25 0001 52       		.byte	82
+  26 0002 00       		.byte	0
+  27 0003 40       		.byte	64
+  28 0004 02       		.byte	2
+  29 0005 64       		.byte	100
+  30 0006 00       		.byte	0
+  31 0007 40       		.byte	64
+  32 0008 36       		.byte	54
+  33 0009 00       		.byte	0
+  34 000a 01       		.byte	1
+  35 000b 40       		.byte	64
+  36 000c 26       		.byte	38
+  37 000d 01       		.byte	1
+  38 000e 01       		.byte	1
+  39 000f 40       		.byte	64
+  40 0010 4B       		.byte	75
+  41 0011 02       		.byte	2
+  42 0012 01       		.byte	1
+  43 0013 40       		.byte	64
+  44 0014 38       		.byte	56
+  45 0015 03       		.byte	3
+  46 0016 01       		.byte	1
+  47 0017 40       		.byte	64
+  48 0018 3A       		.byte	58
+  49 0019 04       		.byte	4
+  50 001a 01       		.byte	1
+  51 001b 40       		.byte	64
+  52 001c 35       		.byte	53
+  53 001d 05       		.byte	5
+  54 001e 01       		.byte	1
+  55 001f 40       		.byte	64
+  56 0020 02       		.byte	2
+  57 0021 40       		.byte	64
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 2
+
+
+  58 0022 01       		.byte	1
+  59 0023 40       		.byte	64
+  60 0024 06       		.byte	6
+  61 0025 41       		.byte	65
+  62 0026 01       		.byte	1
+  63 0027 40       		.byte	64
+  64 0028 03       		.byte	3
+  65 0029 42       		.byte	66
+  66 002a 01       		.byte	1
+  67 002b 40       		.byte	64
+  68 002c 03       		.byte	3
+  69 002d 50       		.byte	80
+  70 002e 01       		.byte	1
+  71 002f 40       		.byte	64
+  72 0030 01       		.byte	1
+  73 0031 51       		.byte	81
+  74 0032 01       		.byte	1
+  75 0033 40       		.byte	64
+  76 0034 04       		.byte	4
+  77 0035 03       		.byte	3
+  78 0036 81       		.byte	-127
+  79 0037 6F       		.byte	111
+  80 0038 85       		.byte	-123
+  81 0039 0F       		.byte	15
+  82 003a 80       		.byte	-128
+  83 003b 01       		.byte	1
+  84 003c 81       		.byte	-127
+  85 003d 01       		.byte	1
+  86 003e 89       		.byte	-119
+  87 003f 01       		.byte	1
+  88 0040 8E       		.byte	-114
+  89 0041 01       		.byte	1
+  90 0042 90       		.byte	-112
+  91 0043 08       		.byte	8
+  92 0044 93       		.byte	-109
+  93 0045 02       		.byte	2
+  94 0046 94       		.byte	-108
+  95 0047 04       		.byte	4
+  96 0048 99       		.byte	-103
+  97 0049 01       		.byte	1
+  98 004a 9C       		.byte	-100
+  99 004b 04       		.byte	4
+ 100 004c 9D       		.byte	-99
+ 101 004d 02       		.byte	2
+ 102 004e 9E       		.byte	-98
+ 103 004f 0A       		.byte	10
+ 104 0050 A3       		.byte	-93
+ 105 0051 08       		.byte	8
+ 106 0052 A7       		.byte	-89
+ 107 0053 06       		.byte	6
+ 108 0054 B0       		.byte	-80
+ 109 0055 02       		.byte	2
+ 110 0056 B1       		.byte	-79
+ 111 0057 04       		.byte	4
+ 112 0058 B2       		.byte	-78
+ 113 0059 04       		.byte	4
+ 114 005a B3       		.byte	-77
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 3
+
+
+ 115 005b 02       		.byte	2
+ 116 005c B4       		.byte	-76
+ 117 005d 08       		.byte	8
+ 118 005e B5       		.byte	-75
+ 119 005f 01       		.byte	1
+ 120 0060 B6       		.byte	-74
+ 121 0061 01       		.byte	1
+ 122 0062 B7       		.byte	-73
+ 123 0063 08       		.byte	8
+ 124 0064 B8       		.byte	-72
+ 125 0065 08       		.byte	8
+ 126 0066 B9       		.byte	-71
+ 127 0067 20       		.byte	32
+ 128 0068 BE       		.byte	-66
+ 129 0069 50       		.byte	80
+ 130 006a BF       		.byte	-65
+ 131 006b 14       		.byte	20
+ 132 006c C0       		.byte	-64
+ 133 006d 63       		.byte	99
+ 134 006e C1       		.byte	-63
+ 135 006f 02       		.byte	2
+ 136 0070 C5       		.byte	-59
+ 137 0071 3C       		.byte	60
+ 138 0072 C6       		.byte	-58
+ 139 0073 20       		.byte	32
+ 140 0074 C7       		.byte	-57
+ 141 0075 4E       		.byte	78
+ 142 0076 C8       		.byte	-56
+ 143 0077 3B       		.byte	59
+ 144 0078 C9       		.byte	-55
+ 145 0079 FF       		.byte	-1
+ 146 007a CA       		.byte	-54
+ 147 007b FF       		.byte	-1
+ 148 007c CB       		.byte	-53
+ 149 007d FF       		.byte	-1
+ 150 007e CD       		.byte	-51
+ 151 007f A0       		.byte	-96
+ 152 0080 CF       		.byte	-49
+ 153 0081 01       		.byte	1
+ 154 0082 D0       		.byte	-48
+ 155 0083 18       		.byte	24
+ 156 0084 D2       		.byte	-46
+ 157 0085 80       		.byte	-128
+ 158 0086 D4       		.byte	-44
+ 159 0087 0F       		.byte	15
+ 160 0088 D8       		.byte	-40
+ 161 0089 04       		.byte	4
+ 162 008a D9       		.byte	-39
+ 163 008b 04       		.byte	4
+ 164 008c DA       		.byte	-38
+ 165 008d 04       		.byte	4
+ 166 008e DB       		.byte	-37
+ 167 008f 04       		.byte	4
+ 168 0090 DF       		.byte	-33
+ 169 0091 05       		.byte	5
+ 170 0092 E0       		.byte	-32
+ 171 0093 40       		.byte	64
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 4
+
+
+ 172 0094 E2       		.byte	-30
+ 173 0095 80       		.byte	-128
+ 174 0096 E4       		.byte	-28
+ 175 0097 40       		.byte	64
+ 176 0098 E5       		.byte	-27
+ 177 0099 40       		.byte	64
+ 178 009a E6       		.byte	-26
+ 179 009b 80       		.byte	-128
+ 180 009c E8       		.byte	-24
+ 181 009d 40       		.byte	64
+ 182 009e EA       		.byte	-22
+ 183 009f 80       		.byte	-128
+ 184 00a0 EC       		.byte	-20
+ 185 00a1 40       		.byte	64
+ 186 00a2 ED       		.byte	-19
+ 187 00a3 20       		.byte	32
+ 188 00a4 EE       		.byte	-18
+ 189 00a5 80       		.byte	-128
+ 190 00a6 04       		.byte	4
+ 191 00a7 02       		.byte	2
+ 192 00a8 06       		.byte	6
+ 193 00a9 02       		.byte	2
+ 194 00aa 0E       		.byte	14
+ 195 00ab 40       		.byte	64
+ 196 00ac 0F       		.byte	15
+ 197 00ad 22       		.byte	34
+ 198 00ae 1E       		.byte	30
+ 199 00af 58       		.byte	88
+ 200 00b0 1F       		.byte	31
+ 201 00b1 48       		.byte	72
+ 202 00b2 24       		.byte	36
+ 203 00b3 02       		.byte	2
+ 204 00b4 26       		.byte	38
+ 205 00b5 08       		.byte	8
+ 206 00b6 27       		.byte	39
+ 207 00b7 48       		.byte	72
+ 208 00b8 2E       		.byte	46
+ 209 00b9 02       		.byte	2
+ 210 00ba 2F       		.byte	47
+ 211 00bb 10       		.byte	16
+ 212 00bc 35       		.byte	53
+ 213 00bd 22       		.byte	34
+ 214 00be 36       		.byte	54
+ 215 00bf 20       		.byte	32
+ 216 00c0 37       		.byte	55
+ 217 00c1 40       		.byte	64
+ 218 00c2 3F       		.byte	63
+ 219 00c3 32       		.byte	50
+ 220 00c4 45       		.byte	69
+ 221 00c5 20       		.byte	32
+ 222 00c6 47       		.byte	71
+ 223 00c7 08       		.byte	8
+ 224 00c8 4B       		.byte	75
+ 225 00c9 C0       		.byte	-64
+ 226 00ca 4E       		.byte	78
+ 227 00cb 08       		.byte	8
+ 228 00cc 4F       		.byte	79
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 5
+
+
+ 229 00cd 06       		.byte	6
+ 230 00ce 56       		.byte	86
+ 231 00cf 0A       		.byte	10
+ 232 00d0 57       		.byte	87
+ 233 00d1 10       		.byte	16
+ 234 00d2 5E       		.byte	94
+ 235 00d3 08       		.byte	8
+ 236 00d4 5F       		.byte	95
+ 237 00d5 52       		.byte	82
+ 238 00d6 66       		.byte	102
+ 239 00d7 08       		.byte	8
+ 240 00d8 67       		.byte	103
+ 241 00d9 04       		.byte	4
+ 242 00da 75       		.byte	117
+ 243 00db 02       		.byte	2
+ 244 00dc 7E       		.byte	126
+ 245 00dd 20       		.byte	32
+ 246 00de C0       		.byte	-64
+ 247 00df 90       		.byte	-112
+ 248 00e0 C2       		.byte	-62
+ 249 00e1 B0       		.byte	-80
+ 250 00e2 CA       		.byte	-54
+ 251 00e3 C0       		.byte	-64
+ 252 00e4 CC       		.byte	-52
+ 253 00e5 B0       		.byte	-80
+ 254 00e6 CE       		.byte	-50
+ 255 00e7 A0       		.byte	-96
+ 256 00e8 D0       		.byte	-48
+ 257 00e9 60       		.byte	96
+ 258 00ea D2       		.byte	-46
+ 259 00eb 20       		.byte	32
+ 260 00ec D6       		.byte	-42
+ 261 00ed F0       		.byte	-16
+ 262 00ee D8       		.byte	-40
+ 263 00ef 60       		.byte	96
+ 264 00f0 DE       		.byte	-34
+ 265 00f1 40       		.byte	64
+ 266 00f2 00       		.byte	0
+ 267 00f3 10       		.byte	16
+ 268 00f4 03       		.byte	3
+ 269 00f5 1E       		.byte	30
+ 270 00f6 04       		.byte	4
+ 271 00f7 0A       		.byte	10
+ 272 00f8 05       		.byte	5
+ 273 00f9 18       		.byte	24
+ 274 00fa 06       		.byte	6
+ 275 00fb 04       		.byte	4
+ 276 00fc 07       		.byte	7
+ 277 00fd 04       		.byte	4
+ 278 00fe 0A       		.byte	10
+ 279 00ff 02       		.byte	2
+ 280 0100 0B       		.byte	11
+ 281 0101 01       		.byte	1
+ 282 0102 0C       		.byte	12
+ 283 0103 0C       		.byte	12
+ 284 0104 0D       		.byte	13
+ 285 0105 20       		.byte	32
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 6
+
+
+ 286 0106 0E       		.byte	14
+ 287 0107 02       		.byte	2
+ 288 0108 11       		.byte	17
+ 289 0109 18       		.byte	24
+ 290 010a 12       		.byte	18
+ 291 010b 01       		.byte	1
+ 292 010c 13       		.byte	19
+ 293 010d 02       		.byte	2
+ 294 010e 15       		.byte	21
+ 295 010f 10       		.byte	16
+ 296 0110 16       		.byte	22
+ 297 0111 10       		.byte	16
+ 298 0112 17       		.byte	23
+ 299 0113 02       		.byte	2
+ 300 0114 18       		.byte	24
+ 301 0115 10       		.byte	16
+ 302 0116 19       		.byte	25
+ 303 0117 0E       		.byte	14
+ 304 0118 1C       		.byte	28
+ 305 0119 04       		.byte	4
+ 306 011a 1D       		.byte	29
+ 307 011b 16       		.byte	22
+ 308 011c 1E       		.byte	30
+ 309 011d 08       		.byte	8
+ 310 011e 1F       		.byte	31
+ 311 011f 08       		.byte	8
+ 312 0120 20       		.byte	32
+ 313 0121 0E       		.byte	14
+ 314 0122 23       		.byte	35
+ 315 0123 40       		.byte	64
+ 316 0124 24       		.byte	36
+ 317 0125 0C       		.byte	12
+ 318 0126 27       		.byte	39
+ 319 0127 20       		.byte	32
+ 320 0128 28       		.byte	40
+ 321 0129 06       		.byte	6
+ 322 012a 2B       		.byte	43
+ 323 012b 20       		.byte	32
+ 324 012c 2D       		.byte	45
+ 325 012d 01       		.byte	1
+ 326 012e 30       		.byte	48
+ 327 012f 01       		.byte	1
+ 328 0130 31       		.byte	49
+ 329 0131 20       		.byte	32
+ 330 0132 32       		.byte	50
+ 331 0133 10       		.byte	16
+ 332 0134 33       		.byte	51
+ 333 0135 1E       		.byte	30
+ 334 0136 34       		.byte	52
+ 335 0137 0E       		.byte	14
+ 336 0138 35       		.byte	53
+ 337 0139 40       		.byte	64
+ 338 013a 37       		.byte	55
+ 339 013b 01       		.byte	1
+ 340 013c 3E       		.byte	62
+ 341 013d 04       		.byte	4
+ 342 013e 3F       		.byte	63
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 7
+
+
+ 343 013f 41       		.byte	65
+ 344 0140 58       		.byte	88
+ 345 0141 04       		.byte	4
+ 346 0142 59       		.byte	89
+ 347 0143 04       		.byte	4
+ 348 0144 5F       		.byte	95
+ 349 0145 01       		.byte	1
+ 350 0146 84       		.byte	-124
+ 351 0147 01       		.byte	1
+ 352 0148 85       		.byte	-123
+ 353 0149 02       		.byte	2
+ 354 014a 86       		.byte	-122
+ 355 014b 0A       		.byte	10
+ 356 014c 87       		.byte	-121
+ 357 014d 01       		.byte	1
+ 358 014e 8C       		.byte	-116
+ 359 014f 50       		.byte	80
+ 360 0150 90       		.byte	-112
+ 361 0151 01       		.byte	1
+ 362 0152 92       		.byte	-110
+ 363 0153 06       		.byte	6
+ 364 0154 94       		.byte	-108
+ 365 0155 01       		.byte	1
+ 366 0156 95       		.byte	-107
+ 367 0157 01       		.byte	1
+ 368 0158 96       		.byte	-106
+ 369 0159 02       		.byte	2
+ 370 015a 97       		.byte	-105
+ 371 015b 06       		.byte	6
+ 372 015c 9D       		.byte	-99
+ 373 015d 01       		.byte	1
+ 374 015e 9F       		.byte	-97
+ 375 015f 02       		.byte	2
+ 376 0160 A0       		.byte	-96
+ 377 0161 02       		.byte	2
+ 378 0162 A1       		.byte	-95
+ 379 0163 01       		.byte	1
+ 380 0164 A2       		.byte	-94
+ 381 0165 01       		.byte	1
+ 382 0166 A3       		.byte	-93
+ 383 0167 0A       		.byte	10
+ 384 0168 A4       		.byte	-92
+ 385 0169 60       		.byte	96
+ 386 016a A8       		.byte	-88
+ 387 016b 30       		.byte	48
+ 388 016c AC       		.byte	-84
+ 389 016d 60       		.byte	96
+ 390 016e B0       		.byte	-80
+ 391 016f 08       		.byte	8
+ 392 0170 B2       		.byte	-78
+ 393 0171 04       		.byte	4
+ 394 0172 B3       		.byte	-77
+ 395 0173 08       		.byte	8
+ 396 0174 B4       		.byte	-76
+ 397 0175 70       		.byte	112
+ 398 0176 B5       		.byte	-75
+ 399 0177 03       		.byte	3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 8
+
+
+ 400 0178 B6       		.byte	-74
+ 401 0179 03       		.byte	3
+ 402 017a B7       		.byte	-73
+ 403 017b 04       		.byte	4
+ 404 017c B8       		.byte	-72
+ 405 017d 20       		.byte	32
+ 406 017e BA       		.byte	-70
+ 407 017f 80       		.byte	-128
+ 408 0180 BB       		.byte	-69
+ 409 0181 20       		.byte	32
+ 410 0182 D8       		.byte	-40
+ 411 0183 04       		.byte	4
+ 412 0184 D9       		.byte	-39
+ 413 0185 04       		.byte	4
+ 414 0186 DF       		.byte	-33
+ 415 0187 01       		.byte	1
+ 416 0188 00       		.byte	0
+ 417 0189 04       		.byte	4
+ 418 018a 01       		.byte	1
+ 419 018b 80       		.byte	-128
+ 420 018c 04       		.byte	4
+ 421 018d 02       		.byte	2
+ 422 018e 05       		.byte	5
+ 423 018f 90       		.byte	-112
+ 424 0190 06       		.byte	6
+ 425 0191 80       		.byte	-128
+ 426 0192 07       		.byte	7
+ 427 0193 10       		.byte	16
+ 428 0194 0A       		.byte	10
+ 429 0195 60       		.byte	96
+ 430 0196 0C       		.byte	12
+ 431 0197 40       		.byte	64
+ 432 0198 0D       		.byte	13
+ 433 0199 20       		.byte	32
+ 434 019a 0E       		.byte	14
+ 435 019b 11       		.byte	17
+ 436 019c 0F       		.byte	15
+ 437 019d 40       		.byte	64
+ 438 019e 10       		.byte	16
+ 439 019f 40       		.byte	64
+ 440 01a0 11       		.byte	17
+ 441 01a1 08       		.byte	8
+ 442 01a2 12       		.byte	18
+ 443 01a3 02       		.byte	2
+ 444 01a4 13       		.byte	19
+ 445 01a5 20       		.byte	32
+ 446 01a6 15       		.byte	21
+ 447 01a7 02       		.byte	2
+ 448 01a8 17       		.byte	23
+ 449 01a9 28       		.byte	40
+ 450 01aa 19       		.byte	25
+ 451 01ab 20       		.byte	32
+ 452 01ac 1A       		.byte	26
+ 453 01ad 61       		.byte	97
+ 454 01ae 1B       		.byte	27
+ 455 01af 40       		.byte	64
+ 456 01b0 1D       		.byte	29
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 9
+
+
+ 457 01b1 11       		.byte	17
+ 458 01b2 1E       		.byte	30
+ 459 01b3 20       		.byte	32
+ 460 01b4 1F       		.byte	31
+ 461 01b5 10       		.byte	16
+ 462 01b6 21       		.byte	33
+ 463 01b7 08       		.byte	8
+ 464 01b8 22       		.byte	34
+ 465 01b9 40       		.byte	64
+ 466 01ba 23       		.byte	35
+ 467 01bb 0C       		.byte	12
+ 468 01bc 24       		.byte	36
+ 469 01bd 44       		.byte	68
+ 470 01be 25       		.byte	37
+ 471 01bf 04       		.byte	4
+ 472 01c0 26       		.byte	38
+ 473 01c1 08       		.byte	8
+ 474 01c2 27       		.byte	39
+ 475 01c3 12       		.byte	18
+ 476 01c4 29       		.byte	41
+ 477 01c5 01       		.byte	1
+ 478 01c6 2D       		.byte	45
+ 479 01c7 02       		.byte	2
+ 480 01c8 2F       		.byte	47
+ 481 01c9 2A       		.byte	42
+ 482 01ca 31       		.byte	49
+ 483 01cb 08       		.byte	8
+ 484 01cc 32       		.byte	50
+ 485 01cd 40       		.byte	64
+ 486 01ce 35       		.byte	53
+ 487 01cf A0       		.byte	-96
+ 488 01d0 36       		.byte	54
+ 489 01d1 02       		.byte	2
+ 490 01d2 37       		.byte	55
+ 491 01d3 28       		.byte	40
+ 492 01d4 3B       		.byte	59
+ 493 01d5 04       		.byte	4
+ 494 01d6 3D       		.byte	61
+ 495 01d7 08       		.byte	8
+ 496 01d8 3E       		.byte	62
+ 497 01d9 81       		.byte	-127
+ 498 01da 3F       		.byte	63
+ 499 01db 20       		.byte	32
+ 500 01dc 87       		.byte	-121
+ 501 01dd 40       		.byte	64
+ 502 01de 90       		.byte	-112
+ 503 01df 02       		.byte	2
+ 504 01e0 92       		.byte	-110
+ 505 01e1 10       		.byte	16
+ 506 01e2 97       		.byte	-105
+ 507 01e3 20       		.byte	32
+ 508 01e4 9D       		.byte	-99
+ 509 01e5 20       		.byte	32
+ 510 01e6 9F       		.byte	-97
+ 511 01e7 02       		.byte	2
+ 512 01e8 A3       		.byte	-93
+ 513 01e9 18       		.byte	24
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 10
+
+
+ 514 01ea A5       		.byte	-91
+ 515 01eb 20       		.byte	32
+ 516 01ec C0       		.byte	-64
+ 517 01ed F5       		.byte	-11
+ 518 01ee C2       		.byte	-62
+ 519 01ef FC       		.byte	-4
+ 520 01f0 C4       		.byte	-60
+ 521 01f1 7F       		.byte	127
+ 522 01f2 CA       		.byte	-54
+ 523 01f3 F1       		.byte	-15
+ 524 01f4 CC       		.byte	-52
+ 525 01f5 FA       		.byte	-6
+ 526 01f6 CE       		.byte	-50
+ 527 01f7 F2       		.byte	-14
+ 528 01f8 07       		.byte	7
+ 529 01f9 0F       		.byte	15
+ 530 01fa 08       		.byte	8
+ 531 01fb 07       		.byte	7
+ 532 01fc 0C       		.byte	12
+ 533 01fd 0F       		.byte	15
+ 534 01fe 10       		.byte	16
+ 535 01ff 05       		.byte	5
+ 536 0200 11       		.byte	17
+ 537 0201 0C       		.byte	12
+ 538 0202 12       		.byte	18
+ 539 0203 0A       		.byte	10
+ 540 0204 13       		.byte	19
+ 541 0205 02       		.byte	2
+ 542 0206 15       		.byte	21
+ 543 0207 0C       		.byte	12
+ 544 0208 17       		.byte	23
+ 545 0209 01       		.byte	1
+ 546 020a 21       		.byte	33
+ 547 020b 08       		.byte	8
+ 548 020c 23       		.byte	35
+ 549 020d 01       		.byte	1
+ 550 020e 24       		.byte	36
+ 551 020f 03       		.byte	3
+ 552 0210 26       		.byte	38
+ 553 0211 0C       		.byte	12
+ 554 0212 28       		.byte	40
+ 555 0213 0A       		.byte	10
+ 556 0214 29       		.byte	41
+ 557 0215 07       		.byte	7
+ 558 0216 2A       		.byte	42
+ 559 0217 05       		.byte	5
+ 560 0218 2C       		.byte	44
+ 561 0219 0C       		.byte	12
+ 562 021a 2D       		.byte	45
+ 563 021b 0B       		.byte	11
+ 564 021c 2E       		.byte	46
+ 565 021d 03       		.byte	3
+ 566 021e 2F       		.byte	47
+ 567 021f 04       		.byte	4
+ 568 0220 31       		.byte	49
+ 569 0221 0F       		.byte	15
+ 570 0222 36       		.byte	54
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 11
+
+
+ 571 0223 0F       		.byte	15
+ 572 0224 58       		.byte	88
+ 573 0225 04       		.byte	4
+ 574 0226 59       		.byte	89
+ 575 0227 04       		.byte	4
+ 576 0228 5F       		.byte	95
+ 577 0229 01       		.byte	1
+ 578 022a 82       		.byte	-126
+ 579 022b 10       		.byte	16
+ 580 022c 85       		.byte	-123
+ 581 022d 94       		.byte	-108
+ 582 022e 86       		.byte	-122
+ 583 022f 0E       		.byte	14
+ 584 0230 87       		.byte	-121
+ 585 0231 60       		.byte	96
+ 586 0232 88       		.byte	-120
+ 587 0233 0E       		.byte	14
+ 588 0234 8C       		.byte	-116
+ 589 0235 0E       		.byte	14
+ 590 0236 8D       		.byte	-115
+ 591 0237 30       		.byte	48
+ 592 0238 8F       		.byte	-113
+ 593 0239 C9       		.byte	-55
+ 594 023a 90       		.byte	-112
+ 595 023b 08       		.byte	8
+ 596 023c 91       		.byte	-111
+ 597 023d CF       		.byte	-49
+ 598 023e 93       		.byte	-109
+ 599 023f 30       		.byte	48
+ 600 0240 95       		.byte	-107
+ 601 0241 9E       		.byte	-98
+ 602 0242 96       		.byte	-106
+ 603 0243 01       		.byte	1
+ 604 0244 97       		.byte	-105
+ 605 0245 60       		.byte	96
+ 606 0246 98       		.byte	-104
+ 607 0247 02       		.byte	2
+ 608 0248 99       		.byte	-103
+ 609 0249 73       		.byte	115
+ 610 024a 9A       		.byte	-102
+ 611 024b 04       		.byte	4
+ 612 024c A2       		.byte	-94
+ 613 024d 08       		.byte	8
+ 614 024e A7       		.byte	-89
+ 615 024f 0F       		.byte	15
+ 616 0250 A8       		.byte	-88
+ 617 0251 02       		.byte	2
+ 618 0252 AA       		.byte	-86
+ 619 0253 04       		.byte	4
+ 620 0254 AD       		.byte	-83
+ 621 0255 FD       		.byte	-3
+ 622 0256 AF       		.byte	-81
+ 623 0257 02       		.byte	2
+ 624 0258 B0       		.byte	-80
+ 625 0259 01       		.byte	1
+ 626 025a B1       		.byte	-79
+ 627 025b FF       		.byte	-1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 12
+
+
+ 628 025c B4       		.byte	-76
+ 629 025d 1E       		.byte	30
+ 630 025e BF       		.byte	-65
+ 631 025f 01       		.byte	1
+ 632 0260 D4       		.byte	-44
+ 633 0261 0F       		.byte	15
+ 634 0262 D6       		.byte	-42
+ 635 0263 04       		.byte	4
+ 636 0264 D8       		.byte	-40
+ 637 0265 04       		.byte	4
+ 638 0266 D9       		.byte	-39
+ 639 0267 04       		.byte	4
+ 640 0268 DB       		.byte	-37
+ 641 0269 04       		.byte	4
+ 642 026a DF       		.byte	-33
+ 643 026b 01       		.byte	1
+ 644 026c 01       		.byte	1
+ 645 026d A0       		.byte	-96
+ 646 026e 04       		.byte	4
+ 647 026f 04       		.byte	4
+ 648 0270 05       		.byte	5
+ 649 0271 A0       		.byte	-96
+ 650 0272 07       		.byte	7
+ 651 0273 40       		.byte	64
+ 652 0274 0A       		.byte	10
+ 653 0275 40       		.byte	64
+ 654 0276 0E       		.byte	14
+ 655 0277 40       		.byte	64
+ 656 0278 0F       		.byte	15
+ 657 0279 A4       		.byte	-92
+ 658 027a 12       		.byte	18
+ 659 027b 0A       		.byte	10
+ 660 027c 13       		.byte	19
+ 661 027d 04       		.byte	4
+ 662 027e 15       		.byte	21
+ 663 027f 02       		.byte	2
+ 664 0280 17       		.byte	23
+ 665 0281 10       		.byte	16
+ 666 0282 19       		.byte	25
+ 667 0283 80       		.byte	-128
+ 668 0284 1C       		.byte	28
+ 669 0285 04       		.byte	4
+ 670 0286 1D       		.byte	29
+ 671 0287 20       		.byte	32
+ 672 0288 1F       		.byte	31
+ 673 0289 22       		.byte	34
+ 674 028a 21       		.byte	33
+ 675 028b 01       		.byte	1
+ 676 028c 22       		.byte	34
+ 677 028d 02       		.byte	2
+ 678 028e 27       		.byte	39
+ 679 028f 40       		.byte	64
+ 680 0290 28       		.byte	40
+ 681 0291 0A       		.byte	10
+ 682 0292 29       		.byte	41
+ 683 0293 A0       		.byte	-96
+ 684 0294 2B       		.byte	43
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 13
+
+
+ 685 0295 40       		.byte	64
+ 686 0296 2D       		.byte	45
+ 687 0297 80       		.byte	-128
+ 688 0298 2F       		.byte	47
+ 689 0299 20       		.byte	32
+ 690 029a 32       		.byte	50
+ 691 029b 0A       		.byte	10
+ 692 029c 35       		.byte	53
+ 693 029d 20       		.byte	32
+ 694 029e 36       		.byte	54
+ 695 029f 0A       		.byte	10
+ 696 02a0 3B       		.byte	59
+ 697 02a1 04       		.byte	4
+ 698 02a2 3F       		.byte	63
+ 699 02a3 84       		.byte	-124
+ 700 02a4 5C       		.byte	92
+ 701 02a5 4A       		.byte	74
+ 702 02a6 5E       		.byte	94
+ 703 02a7 20       		.byte	32
+ 704 02a8 67       		.byte	103
+ 705 02a9 80       		.byte	-128
+ 706 02aa 90       		.byte	-112
+ 707 02ab 40       		.byte	64
+ 708 02ac 93       		.byte	-109
+ 709 02ad 04       		.byte	4
+ 710 02ae 95       		.byte	-107
+ 711 02af 02       		.byte	2
+ 712 02b0 97       		.byte	-105
+ 713 02b1 80       		.byte	-128
+ 714 02b2 99       		.byte	-103
+ 715 02b3 20       		.byte	32
+ 716 02b4 9B       		.byte	-101
+ 717 02b5 10       		.byte	16
+ 718 02b6 9D       		.byte	-99
+ 719 02b7 80       		.byte	-128
+ 720 02b8 A2       		.byte	-94
+ 721 02b9 18       		.byte	24
+ 722 02ba A3       		.byte	-93
+ 723 02bb 50       		.byte	80
+ 724 02bc A5       		.byte	-91
+ 725 02bd 20       		.byte	32
+ 726 02be A6       		.byte	-90
+ 727 02bf 02       		.byte	2
+ 728 02c0 A7       		.byte	-89
+ 729 02c1 22       		.byte	34
+ 730 02c2 AD       		.byte	-83
+ 731 02c3 02       		.byte	2
+ 732 02c4 AF       		.byte	-81
+ 733 02c5 40       		.byte	64
+ 734 02c6 C0       		.byte	-64
+ 735 02c7 F3       		.byte	-13
+ 736 02c8 C2       		.byte	-62
+ 737 02c9 78       		.byte	120
+ 738 02ca C4       		.byte	-60
+ 739 02cb 57       		.byte	87
+ 740 02cc CA       		.byte	-54
+ 741 02cd 5D       		.byte	93
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 14
+
+
+ 742 02ce CC       		.byte	-52
+ 743 02cf E3       		.byte	-29
+ 744 02d0 CE       		.byte	-50
+ 745 02d1 52       		.byte	82
+ 746 02d2 D6       		.byte	-42
+ 747 02d3 F0       		.byte	-16
+ 748 02d4 D8       		.byte	-40
+ 749 02d5 80       		.byte	-128
+ 750 02d6 30       		.byte	48
+ 751 02d7 80       		.byte	-128
+ 752 02d8 CC       		.byte	-52
+ 753 02d9 10       		.byte	16
+ 754 02da 00       		.byte	0
+ 755 02db 08       		.byte	8
+ 756 02dc 05       		.byte	5
+ 757 02dd 08       		.byte	8
+ 758 02de 84       		.byte	-124
+ 759 02df 80       		.byte	-128
+ 760 02e0 A4       		.byte	-92
+ 761 02e1 80       		.byte	-128
+ 762 02e2 C0       		.byte	-64
+ 763 02e3 30       		.byte	48
+ 764 02e4 E2       		.byte	-30
+ 765 02e5 10       		.byte	16
+ 766 02e6 AC       		.byte	-84
+ 767 02e7 04       		.byte	4
+ 768 02e8 AD       		.byte	-83
+ 769 02e9 08       		.byte	8
+ 770 02ea EC       		.byte	-20
+ 771 02eb 50       		.byte	80
+ 772 02ec 00       		.byte	0
+ 773 02ed 01       		.byte	1
+ 774 02ee 08       		.byte	8
+ 775 02ef 01       		.byte	1
+ 776 02f0 0A       		.byte	10
+ 777 02f1 01       		.byte	1
+ 778 02f2 00       		.byte	0
+ 779 02f3 03       		.byte	3
+ 780 02f4 03       		.byte	3
+ 781 02f5 00       		.byte	0
+ 782 02f6 00       		.byte	0
+ 783 02f7 00       		.byte	0
+ 784 02f8 00       		.byte	0
+ 785 02f9 00       		.byte	0
+ 786 02fa 00       		.byte	0
+ 787 02fb 00       		.byte	0
+ 788 02fc 01       		.byte	1
+ 789 02fd 00       		.byte	0
+ 790 02fe 14       		.byte	20
+ 791 02ff 01       		.byte	1
+ 792              		.global	cy_meta_custnvl
+ 793              		.section	.cycustnvl,"a",%progbits
+ 794              		.align	2
+ 795              		.type	cy_meta_custnvl, %object
+ 796              		.size	cy_meta_custnvl, 4
+ 797              	cy_meta_custnvl:
+ 798 0000 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 15
+
+
+ 799 0001 00       		.byte	0
+ 800 0002 40       		.byte	64
+ 801 0003 05       		.byte	5
+ 802              		.global	cy_meta_wonvl
+ 803              		.section	.cywolatch,"a",%progbits
+ 804              		.align	2
+ 805              		.type	cy_meta_wonvl, %object
+ 806              		.size	cy_meta_wonvl, 4
+ 807              	cy_meta_wonvl:
+ 808 0000 BC       		.byte	-68
+ 809 0001 90       		.byte	-112
+ 810 0002 AC       		.byte	-84
+ 811 0003 AF       		.byte	-81
+ 812              		.global	cy_meta_flashprotect
+ 813              		.section	.cyflashprotect,"a",%progbits
+ 814              		.align	2
+ 815              		.type	cy_meta_flashprotect, %object
+ 816              		.size	cy_meta_flashprotect, 128
+ 817              	cy_meta_flashprotect:
+ 818 0000 00000000 		.space	128
+ 818      00000000 
+ 818      00000000 
+ 818      00000000 
+ 818      00000000 
+ 819              		.global	cy_metadata
+ 820              		.section	.cymeta,"a",%progbits
+ 821              		.align	2
+ 822              		.type	cy_metadata, %object
+ 823              		.size	cy_metadata, 12
+ 824              	cy_metadata:
+ 825 0000 00       		.byte	0
+ 826 0001 01       		.byte	1
+ 827 0002 2E       		.byte	46
+ 828 0003 13       		.byte	19
+ 829 0004 30       		.byte	48
+ 830 0005 69       		.byte	105
+ 831 0006 00       		.byte	0
+ 832 0007 01       		.byte	1
+ 833 0008 00       		.byte	0
+ 834 0009 00       		.byte	0
+ 835 000a 00       		.byte	0
+ 836 000b 00       		.byte	0
+ 837              		.text
+ 838              	.Letext0:
+ 839              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
+ 840              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 841              		.section	.debug_info,"",%progbits
+ 842              	.Ldebug_info0:
+ 843 0000 36010000 		.4byte	0x136
+ 844 0004 0400     		.2byte	0x4
+ 845 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 846 000a 04       		.byte	0x4
+ 847 000b 01       		.uleb128 0x1
+ 848 000c 00000000 		.4byte	.LASF18
+ 849 0010 01       		.byte	0x1
+ 850 0011 8E000000 		.4byte	.LASF19
+ 851 0015 2F010000 		.4byte	.LASF20
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 16
+
+
+ 852 0019 00000000 		.4byte	.Ldebug_line0
+ 853 001d 02       		.uleb128 0x2
+ 854 001e 01       		.byte	0x1
+ 855 001f 06       		.byte	0x6
+ 856 0020 D1010000 		.4byte	.LASF0
+ 857 0024 02       		.uleb128 0x2
+ 858 0025 01       		.byte	0x1
+ 859 0026 08       		.byte	0x8
+ 860 0027 C6000000 		.4byte	.LASF1
+ 861 002b 02       		.uleb128 0x2
+ 862 002c 02       		.byte	0x2
+ 863 002d 05       		.byte	0x5
+ 864 002e B8010000 		.4byte	.LASF2
+ 865 0032 02       		.uleb128 0x2
+ 866 0033 02       		.byte	0x2
+ 867 0034 07       		.byte	0x7
+ 868 0035 E6000000 		.4byte	.LASF3
+ 869 0039 02       		.uleb128 0x2
+ 870 003a 04       		.byte	0x4
+ 871 003b 05       		.byte	0x5
+ 872 003c C8010000 		.4byte	.LASF4
+ 873 0040 02       		.uleb128 0x2
+ 874 0041 04       		.byte	0x4
+ 875 0042 07       		.byte	0x7
+ 876 0043 D4000000 		.4byte	.LASF5
+ 877 0047 02       		.uleb128 0x2
+ 878 0048 08       		.byte	0x8
+ 879 0049 05       		.byte	0x5
+ 880 004a A5010000 		.4byte	.LASF6
+ 881 004e 02       		.uleb128 0x2
+ 882 004f 08       		.byte	0x8
+ 883 0050 07       		.byte	0x7
+ 884 0051 62010000 		.4byte	.LASF7
+ 885 0055 03       		.uleb128 0x3
+ 886 0056 04       		.byte	0x4
+ 887 0057 05       		.byte	0x5
+ 888 0058 696E7400 		.ascii	"int\000"
+ 889 005c 02       		.uleb128 0x2
+ 890 005d 04       		.byte	0x4
+ 891 005e 07       		.byte	0x7
+ 892 005f 22010000 		.4byte	.LASF8
+ 893 0063 04       		.uleb128 0x4
+ 894 0064 C2010000 		.4byte	.LASF21
+ 895 0068 02       		.byte	0x2
+ 896 0069 C2       		.byte	0xc2
+ 897 006a 24000000 		.4byte	0x24
+ 898 006e 02       		.uleb128 0x2
+ 899 006f 04       		.byte	0x4
+ 900 0070 04       		.byte	0x4
+ 901 0071 C0000000 		.4byte	.LASF9
+ 902 0075 02       		.uleb128 0x2
+ 903 0076 08       		.byte	0x8
+ 904 0077 04       		.byte	0x4
+ 905 0078 F9000000 		.4byte	.LASF10
+ 906 007c 02       		.uleb128 0x2
+ 907 007d 01       		.byte	0x1
+ 908 007e 08       		.byte	0x8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 17
+
+
+ 909 007f B3010000 		.4byte	.LASF11
+ 910 0083 05       		.uleb128 0x5
+ 911 0084 63000000 		.4byte	0x63
+ 912 0088 94000000 		.4byte	0x94
+ 913 008c 06       		.uleb128 0x6
+ 914 008d 94000000 		.4byte	0x94
+ 915 0091 FF02     		.2byte	0x2ff
+ 916 0093 00       		.byte	0
+ 917 0094 02       		.uleb128 0x2
+ 918 0095 04       		.byte	0x4
+ 919 0096 07       		.byte	0x7
+ 920 0097 9C010000 		.4byte	.LASF12
+ 921 009b 07       		.uleb128 0x7
+ 922 009c 10010000 		.4byte	.LASF13
+ 923 00a0 01       		.byte	0x1
+ 924 00a1 1C       		.byte	0x1c
+ 925 00a2 AC000000 		.4byte	0xac
+ 926 00a6 05       		.uleb128 0x5
+ 927 00a7 03       		.byte	0x3
+ 928 00a8 00000000 		.4byte	cy_meta_configecc
+ 929 00ac 08       		.uleb128 0x8
+ 930 00ad 83000000 		.4byte	0x83
+ 931 00b1 05       		.uleb128 0x5
+ 932 00b2 63000000 		.4byte	0x63
+ 933 00b6 C1000000 		.4byte	0xc1
+ 934 00ba 09       		.uleb128 0x9
+ 935 00bb 94000000 		.4byte	0x94
+ 936 00bf 03       		.byte	0x3
+ 937 00c0 00       		.byte	0
+ 938 00c1 07       		.uleb128 0x7
+ 939 00c2 00010000 		.4byte	.LASF14
+ 940 00c6 01       		.byte	0x1
+ 941 00c7 86       		.byte	0x86
+ 942 00c8 D2000000 		.4byte	0xd2
+ 943 00cc 05       		.uleb128 0x5
+ 944 00cd 03       		.byte	0x3
+ 945 00ce 00000000 		.4byte	cy_meta_custnvl
+ 946 00d2 08       		.uleb128 0x8
+ 947 00d3 B1000000 		.4byte	0xb1
+ 948 00d7 07       		.uleb128 0x7
+ 949 00d8 8E010000 		.4byte	.LASF15
+ 950 00dc 01       		.byte	0x1
+ 951 00dd 91       		.byte	0x91
+ 952 00de E8000000 		.4byte	0xe8
+ 953 00e2 05       		.uleb128 0x5
+ 954 00e3 03       		.byte	0x3
+ 955 00e4 00000000 		.4byte	cy_meta_wonvl
+ 956 00e8 08       		.uleb128 0x8
+ 957 00e9 B1000000 		.4byte	0xb1
+ 958 00ed 05       		.uleb128 0x5
+ 959 00ee 63000000 		.4byte	0x63
+ 960 00f2 FD000000 		.4byte	0xfd
+ 961 00f6 09       		.uleb128 0x9
+ 962 00f7 94000000 		.4byte	0x94
+ 963 00fb 7F       		.byte	0x7f
+ 964 00fc 00       		.byte	0
+ 965 00fd 07       		.uleb128 0x7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 18
+
+
+ 966 00fe 79010000 		.4byte	.LASF16
+ 967 0102 01       		.byte	0x1
+ 968 0103 9C       		.byte	0x9c
+ 969 0104 0E010000 		.4byte	0x10e
+ 970 0108 05       		.uleb128 0x5
+ 971 0109 03       		.byte	0x3
+ 972 010a 00000000 		.4byte	cy_meta_flashprotect
+ 973 010e 08       		.uleb128 0x8
+ 974 010f ED000000 		.4byte	0xed
+ 975 0113 05       		.uleb128 0x5
+ 976 0114 63000000 		.4byte	0x63
+ 977 0118 23010000 		.4byte	0x123
+ 978 011c 09       		.uleb128 0x9
+ 979 011d 94000000 		.4byte	0x94
+ 980 0121 0B       		.byte	0xb
+ 981 0122 00       		.byte	0
+ 982 0123 07       		.uleb128 0x7
+ 983 0124 B4000000 		.4byte	.LASF17
+ 984 0128 01       		.byte	0x1
+ 985 0129 B6       		.byte	0xb6
+ 986 012a 34010000 		.4byte	0x134
+ 987 012e 05       		.uleb128 0x5
+ 988 012f 03       		.byte	0x3
+ 989 0130 00000000 		.4byte	cy_metadata
+ 990 0134 08       		.uleb128 0x8
+ 991 0135 13010000 		.4byte	0x113
+ 992 0139 00       		.byte	0
+ 993              		.section	.debug_abbrev,"",%progbits
+ 994              	.Ldebug_abbrev0:
+ 995 0000 01       		.uleb128 0x1
+ 996 0001 11       		.uleb128 0x11
+ 997 0002 01       		.byte	0x1
+ 998 0003 25       		.uleb128 0x25
+ 999 0004 0E       		.uleb128 0xe
+ 1000 0005 13       		.uleb128 0x13
+ 1001 0006 0B       		.uleb128 0xb
+ 1002 0007 03       		.uleb128 0x3
+ 1003 0008 0E       		.uleb128 0xe
+ 1004 0009 1B       		.uleb128 0x1b
+ 1005 000a 0E       		.uleb128 0xe
+ 1006 000b 10       		.uleb128 0x10
+ 1007 000c 17       		.uleb128 0x17
+ 1008 000d 00       		.byte	0
+ 1009 000e 00       		.byte	0
+ 1010 000f 02       		.uleb128 0x2
+ 1011 0010 24       		.uleb128 0x24
+ 1012 0011 00       		.byte	0
+ 1013 0012 0B       		.uleb128 0xb
+ 1014 0013 0B       		.uleb128 0xb
+ 1015 0014 3E       		.uleb128 0x3e
+ 1016 0015 0B       		.uleb128 0xb
+ 1017 0016 03       		.uleb128 0x3
+ 1018 0017 0E       		.uleb128 0xe
+ 1019 0018 00       		.byte	0
+ 1020 0019 00       		.byte	0
+ 1021 001a 03       		.uleb128 0x3
+ 1022 001b 24       		.uleb128 0x24
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 19
+
+
+ 1023 001c 00       		.byte	0
+ 1024 001d 0B       		.uleb128 0xb
+ 1025 001e 0B       		.uleb128 0xb
+ 1026 001f 3E       		.uleb128 0x3e
+ 1027 0020 0B       		.uleb128 0xb
+ 1028 0021 03       		.uleb128 0x3
+ 1029 0022 08       		.uleb128 0x8
+ 1030 0023 00       		.byte	0
+ 1031 0024 00       		.byte	0
+ 1032 0025 04       		.uleb128 0x4
+ 1033 0026 16       		.uleb128 0x16
+ 1034 0027 00       		.byte	0
+ 1035 0028 03       		.uleb128 0x3
+ 1036 0029 0E       		.uleb128 0xe
+ 1037 002a 3A       		.uleb128 0x3a
+ 1038 002b 0B       		.uleb128 0xb
+ 1039 002c 3B       		.uleb128 0x3b
+ 1040 002d 0B       		.uleb128 0xb
+ 1041 002e 49       		.uleb128 0x49
+ 1042 002f 13       		.uleb128 0x13
+ 1043 0030 00       		.byte	0
+ 1044 0031 00       		.byte	0
+ 1045 0032 05       		.uleb128 0x5
+ 1046 0033 01       		.uleb128 0x1
+ 1047 0034 01       		.byte	0x1
+ 1048 0035 49       		.uleb128 0x49
+ 1049 0036 13       		.uleb128 0x13
+ 1050 0037 01       		.uleb128 0x1
+ 1051 0038 13       		.uleb128 0x13
+ 1052 0039 00       		.byte	0
+ 1053 003a 00       		.byte	0
+ 1054 003b 06       		.uleb128 0x6
+ 1055 003c 21       		.uleb128 0x21
+ 1056 003d 00       		.byte	0
+ 1057 003e 49       		.uleb128 0x49
+ 1058 003f 13       		.uleb128 0x13
+ 1059 0040 2F       		.uleb128 0x2f
+ 1060 0041 05       		.uleb128 0x5
+ 1061 0042 00       		.byte	0
+ 1062 0043 00       		.byte	0
+ 1063 0044 07       		.uleb128 0x7
+ 1064 0045 34       		.uleb128 0x34
+ 1065 0046 00       		.byte	0
+ 1066 0047 03       		.uleb128 0x3
+ 1067 0048 0E       		.uleb128 0xe
+ 1068 0049 3A       		.uleb128 0x3a
+ 1069 004a 0B       		.uleb128 0xb
+ 1070 004b 3B       		.uleb128 0x3b
+ 1071 004c 0B       		.uleb128 0xb
+ 1072 004d 49       		.uleb128 0x49
+ 1073 004e 13       		.uleb128 0x13
+ 1074 004f 3F       		.uleb128 0x3f
+ 1075 0050 19       		.uleb128 0x19
+ 1076 0051 02       		.uleb128 0x2
+ 1077 0052 18       		.uleb128 0x18
+ 1078 0053 00       		.byte	0
+ 1079 0054 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 20
+
+
+ 1080 0055 08       		.uleb128 0x8
+ 1081 0056 26       		.uleb128 0x26
+ 1082 0057 00       		.byte	0
+ 1083 0058 49       		.uleb128 0x49
+ 1084 0059 13       		.uleb128 0x13
+ 1085 005a 00       		.byte	0
+ 1086 005b 00       		.byte	0
+ 1087 005c 09       		.uleb128 0x9
+ 1088 005d 21       		.uleb128 0x21
+ 1089 005e 00       		.byte	0
+ 1090 005f 49       		.uleb128 0x49
+ 1091 0060 13       		.uleb128 0x13
+ 1092 0061 2F       		.uleb128 0x2f
+ 1093 0062 0B       		.uleb128 0xb
+ 1094 0063 00       		.byte	0
+ 1095 0064 00       		.byte	0
+ 1096 0065 00       		.byte	0
+ 1097              		.section	.debug_aranges,"",%progbits
+ 1098 0000 14000000 		.4byte	0x14
+ 1099 0004 0200     		.2byte	0x2
+ 1100 0006 00000000 		.4byte	.Ldebug_info0
+ 1101 000a 04       		.byte	0x4
+ 1102 000b 00       		.byte	0
+ 1103 000c 0000     		.2byte	0
+ 1104 000e 0000     		.2byte	0
+ 1105 0010 00000000 		.4byte	0
+ 1106 0014 00000000 		.4byte	0
+ 1107              		.section	.debug_line,"",%progbits
+ 1108              	.Ldebug_line0:
+ 1109 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 1109      02004900 
+ 1109      00000201 
+ 1109      FB0E0D00 
+ 1109      01010101 
+ 1110              	.LASF18:
+ 1111 0000 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1111      4320342E 
+ 1111      392E3320 
+ 1111      32303135 
+ 1111      30333033 
+ 1112 0033 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1112      20726576 
+ 1112      6973696F 
+ 1112      6E203232 
+ 1112      31323230 
+ 1113 0066 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1113      66756E63 
+ 1113      74696F6E 
+ 1113      2D736563 
+ 1113      74696F6E 
+ 1114              	.LASF19:
+ 1115 008e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1115      6E657261 
+ 1115      7465645F 
+ 1115      536F7572 
+ 1115      63655C50 
+ 1116              	.LASF17:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 21
+
+
+ 1117 00b4 63795F6D 		.ascii	"cy_metadata\000"
+ 1117      65746164 
+ 1117      61746100 
+ 1118              	.LASF9:
+ 1119 00c0 666C6F61 		.ascii	"float\000"
+ 1119      7400
+ 1120              	.LASF1:
+ 1121 00c6 756E7369 		.ascii	"unsigned char\000"
+ 1121      676E6564 
+ 1121      20636861 
+ 1121      7200
+ 1122              	.LASF5:
+ 1123 00d4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1123      20756E73 
+ 1123      69676E65 
+ 1123      6420696E 
+ 1123      7400
+ 1124              	.LASF3:
+ 1125 00e6 73686F72 		.ascii	"short unsigned int\000"
+ 1125      7420756E 
+ 1125      7369676E 
+ 1125      65642069 
+ 1125      6E7400
+ 1126              	.LASF10:
+ 1127 00f9 646F7562 		.ascii	"double\000"
+ 1127      6C6500
+ 1128              	.LASF14:
+ 1129 0100 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1129      6574615F 
+ 1129      63757374 
+ 1129      6E766C00 
+ 1130              	.LASF13:
+ 1131 0110 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1131      6574615F 
+ 1131      636F6E66 
+ 1131      69676563 
+ 1131      6300
+ 1132              	.LASF8:
+ 1133 0122 756E7369 		.ascii	"unsigned int\000"
+ 1133      676E6564 
+ 1133      20696E74 
+ 1133      00
+ 1134              	.LASF20:
+ 1135 012f 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car\\QuadDecExample01.cy"
+ 1135      6F626F74 
+ 1135      5C676974 
+ 1135      5F636F64 
+ 1135      655C726F 
+ 1136 015e 64736E00 		.ascii	"dsn\000"
+ 1137              	.LASF7:
+ 1138 0162 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1138      206C6F6E 
+ 1138      6720756E 
+ 1138      7369676E 
+ 1138      65642069 
+ 1139              	.LASF16:
+ 1140 0179 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cckfHolp.s 			page 22
+
+
+ 1140      6574615F 
+ 1140      666C6173 
+ 1140      6870726F 
+ 1140      74656374 
+ 1141              	.LASF15:
+ 1142 018e 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1142      6574615F 
+ 1142      776F6E76 
+ 1142      6C00
+ 1143              	.LASF12:
+ 1144 019c 73697A65 		.ascii	"sizetype\000"
+ 1144      74797065 
+ 1144      00
+ 1145              	.LASF6:
+ 1146 01a5 6C6F6E67 		.ascii	"long long int\000"
+ 1146      206C6F6E 
+ 1146      6720696E 
+ 1146      7400
+ 1147              	.LASF11:
+ 1148 01b3 63686172 		.ascii	"char\000"
+ 1148      00
+ 1149              	.LASF2:
+ 1150 01b8 73686F72 		.ascii	"short int\000"
+ 1150      7420696E 
+ 1150      7400
+ 1151              	.LASF21:
+ 1152 01c2 75696E74 		.ascii	"uint8\000"
+ 1152      3800
+ 1153              	.LASF4:
+ 1154 01c8 6C6F6E67 		.ascii	"long int\000"
+ 1154      20696E74 
+ 1154      00
+ 1155              	.LASF0:
+ 1156 01d1 7369676E 		.ascii	"signed char\000"
+ 1156      65642063 
+ 1156      68617200 
+ 1157              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

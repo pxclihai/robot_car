@@ -11,7 +11,7 @@
 dt_flag_t f;					//需要发送数据的标志
 uint8 data_to_send[50];     	//发送数据缓存
 
-
+extern uint16 time_count;
 void DT_Data_Exchange(void)
 {
     static float temp_pitch;
@@ -37,15 +37,20 @@ void DT_Data_Exchange(void)
 	if((cnt % motopwm_cnt) == (motopwm_cnt-1))
 		f.send_motopwm = 1;	
     
-	if((cnt % power_cnt) == (power_cnt-1))
+	if((cnt % power_cnt)   == (power_cnt-1))
 		f.send_power = 1;		
     
 	cnt++;
 /////////////////////////////////////////////////////////////////////////////////////
 	if(f.send_version)
 	{
-		f.send_version = 0;
-	  //DT_Send_Version(4,300,100,400,0);
+        
+		f.send_version ++;
+        if(f.send_version == 10)
+        {
+            f.send_version = 0;
+        }
+	    DT_Send_SystemInfo(g_Car.systeminfo.hardware_ver,g_Car.systeminfo.software_ver,g_Car.systeminfo.totol_run_count,g_Car.systeminfo.cur_run_time,g_Car.systeminfo.car_runing_time);
 	}
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_status)
@@ -66,7 +71,7 @@ void DT_Data_Exchange(void)
         tmep_roll =   (S_IMU.roll/32768.0*180);
         temp_yaw   =  (S_IMU.yaw/32768.0*180);
       
-		DT_Send_Senser(temp_pitch*1000,tmep_roll*1000,temp_yaw*1000,0,0,0);
+	    DT_Send_Senser(temp_pitch*1000,tmep_roll*1000,temp_yaw*1000,0,0,0);
 	}	
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,11 +80,14 @@ void DT_Data_Exchange(void)
 	{
 	   f.send_distance = 0;
 	   DT_Send_Distance(g_Car.distance_front,g_Car.distance_back);
+         //DT_Send_SystemInfo(g_Car.systeminfo.hardware_ver,g_Car.systeminfo.software_ver,100,400);
 	}
 	else if(f.send_power)
 	{
 		f.send_power = 0;
-		DT_Send_Power(C_V,D_V);
+        DT_Send_Power(C_V,D_V);
+        
+         
 	}
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -168,7 +176,14 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
 		sum += *(data_buf+i);
 	if(!(sum==*(data_buf+num-1)))		return;		                //判断sum
 	if(!(*(data_buf)==0xAA && *(data_buf+1)==0xAF))		return;		//判断帧头
-	
+	if(*(data_buf+2) == 0x00)
+    {
+       if(*(data_buf+4) == 0xAA)
+      {
+       f.send_version = 1;
+      }
+    }
+    
 	if(*(data_buf+2)==0X01)
 	{
        g_Car.Car_lock = *(data_buf+4);
@@ -198,8 +213,8 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp=0;
         }
-        PWM_LED_WriteCompare1(temp*100); 
-        
+    //    PWM_LED_WriteCompare1(temp*100); 
+        PWM_LED_1_WriteCompare(temp*100);
         temp = 100-*(data_buf+5); 
         if(temp>=100)
         {
@@ -209,8 +224,8 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp=0;
         }
-        PWM_LED_WriteCompare2(temp*100);
-        
+  //      PWM_LED_WriteCompare2(temp*100);
+        PWM_LED_2_WriteCompare(temp*100); 
         temp = 100-*(data_buf+6); 
         if(temp>=100)
         {
@@ -220,8 +235,8 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp= 0;
         }
-        PWM_LED_1_WriteCompare1(temp*100);
-        
+  //      PWM_LED_1_WriteCompare1(temp*100);
+         PWM_LED_3_WriteCompare(temp*100);
         temp = 100-*(data_buf+7); 
         if(temp>=100)
         {
@@ -231,8 +246,8 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp=0;
         }
-        PWM_LED_1_WriteCompare2(temp*100);
-        //led5678
+ //       PWM_LED_1_WriteCompare2(temp*100);
+       PWM_LED_4_WriteCompare(temp*100);
     }
 	if(*(data_buf+2)==0X5)								
     {
@@ -272,24 +287,25 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
 	}
 }
 
-void DT_Send_Version(uint8 hardware_type, uint16 hardware_ver,uint16 software_ver,uint16 protocol_ver,uint16 bootloader_ver)
+void DT_Send_SystemInfo(uint16 hardware_ver,uint16 software_ver,uint16 run_count,uint16 cur_run_time,uint16 car_runing_time)
 {
 	uint8 _cnt=0;
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0x00;
 	data_to_send[_cnt++]=0;
-	
-	data_to_send[_cnt++]=hardware_type;
+    
 	data_to_send[_cnt++]=BYTE1(hardware_ver);
 	data_to_send[_cnt++]=BYTE0(hardware_ver);
 	data_to_send[_cnt++]=BYTE1(software_ver);
 	data_to_send[_cnt++]=BYTE0(software_ver);
-	data_to_send[_cnt++]=BYTE1(protocol_ver);
-	data_to_send[_cnt++]=BYTE0(protocol_ver);
-	data_to_send[_cnt++]=BYTE1(bootloader_ver);
-	data_to_send[_cnt++]=BYTE0(bootloader_ver);
-	
+	data_to_send[_cnt++]=BYTE1(run_count);
+	data_to_send[_cnt++]=BYTE0(run_count);
+	data_to_send[_cnt++]=BYTE1(cur_run_time);
+	data_to_send[_cnt++]=BYTE0(cur_run_time);
+    
+	data_to_send[_cnt++]=BYTE1(car_runing_time);
+	data_to_send[_cnt++]=BYTE0(car_runing_time);
 	data_to_send[3] = _cnt-4;
 	
 	uint8 sum = 0;
@@ -601,4 +617,5 @@ void DT_Send_Lidar(uint8 * temp_nodebuf)
 
 	DT_Send_Data(temp_nodebuf, 87);
 }
+
 /******************* (C) COPYRIGHT 2014 ANO TECH *****END OF FILE************/

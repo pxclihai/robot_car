@@ -27,7 +27,8 @@ static void Set_Right_Behind_Speed_Turn(uint16 speed,enum WHEEL_DIR turn);
 static void ptz_control(uint8 choose,enum WHEEL_DIR dir);
 void Car_init()
 {
-      
+    g_Car.systeminfo.hardware_ver = 410;
+    g_Car.systeminfo.software_ver = 110;
     g_Car.pre_dir = STOP;
     g_Car.set_car_speed = 14000;
     g_Car.set_dir = STOP;
@@ -39,11 +40,31 @@ void Car_init()
     PTZ_DOWN_DIR_Write(0);
     PTZ_DOWN_STEP_Write(0);
 }
-void Control_Car()
-{
+void Car_Control_Loop()
+{  
+    if(g_Car.error == 0)
+    {
     Car_Dir(g_Car); 
     Car_PTZ_DIR(g_Car); 
-    
+    }   
+    else
+    {
+    g_Car.set_dir = STOP;
+    Command_Car_brake();
+    }
+
+}
+void Car_Hearting_Loop()
+{
+    if(g_Car.hearting == 1  )
+    {
+        g_Car.hearting = 0;
+        g_Car.error = 0;
+    }
+    else
+    {
+        g_Car.error = 1;
+    }  
 }
 void Car_PTZ_DIR(S_CAR car)
 {

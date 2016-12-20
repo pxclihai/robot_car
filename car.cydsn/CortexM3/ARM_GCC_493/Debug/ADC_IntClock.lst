@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
   29:.\Generated_Source\PSoC5/ADC_IntClock.c **** 
   30:.\Generated_Source\PSoC5/ADC_IntClock.c **** /*******************************************************************************
   31:.\Generated_Source\PSoC5/ADC_IntClock.c **** * Function Name: ADC_IntClock_Start
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/ADC_IntClock.c **** ********************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
   55:.\Generated_Source\PSoC5/ADC_IntClock.c **** ********************************************************************************
   56:.\Generated_Source\PSoC5/ADC_IntClock.c **** *
   57:.\Generated_Source\PSoC5/ADC_IntClock.c **** * Summary:
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 3
 
 
   58:.\Generated_Source\PSoC5/ADC_IntClock.c **** *  Stops the clock and returns immediately. This API does not require the
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
   81:.\Generated_Source\PSoC5/ADC_IntClock.c **** 
   82:.\Generated_Source\PSoC5/ADC_IntClock.c **** /*******************************************************************************
   83:.\Generated_Source\PSoC5/ADC_IntClock.c **** * Function Name: ADC_IntClock_StopBlock
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 4
 
 
   84:.\Generated_Source\PSoC5/ADC_IntClock.c **** ********************************************************************************
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  116:.\Generated_Source\PSoC5/ADC_IntClock.c **** #endif /* ADC_IntClock__CFG3 */
  117:.\Generated_Source\PSoC5/ADC_IntClock.c **** 
  118:.\Generated_Source\PSoC5/ADC_IntClock.c ****         /* Clear mask of bus clock. */
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 5
 
 
  119:.\Generated_Source\PSoC5/ADC_IntClock.c ****         CLK_DIST_BCFG2 &= (uint8)(~BCFG2_MASK);
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  147              		.loc 1 136 0
  148 0056 7F33     		adds	r3, r3, #127
  149 0058 1A80     		strh	r2, [r3]	@ movhi
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 6
 
 
  150              	.LVL1:
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  161:.\Generated_Source\PSoC5/ADC_IntClock.c ****         ADC_IntClock_CLKSTBY &= (uint8)(~ADC_IntClock_CLKSTBY_MASK);
  180              		.loc 1 161 0
  181 0002 064A     		ldr	r2, .L15
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 7
 
 
  182 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  190:.\Generated_Source\PSoC5/ADC_IntClock.c **** *  None
  191:.\Generated_Source\PSoC5/ADC_IntClock.c **** *
  192:.\Generated_Source\PSoC5/ADC_IntClock.c **** *******************************************************************************/
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 8
 
 
  193:.\Generated_Source\PSoC5/ADC_IntClock.c **** void ADC_IntClock_SetDividerRegister(uint16 clkDivider, uint8 restart)
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  247:.\Generated_Source\PSoC5/ADC_IntClock.c ****                     CLK_DIST_LD = CYCLK_LD_DISABLE|CYCLK_LD_SYNC_EN|CYCLK_LD_LOAD;
  248:.\Generated_Source\PSoC5/ADC_IntClock.c **** 
  249:.\Generated_Source\PSoC5/ADC_IntClock.c ****                     /* Wait for clock to be disabled */
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 9
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 9
 
 
  250:.\Generated_Source\PSoC5/ADC_IntClock.c ****                     while ((CLK_DIST_LD & CYCLK_LD_LOAD) != 0u) { }
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  299:.\Generated_Source\PSoC5/ADC_IntClock.c ****     return CY_GET_REG16(ADC_IntClock_DIV_PTR);
  213              		.loc 1 299 0
  214 0000 014B     		ldr	r3, .L18
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 10
 
 
  215 0002 1888     		ldrh	r0, [r3]
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  235              		.cfi_startproc
  236              		@ args = 0, pretend = 0, frame = 0
  237              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 11
 
 
  238              		@ link register save eliminated.
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  363:.\Generated_Source\PSoC5/ADC_IntClock.c **** * Returns:
  364:.\Generated_Source\PSoC5/ADC_IntClock.c **** *  None
  365:.\Generated_Source\PSoC5/ADC_IntClock.c **** *
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 12
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 12
 
 
  366:.\Generated_Source\PSoC5/ADC_IntClock.c **** *******************************************************************************/
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  389:.\Generated_Source\PSoC5/ADC_IntClock.c **** {
  294              		.loc 1 389 0
  295              		.cfi_startproc
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 13
 
 
  296              		@ args = 0, pretend = 0, frame = 0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  420:.\Generated_Source\PSoC5/ADC_IntClock.c **** {
  421:.\Generated_Source\PSoC5/ADC_IntClock.c ****     uint16 currDiv = ADC_IntClock_GetDividerRegister();
  422:.\Generated_Source\PSoC5/ADC_IntClock.c ****     uint8 oldSrc = ADC_IntClock_GetSourceRegister();
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 14
 
 
  423:.\Generated_Source\PSoC5/ADC_IntClock.c **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  329 0004 00F00700 		and	r0, r0, #7
  330 0008 7047     		bx	lr
  331              	.L31:
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 15
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 15
 
 
  332 000a 00BF     		.align	2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  205:.\Generated_Source\PSoC5/ADC_IntClock.c ****         {
  379              		.loc 1 205 0 discriminator 2
  380 0020 85B9     		cbnz	r5, .L34
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 16
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 16
 
 
  381              	.L35:
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  425 0058 0B78     		ldrb	r3, [r1]	@ zero_extendqisi2
  426 005a 03F07F03 		and	r3, r3, #127
  427 005e 0B70     		strb	r3, [r1]
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 17
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 17
 
 
  243:.\Generated_Source\PSoC5/ADC_IntClock.c ****                 {
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  472              	.LVL19:
  473              	.L43:
  474 00a4 0122     		movs	r2, #1
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 18
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 18
 
 
  475              	.LVL20:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  524 0000 38B5     		push	{r3, r4, r5, lr}
  525              		.cfi_def_cfa_offset 16
  526              		.cfi_offset 3, -16
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 19
 
 
  527              		.cfi_offset 4, -12
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  438:.\Generated_Source\PSoC5/ADC_IntClock.c ****             (ADC_IntClock_MOD_SRC & (uint8)(~ADC_IntClock_SRC_SEL_MSK)) | clkSource;
  569              		.loc 1 438 0
  570 0036 03F0F803 		and	r3, r3, #248
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 20
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 20
 
 
  571 003a 1C43     		orrs	r4, r4, r3
@@ -1179,48 +1179,48 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  603 0006 00000000 		.4byte	.Ldebug_abbrev0
  604 000a 04       		.byte	0x4
  605 000b 01       		.uleb128 0x1
- 606 000c FD010000 		.4byte	.LASF36
+ 606 000c 08020000 		.4byte	.LASF36
  607 0010 01       		.byte	0x1
- 608 0011 03010000 		.4byte	.LASF37
- 609 0015 54000000 		.4byte	.LASF38
+ 608 0011 0E010000 		.4byte	.LASF37
+ 609 0015 73000000 		.4byte	.LASF38
  610 0019 00000000 		.4byte	.Ldebug_ranges0+0
  611 001d 00000000 		.4byte	0
  612 0021 00000000 		.4byte	.Ldebug_line0
  613 0025 02       		.uleb128 0x2
  614 0026 01       		.byte	0x1
  615 0027 06       		.byte	0x6
- 616 0028 4B010000 		.4byte	.LASF0
+ 616 0028 56010000 		.4byte	.LASF0
  617 002c 02       		.uleb128 0x2
  618 002d 01       		.byte	0x1
  619 002e 08       		.byte	0x8
- 620 002f 31010000 		.4byte	.LASF1
+ 620 002f 3C010000 		.4byte	.LASF1
  621 0033 02       		.uleb128 0x2
  622 0034 02       		.byte	0x2
  623 0035 05       		.byte	0x5
- 624 0036 4A000000 		.4byte	.LASF2
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 21
+ 624 0036 2B000000 		.4byte	.LASF2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 21
 
 
  625 003a 02       		.uleb128 0x2
  626 003b 02       		.byte	0x2
  627 003c 07       		.byte	0x7
- 628 003d D2010000 		.4byte	.LASF3
+ 628 003d DD010000 		.4byte	.LASF3
  629 0041 02       		.uleb128 0x2
  630 0042 04       		.byte	0x4
  631 0043 05       		.byte	0x5
- 632 0044 FA000000 		.4byte	.LASF4
+ 632 0044 05010000 		.4byte	.LASF4
  633 0048 02       		.uleb128 0x2
  634 0049 04       		.byte	0x4
  635 004a 07       		.byte	0x7
- 636 004b AD020000 		.4byte	.LASF5
+ 636 004b B8020000 		.4byte	.LASF5
  637 004f 02       		.uleb128 0x2
  638 0050 08       		.byte	0x8
  639 0051 05       		.byte	0x5
- 640 0052 EC000000 		.4byte	.LASF6
+ 640 0052 F7000000 		.4byte	.LASF6
  641 0056 02       		.uleb128 0x2
  642 0057 08       		.byte	0x8
  643 0058 07       		.byte	0x7
- 644 0059 57010000 		.4byte	.LASF7
+ 644 0059 62010000 		.4byte	.LASF7
  645 005d 03       		.uleb128 0x3
  646 005e 04       		.byte	0x4
  647 005f 05       		.byte	0x5
@@ -1228,37 +1228,37 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  649 0064 02       		.uleb128 0x2
  650 0065 04       		.byte	0x4
  651 0066 07       		.byte	0x7
- 652 0067 6E010000 		.4byte	.LASF8
+ 652 0067 79010000 		.4byte	.LASF8
  653 006b 04       		.uleb128 0x4
- 654 006c A4000000 		.4byte	.LASF9
+ 654 006c AF000000 		.4byte	.LASF9
  655 0070 02       		.byte	0x2
  656 0071 C2       		.byte	0xc2
  657 0072 2C000000 		.4byte	0x2c
  658 0076 04       		.uleb128 0x4
- 659 0077 8E000000 		.4byte	.LASF10
+ 659 0077 99000000 		.4byte	.LASF10
  660 007b 02       		.byte	0x2
  661 007c C3       		.byte	0xc3
  662 007d 3A000000 		.4byte	0x3a
  663 0081 02       		.uleb128 0x2
  664 0082 04       		.byte	0x4
  665 0083 04       		.byte	0x4
- 666 0084 E6000000 		.4byte	.LASF11
+ 666 0084 F1000000 		.4byte	.LASF11
  667 0088 02       		.uleb128 0x2
  668 0089 08       		.byte	0x8
  669 008a 04       		.byte	0x4
- 670 008b BF020000 		.4byte	.LASF12
+ 670 008b CA020000 		.4byte	.LASF12
  671 008f 02       		.uleb128 0x2
  672 0090 01       		.byte	0x1
  673 0091 08       		.byte	0x8
- 674 0092 F8010000 		.4byte	.LASF13
+ 674 0092 03020000 		.4byte	.LASF13
  675 0096 05       		.uleb128 0x5
- 676 0097 A8020000 		.4byte	.LASF14
+ 676 0097 B3020000 		.4byte	.LASF14
  677 009b 02       		.byte	0x2
  678 009c 6C01     		.2byte	0x16c
  679 009e A2000000 		.4byte	0xa2
  680 00a2 06       		.uleb128 0x6
  681 00a3 6B000000 		.4byte	0x6b
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 22
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 22
 
 
  682 00a7 05       		.uleb128 0x5
@@ -1269,7 +1269,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  687 00b3 06       		.uleb128 0x6
  688 00b4 76000000 		.4byte	0x76
  689 00b8 07       		.uleb128 0x7
- 690 00b9 E5010000 		.4byte	.LASF16
+ 690 00b9 F0010000 		.4byte	.LASF16
  691 00bd 01       		.byte	0x1
  692 00be 2D       		.byte	0x2d
  693 00bf 00000000 		.4byte	.LFB0
@@ -1277,7 +1277,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  695 00c7 01       		.uleb128 0x1
  696 00c8 9C       		.byte	0x9c
  697 00c9 07       		.uleb128 0x7
- 698 00ca D4000000 		.4byte	.LASF17
+ 698 00ca DF000000 		.4byte	.LASF17
  699 00ce 01       		.byte	0x1
  700 00cf 47       		.byte	0x47
  701 00d0 00000000 		.4byte	.LFB1
@@ -1285,7 +1285,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  703 00d8 01       		.uleb128 0x1
  704 00d9 9C       		.byte	0x9c
  705 00da 08       		.uleb128 0x8
- 706 00db CE020000 		.4byte	.LASF18
+ 706 00db D9020000 		.4byte	.LASF18
  707 00df 01       		.byte	0x1
  708 00e0 64       		.byte	0x64
  709 00e1 00000000 		.4byte	.LFB2
@@ -1297,7 +1297,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  715 00f0 0A000000 		.4byte	.LBB2
  716 00f4 62000000 		.4byte	.LBE2-.LBB2
  717 00f8 0A       		.uleb128 0xa
- 718 00f9 9D020000 		.4byte	.LASF30
+ 718 00f9 A8020000 		.4byte	.LASF30
  719 00fd 01       		.byte	0x1
  720 00fe 69       		.byte	0x69
  721 00ff 76000000 		.4byte	0x76
@@ -1305,7 +1305,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  723 0107 00       		.byte	0
  724 0108 00       		.byte	0
  725 0109 08       		.uleb128 0x8
- 726 010a 7B010000 		.4byte	.LASF19
+ 726 010a 86010000 		.4byte	.LASF19
  727 010e 01       		.byte	0x1
  728 010f 9D       		.byte	0x9d
  729 0110 00000000 		.4byte	.LFB3
@@ -1314,18 +1314,18 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  732 0119 9C       		.byte	0x9c
  733 011a 2C010000 		.4byte	0x12c
  734 011e 0B       		.uleb128 0xb
- 735 011f 2B010000 		.4byte	.LASF21
+ 735 011f 36010000 		.4byte	.LASF21
  736 0123 01       		.byte	0x1
  737 0124 9D       		.byte	0x9d
  738 0125 6B000000 		.4byte	0x6b
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 23
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 23
 
 
  739 0129 01       		.uleb128 0x1
  740 012a 50       		.byte	0x50
  741 012b 00       		.byte	0
  742 012c 0C       		.uleb128 0xc
- 743 012d E5020000 		.4byte	.LASF24
+ 743 012d F0020000 		.4byte	.LASF24
  744 0131 01       		.byte	0x1
  745 0132 2901     		.2byte	0x129
  746 0134 76000000 		.4byte	0x76
@@ -1334,7 +1334,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  749 0140 01       		.uleb128 0x1
  750 0141 9C       		.byte	0x9c
  751 0142 0D       		.uleb128 0xd
- 752 0143 B5010000 		.4byte	.LASF20
+ 752 0143 C0010000 		.4byte	.LASF20
  753 0147 01       		.byte	0x1
  754 0148 4C01     		.2byte	0x14c
  755 014a 00000000 		.4byte	.LFB6
@@ -1343,14 +1343,14 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  758 0153 9C       		.byte	0x9c
  759 0154 69010000 		.4byte	0x169
  760 0158 0E       		.uleb128 0xe
- 761 0159 3F010000 		.4byte	.LASF22
+ 761 0159 4A010000 		.4byte	.LASF22
  762 015d 01       		.byte	0x1
  763 015e 4C01     		.2byte	0x14c
  764 0160 6B000000 		.4byte	0x6b
  765 0164 13000000 		.4byte	.LLST1
  766 0168 00       		.byte	0
  767 0169 0D       		.uleb128 0xd
- 768 016a B5000000 		.4byte	.LASF23
+ 768 016a C0000000 		.4byte	.LASF23
  769 016e 01       		.byte	0x1
  770 016f 6F01     		.2byte	0x16f
  771 0171 00000000 		.4byte	.LFB7
@@ -1359,7 +1359,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  774 017a 9C       		.byte	0x9c
  775 017b 90010000 		.4byte	0x190
  776 017f 0E       		.uleb128 0xe
- 777 0180 3F010000 		.4byte	.LASF22
+ 777 0180 4A010000 		.4byte	.LASF22
  778 0184 01       		.byte	0x1
  779 0185 6F01     		.2byte	0x16f
  780 0187 6B000000 		.4byte	0x6b
@@ -1375,10 +1375,10 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  790 01a4 01       		.uleb128 0x1
  791 01a5 9C       		.byte	0x9c
  792 01a6 0C       		.uleb128 0xc
- 793 01a7 2B000000 		.4byte	.LASF26
+ 793 01a7 35000000 		.4byte	.LASF26
  794 01ab 01       		.byte	0x1
  795 01ac D001     		.2byte	0x1d0
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 24
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 24
 
 
  796 01ae 6B000000 		.4byte	0x6b
@@ -1387,7 +1387,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  799 01ba 01       		.uleb128 0x1
  800 01bb 9C       		.byte	0x9c
  801 01bc 08       		.uleb128 0x8
- 802 01bd 95010000 		.4byte	.LASF27
+ 802 01bd A0010000 		.4byte	.LASF27
  803 01c1 01       		.byte	0x1
  804 01c2 C1       		.byte	0xc1
  805 01c3 00000000 		.4byte	.LFB4
@@ -1396,31 +1396,31 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  808 01cc 9C       		.byte	0x9c
  809 01cd 2D020000 		.4byte	0x22d
  810 01d1 0F       		.uleb128 0xf
- 811 01d2 AA000000 		.4byte	.LASF28
+ 811 01d2 B5000000 		.4byte	.LASF28
  812 01d6 01       		.byte	0x1
  813 01d7 C1       		.byte	0xc1
  814 01d8 76000000 		.4byte	0x76
  815 01dc 55000000 		.4byte	.LLST3
  816 01e0 0F       		.uleb128 0xf
- 817 01e1 95000000 		.4byte	.LASF29
+ 817 01e1 A0000000 		.4byte	.LASF29
  818 01e5 01       		.byte	0x1
  819 01e6 C1       		.byte	0xc1
  820 01e7 6B000000 		.4byte	0x6b
  821 01eb 76000000 		.4byte	.LLST4
  822 01ef 0A       		.uleb128 0xa
- 823 01f0 C6020000 		.4byte	.LASF31
+ 823 01f0 D1020000 		.4byte	.LASF31
  824 01f4 01       		.byte	0x1
  825 01f5 C4       		.byte	0xc4
  826 01f6 6B000000 		.4byte	0x6b
  827 01fa 97000000 		.4byte	.LLST5
  828 01fe 0A       		.uleb128 0xa
- 829 01ff 95020000 		.4byte	.LASF32
+ 829 01ff A0020000 		.4byte	.LASF32
  830 0203 01       		.byte	0x1
  831 0204 C6       		.byte	0xc6
  832 0205 6B000000 		.4byte	0x6b
  833 0209 E5000000 		.4byte	.LLST6
  834 020d 10       		.uleb128 0x10
- 835 020e 9D020000 		.4byte	.LASF30
+ 835 020e A8020000 		.4byte	.LASF30
  836 0212 01       		.byte	0x1
  837 0213 C7       		.byte	0xc7
  838 0214 76000000 		.4byte	0x76
@@ -1434,18 +1434,18 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  846 0228 2C010000 		.4byte	0x12c
  847 022c 00       		.byte	0
  848 022d 12       		.uleb128 0x12
- 849 022e 6F000000 		.4byte	.LASF39
+ 849 022e 54000000 		.4byte	.LASF39
  850 0232 01       		.byte	0x1
  851 0233 A301     		.2byte	0x1a3
  852 0235 00000000 		.4byte	.LFB9
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 25
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 25
 
 
  853 0239 5C000000 		.4byte	.LFE9-.LFB9
  854 023d 01       		.uleb128 0x1
  855 023e 9C       		.byte	0x9c
  856 023f 0E       		.uleb128 0xe
- 857 0240 8B020000 		.4byte	.LASF33
+ 857 0240 96020000 		.4byte	.LASF33
  858 0244 01       		.byte	0x1
  859 0245 A301     		.2byte	0x1a3
  860 0247 6B000000 		.4byte	0x6b
@@ -1457,7 +1457,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  866 0257 76000000 		.4byte	0x76
  867 025b 19010000 		.4byte	.LLST8
  868 025f 14       		.uleb128 0x14
- 869 0260 9D000000 		.4byte	.LASF35
+ 869 0260 A8000000 		.4byte	.LASF35
  870 0264 01       		.byte	0x1
  871 0265 A601     		.2byte	0x1a6
  872 0267 6B000000 		.4byte	0x6b
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  907 0016 0B       		.uleb128 0xb
  908 0017 0B       		.uleb128 0xb
  909 0018 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 26
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 26
 
 
  910 0019 0B       		.uleb128 0xb
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  964 004f 03       		.uleb128 0x3
  965 0050 0E       		.uleb128 0xe
  966 0051 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 27
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 27
 
 
  967 0052 0B       		.uleb128 0xb
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1021 008a 3A       		.uleb128 0x3a
  1022 008b 0B       		.uleb128 0xb
  1023 008c 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 28
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 28
 
 
  1024 008d 0B       		.uleb128 0xb
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1078 00c4 3A       		.uleb128 0x3a
  1079 00c5 0B       		.uleb128 0xb
  1080 00c6 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 29
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 29
 
 
  1081 00c7 05       		.uleb128 0x5
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1135 00fe 49       		.uleb128 0x49
  1136 00ff 13       		.uleb128 0x13
  1137 0100 02       		.uleb128 0x2
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 30
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 30
 
 
  1138 0101 18       		.uleb128 0x18
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1192 013a 0E       		.uleb128 0xe
  1193 013b 3A       		.uleb128 0x3a
  1194 013c 0B       		.uleb128 0xb
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 31
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 31
 
 
  1195 013d 3B       		.uleb128 0x3b
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1249 006a F3       		.byte	0xf3
  1250 006b 01       		.uleb128 0x1
  1251 006c 50       		.byte	0x50
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 32
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 32
 
 
  1252 006d 9F       		.byte	0x9f
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1306 00f4 00000000 		.4byte	0
  1307              	.LLST7:
  1308 00f8 00000000 		.4byte	.LVL23
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 33
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 33
 
 
  1309 00fc 07000000 		.4byte	.LVL24-1
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1363 0004 1C000000 		.4byte	.LFE0
  1364 0008 00000000 		.4byte	.LFB1
  1365 000c 1C000000 		.4byte	.LFE1
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 34
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 34
 
 
  1366 0010 00000000 		.4byte	.LFB2
@@ -2020,193 +2020,193 @@ ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 1
  1393              	.LASF15:
  1394 0025 72656731 		.ascii	"reg16\000"
  1394      3600
- 1395              	.LASF26:
- 1396 002b 4144435F 		.ascii	"ADC_IntClock_GetSourceRegister\000"
- 1396      496E7443 
- 1396      6C6F636B 
- 1396      5F476574 
- 1396      536F7572 
- 1397              	.LASF2:
- 1398 004a 73686F72 		.ascii	"short int\000"
- 1398      7420696E 
- 1398      7400
- 1399              	.LASF38:
- 1400 0054 443A5C70 		.ascii	"D:\\pxc\\robot-car\\car.cydsn\000"
- 1400      78635C72 
- 1400      6F626F74 
- 1400      2D636172 
- 1400      5C636172 
- 1401              	.LASF39:
- 1402 006f 4144435F 		.ascii	"ADC_IntClock_SetSourceRegister\000"
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 35
+ 1395              	.LASF2:
+ 1396 002b 73686F72 		.ascii	"short int\000"
+ 1396      7420696E 
+ 1396      7400
+ 1397              	.LASF26:
+ 1398 0035 4144435F 		.ascii	"ADC_IntClock_GetSourceRegister\000"
+ 1398      496E7443 
+ 1398      6C6F636B 
+ 1398      5F476574 
+ 1398      536F7572 
+ 1399              	.LASF39:
+ 1400 0054 4144435F 		.ascii	"ADC_IntClock_SetSourceRegister\000"
+ 1400      496E7443 
+ 1400      6C6F636B 
+ 1400      5F536574 
+ 1400      536F7572 
+ 1401              	.LASF38:
+ 1402 0073 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car\\car.cydsn\000"
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 35
 
 
- 1402      496E7443 
- 1402      6C6F636B 
- 1402      5F536574 
- 1402      536F7572 
+ 1402      6F626F74 
+ 1402      5C676974 
+ 1402      5F636F64 
+ 1402      655C726F 
  1403              	.LASF10:
- 1404 008e 75696E74 		.ascii	"uint16\000"
+ 1404 0099 75696E74 		.ascii	"uint16\000"
  1404      313600
  1405              	.LASF29:
- 1406 0095 72657374 		.ascii	"restart\000"
+ 1406 00a0 72657374 		.ascii	"restart\000"
  1406      61727400 
  1407              	.LASF35:
- 1408 009d 6F6C6453 		.ascii	"oldSrc\000"
+ 1408 00a8 6F6C6453 		.ascii	"oldSrc\000"
  1408      726300
  1409              	.LASF9:
- 1410 00a4 75696E74 		.ascii	"uint8\000"
+ 1410 00af 75696E74 		.ascii	"uint8\000"
  1410      3800
  1411              	.LASF28:
- 1412 00aa 636C6B44 		.ascii	"clkDivider\000"
+ 1412 00b5 636C6B44 		.ascii	"clkDivider\000"
  1412      69766964 
  1412      657200
  1413              	.LASF23:
- 1414 00b5 4144435F 		.ascii	"ADC_IntClock_ClearModeRegister\000"
+ 1414 00c0 4144435F 		.ascii	"ADC_IntClock_ClearModeRegister\000"
  1414      496E7443 
  1414      6C6F636B 
  1414      5F436C65 
  1414      61724D6F 
  1415              	.LASF17:
- 1416 00d4 4144435F 		.ascii	"ADC_IntClock_Stop\000"
+ 1416 00df 4144435F 		.ascii	"ADC_IntClock_Stop\000"
  1416      496E7443 
  1416      6C6F636B 
  1416      5F53746F 
  1416      7000
  1417              	.LASF11:
- 1418 00e6 666C6F61 		.ascii	"float\000"
+ 1418 00f1 666C6F61 		.ascii	"float\000"
  1418      7400
  1419              	.LASF6:
- 1420 00ec 6C6F6E67 		.ascii	"long long int\000"
+ 1420 00f7 6C6F6E67 		.ascii	"long long int\000"
  1420      206C6F6E 
  1420      6720696E 
  1420      7400
  1421              	.LASF4:
- 1422 00fa 6C6F6E67 		.ascii	"long int\000"
+ 1422 0105 6C6F6E67 		.ascii	"long int\000"
  1422      20696E74 
  1422      00
  1423              	.LASF37:
- 1424 0103 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_IntClock.c\000"
+ 1424 010e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_IntClock.c\000"
  1424      6E657261 
  1424      7465645F 
  1424      536F7572 
  1424      63655C50 
  1425              	.LASF21:
- 1426 012b 73746174 		.ascii	"state\000"
+ 1426 0136 73746174 		.ascii	"state\000"
  1426      6500
  1427              	.LASF1:
- 1428 0131 756E7369 		.ascii	"unsigned char\000"
+ 1428 013c 756E7369 		.ascii	"unsigned char\000"
  1428      676E6564 
  1428      20636861 
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 36
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 36
 
 
  1428      7200
  1429              	.LASF22:
- 1430 013f 6D6F6465 		.ascii	"modeBitMask\000"
+ 1430 014a 6D6F6465 		.ascii	"modeBitMask\000"
  1430      4269744D 
  1430      61736B00 
  1431              	.LASF0:
- 1432 014b 7369676E 		.ascii	"signed char\000"
+ 1432 0156 7369676E 		.ascii	"signed char\000"
  1432      65642063 
  1432      68617200 
  1433              	.LASF7:
- 1434 0157 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1434 0162 6C6F6E67 		.ascii	"long long unsigned int\000"
  1434      206C6F6E 
  1434      6720756E 
  1434      7369676E 
  1434      65642069 
  1435              	.LASF8:
- 1436 016e 756E7369 		.ascii	"unsigned int\000"
+ 1436 0179 756E7369 		.ascii	"unsigned int\000"
  1436      676E6564 
  1436      20696E74 
  1436      00
  1437              	.LASF19:
- 1438 017b 4144435F 		.ascii	"ADC_IntClock_StandbyPower\000"
+ 1438 0186 4144435F 		.ascii	"ADC_IntClock_StandbyPower\000"
  1438      496E7443 
  1438      6C6F636B 
  1438      5F537461 
  1438      6E646279 
  1439              	.LASF27:
- 1440 0195 4144435F 		.ascii	"ADC_IntClock_SetDividerRegister\000"
+ 1440 01a0 4144435F 		.ascii	"ADC_IntClock_SetDividerRegister\000"
  1440      496E7443 
  1440      6C6F636B 
  1440      5F536574 
  1440      44697669 
  1441              	.LASF20:
- 1442 01b5 4144435F 		.ascii	"ADC_IntClock_SetModeRegister\000"
+ 1442 01c0 4144435F 		.ascii	"ADC_IntClock_SetModeRegister\000"
  1442      496E7443 
  1442      6C6F636B 
  1442      5F536574 
  1442      4D6F6465 
  1443              	.LASF3:
- 1444 01d2 73686F72 		.ascii	"short unsigned int\000"
+ 1444 01dd 73686F72 		.ascii	"short unsigned int\000"
  1444      7420756E 
  1444      7369676E 
  1444      65642069 
  1444      6E7400
  1445              	.LASF16:
- 1446 01e5 4144435F 		.ascii	"ADC_IntClock_Start\000"
+ 1446 01f0 4144435F 		.ascii	"ADC_IntClock_Start\000"
  1446      496E7443 
  1446      6C6F636B 
  1446      5F537461 
  1446      727400
  1447              	.LASF13:
- 1448 01f8 63686172 		.ascii	"char\000"
+ 1448 0203 63686172 		.ascii	"char\000"
  1448      00
  1449              	.LASF36:
- 1450 01fd 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1450 0208 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
  1450      4320342E 
  1450      392E3320 
-ARM GAS  C:\Users\li\AppData\Local\Temp\ccfZkjkt.s 			page 37
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccvdRCbh.s 			page 37
 
 
  1450      32303135 
  1450      30333033 
- 1451 0230 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1451 023b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
  1451      20726576 
  1451      6973696F 
  1451      6E203232 
  1451      31323230 
- 1452 0263 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1452 026e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  1452      66756E63 
  1452      74696F6E 
  1452      2D736563 
  1452      74696F6E 
  1453              	.LASF33:
- 1454 028b 636C6B53 		.ascii	"clkSource\000"
+ 1454 0296 636C6B53 		.ascii	"clkSource\000"
  1454      6F757263 
  1454      6500
  1455              	.LASF32:
- 1456 0295 63757272 		.ascii	"currSrc\000"
+ 1456 02a0 63757272 		.ascii	"currSrc\000"
  1456      53726300 
  1457              	.LASF30:
- 1458 029d 6F6C6444 		.ascii	"oldDivider\000"
+ 1458 02a8 6F6C6444 		.ascii	"oldDivider\000"
  1458      69766964 
  1458      657200
  1459              	.LASF14:
- 1460 02a8 72656738 		.ascii	"reg8\000"
+ 1460 02b3 72656738 		.ascii	"reg8\000"
  1460      00
  1461              	.LASF5:
- 1462 02ad 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1462 02b8 6C6F6E67 		.ascii	"long unsigned int\000"
  1462      20756E73 
  1462      69676E65 
  1462      6420696E 
  1462      7400
  1463              	.LASF12:
- 1464 02bf 646F7562 		.ascii	"double\000"
+ 1464 02ca 646F7562 		.ascii	"double\000"
  1464      6C6500
  1465              	.LASF31:
- 1466 02c6 656E6162 		.ascii	"enabled\000"
+ 1466 02d1 656E6162 		.ascii	"enabled\000"
  1466      6C656400 
  1467              	.LASF18:
- 1468 02ce 4144435F 		.ascii	"ADC_IntClock_StopBlock\000"
+ 1468 02d9 4144435F 		.ascii	"ADC_IntClock_StopBlock\000"
  1468      496E7443 
  1468      6C6F636B 
  1468      5F53746F 
  1468      70426C6F 
  1469              	.LASF24:
- 1470 02e5 4144435F 		.ascii	"ADC_IntClock_GetDividerRegister\000"
+ 1470 02f0 4144435F 		.ascii	"ADC_IntClock_GetDividerRegister\000"
  1470      496E7443 
  1470      6C6F636B 
  1470      5F476574 

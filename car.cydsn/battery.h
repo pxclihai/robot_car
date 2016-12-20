@@ -24,6 +24,6 @@ int16 D_V;
 int16 P_V;
 int16 Get_Battery_ADvalue(uint8 channal);
 void Monitor_Battery_Init();
-
+void Cal_Battery_loop();
 #endif
 /* [] END OF FILE */

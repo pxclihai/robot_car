@@ -1,0 +1,2223 @@
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"QuadDec_1_Cnt8.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.QuadDec_1_Cnt8_Enable,"ax",%progbits
+  19              		.align	2
+  20              		.global	QuadDec_1_Cnt8_Enable
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	QuadDec_1_Cnt8_Enable, %function
+  24              	QuadDec_1_Cnt8_Enable:
+  25              	.LFB1:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\QuadDec_1_Cnt8.c"
+   1:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * File Name: QuadDec_1_Cnt8.c  
+   3:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+   5:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  Description:
+   6:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *     The Counter component consists of a 8, 16, 24 or 32-bit counter with
+   7:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *     a selectable period between 2 and 2^Width - 1.  
+   8:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+   9:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   Note:
+  10:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *     None
+  11:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+  12:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+  19:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #include "QuadDec_1_Cnt8.h"
+  20:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+  21:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8 QuadDec_1_Cnt8_initVar = 0u;
+  22:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+  23:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+  24:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_Init
+  26:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+  28:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *     Initialize to the schematic state
+  29:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * 
+  30:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+  31:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void  
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+  33:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+  34:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+  35:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+  36:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_Init(void) 
+  38:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+  39:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (!QuadDec_1_Cnt8_UsingFixedFunction && !QuadDec_1_Cnt8_ControlRegRemoved)
+  40:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             uint8 ctrl;
+  41:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!QuadDec_1_Cnt8_UsingFixedFunction && !QuadDec_1_Cnt8_ControlRegRemoved) */
+  42:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+  43:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if(!QuadDec_1_Cnt8_UsingFixedFunction) 
+  44:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Interrupt State Backup for Critical Region*/
+  45:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             uint8 QuadDec_1_Cnt8_interruptState;
+  46:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!QuadDec_1_Cnt8_UsingFixedFunction) */
+  47:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+  48:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (QuadDec_1_Cnt8_UsingFixedFunction)
+  49:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Clear all bits but the enable bit (if it's already set for Timer operation */
+  50:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_CONTROL &= QuadDec_1_Cnt8_CTRL_ENABLE;
+  51:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+  52:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Clear the mode bits for continuous run mode */
+  53:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #if (CY_PSOC5A)
+  54:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                 QuadDec_1_Cnt8_CONTROL2 &= ((uint8)(~QuadDec_1_Cnt8_CTRL_MODE_MASK));
+  55:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #endif /* (CY_PSOC5A) */
+  56:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  57:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                 QuadDec_1_Cnt8_CONTROL3 &= ((uint8)(~QuadDec_1_Cnt8_CTRL_MODE_MASK));              
+  58:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+  59:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Check if One Shot mode is enabled i.e. RunMode !=0*/
+  60:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #if (QuadDec_1_Cnt8_RunModeUsed != 0x0u)
+  61:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                 /* Set 3rd bit of Control register to enable one shot mode */
+  62:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                 QuadDec_1_Cnt8_CONTROL |= QuadDec_1_Cnt8_ONESHOT;
+  63:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #endif /* (QuadDec_1_Cnt8_RunModeUsed != 0x0u) */
+  64:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+  65:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Set the IRQ to use the status register interrupts */
+  66:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_CONTROL2 |= QuadDec_1_Cnt8_CTRL2_IRQ_SEL;
+  67:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+  68:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+  69:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_RT1 &= ((uint8)(~QuadDec_1_Cnt8_RT1_MASK));
+  70:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_RT1 |= QuadDec_1_Cnt8_SYNC;     
+  71:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                     
+  72:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /*Enable DSI Sync all all inputs of the Timer*/
+  73:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_RT1 &= ((uint8)(~QuadDec_1_Cnt8_SYNCDSI_MASK));
+  74:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_RT1 |= QuadDec_1_Cnt8_SYNCDSI_EN;
+  75:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+  76:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #else
+  77:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #if(!QuadDec_1_Cnt8_ControlRegRemoved)
+  78:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Set the default compare mode defined in the parameter */
+  79:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             ctrl = QuadDec_1_Cnt8_CONTROL & ((uint8)(~QuadDec_1_Cnt8_CTRL_CMPMODE_MASK));
+  80:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_CONTROL = ctrl | QuadDec_1_Cnt8_DEFAULT_COMPARE_MODE;
+  81:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+  82:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Set the default capture mode defined in the parameter */
+  83:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             ctrl = QuadDec_1_Cnt8_CONTROL & ((uint8)(~QuadDec_1_Cnt8_CTRL_CAPMODE_MASK));
+  84:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+  85:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #if( 0 != QuadDec_1_Cnt8_CAPTURE_MODE_CONF)
+  86:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                 QuadDec_1_Cnt8_CONTROL = ctrl | QuadDec_1_Cnt8_DEFAULT_CAPTURE_MODE;
+  87:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #else
+  88:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                 QuadDec_1_Cnt8_CONTROL = ctrl;
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #endif /* 0 != QuadDec_1_Cnt8_CAPTURE_MODE */ 
+  90:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+  91:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #endif /* (!QuadDec_1_Cnt8_ControlRegRemoved) */
+  92:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+  93:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+  94:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         /* Clear all data in the FIFO's */
+  95:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (!QuadDec_1_Cnt8_UsingFixedFunction)
+  96:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_ClearFIFO();
+  97:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!QuadDec_1_Cnt8_UsingFixedFunction) */
+  98:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+  99:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         /* Set Initial values from Configuration */
+ 100:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_WritePeriod(QuadDec_1_Cnt8_INIT_PERIOD_VALUE);
+ 101:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (!(QuadDec_1_Cnt8_UsingFixedFunction && (CY_PSOC5A)))
+ 102:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_WriteCounter(QuadDec_1_Cnt8_INIT_COUNTER_VALUE);
+ 103:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!(QuadDec_1_Cnt8_UsingFixedFunction && (CY_PSOC5A))) */
+ 104:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_SetInterruptMode(QuadDec_1_Cnt8_INIT_INTERRUPTS_MASK);
+ 105:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+ 106:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (!QuadDec_1_Cnt8_UsingFixedFunction)
+ 107:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Read the status register to clear the unwanted interrupts */
+ 108:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             (void)QuadDec_1_Cnt8_ReadStatusRegister();
+ 109:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Set the compare value (only available to non-fixed function implementation */
+ 110:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_WriteCompare(QuadDec_1_Cnt8_INIT_COMPARE_VALUE);
+ 111:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 112:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 113:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 114:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Enter Critical Region*/
+ 115:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_interruptState = CyEnterCriticalSection();
+ 116:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 117:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_STATUS_AUX_CTRL |= QuadDec_1_Cnt8_STATUS_ACTL_INT_EN_MASK;
+ 118:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 119:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Exit Critical Region*/
+ 120:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             CyExitCriticalSection(QuadDec_1_Cnt8_interruptState);
+ 121:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 122:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!QuadDec_1_Cnt8_UsingFixedFunction) */
+ 123:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 124:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 125:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 126:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 127:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_Enable
+ 128:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 129:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 130:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *     Enable the Counter
+ 131:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * 
+ 132:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 133:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void  
+ 134:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 135:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 136:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 137:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 138:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Side Effects: 
+ 139:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   If the Enable mode is set to Hardware only then this function has no effect 
+ 140:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   on the operation of the counter.
+ 141:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 142:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 143:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_Enable(void) 
+ 144:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+  27              		.loc 1 144 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 4
+
+
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+ 145:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 146:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if (QuadDec_1_Cnt8_UsingFixedFunction)
+ 147:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_GLOBAL_ENABLE |= QuadDec_1_Cnt8_BLOCK_EN_MASK;
+ 148:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_GLOBAL_STBY_ENABLE |= QuadDec_1_Cnt8_BLOCK_STBY_EN_MASK;
+ 149:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */  
+ 150:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+ 151:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Enable the counter from the control register  */
+ 152:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* If Fixed Function then make sure Mode is set correctly */
+ 153:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* else make sure reset is clear */
+ 154:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(!QuadDec_1_Cnt8_ControlRegRemoved || QuadDec_1_Cnt8_UsingFixedFunction)
+ 155:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_CONTROL |= QuadDec_1_Cnt8_CTRL_ENABLE;                
+  32              		.loc 1 155 0
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  35 0004 43F08003 		orr	r3, r3, #128
+  36 0008 1370     		strb	r3, [r2]
+  37 000a 7047     		bx	lr
+  38              	.L3:
+  39              		.align	2
+  40              	.L2:
+  41 000c 78650040 		.word	1073767800
+  42              		.cfi_endproc
+  43              	.LFE1:
+  44              		.size	QuadDec_1_Cnt8_Enable, .-QuadDec_1_Cnt8_Enable
+  45              		.section	.text.QuadDec_1_Cnt8_Stop,"ax",%progbits
+  46              		.align	2
+  47              		.global	QuadDec_1_Cnt8_Stop
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	QuadDec_1_Cnt8_Stop, %function
+  51              	QuadDec_1_Cnt8_Stop:
+  52              	.LFB3:
+ 156:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (!QuadDec_1_Cnt8_ControlRegRemoved || QuadDec_1_Cnt8_UsingFixedFunction) */
+ 157:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     
+ 158:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 159:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 160:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 161:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 162:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_Start
+ 163:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 164:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 165:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  Enables the counter for operation 
+ 166:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 167:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 168:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void  
+ 169:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 170:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 171:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 172:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 173:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Global variables:
+ 174:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  QuadDec_1_Cnt8_initVar: Is modified when this function is called for the  
+ 175:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   first time. Is used to ensure that initialization happens only once.
+ 176:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 5
+
+
+ 177:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 178:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_Start(void) 
+ 179:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 180:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     if(QuadDec_1_Cnt8_initVar == 0u)
+ 181:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     {
+ 182:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_Init();
+ 183:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+ 184:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_initVar = 1u; /* Clear this bit for Initialization */        
+ 185:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     }
+ 186:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     
+ 187:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Enable the Counter */
+ 188:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_Enable();        
+ 189:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 190:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 191:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 192:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 193:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_Stop
+ 194:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 195:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 196:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Halts the counter, but does not change any modes or disable interrupts.
+ 197:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 198:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 199:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void  
+ 200:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 201:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 202:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 203:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 204:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Side Effects: If the Enable mode is set to Hardware only then this function
+ 205:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *               has no effect on the operation of the counter.
+ 206:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 207:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 208:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_Stop(void) 
+ 209:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+  53              		.loc 1 209 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+ 210:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Disable Counter */
+ 211:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(!QuadDec_1_Cnt8_ControlRegRemoved || QuadDec_1_Cnt8_UsingFixedFunction)
+ 212:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_CONTROL &= ((uint8)(~QuadDec_1_Cnt8_CTRL_ENABLE));        
+  58              		.loc 1 212 0
+  59 0000 024A     		ldr	r2, .L5
+  60 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  61 0004 03F07F03 		and	r3, r3, #127
+  62 0008 1370     		strb	r3, [r2]
+  63 000a 7047     		bx	lr
+  64              	.L6:
+  65              		.align	2
+  66              	.L5:
+  67 000c 78650040 		.word	1073767800
+  68              		.cfi_endproc
+  69              	.LFE3:
+  70              		.size	QuadDec_1_Cnt8_Stop, .-QuadDec_1_Cnt8_Stop
+  71              		.section	.text.QuadDec_1_Cnt8_SetInterruptMode,"ax",%progbits
+  72              		.align	2
+  73              		.global	QuadDec_1_Cnt8_SetInterruptMode
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 6
+
+
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	QuadDec_1_Cnt8_SetInterruptMode, %function
+  77              	QuadDec_1_Cnt8_SetInterruptMode:
+  78              	.LFB4:
+ 213:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (!QuadDec_1_Cnt8_ControlRegRemoved || QuadDec_1_Cnt8_UsingFixedFunction) */
+ 214:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     
+ 215:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Globally disable the Fixed Function Block chosen */
+ 216:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if (QuadDec_1_Cnt8_UsingFixedFunction)
+ 217:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_GLOBAL_ENABLE &= ((uint8)(~QuadDec_1_Cnt8_BLOCK_EN_MASK));
+ 218:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_GLOBAL_STBY_ENABLE &= ((uint8)(~QuadDec_1_Cnt8_BLOCK_STBY_EN_MASK));
+ 219:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 220:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 221:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 222:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 223:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 224:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_SetInterruptMode
+ 225:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 226:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 227:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Configures which interrupt sources are enabled to generate the final interrupt
+ 228:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 229:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 230:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  InterruptsMask: This parameter is an or'd collection of the status bits
+ 231:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *                   which will be allowed to generate the counters interrupt.   
+ 232:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 233:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 234:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 235:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 236:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 237:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_SetInterruptMode(uint8 interruptsMask) 
+ 238:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+  79              		.loc 1 238 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84              	.LVL0:
+ 239:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_STATUS_MASK = interruptsMask;
+  85              		.loc 1 239 0
+  86 0000 014B     		ldr	r3, .L8
+  87 0002 1870     		strb	r0, [r3]
+  88 0004 7047     		bx	lr
+  89              	.L9:
+  90 0006 00BF     		.align	2
+  91              	.L8:
+  92 0008 88650040 		.word	1073767816
+  93              		.cfi_endproc
+  94              	.LFE4:
+  95              		.size	QuadDec_1_Cnt8_SetInterruptMode, .-QuadDec_1_Cnt8_SetInterruptMode
+  96              		.section	.text.QuadDec_1_Cnt8_ReadStatusRegister,"ax",%progbits
+  97              		.align	2
+  98              		.global	QuadDec_1_Cnt8_ReadStatusRegister
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	QuadDec_1_Cnt8_ReadStatusRegister, %function
+ 102              	QuadDec_1_Cnt8_ReadStatusRegister:
+ 103              	.LFB5:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 7
+
+
+ 240:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 241:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 242:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 243:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 244:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ReadStatusRegister
+ 245:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 246:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 247:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   Reads the status register and returns it's state. This function should use
+ 248:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *       defined types for the bit-field information as the bits in this
+ 249:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *       register may be permuteable.
+ 250:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 251:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 252:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 253:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 254:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 255:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) The contents of the status register
+ 256:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 257:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Side Effects:
+ 258:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   Status register bits may be clear on read. 
+ 259:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 260:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 261:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8   QuadDec_1_Cnt8_ReadStatusRegister(void) 
+ 262:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 104              		.loc 1 262 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              		@ link register save eliminated.
+ 263:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     return QuadDec_1_Cnt8_STATUS;
+ 109              		.loc 1 263 0
+ 110 0000 014B     		ldr	r3, .L11
+ 111 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 264:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 112              		.loc 1 264 0
+ 113 0004 7047     		bx	lr
+ 114              	.L12:
+ 115 0006 00BF     		.align	2
+ 116              	.L11:
+ 117 0008 68650040 		.word	1073767784
+ 118              		.cfi_endproc
+ 119              	.LFE5:
+ 120              		.size	QuadDec_1_Cnt8_ReadStatusRegister, .-QuadDec_1_Cnt8_ReadStatusRegister
+ 121              		.section	.text.QuadDec_1_Cnt8_ReadControlRegister,"ax",%progbits
+ 122              		.align	2
+ 123              		.global	QuadDec_1_Cnt8_ReadControlRegister
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.type	QuadDec_1_Cnt8_ReadControlRegister, %function
+ 127              	QuadDec_1_Cnt8_ReadControlRegister:
+ 128              	.LFB6:
+ 265:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 266:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 267:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #if(!QuadDec_1_Cnt8_ControlRegRemoved)
+ 268:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 269:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ReadControlRegister
+ 270:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 271:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 8
+
+
+ 272:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   Reads the control register and returns it's state. This function should use
+ 273:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *       defined types for the bit-field information as the bits in this
+ 274:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *       register may be permuteable.
+ 275:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 276:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 277:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 278:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 279:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 280:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) The contents of the control register
+ 281:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 282:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 283:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8   QuadDec_1_Cnt8_ReadControlRegister(void) 
+ 284:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 129              		.loc 1 284 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+ 285:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     return QuadDec_1_Cnt8_CONTROL;
+ 134              		.loc 1 285 0
+ 135 0000 014B     		ldr	r3, .L14
+ 136 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 286:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 137              		.loc 1 286 0
+ 138 0004 7047     		bx	lr
+ 139              	.L15:
+ 140 0006 00BF     		.align	2
+ 141              	.L14:
+ 142 0008 78650040 		.word	1073767800
+ 143              		.cfi_endproc
+ 144              	.LFE6:
+ 145              		.size	QuadDec_1_Cnt8_ReadControlRegister, .-QuadDec_1_Cnt8_ReadControlRegister
+ 146              		.section	.text.QuadDec_1_Cnt8_WriteControlRegister,"ax",%progbits
+ 147              		.align	2
+ 148              		.global	QuadDec_1_Cnt8_WriteControlRegister
+ 149              		.thumb
+ 150              		.thumb_func
+ 151              		.type	QuadDec_1_Cnt8_WriteControlRegister, %function
+ 152              	QuadDec_1_Cnt8_WriteControlRegister:
+ 153              	.LFB7:
+ 287:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 288:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 289:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 290:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_WriteControlRegister
+ 291:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 292:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 293:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   Sets the bit-field of the control register.  This function should use
+ 294:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *       defined types for the bit-field information as the bits in this
+ 295:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *       register may be permuteable.
+ 296:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 297:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 298:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 299:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 300:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 301:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) The contents of the control register
+ 302:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 303:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 9
+
+
+ 304:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void    QuadDec_1_Cnt8_WriteControlRegister(uint8 control) 
+ 305:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 154              		.loc 1 305 0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 0
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		@ link register save eliminated.
+ 159              	.LVL1:
+ 306:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_CONTROL = control;
+ 160              		.loc 1 306 0
+ 161 0000 014B     		ldr	r3, .L17
+ 162 0002 1870     		strb	r0, [r3]
+ 163 0004 7047     		bx	lr
+ 164              	.L18:
+ 165 0006 00BF     		.align	2
+ 166              	.L17:
+ 167 0008 78650040 		.word	1073767800
+ 168              		.cfi_endproc
+ 169              	.LFE7:
+ 170              		.size	QuadDec_1_Cnt8_WriteControlRegister, .-QuadDec_1_Cnt8_WriteControlRegister
+ 171              		.section	.text.QuadDec_1_Cnt8_WriteCounter,"ax",%progbits
+ 172              		.align	2
+ 173              		.global	QuadDec_1_Cnt8_WriteCounter
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.type	QuadDec_1_Cnt8_WriteCounter, %function
+ 177              	QuadDec_1_Cnt8_WriteCounter:
+ 178              	.LFB8:
+ 307:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 308:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 309:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #endif  /* (!QuadDec_1_Cnt8_ControlRegRemoved) */
+ 310:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 311:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 312:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #if (!(QuadDec_1_Cnt8_UsingFixedFunction && (CY_PSOC5A)))
+ 313:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 314:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_WriteCounter
+ 315:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 316:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 317:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   This funtion is used to set the counter to a specific value
+ 318:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 319:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 320:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  counter:  New counter value. 
+ 321:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 322:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 323:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void 
+ 324:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 325:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 326:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_WriteCounter(uint8 counter) \
+ 327:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                                    
+ 328:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 179              		.loc 1 328 0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 184              	.LVL2:
+ 329:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 10
+
+
+ 330:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         /* assert if block is already enabled */
+ 331:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CYASSERT (0u == (QuadDec_1_Cnt8_GLOBAL_ENABLE & QuadDec_1_Cnt8_BLOCK_EN_MASK));
+ 332:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         /* If block is disabled, enable it and then write the counter */
+ 333:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_GLOBAL_ENABLE |= QuadDec_1_Cnt8_BLOCK_EN_MASK;
+ 334:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CY_SET_REG16(QuadDec_1_Cnt8_COUNTER_LSB_PTR, (uint16)counter);
+ 335:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         QuadDec_1_Cnt8_GLOBAL_ENABLE &= ((uint8)(~QuadDec_1_Cnt8_BLOCK_EN_MASK));
+ 336:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #else
+ 337:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CY_SET_REG8(QuadDec_1_Cnt8_COUNTER_LSB_PTR, counter);
+ 185              		.loc 1 337 0
+ 186 0000 014B     		ldr	r3, .L20
+ 187 0002 1870     		strb	r0, [r3]
+ 188 0004 7047     		bx	lr
+ 189              	.L21:
+ 190 0006 00BF     		.align	2
+ 191              	.L20:
+ 192 0008 08650040 		.word	1073767688
+ 193              		.cfi_endproc
+ 194              	.LFE8:
+ 195              		.size	QuadDec_1_Cnt8_WriteCounter, .-QuadDec_1_Cnt8_WriteCounter
+ 196              		.section	.text.QuadDec_1_Cnt8_ReadCounter,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	QuadDec_1_Cnt8_ReadCounter
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.type	QuadDec_1_Cnt8_ReadCounter, %function
+ 202              	QuadDec_1_Cnt8_ReadCounter:
+ 203              	.LFB9:
+ 338:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 339:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 340:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #endif /* (!(QuadDec_1_Cnt8_UsingFixedFunction && (CY_PSOC5A))) */
+ 341:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 342:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 343:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 344:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ReadCounter
+ 345:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 346:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 347:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Returns the current value of the counter.  It doesn't matter
+ 348:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * if the counter is enabled or running.
+ 349:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 350:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 351:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void:  
+ 352:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 353:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 354:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) The present value of the counter.
+ 355:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 356:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 357:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8 QuadDec_1_Cnt8_ReadCounter(void) 
+ 358:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 204              		.loc 1 358 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 359:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Force capture by reading Accumulator */
+ 360:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Must first do a software capture to be able to read the counter */
+ 361:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 362:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 11
+
+
+ 363:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 		(void)CY_GET_REG16(QuadDec_1_Cnt8_COUNTER_LSB_PTR);
+ 364:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 	#else
+ 365:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 		(void)CY_GET_REG8(QuadDec_1_Cnt8_COUNTER_LSB_PTR_8BIT);
+ 209              		.loc 1 365 0
+ 210 0000 024B     		ldr	r3, .L23
+ 211 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 366:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 	#endif/* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 367:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     
+ 368:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
+ 369:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ 370:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         return ((uint8)CY_GET_REG16(QuadDec_1_Cnt8_STATICCOUNT_LSB_PTR));
+ 371:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #else
+ 372:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         return (CY_GET_REG8(QuadDec_1_Cnt8_STATICCOUNT_LSB_PTR));
+ 212              		.loc 1 372 0
+ 213 0004 024B     		ldr	r3, .L23+4
+ 214 0006 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 373:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 374:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 215              		.loc 1 374 0
+ 216 0008 7047     		bx	lr
+ 217              	.L24:
+ 218 000a 00BF     		.align	2
+ 219              	.L23:
+ 220 000c 08650040 		.word	1073767688
+ 221 0010 48650040 		.word	1073767752
+ 222              		.cfi_endproc
+ 223              	.LFE9:
+ 224              		.size	QuadDec_1_Cnt8_ReadCounter, .-QuadDec_1_Cnt8_ReadCounter
+ 225              		.section	.text.QuadDec_1_Cnt8_ReadCapture,"ax",%progbits
+ 226              		.align	2
+ 227              		.global	QuadDec_1_Cnt8_ReadCapture
+ 228              		.thumb
+ 229              		.thumb_func
+ 230              		.type	QuadDec_1_Cnt8_ReadCapture, %function
+ 231              	QuadDec_1_Cnt8_ReadCapture:
+ 232              	.LFB10:
+ 375:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 376:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 377:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 378:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ReadCapture
+ 379:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 380:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 381:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   This function returns the last value captured.
+ 382:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 383:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 384:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 385:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 386:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 387:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) Present Capture value.
+ 388:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 389:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 390:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8 QuadDec_1_Cnt8_ReadCapture(void) 
+ 391:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 233              		.loc 1 391 0
+ 234              		.cfi_startproc
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 12
+
+
+ 237              		@ link register save eliminated.
+ 392:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ 393:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         return ((uint8)CY_GET_REG16(QuadDec_1_Cnt8_STATICCOUNT_LSB_PTR));
+ 394:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #else
+ 395:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         return (CY_GET_REG8(QuadDec_1_Cnt8_STATICCOUNT_LSB_PTR));
+ 238              		.loc 1 395 0
+ 239 0000 014B     		ldr	r3, .L26
+ 240 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 396:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 397:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 241              		.loc 1 397 0
+ 242 0004 7047     		bx	lr
+ 243              	.L27:
+ 244 0006 00BF     		.align	2
+ 245              	.L26:
+ 246 0008 48650040 		.word	1073767752
+ 247              		.cfi_endproc
+ 248              	.LFE10:
+ 249              		.size	QuadDec_1_Cnt8_ReadCapture, .-QuadDec_1_Cnt8_ReadCapture
+ 250              		.section	.text.QuadDec_1_Cnt8_WritePeriod,"ax",%progbits
+ 251              		.align	2
+ 252              		.global	QuadDec_1_Cnt8_WritePeriod
+ 253              		.thumb
+ 254              		.thumb_func
+ 255              		.type	QuadDec_1_Cnt8_WritePeriod, %function
+ 256              	QuadDec_1_Cnt8_WritePeriod:
+ 257              	.LFB11:
+ 398:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 399:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 400:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 401:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_WritePeriod
+ 402:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 403:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 404:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Changes the period of the counter.  The new period 
+ 405:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * will be loaded the next time terminal count is detected.
+ 406:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 407:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 408:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  period: (uint8) A value of 0 will result in
+ 409:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *         the counter remaining at zero.  
+ 410:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 411:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 412:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 413:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 414:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 415:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_WritePeriod(uint8 period) 
+ 416:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 258              		.loc 1 416 0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 0
+ 261              		@ frame_needed = 0, uses_anonymous_args = 0
+ 262              		@ link register save eliminated.
+ 263              	.LVL3:
+ 417:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ 418:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CY_SET_REG16(QuadDec_1_Cnt8_PERIOD_LSB_PTR,(uint16)period);
+ 419:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #else
+ 420:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CY_SET_REG8(QuadDec_1_Cnt8_PERIOD_LSB_PTR, period);
+ 264              		.loc 1 420 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 13
+
+
+ 265 0000 014B     		ldr	r3, .L29
+ 266 0002 1870     		strb	r0, [r3]
+ 267 0004 7047     		bx	lr
+ 268              	.L30:
+ 269 0006 00BF     		.align	2
+ 270              	.L29:
+ 271 0008 28650040 		.word	1073767720
+ 272              		.cfi_endproc
+ 273              	.LFE11:
+ 274              		.size	QuadDec_1_Cnt8_WritePeriod, .-QuadDec_1_Cnt8_WritePeriod
+ 275              		.section	.text.QuadDec_1_Cnt8_ReadPeriod,"ax",%progbits
+ 276              		.align	2
+ 277              		.global	QuadDec_1_Cnt8_ReadPeriod
+ 278              		.thumb
+ 279              		.thumb_func
+ 280              		.type	QuadDec_1_Cnt8_ReadPeriod, %function
+ 281              	QuadDec_1_Cnt8_ReadPeriod:
+ 282              	.LFB12:
+ 421:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 422:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 423:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 424:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 425:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 426:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ReadPeriod
+ 427:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 428:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 429:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Reads the current period value without affecting counter operation.
+ 430:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 431:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 432:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void:  
+ 433:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 434:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 435:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) Present period value.
+ 436:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 437:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 438:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8 QuadDec_1_Cnt8_ReadPeriod(void) 
+ 439:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 283              		.loc 1 439 0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287              		@ link register save eliminated.
+ 440:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ 441:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         return ((uint8)CY_GET_REG16(QuadDec_1_Cnt8_PERIOD_LSB_PTR));
+ 442:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #else
+ 443:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         return (CY_GET_REG8(QuadDec_1_Cnt8_PERIOD_LSB_PTR));
+ 288              		.loc 1 443 0
+ 289 0000 014B     		ldr	r3, .L32
+ 290 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 444:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 445:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 291              		.loc 1 445 0
+ 292 0004 7047     		bx	lr
+ 293              	.L33:
+ 294 0006 00BF     		.align	2
+ 295              	.L32:
+ 296 0008 28650040 		.word	1073767720
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 14
+
+
+ 297              		.cfi_endproc
+ 298              	.LFE12:
+ 299              		.size	QuadDec_1_Cnt8_ReadPeriod, .-QuadDec_1_Cnt8_ReadPeriod
+ 300              		.section	.text.QuadDec_1_Cnt8_WriteCompare,"ax",%progbits
+ 301              		.align	2
+ 302              		.global	QuadDec_1_Cnt8_WriteCompare
+ 303              		.thumb
+ 304              		.thumb_func
+ 305              		.type	QuadDec_1_Cnt8_WriteCompare, %function
+ 306              	QuadDec_1_Cnt8_WriteCompare:
+ 307              	.LFB13:
+ 446:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 447:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 448:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #if (!QuadDec_1_Cnt8_UsingFixedFunction)
+ 449:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 450:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_WriteCompare
+ 451:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 452:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 453:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Changes the compare value.  The compare output will 
+ 454:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * reflect the new value on the next UDB clock.  The compare output will be 
+ 455:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * driven high when the present counter value compares true based on the 
+ 456:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * configured compare mode setting. 
+ 457:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 458:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 459:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  Compare:  New compare value. 
+ 460:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 461:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 462:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 463:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 464:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 465:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_WriteCompare(uint8 compare) \
+ 466:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****                                    
+ 467:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 308              		.loc 1 467 0
+ 309              		.cfi_startproc
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 312              		@ link register save eliminated.
+ 313              	.LVL4:
+ 468:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #if(QuadDec_1_Cnt8_UsingFixedFunction)
+ 469:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CY_SET_REG16(QuadDec_1_Cnt8_COMPARE_LSB_PTR, (uint16)compare);
+ 470:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #else
+ 471:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         CY_SET_REG8(QuadDec_1_Cnt8_COMPARE_LSB_PTR, compare);
+ 314              		.loc 1 471 0
+ 315 0000 014B     		ldr	r3, .L35
+ 316 0002 1870     		strb	r0, [r3]
+ 317 0004 7047     		bx	lr
+ 318              	.L36:
+ 319 0006 00BF     		.align	2
+ 320              	.L35:
+ 321 0008 38650040 		.word	1073767736
+ 322              		.cfi_endproc
+ 323              	.LFE13:
+ 324              		.size	QuadDec_1_Cnt8_WriteCompare, .-QuadDec_1_Cnt8_WriteCompare
+ 325              		.section	.text.QuadDec_1_Cnt8_ReadCompare,"ax",%progbits
+ 326              		.align	2
+ 327              		.global	QuadDec_1_Cnt8_ReadCompare
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 15
+
+
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.type	QuadDec_1_Cnt8_ReadCompare, %function
+ 331              	QuadDec_1_Cnt8_ReadCompare:
+ 332              	.LFB14:
+ 472:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     #endif /* (QuadDec_1_Cnt8_UsingFixedFunction) */
+ 473:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 474:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 475:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 476:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 477:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ReadCompare
+ 478:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 479:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 480:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Returns the compare value.
+ 481:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 482:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 483:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void:
+ 484:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 485:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 486:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  (uint8) Present compare value.
+ 487:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 488:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 489:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** uint8 QuadDec_1_Cnt8_ReadCompare(void) 
+ 490:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 333              		.loc 1 490 0
+ 334              		.cfi_startproc
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 337              		@ link register save eliminated.
+ 491:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     return (CY_GET_REG8(QuadDec_1_Cnt8_COMPARE_LSB_PTR));
+ 338              		.loc 1 491 0
+ 339 0000 014B     		ldr	r3, .L38
+ 340 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 492:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 341              		.loc 1 492 0
+ 342 0004 7047     		bx	lr
+ 343              	.L39:
+ 344 0006 00BF     		.align	2
+ 345              	.L38:
+ 346 0008 38650040 		.word	1073767736
+ 347              		.cfi_endproc
+ 348              	.LFE14:
+ 349              		.size	QuadDec_1_Cnt8_ReadCompare, .-QuadDec_1_Cnt8_ReadCompare
+ 350              		.section	.text.QuadDec_1_Cnt8_ClearFIFO,"ax",%progbits
+ 351              		.align	2
+ 352              		.global	QuadDec_1_Cnt8_ClearFIFO
+ 353              		.thumb
+ 354              		.thumb_func
+ 355              		.type	QuadDec_1_Cnt8_ClearFIFO, %function
+ 356              	QuadDec_1_Cnt8_ClearFIFO:
+ 357              	.LFB15:
+ 493:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 494:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 495:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #if (QuadDec_1_Cnt8_COMPARE_MODE_SOFTWARE)
+ 496:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 497:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_SetCompareMode
+ 498:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 16
+
+
+ 499:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 500:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  Sets the software controlled Compare Mode.
+ 501:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 502:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:
+ 503:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  compareMode:  Compare Mode Enumerated Type.
+ 504:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 505:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return:
+ 506:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 507:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 508:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 509:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_SetCompareMode(uint8 compareMode) 
+ 510:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 511:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Clear the compare mode bits in the control register */
+ 512:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_CONTROL &= ((uint8)(~QuadDec_1_Cnt8_CTRL_CMPMODE_MASK));
+ 513:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     
+ 514:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Write the new setting */
+ 515:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_CONTROL |= compareMode;
+ 516:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 517:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #endif  /* (QuadDec_1_Cnt8_COMPARE_MODE_SOFTWARE) */
+ 518:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 519:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 520:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #if (QuadDec_1_Cnt8_CAPTURE_MODE_SOFTWARE)
+ 521:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 522:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_SetCaptureMode
+ 523:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 524:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 525:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  Sets the software controlled Capture Mode.
+ 526:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 527:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:
+ 528:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  captureMode:  Capture Mode Enumerated Type.
+ 529:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 530:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return:
+ 531:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void
+ 532:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 533:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 534:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_SetCaptureMode(uint8 captureMode) 
+ 535:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 536:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Clear the capture mode bits in the control register */
+ 537:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_CONTROL &= ((uint8)(~QuadDec_1_Cnt8_CTRL_CAPMODE_MASK));
+ 538:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     
+ 539:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     /* Write the new setting */
+ 540:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     QuadDec_1_Cnt8_CONTROL |= ((uint8)((uint8)captureMode << QuadDec_1_Cnt8_CTRL_CAPMODE0_SHIFT));
+ 541:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 542:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** #endif  /* (QuadDec_1_Cnt8_CAPTURE_MODE_SOFTWARE) */
+ 543:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 544:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 545:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** /*******************************************************************************
+ 546:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Function Name: QuadDec_1_Cnt8_ClearFIFO
+ 547:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** ********************************************************************************
+ 548:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Summary:
+ 549:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *   This function clears all capture data from the capture FIFO
+ 550:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 551:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Parameters:  
+ 552:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  void:
+ 553:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 554:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** * Return: 
+ 555:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *  None
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 17
+
+
+ 556:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *
+ 557:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** *******************************************************************************/
+ 558:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** void QuadDec_1_Cnt8_ClearFIFO(void) 
+ 559:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** {
+ 358              		.loc 1 559 0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362 0000 08B5     		push	{r3, lr}
+ 363              		.cfi_def_cfa_offset 8
+ 364              		.cfi_offset 3, -8
+ 365              		.cfi_offset 14, -4
+ 560:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 561:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     while(0u != (QuadDec_1_Cnt8_ReadStatusRegister() & QuadDec_1_Cnt8_STATUS_FIFONEMP))
+ 366              		.loc 1 561 0
+ 367 0002 01E0     		b	.L41
+ 368              	.L42:
+ 562:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     {
+ 563:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         (void)QuadDec_1_Cnt8_ReadCapture();
+ 369              		.loc 1 563 0
+ 370 0004 FFF7FEFF 		bl	QuadDec_1_Cnt8_ReadCapture
+ 371              	.LVL5:
+ 372              	.L41:
+ 561:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     {
+ 373              		.loc 1 561 0
+ 374 0008 FFF7FEFF 		bl	QuadDec_1_Cnt8_ReadStatusRegister
+ 375              	.LVL6:
+ 376 000c 10F0400F 		tst	r0, #64
+ 377 0010 F8D1     		bne	.L42
+ 564:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     }
+ 565:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** 
+ 566:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 378              		.loc 1 566 0
+ 379 0012 08BD     		pop	{r3, pc}
+ 380              		.cfi_endproc
+ 381              	.LFE15:
+ 382              		.size	QuadDec_1_Cnt8_ClearFIFO, .-QuadDec_1_Cnt8_ClearFIFO
+ 383              		.section	.text.QuadDec_1_Cnt8_Init,"ax",%progbits
+ 384              		.align	2
+ 385              		.global	QuadDec_1_Cnt8_Init
+ 386              		.thumb
+ 387              		.thumb_func
+ 388              		.type	QuadDec_1_Cnt8_Init, %function
+ 389              	QuadDec_1_Cnt8_Init:
+ 390              	.LFB0:
+  38:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (!QuadDec_1_Cnt8_UsingFixedFunction && !QuadDec_1_Cnt8_ControlRegRemoved)
+ 391              		.loc 1 38 0
+ 392              		.cfi_startproc
+ 393              		@ args = 0, pretend = 0, frame = 0
+ 394              		@ frame_needed = 0, uses_anonymous_args = 0
+ 395 0000 08B5     		push	{r3, lr}
+ 396              		.cfi_def_cfa_offset 8
+ 397              		.cfi_offset 3, -8
+ 398              		.cfi_offset 14, -4
+  79:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             QuadDec_1_Cnt8_CONTROL = ctrl | QuadDec_1_Cnt8_DEFAULT_COMPARE_MODE;
+ 399              		.loc 1 79 0
+ 400 0002 114B     		ldr	r3, .L46
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 18
+
+
+ 401 0004 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 402 0006 02F0F802 		and	r2, r2, #248
+ 403              	.LVL7:
+  80:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 404              		.loc 1 80 0
+ 405 000a 1A70     		strb	r2, [r3]
+  83:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 406              		.loc 1 83 0
+ 407 000c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 408              	.LVL8:
+ 409 000e 02F0FC02 		and	r2, r2, #252
+ 410              	.LVL9:
+  88:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             #endif /* 0 != QuadDec_1_Cnt8_CAPTURE_MODE */ 
+ 411              		.loc 1 88 0
+ 412 0012 1A70     		strb	r2, [r3]
+  96:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!QuadDec_1_Cnt8_UsingFixedFunction) */
+ 413              		.loc 1 96 0
+ 414 0014 FFF7FEFF 		bl	QuadDec_1_Cnt8_ClearFIFO
+ 415              	.LVL10:
+ 100:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #if (!(QuadDec_1_Cnt8_UsingFixedFunction && (CY_PSOC5A)))
+ 416              		.loc 1 100 0
+ 417 0018 8020     		movs	r0, #128
+ 418 001a FFF7FEFF 		bl	QuadDec_1_Cnt8_WritePeriod
+ 419              	.LVL11:
+ 102:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         #endif /* (!(QuadDec_1_Cnt8_UsingFixedFunction && (CY_PSOC5A))) */
+ 420              		.loc 1 102 0
+ 421 001e 8020     		movs	r0, #128
+ 422 0020 FFF7FEFF 		bl	QuadDec_1_Cnt8_WriteCounter
+ 423              	.LVL12:
+ 104:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+ 424              		.loc 1 104 0
+ 425 0024 0020     		movs	r0, #0
+ 426 0026 FFF7FEFF 		bl	QuadDec_1_Cnt8_SetInterruptMode
+ 427              	.LVL13:
+ 108:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Set the compare value (only available to non-fixed function implementation */
+ 428              		.loc 1 108 0
+ 429 002a FFF7FEFF 		bl	QuadDec_1_Cnt8_ReadStatusRegister
+ 430              	.LVL14:
+ 110:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 431              		.loc 1 110 0
+ 432 002e 8020     		movs	r0, #128
+ 433 0030 FFF7FEFF 		bl	QuadDec_1_Cnt8_WriteCompare
+ 434              	.LVL15:
+ 115:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 435              		.loc 1 115 0
+ 436 0034 FFF7FEFF 		bl	CyEnterCriticalSection
+ 437              	.LVL16:
+ 117:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 438              		.loc 1 117 0
+ 439 0038 044A     		ldr	r2, .L46+4
+ 440 003a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 441 003c 43F01003 		orr	r3, r3, #16
+ 442 0040 1370     		strb	r3, [r2]
+ 120:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****             
+ 443              		.loc 1 120 0
+ 444 0042 FFF7FEFF 		bl	CyExitCriticalSection
+ 445              	.LVL17:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 19
+
+
+ 446 0046 08BD     		pop	{r3, pc}
+ 447              	.L47:
+ 448              		.align	2
+ 449              	.L46:
+ 450 0048 78650040 		.word	1073767800
+ 451 004c 98650040 		.word	1073767832
+ 452              		.cfi_endproc
+ 453              	.LFE0:
+ 454              		.size	QuadDec_1_Cnt8_Init, .-QuadDec_1_Cnt8_Init
+ 455              		.section	.text.QuadDec_1_Cnt8_Start,"ax",%progbits
+ 456              		.align	2
+ 457              		.global	QuadDec_1_Cnt8_Start
+ 458              		.thumb
+ 459              		.thumb_func
+ 460              		.type	QuadDec_1_Cnt8_Start, %function
+ 461              	QuadDec_1_Cnt8_Start:
+ 462              	.LFB2:
+ 179:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     if(QuadDec_1_Cnt8_initVar == 0u)
+ 463              		.loc 1 179 0
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 0, uses_anonymous_args = 0
+ 467 0000 08B5     		push	{r3, lr}
+ 468              		.cfi_def_cfa_offset 8
+ 469              		.cfi_offset 3, -8
+ 470              		.cfi_offset 14, -4
+ 180:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     {
+ 471              		.loc 1 180 0
+ 472 0002 054B     		ldr	r3, .L51
+ 473 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 474 0006 23B9     		cbnz	r3, .L49
+ 182:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****         
+ 475              		.loc 1 182 0
+ 476 0008 FFF7FEFF 		bl	QuadDec_1_Cnt8_Init
+ 477              	.LVL18:
+ 184:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c ****     }
+ 478              		.loc 1 184 0
+ 479 000c 0122     		movs	r2, #1
+ 480 000e 024B     		ldr	r3, .L51
+ 481 0010 1A70     		strb	r2, [r3]
+ 482              	.L49:
+ 188:.\Generated_Source\PSoC5/QuadDec_1_Cnt8.c **** }
+ 483              		.loc 1 188 0
+ 484 0012 FFF7FEFF 		bl	QuadDec_1_Cnt8_Enable
+ 485              	.LVL19:
+ 486 0016 08BD     		pop	{r3, pc}
+ 487              	.L52:
+ 488              		.align	2
+ 489              	.L51:
+ 490 0018 00000000 		.word	.LANCHOR0
+ 491              		.cfi_endproc
+ 492              	.LFE2:
+ 493              		.size	QuadDec_1_Cnt8_Start, .-QuadDec_1_Cnt8_Start
+ 494              		.global	QuadDec_1_Cnt8_initVar
+ 495              		.bss
+ 496              		.set	.LANCHOR0,. + 0
+ 497              		.type	QuadDec_1_Cnt8_initVar, %object
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 20
+
+
+ 498              		.size	QuadDec_1_Cnt8_initVar, 1
+ 499              	QuadDec_1_Cnt8_initVar:
+ 500 0000 00       		.space	1
+ 501              		.text
+ 502              	.Letext0:
+ 503              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 504              		.file 3 ".\\Generated_Source\\PSoC5\\CyLib.h"
+ 505              		.section	.debug_info,"",%progbits
+ 506              	.Ldebug_info0:
+ 507 0000 1E030000 		.4byte	0x31e
+ 508 0004 0400     		.2byte	0x4
+ 509 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 510 000a 04       		.byte	0x4
+ 511 000b 01       		.uleb128 0x1
+ 512 000c 92010000 		.4byte	.LASF38
+ 513 0010 01       		.byte	0x1
+ 514 0011 00000000 		.4byte	.LASF39
+ 515 0015 6C010000 		.4byte	.LASF40
+ 516 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 517 001d 00000000 		.4byte	0
+ 518 0021 00000000 		.4byte	.Ldebug_line0
+ 519 0025 02       		.uleb128 0x2
+ 520 0026 01       		.byte	0x1
+ 521 0027 06       		.byte	0x6
+ 522 0028 6C030000 		.4byte	.LASF0
+ 523 002c 02       		.uleb128 0x2
+ 524 002d 01       		.byte	0x1
+ 525 002e 08       		.byte	0x8
+ 526 002f BD000000 		.4byte	.LASF1
+ 527 0033 02       		.uleb128 0x2
+ 528 0034 02       		.byte	0x2
+ 529 0035 05       		.byte	0x5
+ 530 0036 22030000 		.4byte	.LASF2
+ 531 003a 02       		.uleb128 0x2
+ 532 003b 02       		.byte	0x2
+ 533 003c 07       		.byte	0x7
+ 534 003d 52000000 		.4byte	.LASF3
+ 535 0041 02       		.uleb128 0x2
+ 536 0042 04       		.byte	0x4
+ 537 0043 05       		.byte	0x5
+ 538 0044 4D030000 		.4byte	.LASF4
+ 539 0048 02       		.uleb128 0x2
+ 540 0049 04       		.byte	0x4
+ 541 004a 07       		.byte	0x7
+ 542 004b E7000000 		.4byte	.LASF5
+ 543 004f 02       		.uleb128 0x2
+ 544 0050 08       		.byte	0x8
+ 545 0051 05       		.byte	0x5
+ 546 0052 A6020000 		.4byte	.LASF6
+ 547 0056 02       		.uleb128 0x2
+ 548 0057 08       		.byte	0x8
+ 549 0058 07       		.byte	0x7
+ 550 0059 A6000000 		.4byte	.LASF7
+ 551 005d 03       		.uleb128 0x3
+ 552 005e 04       		.byte	0x4
+ 553 005f 05       		.byte	0x5
+ 554 0060 696E7400 		.ascii	"int\000"
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 21
+
+
+ 555 0064 02       		.uleb128 0x2
+ 556 0065 04       		.byte	0x4
+ 557 0066 07       		.byte	0x7
+ 558 0067 3A020000 		.4byte	.LASF8
+ 559 006b 04       		.uleb128 0x4
+ 560 006c F9000000 		.4byte	.LASF12
+ 561 0070 02       		.byte	0x2
+ 562 0071 C2       		.byte	0xc2
+ 563 0072 2C000000 		.4byte	0x2c
+ 564 0076 02       		.uleb128 0x2
+ 565 0077 04       		.byte	0x4
+ 566 0078 04       		.byte	0x4
+ 567 0079 85000000 		.4byte	.LASF9
+ 568 007d 02       		.uleb128 0x2
+ 569 007e 08       		.byte	0x8
+ 570 007f 04       		.byte	0x4
+ 571 0080 32010000 		.4byte	.LASF10
+ 572 0084 02       		.uleb128 0x2
+ 573 0085 01       		.byte	0x1
+ 574 0086 08       		.byte	0x8
+ 575 0087 2A000000 		.4byte	.LASF11
+ 576 008b 05       		.uleb128 0x5
+ 577 008c E2000000 		.4byte	.LASF13
+ 578 0090 02       		.byte	0x2
+ 579 0091 6C01     		.2byte	0x16c
+ 580 0093 97000000 		.4byte	0x97
+ 581 0097 06       		.uleb128 0x6
+ 582 0098 6B000000 		.4byte	0x6b
+ 583 009c 02       		.uleb128 0x2
+ 584 009d 04       		.byte	0x4
+ 585 009e 07       		.byte	0x7
+ 586 009f 9D020000 		.4byte	.LASF14
+ 587 00a3 07       		.uleb128 0x7
+ 588 00a4 56030000 		.4byte	.LASF15
+ 589 00a8 01       		.byte	0x1
+ 590 00a9 8F       		.byte	0x8f
+ 591 00aa 00000000 		.4byte	.LFB1
+ 592 00ae 10000000 		.4byte	.LFE1-.LFB1
+ 593 00b2 01       		.uleb128 0x1
+ 594 00b3 9C       		.byte	0x9c
+ 595 00b4 07       		.uleb128 0x7
+ 596 00b5 D0020000 		.4byte	.LASF16
+ 597 00b9 01       		.byte	0x1
+ 598 00ba D0       		.byte	0xd0
+ 599 00bb 00000000 		.4byte	.LFB3
+ 600 00bf 10000000 		.4byte	.LFE3-.LFB3
+ 601 00c3 01       		.uleb128 0x1
+ 602 00c4 9C       		.byte	0x9c
+ 603 00c5 08       		.uleb128 0x8
+ 604 00c6 65000000 		.4byte	.LASF19
+ 605 00ca 01       		.byte	0x1
+ 606 00cb ED       		.byte	0xed
+ 607 00cc 00000000 		.4byte	.LFB4
+ 608 00d0 0C000000 		.4byte	.LFE4-.LFB4
+ 609 00d4 01       		.uleb128 0x1
+ 610 00d5 9C       		.byte	0x9c
+ 611 00d6 E8000000 		.4byte	0xe8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 22
+
+
+ 612 00da 09       		.uleb128 0x9
+ 613 00db 1B010000 		.4byte	.LASF21
+ 614 00df 01       		.byte	0x1
+ 615 00e0 ED       		.byte	0xed
+ 616 00e1 6B000000 		.4byte	0x6b
+ 617 00e5 01       		.uleb128 0x1
+ 618 00e6 50       		.byte	0x50
+ 619 00e7 00       		.byte	0
+ 620 00e8 0A       		.uleb128 0xa
+ 621 00e9 93030000 		.4byte	.LASF17
+ 622 00ed 01       		.byte	0x1
+ 623 00ee 0501     		.2byte	0x105
+ 624 00f0 6B000000 		.4byte	0x6b
+ 625 00f4 00000000 		.4byte	.LFB5
+ 626 00f8 0C000000 		.4byte	.LFE5-.LFB5
+ 627 00fc 01       		.uleb128 0x1
+ 628 00fd 9C       		.byte	0x9c
+ 629 00fe 0A       		.uleb128 0xa
+ 630 00ff FF020000 		.4byte	.LASF18
+ 631 0103 01       		.byte	0x1
+ 632 0104 1B01     		.2byte	0x11b
+ 633 0106 6B000000 		.4byte	0x6b
+ 634 010a 00000000 		.4byte	.LFB6
+ 635 010e 0C000000 		.4byte	.LFE6-.LFB6
+ 636 0112 01       		.uleb128 0x1
+ 637 0113 9C       		.byte	0x9c
+ 638 0114 0B       		.uleb128 0xb
+ 639 0115 5D020000 		.4byte	.LASF20
+ 640 0119 01       		.byte	0x1
+ 641 011a 3001     		.2byte	0x130
+ 642 011c 00000000 		.4byte	.LFB7
+ 643 0120 0C000000 		.4byte	.LFE7-.LFB7
+ 644 0124 01       		.uleb128 0x1
+ 645 0125 9C       		.byte	0x9c
+ 646 0126 39010000 		.4byte	0x139
+ 647 012a 0C       		.uleb128 0xc
+ 648 012b 45030000 		.4byte	.LASF22
+ 649 012f 01       		.byte	0x1
+ 650 0130 3001     		.2byte	0x130
+ 651 0132 6B000000 		.4byte	0x6b
+ 652 0136 01       		.uleb128 0x1
+ 653 0137 50       		.byte	0x50
+ 654 0138 00       		.byte	0
+ 655 0139 0B       		.uleb128 0xb
+ 656 013a B4020000 		.4byte	.LASF23
+ 657 013e 01       		.byte	0x1
+ 658 013f 4601     		.2byte	0x146
+ 659 0141 00000000 		.4byte	.LFB8
+ 660 0145 0C000000 		.4byte	.LFE8-.LFB8
+ 661 0149 01       		.uleb128 0x1
+ 662 014a 9C       		.byte	0x9c
+ 663 014b 5E010000 		.4byte	0x15e
+ 664 014f 0C       		.uleb128 0xc
+ 665 0150 2A010000 		.4byte	.LASF24
+ 666 0154 01       		.byte	0x1
+ 667 0155 4601     		.2byte	0x146
+ 668 0157 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 23
+
+
+ 669 015b 01       		.uleb128 0x1
+ 670 015c 50       		.byte	0x50
+ 671 015d 00       		.byte	0
+ 672 015e 0A       		.uleb128 0xa
+ 673 015f 8B000000 		.4byte	.LASF25
+ 674 0163 01       		.byte	0x1
+ 675 0164 6501     		.2byte	0x165
+ 676 0166 6B000000 		.4byte	0x6b
+ 677 016a 00000000 		.4byte	.LFB9
+ 678 016e 14000000 		.4byte	.LFE9-.LFB9
+ 679 0172 01       		.uleb128 0x1
+ 680 0173 9C       		.byte	0x9c
+ 681 0174 0A       		.uleb128 0xa
+ 682 0175 B5030000 		.4byte	.LASF26
+ 683 0179 01       		.byte	0x1
+ 684 017a 8601     		.2byte	0x186
+ 685 017c 6B000000 		.4byte	0x6b
+ 686 0180 00000000 		.4byte	.LFB10
+ 687 0184 0C000000 		.4byte	.LFE10-.LFB10
+ 688 0188 01       		.uleb128 0x1
+ 689 0189 9C       		.byte	0x9c
+ 690 018a 0B       		.uleb128 0xb
+ 691 018b E4020000 		.4byte	.LASF27
+ 692 018f 01       		.byte	0x1
+ 693 0190 9F01     		.2byte	0x19f
+ 694 0192 00000000 		.4byte	.LFB11
+ 695 0196 0C000000 		.4byte	.LFE11-.LFB11
+ 696 019a 01       		.uleb128 0x1
+ 697 019b 9C       		.byte	0x9c
+ 698 019c AF010000 		.4byte	0x1af
+ 699 01a0 0C       		.uleb128 0xc
+ 700 01a1 37000000 		.4byte	.LASF28
+ 701 01a5 01       		.byte	0x1
+ 702 01a6 9F01     		.2byte	0x19f
+ 703 01a8 6B000000 		.4byte	0x6b
+ 704 01ac 01       		.uleb128 0x1
+ 705 01ad 50       		.byte	0x50
+ 706 01ae 00       		.byte	0
+ 707 01af 0A       		.uleb128 0xa
+ 708 01b0 20020000 		.4byte	.LASF29
+ 709 01b4 01       		.byte	0x1
+ 710 01b5 B601     		.2byte	0x1b6
+ 711 01b7 6B000000 		.4byte	0x6b
+ 712 01bb 00000000 		.4byte	.LFB12
+ 713 01bf 0C000000 		.4byte	.LFE12-.LFB12
+ 714 01c3 01       		.uleb128 0x1
+ 715 01c4 9C       		.byte	0x9c
+ 716 01c5 0B       		.uleb128 0xb
+ 717 01c6 FF000000 		.4byte	.LASF30
+ 718 01ca 01       		.byte	0x1
+ 719 01cb D101     		.2byte	0x1d1
+ 720 01cd 00000000 		.4byte	.LFB13
+ 721 01d1 0C000000 		.4byte	.LFE13-.LFB13
+ 722 01d5 01       		.uleb128 0x1
+ 723 01d6 9C       		.byte	0x9c
+ 724 01d7 EA010000 		.4byte	0x1ea
+ 725 01db 0C       		.uleb128 0xc
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 24
+
+
+ 726 01dc 2F000000 		.4byte	.LASF31
+ 727 01e0 01       		.byte	0x1
+ 728 01e1 D101     		.2byte	0x1d1
+ 729 01e3 6B000000 		.4byte	0x6b
+ 730 01e7 01       		.uleb128 0x1
+ 731 01e8 50       		.byte	0x50
+ 732 01e9 00       		.byte	0
+ 733 01ea 0A       		.uleb128 0xa
+ 734 01eb 78030000 		.4byte	.LASF32
+ 735 01ef 01       		.byte	0x1
+ 736 01f0 E901     		.2byte	0x1e9
+ 737 01f2 6B000000 		.4byte	0x6b
+ 738 01f6 00000000 		.4byte	.LFB14
+ 739 01fa 0C000000 		.4byte	.LFE14-.LFB14
+ 740 01fe 01       		.uleb128 0x1
+ 741 01ff 9C       		.byte	0x9c
+ 742 0200 0B       		.uleb128 0xb
+ 743 0201 2C030000 		.4byte	.LASF33
+ 744 0205 01       		.byte	0x1
+ 745 0206 2E02     		.2byte	0x22e
+ 746 0208 00000000 		.4byte	.LFB15
+ 747 020c 14000000 		.4byte	.LFE15-.LFB15
+ 748 0210 01       		.uleb128 0x1
+ 749 0211 9C       		.byte	0x9c
+ 750 0212 29020000 		.4byte	0x229
+ 751 0216 0D       		.uleb128 0xd
+ 752 0217 08000000 		.4byte	.LVL5
+ 753 021b 74010000 		.4byte	0x174
+ 754 021f 0D       		.uleb128 0xd
+ 755 0220 0C000000 		.4byte	.LVL6
+ 756 0224 E8000000 		.4byte	0xe8
+ 757 0228 00       		.byte	0
+ 758 0229 08       		.uleb128 0x8
+ 759 022a 3E000000 		.4byte	.LASF34
+ 760 022e 01       		.byte	0x1
+ 761 022f 25       		.byte	0x25
+ 762 0230 00000000 		.4byte	.LFB0
+ 763 0234 50000000 		.4byte	.LFE0-.LFB0
+ 764 0238 01       		.uleb128 0x1
+ 765 0239 9C       		.byte	0x9c
+ 766 023a D0020000 		.4byte	0x2d0
+ 767 023e 0E       		.uleb128 0xe
+ 768 023f 98020000 		.4byte	.LASF35
+ 769 0243 01       		.byte	0x1
+ 770 0244 28       		.byte	0x28
+ 771 0245 6B000000 		.4byte	0x6b
+ 772 0249 00000000 		.4byte	.LLST0
+ 773 024d 0E       		.uleb128 0xe
+ 774 024e 39010000 		.4byte	.LASF36
+ 775 0252 01       		.byte	0x1
+ 776 0253 2D       		.byte	0x2d
+ 777 0254 6B000000 		.4byte	0x6b
+ 778 0258 2A000000 		.4byte	.LLST1
+ 779 025c 0D       		.uleb128 0xd
+ 780 025d 18000000 		.4byte	.LVL10
+ 781 0261 00020000 		.4byte	0x200
+ 782 0265 0F       		.uleb128 0xf
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 25
+
+
+ 783 0266 1E000000 		.4byte	.LVL11
+ 784 026a 8A010000 		.4byte	0x18a
+ 785 026e 79020000 		.4byte	0x279
+ 786 0272 10       		.uleb128 0x10
+ 787 0273 01       		.uleb128 0x1
+ 788 0274 50       		.byte	0x50
+ 789 0275 02       		.uleb128 0x2
+ 790 0276 09       		.byte	0x9
+ 791 0277 80       		.byte	0x80
+ 792 0278 00       		.byte	0
+ 793 0279 0F       		.uleb128 0xf
+ 794 027a 24000000 		.4byte	.LVL12
+ 795 027e 39010000 		.4byte	0x139
+ 796 0282 8D020000 		.4byte	0x28d
+ 797 0286 10       		.uleb128 0x10
+ 798 0287 01       		.uleb128 0x1
+ 799 0288 50       		.byte	0x50
+ 800 0289 02       		.uleb128 0x2
+ 801 028a 09       		.byte	0x9
+ 802 028b 80       		.byte	0x80
+ 803 028c 00       		.byte	0
+ 804 028d 0F       		.uleb128 0xf
+ 805 028e 2A000000 		.4byte	.LVL13
+ 806 0292 C5000000 		.4byte	0xc5
+ 807 0296 A0020000 		.4byte	0x2a0
+ 808 029a 10       		.uleb128 0x10
+ 809 029b 01       		.uleb128 0x1
+ 810 029c 50       		.byte	0x50
+ 811 029d 01       		.uleb128 0x1
+ 812 029e 30       		.byte	0x30
+ 813 029f 00       		.byte	0
+ 814 02a0 0D       		.uleb128 0xd
+ 815 02a1 2E000000 		.4byte	.LVL14
+ 816 02a5 E8000000 		.4byte	0xe8
+ 817 02a9 0F       		.uleb128 0xf
+ 818 02aa 34000000 		.4byte	.LVL15
+ 819 02ae C5010000 		.4byte	0x1c5
+ 820 02b2 BD020000 		.4byte	0x2bd
+ 821 02b6 10       		.uleb128 0x10
+ 822 02b7 01       		.uleb128 0x1
+ 823 02b8 50       		.byte	0x50
+ 824 02b9 02       		.uleb128 0x2
+ 825 02ba 09       		.byte	0x9
+ 826 02bb 80       		.byte	0x80
+ 827 02bc 00       		.byte	0
+ 828 02bd 0D       		.uleb128 0xd
+ 829 02be 38000000 		.4byte	.LVL16
+ 830 02c2 09030000 		.4byte	0x309
+ 831 02c6 0D       		.uleb128 0xd
+ 832 02c7 46000000 		.4byte	.LVL17
+ 833 02cb 14030000 		.4byte	0x314
+ 834 02cf 00       		.byte	0
+ 835 02d0 08       		.uleb128 0x8
+ 836 02d1 57010000 		.4byte	.LASF37
+ 837 02d5 01       		.byte	0x1
+ 838 02d6 B2       		.byte	0xb2
+ 839 02d7 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 26
+
+
+ 840 02db 1C000000 		.4byte	.LFE2-.LFB2
+ 841 02df 01       		.uleb128 0x1
+ 842 02e0 9C       		.byte	0x9c
+ 843 02e1 F8020000 		.4byte	0x2f8
+ 844 02e5 0D       		.uleb128 0xd
+ 845 02e6 0C000000 		.4byte	.LVL18
+ 846 02ea 29020000 		.4byte	0x229
+ 847 02ee 0D       		.uleb128 0xd
+ 848 02ef 16000000 		.4byte	.LVL19
+ 849 02f3 A3000000 		.4byte	0xa3
+ 850 02f7 00       		.byte	0
+ 851 02f8 11       		.uleb128 0x11
+ 852 02f9 CB000000 		.4byte	.LASF41
+ 853 02fd 01       		.byte	0x1
+ 854 02fe 15       		.byte	0x15
+ 855 02ff 6B000000 		.4byte	0x6b
+ 856 0303 05       		.uleb128 0x5
+ 857 0304 03       		.byte	0x3
+ 858 0305 00000000 		.4byte	QuadDec_1_Cnt8_initVar
+ 859 0309 12       		.uleb128 0x12
+ 860 030a 81020000 		.4byte	.LASF42
+ 861 030e 03       		.byte	0x3
+ 862 030f 7E       		.byte	0x7e
+ 863 0310 6B000000 		.4byte	0x6b
+ 864 0314 13       		.uleb128 0x13
+ 865 0315 47020000 		.4byte	.LASF43
+ 866 0319 03       		.byte	0x3
+ 867 031a 7F       		.byte	0x7f
+ 868 031b 14       		.uleb128 0x14
+ 869 031c 6B000000 		.4byte	0x6b
+ 870 0320 00       		.byte	0
+ 871 0321 00       		.byte	0
+ 872              		.section	.debug_abbrev,"",%progbits
+ 873              	.Ldebug_abbrev0:
+ 874 0000 01       		.uleb128 0x1
+ 875 0001 11       		.uleb128 0x11
+ 876 0002 01       		.byte	0x1
+ 877 0003 25       		.uleb128 0x25
+ 878 0004 0E       		.uleb128 0xe
+ 879 0005 13       		.uleb128 0x13
+ 880 0006 0B       		.uleb128 0xb
+ 881 0007 03       		.uleb128 0x3
+ 882 0008 0E       		.uleb128 0xe
+ 883 0009 1B       		.uleb128 0x1b
+ 884 000a 0E       		.uleb128 0xe
+ 885 000b 55       		.uleb128 0x55
+ 886 000c 17       		.uleb128 0x17
+ 887 000d 11       		.uleb128 0x11
+ 888 000e 01       		.uleb128 0x1
+ 889 000f 10       		.uleb128 0x10
+ 890 0010 17       		.uleb128 0x17
+ 891 0011 00       		.byte	0
+ 892 0012 00       		.byte	0
+ 893 0013 02       		.uleb128 0x2
+ 894 0014 24       		.uleb128 0x24
+ 895 0015 00       		.byte	0
+ 896 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 27
+
+
+ 897 0017 0B       		.uleb128 0xb
+ 898 0018 3E       		.uleb128 0x3e
+ 899 0019 0B       		.uleb128 0xb
+ 900 001a 03       		.uleb128 0x3
+ 901 001b 0E       		.uleb128 0xe
+ 902 001c 00       		.byte	0
+ 903 001d 00       		.byte	0
+ 904 001e 03       		.uleb128 0x3
+ 905 001f 24       		.uleb128 0x24
+ 906 0020 00       		.byte	0
+ 907 0021 0B       		.uleb128 0xb
+ 908 0022 0B       		.uleb128 0xb
+ 909 0023 3E       		.uleb128 0x3e
+ 910 0024 0B       		.uleb128 0xb
+ 911 0025 03       		.uleb128 0x3
+ 912 0026 08       		.uleb128 0x8
+ 913 0027 00       		.byte	0
+ 914 0028 00       		.byte	0
+ 915 0029 04       		.uleb128 0x4
+ 916 002a 16       		.uleb128 0x16
+ 917 002b 00       		.byte	0
+ 918 002c 03       		.uleb128 0x3
+ 919 002d 0E       		.uleb128 0xe
+ 920 002e 3A       		.uleb128 0x3a
+ 921 002f 0B       		.uleb128 0xb
+ 922 0030 3B       		.uleb128 0x3b
+ 923 0031 0B       		.uleb128 0xb
+ 924 0032 49       		.uleb128 0x49
+ 925 0033 13       		.uleb128 0x13
+ 926 0034 00       		.byte	0
+ 927 0035 00       		.byte	0
+ 928 0036 05       		.uleb128 0x5
+ 929 0037 16       		.uleb128 0x16
+ 930 0038 00       		.byte	0
+ 931 0039 03       		.uleb128 0x3
+ 932 003a 0E       		.uleb128 0xe
+ 933 003b 3A       		.uleb128 0x3a
+ 934 003c 0B       		.uleb128 0xb
+ 935 003d 3B       		.uleb128 0x3b
+ 936 003e 05       		.uleb128 0x5
+ 937 003f 49       		.uleb128 0x49
+ 938 0040 13       		.uleb128 0x13
+ 939 0041 00       		.byte	0
+ 940 0042 00       		.byte	0
+ 941 0043 06       		.uleb128 0x6
+ 942 0044 35       		.uleb128 0x35
+ 943 0045 00       		.byte	0
+ 944 0046 49       		.uleb128 0x49
+ 945 0047 13       		.uleb128 0x13
+ 946 0048 00       		.byte	0
+ 947 0049 00       		.byte	0
+ 948 004a 07       		.uleb128 0x7
+ 949 004b 2E       		.uleb128 0x2e
+ 950 004c 00       		.byte	0
+ 951 004d 3F       		.uleb128 0x3f
+ 952 004e 19       		.uleb128 0x19
+ 953 004f 03       		.uleb128 0x3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 28
+
+
+ 954 0050 0E       		.uleb128 0xe
+ 955 0051 3A       		.uleb128 0x3a
+ 956 0052 0B       		.uleb128 0xb
+ 957 0053 3B       		.uleb128 0x3b
+ 958 0054 0B       		.uleb128 0xb
+ 959 0055 27       		.uleb128 0x27
+ 960 0056 19       		.uleb128 0x19
+ 961 0057 11       		.uleb128 0x11
+ 962 0058 01       		.uleb128 0x1
+ 963 0059 12       		.uleb128 0x12
+ 964 005a 06       		.uleb128 0x6
+ 965 005b 40       		.uleb128 0x40
+ 966 005c 18       		.uleb128 0x18
+ 967 005d 9742     		.uleb128 0x2117
+ 968 005f 19       		.uleb128 0x19
+ 969 0060 00       		.byte	0
+ 970 0061 00       		.byte	0
+ 971 0062 08       		.uleb128 0x8
+ 972 0063 2E       		.uleb128 0x2e
+ 973 0064 01       		.byte	0x1
+ 974 0065 3F       		.uleb128 0x3f
+ 975 0066 19       		.uleb128 0x19
+ 976 0067 03       		.uleb128 0x3
+ 977 0068 0E       		.uleb128 0xe
+ 978 0069 3A       		.uleb128 0x3a
+ 979 006a 0B       		.uleb128 0xb
+ 980 006b 3B       		.uleb128 0x3b
+ 981 006c 0B       		.uleb128 0xb
+ 982 006d 27       		.uleb128 0x27
+ 983 006e 19       		.uleb128 0x19
+ 984 006f 11       		.uleb128 0x11
+ 985 0070 01       		.uleb128 0x1
+ 986 0071 12       		.uleb128 0x12
+ 987 0072 06       		.uleb128 0x6
+ 988 0073 40       		.uleb128 0x40
+ 989 0074 18       		.uleb128 0x18
+ 990 0075 9742     		.uleb128 0x2117
+ 991 0077 19       		.uleb128 0x19
+ 992 0078 01       		.uleb128 0x1
+ 993 0079 13       		.uleb128 0x13
+ 994 007a 00       		.byte	0
+ 995 007b 00       		.byte	0
+ 996 007c 09       		.uleb128 0x9
+ 997 007d 05       		.uleb128 0x5
+ 998 007e 00       		.byte	0
+ 999 007f 03       		.uleb128 0x3
+ 1000 0080 0E       		.uleb128 0xe
+ 1001 0081 3A       		.uleb128 0x3a
+ 1002 0082 0B       		.uleb128 0xb
+ 1003 0083 3B       		.uleb128 0x3b
+ 1004 0084 0B       		.uleb128 0xb
+ 1005 0085 49       		.uleb128 0x49
+ 1006 0086 13       		.uleb128 0x13
+ 1007 0087 02       		.uleb128 0x2
+ 1008 0088 18       		.uleb128 0x18
+ 1009 0089 00       		.byte	0
+ 1010 008a 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 29
+
+
+ 1011 008b 0A       		.uleb128 0xa
+ 1012 008c 2E       		.uleb128 0x2e
+ 1013 008d 00       		.byte	0
+ 1014 008e 3F       		.uleb128 0x3f
+ 1015 008f 19       		.uleb128 0x19
+ 1016 0090 03       		.uleb128 0x3
+ 1017 0091 0E       		.uleb128 0xe
+ 1018 0092 3A       		.uleb128 0x3a
+ 1019 0093 0B       		.uleb128 0xb
+ 1020 0094 3B       		.uleb128 0x3b
+ 1021 0095 05       		.uleb128 0x5
+ 1022 0096 27       		.uleb128 0x27
+ 1023 0097 19       		.uleb128 0x19
+ 1024 0098 49       		.uleb128 0x49
+ 1025 0099 13       		.uleb128 0x13
+ 1026 009a 11       		.uleb128 0x11
+ 1027 009b 01       		.uleb128 0x1
+ 1028 009c 12       		.uleb128 0x12
+ 1029 009d 06       		.uleb128 0x6
+ 1030 009e 40       		.uleb128 0x40
+ 1031 009f 18       		.uleb128 0x18
+ 1032 00a0 9742     		.uleb128 0x2117
+ 1033 00a2 19       		.uleb128 0x19
+ 1034 00a3 00       		.byte	0
+ 1035 00a4 00       		.byte	0
+ 1036 00a5 0B       		.uleb128 0xb
+ 1037 00a6 2E       		.uleb128 0x2e
+ 1038 00a7 01       		.byte	0x1
+ 1039 00a8 3F       		.uleb128 0x3f
+ 1040 00a9 19       		.uleb128 0x19
+ 1041 00aa 03       		.uleb128 0x3
+ 1042 00ab 0E       		.uleb128 0xe
+ 1043 00ac 3A       		.uleb128 0x3a
+ 1044 00ad 0B       		.uleb128 0xb
+ 1045 00ae 3B       		.uleb128 0x3b
+ 1046 00af 05       		.uleb128 0x5
+ 1047 00b0 27       		.uleb128 0x27
+ 1048 00b1 19       		.uleb128 0x19
+ 1049 00b2 11       		.uleb128 0x11
+ 1050 00b3 01       		.uleb128 0x1
+ 1051 00b4 12       		.uleb128 0x12
+ 1052 00b5 06       		.uleb128 0x6
+ 1053 00b6 40       		.uleb128 0x40
+ 1054 00b7 18       		.uleb128 0x18
+ 1055 00b8 9742     		.uleb128 0x2117
+ 1056 00ba 19       		.uleb128 0x19
+ 1057 00bb 01       		.uleb128 0x1
+ 1058 00bc 13       		.uleb128 0x13
+ 1059 00bd 00       		.byte	0
+ 1060 00be 00       		.byte	0
+ 1061 00bf 0C       		.uleb128 0xc
+ 1062 00c0 05       		.uleb128 0x5
+ 1063 00c1 00       		.byte	0
+ 1064 00c2 03       		.uleb128 0x3
+ 1065 00c3 0E       		.uleb128 0xe
+ 1066 00c4 3A       		.uleb128 0x3a
+ 1067 00c5 0B       		.uleb128 0xb
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 30
+
+
+ 1068 00c6 3B       		.uleb128 0x3b
+ 1069 00c7 05       		.uleb128 0x5
+ 1070 00c8 49       		.uleb128 0x49
+ 1071 00c9 13       		.uleb128 0x13
+ 1072 00ca 02       		.uleb128 0x2
+ 1073 00cb 18       		.uleb128 0x18
+ 1074 00cc 00       		.byte	0
+ 1075 00cd 00       		.byte	0
+ 1076 00ce 0D       		.uleb128 0xd
+ 1077 00cf 898201   		.uleb128 0x4109
+ 1078 00d2 00       		.byte	0
+ 1079 00d3 11       		.uleb128 0x11
+ 1080 00d4 01       		.uleb128 0x1
+ 1081 00d5 31       		.uleb128 0x31
+ 1082 00d6 13       		.uleb128 0x13
+ 1083 00d7 00       		.byte	0
+ 1084 00d8 00       		.byte	0
+ 1085 00d9 0E       		.uleb128 0xe
+ 1086 00da 34       		.uleb128 0x34
+ 1087 00db 00       		.byte	0
+ 1088 00dc 03       		.uleb128 0x3
+ 1089 00dd 0E       		.uleb128 0xe
+ 1090 00de 3A       		.uleb128 0x3a
+ 1091 00df 0B       		.uleb128 0xb
+ 1092 00e0 3B       		.uleb128 0x3b
+ 1093 00e1 0B       		.uleb128 0xb
+ 1094 00e2 49       		.uleb128 0x49
+ 1095 00e3 13       		.uleb128 0x13
+ 1096 00e4 02       		.uleb128 0x2
+ 1097 00e5 17       		.uleb128 0x17
+ 1098 00e6 00       		.byte	0
+ 1099 00e7 00       		.byte	0
+ 1100 00e8 0F       		.uleb128 0xf
+ 1101 00e9 898201   		.uleb128 0x4109
+ 1102 00ec 01       		.byte	0x1
+ 1103 00ed 11       		.uleb128 0x11
+ 1104 00ee 01       		.uleb128 0x1
+ 1105 00ef 31       		.uleb128 0x31
+ 1106 00f0 13       		.uleb128 0x13
+ 1107 00f1 01       		.uleb128 0x1
+ 1108 00f2 13       		.uleb128 0x13
+ 1109 00f3 00       		.byte	0
+ 1110 00f4 00       		.byte	0
+ 1111 00f5 10       		.uleb128 0x10
+ 1112 00f6 8A8201   		.uleb128 0x410a
+ 1113 00f9 00       		.byte	0
+ 1114 00fa 02       		.uleb128 0x2
+ 1115 00fb 18       		.uleb128 0x18
+ 1116 00fc 9142     		.uleb128 0x2111
+ 1117 00fe 18       		.uleb128 0x18
+ 1118 00ff 00       		.byte	0
+ 1119 0100 00       		.byte	0
+ 1120 0101 11       		.uleb128 0x11
+ 1121 0102 34       		.uleb128 0x34
+ 1122 0103 00       		.byte	0
+ 1123 0104 03       		.uleb128 0x3
+ 1124 0105 0E       		.uleb128 0xe
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 31
+
+
+ 1125 0106 3A       		.uleb128 0x3a
+ 1126 0107 0B       		.uleb128 0xb
+ 1127 0108 3B       		.uleb128 0x3b
+ 1128 0109 0B       		.uleb128 0xb
+ 1129 010a 49       		.uleb128 0x49
+ 1130 010b 13       		.uleb128 0x13
+ 1131 010c 3F       		.uleb128 0x3f
+ 1132 010d 19       		.uleb128 0x19
+ 1133 010e 02       		.uleb128 0x2
+ 1134 010f 18       		.uleb128 0x18
+ 1135 0110 00       		.byte	0
+ 1136 0111 00       		.byte	0
+ 1137 0112 12       		.uleb128 0x12
+ 1138 0113 2E       		.uleb128 0x2e
+ 1139 0114 00       		.byte	0
+ 1140 0115 3F       		.uleb128 0x3f
+ 1141 0116 19       		.uleb128 0x19
+ 1142 0117 03       		.uleb128 0x3
+ 1143 0118 0E       		.uleb128 0xe
+ 1144 0119 3A       		.uleb128 0x3a
+ 1145 011a 0B       		.uleb128 0xb
+ 1146 011b 3B       		.uleb128 0x3b
+ 1147 011c 0B       		.uleb128 0xb
+ 1148 011d 27       		.uleb128 0x27
+ 1149 011e 19       		.uleb128 0x19
+ 1150 011f 49       		.uleb128 0x49
+ 1151 0120 13       		.uleb128 0x13
+ 1152 0121 3C       		.uleb128 0x3c
+ 1153 0122 19       		.uleb128 0x19
+ 1154 0123 00       		.byte	0
+ 1155 0124 00       		.byte	0
+ 1156 0125 13       		.uleb128 0x13
+ 1157 0126 2E       		.uleb128 0x2e
+ 1158 0127 01       		.byte	0x1
+ 1159 0128 3F       		.uleb128 0x3f
+ 1160 0129 19       		.uleb128 0x19
+ 1161 012a 03       		.uleb128 0x3
+ 1162 012b 0E       		.uleb128 0xe
+ 1163 012c 3A       		.uleb128 0x3a
+ 1164 012d 0B       		.uleb128 0xb
+ 1165 012e 3B       		.uleb128 0x3b
+ 1166 012f 0B       		.uleb128 0xb
+ 1167 0130 27       		.uleb128 0x27
+ 1168 0131 19       		.uleb128 0x19
+ 1169 0132 3C       		.uleb128 0x3c
+ 1170 0133 19       		.uleb128 0x19
+ 1171 0134 00       		.byte	0
+ 1172 0135 00       		.byte	0
+ 1173 0136 14       		.uleb128 0x14
+ 1174 0137 05       		.uleb128 0x5
+ 1175 0138 00       		.byte	0
+ 1176 0139 49       		.uleb128 0x49
+ 1177 013a 13       		.uleb128 0x13
+ 1178 013b 00       		.byte	0
+ 1179 013c 00       		.byte	0
+ 1180 013d 00       		.byte	0
+ 1181              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 32
+
+
+ 1182              	.Ldebug_loc0:
+ 1183              	.LLST0:
+ 1184 0000 0A000000 		.4byte	.LVL7
+ 1185 0004 0E000000 		.4byte	.LVL8
+ 1186 0008 0100     		.2byte	0x1
+ 1187 000a 52       		.byte	0x52
+ 1188 000b 0E000000 		.4byte	.LVL8
+ 1189 000f 12000000 		.4byte	.LVL9
+ 1190 0013 0200     		.2byte	0x2
+ 1191 0015 73       		.byte	0x73
+ 1192 0016 00       		.sleb128 0
+ 1193 0017 12000000 		.4byte	.LVL9
+ 1194 001b 17000000 		.4byte	.LVL10-1
+ 1195 001f 0100     		.2byte	0x1
+ 1196 0021 52       		.byte	0x52
+ 1197 0022 00000000 		.4byte	0
+ 1198 0026 00000000 		.4byte	0
+ 1199              	.LLST1:
+ 1200 002a 38000000 		.4byte	.LVL16
+ 1201 002e 45000000 		.4byte	.LVL17-1
+ 1202 0032 0100     		.2byte	0x1
+ 1203 0034 50       		.byte	0x50
+ 1204 0035 00000000 		.4byte	0
+ 1205 0039 00000000 		.4byte	0
+ 1206              		.section	.debug_aranges,"",%progbits
+ 1207 0000 94000000 		.4byte	0x94
+ 1208 0004 0200     		.2byte	0x2
+ 1209 0006 00000000 		.4byte	.Ldebug_info0
+ 1210 000a 04       		.byte	0x4
+ 1211 000b 00       		.byte	0
+ 1212 000c 0000     		.2byte	0
+ 1213 000e 0000     		.2byte	0
+ 1214 0010 00000000 		.4byte	.LFB1
+ 1215 0014 10000000 		.4byte	.LFE1-.LFB1
+ 1216 0018 00000000 		.4byte	.LFB3
+ 1217 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1218 0020 00000000 		.4byte	.LFB4
+ 1219 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1220 0028 00000000 		.4byte	.LFB5
+ 1221 002c 0C000000 		.4byte	.LFE5-.LFB5
+ 1222 0030 00000000 		.4byte	.LFB6
+ 1223 0034 0C000000 		.4byte	.LFE6-.LFB6
+ 1224 0038 00000000 		.4byte	.LFB7
+ 1225 003c 0C000000 		.4byte	.LFE7-.LFB7
+ 1226 0040 00000000 		.4byte	.LFB8
+ 1227 0044 0C000000 		.4byte	.LFE8-.LFB8
+ 1228 0048 00000000 		.4byte	.LFB9
+ 1229 004c 14000000 		.4byte	.LFE9-.LFB9
+ 1230 0050 00000000 		.4byte	.LFB10
+ 1231 0054 0C000000 		.4byte	.LFE10-.LFB10
+ 1232 0058 00000000 		.4byte	.LFB11
+ 1233 005c 0C000000 		.4byte	.LFE11-.LFB11
+ 1234 0060 00000000 		.4byte	.LFB12
+ 1235 0064 0C000000 		.4byte	.LFE12-.LFB12
+ 1236 0068 00000000 		.4byte	.LFB13
+ 1237 006c 0C000000 		.4byte	.LFE13-.LFB13
+ 1238 0070 00000000 		.4byte	.LFB14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 33
+
+
+ 1239 0074 0C000000 		.4byte	.LFE14-.LFB14
+ 1240 0078 00000000 		.4byte	.LFB15
+ 1241 007c 14000000 		.4byte	.LFE15-.LFB15
+ 1242 0080 00000000 		.4byte	.LFB0
+ 1243 0084 50000000 		.4byte	.LFE0-.LFB0
+ 1244 0088 00000000 		.4byte	.LFB2
+ 1245 008c 1C000000 		.4byte	.LFE2-.LFB2
+ 1246 0090 00000000 		.4byte	0
+ 1247 0094 00000000 		.4byte	0
+ 1248              		.section	.debug_ranges,"",%progbits
+ 1249              	.Ldebug_ranges0:
+ 1250 0000 00000000 		.4byte	.LFB1
+ 1251 0004 10000000 		.4byte	.LFE1
+ 1252 0008 00000000 		.4byte	.LFB3
+ 1253 000c 10000000 		.4byte	.LFE3
+ 1254 0010 00000000 		.4byte	.LFB4
+ 1255 0014 0C000000 		.4byte	.LFE4
+ 1256 0018 00000000 		.4byte	.LFB5
+ 1257 001c 0C000000 		.4byte	.LFE5
+ 1258 0020 00000000 		.4byte	.LFB6
+ 1259 0024 0C000000 		.4byte	.LFE6
+ 1260 0028 00000000 		.4byte	.LFB7
+ 1261 002c 0C000000 		.4byte	.LFE7
+ 1262 0030 00000000 		.4byte	.LFB8
+ 1263 0034 0C000000 		.4byte	.LFE8
+ 1264 0038 00000000 		.4byte	.LFB9
+ 1265 003c 14000000 		.4byte	.LFE9
+ 1266 0040 00000000 		.4byte	.LFB10
+ 1267 0044 0C000000 		.4byte	.LFE10
+ 1268 0048 00000000 		.4byte	.LFB11
+ 1269 004c 0C000000 		.4byte	.LFE11
+ 1270 0050 00000000 		.4byte	.LFB12
+ 1271 0054 0C000000 		.4byte	.LFE12
+ 1272 0058 00000000 		.4byte	.LFB13
+ 1273 005c 0C000000 		.4byte	.LFE13
+ 1274 0060 00000000 		.4byte	.LFB14
+ 1275 0064 0C000000 		.4byte	.LFE14
+ 1276 0068 00000000 		.4byte	.LFB15
+ 1277 006c 14000000 		.4byte	.LFE15
+ 1278 0070 00000000 		.4byte	.LFB0
+ 1279 0074 50000000 		.4byte	.LFE0
+ 1280 0078 00000000 		.4byte	.LFB2
+ 1281 007c 1C000000 		.4byte	.LFE2
+ 1282 0080 00000000 		.4byte	0
+ 1283 0084 00000000 		.4byte	0
+ 1284              		.section	.debug_line,"",%progbits
+ 1285              	.Ldebug_line0:
+ 1286 0000 8C010000 		.section	.debug_str,"MS",%progbits,1
+ 1286      02005800 
+ 1286      00000201 
+ 1286      FB0E0D00 
+ 1286      01010101 
+ 1287              	.LASF39:
+ 1288 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\QuadDec_1_Cnt8.c\000"
+ 1288      6E657261 
+ 1288      7465645F 
+ 1288      536F7572 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 34
+
+
+ 1288      63655C50 
+ 1289              	.LASF11:
+ 1290 002a 63686172 		.ascii	"char\000"
+ 1290      00
+ 1291              	.LASF31:
+ 1292 002f 636F6D70 		.ascii	"compare\000"
+ 1292      61726500 
+ 1293              	.LASF28:
+ 1294 0037 70657269 		.ascii	"period\000"
+ 1294      6F6400
+ 1295              	.LASF34:
+ 1296 003e 51756164 		.ascii	"QuadDec_1_Cnt8_Init\000"
+ 1296      4465635F 
+ 1296      315F436E 
+ 1296      74385F49 
+ 1296      6E697400 
+ 1297              	.LASF3:
+ 1298 0052 73686F72 		.ascii	"short unsigned int\000"
+ 1298      7420756E 
+ 1298      7369676E 
+ 1298      65642069 
+ 1298      6E7400
+ 1299              	.LASF19:
+ 1300 0065 51756164 		.ascii	"QuadDec_1_Cnt8_SetInterruptMode\000"
+ 1300      4465635F 
+ 1300      315F436E 
+ 1300      74385F53 
+ 1300      6574496E 
+ 1301              	.LASF9:
+ 1302 0085 666C6F61 		.ascii	"float\000"
+ 1302      7400
+ 1303              	.LASF25:
+ 1304 008b 51756164 		.ascii	"QuadDec_1_Cnt8_ReadCounter\000"
+ 1304      4465635F 
+ 1304      315F436E 
+ 1304      74385F52 
+ 1304      65616443 
+ 1305              	.LASF7:
+ 1306 00a6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1306      206C6F6E 
+ 1306      6720756E 
+ 1306      7369676E 
+ 1306      65642069 
+ 1307              	.LASF1:
+ 1308 00bd 756E7369 		.ascii	"unsigned char\000"
+ 1308      676E6564 
+ 1308      20636861 
+ 1308      7200
+ 1309              	.LASF41:
+ 1310 00cb 51756164 		.ascii	"QuadDec_1_Cnt8_initVar\000"
+ 1310      4465635F 
+ 1310      315F436E 
+ 1310      74385F69 
+ 1310      6E697456 
+ 1311              	.LASF13:
+ 1312 00e2 72656738 		.ascii	"reg8\000"
+ 1312      00
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 35
+
+
+ 1313              	.LASF5:
+ 1314 00e7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1314      20756E73 
+ 1314      69676E65 
+ 1314      6420696E 
+ 1314      7400
+ 1315              	.LASF12:
+ 1316 00f9 75696E74 		.ascii	"uint8\000"
+ 1316      3800
+ 1317              	.LASF30:
+ 1318 00ff 51756164 		.ascii	"QuadDec_1_Cnt8_WriteCompare\000"
+ 1318      4465635F 
+ 1318      315F436E 
+ 1318      74385F57 
+ 1318      72697465 
+ 1319              	.LASF21:
+ 1320 011b 696E7465 		.ascii	"interruptsMask\000"
+ 1320      72727570 
+ 1320      74734D61 
+ 1320      736B00
+ 1321              	.LASF24:
+ 1322 012a 636F756E 		.ascii	"counter\000"
+ 1322      74657200 
+ 1323              	.LASF10:
+ 1324 0132 646F7562 		.ascii	"double\000"
+ 1324      6C6500
+ 1325              	.LASF36:
+ 1326 0139 51756164 		.ascii	"QuadDec_1_Cnt8_interruptState\000"
+ 1326      4465635F 
+ 1326      315F436E 
+ 1326      74385F69 
+ 1326      6E746572 
+ 1327              	.LASF37:
+ 1328 0157 51756164 		.ascii	"QuadDec_1_Cnt8_Start\000"
+ 1328      4465635F 
+ 1328      315F436E 
+ 1328      74385F53 
+ 1328      74617274 
+ 1329              	.LASF40:
+ 1330 016c 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car\\car.cydsn\000"
+ 1330      6F626F74 
+ 1330      5C676974 
+ 1330      5F636F64 
+ 1330      655C726F 
+ 1331              	.LASF38:
+ 1332 0192 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1332      4320342E 
+ 1332      392E3320 
+ 1332      32303135 
+ 1332      30333033 
+ 1333 01c5 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1333      20726576 
+ 1333      6973696F 
+ 1333      6E203232 
+ 1333      31323230 
+ 1334 01f8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1334      66756E63 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 36
+
+
+ 1334      74696F6E 
+ 1334      2D736563 
+ 1334      74696F6E 
+ 1335              	.LASF29:
+ 1336 0220 51756164 		.ascii	"QuadDec_1_Cnt8_ReadPeriod\000"
+ 1336      4465635F 
+ 1336      315F436E 
+ 1336      74385F52 
+ 1336      65616450 
+ 1337              	.LASF8:
+ 1338 023a 756E7369 		.ascii	"unsigned int\000"
+ 1338      676E6564 
+ 1338      20696E74 
+ 1338      00
+ 1339              	.LASF43:
+ 1340 0247 43794578 		.ascii	"CyExitCriticalSection\000"
+ 1340      69744372 
+ 1340      69746963 
+ 1340      616C5365 
+ 1340      6374696F 
+ 1341              	.LASF20:
+ 1342 025d 51756164 		.ascii	"QuadDec_1_Cnt8_WriteControlRegister\000"
+ 1342      4465635F 
+ 1342      315F436E 
+ 1342      74385F57 
+ 1342      72697465 
+ 1343              	.LASF42:
+ 1344 0281 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 1344      74657243 
+ 1344      72697469 
+ 1344      63616C53 
+ 1344      65637469 
+ 1345              	.LASF35:
+ 1346 0298 6374726C 		.ascii	"ctrl\000"
+ 1346      00
+ 1347              	.LASF14:
+ 1348 029d 73697A65 		.ascii	"sizetype\000"
+ 1348      74797065 
+ 1348      00
+ 1349              	.LASF6:
+ 1350 02a6 6C6F6E67 		.ascii	"long long int\000"
+ 1350      206C6F6E 
+ 1350      6720696E 
+ 1350      7400
+ 1351              	.LASF23:
+ 1352 02b4 51756164 		.ascii	"QuadDec_1_Cnt8_WriteCounter\000"
+ 1352      4465635F 
+ 1352      315F436E 
+ 1352      74385F57 
+ 1352      72697465 
+ 1353              	.LASF16:
+ 1354 02d0 51756164 		.ascii	"QuadDec_1_Cnt8_Stop\000"
+ 1354      4465635F 
+ 1354      315F436E 
+ 1354      74385F53 
+ 1354      746F7000 
+ 1355              	.LASF27:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 37
+
+
+ 1356 02e4 51756164 		.ascii	"QuadDec_1_Cnt8_WritePeriod\000"
+ 1356      4465635F 
+ 1356      315F436E 
+ 1356      74385F57 
+ 1356      72697465 
+ 1357              	.LASF18:
+ 1358 02ff 51756164 		.ascii	"QuadDec_1_Cnt8_ReadControlRegister\000"
+ 1358      4465635F 
+ 1358      315F436E 
+ 1358      74385F52 
+ 1358      65616443 
+ 1359              	.LASF2:
+ 1360 0322 73686F72 		.ascii	"short int\000"
+ 1360      7420696E 
+ 1360      7400
+ 1361              	.LASF33:
+ 1362 032c 51756164 		.ascii	"QuadDec_1_Cnt8_ClearFIFO\000"
+ 1362      4465635F 
+ 1362      315F436E 
+ 1362      74385F43 
+ 1362      6C656172 
+ 1363              	.LASF22:
+ 1364 0345 636F6E74 		.ascii	"control\000"
+ 1364      726F6C00 
+ 1365              	.LASF4:
+ 1366 034d 6C6F6E67 		.ascii	"long int\000"
+ 1366      20696E74 
+ 1366      00
+ 1367              	.LASF15:
+ 1368 0356 51756164 		.ascii	"QuadDec_1_Cnt8_Enable\000"
+ 1368      4465635F 
+ 1368      315F436E 
+ 1368      74385F45 
+ 1368      6E61626C 
+ 1369              	.LASF0:
+ 1370 036c 7369676E 		.ascii	"signed char\000"
+ 1370      65642063 
+ 1370      68617200 
+ 1371              	.LASF32:
+ 1372 0378 51756164 		.ascii	"QuadDec_1_Cnt8_ReadCompare\000"
+ 1372      4465635F 
+ 1372      315F436E 
+ 1372      74385F52 
+ 1372      65616443 
+ 1373              	.LASF17:
+ 1374 0393 51756164 		.ascii	"QuadDec_1_Cnt8_ReadStatusRegister\000"
+ 1374      4465635F 
+ 1374      315F436E 
+ 1374      74385F52 
+ 1374      65616453 
+ 1375              	.LASF26:
+ 1376 03b5 51756164 		.ascii	"QuadDec_1_Cnt8_ReadCapture\000"
+ 1376      4465635F 
+ 1376      315F436E 
+ 1376      74385F52 
+ 1376      65616443 
+ 1377              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc8PxoJX.s 			page 38
+
+

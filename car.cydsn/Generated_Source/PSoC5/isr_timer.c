@@ -196,6 +196,7 @@ CY_ISR(isr_timer_Interrupt)
         time_1ms = 0;
         time_1ms_state = 1;
     }
+     timer_ticks();
     /* `#END` */
 }
 
