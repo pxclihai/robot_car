@@ -57,7 +57,7 @@ void LED_loop()
     {
        if(g_Car.error == 1)
        {
-         LED_SET_NUM(10);
+         LED_SET_NUM(30);
        }
        else
        {

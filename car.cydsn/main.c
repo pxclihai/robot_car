@@ -86,21 +86,16 @@ int main()
   
    Lidar_init();
    Car_init();   
-
    timer_init(&Data_exchange_timer, DT_Data_Exchange, 1000, 10);
    timer_start(&Data_exchange_timer);
-
    timer_init (&Time_1s, Cal_time, 5000, 1000);
    timer_start(&Time_1s);
    timer_init (&Cal_battery_timer, Cal_Battery_loop, 100, 100);
    timer_start(&Cal_battery_timer);
-
    timer_init (&Car_hearting_timer, Car_Hearting_Loop, 0, 1000);
    timer_start(&Car_hearting_timer);
-   
    timer_init (&Car_control_timer, Car_Control_Loop, 150, 3);
    timer_start(&Car_control_timer);
-
    timer_init (&SRF_timer, SRF_loop, 50, 90);
    timer_start(&SRF_timer);
    CyDelay(500);
@@ -111,17 +106,8 @@ int main()
     for(;;)
     {
         /* Place your application code here. */
-        timer_loop();
-// scan_lidar();
-//       if(rx_lidar_flag == 1)
-//    {
-//          debug_time_Write(1);
-//          DT_Send_Lidar_normal(net_nodeBuffer); 
-//          rx_lidar_flag = 0; 
-//          debug_time_Write(0);
-//     } 
-
         
+        timer_loop();     
     }   
 }
 

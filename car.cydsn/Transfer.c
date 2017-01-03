@@ -171,6 +171,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
 {
 	uint8 sum = 0;
     uint8 temp = 0;
+    uint16 temp16 = 0;
     uint8 i=0;
 	for( i=0;i<(num-1);i++)
 		sum += *(data_buf+i);
@@ -214,7 +215,8 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
             temp=0;
         }
     //    PWM_LED_WriteCompare1(temp*100); 
-        PWM_LED_1_WriteCompare(temp*100);
+        PWM_LED_1_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100));
+     
         temp = 100-*(data_buf+5); 
         if(temp>=100)
         {
@@ -225,7 +227,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
             temp=0;
         }
   //      PWM_LED_WriteCompare2(temp*100);
-        PWM_LED_2_WriteCompare(temp*100); 
+        PWM_LED_2_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100)); 
         temp = 100-*(data_buf+6); 
         if(temp>=100)
         {
@@ -236,7 +238,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
             temp= 0;
         }
   //      PWM_LED_1_WriteCompare1(temp*100);
-         PWM_LED_3_WriteCompare(temp*100);
+         PWM_LED_3_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100));
         temp = 100-*(data_buf+7); 
         if(temp>=100)
         {
@@ -247,7 +249,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
             temp=0;
         }
  //       PWM_LED_1_WriteCompare2(temp*100);
-       PWM_LED_4_WriteCompare(temp*100);
+       PWM_LED_4_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100));
     }
 	if(*(data_buf+2)==0X5)								
     {
@@ -265,6 +267,17 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
            CHANGE_PWR_Write(0);
       }
     }
+    if(*(data_buf+2)==0X7)								
+    {	
+        temp16 = (uint16)(*(data_buf+4)<<8)|*(data_buf+5);
+       if(temp16 >=10000 && temp16<=60000 )
+       {
+         PWM_LED_1_WritePeriod(temp16);
+        PWM_LED_2_WritePeriod(temp16);
+        PWM_LED_3_WritePeriod(temp16);
+        PWM_LED_4_WritePeriod(temp16);
+       }
+    }
     if(*(data_buf+2)==0X9)								
     {
         if(*(data_buf+4) == 99)
@@ -273,7 +286,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         }
     }
    
-	if(*(data_buf+2)==0X13)								//PID4
+	if(*(data_buf+2)==0X13)								
 	{
 		DT_Send_Check(*(data_buf+2),sum);
 	}

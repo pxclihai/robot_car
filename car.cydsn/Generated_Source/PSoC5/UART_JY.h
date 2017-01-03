@@ -29,7 +29,7 @@
 ***************************************/
 
 #define UART_JY_RX_ENABLED                     (1u)
-#define UART_JY_TX_ENABLED                     (1u)
+#define UART_JY_TX_ENABLED                     (0u)
 #define UART_JY_HD_ENABLED                     (0u)
 #define UART_JY_RX_INTERRUPT_ENABLED           (0u)
 #define UART_JY_TX_INTERRUPT_ENABLED           (0u)

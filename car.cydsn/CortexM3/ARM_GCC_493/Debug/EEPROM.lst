@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
   29:.\Generated_Source\PSoC5/EEPROM.c **** * Return:
   30:.\Generated_Source\PSoC5/EEPROM.c **** *  None
   31:.\Generated_Source\PSoC5/EEPROM.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
   54              		.cfi_startproc
   55              		@ args = 0, pretend = 0, frame = 0
   56              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 3
 
 
   57 0000 08B5     		push	{r3, lr}
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
   89              	.LFE2:
   90              		.size	EEPROM_Stop, .-EEPROM_Stop
   91              		.section	.text.EEPROM_WriteByte,"ax",%progbits
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 4
 
 
   92              		.align	2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  114 000a FFF7FEFF 		bl	CySpcStart
  115              	.LVL5:
  113:.\Generated_Source\PSoC5/EEPROM.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 5
 
 
  114:.\Generated_Source\PSoC5/EEPROM.c ****     if (address < CY_EEPROM_SIZE)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  132:.\Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
  152              		.loc 1 132 0
  153 0046 214B     		ldr	r3, .L23
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 6
 
 
  154 0048 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  149:.\Generated_Source\PSoC5/EEPROM.c **** 
  150:.\Generated_Source\PSoC5/EEPROM.c ****                         /* SPC is idle now */
  151:.\Generated_Source\PSoC5/EEPROM.c ****                         if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 7
 
 
  191              		.loc 1 151 0
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  143:.\Generated_Source\PSoC5/EEPROM.c **** 
  225              		.loc 1 143 0
  226 00ae 4FF0FF34 		mov	r4, #-1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 8
 
 
  227              	.LVL21:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  261 00d0 00000000 		.word	dieTemperature
  262              		.cfi_endproc
  263              	.LFE3:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 9
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 9
 
 
  264              		.size	EEPROM_WriteByte, .-EEPROM_WriteByte
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  216:.\Generated_Source\PSoC5/EEPROM.c ****     This is needed to reserve PHUB for read operation from EEPROM */
  217:.\Generated_Source\PSoC5/EEPROM.c ****     CyEEPROM_ReadReserve();
  290              		.loc 1 217 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 10
 
 
  291 000a FFF7FEFF 		bl	CyEEPROM_ReadReserve
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  243:.\Generated_Source\PSoC5/EEPROM.c **** *  Status of operation, 0 if operation complete, non-zero value if error
  244:.\Generated_Source\PSoC5/EEPROM.c **** *  was detected.
  245:.\Generated_Source\PSoC5/EEPROM.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 11
 
 
  246:.\Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  345              		.loc 1 274 0
  346              		.cfi_startproc
  347              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 12
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 12
 
 
  348              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  381 002c 13F0020F 		tst	r3, #2
  382 0030 09D0     		beq	.L36
  383              		.loc 1 295 0 is_stmt 0 discriminator 1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 13
 
 
  384 0032 0B4B     		ldr	r3, .L39
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  414              		.loc 1 310 0
  415 0058 0424     		movs	r4, #4
  416              	.L30:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 14
 
 
  417              	.LVL44:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  440              		@ frame_needed = 0, uses_anonymous_args = 0
  441              	.LVL46:
  442 0000 38B5     		push	{r3, r4, r5, lr}
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 15
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 15
 
 
  443              		.cfi_def_cfa_offset 16
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  368:.\Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
  476              		.loc 1 368 0
  477 0030 1E4B     		ldr	r3, .L56
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 16
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 16
 
 
  478 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  517 0068 13F0020F 		tst	r3, #2
  518 006c FAD0     		beq	.L46
  383:.\Generated_Source\PSoC5/EEPROM.c ****                         {
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 17
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 17
 
 
  384:.\Generated_Source\PSoC5/EEPROM.c ****                             /* Wait until SPC becomes idle */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  380:.\Generated_Source\PSoC5/EEPROM.c **** 
  553              		.loc 1 380 0
  554 0098 4FF0FF34 		mov	r4, #-1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 18
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 18
 
 
  555              	.LVL65:
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  590              		.type	EEPROM_StartWrite, %function
  591              	EEPROM_StartWrite:
  592              	.LFB8:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 19
 
 
  419:.\Generated_Source\PSoC5/EEPROM.c **** 
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  606              		.loc 1 459 0
  607 0006 FFF7FEFF 		bl	CySpcStart
  608              	.LVL73:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 20
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 20
 
 
  460:.\Generated_Source\PSoC5/EEPROM.c **** 
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  643 0044 03E0     		b	.L61
  644              	.L65:
  645 0046 4FF0FF33 		mov	r3, #-1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 21
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 21
 
 
  646 004a 00E0     		b	.L61
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  669 0064 0120     		movs	r0, #1
  670 0066 38BD     		pop	{r3, r4, r5, pc}
  671              	.LVL81:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 22
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 22
 
 
  672              	.L63:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  522:.\Generated_Source\PSoC5/EEPROM.c **** *  The function returns once the SPC has begun writing the data. This function
  523:.\Generated_Source\PSoC5/EEPROM.c **** *  must be used in combination with EEPROM_Query().
  524:.\Generated_Source\PSoC5/EEPROM.c **** *  EEPROM_Query() must be called until it returns a status
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 23
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 23
 
 
  525:.\Generated_Source\PSoC5/EEPROM.c **** *  other than CYRET_STARTED. That indicates the erase has been completed.
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  559:.\Generated_Source\PSoC5/EEPROM.c **** 
  560:.\Generated_Source\PSoC5/EEPROM.c ****             /* Command to load a row of data */
  561:.\Generated_Source\PSoC5/EEPROM.c ****             if(CySpcEraseSector(CY_SPC_FIRST_EE_ARRAYID, sectorNumber) == CYRET_STARTED)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 24
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 24
 
 
  730              		.loc 1 561 0
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  765              	EEPROM_Query:
  766              	.LFB10:
  578:.\Generated_Source\PSoC5/EEPROM.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 25
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 25
 
 
  579:.\Generated_Source\PSoC5/EEPROM.c **** 
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  789 001a 084B     		ldr	r3, .L85
  790 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  791 001e 9B08     		lsrs	r3, r3, #2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 26
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 26
 
 
  792 0020 05D0     		beq	.L83
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  827              		.global	EEPROM_ByteWritePos
  828              		.thumb
  829              		.thumb_func
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 27
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 27
 
 
  830              		.type	EEPROM_ByteWritePos, %function
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  853 0014 4CD1     		bne	.L93
  854              		.loc 1 659 0 is_stmt 0 discriminator 1
  855 0016 0F2C     		cmp	r4, #15
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 28
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 28
 
 
  856 0018 4CD8     		bhi	.L94
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  891 0054 03E0     		b	.L91
  892              	.L97:
  893 0056 4FF0FF34 		mov	r4, #-1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 29
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 29
 
 
  894 005a 00E0     		b	.L91
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  689:.\Generated_Source\PSoC5/EEPROM.c **** 
  928              		.loc 1 689 0 is_stmt 1
  929 008e 4FF0FF34 		mov	r4, #-1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 30
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 30
 
 
  930              	.LVL109:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  718:.\Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
  719:.\Generated_Source\PSoC5/EEPROM.c ****         }
  720:.\Generated_Source\PSoC5/EEPROM.c ****     }
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 31
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 31
 
 
  721:.\Generated_Source\PSoC5/EEPROM.c ****     else
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1007 0025 02       		.uleb128 0x2
  1008 0026 01       		.byte	0x1
  1009 0027 06       		.byte	0x6
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 32
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 32
 
 
  1010 0028 75030000 		.4byte	.LASF0
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1064 008b 7F010000 		.4byte	.LASF12
  1065 008f 02       		.uleb128 0x2
  1066 0090 01       		.byte	0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 33
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 33
 
 
  1067 0091 08       		.byte	0x8
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1121 0111 9C       		.byte	0x9c
  1122 0112 20010000 		.4byte	0x120
  1123 0116 08       		.uleb128 0x8
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 34
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 34
 
 
  1124 0117 06000000 		.4byte	.LVL3
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1178 01a4 01       		.uleb128 0x1
  1179 01a5 53       		.byte	0x53
  1180 01a6 01       		.uleb128 0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 35
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 35
 
 
  1181 01a7 31       		.byte	0x31
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1235 01fe D0       		.byte	0xd0
  1236 01ff 76000000 		.4byte	0x76
  1237 0203 16010000 		.4byte	.LLST5
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 36
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 36
 
 
  1238 0207 0E       		.uleb128 0xe
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1292 0280 64000000 		.4byte	.LFE6-.LFB6
  1293 0284 01       		.uleb128 0x1
  1294 0285 9C       		.byte	0x9c
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 37
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 37
 
 
  1295 0286 E0020000 		.4byte	0x2e0
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1349 0302 7F030000 		.4byte	0x37f
  1350 0306 81010000 		.4byte	.LLST8
  1351 030a 11       		.uleb128 0x11
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 38
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 38
 
 
  1352 030b 6B030000 		.4byte	.LASF23
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1406 0373 40       		.byte	0x40
  1407 0374 00       		.byte	0
  1408 0375 08       		.uleb128 0x8
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 39
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 39
 
 
  1409 0376 A0000000 		.4byte	.LVL66
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1463 03fb 02       		.uleb128 0x2
  1464 03fc 75       		.byte	0x75
  1465 03fd 00       		.sleb128 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 40
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 40
 
 
  1466 03fe 0D       		.uleb128 0xd
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1520 046d 30060000 		.4byte	0x630
  1521 0471 0D       		.uleb128 0xd
  1522 0472 01       		.uleb128 0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 41
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 41
 
 
  1523 0473 51       		.byte	0x51
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1577 04ec 8B02     		.2byte	0x28b
  1578 04ee 6B000000 		.4byte	0x6b
  1579 04f2 F9030000 		.4byte	.LLST18
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 42
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 42
 
 
  1580 04f6 11       		.uleb128 0x11
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1634 055e 75       		.byte	0x75
  1635 055f 00       		.sleb128 0
  1636 0560 0D       		.uleb128 0xd
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 43
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 43
 
 
  1637 0561 01       		.uleb128 0x1
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1691 05d0 1B       		.uleb128 0x1b
  1692 05d1 7F030000 		.4byte	0x37f
  1693 05d5 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 44
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 44
 
 
  1694 05d6 6B000000 		.4byte	0x6b
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1748 064b E1020000 		.4byte	.LASF51
  1749 064f 04       		.byte	0x4
  1750 0650 27       		.byte	0x27
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 45
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 45
 
 
  1751 0651 96000000 		.4byte	0x96
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1805 002b 00       		.byte	0
  1806 002c 03       		.uleb128 0x3
  1807 002d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 46
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 46
 
 
  1808 002e 3A       		.uleb128 0x3a
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1862 0065 898201   		.uleb128 0x4109
  1863 0068 00       		.byte	0
  1864 0069 11       		.uleb128 0x11
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 47
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 47
 
 
  1865 006a 01       		.uleb128 0x1
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1919 00a1 3B       		.uleb128 0x3b
  1920 00a2 0B       		.uleb128 0xb
  1921 00a3 49       		.uleb128 0x49
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 48
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 48
 
 
  1922 00a4 13       		.uleb128 0x13
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  1976 00e1 03       		.uleb128 0x3
  1977 00e2 0E       		.uleb128 0xe
  1978 00e3 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 49
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 49
 
 
  1979 00e4 0B       		.uleb128 0xb
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2033 011b 49       		.uleb128 0x49
  2034 011c 13       		.uleb128 0x13
  2035 011d 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 50
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 50
 
 
  2036 011e 00       		.byte	0
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2090 0154 27       		.uleb128 0x27
  2091 0155 19       		.uleb128 0x19
  2092 0156 49       		.uleb128 0x49
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 51
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 51
 
 
  2093 0157 13       		.uleb128 0x13
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2147 018d 19       		.uleb128 0x19
  2148 018e 03       		.uleb128 0x3
  2149 018f 0E       		.uleb128 0xe
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 52
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 52
 
 
  2150 0190 3A       		.uleb128 0x3a
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2204 002f CA000000 		.4byte	.LVL28
  2205 0033 D4000000 		.4byte	.LFE3
  2206 0037 0200     		.2byte	0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 53
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 53
 
 
  2207 0039 7D       		.byte	0x7d
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2261 00c6 54       		.byte	0x54
  2262 00c7 CA000000 		.4byte	.LVL28
  2263 00cb D4000000 		.4byte	.LFE3
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 54
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 54
 
 
  2264 00cf 0100     		.2byte	0x1
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2318              	.LLST7:
  2319 0158 4E000000 		.4byte	.LVL41
  2320 015c 54000000 		.4byte	.LVL43
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 55
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 55
 
 
  2321 0160 0100     		.2byte	0x1
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2375 01e2 8A000000 		.4byte	.LVL59
  2376 01e6 A2000000 		.4byte	.LVL67
  2377 01ea 0400     		.2byte	0x4
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 56
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 56
 
 
  2378 01ec F3       		.byte	0xf3
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2432 0267 8C000000 		.4byte	.LVL60
  2433 026b 0300     		.2byte	0x3
  2434 026d 09       		.byte	0x9
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 57
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 57
 
 
  2435 026e FF       		.byte	0xff
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2489 02f4 00000000 		.4byte	0
  2490 02f8 00000000 		.4byte	0
  2491              	.LLST13:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 58
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 58
 
 
  2492 02fc 16000000 		.4byte	.LVL75
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2546 037e 2E000000 		.4byte	.LFE9
  2547 0382 0100     		.2byte	0x1
  2548 0384 50       		.byte	0x50
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 59
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 59
 
 
  2549 0385 00000000 		.4byte	0
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2603 0410 51       		.byte	0x51
  2604 0411 9F       		.byte	0x9f
  2605 0412 00000000 		.4byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 60
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 60
 
 
  2606 0416 00000000 		.4byte	0
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2660              		.section	.debug_aranges,"",%progbits
  2661 0000 74000000 		.4byte	0x74
  2662 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 61
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 61
 
 
  2663 0006 00000000 		.4byte	.Ldebug_info0
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2717 0054 40000000 		.4byte	.LFE10
  2718 0058 00000000 		.4byte	.LFB11
  2719 005c C8000000 		.4byte	.LFE11
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 62
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 62
 
 
  2720 0060 00000000 		.4byte	0
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2744      65642069 
  2744      6E7400
  2745              	.LASF22:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 63
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 63
 
 
  2746 0095 73746174 		.ascii	"status\000"
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2768      3800
  2769              	.LASF55:
  2770 0149 64696554 		.ascii	"dieTemperature\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 64
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 64
 
 
  2770      656D7065 
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2790      74696F6E 
  2791              	.LASF46:
  2792 024e 4379456E 		.ascii	"CyEnterCriticalSection\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 65
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 65
 
 
  2792      74657243 
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2812      7000
  2813              	.LASF49:
  2814 0301 43795370 		.ascii	"CySpcEraseSector\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 66
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 66
 
 
  2814      63457261 
@@ -3958,6 +3958,6 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 1
  2838 0394 72657442 		.ascii	"retByte\000"
  2838      79746500 
  2839              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccBehUMX.s 			page 67
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cc7OePTc.s 			page 67
 
 

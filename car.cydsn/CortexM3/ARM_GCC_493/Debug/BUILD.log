@@ -1,4 +1,4 @@
---------------- Build Started: 12/19/2016 14:29:06 Project: car, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Build Started: 12/26/2016 08:57:57 Project: car, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 cydsfit.exe -.appdatapath "C:\Users\pxc\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p D:\robot\git_code\robot_car\car.cydsn\car.cyprj -d CY8C5267AXI-LP051 -s D:\robot\git_code\robot_car\car.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 Elaborating Design...
 ADD: sdb.M0065: information: Analog terminal "vdac_ref" on ADC_SAR_SEQ_v2_0 is unconnected.
@@ -78,8 +78,8 @@ Info: apr.M0002: Analog signal "Net_4225" is connected to one terminal only. (Ap
 Info: apr.M0002: Analog signal "Net_4226" is connected to one terminal only. (App=cydsfit)
 Info: apr.M0002: Analog signal "Net_4227" is connected to one terminal only. (App=cydsfit)
 Info: apr.M0002: Analog signal "Net_4228" is connected to one terminal only. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 44% done. (App=cydsfit)
-Log: apr.M0058: The analog placement iterative improvement is 100% done. (App=cydsfit)
+Log: apr.M0058: The analog placement iterative improvement is 46% done. (App=cydsfit)
+Log: apr.M0058: The analog placement iterative improvement is 88% done. (App=cydsfit)
 Analog Routing ...
 Analog Code Generation ...
 Digital Placement ...
@@ -92,14 +92,14 @@ Clean Temporary Files ...
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\main.c -o .\CortexM3\ARM_GCC_493\Debug\main.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/Transfer.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Transfer.c -o .\CortexM3\ARM_GCC_493\Debug\Transfer.o
 .\Transfer.c: In function 'DT_Send_Lidar_normal':
-.\Transfer.c:549:8: warning: unused variable '_temp' [-Wunused-variable]
+.\Transfer.c:562:8: warning: unused variable '_temp' [-Wunused-variable]
   int16 _temp;
         ^
 .\Transfer.c: In function 'DT_Send_Lidar':
-.\Transfer.c:602:8: warning: unused variable '_temp' [-Wunused-variable]
+.\Transfer.c:615:8: warning: unused variable '_temp' [-Wunused-variable]
   int16 _temp;
         ^
-.\Transfer.c:601:8: warning: unused variable '_cnt' [-Wunused-variable]
+.\Transfer.c:614:8: warning: unused variable '_cnt' [-Wunused-variable]
   uint8 _cnt=0;
         ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -Wno-main -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_493\Debug/car.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\car.c -o .\CortexM3\ARM_GCC_493\Debug\car.o
@@ -288,6 +288,6 @@ arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_493\Debug\car.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM3\ARM_GCC_493\Debug\car.elf .\CortexM3\ARM_GCC_493\Debug\main.o .\CortexM3\ARM_GCC_493\Debug\Transfer.o .\CortexM3\ARM_GCC_493\Debug\car.o .\CortexM3\ARM_GCC_493\Debug\battery.o .\CortexM3\ARM_GCC_493\Debug\Lidar.o .\CortexM3\ARM_GCC_493\Debug\systemInfo.o .\CortexM3\ARM_GCC_493\Debug\multi_timer.o .\CortexM3\ARM_GCC_493\Debug\led.o .\CortexM3\ARM_GCC_493\Debug\cymetadata.o .\CortexM3\ARM_GCC_493\Debug\Cm3Start.o .\CortexM3\ARM_GCC_493\Debug\car.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -g -ffunction-sections -Og -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_493\Debug/car.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
 cyelftool.exe -C D:\robot\git_code\robot_car\car.cydsn\CortexM3\ARM_GCC_493\Debug\car.elf --flash_row_size 256 --flash_size 131072
 cyelftool.exe -S D:\robot\git_code\robot_car\car.cydsn\CortexM3\ARM_GCC_493\Debug\car.elf
-Flash used: 14080 of 131072 bytes (10.7%).
+Flash used: 14336 of 131072 bytes (10.9%).
 SRAM used: 13109 of 32768 bytes (40.0%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 12/19/2016 14:30:05 ---------------
+--------------- Build Succeeded: 12/26/2016 08:58:41 ---------------

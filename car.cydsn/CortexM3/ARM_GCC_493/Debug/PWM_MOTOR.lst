@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
   29:.\Generated_Source\PSoC5/PWM_MOTOR.c ****          constant 1 for reset. This will prevent the component from operating.
   30:.\Generated_Source\PSoC5/PWM_MOTOR.c **** #endif /* PWM_MOTOR_PWMUDB_genblk1_ctrlreg__REMOVED */
   31:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/PWM_MOTOR.c **** uint8 PWM_MOTOR_initVar = 0u;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
   86:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     #if (PWM_MOTOR_UsingFixedFunction || PWM_MOTOR_UseControl)
   87:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         uint8 ctrl;
   88:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     #endif /* (PWM_MOTOR_UsingFixedFunction || PWM_MOTOR_UseControl) */
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 3
 
 
   89:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  143:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         #endif /* (PWM_MOTOR_UseOneCompareMode) */
  144:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  145:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         #if (PWM_MOTOR_KillModeMinTime)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 4
 
 
  146:.\Generated_Source\PSoC5/PWM_MOTOR.c ****             PWM_MOTOR_WriteKillTime(PWM_MOTOR_MinimumKillTime);
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  200:.\Generated_Source\PSoC5/PWM_MOTOR.c **** {
   27              		.loc 1 200 0
   28              		.cfi_startproc
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 5
 
 
   29              		@ args = 0, pretend = 0, frame = 0
@@ -262,7 +262,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
   38              	.L3:
   39              		.align	2
   40              	.L2:
-  41 000c 71640040 		.word	1073767537
+  41 000c 78640040 		.word	1073767544
   42              		.cfi_endproc
   43              	.LFE2:
   44              		.size	PWM_MOTOR_Enable, .-PWM_MOTOR_Enable
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  231:.\Generated_Source\PSoC5/PWM_MOTOR.c **** *
  232:.\Generated_Source\PSoC5/PWM_MOTOR.c **** *******************************************************************************/
  233:.\Generated_Source\PSoC5/PWM_MOTOR.c **** void PWM_MOTOR_Stop(void) 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 6
 
 
  234:.\Generated_Source\PSoC5/PWM_MOTOR.c **** {
@@ -318,7 +318,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
   64              	.L6:
   65              		.align	2
   66              	.L5:
-  67 000c 71640040 		.word	1073767537
+  67 000c 78640040 		.word	1073767544
   68              		.cfi_endproc
   69              	.LFE3:
   70              		.size	PWM_MOTOR_Stop, .-PWM_MOTOR_Stop
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  262:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         * Return:
  263:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         *  None
  264:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 7
 
 
  265:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         *******************************************************************************/
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  319:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
  320:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         *                defined in the H file as input arguments.
  321:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 8
 
 
  322:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         * Return:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  376:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  377:.\Generated_Source\PSoC5/PWM_MOTOR.c **** #endif /* UseOneCompareMode */
  378:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 9
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 9
 
 
  379:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
@@ -522,7 +522,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
   89              	.L9:
   90 0006 00BF     		.align	2
   91              	.L8:
-  92 0008 00680040 		.word	1073768448
+  92 0008 10680040 		.word	1073768464
   93              		.cfi_endproc
   94              	.LFE4:
   95              		.size	PWM_MOTOR_WriteCounter, .-PWM_MOTOR_WriteCounter
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  408:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  409:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  410:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     /*******************************************************************************
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 10
 
 
  411:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     * Function Name: PWM_MOTOR_ReadCounter
@@ -582,8 +582,8 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  118              	.L12:
  119              		.align	2
  120              	.L11:
- 121 000c 10640040 		.word	1073767440
- 122 0010 A0680040 		.word	1073768608
+ 121 000c 18640040 		.word	1073767448
+ 122 0010 B0680040 		.word	1073768624
  123              		.cfi_endproc
  124              	.LFE5:
  125              		.size	PWM_MOTOR_ReadCounter, .-PWM_MOTOR_ReadCounter
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  435:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  436:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     #if (PWM_MOTOR_UseStatus)
  437:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 11
 
 
  438:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  486:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     #else
  487:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         CY_SET_REG16(PWM_MOTOR_PERIOD_LSB_PTR, period);
  140              		.loc 1 487 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 12
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 12
 
 
  141 0000 014B     		ldr	r3, .L14
@@ -667,7 +667,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  144              	.L15:
  145 0006 00BF     		.align	2
  146              	.L14:
- 147 0008 80680040 		.word	1073768576
+ 147 0008 90680040 		.word	1073768592
  148              		.cfi_endproc
  149              	.LFE6:
  150              		.size	PWM_MOTOR_WritePeriod, .-PWM_MOTOR_WritePeriod
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  524:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  525:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         #if (PWM_MOTOR_PWMMode == PWM_MOTOR__B_PWM__DITHER)
  526:.\Generated_Source\PSoC5/PWM_MOTOR.c ****             #if(PWM_MOTOR_UsingFixedFunction)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 13
 
 
  527:.\Generated_Source\PSoC5/PWM_MOTOR.c ****                 CY_SET_REG16(PWM_MOTOR_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
@@ -769,7 +769,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  169              	.L18:
  170 0006 00BF     		.align	2
  171              	.L17:
- 172 0008 40680040 		.word	1073768512
+ 172 0008 50680040 		.word	1073768528
  173              		.cfi_endproc
  174              	.LFE7:
  175              		.size	PWM_MOTOR_WriteCompare1, .-PWM_MOTOR_WriteCompare1
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  178              		.global	PWM_MOTOR_WriteCompare2
  179              		.thumb
  180              		.thumb_func
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 14
 
 
  181              		.type	PWM_MOTOR_WriteCompare2, %function
@@ -826,7 +826,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  194              	.L21:
  195 0006 00BF     		.align	2
  196              	.L20:
- 197 0008 60680040 		.word	1073768544
+ 197 0008 70680040 		.word	1073768560
  198              		.cfi_endproc
  199              	.LFE8:
  200              		.size	PWM_MOTOR_WriteCompare2, .-PWM_MOTOR_WriteCompare2
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  206              		.type	PWM_MOTOR_Init, %function
  207              	PWM_MOTOR_Init:
  208              	.LFB1:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 15
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 15
 
 
   85:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     #if (PWM_MOTOR_UsingFixedFunction || PWM_MOTOR_UseControl)
@@ -863,7 +863,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  225 000e 1370     		strb	r3, [r2]
  129:.\Generated_Source\PSoC5/PWM_MOTOR.c ****             PWM_MOTOR_AUX_CONTROLDP1 |= (PWM_MOTOR_AUX_CTRL_FIFO0_CLR);
  226              		.loc 1 129 0
- 227 0010 1F32     		adds	r2, r2, #31
+ 227 0010 2032     		adds	r2, r2, #32
  228 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
  229 0014 43F00103 		orr	r3, r3, #1
  230 0018 1370     		strb	r3, [r2]
@@ -897,8 +897,8 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  253              	.L25:
  254              		.align	2
  255              	.L24:
- 256 0044 71640040 		.word	1073767537
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 16
+ 256 0044 78640040 		.word	1073767544
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 16
 
 
  257              		.cfi_endproc
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  306              	.LFB9:
  591:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         #endif /* (PWM_MOTOR_UsingFixedFunction) */
  592:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     }
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 17
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 17
 
 
  593:.\Generated_Source\PSoC5/PWM_MOTOR.c **** #endif /* UseOneCompareMode */
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  647:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     *******************************************************************************/
  648:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     uint8 PWM_MOTOR_ReadDeadTime(void) 
  649:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     {
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 18
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 18
 
 
  650:.\Generated_Source\PSoC5/PWM_MOTOR.c ****         /* If using the Dead Band 1-255 mode then just read the register */
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  704:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     *  [4]   : FIFO not empty
  705:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     *  [3]   : FIFO full
  706:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     *  [2]   : Terminal count
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 19
 
 
  707:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     *  [1]   : Compare output 2
@@ -1132,13 +1132,13 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  318              	.L33:
  319 0006 00BF     		.align	2
  320              	.L32:
- 321 0008 71640040 		.word	1073767537
+ 321 0008 78640040 		.word	1073767544
  322              		.cfi_endproc
  323              	.LFE9:
  324              		.size	PWM_MOTOR_ReadControlRegister, .-PWM_MOTOR_ReadControlRegister
  325              		.section	.text.PWM_MOTOR_WriteControlRegister,"ax",%progbits
  326              		.align	2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 20
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 20
 
 
  327              		.global	PWM_MOTOR_WriteControlRegister
@@ -1184,7 +1184,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  343              	.L36:
  344 0006 00BF     		.align	2
  345              	.L35:
- 346 0008 71640040 		.word	1073767537
+ 346 0008 78640040 		.word	1073767544
  347              		.cfi_endproc
  348              	.LFE10:
  349              		.size	PWM_MOTOR_WriteControlRegister, .-PWM_MOTOR_WriteControlRegister
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  357              	.LFB11:
  768:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     }
  769:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 21
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 21
 
 
  770:.\Generated_Source\PSoC5/PWM_MOTOR.c **** #endif /* (PWM_MOTOR_UseControl) */
@@ -1239,7 +1239,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  369              	.L39:
  370              		.align	2
  371              	.L38:
- 372 0008 A0680040 		.word	1073768608
+ 372 0008 B0680040 		.word	1073768624
  373              		.cfi_endproc
  374              	.LFE11:
  375              		.size	PWM_MOTOR_ReadCapture, .-PWM_MOTOR_ReadCapture
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  798:.\Generated_Source\PSoC5/PWM_MOTOR.c **** #if (PWM_MOTOR_UseOneCompareMode)
  799:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
  800:.\Generated_Source\PSoC5/PWM_MOTOR.c **** 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 22
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 22
 
 
  801:.\Generated_Source\PSoC5/PWM_MOTOR.c ****     /*******************************************************************************
@@ -1318,12 +1318,12 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  393 0004 80B2     		uxth	r0, r0
  394 0006 7047     		bx	lr
  395              	.L42:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 23
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 23
 
 
  396              		.align	2
  397              	.L41:
- 398 0008 40680040 		.word	1073768512
+ 398 0008 50680040 		.word	1073768528
  399              		.cfi_endproc
  400              	.LFE12:
  401              		.size	PWM_MOTOR_ReadCompare1, .-PWM_MOTOR_ReadCompare1
@@ -1369,7 +1369,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  421              	.L45:
  422              		.align	2
  423              	.L44:
- 424 0008 60680040 		.word	1073768544
+ 424 0008 70680040 		.word	1073768560
  425              		.cfi_endproc
  426              	.LFE13:
  427              		.size	PWM_MOTOR_ReadCompare2, .-PWM_MOTOR_ReadCompare2
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  430              		.global	PWM_MOTOR_ReadPeriod
  431              		.thumb
  432              		.thumb_func
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 24
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 24
 
 
  433              		.type	PWM_MOTOR_ReadPeriod, %function
@@ -1424,7 +1424,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  447              	.L48:
  448              		.align	2
  449              	.L47:
- 450 0008 80680040 		.word	1073768576
+ 450 0008 90680040 		.word	1073768592
  451              		.cfi_endproc
  452              	.LFE14:
  453              		.size	PWM_MOTOR_ReadPeriod, .-PWM_MOTOR_ReadPeriod
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  461              		.text
  462              	.Letext0:
  463              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 25
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 25
 
 
  464              		.section	.debug_info,"",%progbits
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  518 006b 04       		.uleb128 0x4
  519 006c BD000000 		.4byte	.LASF9
  520 0070 02       		.byte	0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 26
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 26
 
 
  521 0071 C2       		.byte	0xc2
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  575 00e2 84020000 		.4byte	.LASF19
  576 00e6 01       		.byte	0x1
  577 00e7 9301     		.2byte	0x193
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 27
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 27
 
 
  578 00e9 00000000 		.4byte	.LFB4
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  632 0164 50       		.byte	0x50
  633 0165 00       		.byte	0
  634 0166 08       		.uleb128 0x8
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 28
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 28
 
 
  635 0167 38010000 		.4byte	.LASF25
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  689 01da 3C000000 		.4byte	.LVL8
  690 01de 41010000 		.4byte	0x141
  691 01e2 EE010000 		.4byte	0x1ee
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 29
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 29
 
 
  692 01e6 0E       		.uleb128 0xe
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  746 0255 01       		.byte	0x1
  747 0256 FD02     		.2byte	0x2fd
  748 0258 00000000 		.4byte	.LFB10
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 30
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 30
 
 
  749 025c 0C000000 		.4byte	.LFE10-.LFB10
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  803 02d9 03       		.byte	0x3
  804 02da 00000000 		.4byte	PWM_MOTOR_initVar
  805 02de 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 31
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 31
 
 
  806              		.section	.debug_abbrev,"",%progbits
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  860 0034 00       		.byte	0
  861 0035 00       		.byte	0
  862 0036 05       		.uleb128 0x5
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 32
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 32
 
 
  863 0037 16       		.uleb128 0x16
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  917 006e 19       		.uleb128 0x19
  918 006f 11       		.uleb128 0x11
  919 0070 01       		.uleb128 0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 33
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 33
 
 
  920 0071 12       		.uleb128 0x12
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  974 00a9 19       		.uleb128 0x19
  975 00aa 03       		.uleb128 0x3
  976 00ab 0E       		.uleb128 0xe
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 34
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 34
 
 
  977 00ac 3A       		.uleb128 0x3a
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1031 00e8 898201   		.uleb128 0x4109
  1032 00eb 01       		.byte	0x1
  1033 00ec 11       		.uleb128 0x11
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 35
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 35
 
 
  1034 00ed 01       		.uleb128 0x1
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1088 0126 00       		.byte	0
  1089 0127 00       		.byte	0
  1090 0128 13       		.uleb128 0x13
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 36
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 36
 
 
  1091 0129 34       		.uleb128 0x34
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1145 0060 00000000 		.4byte	.LFB10
  1146 0064 0C000000 		.4byte	.LFE10-.LFB10
  1147 0068 00000000 		.4byte	.LFB11
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 37
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 37
 
 
  1148 006c 0C000000 		.4byte	.LFE11-.LFB11
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1197 0006 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car\\car.cydsn\000"
  1197      6F626F74 
  1197      5C676974 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 38
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 38
 
 
  1197      5F636F64 
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1220              	.LASF31:
  1221 00c3 636F6E74 		.ascii	"control\000"
  1221      726F6C00 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 39
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 39
 
 
  1222              	.LASF21:
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1242              	.LASF8:
  1243 01de 756E7369 		.ascii	"unsigned int\000"
  1243      676E6564 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 40
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 40
 
 
  1243      20696E74 
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 1
  1265      61644361 
  1265      70747572 
  1266              	.LASF26:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccamXcAO.s 			page 41
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccG8P4je.s 			page 41
 
 
  1267 02b1 50574D5F 		.ascii	"PWM_MOTOR_Init\000"
