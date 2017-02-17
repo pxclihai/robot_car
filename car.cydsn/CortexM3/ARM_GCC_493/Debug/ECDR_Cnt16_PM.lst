@@ -1,0 +1,1049 @@
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ECDR_Cnt16_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ECDR_Cnt16_SaveConfig,"ax",%progbits
+  19              		.align	2
+  20              		.global	ECDR_Cnt16_SaveConfig
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ECDR_Cnt16_SaveConfig, %function
+  24              	ECDR_Cnt16_SaveConfig:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\ECDR_Cnt16_PM.c"
+   1:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * File Name: ECDR_Cnt16_PM.c  
+   3:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+   5:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  Description:
+   6:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *    This file provides the power management source code to API for the
+   7:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *    Counter.  
+   8:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+   9:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *   Note:
+  10:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *     None
+  11:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  12:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  19:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** #include "ECDR_Cnt16.h"
+  20:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  21:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** static ECDR_Cnt16_backupStruct ECDR_Cnt16_backup;
+  22:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  23:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  24:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Function Name: ECDR_Cnt16_SaveConfig
+  26:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Summary:
+  28:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *     Save the current user configuration
+  29:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  30:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Parameters:  
+  31:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  33:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Return: 
+  34:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+  35:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  36:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Global variables:
+  37:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  ECDR_Cnt16_backup:  Variables of this global structure are modified to 
+  38:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  store the values of non retention configuration registers when Sleep() API is 
+  39:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  called.
+  40:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  41:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** void ECDR_Cnt16_SaveConfig(void) 
+  43:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** {
+  27              		.loc 1 43 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 4, -8
+  34              		.cfi_offset 14, -4
+  44:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #if (!ECDR_Cnt16_UsingFixedFunction)
+  45:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  46:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         ECDR_Cnt16_backup.CounterUdb = ECDR_Cnt16_ReadCounter();
+  35              		.loc 1 46 0
+  36 0002 FFF7FEFF 		bl	ECDR_Cnt16_ReadCounter
+  37              	.LVL0:
+  38 0006 034C     		ldr	r4, .L3
+  39 0008 6080     		strh	r0, [r4, #2]	@ movhi
+  47:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  48:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         #if(!ECDR_Cnt16_ControlRegRemoved)
+  49:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             ECDR_Cnt16_backup.CounterControlRegister = ECDR_Cnt16_ReadControlRegister();
+  40              		.loc 1 49 0
+  41 000a FFF7FEFF 		bl	ECDR_Cnt16_ReadControlRegister
+  42              	.LVL1:
+  43 000e 2071     		strb	r0, [r4, #4]
+  44 0010 10BD     		pop	{r4, pc}
+  45              	.L4:
+  46 0012 00BF     		.align	2
+  47              	.L3:
+  48 0014 00000000 		.word	.LANCHOR0
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	ECDR_Cnt16_SaveConfig, .-ECDR_Cnt16_SaveConfig
+  52              		.section	.text.ECDR_Cnt16_RestoreConfig,"ax",%progbits
+  53              		.align	2
+  54              		.global	ECDR_Cnt16_RestoreConfig
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	ECDR_Cnt16_RestoreConfig, %function
+  58              	ECDR_Cnt16_RestoreConfig:
+  59              	.LFB1:
+  50:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         #endif /* (!ECDR_Cnt16_ControlRegRemoved) */
+  51:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  52:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #endif /* (!ECDR_Cnt16_UsingFixedFunction) */
+  53:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** }
+  54:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  55:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 3
+
+
+  56:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** /*******************************************************************************
+  57:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Function Name: ECDR_Cnt16_RestoreConfig
+  58:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** ********************************************************************************
+  59:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  60:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Summary:
+  61:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  Restores the current user configuration.
+  62:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  63:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Parameters:  
+  64:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+  65:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  66:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Return: 
+  67:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+  68:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  69:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Global variables:
+  70:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  ECDR_Cnt16_backup:  Variables of this global structure are used to 
+  71:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  72:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  73:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *******************************************************************************/
+  74:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** void ECDR_Cnt16_RestoreConfig(void) 
+  75:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** {      
+  60              		.loc 1 75 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64 0000 10B5     		push	{r4, lr}
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 4, -8
+  67              		.cfi_offset 14, -4
+  76:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #if (!ECDR_Cnt16_UsingFixedFunction)
+  77:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  78:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****        ECDR_Cnt16_WriteCounter(ECDR_Cnt16_backup.CounterUdb);
+  68              		.loc 1 78 0
+  69 0002 044C     		ldr	r4, .L7
+  70 0004 6088     		ldrh	r0, [r4, #2]
+  71 0006 FFF7FEFF 		bl	ECDR_Cnt16_WriteCounter
+  72              	.LVL2:
+  79:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  80:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         #if(!ECDR_Cnt16_ControlRegRemoved)
+  81:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             ECDR_Cnt16_WriteControlRegister(ECDR_Cnt16_backup.CounterControlRegister);
+  73              		.loc 1 81 0
+  74 000a 2079     		ldrb	r0, [r4, #4]	@ zero_extendqisi2
+  75 000c FFF7FEFF 		bl	ECDR_Cnt16_WriteControlRegister
+  76              	.LVL3:
+  77 0010 10BD     		pop	{r4, pc}
+  78              	.L8:
+  79 0012 00BF     		.align	2
+  80              	.L7:
+  81 0014 00000000 		.word	.LANCHOR0
+  82              		.cfi_endproc
+  83              	.LFE1:
+  84              		.size	ECDR_Cnt16_RestoreConfig, .-ECDR_Cnt16_RestoreConfig
+  85              		.section	.text.ECDR_Cnt16_Sleep,"ax",%progbits
+  86              		.align	2
+  87              		.global	ECDR_Cnt16_Sleep
+  88              		.thumb
+  89              		.thumb_func
+  90              		.type	ECDR_Cnt16_Sleep, %function
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 4
+
+
+  91              	ECDR_Cnt16_Sleep:
+  92              	.LFB2:
+  82:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         #endif /* (!ECDR_Cnt16_ControlRegRemoved) */
+  83:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  84:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #endif /* (!ECDR_Cnt16_UsingFixedFunction) */
+  85:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** }
+  86:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  87:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+  88:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** /*******************************************************************************
+  89:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Function Name: ECDR_Cnt16_Sleep
+  90:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** ********************************************************************************
+  91:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Summary:
+  92:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *     Stop and Save the user configuration
+  93:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  94:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Parameters:  
+  95:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+  96:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+  97:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Return: 
+  98:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+  99:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+ 100:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Global variables:
+ 101:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  ECDR_Cnt16_backup.enableState:  Is modified depending on the enable 
+ 102:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  state of the block before entering sleep mode.
+ 103:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+ 104:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *******************************************************************************/
+ 105:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** void ECDR_Cnt16_Sleep(void) 
+ 106:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** {
+  93              		.loc 1 106 0
+  94              		.cfi_startproc
+  95              		@ args = 0, pretend = 0, frame = 0
+  96              		@ frame_needed = 0, uses_anonymous_args = 0
+  97 0000 08B5     		push	{r3, lr}
+  98              		.cfi_def_cfa_offset 8
+  99              		.cfi_offset 3, -8
+ 100              		.cfi_offset 14, -4
+ 107:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #if(!ECDR_Cnt16_ControlRegRemoved)
+ 108:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         /* Save Counter's enable state */
+ 109:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         if(ECDR_Cnt16_CTRL_ENABLE == (ECDR_Cnt16_CONTROL & ECDR_Cnt16_CTRL_ENABLE))
+ 101              		.loc 1 109 0
+ 102 0002 084B     		ldr	r3, .L13
+ 103 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 104 0006 13F0800F 		tst	r3, #128
+ 105 000a 03D0     		beq	.L10
+ 110:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         {
+ 111:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             /* Counter is enabled */
+ 112:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             ECDR_Cnt16_backup.CounterEnableState = 1u;
+ 106              		.loc 1 112 0
+ 107 000c 0122     		movs	r2, #1
+ 108 000e 064B     		ldr	r3, .L13+4
+ 109 0010 1A70     		strb	r2, [r3]
+ 110 0012 02E0     		b	.L11
+ 111              	.L10:
+ 113:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         }
+ 114:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         else
+ 115:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         {
+ 116:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             /* Counter is disabled */
+ 117:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             ECDR_Cnt16_backup.CounterEnableState = 0u;
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 5
+
+
+ 112              		.loc 1 117 0
+ 113 0014 0022     		movs	r2, #0
+ 114 0016 044B     		ldr	r3, .L13+4
+ 115 0018 1A70     		strb	r2, [r3]
+ 116              	.L11:
+ 118:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         }
+ 119:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #else
+ 120:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         ECDR_Cnt16_backup.CounterEnableState = 1u;
+ 121:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         if(ECDR_Cnt16_backup.CounterEnableState != 0u)
+ 122:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         {
+ 123:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             ECDR_Cnt16_backup.CounterEnableState = 0u;
+ 124:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         }
+ 125:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #endif /* (!ECDR_Cnt16_ControlRegRemoved) */
+ 126:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     
+ 127:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     ECDR_Cnt16_Stop();
+ 117              		.loc 1 127 0
+ 118 001a FFF7FEFF 		bl	ECDR_Cnt16_Stop
+ 119              	.LVL4:
+ 128:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     ECDR_Cnt16_SaveConfig();
+ 120              		.loc 1 128 0
+ 121 001e FFF7FEFF 		bl	ECDR_Cnt16_SaveConfig
+ 122              	.LVL5:
+ 123 0022 08BD     		pop	{r3, pc}
+ 124              	.L14:
+ 125              		.align	2
+ 126              	.L13:
+ 127 0024 75650040 		.word	1073767797
+ 128 0028 00000000 		.word	.LANCHOR0
+ 129              		.cfi_endproc
+ 130              	.LFE2:
+ 131              		.size	ECDR_Cnt16_Sleep, .-ECDR_Cnt16_Sleep
+ 132              		.section	.text.ECDR_Cnt16_Wakeup,"ax",%progbits
+ 133              		.align	2
+ 134              		.global	ECDR_Cnt16_Wakeup
+ 135              		.thumb
+ 136              		.thumb_func
+ 137              		.type	ECDR_Cnt16_Wakeup, %function
+ 138              	ECDR_Cnt16_Wakeup:
+ 139              	.LFB3:
+ 129:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** }
+ 130:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+ 131:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** 
+ 132:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** /*******************************************************************************
+ 133:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Function Name: ECDR_Cnt16_Wakeup
+ 134:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** ********************************************************************************
+ 135:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+ 136:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Summary:
+ 137:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  Restores and enables the user configuration
+ 138:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  
+ 139:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Parameters:  
+ 140:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+ 141:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+ 142:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Return: 
+ 143:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  void
+ 144:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+ 145:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** * Global variables:
+ 146:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  ECDR_Cnt16_backup.enableState:  Is used to restore the enable state of 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 6
+
+
+ 147:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *  block on wakeup from sleep mode.
+ 148:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *
+ 149:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** *******************************************************************************/
+ 150:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** void ECDR_Cnt16_Wakeup(void) 
+ 151:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c **** {
+ 140              		.loc 1 151 0
+ 141              		.cfi_startproc
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144 0000 08B5     		push	{r3, lr}
+ 145              		.cfi_def_cfa_offset 8
+ 146              		.cfi_offset 3, -8
+ 147              		.cfi_offset 14, -4
+ 152:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     ECDR_Cnt16_RestoreConfig();
+ 148              		.loc 1 152 0
+ 149 0002 FFF7FEFF 		bl	ECDR_Cnt16_RestoreConfig
+ 150              	.LVL6:
+ 153:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****     #if(!ECDR_Cnt16_ControlRegRemoved)
+ 154:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         if(ECDR_Cnt16_backup.CounterEnableState == 1u)
+ 151              		.loc 1 154 0
+ 152 0006 034B     		ldr	r3, .L18
+ 153 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 154 000a 012B     		cmp	r3, #1
+ 155 000c 01D1     		bne	.L15
+ 155:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****         {
+ 156:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             /* Enable Counter's operation */
+ 157:.\Generated_Source\PSoC5/ECDR_Cnt16_PM.c ****             ECDR_Cnt16_Enable();
+ 156              		.loc 1 157 0
+ 157 000e FFF7FEFF 		bl	ECDR_Cnt16_Enable
+ 158              	.LVL7:
+ 159              	.L15:
+ 160 0012 08BD     		pop	{r3, pc}
+ 161              	.L19:
+ 162              		.align	2
+ 163              	.L18:
+ 164 0014 00000000 		.word	.LANCHOR0
+ 165              		.cfi_endproc
+ 166              	.LFE3:
+ 167              		.size	ECDR_Cnt16_Wakeup, .-ECDR_Cnt16_Wakeup
+ 168              		.bss
+ 169              		.align	2
+ 170              		.set	.LANCHOR0,. + 0
+ 171              		.type	ECDR_Cnt16_backup, %object
+ 172              		.size	ECDR_Cnt16_backup, 6
+ 173              	ECDR_Cnt16_backup:
+ 174 0000 00000000 		.space	6
+ 174      0000
+ 175 0006 0000     		.text
+ 176              	.Letext0:
+ 177              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 178              		.file 3 ".\\Generated_Source\\PSoC5\\ECDR_Cnt16.h"
+ 179              		.section	.debug_info,"",%progbits
+ 180              	.Ldebug_info0:
+ 181 0000 DA010000 		.4byte	0x1da
+ 182 0004 0400     		.2byte	0x4
+ 183 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 184 000a 04       		.byte	0x4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 7
+
+
+ 185 000b 01       		.uleb128 0x1
+ 186 000c 18010000 		.4byte	.LASF30
+ 187 0010 01       		.byte	0x1
+ 188 0011 CF000000 		.4byte	.LASF31
+ 189 0015 0C020000 		.4byte	.LASF32
+ 190 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 191 001d 00000000 		.4byte	0
+ 192 0021 00000000 		.4byte	.Ldebug_line0
+ 193 0025 02       		.uleb128 0x2
+ 194 0026 01       		.byte	0x1
+ 195 0027 06       		.byte	0x6
+ 196 0028 A6020000 		.4byte	.LASF0
+ 197 002c 02       		.uleb128 0x2
+ 198 002d 01       		.byte	0x1
+ 199 002e 08       		.byte	0x8
+ 200 002f A4000000 		.4byte	.LASF1
+ 201 0033 02       		.uleb128 0x2
+ 202 0034 02       		.byte	0x2
+ 203 0035 05       		.byte	0x5
+ 204 0036 64020000 		.4byte	.LASF2
+ 205 003a 02       		.uleb128 0x2
+ 206 003b 02       		.byte	0x2
+ 207 003c 07       		.byte	0x7
+ 208 003d 47000000 		.4byte	.LASF3
+ 209 0041 02       		.uleb128 0x2
+ 210 0042 04       		.byte	0x4
+ 211 0043 05       		.byte	0x5
+ 212 0044 9D020000 		.4byte	.LASF4
+ 213 0048 02       		.uleb128 0x2
+ 214 0049 04       		.byte	0x4
+ 215 004a 07       		.byte	0x7
+ 216 004b B7000000 		.4byte	.LASF5
+ 217 004f 02       		.uleb128 0x2
+ 218 0050 08       		.byte	0x8
+ 219 0051 05       		.byte	0x5
+ 220 0052 51020000 		.4byte	.LASF6
+ 221 0056 02       		.uleb128 0x2
+ 222 0057 08       		.byte	0x8
+ 223 0058 07       		.byte	0x7
+ 224 0059 D2010000 		.4byte	.LASF7
+ 225 005d 03       		.uleb128 0x3
+ 226 005e 04       		.byte	0x4
+ 227 005f 05       		.byte	0x5
+ 228 0060 696E7400 		.ascii	"int\000"
+ 229 0064 02       		.uleb128 0x2
+ 230 0065 04       		.byte	0x4
+ 231 0066 07       		.byte	0x7
+ 232 0067 A6010000 		.4byte	.LASF8
+ 233 006b 04       		.uleb128 0x4
+ 234 006c C9000000 		.4byte	.LASF9
+ 235 0070 02       		.byte	0x2
+ 236 0071 C2       		.byte	0xc2
+ 237 0072 2C000000 		.4byte	0x2c
+ 238 0076 04       		.uleb128 0x4
+ 239 0077 FF000000 		.4byte	.LASF10
+ 240 007b 02       		.byte	0x2
+ 241 007c C3       		.byte	0xc3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 8
+
+
+ 242 007d 3A000000 		.4byte	0x3a
+ 243 0081 02       		.uleb128 0x2
+ 244 0082 04       		.byte	0x4
+ 245 0083 04       		.byte	0x4
+ 246 0084 9E000000 		.4byte	.LASF11
+ 247 0088 02       		.uleb128 0x2
+ 248 0089 08       		.byte	0x8
+ 249 008a 04       		.byte	0x4
+ 250 008b F8000000 		.4byte	.LASF12
+ 251 008f 02       		.uleb128 0x2
+ 252 0090 01       		.byte	0x1
+ 253 0091 08       		.byte	0x8
+ 254 0092 5F020000 		.4byte	.LASF13
+ 255 0096 05       		.uleb128 0x5
+ 256 0097 B2000000 		.4byte	.LASF14
+ 257 009b 02       		.byte	0x2
+ 258 009c 6C01     		.2byte	0x16c
+ 259 009e A2000000 		.4byte	0xa2
+ 260 00a2 06       		.uleb128 0x6
+ 261 00a3 6B000000 		.4byte	0x6b
+ 262 00a7 02       		.uleb128 0x2
+ 263 00a8 04       		.byte	0x4
+ 264 00a9 07       		.byte	0x7
+ 265 00aa 35020000 		.4byte	.LASF15
+ 266 00ae 07       		.uleb128 0x7
+ 267 00af 06       		.byte	0x6
+ 268 00b0 03       		.byte	0x3
+ 269 00b1 40       		.byte	0x40
+ 270 00b2 DB000000 		.4byte	0xdb
+ 271 00b6 08       		.uleb128 0x8
+ 272 00b7 3E020000 		.4byte	.LASF16
+ 273 00bb 03       		.byte	0x3
+ 274 00bc 42       		.byte	0x42
+ 275 00bd 6B000000 		.4byte	0x6b
+ 276 00c1 00       		.byte	0
+ 277 00c2 08       		.uleb128 0x8
+ 278 00c3 5A000000 		.4byte	.LASF17
+ 279 00c7 03       		.byte	0x3
+ 280 00c8 43       		.byte	0x43
+ 281 00c9 76000000 		.4byte	0x76
+ 282 00cd 02       		.byte	0x2
+ 283 00ce 08       		.uleb128 0x8
+ 284 00cf 87000000 		.4byte	.LASF18
+ 285 00d3 03       		.byte	0x3
+ 286 00d4 46       		.byte	0x46
+ 287 00d5 6B000000 		.4byte	0x6b
+ 288 00d9 04       		.byte	0x4
+ 289 00da 00       		.byte	0
+ 290 00db 04       		.uleb128 0x4
+ 291 00dc 19000000 		.4byte	.LASF19
+ 292 00e0 03       		.byte	0x3
+ 293 00e1 49       		.byte	0x49
+ 294 00e2 AE000000 		.4byte	0xae
+ 295 00e6 09       		.uleb128 0x9
+ 296 00e7 31000000 		.4byte	.LASF20
+ 297 00eb 01       		.byte	0x1
+ 298 00ec 2A       		.byte	0x2a
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 9
+
+
+ 299 00ed 00000000 		.4byte	.LFB0
+ 300 00f1 18000000 		.4byte	.LFE0-.LFB0
+ 301 00f5 01       		.uleb128 0x1
+ 302 00f6 9C       		.byte	0x9c
+ 303 00f7 0E010000 		.4byte	0x10e
+ 304 00fb 0A       		.uleb128 0xa
+ 305 00fc 06000000 		.4byte	.LVL0
+ 306 0100 97010000 		.4byte	0x197
+ 307 0104 0A       		.uleb128 0xa
+ 308 0105 0E000000 		.4byte	.LVL1
+ 309 0109 A2010000 		.4byte	0x1a2
+ 310 010d 00       		.byte	0
+ 311 010e 09       		.uleb128 0x9
+ 312 010f 00000000 		.4byte	.LASF21
+ 313 0113 01       		.byte	0x1
+ 314 0114 4A       		.byte	0x4a
+ 315 0115 00000000 		.4byte	.LFB1
+ 316 0119 18000000 		.4byte	.LFE1-.LFB1
+ 317 011d 01       		.uleb128 0x1
+ 318 011e 9C       		.byte	0x9c
+ 319 011f 36010000 		.4byte	0x136
+ 320 0123 0A       		.uleb128 0xa
+ 321 0124 0A000000 		.4byte	.LVL2
+ 322 0128 AD010000 		.4byte	0x1ad
+ 323 012c 0A       		.uleb128 0xa
+ 324 012d 10000000 		.4byte	.LVL3
+ 325 0131 BE010000 		.4byte	0x1be
+ 326 0135 00       		.byte	0
+ 327 0136 09       		.uleb128 0x9
+ 328 0137 FB010000 		.4byte	.LASF22
+ 329 013b 01       		.byte	0x1
+ 330 013c 69       		.byte	0x69
+ 331 013d 00000000 		.4byte	.LFB2
+ 332 0141 2C000000 		.4byte	.LFE2-.LFB2
+ 333 0145 01       		.uleb128 0x1
+ 334 0146 9C       		.byte	0x9c
+ 335 0147 5E010000 		.4byte	0x15e
+ 336 014b 0A       		.uleb128 0xa
+ 337 014c 1E000000 		.4byte	.LVL4
+ 338 0150 CF010000 		.4byte	0x1cf
+ 339 0154 0A       		.uleb128 0xa
+ 340 0155 22000000 		.4byte	.LVL5
+ 341 0159 E6000000 		.4byte	0xe6
+ 342 015d 00       		.byte	0
+ 343 015e 09       		.uleb128 0x9
+ 344 015f E9010000 		.4byte	.LASF23
+ 345 0163 01       		.byte	0x1
+ 346 0164 96       		.byte	0x96
+ 347 0165 00000000 		.4byte	.LFB3
+ 348 0169 18000000 		.4byte	.LFE3-.LFB3
+ 349 016d 01       		.uleb128 0x1
+ 350 016e 9C       		.byte	0x9c
+ 351 016f 86010000 		.4byte	0x186
+ 352 0173 0A       		.uleb128 0xa
+ 353 0174 06000000 		.4byte	.LVL6
+ 354 0178 0E010000 		.4byte	0x10e
+ 355 017c 0A       		.uleb128 0xa
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 10
+
+
+ 356 017d 12000000 		.4byte	.LVL7
+ 357 0181 D6010000 		.4byte	0x1d6
+ 358 0185 00       		.byte	0
+ 359 0186 0B       		.uleb128 0xb
+ 360 0187 06010000 		.4byte	.LASF33
+ 361 018b 01       		.byte	0x1
+ 362 018c 15       		.byte	0x15
+ 363 018d DB000000 		.4byte	0xdb
+ 364 0191 05       		.uleb128 0x5
+ 365 0192 03       		.byte	0x3
+ 366 0193 00000000 		.4byte	ECDR_Cnt16_backup
+ 367 0197 0C       		.uleb128 0xc
+ 368 0198 6E020000 		.4byte	.LASF24
+ 369 019c 03       		.byte	0x3
+ 370 019d 5D       		.byte	0x5d
+ 371 019e 76000000 		.4byte	0x76
+ 372 01a2 0C       		.uleb128 0xc
+ 373 01a3 B3010000 		.4byte	.LASF25
+ 374 01a7 03       		.byte	0x3
+ 375 01a8 55       		.byte	0x55
+ 376 01a9 6B000000 		.4byte	0x6b
+ 377 01ad 0D       		.uleb128 0xd
+ 378 01ae 85020000 		.4byte	.LASF26
+ 379 01b2 03       		.byte	0x3
+ 380 01b3 5A       		.byte	0x5a
+ 381 01b4 BE010000 		.4byte	0x1be
+ 382 01b8 0E       		.uleb128 0xe
+ 383 01b9 76000000 		.4byte	0x76
+ 384 01bd 00       		.byte	0
+ 385 01be 0D       		.uleb128 0xd
+ 386 01bf B2020000 		.4byte	.LASF27
+ 387 01c3 03       		.byte	0x3
+ 388 01c4 56       		.byte	0x56
+ 389 01c5 CF010000 		.4byte	0x1cf
+ 390 01c9 0E       		.uleb128 0xe
+ 391 01ca 6B000000 		.4byte	0x6b
+ 392 01ce 00       		.byte	0
+ 393 01cf 0F       		.uleb128 0xf
+ 394 01d0 77000000 		.4byte	.LASF28
+ 395 01d4 03       		.byte	0x3
+ 396 01d5 50       		.byte	0x50
+ 397 01d6 0F       		.uleb128 0xf
+ 398 01d7 65000000 		.4byte	.LASF29
+ 399 01db 03       		.byte	0x3
+ 400 01dc 71       		.byte	0x71
+ 401 01dd 00       		.byte	0
+ 402              		.section	.debug_abbrev,"",%progbits
+ 403              	.Ldebug_abbrev0:
+ 404 0000 01       		.uleb128 0x1
+ 405 0001 11       		.uleb128 0x11
+ 406 0002 01       		.byte	0x1
+ 407 0003 25       		.uleb128 0x25
+ 408 0004 0E       		.uleb128 0xe
+ 409 0005 13       		.uleb128 0x13
+ 410 0006 0B       		.uleb128 0xb
+ 411 0007 03       		.uleb128 0x3
+ 412 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 11
+
+
+ 413 0009 1B       		.uleb128 0x1b
+ 414 000a 0E       		.uleb128 0xe
+ 415 000b 55       		.uleb128 0x55
+ 416 000c 17       		.uleb128 0x17
+ 417 000d 11       		.uleb128 0x11
+ 418 000e 01       		.uleb128 0x1
+ 419 000f 10       		.uleb128 0x10
+ 420 0010 17       		.uleb128 0x17
+ 421 0011 00       		.byte	0
+ 422 0012 00       		.byte	0
+ 423 0013 02       		.uleb128 0x2
+ 424 0014 24       		.uleb128 0x24
+ 425 0015 00       		.byte	0
+ 426 0016 0B       		.uleb128 0xb
+ 427 0017 0B       		.uleb128 0xb
+ 428 0018 3E       		.uleb128 0x3e
+ 429 0019 0B       		.uleb128 0xb
+ 430 001a 03       		.uleb128 0x3
+ 431 001b 0E       		.uleb128 0xe
+ 432 001c 00       		.byte	0
+ 433 001d 00       		.byte	0
+ 434 001e 03       		.uleb128 0x3
+ 435 001f 24       		.uleb128 0x24
+ 436 0020 00       		.byte	0
+ 437 0021 0B       		.uleb128 0xb
+ 438 0022 0B       		.uleb128 0xb
+ 439 0023 3E       		.uleb128 0x3e
+ 440 0024 0B       		.uleb128 0xb
+ 441 0025 03       		.uleb128 0x3
+ 442 0026 08       		.uleb128 0x8
+ 443 0027 00       		.byte	0
+ 444 0028 00       		.byte	0
+ 445 0029 04       		.uleb128 0x4
+ 446 002a 16       		.uleb128 0x16
+ 447 002b 00       		.byte	0
+ 448 002c 03       		.uleb128 0x3
+ 449 002d 0E       		.uleb128 0xe
+ 450 002e 3A       		.uleb128 0x3a
+ 451 002f 0B       		.uleb128 0xb
+ 452 0030 3B       		.uleb128 0x3b
+ 453 0031 0B       		.uleb128 0xb
+ 454 0032 49       		.uleb128 0x49
+ 455 0033 13       		.uleb128 0x13
+ 456 0034 00       		.byte	0
+ 457 0035 00       		.byte	0
+ 458 0036 05       		.uleb128 0x5
+ 459 0037 16       		.uleb128 0x16
+ 460 0038 00       		.byte	0
+ 461 0039 03       		.uleb128 0x3
+ 462 003a 0E       		.uleb128 0xe
+ 463 003b 3A       		.uleb128 0x3a
+ 464 003c 0B       		.uleb128 0xb
+ 465 003d 3B       		.uleb128 0x3b
+ 466 003e 05       		.uleb128 0x5
+ 467 003f 49       		.uleb128 0x49
+ 468 0040 13       		.uleb128 0x13
+ 469 0041 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 12
+
+
+ 470 0042 00       		.byte	0
+ 471 0043 06       		.uleb128 0x6
+ 472 0044 35       		.uleb128 0x35
+ 473 0045 00       		.byte	0
+ 474 0046 49       		.uleb128 0x49
+ 475 0047 13       		.uleb128 0x13
+ 476 0048 00       		.byte	0
+ 477 0049 00       		.byte	0
+ 478 004a 07       		.uleb128 0x7
+ 479 004b 13       		.uleb128 0x13
+ 480 004c 01       		.byte	0x1
+ 481 004d 0B       		.uleb128 0xb
+ 482 004e 0B       		.uleb128 0xb
+ 483 004f 3A       		.uleb128 0x3a
+ 484 0050 0B       		.uleb128 0xb
+ 485 0051 3B       		.uleb128 0x3b
+ 486 0052 0B       		.uleb128 0xb
+ 487 0053 01       		.uleb128 0x1
+ 488 0054 13       		.uleb128 0x13
+ 489 0055 00       		.byte	0
+ 490 0056 00       		.byte	0
+ 491 0057 08       		.uleb128 0x8
+ 492 0058 0D       		.uleb128 0xd
+ 493 0059 00       		.byte	0
+ 494 005a 03       		.uleb128 0x3
+ 495 005b 0E       		.uleb128 0xe
+ 496 005c 3A       		.uleb128 0x3a
+ 497 005d 0B       		.uleb128 0xb
+ 498 005e 3B       		.uleb128 0x3b
+ 499 005f 0B       		.uleb128 0xb
+ 500 0060 49       		.uleb128 0x49
+ 501 0061 13       		.uleb128 0x13
+ 502 0062 38       		.uleb128 0x38
+ 503 0063 0B       		.uleb128 0xb
+ 504 0064 00       		.byte	0
+ 505 0065 00       		.byte	0
+ 506 0066 09       		.uleb128 0x9
+ 507 0067 2E       		.uleb128 0x2e
+ 508 0068 01       		.byte	0x1
+ 509 0069 3F       		.uleb128 0x3f
+ 510 006a 19       		.uleb128 0x19
+ 511 006b 03       		.uleb128 0x3
+ 512 006c 0E       		.uleb128 0xe
+ 513 006d 3A       		.uleb128 0x3a
+ 514 006e 0B       		.uleb128 0xb
+ 515 006f 3B       		.uleb128 0x3b
+ 516 0070 0B       		.uleb128 0xb
+ 517 0071 27       		.uleb128 0x27
+ 518 0072 19       		.uleb128 0x19
+ 519 0073 11       		.uleb128 0x11
+ 520 0074 01       		.uleb128 0x1
+ 521 0075 12       		.uleb128 0x12
+ 522 0076 06       		.uleb128 0x6
+ 523 0077 40       		.uleb128 0x40
+ 524 0078 18       		.uleb128 0x18
+ 525 0079 9742     		.uleb128 0x2117
+ 526 007b 19       		.uleb128 0x19
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 13
+
+
+ 527 007c 01       		.uleb128 0x1
+ 528 007d 13       		.uleb128 0x13
+ 529 007e 00       		.byte	0
+ 530 007f 00       		.byte	0
+ 531 0080 0A       		.uleb128 0xa
+ 532 0081 898201   		.uleb128 0x4109
+ 533 0084 00       		.byte	0
+ 534 0085 11       		.uleb128 0x11
+ 535 0086 01       		.uleb128 0x1
+ 536 0087 31       		.uleb128 0x31
+ 537 0088 13       		.uleb128 0x13
+ 538 0089 00       		.byte	0
+ 539 008a 00       		.byte	0
+ 540 008b 0B       		.uleb128 0xb
+ 541 008c 34       		.uleb128 0x34
+ 542 008d 00       		.byte	0
+ 543 008e 03       		.uleb128 0x3
+ 544 008f 0E       		.uleb128 0xe
+ 545 0090 3A       		.uleb128 0x3a
+ 546 0091 0B       		.uleb128 0xb
+ 547 0092 3B       		.uleb128 0x3b
+ 548 0093 0B       		.uleb128 0xb
+ 549 0094 49       		.uleb128 0x49
+ 550 0095 13       		.uleb128 0x13
+ 551 0096 02       		.uleb128 0x2
+ 552 0097 18       		.uleb128 0x18
+ 553 0098 00       		.byte	0
+ 554 0099 00       		.byte	0
+ 555 009a 0C       		.uleb128 0xc
+ 556 009b 2E       		.uleb128 0x2e
+ 557 009c 00       		.byte	0
+ 558 009d 3F       		.uleb128 0x3f
+ 559 009e 19       		.uleb128 0x19
+ 560 009f 03       		.uleb128 0x3
+ 561 00a0 0E       		.uleb128 0xe
+ 562 00a1 3A       		.uleb128 0x3a
+ 563 00a2 0B       		.uleb128 0xb
+ 564 00a3 3B       		.uleb128 0x3b
+ 565 00a4 0B       		.uleb128 0xb
+ 566 00a5 27       		.uleb128 0x27
+ 567 00a6 19       		.uleb128 0x19
+ 568 00a7 49       		.uleb128 0x49
+ 569 00a8 13       		.uleb128 0x13
+ 570 00a9 3C       		.uleb128 0x3c
+ 571 00aa 19       		.uleb128 0x19
+ 572 00ab 00       		.byte	0
+ 573 00ac 00       		.byte	0
+ 574 00ad 0D       		.uleb128 0xd
+ 575 00ae 2E       		.uleb128 0x2e
+ 576 00af 01       		.byte	0x1
+ 577 00b0 3F       		.uleb128 0x3f
+ 578 00b1 19       		.uleb128 0x19
+ 579 00b2 03       		.uleb128 0x3
+ 580 00b3 0E       		.uleb128 0xe
+ 581 00b4 3A       		.uleb128 0x3a
+ 582 00b5 0B       		.uleb128 0xb
+ 583 00b6 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 14
+
+
+ 584 00b7 0B       		.uleb128 0xb
+ 585 00b8 27       		.uleb128 0x27
+ 586 00b9 19       		.uleb128 0x19
+ 587 00ba 3C       		.uleb128 0x3c
+ 588 00bb 19       		.uleb128 0x19
+ 589 00bc 01       		.uleb128 0x1
+ 590 00bd 13       		.uleb128 0x13
+ 591 00be 00       		.byte	0
+ 592 00bf 00       		.byte	0
+ 593 00c0 0E       		.uleb128 0xe
+ 594 00c1 05       		.uleb128 0x5
+ 595 00c2 00       		.byte	0
+ 596 00c3 49       		.uleb128 0x49
+ 597 00c4 13       		.uleb128 0x13
+ 598 00c5 00       		.byte	0
+ 599 00c6 00       		.byte	0
+ 600 00c7 0F       		.uleb128 0xf
+ 601 00c8 2E       		.uleb128 0x2e
+ 602 00c9 00       		.byte	0
+ 603 00ca 3F       		.uleb128 0x3f
+ 604 00cb 19       		.uleb128 0x19
+ 605 00cc 03       		.uleb128 0x3
+ 606 00cd 0E       		.uleb128 0xe
+ 607 00ce 3A       		.uleb128 0x3a
+ 608 00cf 0B       		.uleb128 0xb
+ 609 00d0 3B       		.uleb128 0x3b
+ 610 00d1 0B       		.uleb128 0xb
+ 611 00d2 27       		.uleb128 0x27
+ 612 00d3 19       		.uleb128 0x19
+ 613 00d4 3C       		.uleb128 0x3c
+ 614 00d5 19       		.uleb128 0x19
+ 615 00d6 00       		.byte	0
+ 616 00d7 00       		.byte	0
+ 617 00d8 00       		.byte	0
+ 618              		.section	.debug_aranges,"",%progbits
+ 619 0000 34000000 		.4byte	0x34
+ 620 0004 0200     		.2byte	0x2
+ 621 0006 00000000 		.4byte	.Ldebug_info0
+ 622 000a 04       		.byte	0x4
+ 623 000b 00       		.byte	0
+ 624 000c 0000     		.2byte	0
+ 625 000e 0000     		.2byte	0
+ 626 0010 00000000 		.4byte	.LFB0
+ 627 0014 18000000 		.4byte	.LFE0-.LFB0
+ 628 0018 00000000 		.4byte	.LFB1
+ 629 001c 18000000 		.4byte	.LFE1-.LFB1
+ 630 0020 00000000 		.4byte	.LFB2
+ 631 0024 2C000000 		.4byte	.LFE2-.LFB2
+ 632 0028 00000000 		.4byte	.LFB3
+ 633 002c 18000000 		.4byte	.LFE3-.LFB3
+ 634 0030 00000000 		.4byte	0
+ 635 0034 00000000 		.4byte	0
+ 636              		.section	.debug_ranges,"",%progbits
+ 637              	.Ldebug_ranges0:
+ 638 0000 00000000 		.4byte	.LFB0
+ 639 0004 18000000 		.4byte	.LFE0
+ 640 0008 00000000 		.4byte	.LFB1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 15
+
+
+ 641 000c 18000000 		.4byte	.LFE1
+ 642 0010 00000000 		.4byte	.LFB2
+ 643 0014 2C000000 		.4byte	.LFE2
+ 644 0018 00000000 		.4byte	.LFB3
+ 645 001c 18000000 		.4byte	.LFE3
+ 646 0020 00000000 		.4byte	0
+ 647 0024 00000000 		.4byte	0
+ 648              		.section	.debug_line,"",%progbits
+ 649              	.Ldebug_line0:
+ 650 0000 AF000000 		.section	.debug_str,"MS",%progbits,1
+ 650      02005C00 
+ 650      00000201 
+ 650      FB0E0D00 
+ 650      01010101 
+ 651              	.LASF21:
+ 652 0000 45434452 		.ascii	"ECDR_Cnt16_RestoreConfig\000"
+ 652      5F436E74 
+ 652      31365F52 
+ 652      6573746F 
+ 652      7265436F 
+ 653              	.LASF19:
+ 654 0019 45434452 		.ascii	"ECDR_Cnt16_backupStruct\000"
+ 654      5F436E74 
+ 654      31365F62 
+ 654      61636B75 
+ 654      70537472 
+ 655              	.LASF20:
+ 656 0031 45434452 		.ascii	"ECDR_Cnt16_SaveConfig\000"
+ 656      5F436E74 
+ 656      31365F53 
+ 656      61766543 
+ 656      6F6E6669 
+ 657              	.LASF3:
+ 658 0047 73686F72 		.ascii	"short unsigned int\000"
+ 658      7420756E 
+ 658      7369676E 
+ 658      65642069 
+ 658      6E7400
+ 659              	.LASF17:
+ 660 005a 436F756E 		.ascii	"CounterUdb\000"
+ 660      74657255 
+ 660      646200
+ 661              	.LASF29:
+ 662 0065 45434452 		.ascii	"ECDR_Cnt16_Enable\000"
+ 662      5F436E74 
+ 662      31365F45 
+ 662      6E61626C 
+ 662      6500
+ 663              	.LASF28:
+ 664 0077 45434452 		.ascii	"ECDR_Cnt16_Stop\000"
+ 664      5F436E74 
+ 664      31365F53 
+ 664      746F7000 
+ 665              	.LASF18:
+ 666 0087 436F756E 		.ascii	"CounterControlRegister\000"
+ 666      74657243 
+ 666      6F6E7472 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 16
+
+
+ 666      6F6C5265 
+ 666      67697374 
+ 667              	.LASF11:
+ 668 009e 666C6F61 		.ascii	"float\000"
+ 668      7400
+ 669              	.LASF1:
+ 670 00a4 756E7369 		.ascii	"unsigned char\000"
+ 670      676E6564 
+ 670      20636861 
+ 670      7200
+ 671              	.LASF14:
+ 672 00b2 72656738 		.ascii	"reg8\000"
+ 672      00
+ 673              	.LASF5:
+ 674 00b7 6C6F6E67 		.ascii	"long unsigned int\000"
+ 674      20756E73 
+ 674      69676E65 
+ 674      6420696E 
+ 674      7400
+ 675              	.LASF9:
+ 676 00c9 75696E74 		.ascii	"uint8\000"
+ 676      3800
+ 677              	.LASF31:
+ 678 00cf 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ECDR_Cnt16_PM.c\000"
+ 678      6E657261 
+ 678      7465645F 
+ 678      536F7572 
+ 678      63655C50 
+ 679              	.LASF12:
+ 680 00f8 646F7562 		.ascii	"double\000"
+ 680      6C6500
+ 681              	.LASF10:
+ 682 00ff 75696E74 		.ascii	"uint16\000"
+ 682      313600
+ 683              	.LASF33:
+ 684 0106 45434452 		.ascii	"ECDR_Cnt16_backup\000"
+ 684      5F436E74 
+ 684      31365F62 
+ 684      61636B75 
+ 684      7000
+ 685              	.LASF30:
+ 686 0118 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 686      4320342E 
+ 686      392E3320 
+ 686      32303135 
+ 686      30333033 
+ 687 014b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 687      20726576 
+ 687      6973696F 
+ 687      6E203232 
+ 687      31323230 
+ 688 017e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 688      66756E63 
+ 688      74696F6E 
+ 688      2D736563 
+ 688      74696F6E 
+ 689              	.LASF8:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 17
+
+
+ 690 01a6 756E7369 		.ascii	"unsigned int\000"
+ 690      676E6564 
+ 690      20696E74 
+ 690      00
+ 691              	.LASF25:
+ 692 01b3 45434452 		.ascii	"ECDR_Cnt16_ReadControlRegister\000"
+ 692      5F436E74 
+ 692      31365F52 
+ 692      65616443 
+ 692      6F6E7472 
+ 693              	.LASF7:
+ 694 01d2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 694      206C6F6E 
+ 694      6720756E 
+ 694      7369676E 
+ 694      65642069 
+ 695              	.LASF23:
+ 696 01e9 45434452 		.ascii	"ECDR_Cnt16_Wakeup\000"
+ 696      5F436E74 
+ 696      31365F57 
+ 696      616B6575 
+ 696      7000
+ 697              	.LASF22:
+ 698 01fb 45434452 		.ascii	"ECDR_Cnt16_Sleep\000"
+ 698      5F436E74 
+ 698      31365F53 
+ 698      6C656570 
+ 698      00
+ 699              	.LASF32:
+ 700 020c 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car_V5\\car.cydsn\000"
+ 700      6F626F74 
+ 700      5C676974 
+ 700      5F636F64 
+ 700      655C726F 
+ 701              	.LASF15:
+ 702 0235 73697A65 		.ascii	"sizetype\000"
+ 702      74797065 
+ 702      00
+ 703              	.LASF16:
+ 704 023e 436F756E 		.ascii	"CounterEnableState\000"
+ 704      74657245 
+ 704      6E61626C 
+ 704      65537461 
+ 704      746500
+ 705              	.LASF6:
+ 706 0251 6C6F6E67 		.ascii	"long long int\000"
+ 706      206C6F6E 
+ 706      6720696E 
+ 706      7400
+ 707              	.LASF13:
+ 708 025f 63686172 		.ascii	"char\000"
+ 708      00
+ 709              	.LASF2:
+ 710 0264 73686F72 		.ascii	"short int\000"
+ 710      7420696E 
+ 710      7400
+ 711              	.LASF24:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\cceCLXeT.s 			page 18
+
+
+ 712 026e 45434452 		.ascii	"ECDR_Cnt16_ReadCounter\000"
+ 712      5F436E74 
+ 712      31365F52 
+ 712      65616443 
+ 712      6F756E74 
+ 713              	.LASF26:
+ 714 0285 45434452 		.ascii	"ECDR_Cnt16_WriteCounter\000"
+ 714      5F436E74 
+ 714      31365F57 
+ 714      72697465 
+ 714      436F756E 
+ 715              	.LASF4:
+ 716 029d 6C6F6E67 		.ascii	"long int\000"
+ 716      20696E74 
+ 716      00
+ 717              	.LASF0:
+ 718 02a6 7369676E 		.ascii	"signed char\000"
+ 718      65642063 
+ 718      68617200 
+ 719              	.LASF27:
+ 720 02b2 45434452 		.ascii	"ECDR_Cnt16_WriteControlRegister\000"
+ 720      5F436E74 
+ 720      31365F57 
+ 720      72697465 
+ 720      436F6E74 
+ 721              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

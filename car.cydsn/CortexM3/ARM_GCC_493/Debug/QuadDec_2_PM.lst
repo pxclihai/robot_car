@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   29:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** *
   30:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** * Parameters:
   31:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** *  None.
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** *
@@ -78,8 +78,13 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   34              		.cfi_offset 14, -4
   39:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #if (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT)
   40:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         QuadDec_2_Cnt8_SaveConfig();
-  35              		.loc 1 40 0
-  36 0002 FFF7FEFF 		bl	QuadDec_2_Cnt8_SaveConfig
+  41:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #else 
+  42:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_16_BIT) || 
+  43:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          * (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_32_BIT)
+  44:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          */
+  45:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         QuadDec_2_Cnt16_SaveConfig();
+  35              		.loc 1 45 0
+  36 0002 FFF7FEFF 		bl	QuadDec_2_Cnt16_SaveConfig
   37              	.LVL0:
   38 0006 08BD     		pop	{r3, pc}
   39              		.cfi_endproc
@@ -93,11 +98,6 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   47              		.type	QuadDec_2_RestoreConfig, %function
   48              	QuadDec_2_RestoreConfig:
   49              	.LFB1:
-  41:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #else 
-  42:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_16_BIT) || 
-  43:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          * (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_32_BIT)
-  44:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          */
-  45:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         QuadDec_2_Cnt16_SaveConfig();
   46:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #endif /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT) */
   47:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** }
   48:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   63:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** void QuadDec_2_RestoreConfig(void) 
   64:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** {
   50              		.loc 1 64 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 3
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 3
 
 
   51              		.cfi_startproc
@@ -130,8 +130,13 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   57              		.cfi_offset 14, -4
   65:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #if (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT)
   66:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         QuadDec_2_Cnt8_RestoreConfig();
-  58              		.loc 1 66 0
-  59 0002 FFF7FEFF 		bl	QuadDec_2_Cnt8_RestoreConfig
+  67:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #else 
+  68:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_16_BIT) || 
+  69:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          * (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_32_BIT) 
+  70:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          */
+  71:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         QuadDec_2_Cnt16_RestoreConfig();
+  58              		.loc 1 71 0
+  59 0002 FFF7FEFF 		bl	QuadDec_2_Cnt16_RestoreConfig
   60              	.LVL1:
   61 0006 08BD     		pop	{r3, pc}
   62              		.cfi_endproc
@@ -145,11 +150,6 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   70              		.type	QuadDec_2_Sleep, %function
   71              	QuadDec_2_Sleep:
   72              	.LFB2:
-  67:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #else 
-  68:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_16_BIT) || 
-  69:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          * (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_32_BIT) 
-  70:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****          */
-  71:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         QuadDec_2_Cnt16_RestoreConfig();
   72:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     #endif /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT) */
   73:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** }
   74:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
   97:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** {
   73              		.loc 1 97 0
   74              		.cfi_startproc
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 4
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 4
 
 
   75              		@ args = 0, pretend = 0, frame = 0
@@ -224,7 +224,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  104              	.L10:
  105              		.align	2
  106              	.L9:
- 107 0024 9B650040 		.word	1073767835
+ 107 0024 94650040 		.word	1073767828
  108 0028 00000000 		.word	.LANCHOR0
  109              		.cfi_endproc
  110              	.LFE2:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  118              	QuadDec_2_Wakeup:
  119              	.LFB3:
  109:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** }
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 5
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 5
 
 
  110:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** 
@@ -283,14 +283,14 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  134:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****     {
  135:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         #if (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT)
  136:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****             QuadDec_2_Cnt8_Enable();
- 135              		.loc 1 136 0
- 136 000c FFF7FEFF 		bl	QuadDec_2_Cnt8_Enable
- 137              	.LVL5:
  137:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         #else 
  138:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****             /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_16_BIT) || 
  139:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****             *  (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_32_BIT) 
  140:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****             */
  141:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****             QuadDec_2_Cnt16_Enable();
+ 135              		.loc 1 141 0
+ 136 000c FFF7FEFF 		bl	QuadDec_2_Cnt16_Enable
+ 137              	.LVL5:
  142:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         #endif /* (QuadDec_2_COUNTER_SIZE == QuadDec_2_COUNTER_SIZE_8_BIT) */
  143:.\Generated_Source\PSoC5/QuadDec_2_PM.c **** 
  144:.\Generated_Source\PSoC5/QuadDec_2_PM.c ****         /* Enable component's operation */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  138              		.loc 1 145 0
  139 0010 FFF7FEFF 		bl	QuadDec_2_Enable
  140              	.LVL6:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 6
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 6
 
 
  141              	.L11:
@@ -321,7 +321,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  158              	.Letext0:
  159              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
  160              		.file 3 ".\\Generated_Source\\PSoC5\\QuadDec_2.h"
- 161              		.file 4 ".\\Generated_Source\\PSoC5\\QuadDec_2_Cnt8.h"
+ 161              		.file 4 ".\\Generated_Source\\PSoC5\\QuadDec_2_Cnt16.h"
  162              		.section	.debug_info,"",%progbits
  163              	.Ldebug_info0:
  164 0000 8B010000 		.4byte	0x18b
@@ -329,10 +329,10 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  166 0006 00000000 		.4byte	.Ldebug_abbrev0
  167 000a 04       		.byte	0x4
  168 000b 01       		.uleb128 0x1
- 169 000c 3D010000 		.4byte	.LASF25
+ 169 000c 2E010000 		.4byte	.LASF25
  170 0010 01       		.byte	0x1
- 171 0011 E8000000 		.4byte	.LASF26
- 172 0015 00000000 		.4byte	.LASF27
+ 171 0011 DA000000 		.4byte	.LASF26
+ 172 0015 BC010000 		.4byte	.LASF27
  173 0019 00000000 		.4byte	.Ldebug_ranges0+0
  174 001d 00000000 		.4byte	0
  175 0021 00000000 		.4byte	.Ldebug_line0
@@ -343,65 +343,65 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  180 002c 03       		.uleb128 0x3
  181 002d 04       		.byte	0x4
  182 002e 07       		.byte	0x7
- 183 002f 39000000 		.4byte	.LASF0
+ 183 002f 13000000 		.4byte	.LASF0
  184 0033 03       		.uleb128 0x3
  185 0034 01       		.byte	0x1
  186 0035 06       		.byte	0x6
- 187 0036 50020000 		.4byte	.LASF1
+ 187 0036 70020000 		.4byte	.LASF1
  188 003a 03       		.uleb128 0x3
  189 003b 01       		.byte	0x1
  190 003c 08       		.byte	0x8
- 191 003d 4C000000 		.4byte	.LASF2
+ 191 003d 44000000 		.4byte	.LASF2
  192 0041 03       		.uleb128 0x3
  193 0042 02       		.byte	0x2
  194 0043 05       		.byte	0x5
- 195 0044 21020000 		.4byte	.LASF3
+ 195 0044 41020000 		.4byte	.LASF3
  196 0048 03       		.uleb128 0x3
  197 0049 02       		.byte	0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 7
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 7
 
 
  198 004a 07       		.byte	0x7
- 199 004b 26000000 		.4byte	.LASF4
+ 199 004b 00000000 		.4byte	.LASF4
  200 004f 03       		.uleb128 0x3
  201 0050 04       		.byte	0x4
  202 0051 05       		.byte	0x5
- 203 0052 2B020000 		.4byte	.LASF5
+ 203 0052 4B020000 		.4byte	.LASF5
  204 0056 03       		.uleb128 0x3
  205 0057 04       		.byte	0x4
  206 0058 07       		.byte	0x7
- 207 0059 70000000 		.4byte	.LASF6
+ 207 0059 68000000 		.4byte	.LASF6
  208 005d 03       		.uleb128 0x3
  209 005e 08       		.byte	0x8
  210 005f 05       		.byte	0x5
- 211 0060 E5010000 		.4byte	.LASF7
+ 211 0060 EE010000 		.4byte	.LASF7
  212 0064 03       		.uleb128 0x3
  213 0065 08       		.byte	0x8
  214 0066 07       		.byte	0x7
- 215 0067 10010000 		.4byte	.LASF8
+ 215 0067 02010000 		.4byte	.LASF8
  216 006b 03       		.uleb128 0x3
  217 006c 04       		.byte	0x4
  218 006d 07       		.byte	0x7
- 219 006e DC010000 		.4byte	.LASF9
+ 219 006e E5010000 		.4byte	.LASF9
  220 0072 03       		.uleb128 0x3
  221 0073 01       		.byte	0x1
  222 0074 08       		.byte	0x8
- 223 0075 0B020000 		.4byte	.LASF10
+ 223 0075 14020000 		.4byte	.LASF10
  224 0079 04       		.uleb128 0x4
- 225 007a 82000000 		.4byte	.LASF13
+ 225 007a 95000000 		.4byte	.LASF13
  226 007e 02       		.byte	0x2
  227 007f C2       		.byte	0xc2
  228 0080 3A000000 		.4byte	0x3a
  229 0084 03       		.uleb128 0x3
  230 0085 04       		.byte	0x4
  231 0086 04       		.byte	0x4
- 232 0087 46000000 		.4byte	.LASF11
+ 232 0087 3E000000 		.4byte	.LASF11
  233 008b 03       		.uleb128 0x3
  234 008c 08       		.byte	0x8
  235 008d 04       		.byte	0x4
- 236 008e BA000000 		.4byte	.LASF12
+ 236 008e 9B000000 		.4byte	.LASF12
  237 0092 05       		.uleb128 0x5
- 238 0093 5A000000 		.4byte	.LASF14
+ 238 0093 52000000 		.4byte	.LASF14
  239 0097 02       		.byte	0x2
  240 0098 6C01     		.2byte	0x16c
  241 009a 9E000000 		.4byte	0x9e
@@ -413,22 +413,22 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  247 00a6 3D       		.byte	0x3d
  248 00a7 B8000000 		.4byte	0xb8
  249 00ab 08       		.uleb128 0x8
- 250 00ac 34020000 		.4byte	.LASF28
+ 250 00ac 54020000 		.4byte	.LASF28
  251 00b0 03       		.byte	0x3
  252 00b1 3F       		.byte	0x3f
  253 00b2 79000000 		.4byte	0x79
  254 00b6 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 8
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 8
 
 
  255 00b7 00       		.byte	0
  256 00b8 04       		.uleb128 0x4
- 257 00b9 D0000000 		.4byte	.LASF15
+ 257 00b9 C2000000 		.4byte	.LASF15
  258 00bd 03       		.byte	0x3
  259 00be 40       		.byte	0x40
  260 00bf A3000000 		.4byte	0xa3
  261 00c3 09       		.uleb128 0x9
- 262 00c4 A5000000 		.4byte	.LASF16
+ 262 00c4 19010000 		.4byte	.LASF16
  263 00c8 01       		.byte	0x1
  264 00c9 25       		.byte	0x25
  265 00ca 00000000 		.4byte	.LFB0
@@ -441,7 +441,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  272 00dd 6B010000 		.4byte	0x16b
  273 00e1 00       		.byte	0
  274 00e2 09       		.uleb128 0x9
- 275 00e3 F3010000 		.4byte	.LASF17
+ 275 00e3 FC010000 		.4byte	.LASF17
  276 00e7 01       		.byte	0x1
  277 00e8 3F       		.byte	0x3f
  278 00e9 00000000 		.4byte	.LFB1
@@ -454,7 +454,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  285 00fc 72010000 		.4byte	0x172
  286 0100 00       		.byte	0
  287 0101 09       		.uleb128 0x9
- 288 0102 40020000 		.4byte	.LASF18
+ 288 0102 60020000 		.4byte	.LASF18
  289 0106 01       		.byte	0x1
  290 0107 60       		.byte	0x60
  291 0108 00000000 		.4byte	.LFB2
@@ -470,7 +470,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  301 0124 C3000000 		.4byte	0xc3
  302 0128 00       		.byte	0
  303 0129 09       		.uleb128 0x9
- 304 012a 10020000 		.4byte	.LASF19
+ 304 012a 30020000 		.4byte	.LASF19
  305 012e 01       		.byte	0x1
  306 012f 81       		.byte	0x81
  307 0130 00000000 		.4byte	.LFB3
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  309 0138 01       		.uleb128 0x1
  310 0139 9C       		.byte	0x9c
  311 013a 5A010000 		.4byte	0x15a
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 9
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 9
 
 
  312 013e 0A       		.uleb128 0xa
@@ -492,7 +492,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  320 0155 87010000 		.4byte	0x187
  321 0159 00       		.byte	0
  322 015a 0B       		.uleb128 0xb
- 323 015b CB010000 		.4byte	.LASF29
+ 323 015b A2000000 		.4byte	.LASF29
  324 015f 01       		.byte	0x1
  325 0160 15       		.byte	0x15
  326 0161 B8000000 		.4byte	0xb8
@@ -500,23 +500,23 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  328 0166 03       		.byte	0x3
  329 0167 00000000 		.4byte	QuadDec_2_backup
  330 016b 0C       		.uleb128 0xc
- 331 016c 5C020000 		.4byte	.LASF20
+ 331 016c 7A000000 		.4byte	.LASF20
  332 0170 04       		.byte	0x4
  333 0171 72       		.byte	0x72
  334 0172 0C       		.uleb128 0xc
- 335 0173 88000000 		.4byte	.LASF21
+ 335 0173 20000000 		.4byte	.LASF21
  336 0177 04       		.byte	0x4
  337 0178 73       		.byte	0x73
  338 0179 0C       		.uleb128 0xc
- 339 017a C1000000 		.4byte	.LASF22
+ 339 017a B3000000 		.4byte	.LASF22
  340 017e 03       		.byte	0x3
  341 017f 49       		.byte	0x49
  342 0180 0C       		.uleb128 0xc
- 343 0181 27010000 		.4byte	.LASF23
+ 343 0181 19020000 		.4byte	.LASF23
  344 0185 04       		.byte	0x4
  345 0186 71       		.byte	0x71
  346 0187 0C       		.uleb128 0xc
- 347 0188 5F000000 		.4byte	.LASF24
+ 347 0188 57000000 		.4byte	.LASF24
  348 018c 03       		.byte	0x3
  349 018d 4A       		.byte	0x4a
  350 018e 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  366 000d 11       		.uleb128 0x11
  367 000e 01       		.uleb128 0x1
  368 000f 10       		.uleb128 0x10
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 10
 
 
  369 0010 17       		.uleb128 0x17
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  423 0046 49       		.uleb128 0x49
  424 0047 13       		.uleb128 0x13
  425 0048 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 11
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 11
 
 
  426 0049 00       		.byte	0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  480 0080 0A       		.uleb128 0xa
  481 0081 898201   		.uleb128 0x4109
  482 0084 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 12
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 12
 
 
  483 0085 11       		.uleb128 0x11
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  537 002c 1C000000 		.4byte	.LFE3-.LFB3
  538 0030 00000000 		.4byte	0
  539 0034 00000000 		.4byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 13
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 13
 
 
  540              		.section	.debug_ranges,"",%progbits
@@ -735,178 +735,178 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 1
  551 0024 00000000 		.4byte	0
  552              		.section	.debug_line,"",%progbits
  553              	.Ldebug_line0:
- 554 0000 BF000000 		.section	.debug_str,"MS",%progbits,1
- 554      02006E00 
+ 554 0000 BE000000 		.section	.debug_str,"MS",%progbits,1
+ 554      02006F00 
  554      00000201 
  554      FB0E0D00 
  554      01010101 
- 555              	.LASF27:
- 556 0000 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car\\car.cydsn\000"
- 556      6F626F74 
- 556      5C676974 
- 556      5F636F64 
- 556      655C726F 
- 557              	.LASF4:
- 558 0026 73686F72 		.ascii	"short unsigned int\000"
- 558      7420756E 
- 558      7369676E 
- 558      65642069 
- 558      6E7400
- 559              	.LASF0:
- 560 0039 756E7369 		.ascii	"unsigned int\000"
- 560      676E6564 
- 560      20696E74 
- 560      00
+ 555              	.LASF4:
+ 556 0000 73686F72 		.ascii	"short unsigned int\000"
+ 556      7420756E 
+ 556      7369676E 
+ 556      65642069 
+ 556      6E7400
+ 557              	.LASF0:
+ 558 0013 756E7369 		.ascii	"unsigned int\000"
+ 558      676E6564 
+ 558      20696E74 
+ 558      00
+ 559              	.LASF21:
+ 560 0020 51756164 		.ascii	"QuadDec_2_Cnt16_RestoreConfig\000"
+ 560      4465635F 
+ 560      325F436E 
+ 560      7431365F 
+ 560      52657374 
  561              	.LASF11:
- 562 0046 666C6F61 		.ascii	"float\000"
+ 562 003e 666C6F61 		.ascii	"float\000"
  562      7400
  563              	.LASF2:
- 564 004c 756E7369 		.ascii	"unsigned char\000"
+ 564 0044 756E7369 		.ascii	"unsigned char\000"
  564      676E6564 
  564      20636861 
  564      7200
  565              	.LASF14:
- 566 005a 72656738 		.ascii	"reg8\000"
+ 566 0052 72656738 		.ascii	"reg8\000"
  566      00
  567              	.LASF24:
- 568 005f 51756164 		.ascii	"QuadDec_2_Enable\000"
+ 568 0057 51756164 		.ascii	"QuadDec_2_Enable\000"
  568      4465635F 
  568      325F456E 
  568      61626C65 
  568      00
  569              	.LASF6:
- 570 0070 6C6F6E67 		.ascii	"long unsigned int\000"
+ 570 0068 6C6F6E67 		.ascii	"long unsigned int\000"
  570      20756E73 
  570      69676E65 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 14
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 14
 
 
  570      6420696E 
  570      7400
- 571              	.LASF13:
- 572 0082 75696E74 		.ascii	"uint8\000"
- 572      3800
- 573              	.LASF21:
- 574 0088 51756164 		.ascii	"QuadDec_2_Cnt8_RestoreConfig\000"
- 574      4465635F 
- 574      325F436E 
- 574      74385F52 
- 574      6573746F 
- 575              	.LASF16:
- 576 00a5 51756164 		.ascii	"QuadDec_2_SaveConfig\000"
- 576      4465635F 
- 576      325F5361 
- 576      7665436F 
- 576      6E666967 
- 577              	.LASF12:
- 578 00ba 646F7562 		.ascii	"double\000"
- 578      6C6500
+ 571              	.LASF20:
+ 572 007a 51756164 		.ascii	"QuadDec_2_Cnt16_SaveConfig\000"
+ 572      4465635F 
+ 572      325F436E 
+ 572      7431365F 
+ 572      53617665 
+ 573              	.LASF13:
+ 574 0095 75696E74 		.ascii	"uint8\000"
+ 574      3800
+ 575              	.LASF12:
+ 576 009b 646F7562 		.ascii	"double\000"
+ 576      6C6500
+ 577              	.LASF29:
+ 578 00a2 51756164 		.ascii	"QuadDec_2_backup\000"
+ 578      4465635F 
+ 578      325F6261 
+ 578      636B7570 
+ 578      00
  579              	.LASF22:
- 580 00c1 51756164 		.ascii	"QuadDec_2_Stop\000"
+ 580 00b3 51756164 		.ascii	"QuadDec_2_Stop\000"
  580      4465635F 
  580      325F5374 
  580      6F7000
  581              	.LASF15:
- 582 00d0 51756164 		.ascii	"QuadDec_2_BACKUP_STRUCT\000"
+ 582 00c2 51756164 		.ascii	"QuadDec_2_BACKUP_STRUCT\000"
  582      4465635F 
  582      325F4241 
  582      434B5550 
  582      5F535452 
  583              	.LASF26:
- 584 00e8 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\QuadDec_2_PM.c\000"
+ 584 00da 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\QuadDec_2_PM.c\000"
  584      6E657261 
  584      7465645F 
  584      536F7572 
  584      63655C50 
  585              	.LASF8:
- 586 0110 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 586 0102 6C6F6E67 		.ascii	"long long unsigned int\000"
  586      206C6F6E 
  586      6720756E 
  586      7369676E 
  586      65642069 
- 587              	.LASF23:
- 588 0127 51756164 		.ascii	"QuadDec_2_Cnt8_Enable\000"
+ 587              	.LASF16:
+ 588 0119 51756164 		.ascii	"QuadDec_2_SaveConfig\000"
  588      4465635F 
- 588      325F436E 
- 588      74385F45 
- 588      6E61626C 
+ 588      325F5361 
+ 588      7665436F 
+ 588      6E666967 
  589              	.LASF25:
- 590 013d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 590 012e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
  590      4320342E 
  590      392E3320 
  590      32303135 
  590      30333033 
- 591 0170 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 591 0161 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
  591      20726576 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 15
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 15
 
 
  591      6973696F 
  591      6E203232 
  591      31323230 
- 592 01a3 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 592 0194 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
  592      66756E63 
  592      74696F6E 
  592      2D736563 
  592      74696F6E 
- 593              	.LASF29:
- 594 01cb 51756164 		.ascii	"QuadDec_2_backup\000"
- 594      4465635F 
- 594      325F6261 
- 594      636B7570 
- 594      00
+ 593              	.LASF27:
+ 594 01bc 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car_V5\\car.cydsn\000"
+ 594      6F626F74 
+ 594      5C676974 
+ 594      5F636F64 
+ 594      655C726F 
  595              	.LASF9:
- 596 01dc 73697A65 		.ascii	"sizetype\000"
+ 596 01e5 73697A65 		.ascii	"sizetype\000"
  596      74797065 
  596      00
  597              	.LASF7:
- 598 01e5 6C6F6E67 		.ascii	"long long int\000"
+ 598 01ee 6C6F6E67 		.ascii	"long long int\000"
  598      206C6F6E 
  598      6720696E 
  598      7400
  599              	.LASF17:
- 600 01f3 51756164 		.ascii	"QuadDec_2_RestoreConfig\000"
+ 600 01fc 51756164 		.ascii	"QuadDec_2_RestoreConfig\000"
  600      4465635F 
  600      325F5265 
  600      73746F72 
  600      65436F6E 
  601              	.LASF10:
- 602 020b 63686172 		.ascii	"char\000"
+ 602 0214 63686172 		.ascii	"char\000"
  602      00
- 603              	.LASF19:
- 604 0210 51756164 		.ascii	"QuadDec_2_Wakeup\000"
+ 603              	.LASF23:
+ 604 0219 51756164 		.ascii	"QuadDec_2_Cnt16_Enable\000"
  604      4465635F 
- 604      325F5761 
- 604      6B657570 
- 604      00
- 605              	.LASF3:
- 606 0221 73686F72 		.ascii	"short int\000"
- 606      7420696E 
- 606      7400
- 607              	.LASF5:
- 608 022b 6C6F6E67 		.ascii	"long int\000"
- 608      20696E74 
- 608      00
- 609              	.LASF28:
- 610 0234 656E6162 		.ascii	"enableState\000"
- 610      6C655374 
- 610      61746500 
- 611              	.LASF18:
- 612 0240 51756164 		.ascii	"QuadDec_2_Sleep\000"
- 612      4465635F 
- 612      325F536C 
- 612      65657000 
- 613              	.LASF1:
- 614 0250 7369676E 		.ascii	"signed char\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccFVQPji.s 			page 16
+ 604      325F436E 
+ 604      7431365F 
+ 604      456E6162 
+ 605              	.LASF19:
+ 606 0230 51756164 		.ascii	"QuadDec_2_Wakeup\000"
+ 606      4465635F 
+ 606      325F5761 
+ 606      6B657570 
+ 606      00
+ 607              	.LASF3:
+ 608 0241 73686F72 		.ascii	"short int\000"
+ 608      7420696E 
+ 608      7400
+ 609              	.LASF5:
+ 610 024b 6C6F6E67 		.ascii	"long int\000"
+ 610      20696E74 
+ 610      00
+ 611              	.LASF28:
+ 612 0254 656E6162 		.ascii	"enableState\000"
+ 612      6C655374 
+ 612      61746500 
+ 613              	.LASF18:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccCcVzJw.s 			page 16
 
 
- 614      65642063 
- 614      68617200 
- 615              	.LASF20:
- 616 025c 51756164 		.ascii	"QuadDec_2_Cnt8_SaveConfig\000"
- 616      4465635F 
- 616      325F436E 
- 616      74385F53 
- 616      61766543 
+ 614 0260 51756164 		.ascii	"QuadDec_2_Sleep\000"
+ 614      4465635F 
+ 614      325F536C 
+ 614      65657000 
+ 615              	.LASF1:
+ 616 0270 7369676E 		.ascii	"signed char\000"
+ 616      65642063 
+ 616      68617200 
  617              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

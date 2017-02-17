@@ -17,6 +17,8 @@
 #include "multi_timer.h"
 #include "systemInfo.h"
 #include "led.h"
+#include "wave_distance.h"
+#include "M_thickness.h"
 int16 Get_Gap_ADvalue(void);
 int16 contronl_steering(uint16 set_position,uint16 cur_postion,uint16 step);
 
@@ -29,16 +31,19 @@ uint16 count;
 int16 encoder;
 uint8 event;
 
-void Cal_time();
+
 struct Timer Data_exchange_timer;
 struct Timer Time_1s;
 struct Timer Cal_battery_timer;
 struct Timer Car_control_timer;
 struct Timer Car_hearting_timer;
-struct Timer SRF_timer;
+struct Timer WAVE_timer;
 struct Timer LED_timer;
-void SRF_loop();
-
+struct Timer ECDR_timer;
+struct Timer M_timer;
+void WAVE_loop();
+void Cal_time();
+void ECDR_loop();
 
 int main()
 {
@@ -50,13 +55,14 @@ int main()
 
     UART_net_Start();
     UART_JY_Start();
-
+    UART_CH_Start();
+    
     isr_rx_net_Start();
     isr_tx_net_Start();
     isr_rx_jy_Start();
+    isr_rx_ch_Start();
     PWM_MOTOR_Init();
     PWM_MOTOR_Start();
-
     PWM_LED_1_Init();
     PWM_LED_1_Start();
     PWM_LED_2_Init();
@@ -69,57 +75,72 @@ int main()
     Timer_1_Start(); 
     isr_timer_Start();
     
-    SRF_05_Timer_Start();
-    SRF_05_Timer_1_Start();
-    isr_srf_front_Start();
-    isr_srf_back_Start();
-    
-    SRF_TRG_1_Write(0);
-    SRF_TRG_2_Write(0);
     Monitor_Battery_Init(); 
     
-    QuadDec_1_Start();
+    ECDR_Start();
     ///////////////////
     ///////////////// 
-   CONTRAL_LIDAR_Write(1);
-   CyGlobalIntEnable; /* Enable global interrupts. */
-  
-   Lidar_init();
-   Car_init();   
-   timer_init(&Data_exchange_timer, DT_Data_Exchange, 1000, 10);
-   timer_start(&Data_exchange_timer);
-   timer_init (&Time_1s, Cal_time, 5000, 1000);
-   timer_start(&Time_1s);
-   timer_init (&Cal_battery_timer, Cal_Battery_loop, 100, 100);
-   timer_start(&Cal_battery_timer);
-   timer_init (&Car_hearting_timer, Car_Hearting_Loop, 0, 1000);
-   timer_start(&Car_hearting_timer);
-   timer_init (&Car_control_timer, Car_Control_Loop, 150, 3);
-   timer_start(&Car_control_timer);
-   timer_init (&SRF_timer, SRF_loop, 50, 90);
-   timer_start(&SRF_timer);
-   CyDelay(500);
-   timer_init (&LED_timer, LED_loop, 1500, 500);
-   timer_start(&LED_timer);
-  
+    CONTRAL_LIDAR_Write(1);
+    WAVE_Start();
+    CyGlobalIntEnable; /* Enable global interrupts. */
+ 
+    Lidar_init();
+    Car_init();   
+
+    timer_init (&Data_exchange_timer, DT_Data_Exchange, 1000, 10);
+    timer_start(&Data_exchange_timer);
+    
+    timer_init (&Time_1s, Cal_time, 5000, 1000);
+    timer_start(&Time_1s);
+    
+    timer_init (&Cal_battery_timer, Cal_Battery_loop, 100, 100);
+    timer_start(&Cal_battery_timer);
+    
+    timer_init (&Car_hearting_timer, Car_Hearting_Loop, 0, 1000);
+    timer_start(&Car_hearting_timer);
+    
+    timer_init (&Car_control_timer, Car_Control_Loop, 150,2);
+    timer_start(&Car_control_timer);
+    
+    timer_init (&WAVE_timer, WAVE_loop, 50, 200);
+    timer_start(&WAVE_timer);
+    CyDelay(500);
+    timer_init (&LED_timer, LED_loop, 1500, 500);
+    timer_start(&LED_timer);
+    
+    timer_init (&ECDR_timer, ECDR_loop, 100, 500);
+    timer_start(&ECDR_timer);
+    timer_init (&M_timer, Control_M_loop, 500, 500);
+    timer_start(&M_timer);
+//    M_PWR_Write(0);
+//    CyDelay(1000);
+//    M_PWR_Write(1);
+//    CyDelay(1000);
+//    M_PWR_Write(0);
+//  //    CyDelay(1000);
+//    CyDelay(1000);
+//    M_UP_Write(1);
+//    M_DOWN_Write(1);
+//    M_ZERO_Write(1);
+    g_Car.M_Command = 4;
+
+
+   // M_DOWN_Write(0);
+//    CyDelay(50);
  //  LED_SET_NUM(3);
     for(;;)
     {
         /* Place your application code here. */
-        
+         
         timer_loop();     
     }   
 }
-
-void SRF_loop()
+void ECDR_loop()
 {
-    SRF_TRG_1_Write(1);
-    CyDelayUs(20);
-    SRF_TRG_1_Write(0); 
-    CyDelayUs(20);
-
-    SRF_TRG_2_Write(1);
-    CyDelayUs(20);
-    SRF_TRG_2_Write(0);
+    g_Car.Xkm = ECDR_GetCounter();
+}
+void WAVE_loop()
+{
+   K103_read_distance();
 }
 /* [] END OF FILE */

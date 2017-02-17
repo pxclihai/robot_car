@@ -23,7 +23,7 @@ void DT_Data_Exchange(void)
 	static uint8 status_cnt 	=   11;
 	static uint8 distance_cnt 	=   13;
 	static uint8 motopwm_cnt	=   20;
-	static uint8 power_cnt		=	50;
+	static uint8 power_cnt		=	8;
 	
 	if((cnt % senser_cnt) == (senser_cnt-1))
 		f.send_senser = 1;	
@@ -46,7 +46,7 @@ void DT_Data_Exchange(void)
 	{
         
 		f.send_version ++;
-        if(f.send_version == 10)
+        if(f.send_version == 50)
         {
             f.send_version = 0;
         }
@@ -56,12 +56,8 @@ void DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-    	DT_Send_Status(0,g_Car.set_dir,g_Car.set_car_speed,P_V);
-//        if(rx_lidar_flag == 1)
-//        {
-//            DT_Send_Lidar_normal(net_nodeBuffer);
-//            rx_lidar_flag = 0;
-//        }
+    	DT_Send_Status(0,g_Car.set_dir,g_Car.set_car_speed,P_V,g_Car.Xkm);
+
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
     else if(f.send_senser)
@@ -80,14 +76,13 @@ void DT_Data_Exchange(void)
 	{
 	   f.send_distance = 0;
 	   DT_Send_Distance(g_Car.distance_front,g_Car.distance_back);
-         //DT_Send_SystemInfo(g_Car.systeminfo.hardware_ver,g_Car.systeminfo.software_ver,100,400);
+         
 	}
 	else if(f.send_power)
 	{
 		f.send_power = 0;
         DT_Send_Power(C_V,D_V);
         
-         
 	}
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -272,7 +267,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         temp16 = (uint16)(*(data_buf+4)<<8)|*(data_buf+5);
        if(temp16 >=10000 && temp16<=60000 )
        {
-         PWM_LED_1_WritePeriod(temp16);
+        PWM_LED_1_WritePeriod(temp16);
         PWM_LED_2_WritePeriod(temp16);
         PWM_LED_3_WritePeriod(temp16);
         PWM_LED_4_WritePeriod(temp16);
@@ -329,7 +324,7 @@ void DT_Send_SystemInfo(uint16 hardware_ver,uint16 software_ver,uint16 run_count
 	
 	DT_Send_Data(data_to_send, _cnt);
 }
-void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 car_pull)
+void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 car_pull,uint16 Xkm)
 {
 	uint8 _cnt=0;
     uint8 _temp;
@@ -353,7 +348,10 @@ void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 
     _temp1 =  car_pull;
 	data_to_send[_cnt++]=BYTE1(_temp1);
 	data_to_send[_cnt++]=BYTE0(_temp1);
-	
+	_temp1 =  Xkm;
+    data_to_send[_cnt++]=BYTE1(_temp1);
+	data_to_send[_cnt++]=BYTE0(_temp1);
+    
 	data_to_send[3] = _cnt-4;
 	
 	uint8 sum = 0;

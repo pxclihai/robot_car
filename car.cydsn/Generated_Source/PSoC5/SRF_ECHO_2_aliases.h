@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SRF_ECHO_2.h  
+* File Name: WAVE_ECHO_2.h  
 * Version 2.10
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_SRF_ECHO_2_ALIASES_H) /* Pins SRF_ECHO_2_ALIASES_H */
-#define CY_PINS_SRF_ECHO_2_ALIASES_H
+#if !defined(CY_PINS_WAVE_ECHO_2_ALIASES_H) /* Pins WAVE_ECHO_2_ALIASES_H */
+#define CY_PINS_WAVE_ECHO_2_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,8 +25,8 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define SRF_ECHO_2_0		(SRF_ECHO_2__0__PC)
+#define WAVE_ECHO_2_0		(WAVE_ECHO_2__0__PC)
 
-#endif /* End Pins SRF_ECHO_2_ALIASES_H */
+#endif /* End Pins WAVE_ECHO_2_ALIASES_H */
 
 /* [] END OF FILE */

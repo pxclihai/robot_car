@@ -68,7 +68,7 @@ int16 Get_Battery_ADvalue(uint8 channal)
 void Cal_Battery_loop()
 {
     C_V = Get_Battery_ADvalue(C_CHANANL);
-    //  D_V = Get_Battery_ADvalue(D_CHANANL);
+    D_V = Get_Battery_ADvalue(D_CHANANL);
     P_V = Get_Battery_ADvalue(P_CHANANL);   
 }
 ///* [] END OF FILE */

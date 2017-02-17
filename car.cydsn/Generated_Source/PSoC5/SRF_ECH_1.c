@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SRF_ECH_1.c  
+* File Name: WAVE_ECH_1.c  
 * Version 2.10
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "SRF_ECH_1.h"
+#include "WAVE_ECH_1.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 SRF_ECH_1__PORT == 15 && ((SRF_ECH_1__MASK & 0xC0) != 0))
+	 WAVE_ECH_1__PORT == 15 && ((WAVE_ECH_1__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: SRF_ECH_1_Write
+* Function Name: WAVE_ECH_1_Write
 ********************************************************************************
 *
 * Summary:
@@ -36,15 +36,15 @@
 *  None
 *  
 *******************************************************************************/
-void SRF_ECH_1_Write(uint8 value) 
+void WAVE_ECH_1_Write(uint8 value) 
 {
-    uint8 staticBits = (SRF_ECH_1_DR & (uint8)(~SRF_ECH_1_MASK));
-    SRF_ECH_1_DR = staticBits | ((uint8)(value << SRF_ECH_1_SHIFT) & SRF_ECH_1_MASK);
+    uint8 staticBits = (WAVE_ECH_1_DR & (uint8)(~WAVE_ECH_1_MASK));
+    WAVE_ECH_1_DR = staticBits | ((uint8)(value << WAVE_ECH_1_SHIFT) & WAVE_ECH_1_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: SRF_ECH_1_SetDriveMode
+* Function Name: WAVE_ECH_1_SetDriveMode
 ********************************************************************************
 *
 * Summary:
@@ -53,27 +53,27 @@ void SRF_ECH_1_Write(uint8 value)
 * Parameters:  
 *  mode:  Change the pins to one of the following drive modes.
 *
-*  SRF_ECH_1_DM_STRONG     Strong Drive 
-*  SRF_ECH_1_DM_OD_HI      Open Drain, Drives High 
-*  SRF_ECH_1_DM_OD_LO      Open Drain, Drives Low 
-*  SRF_ECH_1_DM_RES_UP     Resistive Pull Up 
-*  SRF_ECH_1_DM_RES_DWN    Resistive Pull Down 
-*  SRF_ECH_1_DM_RES_UPDWN  Resistive Pull Up/Down 
-*  SRF_ECH_1_DM_DIG_HIZ    High Impedance Digital 
-*  SRF_ECH_1_DM_ALG_HIZ    High Impedance Analog 
+*  WAVE_ECH_1_DM_STRONG     Strong Drive 
+*  WAVE_ECH_1_DM_OD_HI      Open Drain, Drives High 
+*  WAVE_ECH_1_DM_OD_LO      Open Drain, Drives Low 
+*  WAVE_ECH_1_DM_RES_UP     Resistive Pull Up 
+*  WAVE_ECH_1_DM_RES_DWN    Resistive Pull Down 
+*  WAVE_ECH_1_DM_RES_UPDWN  Resistive Pull Up/Down 
+*  WAVE_ECH_1_DM_DIG_HIZ    High Impedance Digital 
+*  WAVE_ECH_1_DM_ALG_HIZ    High Impedance Analog 
 *
 * Return: 
 *  None
 *
 *******************************************************************************/
-void SRF_ECH_1_SetDriveMode(uint8 mode) 
+void WAVE_ECH_1_SetDriveMode(uint8 mode) 
 {
-	CyPins_SetPinDriveMode(SRF_ECH_1_0, mode);
+	CyPins_SetPinDriveMode(WAVE_ECH_1_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: SRF_ECH_1_Read
+* Function Name: WAVE_ECH_1_Read
 ********************************************************************************
 *
 * Summary:
@@ -87,17 +87,17 @@ void SRF_ECH_1_SetDriveMode(uint8 mode)
 *  Returns the current value of the Digital Port as a right justified number
 *  
 * Note:
-*  Macro SRF_ECH_1_ReadPS calls this function. 
+*  Macro WAVE_ECH_1_ReadPS calls this function. 
 *  
 *******************************************************************************/
-uint8 SRF_ECH_1_Read(void) 
+uint8 WAVE_ECH_1_Read(void) 
 {
-    return (SRF_ECH_1_PS & SRF_ECH_1_MASK) >> SRF_ECH_1_SHIFT;
+    return (WAVE_ECH_1_PS & WAVE_ECH_1_MASK) >> WAVE_ECH_1_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: SRF_ECH_1_ReadDataReg
+* Function Name: WAVE_ECH_1_ReadDataReg
 ********************************************************************************
 *
 * Summary:
@@ -110,17 +110,17 @@ uint8 SRF_ECH_1_Read(void)
 *  Returns the current value assigned to the Digital Port's data output register
 *  
 *******************************************************************************/
-uint8 SRF_ECH_1_ReadDataReg(void) 
+uint8 WAVE_ECH_1_ReadDataReg(void) 
 {
-    return (SRF_ECH_1_DR & SRF_ECH_1_MASK) >> SRF_ECH_1_SHIFT;
+    return (WAVE_ECH_1_DR & WAVE_ECH_1_MASK) >> WAVE_ECH_1_SHIFT;
 }
 
 
 /* If Interrupts Are Enabled for this Pins component */ 
-#if defined(SRF_ECH_1_INTSTAT) 
+#if defined(WAVE_ECH_1_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: SRF_ECH_1_ClearInterrupt
+    * Function Name: WAVE_ECH_1_ClearInterrupt
     ********************************************************************************
     * Summary:
     *  Clears any active interrupts attached to port and returns the value of the 
@@ -133,9 +133,9 @@ uint8 SRF_ECH_1_ReadDataReg(void)
     *  Returns the value of the interrupt status register
     *  
     *******************************************************************************/
-    uint8 SRF_ECH_1_ClearInterrupt(void) 
+    uint8 WAVE_ECH_1_ClearInterrupt(void) 
     {
-        return (SRF_ECH_1_INTSTAT & SRF_ECH_1_MASK) >> SRF_ECH_1_SHIFT;
+        return (WAVE_ECH_1_INTSTAT & WAVE_ECH_1_MASK) >> WAVE_ECH_1_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

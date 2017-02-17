@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: isr_srf.c  
+* File Name: isr_WAVE.c  
 * Version 1.70
 *
 *  Description:
@@ -18,15 +18,15 @@
 
 #include <cydevice_trm.h>
 #include <CyLib.h>
-#include <isr_srf.h>
+#include <isr_WAVE.h>
 #include "cyapicallbacks.h"
 
-#if !defined(isr_srf__REMOVED) /* Check for removal by optimization */
+#if !defined(isr_WAVE__REMOVED) /* Check for removal by optimization */
 
 /*******************************************************************************
 *  Place your includes, defines and code here 
 ********************************************************************************/
-/* `#START isr_srf_intc` */
+/* `#START isr_WAVE_intc` */
 #include "car.h"
     uint16 cap_pre;
     uint16 cap_cur;
@@ -50,7 +50,7 @@ CY_ISR_PROTO(IntDefaultHandler);
 
 
 /*******************************************************************************
-* Function Name: isr_srf_Start
+* Function Name: isr_WAVE_Start
 ********************************************************************************
 *
 * Summary:
@@ -66,24 +66,24 @@ CY_ISR_PROTO(IntDefaultHandler);
 *   None
 *
 *******************************************************************************/
-void isr_srf_Start(void)
+void isr_WAVE_Start(void)
 {
     /* For all we know the interrupt is active. */
-    isr_srf_Disable();
+    isr_WAVE_Disable();
 
-    /* Set the ISR to point to the isr_srf Interrupt. */
-    isr_srf_SetVector(&isr_srf_Interrupt);
+    /* Set the ISR to point to the isr_WAVE Interrupt. */
+    isr_WAVE_SetVector(&isr_WAVE_Interrupt);
 
     /* Set the priority. */
-    isr_srf_SetPriority((uint8)isr_srf_INTC_PRIOR_NUMBER);
+    isr_WAVE_SetPriority((uint8)isr_WAVE_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    isr_srf_Enable();
+    isr_WAVE_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_StartEx
+* Function Name: isr_WAVE_StartEx
 ********************************************************************************
 *
 * Summary:
@@ -109,24 +109,24 @@ void isr_srf_Start(void)
 *   None
 *
 *******************************************************************************/
-void isr_srf_StartEx(cyisraddress address)
+void isr_WAVE_StartEx(cyisraddress address)
 {
     /* For all we know the interrupt is active. */
-    isr_srf_Disable();
+    isr_WAVE_Disable();
 
-    /* Set the ISR to point to the isr_srf Interrupt. */
-    isr_srf_SetVector(address);
+    /* Set the ISR to point to the isr_WAVE Interrupt. */
+    isr_WAVE_SetVector(address);
 
     /* Set the priority. */
-    isr_srf_SetPriority((uint8)isr_srf_INTC_PRIOR_NUMBER);
+    isr_WAVE_SetPriority((uint8)isr_WAVE_INTC_PRIOR_NUMBER);
 
     /* Enable it. */
-    isr_srf_Enable();
+    isr_WAVE_Enable();
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_Stop
+* Function Name: isr_WAVE_Stop
 ********************************************************************************
 *
 * Summary:
@@ -139,22 +139,22 @@ void isr_srf_StartEx(cyisraddress address)
 *   None
 *
 *******************************************************************************/
-void isr_srf_Stop(void)
+void isr_WAVE_Stop(void)
 {
     /* Disable this interrupt. */
-    isr_srf_Disable();
+    isr_WAVE_Disable();
 
     /* Set the ISR to point to the passive one. */
-    isr_srf_SetVector(&IntDefaultHandler);
+    isr_WAVE_SetVector(&IntDefaultHandler);
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_Interrupt
+* Function Name: isr_WAVE_Interrupt
 ********************************************************************************
 *
 * Summary:
-*   The default Interrupt Service Routine for isr_srf.
+*   The default Interrupt Service Routine for isr_WAVE.
 *
 *   Add custom code between the coments to keep the next version of this file
 *   from over writting your code.
@@ -165,20 +165,20 @@ void isr_srf_Stop(void)
 *   None
 *
 *******************************************************************************/
-CY_ISR(isr_srf_Interrupt)
+CY_ISR(isr_WAVE_Interrupt)
 {
-    #ifdef isr_srf_INTERRUPT_INTERRUPT_CALLBACK
-        isr_srf_Interrupt_InterruptCallback();
-    #endif /* isr_srf_INTERRUPT_INTERRUPT_CALLBACK */ 
+    #ifdef isr_WAVE_INTERRUPT_INTERRUPT_CALLBACK
+        isr_WAVE_Interrupt_InterruptCallback();
+    #endif /* isr_WAVE_INTERRUPT_INTERRUPT_CALLBACK */ 
 
     /*  Place your Interrupt code here. */
-    /* `#START isr_srf_Interrupt` */
+    /* `#START isr_WAVE_Interrupt` */
     int32 sum;
 
     int i ;
     cap_count++;
     
-    cap_cur = 65535 - SRF_05_Timer_ReadCapture();
+    cap_cur = 65535 - WAVE_05_Timer_ReadCapture();
   
    // 
     if(cap_count == 2)
@@ -216,13 +216,13 @@ CY_ISR(isr_srf_Interrupt)
 
 
 /*******************************************************************************
-* Function Name: isr_srf_SetVector
+* Function Name: isr_WAVE_SetVector
 ********************************************************************************
 *
 * Summary:
-*   Change the ISR vector for the Interrupt. Note calling isr_srf_Start
+*   Change the ISR vector for the Interrupt. Note calling isr_WAVE_Start
 *   will override any effect this method would have had. To set the vector 
-*   before the component has been started use isr_srf_StartEx instead.
+*   before the component has been started use isr_WAVE_StartEx instead.
 * 
 *   When defining ISR functions, the CY_ISR and CY_ISR_PROTO macros should be 
 *   used to provide consistent definition across compilers:
@@ -242,18 +242,18 @@ CY_ISR(isr_srf_Interrupt)
 *   None
 *
 *******************************************************************************/
-void isr_srf_SetVector(cyisraddress address)
+void isr_WAVE_SetVector(cyisraddress address)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    ramVectorTable[CYINT_IRQ_BASE + (uint32)isr_srf__INTC_NUMBER] = address;
+    ramVectorTable[CYINT_IRQ_BASE + (uint32)isr_WAVE__INTC_NUMBER] = address;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_GetVector
+* Function Name: isr_WAVE_GetVector
 ********************************************************************************
 *
 * Summary:
@@ -266,26 +266,26 @@ void isr_srf_SetVector(cyisraddress address)
 *   Address of the ISR in the interrupt vector table.
 *
 *******************************************************************************/
-cyisraddress isr_srf_GetVector(void)
+cyisraddress isr_WAVE_GetVector(void)
 {
     cyisraddress * ramVectorTable;
 
     ramVectorTable = (cyisraddress *) *CYINT_VECT_TABLE;
 
-    return ramVectorTable[CYINT_IRQ_BASE + (uint32)isr_srf__INTC_NUMBER];
+    return ramVectorTable[CYINT_IRQ_BASE + (uint32)isr_WAVE__INTC_NUMBER];
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_SetPriority
+* Function Name: isr_WAVE_SetPriority
 ********************************************************************************
 *
 * Summary:
 *   Sets the Priority of the Interrupt. 
 *
-*   Note calling isr_srf_Start or isr_srf_StartEx will 
+*   Note calling isr_WAVE_Start or isr_WAVE_StartEx will 
 *   override any effect this API would have had. This API should only be called
-*   after isr_srf_Start or isr_srf_StartEx has been called. 
+*   after isr_WAVE_Start or isr_WAVE_StartEx has been called. 
 *   To set the initial priority for the component, use the Design-Wide Resources
 *   Interrupt Editor.
 *
@@ -300,14 +300,14 @@ cyisraddress isr_srf_GetVector(void)
 *   None
 *
 *******************************************************************************/
-void isr_srf_SetPriority(uint8 priority)
+void isr_WAVE_SetPriority(uint8 priority)
 {
-    *isr_srf_INTC_PRIOR = priority << 5;
+    *isr_WAVE_INTC_PRIOR = priority << 5;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_GetPriority
+* Function Name: isr_WAVE_GetPriority
 ********************************************************************************
 *
 * Summary:
@@ -322,19 +322,19 @@ void isr_srf_SetPriority(uint8 priority)
 *    PSoC 4: Priority is from 0 to 3.
 *
 *******************************************************************************/
-uint8 isr_srf_GetPriority(void)
+uint8 isr_WAVE_GetPriority(void)
 {
     uint8 priority;
 
 
-    priority = *isr_srf_INTC_PRIOR >> 5;
+    priority = *isr_WAVE_INTC_PRIOR >> 5;
 
     return priority;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_Enable
+* Function Name: isr_WAVE_Enable
 ********************************************************************************
 *
 * Summary:
@@ -349,15 +349,15 @@ uint8 isr_srf_GetPriority(void)
 *   None
 *
 *******************************************************************************/
-void isr_srf_Enable(void)
+void isr_WAVE_Enable(void)
 {
     /* Enable the general interrupt. */
-    *isr_srf_INTC_SET_EN = isr_srf__INTC_MASK;
+    *isr_WAVE_INTC_SET_EN = isr_WAVE__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_GetState
+* Function Name: isr_WAVE_GetState
 ********************************************************************************
 *
 * Summary:
@@ -370,15 +370,15 @@ void isr_srf_Enable(void)
 *   1 if enabled, 0 if disabled.
 *
 *******************************************************************************/
-uint8 isr_srf_GetState(void)
+uint8 isr_WAVE_GetState(void)
 {
     /* Get the state of the general interrupt. */
-    return ((*isr_srf_INTC_SET_EN & (uint32)isr_srf__INTC_MASK) != 0u) ? 1u:0u;
+    return ((*isr_WAVE_INTC_SET_EN & (uint32)isr_WAVE__INTC_MASK) != 0u) ? 1u:0u;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_Disable
+* Function Name: isr_WAVE_Disable
 ********************************************************************************
 *
 * Summary:
@@ -391,15 +391,15 @@ uint8 isr_srf_GetState(void)
 *   None
 *
 *******************************************************************************/
-void isr_srf_Disable(void)
+void isr_WAVE_Disable(void)
 {
     /* Disable the general interrupt. */
-    *isr_srf_INTC_CLR_EN = isr_srf__INTC_MASK;
+    *isr_WAVE_INTC_CLR_EN = isr_WAVE__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_SetPending
+* Function Name: isr_WAVE_SetPending
 ********************************************************************************
 *
 * Summary:
@@ -418,14 +418,14 @@ void isr_srf_Disable(void)
 *   interrupts).
 *
 *******************************************************************************/
-void isr_srf_SetPending(void)
+void isr_WAVE_SetPending(void)
 {
-    *isr_srf_INTC_SET_PD = isr_srf__INTC_MASK;
+    *isr_WAVE_INTC_SET_PD = isr_WAVE__INTC_MASK;
 }
 
 
 /*******************************************************************************
-* Function Name: isr_srf_ClearPending
+* Function Name: isr_WAVE_ClearPending
 ********************************************************************************
 *
 * Summary:
@@ -443,9 +443,9 @@ void isr_srf_SetPending(void)
 *   None
 *
 *******************************************************************************/
-void isr_srf_ClearPending(void)
+void isr_WAVE_ClearPending(void)
 {
-    *isr_srf_INTC_CLR_PD = isr_srf__INTC_MASK;
+    *isr_WAVE_INTC_CLR_PD = isr_WAVE__INTC_MASK;
 }
 
 #endif /* End check for removal by optimization */

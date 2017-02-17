@@ -55,7 +55,8 @@ typedef struct
     uint16   distance_front;  
     uint16   distance_back;
     uint8    measure_distance_flag;
-    
+    int16    Xkm;
+    uint8    M_Command;
     S_SYSTEMINFO systeminfo;
 }S_CAR;
 

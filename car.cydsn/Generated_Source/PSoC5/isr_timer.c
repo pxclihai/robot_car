@@ -27,6 +27,7 @@
 *  Place your includes, defines and code here 
 ********************************************************************************/
 /* `#START isr_timer_intc` */
+#include "multi_timer.h"
 uint16 time_1ms;
 uint16 time_1ms_state;
 uint16 time_5ms;   

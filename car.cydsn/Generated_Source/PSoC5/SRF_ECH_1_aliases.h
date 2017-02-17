@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SRF_ECH_1.h  
+* File Name: WAVE_ECH_1.h  
 * Version 2.10
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_SRF_ECH_1_ALIASES_H) /* Pins SRF_ECH_1_ALIASES_H */
-#define CY_PINS_SRF_ECH_1_ALIASES_H
+#if !defined(CY_PINS_WAVE_ECH_1_ALIASES_H) /* Pins WAVE_ECH_1_ALIASES_H */
+#define CY_PINS_WAVE_ECH_1_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,8 +25,8 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define SRF_ECH_1_0		(SRF_ECH_1__0__PC)
+#define WAVE_ECH_1_0		(WAVE_ECH_1__0__PC)
 
-#endif /* End Pins SRF_ECH_1_ALIASES_H */
+#endif /* End Pins WAVE_ECH_1_ALIASES_H */
 
 /* [] END OF FILE */

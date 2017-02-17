@@ -1,0 +1,903 @@
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ECDR_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ECDR_SaveConfig,"ax",%progbits
+  19              		.align	2
+  20              		.global	ECDR_SaveConfig
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ECDR_SaveConfig, %function
+  24              	ECDR_SaveConfig:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\ECDR_PM.c"
+   1:.\Generated_Source\PSoC5/ECDR_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/ECDR_PM.c **** * File Name: ECDR_PM.c
+   3:.\Generated_Source\PSoC5/ECDR_PM.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+   5:.\Generated_Source\PSoC5/ECDR_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/ECDR_PM.c **** *  This file contains the setup, control and status commands to support 
+   7:.\Generated_Source\PSoC5/ECDR_PM.c **** *  component operations in low power mode.  
+   8:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+   9:.\Generated_Source\PSoC5/ECDR_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+  11:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  12:.\Generated_Source\PSoC5/ECDR_PM.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/ECDR_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/ECDR_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\Generated_Source\PSoC5/ECDR_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC5/ECDR_PM.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/ECDR_PM.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  19:.\Generated_Source\PSoC5/ECDR_PM.c **** #include "ECDR.h"
+  20:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  21:.\Generated_Source\PSoC5/ECDR_PM.c **** static ECDR_BACKUP_STRUCT ECDR_backup = {0u};
+  22:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  23:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  24:.\Generated_Source\PSoC5/ECDR_PM.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC5/ECDR_PM.c **** * Function Name: ECDR_SaveConfig
+  26:.\Generated_Source\PSoC5/ECDR_PM.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC5/ECDR_PM.c **** * Summary:
+  28:.\Generated_Source\PSoC5/ECDR_PM.c **** *  Saves the current user configuration of the component.
+  29:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  30:.\Generated_Source\PSoC5/ECDR_PM.c **** * Parameters:
+  31:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  33:.\Generated_Source\PSoC5/ECDR_PM.c **** * Return:
+  34:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+  35:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  36:.\Generated_Source\PSoC5/ECDR_PM.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC5/ECDR_PM.c **** void ECDR_SaveConfig(void) 
+  38:.\Generated_Source\PSoC5/ECDR_PM.c **** {
+  27              		.loc 1 38 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  39:.\Generated_Source\PSoC5/ECDR_PM.c ****     #if (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT)
+  40:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_Cnt8_SaveConfig();
+  41:.\Generated_Source\PSoC5/ECDR_PM.c ****     #else 
+  42:.\Generated_Source\PSoC5/ECDR_PM.c ****         /* (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_16_BIT) || 
+  43:.\Generated_Source\PSoC5/ECDR_PM.c ****          * (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_32_BIT)
+  44:.\Generated_Source\PSoC5/ECDR_PM.c ****          */
+  45:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_Cnt16_SaveConfig();
+  35              		.loc 1 45 0
+  36 0002 FFF7FEFF 		bl	ECDR_Cnt16_SaveConfig
+  37              	.LVL0:
+  38 0006 08BD     		pop	{r3, pc}
+  39              		.cfi_endproc
+  40              	.LFE0:
+  41              		.size	ECDR_SaveConfig, .-ECDR_SaveConfig
+  42              		.section	.text.ECDR_RestoreConfig,"ax",%progbits
+  43              		.align	2
+  44              		.global	ECDR_RestoreConfig
+  45              		.thumb
+  46              		.thumb_func
+  47              		.type	ECDR_RestoreConfig, %function
+  48              	ECDR_RestoreConfig:
+  49              	.LFB1:
+  46:.\Generated_Source\PSoC5/ECDR_PM.c ****     #endif /* (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT) */
+  47:.\Generated_Source\PSoC5/ECDR_PM.c **** }
+  48:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  49:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  50:.\Generated_Source\PSoC5/ECDR_PM.c **** /*******************************************************************************
+  51:.\Generated_Source\PSoC5/ECDR_PM.c **** * Function Name: ECDR_RestoreConfig
+  52:.\Generated_Source\PSoC5/ECDR_PM.c **** ********************************************************************************
+  53:.\Generated_Source\PSoC5/ECDR_PM.c **** * Summary:
+  54:.\Generated_Source\PSoC5/ECDR_PM.c **** *  Restores the current user configuration of the component.
+  55:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  56:.\Generated_Source\PSoC5/ECDR_PM.c **** * Parameters:
+  57:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+  58:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  59:.\Generated_Source\PSoC5/ECDR_PM.c **** * Return:
+  60:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+  61:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  62:.\Generated_Source\PSoC5/ECDR_PM.c **** *******************************************************************************/
+  63:.\Generated_Source\PSoC5/ECDR_PM.c **** void ECDR_RestoreConfig(void) 
+  64:.\Generated_Source\PSoC5/ECDR_PM.c **** {
+  50              		.loc 1 64 0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 3
+
+
+  51              		.cfi_startproc
+  52              		@ args = 0, pretend = 0, frame = 0
+  53              		@ frame_needed = 0, uses_anonymous_args = 0
+  54 0000 08B5     		push	{r3, lr}
+  55              		.cfi_def_cfa_offset 8
+  56              		.cfi_offset 3, -8
+  57              		.cfi_offset 14, -4
+  65:.\Generated_Source\PSoC5/ECDR_PM.c ****     #if (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT)
+  66:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_Cnt8_RestoreConfig();
+  67:.\Generated_Source\PSoC5/ECDR_PM.c ****     #else 
+  68:.\Generated_Source\PSoC5/ECDR_PM.c ****         /* (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_16_BIT) || 
+  69:.\Generated_Source\PSoC5/ECDR_PM.c ****          * (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_32_BIT) 
+  70:.\Generated_Source\PSoC5/ECDR_PM.c ****          */
+  71:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_Cnt16_RestoreConfig();
+  58              		.loc 1 71 0
+  59 0002 FFF7FEFF 		bl	ECDR_Cnt16_RestoreConfig
+  60              	.LVL1:
+  61 0006 08BD     		pop	{r3, pc}
+  62              		.cfi_endproc
+  63              	.LFE1:
+  64              		.size	ECDR_RestoreConfig, .-ECDR_RestoreConfig
+  65              		.section	.text.ECDR_Sleep,"ax",%progbits
+  66              		.align	2
+  67              		.global	ECDR_Sleep
+  68              		.thumb
+  69              		.thumb_func
+  70              		.type	ECDR_Sleep, %function
+  71              	ECDR_Sleep:
+  72              	.LFB2:
+  72:.\Generated_Source\PSoC5/ECDR_PM.c ****     #endif /* (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT) */
+  73:.\Generated_Source\PSoC5/ECDR_PM.c **** }
+  74:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  75:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+  76:.\Generated_Source\PSoC5/ECDR_PM.c **** /*******************************************************************************
+  77:.\Generated_Source\PSoC5/ECDR_PM.c **** * Function Name: ECDR_Sleep
+  78:.\Generated_Source\PSoC5/ECDR_PM.c **** ********************************************************************************
+  79:.\Generated_Source\PSoC5/ECDR_PM.c **** * 
+  80:.\Generated_Source\PSoC5/ECDR_PM.c **** * Summary:
+  81:.\Generated_Source\PSoC5/ECDR_PM.c **** *  Prepare Quadrature Decoder Component goes to sleep.
+  82:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  83:.\Generated_Source\PSoC5/ECDR_PM.c **** * Parameters:
+  84:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+  85:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  86:.\Generated_Source\PSoC5/ECDR_PM.c **** * Return:
+  87:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+  88:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  89:.\Generated_Source\PSoC5/ECDR_PM.c **** * Global Variables:
+  90:.\Generated_Source\PSoC5/ECDR_PM.c **** *  ECDR_backup - modified when non-retention registers are saved.
+  91:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  92:.\Generated_Source\PSoC5/ECDR_PM.c **** * Reentrant:
+  93:.\Generated_Source\PSoC5/ECDR_PM.c **** *  No.
+  94:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+  95:.\Generated_Source\PSoC5/ECDR_PM.c **** *******************************************************************************/
+  96:.\Generated_Source\PSoC5/ECDR_PM.c **** void ECDR_Sleep(void) 
+  97:.\Generated_Source\PSoC5/ECDR_PM.c **** {
+  73              		.loc 1 97 0
+  74              		.cfi_startproc
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 4
+
+
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77 0000 08B5     		push	{r3, lr}
+  78              		.cfi_def_cfa_offset 8
+  79              		.cfi_offset 3, -8
+  80              		.cfi_offset 14, -4
+  98:.\Generated_Source\PSoC5/ECDR_PM.c ****     if (0u != (ECDR_SR_AUX_CONTROL & ECDR_INTERRUPTS_ENABLE))
+  81              		.loc 1 98 0
+  82 0002 084B     		ldr	r3, .L9
+  83 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  84 0006 13F0100F 		tst	r3, #16
+  85 000a 03D0     		beq	.L6
+  99:.\Generated_Source\PSoC5/ECDR_PM.c ****     {
+ 100:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_backup.enableState = 1u;
+  86              		.loc 1 100 0
+  87 000c 0122     		movs	r2, #1
+  88 000e 064B     		ldr	r3, .L9+4
+  89 0010 1A70     		strb	r2, [r3]
+  90 0012 02E0     		b	.L7
+  91              	.L6:
+ 101:.\Generated_Source\PSoC5/ECDR_PM.c ****     }
+ 102:.\Generated_Source\PSoC5/ECDR_PM.c ****     else /* The Quadrature Decoder Component is disabled */
+ 103:.\Generated_Source\PSoC5/ECDR_PM.c ****     {
+ 104:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_backup.enableState = 0u;
+  92              		.loc 1 104 0
+  93 0014 0022     		movs	r2, #0
+  94 0016 044B     		ldr	r3, .L9+4
+  95 0018 1A70     		strb	r2, [r3]
+  96              	.L7:
+ 105:.\Generated_Source\PSoC5/ECDR_PM.c ****     }
+ 106:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+ 107:.\Generated_Source\PSoC5/ECDR_PM.c ****     ECDR_Stop();
+  97              		.loc 1 107 0
+  98 001a FFF7FEFF 		bl	ECDR_Stop
+  99              	.LVL2:
+ 108:.\Generated_Source\PSoC5/ECDR_PM.c ****     ECDR_SaveConfig();
+ 100              		.loc 1 108 0
+ 101 001e FFF7FEFF 		bl	ECDR_SaveConfig
+ 102              	.LVL3:
+ 103 0022 08BD     		pop	{r3, pc}
+ 104              	.L10:
+ 105              		.align	2
+ 106              	.L9:
+ 107 0024 95650040 		.word	1073767829
+ 108 0028 00000000 		.word	.LANCHOR0
+ 109              		.cfi_endproc
+ 110              	.LFE2:
+ 111              		.size	ECDR_Sleep, .-ECDR_Sleep
+ 112              		.section	.text.ECDR_Wakeup,"ax",%progbits
+ 113              		.align	2
+ 114              		.global	ECDR_Wakeup
+ 115              		.thumb
+ 116              		.thumb_func
+ 117              		.type	ECDR_Wakeup, %function
+ 118              	ECDR_Wakeup:
+ 119              	.LFB3:
+ 109:.\Generated_Source\PSoC5/ECDR_PM.c **** }
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 5
+
+
+ 110:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+ 111:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+ 112:.\Generated_Source\PSoC5/ECDR_PM.c **** /*******************************************************************************
+ 113:.\Generated_Source\PSoC5/ECDR_PM.c **** * Function Name: ECDR_Wakeup
+ 114:.\Generated_Source\PSoC5/ECDR_PM.c **** ********************************************************************************
+ 115:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+ 116:.\Generated_Source\PSoC5/ECDR_PM.c **** * Summary:
+ 117:.\Generated_Source\PSoC5/ECDR_PM.c **** *  Prepare Quadrature Decoder Component to wake up.
+ 118:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+ 119:.\Generated_Source\PSoC5/ECDR_PM.c **** * Parameters:
+ 120:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+ 121:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+ 122:.\Generated_Source\PSoC5/ECDR_PM.c **** * Return:
+ 123:.\Generated_Source\PSoC5/ECDR_PM.c **** *  None.
+ 124:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+ 125:.\Generated_Source\PSoC5/ECDR_PM.c **** * Global Variables:
+ 126:.\Generated_Source\PSoC5/ECDR_PM.c **** *  ECDR_backup - used when non-retention registers are restored.
+ 127:.\Generated_Source\PSoC5/ECDR_PM.c **** *
+ 128:.\Generated_Source\PSoC5/ECDR_PM.c **** *******************************************************************************/
+ 129:.\Generated_Source\PSoC5/ECDR_PM.c **** void ECDR_Wakeup(void) 
+ 130:.\Generated_Source\PSoC5/ECDR_PM.c **** {
+ 120              		.loc 1 130 0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124 0000 08B5     		push	{r3, lr}
+ 125              		.cfi_def_cfa_offset 8
+ 126              		.cfi_offset 3, -8
+ 127              		.cfi_offset 14, -4
+ 131:.\Generated_Source\PSoC5/ECDR_PM.c ****     ECDR_RestoreConfig();
+ 128              		.loc 1 131 0
+ 129 0002 FFF7FEFF 		bl	ECDR_RestoreConfig
+ 130              	.LVL4:
+ 132:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+ 133:.\Generated_Source\PSoC5/ECDR_PM.c ****     if (ECDR_backup.enableState != 0u)
+ 131              		.loc 1 133 0
+ 132 0006 044B     		ldr	r3, .L14
+ 133 0008 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 134 000a 1BB1     		cbz	r3, .L11
+ 134:.\Generated_Source\PSoC5/ECDR_PM.c ****     {
+ 135:.\Generated_Source\PSoC5/ECDR_PM.c ****         #if (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT)
+ 136:.\Generated_Source\PSoC5/ECDR_PM.c ****             ECDR_Cnt8_Enable();
+ 137:.\Generated_Source\PSoC5/ECDR_PM.c ****         #else 
+ 138:.\Generated_Source\PSoC5/ECDR_PM.c ****             /* (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_16_BIT) || 
+ 139:.\Generated_Source\PSoC5/ECDR_PM.c ****             *  (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_32_BIT) 
+ 140:.\Generated_Source\PSoC5/ECDR_PM.c ****             */
+ 141:.\Generated_Source\PSoC5/ECDR_PM.c ****             ECDR_Cnt16_Enable();
+ 135              		.loc 1 141 0
+ 136 000c FFF7FEFF 		bl	ECDR_Cnt16_Enable
+ 137              	.LVL5:
+ 142:.\Generated_Source\PSoC5/ECDR_PM.c ****         #endif /* (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT) */
+ 143:.\Generated_Source\PSoC5/ECDR_PM.c **** 
+ 144:.\Generated_Source\PSoC5/ECDR_PM.c ****         /* Enable component's operation */
+ 145:.\Generated_Source\PSoC5/ECDR_PM.c ****         ECDR_Enable();
+ 138              		.loc 1 145 0
+ 139 0010 FFF7FEFF 		bl	ECDR_Enable
+ 140              	.LVL6:
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 6
+
+
+ 141              	.L11:
+ 142 0014 08BD     		pop	{r3, pc}
+ 143              	.L15:
+ 144 0016 00BF     		.align	2
+ 145              	.L14:
+ 146 0018 00000000 		.word	.LANCHOR0
+ 147              		.cfi_endproc
+ 148              	.LFE3:
+ 149              		.size	ECDR_Wakeup, .-ECDR_Wakeup
+ 150              		.bss
+ 151              		.align	2
+ 152              		.set	.LANCHOR0,. + 0
+ 153              		.type	ECDR_backup, %object
+ 154              		.size	ECDR_backup, 1
+ 155              	ECDR_backup:
+ 156 0000 00       		.space	1
+ 157 0001 000000   		.text
+ 158              	.Letext0:
+ 159              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 160              		.file 3 ".\\Generated_Source\\PSoC5\\ECDR.h"
+ 161              		.file 4 ".\\Generated_Source\\PSoC5\\ECDR_Cnt16.h"
+ 162              		.section	.debug_info,"",%progbits
+ 163              	.Ldebug_info0:
+ 164 0000 8B010000 		.4byte	0x18b
+ 165 0004 0400     		.2byte	0x4
+ 166 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 167 000a 04       		.byte	0x4
+ 168 000b 01       		.uleb128 0x1
+ 169 000c E5000000 		.4byte	.LASF25
+ 170 0010 01       		.byte	0x1
+ 171 0011 42000000 		.4byte	.LASF26
+ 172 0015 A9010000 		.4byte	.LASF27
+ 173 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 174 001d 00000000 		.4byte	0
+ 175 0021 00000000 		.4byte	.Ldebug_line0
+ 176 0025 02       		.uleb128 0x2
+ 177 0026 04       		.byte	0x4
+ 178 0027 05       		.byte	0x5
+ 179 0028 696E7400 		.ascii	"int\000"
+ 180 002c 03       		.uleb128 0x3
+ 181 002d 04       		.byte	0x4
+ 182 002e 07       		.byte	0x7
+ 183 002f 73010000 		.4byte	.LASF0
+ 184 0033 03       		.uleb128 0x3
+ 185 0034 01       		.byte	0x1
+ 186 0035 06       		.byte	0x6
+ 187 0036 28020000 		.4byte	.LASF1
+ 188 003a 03       		.uleb128 0x3
+ 189 003b 01       		.byte	0x1
+ 190 003c 08       		.byte	0x8
+ 191 003d 7E000000 		.4byte	.LASF2
+ 192 0041 03       		.uleb128 0x3
+ 193 0042 02       		.byte	0x2
+ 194 0043 05       		.byte	0x5
+ 195 0044 09020000 		.4byte	.LASF3
+ 196 0048 03       		.uleb128 0x3
+ 197 0049 02       		.byte	0x2
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 7
+
+
+ 198 004a 07       		.byte	0x7
+ 199 004b 2F000000 		.4byte	.LASF4
+ 200 004f 03       		.uleb128 0x3
+ 201 0050 04       		.byte	0x4
+ 202 0051 05       		.byte	0x5
+ 203 0052 13020000 		.4byte	.LASF5
+ 204 0056 03       		.uleb128 0x3
+ 205 0057 04       		.byte	0x4
+ 206 0058 07       		.byte	0x7
+ 207 0059 9D000000 		.4byte	.LASF6
+ 208 005d 03       		.uleb128 0x3
+ 209 005e 08       		.byte	0x8
+ 210 005f 05       		.byte	0x5
+ 211 0060 E6010000 		.4byte	.LASF7
+ 212 0064 03       		.uleb128 0x3
+ 213 0065 08       		.byte	0x8
+ 214 0066 07       		.byte	0x7
+ 215 0067 92010000 		.4byte	.LASF8
+ 216 006b 03       		.uleb128 0x3
+ 217 006c 04       		.byte	0x4
+ 218 006d 07       		.byte	0x7
+ 219 006e D2010000 		.4byte	.LASF9
+ 220 0072 03       		.uleb128 0x3
+ 221 0073 01       		.byte	0x1
+ 222 0074 08       		.byte	0x8
+ 223 0075 F4010000 		.4byte	.LASF10
+ 224 0079 04       		.uleb128 0x4
+ 225 007a AF000000 		.4byte	.LASF13
+ 226 007e 02       		.byte	0x2
+ 227 007f C2       		.byte	0xc2
+ 228 0080 3A000000 		.4byte	0x3a
+ 229 0084 03       		.uleb128 0x3
+ 230 0085 04       		.byte	0x4
+ 231 0086 04       		.byte	0x4
+ 232 0087 78000000 		.4byte	.LASF11
+ 233 008b 03       		.uleb128 0x3
+ 234 008c 08       		.byte	0x8
+ 235 008d 04       		.byte	0x4
+ 236 008e DE000000 		.4byte	.LASF12
+ 237 0092 05       		.uleb128 0x5
+ 238 0093 98000000 		.4byte	.LASF14
+ 239 0097 02       		.byte	0x2
+ 240 0098 6C01     		.2byte	0x16c
+ 241 009a 9E000000 		.4byte	0x9e
+ 242 009e 06       		.uleb128 0x6
+ 243 009f 79000000 		.4byte	0x79
+ 244 00a3 07       		.uleb128 0x7
+ 245 00a4 01       		.byte	0x1
+ 246 00a5 03       		.byte	0x3
+ 247 00a6 3D       		.byte	0x3d
+ 248 00a7 B8000000 		.4byte	0xb8
+ 249 00ab 08       		.uleb128 0x8
+ 250 00ac 1C020000 		.4byte	.LASF28
+ 251 00b0 03       		.byte	0x3
+ 252 00b1 3F       		.byte	0x3f
+ 253 00b2 79000000 		.4byte	0x79
+ 254 00b6 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 8
+
+
+ 255 00b7 00       		.byte	0
+ 256 00b8 04       		.uleb128 0x4
+ 257 00b9 65000000 		.4byte	.LASF15
+ 258 00bd 03       		.byte	0x3
+ 259 00be 40       		.byte	0x40
+ 260 00bf A3000000 		.4byte	0xa3
+ 261 00c3 09       		.uleb128 0x9
+ 262 00c4 F9010000 		.4byte	.LASF16
+ 263 00c8 01       		.byte	0x1
+ 264 00c9 25       		.byte	0x25
+ 265 00ca 00000000 		.4byte	.LFB0
+ 266 00ce 08000000 		.4byte	.LFE0-.LFB0
+ 267 00d2 01       		.uleb128 0x1
+ 268 00d3 9C       		.byte	0x9c
+ 269 00d4 E2000000 		.4byte	0xe2
+ 270 00d8 0A       		.uleb128 0xa
+ 271 00d9 06000000 		.4byte	.LVL0
+ 272 00dd 6B010000 		.4byte	0x16b
+ 273 00e1 00       		.byte	0
+ 274 00e2 09       		.uleb128 0x9
+ 275 00e3 B5000000 		.4byte	.LASF17
+ 276 00e7 01       		.byte	0x1
+ 277 00e8 3F       		.byte	0x3f
+ 278 00e9 00000000 		.4byte	.LFB1
+ 279 00ed 08000000 		.4byte	.LFE1-.LFB1
+ 280 00f1 01       		.uleb128 0x1
+ 281 00f2 9C       		.byte	0x9c
+ 282 00f3 01010000 		.4byte	0x101
+ 283 00f7 0A       		.uleb128 0xa
+ 284 00f8 06000000 		.4byte	.LVL1
+ 285 00fc 72010000 		.4byte	0x172
+ 286 0100 00       		.byte	0
+ 287 0101 09       		.uleb128 0x9
+ 288 0102 DB010000 		.4byte	.LASF18
+ 289 0106 01       		.byte	0x1
+ 290 0107 60       		.byte	0x60
+ 291 0108 00000000 		.4byte	.LFB2
+ 292 010c 2C000000 		.4byte	.LFE2-.LFB2
+ 293 0110 01       		.uleb128 0x1
+ 294 0111 9C       		.byte	0x9c
+ 295 0112 29010000 		.4byte	0x129
+ 296 0116 0A       		.uleb128 0xa
+ 297 0117 1E000000 		.4byte	.LVL2
+ 298 011b 79010000 		.4byte	0x179
+ 299 011f 0A       		.uleb128 0xa
+ 300 0120 22000000 		.4byte	.LVL3
+ 301 0124 C3000000 		.4byte	0xc3
+ 302 0128 00       		.byte	0
+ 303 0129 09       		.uleb128 0x9
+ 304 012a D2000000 		.4byte	.LASF19
+ 305 012e 01       		.byte	0x1
+ 306 012f 81       		.byte	0x81
+ 307 0130 00000000 		.4byte	.LFB3
+ 308 0134 1C000000 		.4byte	.LFE3-.LFB3
+ 309 0138 01       		.uleb128 0x1
+ 310 0139 9C       		.byte	0x9c
+ 311 013a 5A010000 		.4byte	0x15a
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 9
+
+
+ 312 013e 0A       		.uleb128 0xa
+ 313 013f 06000000 		.4byte	.LVL4
+ 314 0143 E2000000 		.4byte	0xe2
+ 315 0147 0A       		.uleb128 0xa
+ 316 0148 10000000 		.4byte	.LVL5
+ 317 014c 80010000 		.4byte	0x180
+ 318 0150 0A       		.uleb128 0xa
+ 319 0151 14000000 		.4byte	.LVL6
+ 320 0155 87010000 		.4byte	0x187
+ 321 0159 00       		.byte	0
+ 322 015a 0B       		.uleb128 0xb
+ 323 015b 8C000000 		.4byte	.LASF29
+ 324 015f 01       		.byte	0x1
+ 325 0160 15       		.byte	0x15
+ 326 0161 B8000000 		.4byte	0xb8
+ 327 0165 05       		.uleb128 0x5
+ 328 0166 03       		.byte	0x3
+ 329 0167 00000000 		.4byte	ECDR_backup
+ 330 016b 0C       		.uleb128 0xc
+ 331 016c 19000000 		.4byte	.LASF20
+ 332 0170 04       		.byte	0x4
+ 333 0171 72       		.byte	0x72
+ 334 0172 0C       		.uleb128 0xc
+ 335 0173 00000000 		.4byte	.LASF21
+ 336 0177 04       		.byte	0x4
+ 337 0178 73       		.byte	0x73
+ 338 0179 0C       		.uleb128 0xc
+ 339 017a C8000000 		.4byte	.LASF22
+ 340 017e 03       		.byte	0x3
+ 341 017f 49       		.byte	0x49
+ 342 0180 0C       		.uleb128 0xc
+ 343 0181 80010000 		.4byte	.LASF23
+ 344 0185 04       		.byte	0x4
+ 345 0186 71       		.byte	0x71
+ 346 0187 0C       		.uleb128 0xc
+ 347 0188 34020000 		.4byte	.LASF24
+ 348 018c 03       		.byte	0x3
+ 349 018d 4A       		.byte	0x4a
+ 350 018e 00       		.byte	0
+ 351              		.section	.debug_abbrev,"",%progbits
+ 352              	.Ldebug_abbrev0:
+ 353 0000 01       		.uleb128 0x1
+ 354 0001 11       		.uleb128 0x11
+ 355 0002 01       		.byte	0x1
+ 356 0003 25       		.uleb128 0x25
+ 357 0004 0E       		.uleb128 0xe
+ 358 0005 13       		.uleb128 0x13
+ 359 0006 0B       		.uleb128 0xb
+ 360 0007 03       		.uleb128 0x3
+ 361 0008 0E       		.uleb128 0xe
+ 362 0009 1B       		.uleb128 0x1b
+ 363 000a 0E       		.uleb128 0xe
+ 364 000b 55       		.uleb128 0x55
+ 365 000c 17       		.uleb128 0x17
+ 366 000d 11       		.uleb128 0x11
+ 367 000e 01       		.uleb128 0x1
+ 368 000f 10       		.uleb128 0x10
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 10
+
+
+ 369 0010 17       		.uleb128 0x17
+ 370 0011 00       		.byte	0
+ 371 0012 00       		.byte	0
+ 372 0013 02       		.uleb128 0x2
+ 373 0014 24       		.uleb128 0x24
+ 374 0015 00       		.byte	0
+ 375 0016 0B       		.uleb128 0xb
+ 376 0017 0B       		.uleb128 0xb
+ 377 0018 3E       		.uleb128 0x3e
+ 378 0019 0B       		.uleb128 0xb
+ 379 001a 03       		.uleb128 0x3
+ 380 001b 08       		.uleb128 0x8
+ 381 001c 00       		.byte	0
+ 382 001d 00       		.byte	0
+ 383 001e 03       		.uleb128 0x3
+ 384 001f 24       		.uleb128 0x24
+ 385 0020 00       		.byte	0
+ 386 0021 0B       		.uleb128 0xb
+ 387 0022 0B       		.uleb128 0xb
+ 388 0023 3E       		.uleb128 0x3e
+ 389 0024 0B       		.uleb128 0xb
+ 390 0025 03       		.uleb128 0x3
+ 391 0026 0E       		.uleb128 0xe
+ 392 0027 00       		.byte	0
+ 393 0028 00       		.byte	0
+ 394 0029 04       		.uleb128 0x4
+ 395 002a 16       		.uleb128 0x16
+ 396 002b 00       		.byte	0
+ 397 002c 03       		.uleb128 0x3
+ 398 002d 0E       		.uleb128 0xe
+ 399 002e 3A       		.uleb128 0x3a
+ 400 002f 0B       		.uleb128 0xb
+ 401 0030 3B       		.uleb128 0x3b
+ 402 0031 0B       		.uleb128 0xb
+ 403 0032 49       		.uleb128 0x49
+ 404 0033 13       		.uleb128 0x13
+ 405 0034 00       		.byte	0
+ 406 0035 00       		.byte	0
+ 407 0036 05       		.uleb128 0x5
+ 408 0037 16       		.uleb128 0x16
+ 409 0038 00       		.byte	0
+ 410 0039 03       		.uleb128 0x3
+ 411 003a 0E       		.uleb128 0xe
+ 412 003b 3A       		.uleb128 0x3a
+ 413 003c 0B       		.uleb128 0xb
+ 414 003d 3B       		.uleb128 0x3b
+ 415 003e 05       		.uleb128 0x5
+ 416 003f 49       		.uleb128 0x49
+ 417 0040 13       		.uleb128 0x13
+ 418 0041 00       		.byte	0
+ 419 0042 00       		.byte	0
+ 420 0043 06       		.uleb128 0x6
+ 421 0044 35       		.uleb128 0x35
+ 422 0045 00       		.byte	0
+ 423 0046 49       		.uleb128 0x49
+ 424 0047 13       		.uleb128 0x13
+ 425 0048 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 11
+
+
+ 426 0049 00       		.byte	0
+ 427 004a 07       		.uleb128 0x7
+ 428 004b 13       		.uleb128 0x13
+ 429 004c 01       		.byte	0x1
+ 430 004d 0B       		.uleb128 0xb
+ 431 004e 0B       		.uleb128 0xb
+ 432 004f 3A       		.uleb128 0x3a
+ 433 0050 0B       		.uleb128 0xb
+ 434 0051 3B       		.uleb128 0x3b
+ 435 0052 0B       		.uleb128 0xb
+ 436 0053 01       		.uleb128 0x1
+ 437 0054 13       		.uleb128 0x13
+ 438 0055 00       		.byte	0
+ 439 0056 00       		.byte	0
+ 440 0057 08       		.uleb128 0x8
+ 441 0058 0D       		.uleb128 0xd
+ 442 0059 00       		.byte	0
+ 443 005a 03       		.uleb128 0x3
+ 444 005b 0E       		.uleb128 0xe
+ 445 005c 3A       		.uleb128 0x3a
+ 446 005d 0B       		.uleb128 0xb
+ 447 005e 3B       		.uleb128 0x3b
+ 448 005f 0B       		.uleb128 0xb
+ 449 0060 49       		.uleb128 0x49
+ 450 0061 13       		.uleb128 0x13
+ 451 0062 38       		.uleb128 0x38
+ 452 0063 0B       		.uleb128 0xb
+ 453 0064 00       		.byte	0
+ 454 0065 00       		.byte	0
+ 455 0066 09       		.uleb128 0x9
+ 456 0067 2E       		.uleb128 0x2e
+ 457 0068 01       		.byte	0x1
+ 458 0069 3F       		.uleb128 0x3f
+ 459 006a 19       		.uleb128 0x19
+ 460 006b 03       		.uleb128 0x3
+ 461 006c 0E       		.uleb128 0xe
+ 462 006d 3A       		.uleb128 0x3a
+ 463 006e 0B       		.uleb128 0xb
+ 464 006f 3B       		.uleb128 0x3b
+ 465 0070 0B       		.uleb128 0xb
+ 466 0071 27       		.uleb128 0x27
+ 467 0072 19       		.uleb128 0x19
+ 468 0073 11       		.uleb128 0x11
+ 469 0074 01       		.uleb128 0x1
+ 470 0075 12       		.uleb128 0x12
+ 471 0076 06       		.uleb128 0x6
+ 472 0077 40       		.uleb128 0x40
+ 473 0078 18       		.uleb128 0x18
+ 474 0079 9742     		.uleb128 0x2117
+ 475 007b 19       		.uleb128 0x19
+ 476 007c 01       		.uleb128 0x1
+ 477 007d 13       		.uleb128 0x13
+ 478 007e 00       		.byte	0
+ 479 007f 00       		.byte	0
+ 480 0080 0A       		.uleb128 0xa
+ 481 0081 898201   		.uleb128 0x4109
+ 482 0084 00       		.byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 12
+
+
+ 483 0085 11       		.uleb128 0x11
+ 484 0086 01       		.uleb128 0x1
+ 485 0087 31       		.uleb128 0x31
+ 486 0088 13       		.uleb128 0x13
+ 487 0089 00       		.byte	0
+ 488 008a 00       		.byte	0
+ 489 008b 0B       		.uleb128 0xb
+ 490 008c 34       		.uleb128 0x34
+ 491 008d 00       		.byte	0
+ 492 008e 03       		.uleb128 0x3
+ 493 008f 0E       		.uleb128 0xe
+ 494 0090 3A       		.uleb128 0x3a
+ 495 0091 0B       		.uleb128 0xb
+ 496 0092 3B       		.uleb128 0x3b
+ 497 0093 0B       		.uleb128 0xb
+ 498 0094 49       		.uleb128 0x49
+ 499 0095 13       		.uleb128 0x13
+ 500 0096 02       		.uleb128 0x2
+ 501 0097 18       		.uleb128 0x18
+ 502 0098 00       		.byte	0
+ 503 0099 00       		.byte	0
+ 504 009a 0C       		.uleb128 0xc
+ 505 009b 2E       		.uleb128 0x2e
+ 506 009c 00       		.byte	0
+ 507 009d 3F       		.uleb128 0x3f
+ 508 009e 19       		.uleb128 0x19
+ 509 009f 03       		.uleb128 0x3
+ 510 00a0 0E       		.uleb128 0xe
+ 511 00a1 3A       		.uleb128 0x3a
+ 512 00a2 0B       		.uleb128 0xb
+ 513 00a3 3B       		.uleb128 0x3b
+ 514 00a4 0B       		.uleb128 0xb
+ 515 00a5 27       		.uleb128 0x27
+ 516 00a6 19       		.uleb128 0x19
+ 517 00a7 3C       		.uleb128 0x3c
+ 518 00a8 19       		.uleb128 0x19
+ 519 00a9 00       		.byte	0
+ 520 00aa 00       		.byte	0
+ 521 00ab 00       		.byte	0
+ 522              		.section	.debug_aranges,"",%progbits
+ 523 0000 34000000 		.4byte	0x34
+ 524 0004 0200     		.2byte	0x2
+ 525 0006 00000000 		.4byte	.Ldebug_info0
+ 526 000a 04       		.byte	0x4
+ 527 000b 00       		.byte	0
+ 528 000c 0000     		.2byte	0
+ 529 000e 0000     		.2byte	0
+ 530 0010 00000000 		.4byte	.LFB0
+ 531 0014 08000000 		.4byte	.LFE0-.LFB0
+ 532 0018 00000000 		.4byte	.LFB1
+ 533 001c 08000000 		.4byte	.LFE1-.LFB1
+ 534 0020 00000000 		.4byte	.LFB2
+ 535 0024 2C000000 		.4byte	.LFE2-.LFB2
+ 536 0028 00000000 		.4byte	.LFB3
+ 537 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 538 0030 00000000 		.4byte	0
+ 539 0034 00000000 		.4byte	0
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 13
+
+
+ 540              		.section	.debug_ranges,"",%progbits
+ 541              	.Ldebug_ranges0:
+ 542 0000 00000000 		.4byte	.LFB0
+ 543 0004 08000000 		.4byte	.LFE0
+ 544 0008 00000000 		.4byte	.LFB1
+ 545 000c 08000000 		.4byte	.LFE1
+ 546 0010 00000000 		.4byte	.LFB2
+ 547 0014 2C000000 		.4byte	.LFE2
+ 548 0018 00000000 		.4byte	.LFB3
+ 549 001c 1C000000 		.4byte	.LFE3
+ 550 0020 00000000 		.4byte	0
+ 551 0024 00000000 		.4byte	0
+ 552              		.section	.debug_line,"",%progbits
+ 553              	.Ldebug_line0:
+ 554 0000 AF000000 		.section	.debug_str,"MS",%progbits,1
+ 554      02006000 
+ 554      00000201 
+ 554      FB0E0D00 
+ 554      01010101 
+ 555              	.LASF21:
+ 556 0000 45434452 		.ascii	"ECDR_Cnt16_RestoreConfig\000"
+ 556      5F436E74 
+ 556      31365F52 
+ 556      6573746F 
+ 556      7265436F 
+ 557              	.LASF20:
+ 558 0019 45434452 		.ascii	"ECDR_Cnt16_SaveConfig\000"
+ 558      5F436E74 
+ 558      31365F53 
+ 558      61766543 
+ 558      6F6E6669 
+ 559              	.LASF4:
+ 560 002f 73686F72 		.ascii	"short unsigned int\000"
+ 560      7420756E 
+ 560      7369676E 
+ 560      65642069 
+ 560      6E7400
+ 561              	.LASF26:
+ 562 0042 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ECDR_PM.c\000"
+ 562      6E657261 
+ 562      7465645F 
+ 562      536F7572 
+ 562      63655C50 
+ 563              	.LASF15:
+ 564 0065 45434452 		.ascii	"ECDR_BACKUP_STRUCT\000"
+ 564      5F424143 
+ 564      4B55505F 
+ 564      53545255 
+ 564      435400
+ 565              	.LASF11:
+ 566 0078 666C6F61 		.ascii	"float\000"
+ 566      7400
+ 567              	.LASF2:
+ 568 007e 756E7369 		.ascii	"unsigned char\000"
+ 568      676E6564 
+ 568      20636861 
+ 568      7200
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 14
+
+
+ 569              	.LASF29:
+ 570 008c 45434452 		.ascii	"ECDR_backup\000"
+ 570      5F626163 
+ 570      6B757000 
+ 571              	.LASF14:
+ 572 0098 72656738 		.ascii	"reg8\000"
+ 572      00
+ 573              	.LASF6:
+ 574 009d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 574      20756E73 
+ 574      69676E65 
+ 574      6420696E 
+ 574      7400
+ 575              	.LASF13:
+ 576 00af 75696E74 		.ascii	"uint8\000"
+ 576      3800
+ 577              	.LASF17:
+ 578 00b5 45434452 		.ascii	"ECDR_RestoreConfig\000"
+ 578      5F526573 
+ 578      746F7265 
+ 578      436F6E66 
+ 578      696700
+ 579              	.LASF22:
+ 580 00c8 45434452 		.ascii	"ECDR_Stop\000"
+ 580      5F53746F 
+ 580      7000
+ 581              	.LASF19:
+ 582 00d2 45434452 		.ascii	"ECDR_Wakeup\000"
+ 582      5F57616B 
+ 582      65757000 
+ 583              	.LASF12:
+ 584 00de 646F7562 		.ascii	"double\000"
+ 584      6C6500
+ 585              	.LASF25:
+ 586 00e5 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 586      4320342E 
+ 586      392E3320 
+ 586      32303135 
+ 586      30333033 
+ 587 0118 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 587      20726576 
+ 587      6973696F 
+ 587      6E203232 
+ 587      31323230 
+ 588 014b 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 588      66756E63 
+ 588      74696F6E 
+ 588      2D736563 
+ 588      74696F6E 
+ 589              	.LASF0:
+ 590 0173 756E7369 		.ascii	"unsigned int\000"
+ 590      676E6564 
+ 590      20696E74 
+ 590      00
+ 591              	.LASF23:
+ 592 0180 45434452 		.ascii	"ECDR_Cnt16_Enable\000"
+ 592      5F436E74 
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 15
+
+
+ 592      31365F45 
+ 592      6E61626C 
+ 592      6500
+ 593              	.LASF8:
+ 594 0192 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 594      206C6F6E 
+ 594      6720756E 
+ 594      7369676E 
+ 594      65642069 
+ 595              	.LASF27:
+ 596 01a9 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car_V5\\car.cydsn\000"
+ 596      6F626F74 
+ 596      5C676974 
+ 596      5F636F64 
+ 596      655C726F 
+ 597              	.LASF9:
+ 598 01d2 73697A65 		.ascii	"sizetype\000"
+ 598      74797065 
+ 598      00
+ 599              	.LASF18:
+ 600 01db 45434452 		.ascii	"ECDR_Sleep\000"
+ 600      5F536C65 
+ 600      657000
+ 601              	.LASF7:
+ 602 01e6 6C6F6E67 		.ascii	"long long int\000"
+ 602      206C6F6E 
+ 602      6720696E 
+ 602      7400
+ 603              	.LASF10:
+ 604 01f4 63686172 		.ascii	"char\000"
+ 604      00
+ 605              	.LASF16:
+ 606 01f9 45434452 		.ascii	"ECDR_SaveConfig\000"
+ 606      5F536176 
+ 606      65436F6E 
+ 606      66696700 
+ 607              	.LASF3:
+ 608 0209 73686F72 		.ascii	"short int\000"
+ 608      7420696E 
+ 608      7400
+ 609              	.LASF5:
+ 610 0213 6C6F6E67 		.ascii	"long int\000"
+ 610      20696E74 
+ 610      00
+ 611              	.LASF28:
+ 612 021c 656E6162 		.ascii	"enableState\000"
+ 612      6C655374 
+ 612      61746500 
+ 613              	.LASF1:
+ 614 0228 7369676E 		.ascii	"signed char\000"
+ 614      65642063 
+ 614      68617200 
+ 615              	.LASF24:
+ 616 0234 45434452 		.ascii	"ECDR_Enable\000"
+ 616      5F456E61 
+ 616      626C6500 
+ 617              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccMRaaVw.s 			page 16
+
+

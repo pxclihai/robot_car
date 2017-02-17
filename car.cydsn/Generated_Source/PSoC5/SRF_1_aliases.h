@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SRF_1.h  
+* File Name: WAVE_1.h  
 * Version 2.10
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_SRF_1_ALIASES_H) /* Pins SRF_1_ALIASES_H */
-#define CY_PINS_SRF_1_ALIASES_H
+#if !defined(CY_PINS_WAVE_1_ALIASES_H) /* Pins WAVE_1_ALIASES_H */
+#define CY_PINS_WAVE_1_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,8 +25,8 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define SRF_1_0		(SRF_1__0__PC)
+#define WAVE_1_0		(WAVE_1__0__PC)
 
-#endif /* End Pins SRF_1_ALIASES_H */
+#endif /* End Pins WAVE_1_ALIASES_H */
 
 /* [] END OF FILE */

@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SRF_05_Timer.h
+* File Name: WAVE_05_Timer.h
 * Version 2.70
 *
 *  Description:
@@ -16,14 +16,14 @@
 * the software package with which this file was provided.
 ********************************************************************************/
 
-#if !defined(CY_Timer_v2_60_SRF_05_Timer_H)
-#define CY_Timer_v2_60_SRF_05_Timer_H
+#if !defined(CY_Timer_v2_60_WAVE_05_Timer_H)
+#define CY_Timer_v2_60_WAVE_05_Timer_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
 #include "CyLib.h" /* For CyEnterCriticalSection() and CyExitCriticalSection() functions */
 
-extern uint8 SRF_05_Timer_initVar;
+extern uint8 WAVE_05_Timer_initVar;
 
 /* Check to see if required defines such as CY_PSOC5LP are available */
 /* They are defined starting with cy_boot v3.0 */
@@ -36,24 +36,24 @@ extern uint8 SRF_05_Timer_initVar;
 *           Parameter Defaults
 **************************************/
 
-#define SRF_05_Timer_Resolution                 16u
-#define SRF_05_Timer_UsingFixedFunction         0u
-#define SRF_05_Timer_UsingHWCaptureCounter      0u
-#define SRF_05_Timer_SoftwareCaptureMode        0u
-#define SRF_05_Timer_SoftwareTriggerMode        0u
-#define SRF_05_Timer_UsingHWEnable              0u
-#define SRF_05_Timer_EnableTriggerMode          0u
-#define SRF_05_Timer_InterruptOnCaptureCount    1u
-#define SRF_05_Timer_RunModeUsed                0u
-#define SRF_05_Timer_ControlRegRemoved          0u
+#define WAVE_05_Timer_Resolution                 16u
+#define WAVE_05_Timer_UsingFixedFunction         0u
+#define WAVE_05_Timer_UsingHWCaptureCounter      0u
+#define WAVE_05_Timer_SoftwareCaptureMode        0u
+#define WAVE_05_Timer_SoftwareTriggerMode        0u
+#define WAVE_05_Timer_UsingHWEnable              0u
+#define WAVE_05_Timer_EnableTriggerMode          0u
+#define WAVE_05_Timer_InterruptOnCaptureCount    1u
+#define WAVE_05_Timer_RunModeUsed                0u
+#define WAVE_05_Timer_ControlRegRemoved          0u
 
-#if defined(SRF_05_Timer_TimerUDB_sCTRLReg_SyncCtl_ctrlreg__CONTROL_REG)
-    #define SRF_05_Timer_UDB_CONTROL_REG_REMOVED            (0u)
-#elif  (SRF_05_Timer_UsingFixedFunction)
-    #define SRF_05_Timer_UDB_CONTROL_REG_REMOVED            (0u)
+#if defined(WAVE_05_Timer_TimerUDB_sCTRLReg_SyncCtl_ctrlreg__CONTROL_REG)
+    #define WAVE_05_Timer_UDB_CONTROL_REG_REMOVED            (0u)
+#elif  (WAVE_05_Timer_UsingFixedFunction)
+    #define WAVE_05_Timer_UDB_CONTROL_REG_REMOVED            (0u)
 #else 
-    #define SRF_05_Timer_UDB_CONTROL_REG_REMOVED            (1u)
-#endif /* End SRF_05_Timer_TimerUDB_sCTRLReg_SyncCtl_ctrlreg__CONTROL_REG */
+    #define WAVE_05_Timer_UDB_CONTROL_REG_REMOVED            (1u)
+#endif /* End WAVE_05_Timer_TimerUDB_sCTRLReg_SyncCtl_ctrlreg__CONTROL_REG */
 
 
 /***************************************
@@ -67,80 +67,80 @@ extern uint8 SRF_05_Timer_initVar;
 typedef struct
 {
     uint8 TimerEnableState;
-    #if(!SRF_05_Timer_UsingFixedFunction)
+    #if(!WAVE_05_Timer_UsingFixedFunction)
 
         uint16 TimerUdb;
         uint8 InterruptMaskValue;
-        #if (SRF_05_Timer_UsingHWCaptureCounter)
+        #if (WAVE_05_Timer_UsingHWCaptureCounter)
             uint8 TimerCaptureCounter;
         #endif /* variable declarations for backing up non retention registers in CY_UDB_V1 */
 
-        #if (!SRF_05_Timer_UDB_CONTROL_REG_REMOVED)
+        #if (!WAVE_05_Timer_UDB_CONTROL_REG_REMOVED)
             uint8 TimerControlRegister;
         #endif /* variable declaration for backing up enable state of the Timer */
     #endif /* define backup variables only for UDB implementation. Fixed function registers are all retention */
 
-}SRF_05_Timer_backupStruct;
+}WAVE_05_Timer_backupStruct;
 
 
 /***************************************
 *       Function Prototypes
 ***************************************/
 
-void    SRF_05_Timer_Start(void) ;
-void    SRF_05_Timer_Stop(void) ;
+void    WAVE_05_Timer_Start(void) ;
+void    WAVE_05_Timer_Stop(void) ;
 
-void    SRF_05_Timer_SetInterruptMode(uint8 interruptMode) ;
-uint8   SRF_05_Timer_ReadStatusRegister(void) ;
+void    WAVE_05_Timer_SetInterruptMode(uint8 interruptMode) ;
+uint8   WAVE_05_Timer_ReadStatusRegister(void) ;
 /* Deprecated function. Do not use this in future. Retained for backward compatibility */
-#define SRF_05_Timer_GetInterruptSource() SRF_05_Timer_ReadStatusRegister()
+#define WAVE_05_Timer_GetInterruptSource() WAVE_05_Timer_ReadStatusRegister()
 
-#if(!SRF_05_Timer_UDB_CONTROL_REG_REMOVED)
-    uint8   SRF_05_Timer_ReadControlRegister(void) ;
-    void    SRF_05_Timer_WriteControlRegister(uint8 control) ;
-#endif /* (!SRF_05_Timer_UDB_CONTROL_REG_REMOVED) */
+#if(!WAVE_05_Timer_UDB_CONTROL_REG_REMOVED)
+    uint8   WAVE_05_Timer_ReadControlRegister(void) ;
+    void    WAVE_05_Timer_WriteControlRegister(uint8 control) ;
+#endif /* (!WAVE_05_Timer_UDB_CONTROL_REG_REMOVED) */
 
-uint16  SRF_05_Timer_ReadPeriod(void) ;
-void    SRF_05_Timer_WritePeriod(uint16 period) ;
-uint16  SRF_05_Timer_ReadCounter(void) ;
-void    SRF_05_Timer_WriteCounter(uint16 counter) ;
-uint16  SRF_05_Timer_ReadCapture(void) ;
-void    SRF_05_Timer_SoftwareCapture(void) ;
+uint16  WAVE_05_Timer_ReadPeriod(void) ;
+void    WAVE_05_Timer_WritePeriod(uint16 period) ;
+uint16  WAVE_05_Timer_ReadCounter(void) ;
+void    WAVE_05_Timer_WriteCounter(uint16 counter) ;
+uint16  WAVE_05_Timer_ReadCapture(void) ;
+void    WAVE_05_Timer_SoftwareCapture(void) ;
 
-#if(!SRF_05_Timer_UsingFixedFunction) /* UDB Prototypes */
-    #if (SRF_05_Timer_SoftwareCaptureMode)
-        void    SRF_05_Timer_SetCaptureMode(uint8 captureMode) ;
-    #endif /* (!SRF_05_Timer_UsingFixedFunction) */
+#if(!WAVE_05_Timer_UsingFixedFunction) /* UDB Prototypes */
+    #if (WAVE_05_Timer_SoftwareCaptureMode)
+        void    WAVE_05_Timer_SetCaptureMode(uint8 captureMode) ;
+    #endif /* (!WAVE_05_Timer_UsingFixedFunction) */
 
-    #if (SRF_05_Timer_SoftwareTriggerMode)
-        void    SRF_05_Timer_SetTriggerMode(uint8 triggerMode) ;
-    #endif /* (SRF_05_Timer_SoftwareTriggerMode) */
+    #if (WAVE_05_Timer_SoftwareTriggerMode)
+        void    WAVE_05_Timer_SetTriggerMode(uint8 triggerMode) ;
+    #endif /* (WAVE_05_Timer_SoftwareTriggerMode) */
 
-    #if (SRF_05_Timer_EnableTriggerMode)
-        void    SRF_05_Timer_EnableTrigger(void) ;
-        void    SRF_05_Timer_DisableTrigger(void) ;
-    #endif /* (SRF_05_Timer_EnableTriggerMode) */
+    #if (WAVE_05_Timer_EnableTriggerMode)
+        void    WAVE_05_Timer_EnableTrigger(void) ;
+        void    WAVE_05_Timer_DisableTrigger(void) ;
+    #endif /* (WAVE_05_Timer_EnableTriggerMode) */
 
 
-    #if(SRF_05_Timer_InterruptOnCaptureCount)
-        void    SRF_05_Timer_SetInterruptCount(uint8 interruptCount) ;
-    #endif /* (SRF_05_Timer_InterruptOnCaptureCount) */
+    #if(WAVE_05_Timer_InterruptOnCaptureCount)
+        void    WAVE_05_Timer_SetInterruptCount(uint8 interruptCount) ;
+    #endif /* (WAVE_05_Timer_InterruptOnCaptureCount) */
 
-    #if (SRF_05_Timer_UsingHWCaptureCounter)
-        void    SRF_05_Timer_SetCaptureCount(uint8 captureCount) ;
-        uint8   SRF_05_Timer_ReadCaptureCount(void) ;
-    #endif /* (SRF_05_Timer_UsingHWCaptureCounter) */
+    #if (WAVE_05_Timer_UsingHWCaptureCounter)
+        void    WAVE_05_Timer_SetCaptureCount(uint8 captureCount) ;
+        uint8   WAVE_05_Timer_ReadCaptureCount(void) ;
+    #endif /* (WAVE_05_Timer_UsingHWCaptureCounter) */
 
-    void SRF_05_Timer_ClearFIFO(void) ;
+    void WAVE_05_Timer_ClearFIFO(void) ;
 #endif /* UDB Prototypes */
 
 /* Sleep Retention APIs */
-void SRF_05_Timer_Init(void)          ;
-void SRF_05_Timer_Enable(void)        ;
-void SRF_05_Timer_SaveConfig(void)    ;
-void SRF_05_Timer_RestoreConfig(void) ;
-void SRF_05_Timer_Sleep(void)         ;
-void SRF_05_Timer_Wakeup(void)        ;
+void WAVE_05_Timer_Init(void)          ;
+void WAVE_05_Timer_Enable(void)        ;
+void WAVE_05_Timer_SaveConfig(void)    ;
+void WAVE_05_Timer_RestoreConfig(void) ;
+void WAVE_05_Timer_Sleep(void)         ;
+void WAVE_05_Timer_Wakeup(void)        ;
 
 
 /***************************************
@@ -148,74 +148,74 @@ void SRF_05_Timer_Wakeup(void)        ;
 ***************************************/
 
 /* Enumerated Type B_Timer__CaptureModes, Used in Capture Mode */
-#define SRF_05_Timer__B_TIMER__CM_NONE 0
-#define SRF_05_Timer__B_TIMER__CM_RISINGEDGE 1
-#define SRF_05_Timer__B_TIMER__CM_FALLINGEDGE 2
-#define SRF_05_Timer__B_TIMER__CM_EITHEREDGE 3
-#define SRF_05_Timer__B_TIMER__CM_SOFTWARE 4
+#define WAVE_05_Timer__B_TIMER__CM_NONE 0
+#define WAVE_05_Timer__B_TIMER__CM_RISINGEDGE 1
+#define WAVE_05_Timer__B_TIMER__CM_FALLINGEDGE 2
+#define WAVE_05_Timer__B_TIMER__CM_EITHEREDGE 3
+#define WAVE_05_Timer__B_TIMER__CM_SOFTWARE 4
 
 
 
 /* Enumerated Type B_Timer__TriggerModes, Used in Trigger Mode */
-#define SRF_05_Timer__B_TIMER__TM_NONE 0x00u
-#define SRF_05_Timer__B_TIMER__TM_RISINGEDGE 0x04u
-#define SRF_05_Timer__B_TIMER__TM_FALLINGEDGE 0x08u
-#define SRF_05_Timer__B_TIMER__TM_EITHEREDGE 0x0Cu
-#define SRF_05_Timer__B_TIMER__TM_SOFTWARE 0x10u
+#define WAVE_05_Timer__B_TIMER__TM_NONE 0x00u
+#define WAVE_05_Timer__B_TIMER__TM_RISINGEDGE 0x04u
+#define WAVE_05_Timer__B_TIMER__TM_FALLINGEDGE 0x08u
+#define WAVE_05_Timer__B_TIMER__TM_EITHEREDGE 0x0Cu
+#define WAVE_05_Timer__B_TIMER__TM_SOFTWARE 0x10u
 
 
 /***************************************
 *    Initialial Parameter Constants
 ***************************************/
 
-#define SRF_05_Timer_INIT_PERIOD             65535u
-#define SRF_05_Timer_INIT_CAPTURE_MODE       ((uint8)((uint8)3u << SRF_05_Timer_CTRL_CAP_MODE_SHIFT))
-#define SRF_05_Timer_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << SRF_05_Timer_CTRL_TRIG_MODE_SHIFT))
-#if (SRF_05_Timer_UsingFixedFunction)
-    #define SRF_05_Timer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << SRF_05_Timer_STATUS_TC_INT_MASK_SHIFT)) | \
-                                                  ((uint8)((uint8)1 << SRF_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT)))
+#define WAVE_05_Timer_INIT_PERIOD             65535u
+#define WAVE_05_Timer_INIT_CAPTURE_MODE       ((uint8)((uint8)3u << WAVE_05_Timer_CTRL_CAP_MODE_SHIFT))
+#define WAVE_05_Timer_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << WAVE_05_Timer_CTRL_TRIG_MODE_SHIFT))
+#if (WAVE_05_Timer_UsingFixedFunction)
+    #define WAVE_05_Timer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << WAVE_05_Timer_STATUS_TC_INT_MASK_SHIFT)) | \
+                                                  ((uint8)((uint8)1 << WAVE_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT)))
 #else
-    #define SRF_05_Timer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << SRF_05_Timer_STATUS_TC_INT_MASK_SHIFT)) | \
-                                                 ((uint8)((uint8)1 << SRF_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT)) | \
-                                                 ((uint8)((uint8)0 << SRF_05_Timer_STATUS_FIFOFULL_INT_MASK_SHIFT)))
-#endif /* (SRF_05_Timer_UsingFixedFunction) */
-#define SRF_05_Timer_INIT_CAPTURE_COUNT      (4u)
-#define SRF_05_Timer_INIT_INT_CAPTURE_COUNT  ((uint8)((uint8)(1u - 1u) << SRF_05_Timer_CTRL_INTCNT_SHIFT))
+    #define WAVE_05_Timer_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << WAVE_05_Timer_STATUS_TC_INT_MASK_SHIFT)) | \
+                                                 ((uint8)((uint8)1 << WAVE_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT)) | \
+                                                 ((uint8)((uint8)0 << WAVE_05_Timer_STATUS_FIFOFULL_INT_MASK_SHIFT)))
+#endif /* (WAVE_05_Timer_UsingFixedFunction) */
+#define WAVE_05_Timer_INIT_CAPTURE_COUNT      (4u)
+#define WAVE_05_Timer_INIT_INT_CAPTURE_COUNT  ((uint8)((uint8)(1u - 1u) << WAVE_05_Timer_CTRL_INTCNT_SHIFT))
 
 
 /***************************************
 *           Registers
 ***************************************/
 
-#if (SRF_05_Timer_UsingFixedFunction) /* Implementation Specific Registers and Register Constants */
+#if (WAVE_05_Timer_UsingFixedFunction) /* Implementation Specific Registers and Register Constants */
 
 
     /***************************************
     *    Fixed Function Registers
     ***************************************/
 
-    #define SRF_05_Timer_STATUS         (*(reg8 *) SRF_05_Timer_TimerHW__SR0 )
+    #define WAVE_05_Timer_STATUS         (*(reg8 *) WAVE_05_Timer_TimerHW__SR0 )
     /* In Fixed Function Block Status and Mask are the same register */
-    #define SRF_05_Timer_STATUS_MASK    (*(reg8 *) SRF_05_Timer_TimerHW__SR0 )
-    #define SRF_05_Timer_CONTROL        (*(reg8 *) SRF_05_Timer_TimerHW__CFG0)
-    #define SRF_05_Timer_CONTROL2       (*(reg8 *) SRF_05_Timer_TimerHW__CFG1)
-    #define SRF_05_Timer_CONTROL2_PTR   ( (reg8 *) SRF_05_Timer_TimerHW__CFG1)
-    #define SRF_05_Timer_RT1            (*(reg8 *) SRF_05_Timer_TimerHW__RT1)
-    #define SRF_05_Timer_RT1_PTR        ( (reg8 *) SRF_05_Timer_TimerHW__RT1)
+    #define WAVE_05_Timer_STATUS_MASK    (*(reg8 *) WAVE_05_Timer_TimerHW__SR0 )
+    #define WAVE_05_Timer_CONTROL        (*(reg8 *) WAVE_05_Timer_TimerHW__CFG0)
+    #define WAVE_05_Timer_CONTROL2       (*(reg8 *) WAVE_05_Timer_TimerHW__CFG1)
+    #define WAVE_05_Timer_CONTROL2_PTR   ( (reg8 *) WAVE_05_Timer_TimerHW__CFG1)
+    #define WAVE_05_Timer_RT1            (*(reg8 *) WAVE_05_Timer_TimerHW__RT1)
+    #define WAVE_05_Timer_RT1_PTR        ( (reg8 *) WAVE_05_Timer_TimerHW__RT1)
 
     #if (CY_PSOC3 || CY_PSOC5LP)
-        #define SRF_05_Timer_CONTROL3       (*(reg8 *) SRF_05_Timer_TimerHW__CFG2)
-        #define SRF_05_Timer_CONTROL3_PTR   ( (reg8 *) SRF_05_Timer_TimerHW__CFG2)
+        #define WAVE_05_Timer_CONTROL3       (*(reg8 *) WAVE_05_Timer_TimerHW__CFG2)
+        #define WAVE_05_Timer_CONTROL3_PTR   ( (reg8 *) WAVE_05_Timer_TimerHW__CFG2)
     #endif /* (CY_PSOC3 || CY_PSOC5LP) */
-    #define SRF_05_Timer_GLOBAL_ENABLE  (*(reg8 *) SRF_05_Timer_TimerHW__PM_ACT_CFG)
-    #define SRF_05_Timer_GLOBAL_STBY_ENABLE  (*(reg8 *) SRF_05_Timer_TimerHW__PM_STBY_CFG)
+    #define WAVE_05_Timer_GLOBAL_ENABLE  (*(reg8 *) WAVE_05_Timer_TimerHW__PM_ACT_CFG)
+    #define WAVE_05_Timer_GLOBAL_STBY_ENABLE  (*(reg8 *) WAVE_05_Timer_TimerHW__PM_STBY_CFG)
 
-    #define SRF_05_Timer_CAPTURE_LSB         (* (reg16 *) SRF_05_Timer_TimerHW__CAP0 )
-    #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg16 *) SRF_05_Timer_TimerHW__CAP0 )
-    #define SRF_05_Timer_PERIOD_LSB          (* (reg16 *) SRF_05_Timer_TimerHW__PER0 )
-    #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg16 *) SRF_05_Timer_TimerHW__PER0 )
-    #define SRF_05_Timer_COUNTER_LSB         (* (reg16 *) SRF_05_Timer_TimerHW__CNT_CMP0 )
-    #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg16 *) SRF_05_Timer_TimerHW__CNT_CMP0 )
+    #define WAVE_05_Timer_CAPTURE_LSB         (* (reg16 *) WAVE_05_Timer_TimerHW__CAP0 )
+    #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg16 *) WAVE_05_Timer_TimerHW__CAP0 )
+    #define WAVE_05_Timer_PERIOD_LSB          (* (reg16 *) WAVE_05_Timer_TimerHW__PER0 )
+    #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg16 *) WAVE_05_Timer_TimerHW__PER0 )
+    #define WAVE_05_Timer_COUNTER_LSB         (* (reg16 *) WAVE_05_Timer_TimerHW__CNT_CMP0 )
+    #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg16 *) WAVE_05_Timer_TimerHW__CNT_CMP0 )
 
 
     /***************************************
@@ -223,82 +223,82 @@ void SRF_05_Timer_Wakeup(void)        ;
     ***************************************/
 
     /* Fixed Function Block Chosen */
-    #define SRF_05_Timer_BLOCK_EN_MASK                     SRF_05_Timer_TimerHW__PM_ACT_MSK
-    #define SRF_05_Timer_BLOCK_STBY_EN_MASK                SRF_05_Timer_TimerHW__PM_STBY_MSK
+    #define WAVE_05_Timer_BLOCK_EN_MASK                     WAVE_05_Timer_TimerHW__PM_ACT_MSK
+    #define WAVE_05_Timer_BLOCK_STBY_EN_MASK                WAVE_05_Timer_TimerHW__PM_STBY_MSK
 
     /* Control Register Bit Locations */
     /* Interrupt Count - Not valid for Fixed Function Block */
-    #define SRF_05_Timer_CTRL_INTCNT_SHIFT                  0x00u
+    #define WAVE_05_Timer_CTRL_INTCNT_SHIFT                  0x00u
     /* Trigger Polarity - Not valid for Fixed Function Block */
-    #define SRF_05_Timer_CTRL_TRIG_MODE_SHIFT               0x00u
+    #define WAVE_05_Timer_CTRL_TRIG_MODE_SHIFT               0x00u
     /* Trigger Enable - Not valid for Fixed Function Block */
-    #define SRF_05_Timer_CTRL_TRIG_EN_SHIFT                 0x00u
+    #define WAVE_05_Timer_CTRL_TRIG_EN_SHIFT                 0x00u
     /* Capture Polarity - Not valid for Fixed Function Block */
-    #define SRF_05_Timer_CTRL_CAP_MODE_SHIFT                0x00u
+    #define WAVE_05_Timer_CTRL_CAP_MODE_SHIFT                0x00u
     /* Timer Enable - As defined in Register Map, part of TMRX_CFG0 register */
-    #define SRF_05_Timer_CTRL_ENABLE_SHIFT                  0x00u
+    #define WAVE_05_Timer_CTRL_ENABLE_SHIFT                  0x00u
 
     /* Control Register Bit Masks */
-    #define SRF_05_Timer_CTRL_ENABLE                        ((uint8)((uint8)0x01u << SRF_05_Timer_CTRL_ENABLE_SHIFT))
+    #define WAVE_05_Timer_CTRL_ENABLE                        ((uint8)((uint8)0x01u << WAVE_05_Timer_CTRL_ENABLE_SHIFT))
 
     /* Control2 Register Bit Masks */
     /* As defined in Register Map, Part of the TMRX_CFG1 register */
-    #define SRF_05_Timer_CTRL2_IRQ_SEL_SHIFT                 0x00u
-    #define SRF_05_Timer_CTRL2_IRQ_SEL                      ((uint8)((uint8)0x01u << SRF_05_Timer_CTRL2_IRQ_SEL_SHIFT))
+    #define WAVE_05_Timer_CTRL2_IRQ_SEL_SHIFT                 0x00u
+    #define WAVE_05_Timer_CTRL2_IRQ_SEL                      ((uint8)((uint8)0x01u << WAVE_05_Timer_CTRL2_IRQ_SEL_SHIFT))
 
     #if (CY_PSOC5A)
         /* Use CFG1 Mode bits to set run mode */
         /* As defined by Verilog Implementation */
-        #define SRF_05_Timer_CTRL_MODE_SHIFT                 0x01u
-        #define SRF_05_Timer_CTRL_MODE_MASK                 ((uint8)((uint8)0x07u << SRF_05_Timer_CTRL_MODE_SHIFT))
+        #define WAVE_05_Timer_CTRL_MODE_SHIFT                 0x01u
+        #define WAVE_05_Timer_CTRL_MODE_MASK                 ((uint8)((uint8)0x07u << WAVE_05_Timer_CTRL_MODE_SHIFT))
     #endif /* (CY_PSOC5A) */
     #if (CY_PSOC3 || CY_PSOC5LP)
         /* Control3 Register Bit Locations */
-        #define SRF_05_Timer_CTRL_RCOD_SHIFT        0x02u
-        #define SRF_05_Timer_CTRL_ENBL_SHIFT        0x00u
-        #define SRF_05_Timer_CTRL_MODE_SHIFT        0x00u
+        #define WAVE_05_Timer_CTRL_RCOD_SHIFT        0x02u
+        #define WAVE_05_Timer_CTRL_ENBL_SHIFT        0x00u
+        #define WAVE_05_Timer_CTRL_MODE_SHIFT        0x00u
 
         /* Control3 Register Bit Masks */
-        #define SRF_05_Timer_CTRL_RCOD_MASK  ((uint8)((uint8)0x03u << SRF_05_Timer_CTRL_RCOD_SHIFT)) /* ROD and COD bit masks */
-        #define SRF_05_Timer_CTRL_ENBL_MASK  ((uint8)((uint8)0x80u << SRF_05_Timer_CTRL_ENBL_SHIFT)) /* HW_EN bit mask */
-        #define SRF_05_Timer_CTRL_MODE_MASK  ((uint8)((uint8)0x03u << SRF_05_Timer_CTRL_MODE_SHIFT)) /* Run mode bit mask */
+        #define WAVE_05_Timer_CTRL_RCOD_MASK  ((uint8)((uint8)0x03u << WAVE_05_Timer_CTRL_RCOD_SHIFT)) /* ROD and COD bit masks */
+        #define WAVE_05_Timer_CTRL_ENBL_MASK  ((uint8)((uint8)0x80u << WAVE_05_Timer_CTRL_ENBL_SHIFT)) /* HW_EN bit mask */
+        #define WAVE_05_Timer_CTRL_MODE_MASK  ((uint8)((uint8)0x03u << WAVE_05_Timer_CTRL_MODE_SHIFT)) /* Run mode bit mask */
 
-        #define SRF_05_Timer_CTRL_RCOD       ((uint8)((uint8)0x03u << SRF_05_Timer_CTRL_RCOD_SHIFT))
-        #define SRF_05_Timer_CTRL_ENBL       ((uint8)((uint8)0x80u << SRF_05_Timer_CTRL_ENBL_SHIFT))
+        #define WAVE_05_Timer_CTRL_RCOD       ((uint8)((uint8)0x03u << WAVE_05_Timer_CTRL_RCOD_SHIFT))
+        #define WAVE_05_Timer_CTRL_ENBL       ((uint8)((uint8)0x80u << WAVE_05_Timer_CTRL_ENBL_SHIFT))
     #endif /* (CY_PSOC3 || CY_PSOC5LP) */
 
     /*RT1 Synch Constants: Applicable for PSoC3 and PSoC5LP */
-    #define SRF_05_Timer_RT1_SHIFT                       0x04u
+    #define WAVE_05_Timer_RT1_SHIFT                       0x04u
     /* Sync TC and CMP bit masks */
-    #define SRF_05_Timer_RT1_MASK                        ((uint8)((uint8)0x03u << SRF_05_Timer_RT1_SHIFT))
-    #define SRF_05_Timer_SYNC                            ((uint8)((uint8)0x03u << SRF_05_Timer_RT1_SHIFT))
-    #define SRF_05_Timer_SYNCDSI_SHIFT                   0x00u
+    #define WAVE_05_Timer_RT1_MASK                        ((uint8)((uint8)0x03u << WAVE_05_Timer_RT1_SHIFT))
+    #define WAVE_05_Timer_SYNC                            ((uint8)((uint8)0x03u << WAVE_05_Timer_RT1_SHIFT))
+    #define WAVE_05_Timer_SYNCDSI_SHIFT                   0x00u
     /* Sync all DSI inputs with Mask  */
-    #define SRF_05_Timer_SYNCDSI_MASK                    ((uint8)((uint8)0x0Fu << SRF_05_Timer_SYNCDSI_SHIFT))
+    #define WAVE_05_Timer_SYNCDSI_MASK                    ((uint8)((uint8)0x0Fu << WAVE_05_Timer_SYNCDSI_SHIFT))
     /* Sync all DSI inputs */
-    #define SRF_05_Timer_SYNCDSI_EN                      ((uint8)((uint8)0x0Fu << SRF_05_Timer_SYNCDSI_SHIFT))
+    #define WAVE_05_Timer_SYNCDSI_EN                      ((uint8)((uint8)0x0Fu << WAVE_05_Timer_SYNCDSI_SHIFT))
 
-    #define SRF_05_Timer_CTRL_MODE_PULSEWIDTH            ((uint8)((uint8)0x01u << SRF_05_Timer_CTRL_MODE_SHIFT))
-    #define SRF_05_Timer_CTRL_MODE_PERIOD                ((uint8)((uint8)0x02u << SRF_05_Timer_CTRL_MODE_SHIFT))
-    #define SRF_05_Timer_CTRL_MODE_CONTINUOUS            ((uint8)((uint8)0x00u << SRF_05_Timer_CTRL_MODE_SHIFT))
+    #define WAVE_05_Timer_CTRL_MODE_PULSEWIDTH            ((uint8)((uint8)0x01u << WAVE_05_Timer_CTRL_MODE_SHIFT))
+    #define WAVE_05_Timer_CTRL_MODE_PERIOD                ((uint8)((uint8)0x02u << WAVE_05_Timer_CTRL_MODE_SHIFT))
+    #define WAVE_05_Timer_CTRL_MODE_CONTINUOUS            ((uint8)((uint8)0x00u << WAVE_05_Timer_CTRL_MODE_SHIFT))
 
     /* Status Register Bit Locations */
     /* As defined in Register Map, part of TMRX_SR0 register */
-    #define SRF_05_Timer_STATUS_TC_SHIFT                 0x07u
+    #define WAVE_05_Timer_STATUS_TC_SHIFT                 0x07u
     /* As defined in Register Map, part of TMRX_SR0 register, Shared with Compare Status */
-    #define SRF_05_Timer_STATUS_CAPTURE_SHIFT            0x06u
+    #define WAVE_05_Timer_STATUS_CAPTURE_SHIFT            0x06u
     /* As defined in Register Map, part of TMRX_SR0 register */
-    #define SRF_05_Timer_STATUS_TC_INT_MASK_SHIFT        (SRF_05_Timer_STATUS_TC_SHIFT - 0x04u)
+    #define WAVE_05_Timer_STATUS_TC_INT_MASK_SHIFT        (WAVE_05_Timer_STATUS_TC_SHIFT - 0x04u)
     /* As defined in Register Map, part of TMRX_SR0 register, Shared with Compare Status */
-    #define SRF_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT   (SRF_05_Timer_STATUS_CAPTURE_SHIFT - 0x04u)
+    #define WAVE_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT   (WAVE_05_Timer_STATUS_CAPTURE_SHIFT - 0x04u)
 
     /* Status Register Bit Masks */
-    #define SRF_05_Timer_STATUS_TC                       ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_TC_SHIFT))
-    #define SRF_05_Timer_STATUS_CAPTURE                  ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_CAPTURE_SHIFT))
+    #define WAVE_05_Timer_STATUS_TC                       ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_TC_SHIFT))
+    #define WAVE_05_Timer_STATUS_CAPTURE                  ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_CAPTURE_SHIFT))
     /* Interrupt Enable Bit-Mask for interrupt on TC */
-    #define SRF_05_Timer_STATUS_TC_INT_MASK              ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_TC_INT_MASK_SHIFT))
+    #define WAVE_05_Timer_STATUS_TC_INT_MASK              ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_TC_INT_MASK_SHIFT))
     /* Interrupt Enable Bit-Mask for interrupt on Capture */
-    #define SRF_05_Timer_STATUS_CAPTURE_INT_MASK         ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT))
+    #define WAVE_05_Timer_STATUS_CAPTURE_INT_MASK         ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT))
 
 #else   /* UDB Registers and Register Constants */
 
@@ -307,67 +307,67 @@ void SRF_05_Timer_Wakeup(void)        ;
     *           UDB Registers
     ***************************************/
 
-    #define SRF_05_Timer_STATUS              (* (reg8 *) SRF_05_Timer_TimerUDB_rstSts_stsreg__STATUS_REG )
-    #define SRF_05_Timer_STATUS_MASK         (* (reg8 *) SRF_05_Timer_TimerUDB_rstSts_stsreg__MASK_REG)
-    #define SRF_05_Timer_STATUS_AUX_CTRL     (* (reg8 *) SRF_05_Timer_TimerUDB_rstSts_stsreg__STATUS_AUX_CTL_REG)
-    #define SRF_05_Timer_CONTROL             (* (reg8 *) SRF_05_Timer_TimerUDB_sCTRLReg_SyncCtl_ctrlreg__CONTROL_REG )
+    #define WAVE_05_Timer_STATUS              (* (reg8 *) WAVE_05_Timer_TimerUDB_rstSts_stsreg__STATUS_REG )
+    #define WAVE_05_Timer_STATUS_MASK         (* (reg8 *) WAVE_05_Timer_TimerUDB_rstSts_stsreg__MASK_REG)
+    #define WAVE_05_Timer_STATUS_AUX_CTRL     (* (reg8 *) WAVE_05_Timer_TimerUDB_rstSts_stsreg__STATUS_AUX_CTL_REG)
+    #define WAVE_05_Timer_CONTROL             (* (reg8 *) WAVE_05_Timer_TimerUDB_sCTRLReg_SyncCtl_ctrlreg__CONTROL_REG )
     
-    #if(SRF_05_Timer_Resolution <= 8u) /* 8-bit Timer */
-        #define SRF_05_Timer_CAPTURE_LSB         (* (reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-        #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-        #define SRF_05_Timer_PERIOD_LSB          (* (reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-        #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-        #define SRF_05_Timer_COUNTER_LSB         (* (reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
-        #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
-    #elif(SRF_05_Timer_Resolution <= 16u) /* 8-bit Timer */
+    #if(WAVE_05_Timer_Resolution <= 8u) /* 8-bit Timer */
+        #define WAVE_05_Timer_CAPTURE_LSB         (* (reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+        #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+        #define WAVE_05_Timer_PERIOD_LSB          (* (reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+        #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+        #define WAVE_05_Timer_COUNTER_LSB         (* (reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+        #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+    #elif(WAVE_05_Timer_Resolution <= 16u) /* 8-bit Timer */
         #if(CY_PSOC3) /* 8-bit addres space */
-            #define SRF_05_Timer_CAPTURE_LSB         (* (reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-            #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-            #define SRF_05_Timer_PERIOD_LSB          (* (reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-            #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-            #define SRF_05_Timer_COUNTER_LSB         (* (reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
-            #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB         (* (reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB          (* (reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB         (* (reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
         #else /* 16-bit address space */
-            #define SRF_05_Timer_CAPTURE_LSB         (* (reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_F0_REG )
-            #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_F0_REG )
-            #define SRF_05_Timer_PERIOD_LSB          (* (reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_D0_REG )
-            #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_D0_REG )
-            #define SRF_05_Timer_COUNTER_LSB         (* (reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_A0_REG )
-            #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg16 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_A0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB         (* (reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_F0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_F0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB          (* (reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_D0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_D0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB         (* (reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_A0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg16 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__16BIT_A0_REG )
         #endif /* CY_PSOC3 */
-    #elif(SRF_05_Timer_Resolution <= 24u)/* 24-bit Timer */
-        #define SRF_05_Timer_CAPTURE_LSB         (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-        #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-        #define SRF_05_Timer_PERIOD_LSB          (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-        #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-        #define SRF_05_Timer_COUNTER_LSB         (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
-        #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+    #elif(WAVE_05_Timer_Resolution <= 24u)/* 24-bit Timer */
+        #define WAVE_05_Timer_CAPTURE_LSB         (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+        #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+        #define WAVE_05_Timer_PERIOD_LSB          (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+        #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+        #define WAVE_05_Timer_COUNTER_LSB         (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+        #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
     #else /* 32-bit Timer */
         #if(CY_PSOC3 || CY_PSOC5) /* 8-bit address space */
-            #define SRF_05_Timer_CAPTURE_LSB         (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-            #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
-            #define SRF_05_Timer_PERIOD_LSB          (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-            #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
-            #define SRF_05_Timer_COUNTER_LSB         (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
-            #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB         (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__F0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB          (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__D0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB         (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
         #else /* 32-bit address space */
-            #define SRF_05_Timer_CAPTURE_LSB         (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_F0_REG )
-            #define SRF_05_Timer_CAPTURE_LSB_PTR       ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_F0_REG )
-            #define SRF_05_Timer_PERIOD_LSB          (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_D0_REG )
-            #define SRF_05_Timer_PERIOD_LSB_PTR        ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_D0_REG )
-            #define SRF_05_Timer_COUNTER_LSB         (* (reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_A0_REG )
-            #define SRF_05_Timer_COUNTER_LSB_PTR       ((reg32 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_A0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB         (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_F0_REG )
+            #define WAVE_05_Timer_CAPTURE_LSB_PTR       ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_F0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB          (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_D0_REG )
+            #define WAVE_05_Timer_PERIOD_LSB_PTR        ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_D0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB         (* (reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_A0_REG )
+            #define WAVE_05_Timer_COUNTER_LSB_PTR       ((reg32 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__32BIT_A0_REG )
         #endif /* CY_PSOC3 || CY_PSOC5 */ 
     #endif
 
-    #define SRF_05_Timer_COUNTER_LSB_PTR_8BIT       ((reg8 *) SRF_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
+    #define WAVE_05_Timer_COUNTER_LSB_PTR_8BIT       ((reg8 *) WAVE_05_Timer_TimerUDB_sT16_timerdp_u0__A0_REG )
     
-    #if (SRF_05_Timer_UsingHWCaptureCounter)
-        #define SRF_05_Timer_CAP_COUNT              (*(reg8 *) SRF_05_Timer_TimerUDB_sCapCount_counter__PERIOD_REG )
-        #define SRF_05_Timer_CAP_COUNT_PTR          ( (reg8 *) SRF_05_Timer_TimerUDB_sCapCount_counter__PERIOD_REG )
-        #define SRF_05_Timer_CAPTURE_COUNT_CTRL     (*(reg8 *) SRF_05_Timer_TimerUDB_sCapCount_counter__CONTROL_AUX_CTL_REG )
-        #define SRF_05_Timer_CAPTURE_COUNT_CTRL_PTR ( (reg8 *) SRF_05_Timer_TimerUDB_sCapCount_counter__CONTROL_AUX_CTL_REG )
-    #endif /* (SRF_05_Timer_UsingHWCaptureCounter) */
+    #if (WAVE_05_Timer_UsingHWCaptureCounter)
+        #define WAVE_05_Timer_CAP_COUNT              (*(reg8 *) WAVE_05_Timer_TimerUDB_sCapCount_counter__PERIOD_REG )
+        #define WAVE_05_Timer_CAP_COUNT_PTR          ( (reg8 *) WAVE_05_Timer_TimerUDB_sCapCount_counter__PERIOD_REG )
+        #define WAVE_05_Timer_CAPTURE_COUNT_CTRL     (*(reg8 *) WAVE_05_Timer_TimerUDB_sCapCount_counter__CONTROL_AUX_CTL_REG )
+        #define WAVE_05_Timer_CAPTURE_COUNT_CTRL_PTR ( (reg8 *) WAVE_05_Timer_TimerUDB_sCapCount_counter__CONTROL_AUX_CTL_REG )
+    #endif /* (WAVE_05_Timer_UsingHWCaptureCounter) */
 
 
     /***************************************
@@ -375,60 +375,60 @@ void SRF_05_Timer_Wakeup(void)        ;
     ***************************************/
 
     /* Control Register Bit Locations */
-    #define SRF_05_Timer_CTRL_INTCNT_SHIFT              0x00u       /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_CTRL_TRIG_MODE_SHIFT           0x02u       /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_CTRL_TRIG_EN_SHIFT             0x04u       /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_CTRL_CAP_MODE_SHIFT            0x05u       /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_CTRL_ENABLE_SHIFT              0x07u       /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_CTRL_INTCNT_SHIFT              0x00u       /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_CTRL_TRIG_MODE_SHIFT           0x02u       /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_CTRL_TRIG_EN_SHIFT             0x04u       /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_CTRL_CAP_MODE_SHIFT            0x05u       /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_CTRL_ENABLE_SHIFT              0x07u       /* As defined by Verilog Implementation */
 
     /* Control Register Bit Masks */
-    #define SRF_05_Timer_CTRL_INTCNT_MASK               ((uint8)((uint8)0x03u << SRF_05_Timer_CTRL_INTCNT_SHIFT))
-    #define SRF_05_Timer_CTRL_TRIG_MODE_MASK            ((uint8)((uint8)0x03u << SRF_05_Timer_CTRL_TRIG_MODE_SHIFT))
-    #define SRF_05_Timer_CTRL_TRIG_EN                   ((uint8)((uint8)0x01u << SRF_05_Timer_CTRL_TRIG_EN_SHIFT))
-    #define SRF_05_Timer_CTRL_CAP_MODE_MASK             ((uint8)((uint8)0x03u << SRF_05_Timer_CTRL_CAP_MODE_SHIFT))
-    #define SRF_05_Timer_CTRL_ENABLE                    ((uint8)((uint8)0x01u << SRF_05_Timer_CTRL_ENABLE_SHIFT))
+    #define WAVE_05_Timer_CTRL_INTCNT_MASK               ((uint8)((uint8)0x03u << WAVE_05_Timer_CTRL_INTCNT_SHIFT))
+    #define WAVE_05_Timer_CTRL_TRIG_MODE_MASK            ((uint8)((uint8)0x03u << WAVE_05_Timer_CTRL_TRIG_MODE_SHIFT))
+    #define WAVE_05_Timer_CTRL_TRIG_EN                   ((uint8)((uint8)0x01u << WAVE_05_Timer_CTRL_TRIG_EN_SHIFT))
+    #define WAVE_05_Timer_CTRL_CAP_MODE_MASK             ((uint8)((uint8)0x03u << WAVE_05_Timer_CTRL_CAP_MODE_SHIFT))
+    #define WAVE_05_Timer_CTRL_ENABLE                    ((uint8)((uint8)0x01u << WAVE_05_Timer_CTRL_ENABLE_SHIFT))
 
     /* Bit Counter (7-bit) Control Register Bit Definitions */
     /* As defined by the Register map for the AUX Control Register */
-    #define SRF_05_Timer_CNTR_ENABLE                    0x20u
+    #define WAVE_05_Timer_CNTR_ENABLE                    0x20u
 
     /* Status Register Bit Locations */
-    #define SRF_05_Timer_STATUS_TC_SHIFT                0x00u  /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_STATUS_CAPTURE_SHIFT           0x01u  /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_STATUS_TC_INT_MASK_SHIFT       SRF_05_Timer_STATUS_TC_SHIFT
-    #define SRF_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT  SRF_05_Timer_STATUS_CAPTURE_SHIFT
-    #define SRF_05_Timer_STATUS_FIFOFULL_SHIFT          0x02u  /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_STATUS_FIFONEMP_SHIFT          0x03u  /* As defined by Verilog Implementation */
-    #define SRF_05_Timer_STATUS_FIFOFULL_INT_MASK_SHIFT SRF_05_Timer_STATUS_FIFOFULL_SHIFT
+    #define WAVE_05_Timer_STATUS_TC_SHIFT                0x00u  /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_STATUS_CAPTURE_SHIFT           0x01u  /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_STATUS_TC_INT_MASK_SHIFT       WAVE_05_Timer_STATUS_TC_SHIFT
+    #define WAVE_05_Timer_STATUS_CAPTURE_INT_MASK_SHIFT  WAVE_05_Timer_STATUS_CAPTURE_SHIFT
+    #define WAVE_05_Timer_STATUS_FIFOFULL_SHIFT          0x02u  /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_STATUS_FIFONEMP_SHIFT          0x03u  /* As defined by Verilog Implementation */
+    #define WAVE_05_Timer_STATUS_FIFOFULL_INT_MASK_SHIFT WAVE_05_Timer_STATUS_FIFOFULL_SHIFT
 
     /* Status Register Bit Masks */
     /* Sticky TC Event Bit-Mask */
-    #define SRF_05_Timer_STATUS_TC                      ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_TC_SHIFT))
+    #define WAVE_05_Timer_STATUS_TC                      ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_TC_SHIFT))
     /* Sticky Capture Event Bit-Mask */
-    #define SRF_05_Timer_STATUS_CAPTURE                 ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_CAPTURE_SHIFT))
+    #define WAVE_05_Timer_STATUS_CAPTURE                 ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_CAPTURE_SHIFT))
     /* Interrupt Enable Bit-Mask */
-    #define SRF_05_Timer_STATUS_TC_INT_MASK             ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_TC_SHIFT))
+    #define WAVE_05_Timer_STATUS_TC_INT_MASK             ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_TC_SHIFT))
     /* Interrupt Enable Bit-Mask */
-    #define SRF_05_Timer_STATUS_CAPTURE_INT_MASK        ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_CAPTURE_SHIFT))
+    #define WAVE_05_Timer_STATUS_CAPTURE_INT_MASK        ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_CAPTURE_SHIFT))
     /* NOT-Sticky FIFO Full Bit-Mask */
-    #define SRF_05_Timer_STATUS_FIFOFULL                ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_FIFOFULL_SHIFT))
+    #define WAVE_05_Timer_STATUS_FIFOFULL                ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_FIFOFULL_SHIFT))
     /* NOT-Sticky FIFO Not Empty Bit-Mask */
-    #define SRF_05_Timer_STATUS_FIFONEMP                ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_FIFONEMP_SHIFT))
+    #define WAVE_05_Timer_STATUS_FIFONEMP                ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_FIFONEMP_SHIFT))
     /* Interrupt Enable Bit-Mask */
-    #define SRF_05_Timer_STATUS_FIFOFULL_INT_MASK       ((uint8)((uint8)0x01u << SRF_05_Timer_STATUS_FIFOFULL_SHIFT))
+    #define WAVE_05_Timer_STATUS_FIFOFULL_INT_MASK       ((uint8)((uint8)0x01u << WAVE_05_Timer_STATUS_FIFOFULL_SHIFT))
 
-    #define SRF_05_Timer_STATUS_ACTL_INT_EN             0x10u   /* As defined for the ACTL Register */
+    #define WAVE_05_Timer_STATUS_ACTL_INT_EN             0x10u   /* As defined for the ACTL Register */
 
     /* Datapath Auxillary Control Register definitions */
-    #define SRF_05_Timer_AUX_CTRL_FIFO0_CLR             0x01u   /* As defined by Register map */
-    #define SRF_05_Timer_AUX_CTRL_FIFO1_CLR             0x02u   /* As defined by Register map */
-    #define SRF_05_Timer_AUX_CTRL_FIFO0_LVL             0x04u   /* As defined by Register map */
-    #define SRF_05_Timer_AUX_CTRL_FIFO1_LVL             0x08u   /* As defined by Register map */
-    #define SRF_05_Timer_STATUS_ACTL_INT_EN_MASK        0x10u   /* As defined for the ACTL Register */
+    #define WAVE_05_Timer_AUX_CTRL_FIFO0_CLR             0x01u   /* As defined by Register map */
+    #define WAVE_05_Timer_AUX_CTRL_FIFO1_CLR             0x02u   /* As defined by Register map */
+    #define WAVE_05_Timer_AUX_CTRL_FIFO0_LVL             0x04u   /* As defined by Register map */
+    #define WAVE_05_Timer_AUX_CTRL_FIFO1_LVL             0x08u   /* As defined by Register map */
+    #define WAVE_05_Timer_STATUS_ACTL_INT_EN_MASK        0x10u   /* As defined for the ACTL Register */
 
 #endif /* Implementation Specific Registers and Register Constants */
 
-#endif  /* CY_Timer_v2_30_SRF_05_Timer_H */
+#endif  /* CY_Timer_v2_30_WAVE_05_Timer_H */
 
 
 /* [] END OF FILE */

@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: SRF_TRG_2.c  
+* File Name: WAVE_TRG_2.c  
 * Version 2.10
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "SRF_TRG_2.h"
+#include "WAVE_TRG_2.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 SRF_TRG_2__PORT == 15 && ((SRF_TRG_2__MASK & 0xC0) != 0))
+	 WAVE_TRG_2__PORT == 15 && ((WAVE_TRG_2__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: SRF_TRG_2_Write
+* Function Name: WAVE_TRG_2_Write
 ********************************************************************************
 *
 * Summary:
@@ -36,15 +36,15 @@
 *  None
 *  
 *******************************************************************************/
-void SRF_TRG_2_Write(uint8 value) 
+void WAVE_TRG_2_Write(uint8 value) 
 {
-    uint8 staticBits = (SRF_TRG_2_DR & (uint8)(~SRF_TRG_2_MASK));
-    SRF_TRG_2_DR = staticBits | ((uint8)(value << SRF_TRG_2_SHIFT) & SRF_TRG_2_MASK);
+    uint8 staticBits = (WAVE_TRG_2_DR & (uint8)(~WAVE_TRG_2_MASK));
+    WAVE_TRG_2_DR = staticBits | ((uint8)(value << WAVE_TRG_2_SHIFT) & WAVE_TRG_2_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: SRF_TRG_2_SetDriveMode
+* Function Name: WAVE_TRG_2_SetDriveMode
 ********************************************************************************
 *
 * Summary:
@@ -53,27 +53,27 @@ void SRF_TRG_2_Write(uint8 value)
 * Parameters:  
 *  mode:  Change the pins to one of the following drive modes.
 *
-*  SRF_TRG_2_DM_STRONG     Strong Drive 
-*  SRF_TRG_2_DM_OD_HI      Open Drain, Drives High 
-*  SRF_TRG_2_DM_OD_LO      Open Drain, Drives Low 
-*  SRF_TRG_2_DM_RES_UP     Resistive Pull Up 
-*  SRF_TRG_2_DM_RES_DWN    Resistive Pull Down 
-*  SRF_TRG_2_DM_RES_UPDWN  Resistive Pull Up/Down 
-*  SRF_TRG_2_DM_DIG_HIZ    High Impedance Digital 
-*  SRF_TRG_2_DM_ALG_HIZ    High Impedance Analog 
+*  WAVE_TRG_2_DM_STRONG     Strong Drive 
+*  WAVE_TRG_2_DM_OD_HI      Open Drain, Drives High 
+*  WAVE_TRG_2_DM_OD_LO      Open Drain, Drives Low 
+*  WAVE_TRG_2_DM_RES_UP     Resistive Pull Up 
+*  WAVE_TRG_2_DM_RES_DWN    Resistive Pull Down 
+*  WAVE_TRG_2_DM_RES_UPDWN  Resistive Pull Up/Down 
+*  WAVE_TRG_2_DM_DIG_HIZ    High Impedance Digital 
+*  WAVE_TRG_2_DM_ALG_HIZ    High Impedance Analog 
 *
 * Return: 
 *  None
 *
 *******************************************************************************/
-void SRF_TRG_2_SetDriveMode(uint8 mode) 
+void WAVE_TRG_2_SetDriveMode(uint8 mode) 
 {
-	CyPins_SetPinDriveMode(SRF_TRG_2_0, mode);
+	CyPins_SetPinDriveMode(WAVE_TRG_2_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: SRF_TRG_2_Read
+* Function Name: WAVE_TRG_2_Read
 ********************************************************************************
 *
 * Summary:
@@ -87,17 +87,17 @@ void SRF_TRG_2_SetDriveMode(uint8 mode)
 *  Returns the current value of the Digital Port as a right justified number
 *  
 * Note:
-*  Macro SRF_TRG_2_ReadPS calls this function. 
+*  Macro WAVE_TRG_2_ReadPS calls this function. 
 *  
 *******************************************************************************/
-uint8 SRF_TRG_2_Read(void) 
+uint8 WAVE_TRG_2_Read(void) 
 {
-    return (SRF_TRG_2_PS & SRF_TRG_2_MASK) >> SRF_TRG_2_SHIFT;
+    return (WAVE_TRG_2_PS & WAVE_TRG_2_MASK) >> WAVE_TRG_2_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: SRF_TRG_2_ReadDataReg
+* Function Name: WAVE_TRG_2_ReadDataReg
 ********************************************************************************
 *
 * Summary:
@@ -110,17 +110,17 @@ uint8 SRF_TRG_2_Read(void)
 *  Returns the current value assigned to the Digital Port's data output register
 *  
 *******************************************************************************/
-uint8 SRF_TRG_2_ReadDataReg(void) 
+uint8 WAVE_TRG_2_ReadDataReg(void) 
 {
-    return (SRF_TRG_2_DR & SRF_TRG_2_MASK) >> SRF_TRG_2_SHIFT;
+    return (WAVE_TRG_2_DR & WAVE_TRG_2_MASK) >> WAVE_TRG_2_SHIFT;
 }
 
 
 /* If Interrupts Are Enabled for this Pins component */ 
-#if defined(SRF_TRG_2_INTSTAT) 
+#if defined(WAVE_TRG_2_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: SRF_TRG_2_ClearInterrupt
+    * Function Name: WAVE_TRG_2_ClearInterrupt
     ********************************************************************************
     * Summary:
     *  Clears any active interrupts attached to port and returns the value of the 
@@ -133,9 +133,9 @@ uint8 SRF_TRG_2_ReadDataReg(void)
     *  Returns the value of the interrupt status register
     *  
     *******************************************************************************/
-    uint8 SRF_TRG_2_ClearInterrupt(void) 
+    uint8 WAVE_TRG_2_ClearInterrupt(void) 
     {
-        return (SRF_TRG_2_INTSTAT & SRF_TRG_2_MASK) >> SRF_TRG_2_SHIFT;
+        return (WAVE_TRG_2_INTSTAT & WAVE_TRG_2_MASK) >> WAVE_TRG_2_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

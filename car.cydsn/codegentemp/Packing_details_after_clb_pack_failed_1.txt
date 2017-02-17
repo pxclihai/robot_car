@@ -1,0 +1,2297 @@
+
+======================================================
+UDB 0
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\Timer_1:TimerUDB:status_tc\
+			\UART_JY:BUART:rx_postpoll\
+			\ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			Net_591
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN8_0
+			MODIN8_1
+			Net_4135
+			Net_559
+			\ADC:Net_3935\
+			\ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			\Timer_1:TimerUDB:control_7\
+			\Timer_1:TimerUDB:per_zero\
+
+		 Output nets:
+			Net_591
+			\ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			\Timer_1:TimerUDB:status_tc\
+			\UART_JY:BUART:rx_postpoll\
+
+		 Product terms:
+			!Net_4135 * \ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			MODIN8_0 * Net_559
+			MODIN8_1
+			\ADC:Net_3935\
+			\Timer_1:TimerUDB:control_7\ * \Timer_1:TimerUDB:per_zero\
+
+	PLD 1:
+		 Instances:
+			\ADC:bSAR_SEQ:nrq_reg\
+			\UART_CH:BUART:rx_status_5\
+			\ADC:bSAR_SEQ:cnt_enable\
+			Net_4135
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: \ADC:bSAR_SEQ:enable\
+
+		 Input nets:
+			Net_4134
+			\ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			\ADC:bSAR_SEQ:load_period\
+			\ADC:bSAR_SEQ:nrq_reg\
+			\UART_CH:BUART:rx_fifonotempty\
+			\UART_CH:BUART:rx_state_stop1_reg\
+
+		 Output nets:
+			Net_4135
+			\ADC:bSAR_SEQ:cnt_enable\
+			\ADC:bSAR_SEQ:nrq_reg\
+			\UART_CH:BUART:rx_status_5\
+
+		 Product terms:
+			!Net_4134 * !\ADC:bSAR_SEQ:load_period\
+			!\ADC:bSAR_SEQ:nrq_reg\ * \ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			\ADC:bSAR_SEQ:bus_clk_nrq_reg\
+			\UART_CH:BUART:rx_fifonotempty\ * \UART_CH:BUART:rx_state_stop1_reg\
+
+	Datapath:
+		 Instances:
+			\Timer_1:TimerUDB:sT16:timerdp:u0\
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\Timer_1:TimerUDB:control_7\
+			\Timer_1:TimerUDB:per_zero\
+			\Timer_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u1.sor__sig\
+
+		 Output nets:
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ce0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ce1__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.cl0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.cl1__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ff0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ff1__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.z0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.z1__sig\
+
+	Control, status and sync:
+		 Instances:
+			\Timer_1:TimerUDB:sCTRLReg:SyncCtl:ctrlreg\ : controlcell
+			\Timer_1:TimerUDB:rstSts:stsreg\ : statusicell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\Timer_1:TimerUDB:status_2\
+			\Timer_1:TimerUDB:status_3\
+			\Timer_1:TimerUDB:status_tc\
+
+		 Output nets:
+			\Timer_1:TimerUDB:control_7\
+
+	Local clock and reset nets:
+			\ADC:bSAR_SEQ:enable\
+
+======================================================
+UDB 1
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ECDR:bQuadDec:quad_B_filt\
+			\ECDR:bQuadDec:quad_B_delayed_0\
+			\ECDR:bQuadDec:quad_B_delayed_2\
+			\ECDR:bQuadDec:quad_B_delayed_1\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_5798
+			\ECDR:bQuadDec:quad_B_delayed_0\
+			\ECDR:bQuadDec:quad_B_delayed_1\
+			\ECDR:bQuadDec:quad_B_delayed_2\
+			\ECDR:bQuadDec:quad_B_filt\
+
+		 Output nets:
+			\ECDR:bQuadDec:quad_B_delayed_0\
+			\ECDR:bQuadDec:quad_B_delayed_1\
+			\ECDR:bQuadDec:quad_B_delayed_2\
+			\ECDR:bQuadDec:quad_B_filt\
+
+		 Product terms:
+			!\ECDR:bQuadDec:quad_B_delayed_0\ * !\ECDR:bQuadDec:quad_B_delayed_1\ * !\ECDR:bQuadDec:quad_B_delayed_2\ * \ECDR:bQuadDec:quad_B_filt\
+			!\ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:quad_B_delayed_0\ * \ECDR:bQuadDec:quad_B_delayed_1\ * \ECDR:bQuadDec:quad_B_delayed_2\
+			Net_5798
+			\ECDR:bQuadDec:quad_B_delayed_0\
+			\ECDR:bQuadDec:quad_B_delayed_1\
+
+	PLD 1:
+		 Instances:
+			\UART_JY:BUART:rx_status_4\
+			\UART_CH:BUART:rx_status_4\
+			\UART_net:BUART:rx_status_4\
+			\UART_net:BUART:rx_status_5\
+
+		 Clock net: 
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:rx_fifofull\
+			\UART_CH:BUART:rx_load_fifo\
+			\UART_JY:BUART:rx_fifofull\
+			\UART_JY:BUART:rx_load_fifo\
+			\UART_net:BUART:rx_fifofull\
+			\UART_net:BUART:rx_fifonotempty\
+			\UART_net:BUART:rx_load_fifo\
+			\UART_net:BUART:rx_state_stop1_reg\
+
+		 Output nets:
+			\UART_CH:BUART:rx_status_4\
+			\UART_JY:BUART:rx_status_4\
+			\UART_net:BUART:rx_status_4\
+			\UART_net:BUART:rx_status_5\
+
+		 Product terms:
+			\UART_CH:BUART:rx_fifofull\ * \UART_CH:BUART:rx_load_fifo\
+			\UART_JY:BUART:rx_fifofull\ * \UART_JY:BUART:rx_load_fifo\
+			\UART_net:BUART:rx_fifofull\ * \UART_net:BUART:rx_load_fifo\
+			\UART_net:BUART:rx_fifonotempty\ * \UART_net:BUART:rx_state_stop1_reg\
+
+	Datapath:
+		 Instances:
+			\Timer_1:TimerUDB:sT16:timerdp:u1\
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\Timer_1:TimerUDB:control_7\
+			\Timer_1:TimerUDB:per_zero\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ce0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ce1__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.cfbo__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.cl0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.cl1__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.co_msb__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ff0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.ff1__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.sol_msb__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.z0__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u0.z1__sig\
+
+		 Output nets:
+			\Timer_1:TimerUDB:per_zero\
+			\Timer_1:TimerUDB:sT16:timerdp:u1.cmsbo__sig\
+			\Timer_1:TimerUDB:sT16:timerdp:u1.sor__sig\
+			\Timer_1:TimerUDB:status_2\
+			\Timer_1:TimerUDB:status_3\
+
+	Control, status and sync:
+		 Instances:
+			\ADC:bSAR_SEQ:CtrlReg\ : controlcell
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+
+		 Output nets:
+			\ADC:bSAR_SEQ:enable\
+			\ADC:bSAR_SEQ:load_period\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 10
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_2\
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_one_hot_1\
+			\ADC:AMuxHw_2_Decoder_one_hot_0\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_is_active_split\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+			\ADC:ch_addr_2\
+			\ADC:ch_addr_3\
+			\ADC:ch_addr_4\
+			\ADC:ch_addr_5\
+
+		 Output nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_one_hot_0\
+			\ADC:AMuxHw_2_Decoder_one_hot_1\
+			\ADC:AMuxHw_2_Decoder_one_hot_2\
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:ch_addr_2\
+			!\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:ch_addr_3\
+			!\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:ch_addr_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:ch_addr_5\
+			\ADC:AMuxHw_2_Decoder_is_active_split\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_10\
+			\ADC:AMuxHw_2_Decoder_one_hot_12\
+			\ADC:AMuxHw_2_Decoder_one_hot_13\
+			\ADC:AMuxHw_2_Decoder_one_hot_11\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\UART_JY:BUART:sRX:RxSts\ : statusicell
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_JY:BUART:rx_status_3\
+			\UART_JY:BUART:rx_status_4\
+			\UART_JY:BUART:rx_status_5\
+
+		 Output nets:
+			Net_598
+
+	Local clock and reset nets:
+
+======================================================
+UDB 11
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ECDR:Net_1251\
+			\ECDR:bQuadDec:state_1\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Net_1251\
+			\ECDR:Net_1251_split\
+			\ECDR:Net_1260\
+			\ECDR:bQuadDec:error\
+			\ECDR:bQuadDec:quad_A_filt\
+			\ECDR:bQuadDec:quad_B_filt\
+			\ECDR:bQuadDec:state_0\
+			\ECDR:bQuadDec:state_1\
+
+		 Output nets:
+			\ECDR:Net_1251\
+			\ECDR:bQuadDec:state_1\
+
+		 Product terms:
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:state_0\ * \ECDR:Net_1251\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_B_filt\ * \ECDR:Net_1251\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * \ECDR:Net_1251\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:state_0\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:state_0\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:error\ * \ECDR:bQuadDec:quad_A_filt\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_B_filt\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:quad_A_filt\
+			\ECDR:Net_1251_split\
+
+	PLD 1:
+		 Instances:
+			\UART_net:BUART:txn\
+			\UART_net:BUART:tx_state_1\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_net:BUART:tx_bitclk\
+			\UART_net:BUART:tx_bitclk_enable_pre\
+			\UART_net:BUART:tx_counter_dp\
+			\UART_net:BUART:tx_shift_out\
+			\UART_net:BUART:tx_state_0\
+			\UART_net:BUART:tx_state_1\
+			\UART_net:BUART:tx_state_2\
+			\UART_net:BUART:txn\
+
+		 Output nets:
+			\UART_net:BUART:tx_state_1\
+			\UART_net:BUART:txn\
+
+		 Product terms:
+			!\UART_net:BUART:tx_bitclk\ * !\UART_net:BUART:tx_state_1\ * !\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_state_0\
+			!\UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_state_1\ * \UART_net:BUART:txn\
+			!\UART_net:BUART:tx_counter_dp\ * !\UART_net:BUART:tx_shift_out\ * !\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_state_1\
+			!\UART_net:BUART:tx_shift_out\ * !\UART_net:BUART:tx_state_1\ * !\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_state_0\
+			!\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_counter_dp\ * \UART_net:BUART:tx_state_1\
+			!\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_state_0\
+			\UART_net:BUART:tx_bitclk_enable_pre\ * \UART_net:BUART:tx_state_0\ * \UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_state_2\
+			\UART_net:BUART:tx_state_2\ * \UART_net:BUART:txn\
+
+	Datapath:
+		 Instances:
+			\UART_net:BUART:sTX:TxShifter:u0\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_net:BUART:tx_bitclk_enable_pre\
+			\UART_net:BUART:tx_state_0\
+			\UART_net:BUART:tx_state_1\
+
+		 Output nets:
+			\UART_net:BUART:tx_fifo_empty\
+			\UART_net:BUART:tx_fifo_notfull\
+			\UART_net:BUART:tx_shift_out\
+
+	Control, status and sync:
+		 Instances:
+			\UART_net:BUART:sTX:TxSts\ : statusicell
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_net:BUART:tx_fifo_empty\
+			\UART_net:BUART:tx_fifo_notfull\
+			\UART_net:BUART:tx_status_0\
+			\UART_net:BUART:tx_status_2\
+
+		 Output nets:
+			Net_38
+
+	Local clock and reset nets:
+
+======================================================
+UDB 12
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:txn\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:tx_bitclk\
+			\UART_CH:BUART:tx_bitclk_enable_pre\
+			\UART_CH:BUART:tx_counter_dp\
+			\UART_CH:BUART:tx_shift_out\
+			\UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:tx_state_2\
+			\UART_CH:BUART:txn\
+
+		 Output nets:
+			\UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:txn\
+
+		 Product terms:
+			!\UART_CH:BUART:tx_bitclk\ * !\UART_CH:BUART:tx_state_1\ * !\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_state_0\
+			!\UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:txn\
+			!\UART_CH:BUART:tx_counter_dp\ * !\UART_CH:BUART:tx_shift_out\ * !\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_state_1\
+			!\UART_CH:BUART:tx_shift_out\ * !\UART_CH:BUART:tx_state_1\ * !\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_state_0\
+			!\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_counter_dp\ * \UART_CH:BUART:tx_state_1\
+			!\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_bitclk_enable_pre\ * \UART_CH:BUART:tx_state_0\ * \UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_state_2\
+			\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:txn\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_16\
+			\ADC:AMuxHw_2_Decoder_one_hot_14\
+			\ADC:AMuxHw_2_Decoder_one_hot_15\
+			\ADC:AMuxHw_2_Decoder_one_hot_28\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			!\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+
+	Datapath:
+		 Instances:
+			\UART_CH:BUART:sTX:TxShifter:u0\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_CH:BUART:tx_bitclk_enable_pre\
+			\UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_state_1\
+
+		 Output nets:
+			\UART_CH:BUART:tx_fifo_empty\
+			\UART_CH:BUART:tx_fifo_notfull\
+			\UART_CH:BUART:tx_shift_out\
+
+	Control, status and sync:
+		 Instances:
+			\UART_CH:BUART:sTX:TxSts\ : statusicell
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:tx_fifo_empty\
+			\UART_CH:BUART:tx_fifo_notfull\
+			\UART_CH:BUART:tx_status_0\
+			\UART_CH:BUART:tx_status_2\
+
+		 Output nets:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 13
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_19\
+			\ADC:AMuxHw_2_Decoder_one_hot_17\
+			\ADC:AMuxHw_2_Decoder_one_hot_18\
+			\ADC:AMuxHw_2_Decoder_one_hot_26\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_22\
+			\ADC:AMuxHw_2_Decoder_one_hot_21\
+			\ADC:AMuxHw_2_Decoder_one_hot_20\
+			\ADC:AMuxHw_2_Decoder_one_hot_23\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\UART_CH:BUART:sRX:RxSts\ : statusicell
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:rx_status_3\
+			\UART_CH:BUART:rx_status_4\
+			\UART_CH:BUART:rx_status_5\
+
+		 Output nets:
+			Net_15647
+
+	Local clock and reset nets:
+
+======================================================
+UDB 14
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_27\
+			\ADC:AMuxHw_2_Decoder_one_hot_24\
+			\ADC:AMuxHw_2_Decoder_one_hot_25\
+			\ADC:AMuxHw_2_Decoder_one_hot_46\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_29\
+			\ADC:AMuxHw_2_Decoder_one_hot_32\
+			\ADC:AMuxHw_2_Decoder_one_hot_31\
+			\ADC:AMuxHw_2_Decoder_one_hot_30\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\ADC:bSAR_SEQ:EOCSts\ : statuscell
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: \ADC:bSAR_SEQ:enable\
+
+		 Input nets:
+			Net_4135
+
+		 Output nets:
+
+	Local clock and reset nets:
+			\ADC:bSAR_SEQ:enable\
+
+======================================================
+UDB 15
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_33\
+			\ADC:AMuxHw_2_Decoder_one_hot_34\
+			\ADC:AMuxHw_2_Decoder_one_hot_35\
+			\ADC:AMuxHw_2_Decoder_one_hot_41\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_37\
+			\ADC:AMuxHw_2_Decoder_one_hot_38\
+			\ADC:AMuxHw_2_Decoder_one_hot_39\
+			\ADC:AMuxHw_2_Decoder_one_hot_36\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\ADC:Sync:genblk1[0]:INST\ : synccell
+
+		 Clock net: ClockBlock_BUS_CLK
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:nrq\
+
+		 Output nets:
+			\ADC:Net_3935\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 16
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_3\
+			\ADC:AMuxHw_2_Decoder_one_hot_40\
+			\ADC:AMuxHw_2_Decoder_one_hot_42\
+			\ADC:AMuxHw_2_Decoder_one_hot_7\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\
+			!\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_47\
+			\ADC:AMuxHw_2_Decoder_one_hot_44\
+			\ADC:AMuxHw_2_Decoder_one_hot_43\
+			\ADC:AMuxHw_2_Decoder_one_hot_45\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 17
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_48\
+			\ADC:AMuxHw_2_Decoder_one_hot_4\
+			\ADC:AMuxHw_2_Decoder_one_hot_49\
+			\ADC:AMuxHw_2_Decoder_one_hot_6\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_53\
+			\ADC:AMuxHw_2_Decoder_one_hot_52\
+			\ADC:AMuxHw_2_Decoder_one_hot_51\
+			\ADC:AMuxHw_2_Decoder_one_hot_50\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 18
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_55\
+			\ADC:AMuxHw_2_Decoder_one_hot_54\
+			\ADC:AMuxHw_2_Decoder_one_hot_56\
+			\ADC:AMuxHw_2_Decoder_one_hot_62\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_58\
+			\ADC:AMuxHw_2_Decoder_one_hot_5\
+			\ADC:AMuxHw_2_Decoder_one_hot_59\
+			\ADC:AMuxHw_2_Decoder_one_hot_57\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_3\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\
+			!\ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 19
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_60\
+			\ADC:AMuxHw_2_Decoder_one_hot_8\
+			\ADC:AMuxHw_2_Decoder_one_hot_63\
+			\ADC:AMuxHw_2_Decoder_one_hot_61\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Output nets:
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * !\ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+			\ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:AMuxHw_2_Decoder_old_id_2\ * \ADC:AMuxHw_2_Decoder_old_id_3\ * \ADC:AMuxHw_2_Decoder_old_id_4\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	PLD 1:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_one_hot_9\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_is_active\
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+			\ADC:ch_addr_0\
+			\ADC:ch_addr_1\
+			\ADC:ch_addr_2\
+
+		 Output nets:
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * !\ADC:AMuxHw_2_Decoder_old_id_2\ * !\ADC:AMuxHw_2_Decoder_old_id_4\ * !\ADC:AMuxHw_2_Decoder_old_id_5\ * \ADC:AMuxHw_2_Decoder_is_active\ * \ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:ch_addr_0\
+			\ADC:ch_addr_1\
+			\ADC:ch_addr_2\
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 2
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			Net_13899
+			Net_4236
+			\PWM_MOTOR:PWMUDB:runmode_enable\
+			\ECDR:bQuadDec:quad_A_delayed_1\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:bQuadDec:quad_A_delayed_0\
+			\PWM_MOTOR:PWMUDB:cmp1_less\
+			\PWM_MOTOR:PWMUDB:cmp2_less\
+			\PWM_MOTOR:PWMUDB:control_7\
+			\PWM_MOTOR:PWMUDB:runmode_enable\
+
+		 Output nets:
+			Net_13899
+			Net_4236
+			\ECDR:bQuadDec:quad_A_delayed_1\
+			\PWM_MOTOR:PWMUDB:runmode_enable\
+
+		 Product terms:
+			\ECDR:bQuadDec:quad_A_delayed_0\
+			\PWM_MOTOR:PWMUDB:cmp1_less\ * \PWM_MOTOR:PWMUDB:runmode_enable\
+			\PWM_MOTOR:PWMUDB:cmp2_less\ * \PWM_MOTOR:PWMUDB:runmode_enable\
+			\PWM_MOTOR:PWMUDB:control_7\
+
+	PLD 1:
+		 Instances:
+			\ECDR:bQuadDec:quad_A_delayed_2\
+			\ECDR:bQuadDec:quad_A_delayed_0\
+			\UART_CH:BUART:tx_status_2\
+			Net_2
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_5808
+			\ECDR:bQuadDec:quad_A_delayed_1\
+			\UART_CH:BUART:tx_fifo_notfull\
+			\UART_net:BUART:txn\
+
+		 Output nets:
+			Net_2
+			\ECDR:bQuadDec:quad_A_delayed_0\
+			\ECDR:bQuadDec:quad_A_delayed_2\
+			\UART_CH:BUART:tx_status_2\
+
+		 Product terms:
+			!\UART_CH:BUART:tx_fifo_notfull\
+			!\UART_net:BUART:txn\
+			Net_5808
+			\ECDR:bQuadDec:quad_A_delayed_1\
+
+	Datapath:
+		 Instances:
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PWM_MOTOR:PWMUDB:runmode_enable\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u1.cmsbo__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u1.sor__sig\
+			\PWM_MOTOR:PWMUDB:tc_i\
+
+		 Output nets:
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ce0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ce1__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.cfbo__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.cl0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.cl1__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.co_msb__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ff0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ff1__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.sol_msb__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.z0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.z1__sig\
+
+	Control, status and sync:
+		 Instances:
+			\PWM_MOTOR:PWMUDB:genblk1:ctrlreg\ : controlcell
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+
+		 Output nets:
+			\PWM_MOTOR:PWMUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 20
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ECDR:Net_1251_split\
+
+		 Clock net: 
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Net_1251\
+			\ECDR:Net_1260\
+			\ECDR:bQuadDec:error\
+			\ECDR:bQuadDec:quad_A_filt\
+			\ECDR:bQuadDec:quad_B_filt\
+			\ECDR:bQuadDec:state_0\
+			\ECDR:bQuadDec:state_1\
+
+		 Output nets:
+			\ECDR:Net_1251_split\
+
+		 Product terms:
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:quad_B_filt\ * !\ECDR:bQuadDec:state_0\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:state_0\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:state_1\ * \ECDR:Net_1251\ * \ECDR:bQuadDec:quad_B_filt\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:state_0\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:Net_1251\ * \ECDR:bQuadDec:error\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:Net_1251\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:quad_B_filt\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:Net_1251\ * \ECDR:bQuadDec:quad_B_filt\
+
+	PLD 1:
+		 Instances:
+			\UART_net:BUART:tx_bitclk\
+			\UART_net:BUART:counter_load_not\
+			\UART_net:BUART:tx_state_0\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_net:BUART:tx_bitclk\
+			\UART_net:BUART:tx_bitclk_enable_pre\
+			\UART_net:BUART:tx_fifo_empty\
+			\UART_net:BUART:tx_state_0\
+			\UART_net:BUART:tx_state_1\
+			\UART_net:BUART:tx_state_2\
+
+		 Output nets:
+			\UART_net:BUART:counter_load_not\
+			\UART_net:BUART:tx_bitclk\
+			\UART_net:BUART:tx_state_0\
+
+		 Product terms:
+			!\UART_net:BUART:tx_bitclk_enable_pre\
+			!\UART_net:BUART:tx_fifo_empty\ * !\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * !\UART_net:BUART:tx_state_2\
+			!\UART_net:BUART:tx_fifo_empty\ * !\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_bitclk_enable_pre\
+			!\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * !\UART_net:BUART:tx_state_2\
+			!\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_bitclk_enable_pre\
+			!\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_state_2\
+			!\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_state_0\
+			\UART_net:BUART:tx_bitclk_enable_pre\ * \UART_net:BUART:tx_fifo_empty\ * \UART_net:BUART:tx_state_0\ * \UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_state_2\
+
+	Datapath:
+		 Instances:
+			\UART_net:BUART:sTX:sCLOCK:TxBitClkGen\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_net:BUART:counter_load_not\
+
+		 Output nets:
+			\UART_net:BUART:tx_bitclk_enable_pre\
+			\UART_net:BUART:tx_counter_dp\
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 21
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_CH:BUART:tx_bitclk\
+			\UART_CH:BUART:counter_load_not\
+			\UART_CH:BUART:tx_state_2\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:tx_bitclk\
+			\UART_CH:BUART:tx_bitclk_enable_pre\
+			\UART_CH:BUART:tx_counter_dp\
+			\UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:tx_state_2\
+
+		 Output nets:
+			\UART_CH:BUART:counter_load_not\
+			\UART_CH:BUART:tx_bitclk\
+			\UART_CH:BUART:tx_state_2\
+
+		 Product terms:
+			!\UART_CH:BUART:tx_bitclk_enable_pre\
+			!\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * !\UART_CH:BUART:tx_state_2\
+			!\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_bitclk_enable_pre\
+			!\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_bitclk_enable_pre\ * \UART_CH:BUART:tx_state_2\
+			!\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_state_2\
+			!\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_counter_dp\ * \UART_CH:BUART:tx_state_1\
+			!\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_state_0\ * \UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:tx_bitclk_enable_pre\ * \UART_CH:BUART:tx_state_0\ * \UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_state_2\
+
+	PLD 1:
+		 Instances:
+			\UART_net:BUART:tx_state_2\
+			\UART_CH:BUART:tx_status_0\
+			\UART_net:BUART:tx_status_0\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:tx_bitclk_enable_pre\
+			\UART_CH:BUART:tx_fifo_empty\
+			\UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:tx_state_2\
+			\UART_net:BUART:tx_bitclk\
+			\UART_net:BUART:tx_bitclk_enable_pre\
+			\UART_net:BUART:tx_counter_dp\
+			\UART_net:BUART:tx_fifo_empty\
+			\UART_net:BUART:tx_state_0\
+			\UART_net:BUART:tx_state_1\
+			\UART_net:BUART:tx_state_2\
+
+		 Output nets:
+			\UART_CH:BUART:tx_status_0\
+			\UART_net:BUART:tx_state_2\
+			\UART_net:BUART:tx_status_0\
+
+		 Product terms:
+			!\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_bitclk_enable_pre\ * \UART_CH:BUART:tx_fifo_empty\ * \UART_CH:BUART:tx_state_2\
+			!\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_bitclk_enable_pre\ * \UART_net:BUART:tx_fifo_empty\ * \UART_net:BUART:tx_state_2\
+			!\UART_net:BUART:tx_state_0\ * !\UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_bitclk_enable_pre\ * \UART_net:BUART:tx_state_2\
+			!\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_counter_dp\ * \UART_net:BUART:tx_state_1\
+			!\UART_net:BUART:tx_state_2\ * \UART_net:BUART:tx_bitclk\ * \UART_net:BUART:tx_state_0\ * \UART_net:BUART:tx_state_1\
+			\UART_net:BUART:tx_bitclk_enable_pre\ * \UART_net:BUART:tx_state_0\ * \UART_net:BUART:tx_state_1\ * \UART_net:BUART:tx_state_2\
+
+	Datapath:
+		 Instances:
+			\UART_CH:BUART:sTX:sCLOCK:TxBitClkGen\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_CH:BUART:counter_load_not\
+
+		 Output nets:
+			\UART_CH:BUART:tx_bitclk_enable_pre\
+			\UART_CH:BUART:tx_counter_dp\
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 22
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_CH:BUART:rx_bitclk_enable\
+			\UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:pollcount_1\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_15645
+			\UART_CH:BUART:pollcount_0\
+			\UART_CH:BUART:pollcount_1\
+			\UART_CH:BUART:rx_count_0\
+			\UART_CH:BUART:rx_count_1\
+			\UART_CH:BUART:rx_count_2\
+			\UART_CH:BUART:tx_bitclk\
+			\UART_CH:BUART:tx_bitclk_enable_pre\
+			\UART_CH:BUART:tx_fifo_empty\
+			\UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_state_1\
+			\UART_CH:BUART:tx_state_2\
+
+		 Output nets:
+			\UART_CH:BUART:pollcount_1\
+			\UART_CH:BUART:rx_bitclk_enable\
+			\UART_CH:BUART:tx_state_0\
+
+		 Product terms:
+			!Net_15645 * !\UART_CH:BUART:rx_count_1\ * !\UART_CH:BUART:rx_count_2\ * \UART_CH:BUART:pollcount_1\
+			!\UART_CH:BUART:pollcount_0\ * !\UART_CH:BUART:rx_count_1\ * !\UART_CH:BUART:rx_count_2\ * \UART_CH:BUART:pollcount_1\
+			!\UART_CH:BUART:pollcount_1\ * !\UART_CH:BUART:rx_count_1\ * !\UART_CH:BUART:rx_count_2\ * Net_15645 * \UART_CH:BUART:pollcount_0\
+			!\UART_CH:BUART:rx_count_0\ * !\UART_CH:BUART:rx_count_1\ * !\UART_CH:BUART:rx_count_2\
+			!\UART_CH:BUART:tx_fifo_empty\ * !\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * !\UART_CH:BUART:tx_state_2\
+			!\UART_CH:BUART:tx_fifo_empty\ * !\UART_CH:BUART:tx_state_0\ * !\UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_bitclk_enable_pre\
+			!\UART_CH:BUART:tx_state_2\ * \UART_CH:BUART:tx_bitclk\ * \UART_CH:BUART:tx_state_0\
+			\UART_CH:BUART:tx_bitclk_enable_pre\ * \UART_CH:BUART:tx_fifo_empty\ * \UART_CH:BUART:tx_state_0\ * \UART_CH:BUART:tx_state_1\ * \UART_CH:BUART:tx_state_2\
+
+	PLD 1:
+		 Instances:
+			\ECDR:Net_1260\
+			\ECDR:bQuadDec:error\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Net_1260\
+			\ECDR:bQuadDec:error\
+			\ECDR:bQuadDec:quad_A_filt\
+			\ECDR:bQuadDec:quad_B_filt\
+			\ECDR:bQuadDec:state_0\
+			\ECDR:bQuadDec:state_1\
+
+		 Output nets:
+			\ECDR:Net_1260\
+			\ECDR:bQuadDec:error\
+
+		 Product terms:
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:state_0\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:state_0\ * \ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_B_filt\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:state_0\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:quad_B_filt\
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 23
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			MODIN3_0
+			MODIN3_1
+			\UART_net:BUART:rx_postpoll\
+			\UART_net:BUART:rx_bitclk_enable\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN3_0
+			MODIN3_1
+			Net_7
+			\UART_net:BUART:rx_count_0\
+			\UART_net:BUART:rx_count_1\
+			\UART_net:BUART:rx_count_2\
+
+		 Output nets:
+			MODIN3_0
+			MODIN3_1
+			\UART_net:BUART:rx_bitclk_enable\
+			\UART_net:BUART:rx_postpoll\
+
+		 Product terms:
+			!MODIN3_0 * !\UART_net:BUART:rx_count_1\ * !\UART_net:BUART:rx_count_2\ * MODIN3_1
+			!MODIN3_0 * !\UART_net:BUART:rx_count_1\ * !\UART_net:BUART:rx_count_2\ * Net_7
+			!MODIN3_1 * !\UART_net:BUART:rx_count_1\ * !\UART_net:BUART:rx_count_2\ * MODIN3_0 * Net_7
+			!Net_7 * !\UART_net:BUART:rx_count_1\ * !\UART_net:BUART:rx_count_2\ * MODIN3_0
+			!Net_7 * !\UART_net:BUART:rx_count_1\ * !\UART_net:BUART:rx_count_2\ * MODIN3_1
+			!\UART_net:BUART:rx_count_0\ * !\UART_net:BUART:rx_count_1\ * !\UART_net:BUART:rx_count_2\
+			MODIN3_0 * Net_7
+			MODIN3_1
+
+	PLD 1:
+		 Instances:
+			\UART_CH:BUART:rx_postpoll\
+			\UART_CH:BUART:pollcount_0\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_15645
+			\UART_CH:BUART:pollcount_0\
+			\UART_CH:BUART:pollcount_1\
+			\UART_CH:BUART:rx_count_1\
+			\UART_CH:BUART:rx_count_2\
+
+		 Output nets:
+			\UART_CH:BUART:pollcount_0\
+			\UART_CH:BUART:rx_postpoll\
+
+		 Product terms:
+			!Net_15645 * !\UART_CH:BUART:rx_count_1\ * !\UART_CH:BUART:rx_count_2\ * \UART_CH:BUART:pollcount_0\
+			!\UART_CH:BUART:pollcount_0\ * !\UART_CH:BUART:rx_count_1\ * !\UART_CH:BUART:rx_count_2\ * Net_15645
+			Net_15645 * \UART_CH:BUART:pollcount_0\
+			\UART_CH:BUART:pollcount_1\
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 24
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:ch_addr_3\
+			\ADC:ch_addr_4\
+			\ADC:ch_addr_5\
+
+		 Output nets:
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+
+		 Product terms:
+			\ADC:ch_addr_3\
+			\ADC:ch_addr_4\
+			\ADC:ch_addr_5\
+
+	PLD 1:
+
+	Datapath:
+
+	Control, status and sync:
+
+	Local clock and reset nets:
+
+======================================================
+UDB 3
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_net:BUART:tx_status_2\
+			\UART_net:BUART:rx_last\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_7
+			\UART_net:BUART:tx_fifo_notfull\
+
+		 Output nets:
+			\UART_net:BUART:rx_last\
+			\UART_net:BUART:tx_status_2\
+
+		 Product terms:
+			!\UART_net:BUART:tx_fifo_notfull\
+			Net_7
+
+	PLD 1:
+		 Instances:
+			\UART_CH:BUART:rx_last\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_15645
+
+		 Output nets:
+			\UART_CH:BUART:rx_last\
+
+		 Product terms:
+			Net_15645
+
+	Datapath:
+		 Instances:
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u1\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\PWM_MOTOR:PWMUDB:runmode_enable\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ce0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ce1__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.cfbo__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.cl0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.cl1__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.co_msb__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ff0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.ff1__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.sol_msb__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.z0__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u0.z1__sig\
+			\PWM_MOTOR:PWMUDB:tc_i\
+
+		 Output nets:
+			\PWM_MOTOR:PWMUDB:cmp1_less\
+			\PWM_MOTOR:PWMUDB:cmp2_less\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u1.cmsbo__sig\
+			\PWM_MOTOR:PWMUDB:sP16:pwmdp:u1.sor__sig\
+			\PWM_MOTOR:PWMUDB:tc_i\
+
+	Control, status and sync:
+		 Instances:
+			\UART_net:BUART:sRX:RxSts\ : statusicell
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_net:BUART:rx_status_3\
+			\UART_net:BUART:rx_status_4\
+			\UART_net:BUART:rx_status_5\
+
+		 Output nets:
+			Net_53
+
+	Local clock and reset nets:
+
+======================================================
+UDB 4
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:reload\
+			\ECDR:Net_1275\
+			\ECDR:Cnt16:CounterUDB:status_2\
+			\ECDR:Cnt16:CounterUDB:overflow_reg_i\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Cnt16:CounterUDB:overflow\
+			\ECDR:Cnt16:CounterUDB:overflow_reg_i\
+			\ECDR:Cnt16:CounterUDB:status_1\
+			\ECDR:Net_1260\
+
+		 Output nets:
+			\ECDR:Cnt16:CounterUDB:overflow_reg_i\
+			\ECDR:Cnt16:CounterUDB:reload\
+			\ECDR:Cnt16:CounterUDB:status_2\
+			\ECDR:Net_1275\
+
+		 Product terms:
+			!\ECDR:Cnt16:CounterUDB:overflow\ * !\ECDR:Cnt16:CounterUDB:status_1\
+			!\ECDR:Cnt16:CounterUDB:overflow\ * !\ECDR:Cnt16:CounterUDB:status_1\ * !\ECDR:Net_1260\
+			!\ECDR:Cnt16:CounterUDB:overflow_reg_i\ * \ECDR:Cnt16:CounterUDB:overflow\
+			\ECDR:Cnt16:CounterUDB:overflow\
+
+	PLD 1:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:underflow_reg_i\
+			\ECDR:Net_530\
+			\ECDR:Cnt16:CounterUDB:status_3\
+			\ECDR:Net_611\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Cnt16:CounterUDB:prevCompare\
+			\ECDR:Cnt16:CounterUDB:status_1\
+			\ECDR:Cnt16:CounterUDB:underflow_reg_i\
+			\ECDR:Net_1251\
+			\ECDR:Net_1275\
+
+		 Output nets:
+			\ECDR:Cnt16:CounterUDB:status_3\
+			\ECDR:Cnt16:CounterUDB:underflow_reg_i\
+			\ECDR:Net_530\
+			\ECDR:Net_611\
+
+		 Product terms:
+			!\ECDR:Cnt16:CounterUDB:prevCompare\ * !\ECDR:Net_1251\ * \ECDR:Net_1275\
+			!\ECDR:Cnt16:CounterUDB:prevCompare\ * \ECDR:Net_1251\ * \ECDR:Net_1275\
+			!\ECDR:Cnt16:CounterUDB:underflow_reg_i\ * \ECDR:Cnt16:CounterUDB:status_1\
+			\ECDR:Cnt16:CounterUDB:status_1\
+
+	Datapath:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\ECDR:Cnt16:CounterUDB:count_enable\
+			\ECDR:Cnt16:CounterUDB:reload\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u1.cmsbo__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u1.sor__sig\
+			\ECDR:Net_1251\
+
+		 Output nets:
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.cfbo__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.cl1__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ff1__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.sol_msb__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.z1__sig\
+
+	Control, status and sync:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:sSTSReg:stsreg\ : statusicell
+
+		 Clock net: Net_15638
+		 Set/Reset net: \ECDR:Net_1260\
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Cnt16:CounterUDB:status_0\
+			\ECDR:Cnt16:CounterUDB:status_1\
+			\ECDR:Cnt16:CounterUDB:status_2\
+			\ECDR:Cnt16:CounterUDB:status_3\
+			\ECDR:Cnt16:CounterUDB:status_5\
+			\ECDR:Cnt16:CounterUDB:status_6\
+
+		 Output nets:
+
+	Local clock and reset nets:
+			\ECDR:Net_1260\
+
+======================================================
+UDB 5
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:count_stored_i\
+			\ECDR:Cnt16:CounterUDB:prevCompare\
+			\ECDR:Cnt16:CounterUDB:count_enable\
+			\ECDR:Cnt16:CounterUDB:status_0\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Cnt16:CounterUDB:cmp_out_i\
+			\ECDR:Cnt16:CounterUDB:control_7\
+			\ECDR:Cnt16:CounterUDB:count_stored_i\
+			\ECDR:Cnt16:CounterUDB:prevCompare\
+			\ECDR:Net_1203\
+
+		 Output nets:
+			\ECDR:Cnt16:CounterUDB:count_enable\
+			\ECDR:Cnt16:CounterUDB:count_stored_i\
+			\ECDR:Cnt16:CounterUDB:prevCompare\
+			\ECDR:Cnt16:CounterUDB:status_0\
+
+		 Product terms:
+			!\ECDR:Cnt16:CounterUDB:count_stored_i\ * \ECDR:Cnt16:CounterUDB:control_7\ * \ECDR:Net_1203\
+			!\ECDR:Cnt16:CounterUDB:prevCompare\ * \ECDR:Cnt16:CounterUDB:cmp_out_i\
+			\ECDR:Cnt16:CounterUDB:cmp_out_i\
+			\ECDR:Net_1203\
+
+	PLD 1:
+		 Instances:
+			\ECDR:Net_1203\
+			\ECDR:bQuadDec:state_0\
+			\ECDR:bQuadDec:quad_A_filt\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ECDR:Net_1203\
+			\ECDR:Net_1260\
+			\ECDR:bQuadDec:error\
+			\ECDR:bQuadDec:quad_A_delayed_0\
+			\ECDR:bQuadDec:quad_A_delayed_1\
+			\ECDR:bQuadDec:quad_A_delayed_2\
+			\ECDR:bQuadDec:quad_A_filt\
+			\ECDR:bQuadDec:quad_B_filt\
+			\ECDR:bQuadDec:state_0\
+			\ECDR:bQuadDec:state_1\
+
+		 Output nets:
+			\ECDR:Net_1203\
+			\ECDR:bQuadDec:quad_A_filt\
+			\ECDR:bQuadDec:state_0\
+
+		 Product terms:
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:quad_B_filt\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:state_0\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * \ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:state_1\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:error\ * \ECDR:bQuadDec:quad_B_filt\ * \ECDR:bQuadDec:state_0\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:Net_1203\ * \ECDR:bQuadDec:error\
+			!\ECDR:Net_1260\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:error\ * \ECDR:bQuadDec:quad_B_filt\
+			!\ECDR:bQuadDec:error\ * !\ECDR:bQuadDec:quad_A_filt\ * !\ECDR:bQuadDec:state_0\ * !\ECDR:bQuadDec:state_1\ * \ECDR:bQuadDec:quad_B_filt\
+			!\ECDR:bQuadDec:quad_A_delayed_0\ * !\ECDR:bQuadDec:quad_A_delayed_1\ * !\ECDR:bQuadDec:quad_A_delayed_2\ * \ECDR:bQuadDec:quad_A_filt\
+			!\ECDR:bQuadDec:quad_A_filt\ * \ECDR:bQuadDec:quad_A_delayed_0\ * \ECDR:bQuadDec:quad_A_delayed_1\ * \ECDR:bQuadDec:quad_A_delayed_2\
+
+	Datapath:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u1\
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\ECDR:Cnt16:CounterUDB:count_enable\
+			\ECDR:Cnt16:CounterUDB:reload\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.cfbo__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.cl1__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.ff1__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.sol_msb__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u0.z1__sig\
+			\ECDR:Net_1251\
+
+		 Output nets:
+			\ECDR:Cnt16:CounterUDB:cmp_out_i\
+			\ECDR:Cnt16:CounterUDB:overflow\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u1.cmsbo__sig\
+			\ECDR:Cnt16:CounterUDB:sC16:counterdp:u1.sor__sig\
+			\ECDR:Cnt16:CounterUDB:status_1\
+			\ECDR:Cnt16:CounterUDB:status_5\
+			\ECDR:Cnt16:CounterUDB:status_6\
+
+	Control, status and sync:
+		 Instances:
+			\ECDR:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : controlcell
+			\ECDR:bQuadDec:Stsreg\ : statusicell
+
+		 Clock net: Net_15638
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\ECDR:Net_1260\
+			\ECDR:Net_530\
+			\ECDR:Net_611\
+			\ECDR:bQuadDec:error\
+
+		 Output nets:
+			\ECDR:Cnt16:CounterUDB:control_7\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 6
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\ADC:AMuxHw_2_Decoder_is_active_split\
+			\UART_JY:BUART:rx_state_1\
+			__ONE__
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\ADC:AMuxHw_2_Decoder_old_id_0\
+			\ADC:AMuxHw_2_Decoder_old_id_1\
+			\ADC:AMuxHw_2_Decoder_old_id_2\
+			\ADC:AMuxHw_2_Decoder_old_id_3\
+			\ADC:AMuxHw_2_Decoder_old_id_4\
+			\ADC:AMuxHw_2_Decoder_old_id_5\
+			\ADC:ch_addr_0\
+			\ADC:ch_addr_1\
+			\ADC:ch_addr_2\
+			\ADC:ch_addr_3\
+			\ADC:ch_addr_4\
+			\ADC:ch_addr_5\
+
+		 Output nets:
+			\ADC:AMuxHw_2_Decoder_is_active_split\
+			\UART_JY:BUART:rx_state_1\
+			__ONE__
+
+		 Product terms:
+			!\ADC:AMuxHw_2_Decoder_old_id_0\ * \ADC:ch_addr_0\
+			!\ADC:AMuxHw_2_Decoder_old_id_1\ * \ADC:ch_addr_1\
+			!\ADC:ch_addr_0\ * \ADC:AMuxHw_2_Decoder_old_id_0\
+			!\ADC:ch_addr_1\ * \ADC:AMuxHw_2_Decoder_old_id_1\
+			!\ADC:ch_addr_2\ * \ADC:AMuxHw_2_Decoder_old_id_2\
+			!\ADC:ch_addr_3\ * \ADC:AMuxHw_2_Decoder_old_id_3\
+			!\ADC:ch_addr_4\ * \ADC:AMuxHw_2_Decoder_old_id_4\
+			!\ADC:ch_addr_5\ * \ADC:AMuxHw_2_Decoder_old_id_5\
+
+	PLD 1:
+		 Instances:
+			\UART_JY:BUART:rx_state_3\
+			\UART_JY:BUART:rx_state_0\
+			\UART_JY:BUART:rx_status_3\
+			\UART_JY:BUART:rx_load_fifo\
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN11_4
+			MODIN11_5
+			MODIN11_6
+			MODIN8_0
+			MODIN8_1
+			Net_559
+			\UART_JY:BUART:rx_bitclk_enable\
+			\UART_JY:BUART:rx_state_0\
+			\UART_JY:BUART:rx_state_1\
+			\UART_JY:BUART:rx_state_2\
+			\UART_JY:BUART:rx_state_3\
+
+		 Output nets:
+			\UART_JY:BUART:rx_load_fifo\
+			\UART_JY:BUART:rx_state_0\
+			\UART_JY:BUART:rx_state_3\
+			\UART_JY:BUART:rx_status_3\
+
+		 Product terms:
+			!MODIN11_4 * !MODIN11_6 * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_state_0\
+			!MODIN11_5 * !MODIN11_6 * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_state_0\
+			!MODIN8_0 * !MODIN8_1 * !\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_2\
+			!MODIN8_0 * !MODIN8_1 * !\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_2\ * \UART_JY:BUART:rx_state_3\
+			!MODIN8_1 * !Net_559 * !\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_2\
+			!MODIN8_1 * !Net_559 * !\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_2\ * \UART_JY:BUART:rx_state_3\
+			!\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_3\
+			!\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_2\ * \UART_JY:BUART:rx_state_3\
+
+	Datapath:
+		 Instances:
+			\UART_JY:BUART:sRX:RxShifter:u0\
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_JY:BUART:rx_bitclk_enable\
+			\UART_JY:BUART:rx_load_fifo\
+			\UART_JY:BUART:rx_postpoll\
+			\UART_JY:BUART:rx_state_0\
+			\UART_JY:BUART:rx_state_1\
+
+		 Output nets:
+			\UART_JY:BUART:rx_fifofull\
+			\UART_JY:BUART:rx_fifonotempty\
+
+	Control, status and sync:
+		 Instances:
+			\ADC:bSAR_SEQ:ChannelCounter\ : count7cell
+
+		 Clock net: \ADC:clock\
+		 Set/Reset net: 
+		 Enable net: \ADC:bSAR_SEQ:enable\
+
+		 Input nets:
+			\ADC:bSAR_SEQ:cnt_enable\
+			\ADC:bSAR_SEQ:load_period\
+
+		 Output nets:
+			\ADC:ch_addr_0\
+			\ADC:ch_addr_1\
+			\ADC:ch_addr_2\
+			\ADC:ch_addr_3\
+			\ADC:ch_addr_4\
+			\ADC:ch_addr_5\
+
+	Local clock and reset nets:
+			\ADC:bSAR_SEQ:enable\
+
+======================================================
+UDB 7
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_CH:BUART:rx_status_3\
+			\UART_CH:BUART:rx_state_0\
+			\UART_CH:BUART:rx_load_fifo\
+			\UART_CH:BUART:rx_state_3\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_15645
+			\UART_CH:BUART:pollcount_0\
+			\UART_CH:BUART:pollcount_1\
+			\UART_CH:BUART:rx_bitclk_enable\
+			\UART_CH:BUART:rx_count_4\
+			\UART_CH:BUART:rx_count_5\
+			\UART_CH:BUART:rx_count_6\
+			\UART_CH:BUART:rx_state_0\
+			\UART_CH:BUART:rx_state_2\
+			\UART_CH:BUART:rx_state_3\
+			\UART_CH:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_CH:BUART:rx_load_fifo\
+			\UART_CH:BUART:rx_state_0\
+			\UART_CH:BUART:rx_state_3\
+			\UART_CH:BUART:rx_status_3\
+
+		 Product terms:
+			!Net_15645 * !\UART_CH:BUART:pollcount_1\ * !\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_2\
+			!Net_15645 * !\UART_CH:BUART:pollcount_1\ * !\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_2\ * \UART_CH:BUART:rx_state_3\
+			!\UART_CH:BUART:pollcount_0\ * !\UART_CH:BUART:pollcount_1\ * !\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_2\
+			!\UART_CH:BUART:pollcount_0\ * !\UART_CH:BUART:pollcount_1\ * !\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_2\ * \UART_CH:BUART:rx_state_3\
+			!\UART_CH:BUART:rx_count_4\ * !\UART_CH:BUART:rx_count_6\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_state_0\
+			!\UART_CH:BUART:rx_count_5\ * !\UART_CH:BUART:rx_count_6\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_state_0\
+			!\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_3\
+			!\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_2\ * \UART_CH:BUART:rx_state_3\
+
+	PLD 1:
+		 Instances:
+			\UART_CH:BUART:rx_state_2\
+			\UART_CH:BUART:rx_state_stop1_reg\
+			\UART_CH:BUART:tx_ctrl_mark_last\
+			\UART_CH:BUART:rx_counter_load\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			Net_15645
+			\UART_CH:BUART:rx_bitclk_enable\
+			\UART_CH:BUART:rx_count_4\
+			\UART_CH:BUART:rx_count_5\
+			\UART_CH:BUART:rx_count_6\
+			\UART_CH:BUART:rx_last\
+			\UART_CH:BUART:rx_state_0\
+			\UART_CH:BUART:rx_state_2\
+			\UART_CH:BUART:rx_state_3\
+			\UART_CH:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_CH:BUART:rx_counter_load\
+			\UART_CH:BUART:rx_state_2\
+			\UART_CH:BUART:rx_state_stop1_reg\
+			\UART_CH:BUART:tx_ctrl_mark_last\
+
+		 Product terms:
+			!Net_15645 * !\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_last\
+			!\UART_CH:BUART:rx_count_4\ * !\UART_CH:BUART:rx_count_6\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_state_0\
+			!\UART_CH:BUART:rx_count_5\ * !\UART_CH:BUART:rx_count_6\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_state_0\
+			!\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:rx_state_2\ * !\UART_CH:BUART:rx_state_3\ * !\UART_CH:BUART:tx_ctrl_mark_last\
+			!\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_2\
+			!\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_bitclk_enable\ * \UART_CH:BUART:rx_state_3\
+			!\UART_CH:BUART:rx_state_0\ * !\UART_CH:BUART:tx_ctrl_mark_last\ * \UART_CH:BUART:rx_state_2\ * \UART_CH:BUART:rx_state_3\
+
+	Datapath:
+		 Instances:
+			\UART_CH:BUART:sRX:RxShifter:u0\
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_CH:BUART:rx_bitclk_enable\
+			\UART_CH:BUART:rx_load_fifo\
+			\UART_CH:BUART:rx_postpoll\
+			\UART_CH:BUART:rx_state_0\
+			\UART_CH:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_CH:BUART:rx_fifofull\
+			\UART_CH:BUART:rx_fifonotempty\
+
+	Control, status and sync:
+		 Instances:
+			\UART_CH:BUART:sRX:RxBitCounter\ : count7cell
+
+		 Clock net: \UART_CH:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_CH:BUART:rx_counter_load\
+
+		 Output nets:
+			\UART_CH:BUART:rx_count_0\
+			\UART_CH:BUART:rx_count_1\
+			\UART_CH:BUART:rx_count_2\
+			\UART_CH:BUART:rx_count_4\
+			\UART_CH:BUART:rx_count_5\
+			\UART_CH:BUART:rx_count_6\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 8
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_net:BUART:rx_state_3\
+			\UART_net:BUART:rx_state_0\
+			\UART_net:BUART:rx_status_3\
+			\UART_net:BUART:rx_load_fifo\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN3_0
+			MODIN3_1
+			MODIN6_4
+			MODIN6_5
+			MODIN6_6
+			Net_7
+			\UART_net:BUART:rx_bitclk_enable\
+			\UART_net:BUART:rx_state_0\
+			\UART_net:BUART:rx_state_2\
+			\UART_net:BUART:rx_state_3\
+			\UART_net:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_net:BUART:rx_load_fifo\
+			\UART_net:BUART:rx_state_0\
+			\UART_net:BUART:rx_state_3\
+			\UART_net:BUART:rx_status_3\
+
+		 Product terms:
+			!MODIN3_0 * !MODIN3_1 * !\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_2\
+			!MODIN3_0 * !MODIN3_1 * !\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_2\ * \UART_net:BUART:rx_state_3\
+			!MODIN3_1 * !Net_7 * !\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_2\
+			!MODIN3_1 * !Net_7 * !\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_2\ * \UART_net:BUART:rx_state_3\
+			!MODIN6_4 * !MODIN6_6 * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_state_0\
+			!MODIN6_5 * !MODIN6_6 * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_state_0\
+			!\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_3\
+			!\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_2\ * \UART_net:BUART:rx_state_3\
+
+	PLD 1:
+		 Instances:
+			\UART_net:BUART:rx_state_2\
+			\UART_net:BUART:rx_state_stop1_reg\
+			\UART_net:BUART:tx_ctrl_mark_last\
+			\UART_net:BUART:rx_counter_load\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN6_4
+			MODIN6_5
+			MODIN6_6
+			Net_7
+			\UART_net:BUART:rx_bitclk_enable\
+			\UART_net:BUART:rx_last\
+			\UART_net:BUART:rx_state_0\
+			\UART_net:BUART:rx_state_2\
+			\UART_net:BUART:rx_state_3\
+			\UART_net:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_net:BUART:rx_counter_load\
+			\UART_net:BUART:rx_state_2\
+			\UART_net:BUART:rx_state_stop1_reg\
+			\UART_net:BUART:tx_ctrl_mark_last\
+
+		 Product terms:
+			!MODIN6_4 * !MODIN6_6 * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_state_0\
+			!MODIN6_5 * !MODIN6_6 * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_state_0\
+			!Net_7 * !\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_last\
+			!\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:rx_state_2\ * !\UART_net:BUART:rx_state_3\ * !\UART_net:BUART:tx_ctrl_mark_last\
+			!\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_2\
+			!\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_bitclk_enable\ * \UART_net:BUART:rx_state_3\
+			!\UART_net:BUART:rx_state_0\ * !\UART_net:BUART:tx_ctrl_mark_last\ * \UART_net:BUART:rx_state_2\ * \UART_net:BUART:rx_state_3\
+
+	Datapath:
+		 Instances:
+			\UART_net:BUART:sRX:RxShifter:u0\
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			ClockBlock_BUS_CLK
+			\UART_net:BUART:rx_bitclk_enable\
+			\UART_net:BUART:rx_load_fifo\
+			\UART_net:BUART:rx_postpoll\
+			\UART_net:BUART:rx_state_0\
+			\UART_net:BUART:tx_ctrl_mark_last\
+
+		 Output nets:
+			\UART_net:BUART:rx_fifofull\
+			\UART_net:BUART:rx_fifonotempty\
+
+	Control, status and sync:
+		 Instances:
+			\UART_net:BUART:sRX:RxBitCounter\ : count7cell
+
+		 Clock net: \UART_net:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_net:BUART:rx_counter_load\
+
+		 Output nets:
+			MODIN6_4
+			MODIN6_5
+			MODIN6_6
+			\UART_net:BUART:rx_count_0\
+			\UART_net:BUART:rx_count_1\
+			\UART_net:BUART:rx_count_2\
+
+	Local clock and reset nets:
+
+======================================================
+UDB 9
+------------------------------------------------------
+	PLD 0:
+		 Instances:
+			\UART_JY:BUART:rx_state_2\
+			\UART_JY:BUART:rx_last\
+			\UART_JY:BUART:rx_state_stop1_reg\
+			\UART_JY:BUART:rx_counter_load\
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN11_4
+			MODIN11_5
+			MODIN11_6
+			Net_559
+			\UART_JY:BUART:rx_bitclk_enable\
+			\UART_JY:BUART:rx_last\
+			\UART_JY:BUART:rx_state_0\
+			\UART_JY:BUART:rx_state_1\
+			\UART_JY:BUART:rx_state_2\
+			\UART_JY:BUART:rx_state_3\
+
+		 Output nets:
+			\UART_JY:BUART:rx_counter_load\
+			\UART_JY:BUART:rx_last\
+			\UART_JY:BUART:rx_state_2\
+			\UART_JY:BUART:rx_state_stop1_reg\
+
+		 Product terms:
+			!MODIN11_4 * !MODIN11_6 * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_state_0\
+			!MODIN11_5 * !MODIN11_6 * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_state_0\
+			!Net_559 * !\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * !\UART_JY:BUART:rx_state_3\ * \UART_JY:BUART:rx_last\
+			!\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * !\UART_JY:BUART:rx_state_2\ * !\UART_JY:BUART:rx_state_3\
+			!\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_2\
+			!\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * \UART_JY:BUART:rx_bitclk_enable\ * \UART_JY:BUART:rx_state_3\
+			!\UART_JY:BUART:rx_state_0\ * !\UART_JY:BUART:rx_state_1\ * \UART_JY:BUART:rx_state_2\ * \UART_JY:BUART:rx_state_3\
+			Net_559
+
+	PLD 1:
+		 Instances:
+			MODIN8_0
+			\UART_JY:BUART:rx_status_5\
+			MODIN8_1
+			\UART_JY:BUART:rx_bitclk_enable\
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			MODIN8_0
+			MODIN8_1
+			Net_559
+			\UART_JY:BUART:rx_count_0\
+			\UART_JY:BUART:rx_count_1\
+			\UART_JY:BUART:rx_count_2\
+			\UART_JY:BUART:rx_fifonotempty\
+			\UART_JY:BUART:rx_state_stop1_reg\
+
+		 Output nets:
+			MODIN8_0
+			MODIN8_1
+			\UART_JY:BUART:rx_bitclk_enable\
+			\UART_JY:BUART:rx_status_5\
+
+		 Product terms:
+			!MODIN8_0 * !\UART_JY:BUART:rx_count_1\ * !\UART_JY:BUART:rx_count_2\ * MODIN8_1
+			!MODIN8_0 * !\UART_JY:BUART:rx_count_1\ * !\UART_JY:BUART:rx_count_2\ * Net_559
+			!MODIN8_1 * !\UART_JY:BUART:rx_count_1\ * !\UART_JY:BUART:rx_count_2\ * MODIN8_0 * Net_559
+			!Net_559 * !\UART_JY:BUART:rx_count_1\ * !\UART_JY:BUART:rx_count_2\ * MODIN8_0
+			!Net_559 * !\UART_JY:BUART:rx_count_1\ * !\UART_JY:BUART:rx_count_2\ * MODIN8_1
+			!\UART_JY:BUART:rx_count_0\ * !\UART_JY:BUART:rx_count_1\ * !\UART_JY:BUART:rx_count_2\
+			\UART_JY:BUART:rx_fifonotempty\ * \UART_JY:BUART:rx_state_stop1_reg\
+
+	Datapath:
+
+	Control, status and sync:
+		 Instances:
+			\UART_JY:BUART:sRX:RxBitCounter\ : count7cell
+
+		 Clock net: \UART_JY:Net_9\
+		 Set/Reset net: 
+		 Enable net: 
+
+		 Input nets:
+			\UART_JY:BUART:rx_counter_load\
+
+		 Output nets:
+			MODIN11_4
+			MODIN11_5
+			MODIN11_6
+			\UART_JY:BUART:rx_count_0\
+			\UART_JY:BUART:rx_count_1\
+			\UART_JY:BUART:rx_count_2\
+
+	Local clock and reset nets:

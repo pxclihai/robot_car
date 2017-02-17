@@ -1,5 +1,5 @@
 # car
-# 2016-12-26 00:58:11Z
+# 2017-02-17 12:38:48Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -21,38 +21,40 @@ dont_use_location abufcell -1 -1 0
 dont_use_location abufcell -1 -1 2
 dont_use_location abufcell -1 -1 1
 dont_use_location abufcell -1 -1 3
-set_io "Rx_net(0)" iocell 6 6
-set_io "Tx_net(0)" iocell 6 7
-set_io "L_PWM_1(0)" iocell 15 2
-set_io "R_PWM_1(0)" iocell 15 3
-set_io "L_IN_1(0)" iocell 12 0
-set_io "L_IN_2(0)" iocell 3 6
-set_io "R_IN_1(0)" iocell 12 1
-set_io "R_IN_2(0)" iocell 3 7
-set_io "Rx_JY(0)" iocell 4 4
-set_io "LED1(0)" iocell 1 6
-set_io "LED2(0)" iocell 1 7
-set_io "LED3(0)" iocell 12 6
-set_io "LED4(0)" iocell 12 7
-set_io "LED5(0)" iocell 5 4
-set_io "LED6(0)" iocell 5 5
+set_io "Rx_net(0)" iocell 0 0
+set_io "Tx_net(0)" iocell 0 1
+set_io "L_PWM_1(0)" iocell 1 2
+set_io "R_PWM_1(0)" iocell 2 7
+set_io "L_IN_1(0)" iocell 1 5
+set_io "L_IN_2(0)" iocell 1 4
+set_io "R_IN_1(0)" iocell 2 5
+set_io "R_IN_2(0)" iocell 2 6
+set_io "Rx_JY(0)" iocell 12 5
+set_io "LED1(0)" iocell 0 5
+set_io "LED2(0)" iocell 0 6
+set_io "LED3(0)" iocell 5 5
+set_io "LED4(0)" iocell 5 4
+set_io "LED5(0)" iocell 12 7
+set_io "LED6(0)" iocell 12 6
 set_io "LED7(0)" iocell 5 6
 set_io "LED8(0)" iocell 5 7
-set_io "IN_C(0)" iocell 4 2
-set_io "IN_D(0)" iocell 0 2
-set_io "CONTRAL_LIDAR(0)" iocell 2 7
-set_io "PTZ_UP_EN(0)" iocell 3 5
-set_io "PTZ_UP_STEP(0)" iocell 3 4
-set_io "PTZ_UP_DIR(0)" iocell 3 3
-set_io "PTZ_DOWN_EN(0)" iocell 3 2
-set_io "PTZ_DOWN_STEP(0)" iocell 3 1
-set_io "PTZ_DOWN_DIR(0)" iocell 3 0
-set_io "IN_P(0)" iocell 0 6
-set_io "SRF_ECHO_1(0)" iocell 2 4
-set_io "SRF_TRG_1(0)" iocell 2 3
-set_io "SRF_ECHO_2(0)" iocell 2 2
-set_io "SRF_TRG_2(0)" iocell 2 1
+set_io "IN_C(0)" iocell 3 1
+set_io "IN_D(0)" iocell 15 3
+set_io "SDA(0)" iocell 1 6
+set_io "PTZ_UP_EN(0)" iocell 12 0
+set_io "PTZ_UP_STEP(0)" iocell 12 1
+set_io "PTZ_UP_DIR(0)" iocell 15 2
+set_io "PTZ_DOWN_EN(0)" iocell 3 5
+set_io "PTZ_DOWN_STEP(0)" iocell 3 6
+set_io "PTZ_DOWN_DIR(0)" iocell 3 7
+set_io "IN_P(0)" iocell 6 4
+set_io "SCL(0)" iocell 1 7
 set_io "CHANGE_PWR(0)" iocell 15 1
-set_io "Pin_1(0)" iocell 15 5
-set_io "Pin_2(0)" iocell 15 4
+set_io "ECDR_A(0)" iocell 6 6
+set_io "ECDR_B(0)" iocell 6 5
+set_io "Rx_CH(0)" iocell 5 2
+set_io "M_PWR(0)" iocell 0 7
+set_io "M_UP(0)" iocell 4 2
+set_io "M_DOWN(0)" iocell 4 3
+set_io "M_ZERO(0)" iocell 4 4
 set_location "\ADC:SAR:ADC_SAR\" sarcell -1 -1 0

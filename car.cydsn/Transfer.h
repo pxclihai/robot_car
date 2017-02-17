@@ -42,7 +42,7 @@ void DT_Data_Exchange(void);
 void DT_Data_Receive_Prepare(uint8 data);
 void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num);
 void DT_Send_SystemInfo(uint16 hardware_ver,uint16 software_ver,uint16 run_count,uint16 cur_run_time,uint16 car_runing_time);
-void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 car_pull);
+void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 car_pull,uint16 Xkm);
 void DT_Send_Senser(int32 pitch,int32 roll,int32 yaw,int32 a_x,int32 a_y,int32 a_z);
 void DT_Send_RCData(uint16 thr,uint16 yaw,uint16 rol,uint16 pit,uint16 aux1,uint16 aux2,uint16 aux3,uint16 aux4,uint16 aux5,uint16 aux6);
 void DT_Send_Power(uint16 votage, uint16 current);

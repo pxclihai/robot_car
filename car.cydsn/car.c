@@ -32,7 +32,7 @@ void Car_init()
     g_Car.pre_dir = STOP;
     g_Car.set_car_speed = 14000;
     g_Car.set_dir = STOP;
-    g_Car.set_ptz_dir = STOP;  
+    g_Car.set_ptz_dir = LEFT;  
     PTZ_UP_EN_Write(1);
     PTZ_UP_DIR_Write(0);
     PTZ_UP_STEP_Write(0);
