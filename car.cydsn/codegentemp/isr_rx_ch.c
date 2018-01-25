@@ -28,6 +28,7 @@
 ********************************************************************************/
 /* `#START isr_rx_ch_intc` */
 #include "UART_CH.h"
+#include "M_thickness.h"
 static uint8 temp[50];
 static uint8 count;
 /* `#END` */
@@ -169,8 +170,7 @@ CY_ISR(isr_rx_ch_Interrupt)
     /* `#START isr_rx_ch_Interrupt` */
     uint8 data; 
     data = UART_CH_GetChar();
-    count++;
-    temp[count] = data;
+    M_Data_Receive_Prepare(data);
     
     /* `#END` */
 }

@@ -2,7 +2,7 @@
 #include "car.h"
 #include "battery.h"
 #include "Lidar.h"
-
+#include "M_thickness.h"
 #define BYTE0(dwTemp)       ( *( (char *)(&dwTemp)	  ) )
 #define BYTE1(dwTemp)       ( *( (char *)(&dwTemp) + 1) )
 #define BYTE2(dwTemp)       ( *( (char *)(&dwTemp) + 2) )
@@ -56,8 +56,7 @@ void DT_Data_Exchange(void)
 	else if(f.send_status)
 	{
 		f.send_status = 0;
-    	DT_Send_Status(0,g_Car.set_dir,g_Car.set_car_speed,P_V,g_Car.Xkm);
-
+    	DT_Send_Status(0,g_Car.set_dir,g_Car.set_car_speed/10,P_V,g_Car.Xkm);
 	}	
 /////////////////////////////////////////////////////////////////////////////////////
     else if(f.send_senser)
@@ -67,7 +66,7 @@ void DT_Data_Exchange(void)
         tmep_roll =   (S_IMU.roll/32768.0*180);
         temp_yaw   =  (S_IMU.yaw/32768.0*180);
       
-	    DT_Send_Senser(temp_pitch*1000,tmep_roll*1000,temp_yaw*1000,0,0,0);
+	    DT_Send_Senser(temp_pitch*1000,tmep_roll*1000,temp_yaw*1000,g_Car.M_value,g_Car.M_radix,0);
 	}	
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,7 +80,7 @@ void DT_Data_Exchange(void)
 	else if(f.send_power)
 	{
 		f.send_power = 0;
-        DT_Send_Power(C_V,D_V);
+        DT_Send_Power(g_Car.cap,g_Car.A_V,g_Car.current,g_Car.batteryTemp);
         
 	}
 
@@ -187,16 +186,29 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
 	
 	if(*(data_buf+2)==0X02)
 	{
-        g_Car.set_dir = *(data_buf+4);
-       
+       g_Car.set_dir = *(data_buf+4);
+    if(g_Car.fallback_mode == 1)
+    {
+        if(g_Car.set_dir == UP)
+        {
+            g_Car.set_dir = DOWN;
+        }
+        else if (g_Car.set_dir == DOWN)
+        {
+            g_Car.set_dir = UP;
+          
+        }
+    }
+
 	}
    	if(*(data_buf+2)==0X03)
 	{
-        g_Car.set_car_speed  = (int16)(*(data_buf+4)<<8)|*(data_buf+5);
-        if(g_Car.set_car_speed > 20000)
+        g_Car.set_car_speed  = (int16)(*(data_buf+4)<<8)|*(data_buf+5)*10;
+        if(g_Car.set_car_speed > 1000)
         {
             g_Car.set_car_speed = 0;
         }
+         PWM_LED_1_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100));
     }
     if(*(data_buf+2)==0x04)
     {
@@ -221,7 +233,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp=0;
         }
-  //      PWM_LED_WriteCompare2(temp*100);
+
         PWM_LED_2_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100)); 
         temp = 100-*(data_buf+6); 
         if(temp>=100)
@@ -232,7 +244,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp= 0;
         }
-  //      PWM_LED_1_WriteCompare1(temp*100);
+ 
          PWM_LED_3_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100));
         temp = 100-*(data_buf+7); 
         if(temp>=100)
@@ -243,7 +255,7 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         {
             temp=0;
         }
- //       PWM_LED_1_WriteCompare2(temp*100);
+
        PWM_LED_4_WriteCompare(temp*(PWM_LED_1_ReadPeriod()/100));
     }
 	if(*(data_buf+2)==0X5)								
@@ -273,6 +285,14 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
         PWM_LED_4_WritePeriod(temp16);
        }
     }
+    if(*(data_buf+2)==0X8)	
+    {
+       g_Car.set_push_dir = *(data_buf+4);
+       if( g_Car.set_push_dir == 2)
+       {
+          g_Car.M_Command = M_POWER_ON;
+       }
+    }
     if(*(data_buf+2)==0X9)								
     {
         if(*(data_buf+4) == 99)
@@ -280,12 +300,25 @@ void DT_Data_Receive_Anl(uint8 *data_buf,uint8 num)
             g_Car.hearting = 1;
         }
     }
+    if(*(data_buf+2)== 10)
+    {
+        
+            g_Car.fallback_mode = *(data_buf+4);
+        
+    }
+      if(*(data_buf+2)== 30)
+    {
+        
+        g_Car.liheqi = *(data_buf+4);
+    
+    }
+   
    
 	if(*(data_buf+2)==0X13)								
 	{
 		DT_Send_Check(*(data_buf+2),sum);
 	}
-	if(*(data_buf+2)==0X14)								//PID5
+	if(*(data_buf+2)==0X14)							
 	{
 		DT_Send_Check(*(data_buf+2),sum);
 	}
@@ -324,12 +357,12 @@ void DT_Send_SystemInfo(uint16 hardware_ver,uint16 software_ver,uint16 run_count
 	
 	DT_Send_Data(data_to_send, _cnt);
 }
-void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 car_pull,uint16 Xkm)
+void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 car_pull,int32 Xkm)
 {
 	uint8 _cnt=0;
     uint8 _temp;
 	uint16 _temp1;
-
+    int32   _temp2;
 	
 	data_to_send[_cnt++]=0xAA;
 	data_to_send[_cnt++]=0xAA;
@@ -348,9 +381,11 @@ void DT_Send_Status(uint8 car_lock,enum CAR_DIR car_dir,uint16 car_speed,uint16 
     _temp1 =  car_pull;
 	data_to_send[_cnt++]=BYTE1(_temp1);
 	data_to_send[_cnt++]=BYTE0(_temp1);
-	_temp1 =  Xkm;
-    data_to_send[_cnt++]=BYTE1(_temp1);
-	data_to_send[_cnt++]=BYTE0(_temp1);
+	_temp2 =  Xkm;
+    data_to_send[_cnt++]=BYTE3(_temp2);
+	data_to_send[_cnt++]=BYTE2(_temp2);
+    data_to_send[_cnt++]=BYTE1(_temp2);
+	data_to_send[_cnt++]=BYTE0(_temp2);
     
 	data_to_send[3] = _cnt-4;
 	
@@ -439,7 +474,7 @@ void DT_Send_Distance(uint16 front_distance,uint16 back_distance)
 	
 	DT_Send_Data(data_to_send, _cnt);
 }
-void DT_Send_Power(uint16 C_votage, uint16 D_votage )
+void DT_Send_Power(uint16 cap ,uint16 A_V, uint16 current, uint16 BatteryTemp )
 {
 	uint8 _cnt=0;
 	uint16 temp;
@@ -449,13 +484,21 @@ void DT_Send_Power(uint16 C_votage, uint16 D_votage )
 	data_to_send[_cnt++]=0x05;
 	data_to_send[_cnt++]=0;
 	
-	temp = C_votage;
+	temp = cap;
 	data_to_send[_cnt++]=BYTE1(temp);
 	data_to_send[_cnt++]=BYTE0(temp);
-	temp = D_votage;
+	temp = A_V;
 	data_to_send[_cnt++]=BYTE1(temp);
 	data_to_send[_cnt++]=BYTE0(temp);
 	
+    temp = current;
+	data_to_send[_cnt++]=BYTE1(temp);
+	data_to_send[_cnt++]=BYTE0(temp);
+    
+    temp = BatteryTemp;
+	data_to_send[_cnt++]=BYTE1(temp);
+	data_to_send[_cnt++]=BYTE0(temp);
+    
 	data_to_send[3] = _cnt-4;
 	
 	uint8 sum = 0;

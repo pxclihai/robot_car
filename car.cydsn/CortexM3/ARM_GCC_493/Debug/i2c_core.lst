@@ -1,0 +1,3378 @@
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"i2c_core.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.delay_us,"ax",%progbits
+  19              		.align	2
+  20              		.thumb
+  21              		.thumb_func
+  22              		.type	delay_us, %function
+  23              	delay_us:
+  24              	.LFB63:
+  25              		.file 1 ".\\i2c_core.c"
+   1:.\i2c_core.c  **** 
+   2:.\i2c_core.c  **** #include "i2c_core.h"
+   3:.\i2c_core.c  **** 
+   4:.\i2c_core.c  **** #define I2C_CLK_HIGH() SCL_Write(1)
+   5:.\i2c_core.c  **** #define I2C_CLK_LOW()  SCL_Write(0)
+   6:.\i2c_core.c  **** #define I2C_DATA_HIGH() SDL_Write(1)
+   7:.\i2c_core.c  **** #define I2C_DATA_LOW()   SDL_Write(0)
+   8:.\i2c_core.c  **** 
+   9:.\i2c_core.c  **** #define I2C_DATA_IN() SDL_Read()
+  10:.\i2c_core.c  **** 
+  11:.\i2c_core.c  **** static void delay_us( int t )
+  12:.\i2c_core.c  **** {
+  26              		.loc 1 12 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 8
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31              	.LVL0:
+  32 0000 82B0     		sub	sp, sp, #8
+  33              		.cfi_def_cfa_offset 8
+  13:.\i2c_core.c  **** 		volatile int tt;
+  14:.\i2c_core.c  **** 		for( ; t; t -- )
+  34              		.loc 1 14 0
+  35 0002 09E0     		b	.L2
+  36              	.L5:
+  15:.\i2c_core.c  **** 			for( tt = 0 ; tt < 1; tt ++ )
+  37              		.loc 1 15 0
+  38 0004 0023     		movs	r3, #0
+  39 0006 0193     		str	r3, [sp, #4]
+  40 0008 02E0     		b	.L3
+  41              	.L4:
+  42              		.loc 1 15 0 is_stmt 0 discriminator 3
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 2
+
+
+  43 000a 019B     		ldr	r3, [sp, #4]
+  44 000c 0133     		adds	r3, r3, #1
+  45 000e 0193     		str	r3, [sp, #4]
+  46              	.L3:
+  47              		.loc 1 15 0 discriminator 1
+  48 0010 019B     		ldr	r3, [sp, #4]
+  49 0012 002B     		cmp	r3, #0
+  50 0014 F9DD     		ble	.L4
+  14:.\i2c_core.c  **** 			for( tt = 0 ; tt < 1; tt ++ )
+  51              		.loc 1 14 0 is_stmt 1
+  52 0016 0138     		subs	r0, r0, #1
+  53              	.LVL1:
+  54              	.L2:
+  14:.\i2c_core.c  **** 			for( tt = 0 ; tt < 1; tt ++ )
+  55              		.loc 1 14 0 is_stmt 0 discriminator 1
+  56 0018 0028     		cmp	r0, #0
+  57 001a F3D1     		bne	.L5
+  16:.\i2c_core.c  **** 			;
+  17:.\i2c_core.c  **** }
+  58              		.loc 1 17 0 is_stmt 1
+  59 001c 02B0     		add	sp, sp, #8
+  60              		.cfi_def_cfa_offset 0
+  61              		@ sp needed
+  62 001e 7047     		bx	lr
+  63              		.cfi_endproc
+  64              	.LFE63:
+  65              		.size	delay_us, .-delay_us
+  66              		.section	.text.I2C_Start,"ax",%progbits
+  67              		.align	2
+  68              		.thumb
+  69              		.thumb_func
+  70              		.type	I2C_Start, %function
+  71              	I2C_Start:
+  72              	.LFB65:
+  18:.\i2c_core.c  **** void SYS_I2C_Init(void)
+  19:.\i2c_core.c  **** {
+  20:.\i2c_core.c  ****   I2C_CLK_HIGH();
+  21:.\i2c_core.c  ****   delay_us(20);
+  22:.\i2c_core.c  ****   I2C_CLK_LOW(); 
+  23:.\i2c_core.c  ****   delay_us(2000);
+  24:.\i2c_core.c  ****   I2C_CLK_HIGH();
+  25:.\i2c_core.c  **** 
+  26:.\i2c_core.c  **** 
+  27:.\i2c_core.c  **** }
+  28:.\i2c_core.c  **** static void I2C_Start(void)
+  29:.\i2c_core.c  **** {
+  73              		.loc 1 29 0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77 0000 08B5     		push	{r3, lr}
+  78              		.cfi_def_cfa_offset 8
+  79              		.cfi_offset 3, -8
+  80              		.cfi_offset 14, -4
+  30:.\i2c_core.c  ****     I2C_CLK_HIGH();
+  81              		.loc 1 30 0
+  82 0002 0120     		movs	r0, #1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 3
+
+
+  83 0004 FFF7FEFF 		bl	SCL_Write
+  84              	.LVL2:
+  31:.\i2c_core.c  ****     delay_us(20);
+  85              		.loc 1 31 0
+  86 0008 1420     		movs	r0, #20
+  87 000a FFF7FEFF 		bl	delay_us
+  88              	.LVL3:
+  32:.\i2c_core.c  ****     I2C_DATA_LOW();
+  89              		.loc 1 32 0
+  90 000e 0020     		movs	r0, #0
+  91 0010 FFF7FEFF 		bl	SDL_Write
+  92              	.LVL4:
+  33:.\i2c_core.c  ****     delay_us(20);
+  93              		.loc 1 33 0
+  94 0014 1420     		movs	r0, #20
+  95 0016 FFF7FEFF 		bl	delay_us
+  96              	.LVL5:
+  34:.\i2c_core.c  ****     I2C_CLK_LOW();
+  97              		.loc 1 34 0
+  98 001a 0020     		movs	r0, #0
+  99 001c FFF7FEFF 		bl	SCL_Write
+ 100              	.LVL6:
+  35:.\i2c_core.c  ****     delay_us(20);
+ 101              		.loc 1 35 0
+ 102 0020 1420     		movs	r0, #20
+ 103 0022 FFF7FEFF 		bl	delay_us
+ 104              	.LVL7:
+  36:.\i2c_core.c  ****     I2C_DATA_HIGH();
+ 105              		.loc 1 36 0
+ 106 0026 0120     		movs	r0, #1
+ 107 0028 FFF7FEFF 		bl	SDL_Write
+ 108              	.LVL8:
+  37:.\i2c_core.c  ****     delay_us(20);
+ 109              		.loc 1 37 0
+ 110 002c 1420     		movs	r0, #20
+ 111 002e FFF7FEFF 		bl	delay_us
+ 112              	.LVL9:
+ 113 0032 08BD     		pop	{r3, pc}
+ 114              		.cfi_endproc
+ 115              	.LFE65:
+ 116              		.size	I2C_Start, .-I2C_Start
+ 117              		.section	.text.I2C_sendbyte,"ax",%progbits
+ 118              		.align	2
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.type	I2C_sendbyte, %function
+ 122              	I2C_sendbyte:
+ 123              	.LFB69:
+  38:.\i2c_core.c  **** }
+  39:.\i2c_core.c  **** 
+  40:.\i2c_core.c  **** static void I2C_Stop(void)
+  41:.\i2c_core.c  **** {
+  42:.\i2c_core.c  ****     I2C_DATA_LOW();
+  43:.\i2c_core.c  ****     delay_us(20);
+  44:.\i2c_core.c  ****     I2C_CLK_HIGH();
+  45:.\i2c_core.c  ****     delay_us(20);
+  46:.\i2c_core.c  ****     I2C_DATA_HIGH();
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 4
+
+
+  47:.\i2c_core.c  ****     delay_us(20);
+  48:.\i2c_core.c  **** }
+  49:.\i2c_core.c  **** 
+  50:.\i2c_core.c  **** static void I2C_nack( void )
+  51:.\i2c_core.c  **** {
+  52:.\i2c_core.c  ****     I2C_CLK_LOW();
+  53:.\i2c_core.c  ****     delay_us(20);
+  54:.\i2c_core.c  ****     I2C_DATA_HIGH();
+  55:.\i2c_core.c  ****     delay_us(20);
+  56:.\i2c_core.c  ****     I2C_CLK_HIGH();
+  57:.\i2c_core.c  ****     delay_us(20);
+  58:.\i2c_core.c  ****     I2C_CLK_LOW();
+  59:.\i2c_core.c  ****     delay_us(20);
+  60:.\i2c_core.c  **** }
+  61:.\i2c_core.c  **** 
+  62:.\i2c_core.c  **** static void I2C_ack( void )
+  63:.\i2c_core.c  **** {
+  64:.\i2c_core.c  ****     I2C_CLK_LOW();
+  65:.\i2c_core.c  ****     delay_us(20);
+  66:.\i2c_core.c  ****     I2C_DATA_LOW();
+  67:.\i2c_core.c  ****     delay_us(20);
+  68:.\i2c_core.c  ****     I2C_CLK_HIGH();
+  69:.\i2c_core.c  ****     delay_us(20);
+  70:.\i2c_core.c  ****     I2C_CLK_LOW();
+  71:.\i2c_core.c  ****     delay_us(20);
+  72:.\i2c_core.c  **** }
+  73:.\i2c_core.c  **** 
+  74:.\i2c_core.c  **** static void I2C_sendbyte( unsigned char  I2CSendData )
+  75:.\i2c_core.c  **** {
+ 124              		.loc 1 75 0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              	.LVL10:
+ 129 0000 38B5     		push	{r3, r4, r5, lr}
+ 130              		.cfi_def_cfa_offset 16
+ 131              		.cfi_offset 3, -16
+ 132              		.cfi_offset 4, -12
+ 133              		.cfi_offset 5, -8
+ 134              		.cfi_offset 14, -4
+ 135 0002 0546     		mov	r5, r0
+ 136              	.LVL11:
+  76:.\i2c_core.c  ****     unsigned char  i;
+  77:.\i2c_core.c  ****     
+  78:.\i2c_core.c  ****     for (i = 0;i < 8;i++)
+ 137              		.loc 1 78 0
+ 138 0004 0024     		movs	r4, #0
+ 139 0006 1CE0     		b	.L10
+ 140              	.LVL12:
+ 141              	.L13:
+  79:.\i2c_core.c  ****     {
+  80:.\i2c_core.c  ****         if ( I2CSendData & 0x80 )
+ 142              		.loc 1 80 0
+ 143 0008 15F0800F 		tst	r5, #128
+ 144 000c 03D0     		beq	.L11
+  81:.\i2c_core.c  ****             I2C_DATA_HIGH();
+ 145              		.loc 1 81 0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 5
+
+
+ 146 000e 0120     		movs	r0, #1
+ 147 0010 FFF7FEFF 		bl	SDL_Write
+ 148              	.LVL13:
+ 149 0014 02E0     		b	.L12
+ 150              	.L11:
+  82:.\i2c_core.c  ****         else
+  83:.\i2c_core.c  ****             I2C_DATA_LOW();
+ 151              		.loc 1 83 0
+ 152 0016 0020     		movs	r0, #0
+ 153 0018 FFF7FEFF 		bl	SDL_Write
+ 154              	.LVL14:
+ 155              	.L12:
+  84:.\i2c_core.c  ****         delay_us(20);
+ 156              		.loc 1 84 0 discriminator 2
+ 157 001c 1420     		movs	r0, #20
+ 158 001e FFF7FEFF 		bl	delay_us
+ 159              	.LVL15:
+  85:.\i2c_core.c  ****         I2C_CLK_HIGH();
+ 160              		.loc 1 85 0 discriminator 2
+ 161 0022 0120     		movs	r0, #1
+ 162 0024 FFF7FEFF 		bl	SCL_Write
+ 163              	.LVL16:
+  86:.\i2c_core.c  ****         delay_us(20);
+ 164              		.loc 1 86 0 discriminator 2
+ 165 0028 1420     		movs	r0, #20
+ 166 002a FFF7FEFF 		bl	delay_us
+ 167              	.LVL17:
+  87:.\i2c_core.c  ****         
+  88:.\i2c_core.c  ****         I2CSendData <<= 1; 
+ 168              		.loc 1 88 0 discriminator 2
+ 169 002e 6D00     		lsls	r5, r5, #1
+ 170              	.LVL18:
+ 171 0030 EDB2     		uxtb	r5, r5
+ 172              	.LVL19:
+  89:.\i2c_core.c  ****         I2C_CLK_LOW();
+ 173              		.loc 1 89 0 discriminator 2
+ 174 0032 0020     		movs	r0, #0
+ 175 0034 FFF7FEFF 		bl	SCL_Write
+ 176              	.LVL20:
+  90:.\i2c_core.c  ****         delay_us(20);
+ 177              		.loc 1 90 0 discriminator 2
+ 178 0038 1420     		movs	r0, #20
+ 179 003a FFF7FEFF 		bl	delay_us
+ 180              	.LVL21:
+  78:.\i2c_core.c  ****     {
+ 181              		.loc 1 78 0 discriminator 2
+ 182 003e 0134     		adds	r4, r4, #1
+ 183              	.LVL22:
+ 184 0040 E4B2     		uxtb	r4, r4
+ 185              	.LVL23:
+ 186              	.L10:
+  78:.\i2c_core.c  ****     {
+ 187              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 188 0042 072C     		cmp	r4, #7
+ 189 0044 E0D9     		bls	.L13
+  91:.\i2c_core.c  ****     }
+  92:.\i2c_core.c  **** }
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 6
+
+
+ 190              		.loc 1 92 0 is_stmt 1
+ 191 0046 38BD     		pop	{r3, r4, r5, pc}
+ 192              		.cfi_endproc
+ 193              	.LFE69:
+ 194              		.size	I2C_sendbyte, .-I2C_sendbyte
+ 195              		.section	.text.I2C_Stop,"ax",%progbits
+ 196              		.align	2
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.type	I2C_Stop, %function
+ 200              	I2C_Stop:
+ 201              	.LFB66:
+  41:.\i2c_core.c  ****     I2C_DATA_LOW();
+ 202              		.loc 1 41 0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206 0000 08B5     		push	{r3, lr}
+ 207              		.cfi_def_cfa_offset 8
+ 208              		.cfi_offset 3, -8
+ 209              		.cfi_offset 14, -4
+  42:.\i2c_core.c  ****     delay_us(20);
+ 210              		.loc 1 42 0
+ 211 0002 0020     		movs	r0, #0
+ 212 0004 FFF7FEFF 		bl	SDL_Write
+ 213              	.LVL24:
+  43:.\i2c_core.c  ****     I2C_CLK_HIGH();
+ 214              		.loc 1 43 0
+ 215 0008 1420     		movs	r0, #20
+ 216 000a FFF7FEFF 		bl	delay_us
+ 217              	.LVL25:
+  44:.\i2c_core.c  ****     delay_us(20);
+ 218              		.loc 1 44 0
+ 219 000e 0120     		movs	r0, #1
+ 220 0010 FFF7FEFF 		bl	SCL_Write
+ 221              	.LVL26:
+  45:.\i2c_core.c  ****     I2C_DATA_HIGH();
+ 222              		.loc 1 45 0
+ 223 0014 1420     		movs	r0, #20
+ 224 0016 FFF7FEFF 		bl	delay_us
+ 225              	.LVL27:
+  46:.\i2c_core.c  ****     delay_us(20);
+ 226              		.loc 1 46 0
+ 227 001a 0120     		movs	r0, #1
+ 228 001c FFF7FEFF 		bl	SDL_Write
+ 229              	.LVL28:
+  47:.\i2c_core.c  **** }
+ 230              		.loc 1 47 0
+ 231 0020 1420     		movs	r0, #20
+ 232 0022 FFF7FEFF 		bl	delay_us
+ 233              	.LVL29:
+ 234 0026 08BD     		pop	{r3, pc}
+ 235              		.cfi_endproc
+ 236              	.LFE66:
+ 237              		.size	I2C_Stop, .-I2C_Stop
+ 238              		.section	.text.I2C_nack,"ax",%progbits
+ 239              		.align	2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 7
+
+
+ 240              		.thumb
+ 241              		.thumb_func
+ 242              		.type	I2C_nack, %function
+ 243              	I2C_nack:
+ 244              	.LFB67:
+  51:.\i2c_core.c  ****     I2C_CLK_LOW();
+ 245              		.loc 1 51 0
+ 246              		.cfi_startproc
+ 247              		@ args = 0, pretend = 0, frame = 0
+ 248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 249 0000 08B5     		push	{r3, lr}
+ 250              		.cfi_def_cfa_offset 8
+ 251              		.cfi_offset 3, -8
+ 252              		.cfi_offset 14, -4
+  52:.\i2c_core.c  ****     delay_us(20);
+ 253              		.loc 1 52 0
+ 254 0002 0020     		movs	r0, #0
+ 255 0004 FFF7FEFF 		bl	SCL_Write
+ 256              	.LVL30:
+  53:.\i2c_core.c  ****     I2C_DATA_HIGH();
+ 257              		.loc 1 53 0
+ 258 0008 1420     		movs	r0, #20
+ 259 000a FFF7FEFF 		bl	delay_us
+ 260              	.LVL31:
+  54:.\i2c_core.c  ****     delay_us(20);
+ 261              		.loc 1 54 0
+ 262 000e 0120     		movs	r0, #1
+ 263 0010 FFF7FEFF 		bl	SDL_Write
+ 264              	.LVL32:
+  55:.\i2c_core.c  ****     I2C_CLK_HIGH();
+ 265              		.loc 1 55 0
+ 266 0014 1420     		movs	r0, #20
+ 267 0016 FFF7FEFF 		bl	delay_us
+ 268              	.LVL33:
+  56:.\i2c_core.c  ****     delay_us(20);
+ 269              		.loc 1 56 0
+ 270 001a 0120     		movs	r0, #1
+ 271 001c FFF7FEFF 		bl	SCL_Write
+ 272              	.LVL34:
+  57:.\i2c_core.c  ****     I2C_CLK_LOW();
+ 273              		.loc 1 57 0
+ 274 0020 1420     		movs	r0, #20
+ 275 0022 FFF7FEFF 		bl	delay_us
+ 276              	.LVL35:
+  58:.\i2c_core.c  ****     delay_us(20);
+ 277              		.loc 1 58 0
+ 278 0026 0020     		movs	r0, #0
+ 279 0028 FFF7FEFF 		bl	SCL_Write
+ 280              	.LVL36:
+  59:.\i2c_core.c  **** }
+ 281              		.loc 1 59 0
+ 282 002c 1420     		movs	r0, #20
+ 283 002e FFF7FEFF 		bl	delay_us
+ 284              	.LVL37:
+ 285 0032 08BD     		pop	{r3, pc}
+ 286              		.cfi_endproc
+ 287              	.LFE67:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 8
+
+
+ 288              		.size	I2C_nack, .-I2C_nack
+ 289              		.section	.text.I2C_ack,"ax",%progbits
+ 290              		.align	2
+ 291              		.thumb
+ 292              		.thumb_func
+ 293              		.type	I2C_ack, %function
+ 294              	I2C_ack:
+ 295              	.LFB68:
+  63:.\i2c_core.c  ****     I2C_CLK_LOW();
+ 296              		.loc 1 63 0
+ 297              		.cfi_startproc
+ 298              		@ args = 0, pretend = 0, frame = 0
+ 299              		@ frame_needed = 0, uses_anonymous_args = 0
+ 300 0000 08B5     		push	{r3, lr}
+ 301              		.cfi_def_cfa_offset 8
+ 302              		.cfi_offset 3, -8
+ 303              		.cfi_offset 14, -4
+  64:.\i2c_core.c  ****     delay_us(20);
+ 304              		.loc 1 64 0
+ 305 0002 0020     		movs	r0, #0
+ 306 0004 FFF7FEFF 		bl	SCL_Write
+ 307              	.LVL38:
+  65:.\i2c_core.c  ****     I2C_DATA_LOW();
+ 308              		.loc 1 65 0
+ 309 0008 1420     		movs	r0, #20
+ 310 000a FFF7FEFF 		bl	delay_us
+ 311              	.LVL39:
+  66:.\i2c_core.c  ****     delay_us(20);
+ 312              		.loc 1 66 0
+ 313 000e 0020     		movs	r0, #0
+ 314 0010 FFF7FEFF 		bl	SDL_Write
+ 315              	.LVL40:
+  67:.\i2c_core.c  ****     I2C_CLK_HIGH();
+ 316              		.loc 1 67 0
+ 317 0014 1420     		movs	r0, #20
+ 318 0016 FFF7FEFF 		bl	delay_us
+ 319              	.LVL41:
+  68:.\i2c_core.c  ****     delay_us(20);
+ 320              		.loc 1 68 0
+ 321 001a 0120     		movs	r0, #1
+ 322 001c FFF7FEFF 		bl	SCL_Write
+ 323              	.LVL42:
+  69:.\i2c_core.c  ****     I2C_CLK_LOW();
+ 324              		.loc 1 69 0
+ 325 0020 1420     		movs	r0, #20
+ 326 0022 FFF7FEFF 		bl	delay_us
+ 327              	.LVL43:
+  70:.\i2c_core.c  ****     delay_us(20);
+ 328              		.loc 1 70 0
+ 329 0026 0020     		movs	r0, #0
+ 330 0028 FFF7FEFF 		bl	SCL_Write
+ 331              	.LVL44:
+  71:.\i2c_core.c  **** }
+ 332              		.loc 1 71 0
+ 333 002c 1420     		movs	r0, #20
+ 334 002e FFF7FEFF 		bl	delay_us
+ 335              	.LVL45:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 9
+
+
+ 336 0032 08BD     		pop	{r3, pc}
+ 337              		.cfi_endproc
+ 338              	.LFE68:
+ 339              		.size	I2C_ack, .-I2C_ack
+ 340              		.section	.text.ReceiveACK,"ax",%progbits
+ 341              		.align	2
+ 342              		.thumb
+ 343              		.thumb_func
+ 344              		.type	ReceiveACK, %function
+ 345              	ReceiveACK:
+ 346              	.LFB71:
+  93:.\i2c_core.c  **** static unsigned char I2C_readbyte( void )
+  94:.\i2c_core.c  **** {
+  95:.\i2c_core.c  ****     unsigned char i;
+  96:.\i2c_core.c  ****     unsigned char ucRDData = 0;
+  97:.\i2c_core.c  **** 
+  98:.\i2c_core.c  ****     I2C_DATA_HIGH();
+  99:.\i2c_core.c  **** 
+ 100:.\i2c_core.c  ****     for (i = 0;i < 8;i++)
+ 101:.\i2c_core.c  ****     {
+ 102:.\i2c_core.c  ****         I2C_CLK_HIGH();
+ 103:.\i2c_core.c  ****         ucRDData <<= 1;
+ 104:.\i2c_core.c  ****         delay_us(20);
+ 105:.\i2c_core.c  ****         if (I2C_DATA_IN())
+ 106:.\i2c_core.c  ****             ucRDData++;
+ 107:.\i2c_core.c  **** 
+ 108:.\i2c_core.c  ****         I2C_CLK_LOW();
+ 109:.\i2c_core.c  ****         delay_us(20);
+ 110:.\i2c_core.c  ****     }
+ 111:.\i2c_core.c  ****     return(ucRDData);
+ 112:.\i2c_core.c  **** }
+ 113:.\i2c_core.c  **** static unsigned char ReceiveACK( void )
+ 114:.\i2c_core.c  **** {
+ 347              		.loc 1 114 0
+ 348              		.cfi_startproc
+ 349              		@ args = 0, pretend = 0, frame = 0
+ 350              		@ frame_needed = 0, uses_anonymous_args = 0
+ 351 0000 10B5     		push	{r4, lr}
+ 352              		.cfi_def_cfa_offset 8
+ 353              		.cfi_offset 4, -8
+ 354              		.cfi_offset 14, -4
+ 115:.\i2c_core.c  ****     unsigned char nakflag;
+ 116:.\i2c_core.c  ****     I2C_DATA_HIGH();
+ 355              		.loc 1 116 0
+ 356 0002 0120     		movs	r0, #1
+ 357 0004 FFF7FEFF 		bl	SDL_Write
+ 358              	.LVL46:
+ 117:.\i2c_core.c  ****     delay_us(20);
+ 359              		.loc 1 117 0
+ 360 0008 1420     		movs	r0, #20
+ 361 000a FFF7FEFF 		bl	delay_us
+ 362              	.LVL47:
+ 118:.\i2c_core.c  ****     I2C_CLK_HIGH();
+ 363              		.loc 1 118 0
+ 364 000e 0120     		movs	r0, #1
+ 365 0010 FFF7FEFF 		bl	SCL_Write
+ 366              	.LVL48:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 10
+
+
+ 119:.\i2c_core.c  ****     delay_us(20);
+ 367              		.loc 1 119 0
+ 368 0014 1420     		movs	r0, #20
+ 369 0016 FFF7FEFF 		bl	delay_us
+ 370              	.LVL49:
+ 120:.\i2c_core.c  ****     nakflag = I2C_DATA_IN();
+ 371              		.loc 1 120 0
+ 372 001a FFF7FEFF 		bl	SDL_Read
+ 373              	.LVL50:
+ 374 001e 0446     		mov	r4, r0
+ 375              	.LVL51:
+ 121:.\i2c_core.c  ****     I2C_CLK_LOW();
+ 376              		.loc 1 121 0
+ 377 0020 0020     		movs	r0, #0
+ 378 0022 FFF7FEFF 		bl	SCL_Write
+ 379              	.LVL52:
+ 122:.\i2c_core.c  ****     delay_us(20);
+ 380              		.loc 1 122 0
+ 381 0026 1420     		movs	r0, #20
+ 382 0028 FFF7FEFF 		bl	delay_us
+ 383              	.LVL53:
+ 123:.\i2c_core.c  ****     return nakflag;
+ 124:.\i2c_core.c  **** }
+ 384              		.loc 1 124 0
+ 385 002c 2046     		mov	r0, r4
+ 386 002e 10BD     		pop	{r4, pc}
+ 387              		.cfi_endproc
+ 388              	.LFE71:
+ 389              		.size	ReceiveACK, .-ReceiveACK
+ 390              		.section	.text.I2C_readbyte,"ax",%progbits
+ 391              		.align	2
+ 392              		.thumb
+ 393              		.thumb_func
+ 394              		.type	I2C_readbyte, %function
+ 395              	I2C_readbyte:
+ 396              	.LFB70:
+  94:.\i2c_core.c  ****     unsigned char i;
+ 397              		.loc 1 94 0
+ 398              		.cfi_startproc
+ 399              		@ args = 0, pretend = 0, frame = 0
+ 400              		@ frame_needed = 0, uses_anonymous_args = 0
+ 401 0000 38B5     		push	{r3, r4, r5, lr}
+ 402              		.cfi_def_cfa_offset 16
+ 403              		.cfi_offset 3, -16
+ 404              		.cfi_offset 4, -12
+ 405              		.cfi_offset 5, -8
+ 406              		.cfi_offset 14, -4
+ 407              	.LVL54:
+  98:.\i2c_core.c  **** 
+ 408              		.loc 1 98 0
+ 409 0002 0120     		movs	r0, #1
+ 410 0004 FFF7FEFF 		bl	SDL_Write
+ 411              	.LVL55:
+  96:.\i2c_core.c  **** 
+ 412              		.loc 1 96 0
+ 413 0008 0024     		movs	r4, #0
+ 100:.\i2c_core.c  ****     {
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 11
+
+
+ 414              		.loc 1 100 0
+ 415 000a 2546     		mov	r5, r4
+ 416 000c 14E0     		b	.L24
+ 417              	.LVL56:
+ 418              	.L26:
+ 102:.\i2c_core.c  ****         ucRDData <<= 1;
+ 419              		.loc 1 102 0
+ 420 000e 0120     		movs	r0, #1
+ 421 0010 FFF7FEFF 		bl	SCL_Write
+ 422              	.LVL57:
+ 103:.\i2c_core.c  ****         delay_us(20);
+ 423              		.loc 1 103 0
+ 424 0014 6400     		lsls	r4, r4, #1
+ 425              	.LVL58:
+ 426 0016 E4B2     		uxtb	r4, r4
+ 427              	.LVL59:
+ 104:.\i2c_core.c  ****         if (I2C_DATA_IN())
+ 428              		.loc 1 104 0
+ 429 0018 1420     		movs	r0, #20
+ 430 001a FFF7FEFF 		bl	delay_us
+ 431              	.LVL60:
+ 105:.\i2c_core.c  ****             ucRDData++;
+ 432              		.loc 1 105 0
+ 433 001e FFF7FEFF 		bl	SDL_Read
+ 434              	.LVL61:
+ 435 0022 08B1     		cbz	r0, .L25
+ 106:.\i2c_core.c  **** 
+ 436              		.loc 1 106 0
+ 437 0024 0134     		adds	r4, r4, #1
+ 438              	.LVL62:
+ 439 0026 E4B2     		uxtb	r4, r4
+ 440              	.LVL63:
+ 441              	.L25:
+ 108:.\i2c_core.c  ****         delay_us(20);
+ 442              		.loc 1 108 0 discriminator 2
+ 443 0028 0020     		movs	r0, #0
+ 444 002a FFF7FEFF 		bl	SCL_Write
+ 445              	.LVL64:
+ 109:.\i2c_core.c  ****     }
+ 446              		.loc 1 109 0 discriminator 2
+ 447 002e 1420     		movs	r0, #20
+ 448 0030 FFF7FEFF 		bl	delay_us
+ 449              	.LVL65:
+ 100:.\i2c_core.c  ****     {
+ 450              		.loc 1 100 0 discriminator 2
+ 451 0034 0135     		adds	r5, r5, #1
+ 452              	.LVL66:
+ 453 0036 EDB2     		uxtb	r5, r5
+ 454              	.LVL67:
+ 455              	.L24:
+ 100:.\i2c_core.c  ****     {
+ 456              		.loc 1 100 0 is_stmt 0 discriminator 1
+ 457 0038 072D     		cmp	r5, #7
+ 458 003a E8D9     		bls	.L26
+ 112:.\i2c_core.c  **** static unsigned char ReceiveACK( void )
+ 459              		.loc 1 112 0 is_stmt 1
+ 460 003c 2046     		mov	r0, r4
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 12
+
+
+ 461 003e 38BD     		pop	{r3, r4, r5, pc}
+ 462              		.cfi_endproc
+ 463              	.LFE70:
+ 464              		.size	I2C_readbyte, .-I2C_readbyte
+ 465              		.section	.text.SYS_I2C_Init,"ax",%progbits
+ 466              		.align	2
+ 467              		.global	SYS_I2C_Init
+ 468              		.thumb
+ 469              		.thumb_func
+ 470              		.type	SYS_I2C_Init, %function
+ 471              	SYS_I2C_Init:
+ 472              	.LFB64:
+  19:.\i2c_core.c  ****   I2C_CLK_HIGH();
+ 473              		.loc 1 19 0
+ 474              		.cfi_startproc
+ 475              		@ args = 0, pretend = 0, frame = 0
+ 476              		@ frame_needed = 0, uses_anonymous_args = 0
+ 477 0000 08B5     		push	{r3, lr}
+ 478              		.cfi_def_cfa_offset 8
+ 479              		.cfi_offset 3, -8
+ 480              		.cfi_offset 14, -4
+  20:.\i2c_core.c  ****   delay_us(20);
+ 481              		.loc 1 20 0
+ 482 0002 0120     		movs	r0, #1
+ 483 0004 FFF7FEFF 		bl	SCL_Write
+ 484              	.LVL68:
+  21:.\i2c_core.c  ****   I2C_CLK_LOW(); 
+ 485              		.loc 1 21 0
+ 486 0008 1420     		movs	r0, #20
+ 487 000a FFF7FEFF 		bl	delay_us
+ 488              	.LVL69:
+  22:.\i2c_core.c  ****   delay_us(2000);
+ 489              		.loc 1 22 0
+ 490 000e 0020     		movs	r0, #0
+ 491 0010 FFF7FEFF 		bl	SCL_Write
+ 492              	.LVL70:
+  23:.\i2c_core.c  ****   I2C_CLK_HIGH();
+ 493              		.loc 1 23 0
+ 494 0014 4FF4FA60 		mov	r0, #2000
+ 495 0018 FFF7FEFF 		bl	delay_us
+ 496              	.LVL71:
+  24:.\i2c_core.c  **** 
+ 497              		.loc 1 24 0
+ 498 001c 0120     		movs	r0, #1
+ 499 001e FFF7FEFF 		bl	SCL_Write
+ 500              	.LVL72:
+ 501 0022 08BD     		pop	{r3, pc}
+ 502              		.cfi_endproc
+ 503              	.LFE64:
+ 504              		.size	SYS_I2C_Init, .-SYS_I2C_Init
+ 505              		.section	.text.SMbus_GetCrc8,"ax",%progbits
+ 506              		.align	2
+ 507              		.global	SMbus_GetCrc8
+ 508              		.thumb
+ 509              		.thumb_func
+ 510              		.type	SMbus_GetCrc8, %function
+ 511              	SMbus_GetCrc8:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 13
+
+
+ 512              	.LFB72:
+ 125:.\i2c_core.c  **** uint8 a_SM_PecTable[16]={0x00,0x07,0x0E,0x09,0x1C,0x1B,0x12,0x15,0x38,0x3F,0x36,0x31,0x24,0x23,0x2A
+ 126:.\i2c_core.c  **** uint8 SMbus_GetCrc8(uint8 previous, uint8  data)
+ 127:.\i2c_core.c  **** {
+ 513              		.loc 1 127 0
+ 514              		.cfi_startproc
+ 515              		@ args = 0, pretend = 0, frame = 0
+ 516              		@ frame_needed = 0, uses_anonymous_args = 0
+ 517              		@ link register save eliminated.
+ 518              	.LVL73:
+ 128:.\i2c_core.c  **** 	uint8 i, crc=0;
+ 129:.\i2c_core.c  **** 	crc = 0;
+ 130:.\i2c_core.c  ****   data = previous ^ data;
+ 519              		.loc 1 130 0
+ 520 0000 4140     		eors	r1, r1, r0
+ 521              	.LVL74:
+ 131:.\i2c_core.c  ****   crc = (crc << 4) ^ a_SM_PecTable[((crc ^ data) >> 4) & 0x0F];
+ 522              		.loc 1 131 0
+ 523 0002 0A09     		lsrs	r2, r1, #4
+ 524 0004 054B     		ldr	r3, .L31
+ 525 0006 985C     		ldrb	r0, [r3, r2]	@ zero_extendqisi2
+ 526              	.LVL75:
+ 132:.\i2c_core.c  ****   data <<= 4;//准备下一个位域,域宽4
+ 527              		.loc 1 132 0
+ 528 0008 0901     		lsls	r1, r1, #4
+ 529              	.LVL76:
+ 530 000a C9B2     		uxtb	r1, r1
+ 531              	.LVL77:
+ 133:.\i2c_core.c  ****   crc = (crc << 4) ^ a_SM_PecTable[((crc ^ data) >> 4) & 0x0F];
+ 532              		.loc 1 133 0
+ 533 000c 4140     		eors	r1, r1, r0
+ 534              	.LVL78:
+ 535 000e 0909     		lsrs	r1, r1, #4
+ 536 0010 5B5C     		ldrb	r3, [r3, r1]	@ zero_extendqisi2
+ 537 0012 83EA0010 		eor	r0, r3, r0, lsl #4
+ 538              	.LVL79:
+ 134:.\i2c_core.c  ****   return crc;
+ 135:.\i2c_core.c  **** }
+ 539              		.loc 1 135 0
+ 540 0016 C0B2     		uxtb	r0, r0
+ 541 0018 7047     		bx	lr
+ 542              	.L32:
+ 543 001a 00BF     		.align	2
+ 544              	.L31:
+ 545 001c 00000000 		.word	.LANCHOR0
+ 546              		.cfi_endproc
+ 547              	.LFE72:
+ 548              		.size	SMbus_GetCrc8, .-SMbus_GetCrc8
+ 549              		.section	.text.I2C_Write,"ax",%progbits
+ 550              		.align	2
+ 551              		.global	I2C_Write
+ 552              		.thumb
+ 553              		.thumb_func
+ 554              		.type	I2C_Write, %function
+ 555              	I2C_Write:
+ 556              	.LFB73:
+ 136:.\i2c_core.c  **** unsigned char I2C_Write( unsigned char slave_add, unsigned char I2CAddress, unsigned char *I2CData,
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 14
+
+
+ 137:.\i2c_core.c  **** {
+ 557              		.loc 1 137 0
+ 558              		.cfi_startproc
+ 559              		@ args = 0, pretend = 0, frame = 0
+ 560              		@ frame_needed = 0, uses_anonymous_args = 0
+ 561              	.LVL80:
+ 562 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+ 563              		.cfi_def_cfa_offset 32
+ 564              		.cfi_offset 3, -32
+ 565              		.cfi_offset 4, -28
+ 566              		.cfi_offset 5, -24
+ 567              		.cfi_offset 6, -20
+ 568              		.cfi_offset 7, -16
+ 569              		.cfi_offset 8, -12
+ 570              		.cfi_offset 9, -8
+ 571              		.cfi_offset 14, -4
+ 572 0004 0446     		mov	r4, r0
+ 573 0006 0E46     		mov	r6, r1
+ 574 0008 1546     		mov	r5, r2
+ 575 000a 1F46     		mov	r7, r3
+ 576              	.LVL81:
+ 138:.\i2c_core.c  ****     unsigned char i;
+ 139:.\i2c_core.c  ****     
+ 140:.\i2c_core.c  ****     uint8 pec;
+ 141:.\i2c_core.c  **** 	pec = 0;
+ 142:.\i2c_core.c  **** 	pec = SMbus_GetCrc8(pec,slave_add);
+ 577              		.loc 1 142 0
+ 578 000c 0020     		movs	r0, #0
+ 579              	.LVL82:
+ 580 000e 2146     		mov	r1, r4
+ 581              	.LVL83:
+ 582 0010 FFF7FEFF 		bl	SMbus_GetCrc8
+ 583              	.LVL84:
+ 143:.\i2c_core.c  **** 	pec = SMbus_GetCrc8(pec,I2CAddress);
+ 584              		.loc 1 143 0
+ 585 0014 3146     		mov	r1, r6
+ 586 0016 FFF7FEFF 		bl	SMbus_GetCrc8
+ 587              	.LVL85:
+ 144:.\i2c_core.c  **** 	pec = SMbus_GetCrc8(pec,*I2CData);
+ 588              		.loc 1 144 0
+ 589 001a 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
+ 590 001c FFF7FEFF 		bl	SMbus_GetCrc8
+ 591              	.LVL86:
+ 145:.\i2c_core.c  ****     pec = SMbus_GetCrc8(pec,0);
+ 592              		.loc 1 145 0
+ 593 0020 0021     		movs	r1, #0
+ 594 0022 FFF7FEFF 		bl	SMbus_GetCrc8
+ 595              	.LVL87:
+ 596 0026 8046     		mov	r8, r0
+ 597              	.LVL88:
+ 146:.\i2c_core.c  ****     I2C_Start();
+ 598              		.loc 1 146 0
+ 599 0028 FFF7FEFF 		bl	I2C_Start
+ 600              	.LVL89:
+ 147:.\i2c_core.c  **** 
+ 148:.\i2c_core.c  ****     I2C_sendbyte( slave_add << 1 );
+ 601              		.loc 1 148 0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 15
+
+
+ 602 002c 6000     		lsls	r0, r4, #1
+ 603 002e 00F0FE00 		and	r0, r0, #254
+ 604 0032 FFF7FEFF 		bl	I2C_sendbyte
+ 605              	.LVL90:
+ 149:.\i2c_core.c  ****     if( ReceiveACK() )
+ 606              		.loc 1 149 0
+ 607 0036 FFF7FEFF 		bl	ReceiveACK
+ 608              	.LVL91:
+ 609 003a 20B1     		cbz	r0, .L34
+ 150:.\i2c_core.c  ****     {
+ 151:.\i2c_core.c  ****       I2C_Stop();
+ 610              		.loc 1 151 0
+ 611 003c FFF7FEFF 		bl	I2C_Stop
+ 612              	.LVL92:
+ 152:.\i2c_core.c  ****       return 0;
+ 613              		.loc 1 152 0
+ 614 0040 4FF00009 		mov	r9, #0
+ 615 0044 25E0     		b	.L35
+ 616              	.L34:
+ 617 0046 0446     		mov	r4, r0
+ 153:.\i2c_core.c  ****     };
+ 154:.\i2c_core.c  **** 
+ 155:.\i2c_core.c  ****     I2C_sendbyte(I2CAddress); 
+ 618              		.loc 1 155 0
+ 619 0048 3046     		mov	r0, r6
+ 620 004a FFF7FEFF 		bl	I2C_sendbyte
+ 621              	.LVL93:
+ 156:.\i2c_core.c  ****     if( ReceiveACK() )
+ 622              		.loc 1 156 0
+ 623 004e FFF7FEFF 		bl	ReceiveACK
+ 624              	.LVL94:
+ 625 0052 8146     		mov	r9, r0
+ 626 0054 70B1     		cbz	r0, .L40
+ 157:.\i2c_core.c  ****     {
+ 158:.\i2c_core.c  ****       I2C_Stop();
+ 627              		.loc 1 158 0
+ 628 0056 FFF7FEFF 		bl	I2C_Stop
+ 629              	.LVL95:
+ 159:.\i2c_core.c  ****       return 0;
+ 630              		.loc 1 159 0
+ 631 005a A146     		mov	r9, r4
+ 632 005c 19E0     		b	.L35
+ 633              	.LVL96:
+ 634              	.L38:
+ 160:.\i2c_core.c  ****     };
+ 161:.\i2c_core.c  **** 
+ 162:.\i2c_core.c  **** 		for( i = 0 ; i < size; i ++ )
+ 163:.\i2c_core.c  **** 		{
+ 164:.\i2c_core.c  **** 			I2C_sendbyte(*I2CData++);
+ 635              		.loc 1 164 0
+ 636 005e 6E1C     		adds	r6, r5, #1
+ 637              	.LVL97:
+ 638 0060 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 639 0062 FFF7FEFF 		bl	I2C_sendbyte
+ 640              	.LVL98:
+ 165:.\i2c_core.c  **** 			if( ReceiveACK() )
+ 641              		.loc 1 165 0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 16
+
+
+ 642 0066 FFF7FEFF 		bl	ReceiveACK
+ 643              	.LVL99:
+ 644 006a 30B9     		cbnz	r0, .L37
+ 162:.\i2c_core.c  **** 		{
+ 645              		.loc 1 162 0 discriminator 2
+ 646 006c 0134     		adds	r4, r4, #1
+ 647              	.LVL100:
+ 648 006e E4B2     		uxtb	r4, r4
+ 649              	.LVL101:
+ 164:.\i2c_core.c  **** 			if( ReceiveACK() )
+ 650              		.loc 1 164 0 discriminator 2
+ 651 0070 3546     		mov	r5, r6
+ 652 0072 00E0     		b	.L36
+ 653              	.LVL102:
+ 654              	.L40:
+ 655 0074 0024     		movs	r4, #0
+ 656              	.L36:
+ 657              	.LVL103:
+ 162:.\i2c_core.c  **** 		{
+ 658              		.loc 1 162 0 discriminator 1
+ 659 0076 BC42     		cmp	r4, r7
+ 660 0078 F1D3     		bcc	.L38
+ 661              	.LVL104:
+ 662              	.L37:
+ 166:.\i2c_core.c  **** 					break;
+ 167:.\i2c_core.c  ****             
+ 168:.\i2c_core.c  **** 		}
+ 169:.\i2c_core.c  ****     I2C_sendbyte(pec);//pec
+ 663              		.loc 1 169 0
+ 664 007a 4046     		mov	r0, r8
+ 665 007c FFF7FEFF 		bl	I2C_sendbyte
+ 666              	.LVL105:
+ 170:.\i2c_core.c  ****     if( ReceiveACK()
+ 667              		.loc 1 170 0
+ 668 0080 FFF7FEFF 		bl	ReceiveACK
+ 669              	.LVL106:
+ 670 0084 10B1     		cbz	r0, .L39
+ 171:.\i2c_core.c  ****     )
+ 172:.\i2c_core.c  ****     {
+ 173:.\i2c_core.c  ****       I2C_Stop();
+ 671              		.loc 1 173 0
+ 672 0086 FFF7FEFF 		bl	I2C_Stop
+ 673              	.LVL107:
+ 174:.\i2c_core.c  ****       return 0;
+ 674              		.loc 1 174 0
+ 675 008a 02E0     		b	.L35
+ 676              	.L39:
+ 175:.\i2c_core.c  ****     };
+ 176:.\i2c_core.c  ****     I2C_Stop(); 
+ 677              		.loc 1 176 0
+ 678 008c FFF7FEFF 		bl	I2C_Stop
+ 679              	.LVL108:
+ 177:.\i2c_core.c  ****     return i;
+ 680              		.loc 1 177 0
+ 681 0090 A146     		mov	r9, r4
+ 682              	.LVL109:
+ 683              	.L35:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 17
+
+
+ 178:.\i2c_core.c  **** }
+ 684              		.loc 1 178 0
+ 685 0092 4846     		mov	r0, r9
+ 686 0094 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 687              		.cfi_endproc
+ 688              	.LFE73:
+ 689              		.size	I2C_Write, .-I2C_Write
+ 690              		.section	.text.I2C_Read,"ax",%progbits
+ 691              		.align	2
+ 692              		.global	I2C_Read
+ 693              		.thumb
+ 694              		.thumb_func
+ 695              		.type	I2C_Read, %function
+ 696              	I2C_Read:
+ 697              	.LFB74:
+ 179:.\i2c_core.c  **** 
+ 180:.\i2c_core.c  **** unsigned char I2C_Read( unsigned char slave_add, unsigned char I2CAddress, unsigned char *I2CData, 
+ 181:.\i2c_core.c  **** {
+ 698              		.loc 1 181 0
+ 699              		.cfi_startproc
+ 700              		@ args = 0, pretend = 0, frame = 0
+ 701              		@ frame_needed = 0, uses_anonymous_args = 0
+ 702              	.LVL110:
+ 703 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 704              		.cfi_def_cfa_offset 24
+ 705              		.cfi_offset 4, -24
+ 706              		.cfi_offset 5, -20
+ 707              		.cfi_offset 6, -16
+ 708              		.cfi_offset 7, -12
+ 709              		.cfi_offset 8, -8
+ 710              		.cfi_offset 14, -4
+ 711 0004 0746     		mov	r7, r0
+ 712 0006 8846     		mov	r8, r1
+ 713 0008 1546     		mov	r5, r2
+ 714 000a 1E46     		mov	r6, r3
+ 182:.\i2c_core.c  **** 	unsigned char i;
+ 183:.\i2c_core.c  **** 
+ 184:.\i2c_core.c  ****     I2C_Start(); 
+ 715              		.loc 1 184 0
+ 716 000c FFF7FEFF 		bl	I2C_Start
+ 717              	.LVL111:
+ 185:.\i2c_core.c  **** 
+ 186:.\i2c_core.c  ****     I2C_sendbyte( slave_add  );
+ 718              		.loc 1 186 0
+ 719 0010 3846     		mov	r0, r7
+ 720 0012 FFF7FEFF 		bl	I2C_sendbyte
+ 721              	.LVL112:
+ 187:.\i2c_core.c  ****     if( ReceiveACK() )
+ 722              		.loc 1 187 0
+ 723 0016 FFF7FEFF 		bl	ReceiveACK
+ 724              	.LVL113:
+ 725 001a 18B1     		cbz	r0, .L43
+ 188:.\i2c_core.c  ****     {
+ 189:.\i2c_core.c  ****       I2C_Stop();
+ 726              		.loc 1 189 0
+ 727 001c FFF7FEFF 		bl	I2C_Stop
+ 728              	.LVL114:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 18
+
+
+ 190:.\i2c_core.c  ****       return 0;
+ 729              		.loc 1 190 0
+ 730 0020 0024     		movs	r4, #0
+ 731 0022 2CE0     		b	.L44
+ 732              	.L43:
+ 733 0024 0446     		mov	r4, r0
+ 191:.\i2c_core.c  ****     };
+ 192:.\i2c_core.c  ****   //  CyDelay(50);
+ 193:.\i2c_core.c  ****     I2C_sendbyte(I2CAddress); 
+ 734              		.loc 1 193 0
+ 735 0026 4046     		mov	r0, r8
+ 736 0028 FFF7FEFF 		bl	I2C_sendbyte
+ 737              	.LVL115:
+ 194:.\i2c_core.c  ****     if( ReceiveACK() )
+ 738              		.loc 1 194 0
+ 739 002c FFF7FEFF 		bl	ReceiveACK
+ 740              	.LVL116:
+ 741 0030 8046     		mov	r8, r0
+ 742 0032 10B1     		cbz	r0, .L45
+ 195:.\i2c_core.c  ****     {
+ 196:.\i2c_core.c  ****       I2C_Stop();
+ 743              		.loc 1 196 0
+ 744 0034 FFF7FEFF 		bl	I2C_Stop
+ 745              	.LVL117:
+ 197:.\i2c_core.c  ****       return 0;
+ 746              		.loc 1 197 0
+ 747 0038 21E0     		b	.L44
+ 748              	.L45:
+ 198:.\i2c_core.c  ****     };
+ 199:.\i2c_core.c  **** 
+ 200:.\i2c_core.c  ****     I2C_Start();
+ 749              		.loc 1 200 0
+ 750 003a FFF7FEFF 		bl	I2C_Start
+ 751              	.LVL118:
+ 201:.\i2c_core.c  **** 
+ 202:.\i2c_core.c  ****     I2C_sendbyte( (slave_add) | 1 );
+ 752              		.loc 1 202 0
+ 753 003e 47F00100 		orr	r0, r7, #1
+ 754 0042 FFF7FEFF 		bl	I2C_sendbyte
+ 755              	.LVL119:
+ 203:.\i2c_core.c  ****     if( ReceiveACK() )
+ 756              		.loc 1 203 0
+ 757 0046 FFF7FEFF 		bl	ReceiveACK
+ 758              	.LVL120:
+ 759 004a 98B1     		cbz	r0, .L50
+ 204:.\i2c_core.c  ****     {
+ 205:.\i2c_core.c  ****       I2C_Stop();
+ 760              		.loc 1 205 0
+ 761 004c FFF7FEFF 		bl	I2C_Stop
+ 762              	.LVL121:
+ 206:.\i2c_core.c  ****       return 0;
+ 763              		.loc 1 206 0
+ 764 0050 4446     		mov	r4, r8
+ 765 0052 14E0     		b	.L44
+ 766              	.LVL122:
+ 767              	.L49:
+ 207:.\i2c_core.c  ****     };
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 19
+
+
+ 208:.\i2c_core.c  **** 
+ 209:.\i2c_core.c  **** 		for( i = 0 ; i< size; i ++ )
+ 210:.\i2c_core.c  **** 		{
+ 211:.\i2c_core.c  **** 			*I2CData++ = I2C_readbyte();
+ 768              		.loc 1 211 0
+ 769 0054 6F1C     		adds	r7, r5, #1
+ 770              	.LVL123:
+ 771 0056 FFF7FEFF 		bl	I2C_readbyte
+ 772              	.LVL124:
+ 773 005a 2870     		strb	r0, [r5]
+ 212:.\i2c_core.c  **** 			
+ 213:.\i2c_core.c  **** 			if( i+1 == size )
+ 774              		.loc 1 213 0
+ 775 005c 631C     		adds	r3, r4, #1
+ 776 005e B342     		cmp	r3, r6
+ 777 0060 02D1     		bne	.L47
+ 214:.\i2c_core.c  **** 				I2C_nack();
+ 778              		.loc 1 214 0
+ 779 0062 FFF7FEFF 		bl	I2C_nack
+ 780              	.LVL125:
+ 781 0066 01E0     		b	.L48
+ 782              	.L47:
+ 215:.\i2c_core.c  **** 			else
+ 216:.\i2c_core.c  **** 				I2C_ack();
+ 783              		.loc 1 216 0
+ 784 0068 FFF7FEFF 		bl	I2C_ack
+ 785              	.LVL126:
+ 786              	.L48:
+ 209:.\i2c_core.c  **** 		{
+ 787              		.loc 1 209 0 discriminator 2
+ 788 006c 0134     		adds	r4, r4, #1
+ 789              	.LVL127:
+ 790 006e E4B2     		uxtb	r4, r4
+ 791              	.LVL128:
+ 211:.\i2c_core.c  **** 			
+ 792              		.loc 1 211 0 discriminator 2
+ 793 0070 3D46     		mov	r5, r7
+ 794 0072 00E0     		b	.L46
+ 795              	.LVL129:
+ 796              	.L50:
+ 797 0074 0024     		movs	r4, #0
+ 798              	.L46:
+ 799              	.LVL130:
+ 209:.\i2c_core.c  **** 		{
+ 800              		.loc 1 209 0 discriminator 1
+ 801 0076 B442     		cmp	r4, r6
+ 802 0078 ECD3     		bcc	.L49
+ 217:.\i2c_core.c  **** 		}
+ 218:.\i2c_core.c  **** 
+ 219:.\i2c_core.c  ****     I2C_Stop();
+ 803              		.loc 1 219 0
+ 804 007a FFF7FEFF 		bl	I2C_Stop
+ 805              	.LVL131:
+ 806              	.L44:
+ 220:.\i2c_core.c  **** 
+ 221:.\i2c_core.c  ****     return  i;
+ 222:.\i2c_core.c  **** }
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 20
+
+
+ 807              		.loc 1 222 0
+ 808 007e 2046     		mov	r0, r4
+ 809 0080 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 810              		.cfi_endproc
+ 811              	.LFE74:
+ 812              		.size	I2C_Read, .-I2C_Read
+ 813              		.global	a_SM_PecTable
+ 814              		.data
+ 815              		.align	2
+ 816              		.set	.LANCHOR0,. + 0
+ 817              		.type	a_SM_PecTable, %object
+ 818              		.size	a_SM_PecTable, 16
+ 819              	a_SM_PecTable:
+ 820 0000 00       		.byte	0
+ 821 0001 07       		.byte	7
+ 822 0002 0E       		.byte	14
+ 823 0003 09       		.byte	9
+ 824 0004 1C       		.byte	28
+ 825 0005 1B       		.byte	27
+ 826 0006 12       		.byte	18
+ 827 0007 15       		.byte	21
+ 828 0008 38       		.byte	56
+ 829 0009 3F       		.byte	63
+ 830 000a 36       		.byte	54
+ 831 000b 31       		.byte	49
+ 832 000c 24       		.byte	36
+ 833 000d 23       		.byte	35
+ 834 000e 2A       		.byte	42
+ 835 000f 2D       		.byte	45
+ 836              		.text
+ 837              	.Letext0:
+ 838              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 839              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 840              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 841              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 842              		.file 6 "Generated_Source\\PSoC5/SCL.h"
+ 843              		.file 7 "Generated_Source\\PSoC5/SDL.h"
+ 844              		.section	.debug_info,"",%progbits
+ 845              	.Ldebug_info0:
+ 846 0000 D2080000 		.4byte	0x8d2
+ 847 0004 0400     		.2byte	0x4
+ 848 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 849 000a 04       		.byte	0x4
+ 850 000b 01       		.uleb128 0x1
+ 851 000c 18010000 		.4byte	.LASF40
+ 852 0010 01       		.byte	0x1
+ 853 0011 8C000000 		.4byte	.LASF41
+ 854 0015 A6010000 		.4byte	.LASF42
+ 855 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 856 001d 00000000 		.4byte	0
+ 857 0021 00000000 		.4byte	.Ldebug_line0
+ 858 0025 02       		.uleb128 0x2
+ 859 0026 01       		.byte	0x1
+ 860 0027 06       		.byte	0x6
+ 861 0028 DA010000 		.4byte	.LASF0
+ 862 002c 02       		.uleb128 0x2
+ 863 002d 01       		.byte	0x1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 21
+
+
+ 864 002e 08       		.byte	0x8
+ 865 002f 99000000 		.4byte	.LASF1
+ 866 0033 02       		.uleb128 0x2
+ 867 0034 02       		.byte	0x2
+ 868 0035 05       		.byte	0x5
+ 869 0036 3B020000 		.4byte	.LASF2
+ 870 003a 02       		.uleb128 0x2
+ 871 003b 02       		.byte	0x2
+ 872 003c 07       		.byte	0x7
+ 873 003d 6C000000 		.4byte	.LASF3
+ 874 0041 03       		.uleb128 0x3
+ 875 0042 09000000 		.4byte	.LASF9
+ 876 0046 02       		.byte	0x2
+ 877 0047 3F       		.byte	0x3f
+ 878 0048 4C000000 		.4byte	0x4c
+ 879 004c 02       		.uleb128 0x2
+ 880 004d 04       		.byte	0x4
+ 881 004e 05       		.byte	0x5
+ 882 004f 63020000 		.4byte	.LASF4
+ 883 0053 02       		.uleb128 0x2
+ 884 0054 04       		.byte	0x4
+ 885 0055 07       		.byte	0x7
+ 886 0056 5A000000 		.4byte	.LASF5
+ 887 005a 02       		.uleb128 0x2
+ 888 005b 08       		.byte	0x8
+ 889 005c 05       		.byte	0x5
+ 890 005d 01020000 		.4byte	.LASF6
+ 891 0061 02       		.uleb128 0x2
+ 892 0062 08       		.byte	0x8
+ 893 0063 07       		.byte	0x7
+ 894 0064 01010000 		.4byte	.LASF7
+ 895 0068 04       		.uleb128 0x4
+ 896 0069 04       		.byte	0x4
+ 897 006a 05       		.byte	0x5
+ 898 006b 696E7400 		.ascii	"int\000"
+ 899 006f 02       		.uleb128 0x2
+ 900 0070 04       		.byte	0x4
+ 901 0071 07       		.byte	0x7
+ 902 0072 F4000000 		.4byte	.LASF8
+ 903 0076 03       		.uleb128 0x3
+ 904 0077 E6010000 		.4byte	.LASF10
+ 905 007b 03       		.byte	0x3
+ 906 007c 2C       		.byte	0x2c
+ 907 007d 41000000 		.4byte	0x41
+ 908 0081 03       		.uleb128 0x3
+ 909 0082 45020000 		.4byte	.LASF11
+ 910 0086 04       		.byte	0x4
+ 911 0087 C2       		.byte	0xc2
+ 912 0088 2C000000 		.4byte	0x2c
+ 913 008c 02       		.uleb128 0x2
+ 914 008d 04       		.byte	0x4
+ 915 008e 04       		.byte	0x4
+ 916 008f 36000000 		.4byte	.LASF12
+ 917 0093 02       		.uleb128 0x2
+ 918 0094 08       		.byte	0x8
+ 919 0095 04       		.byte	0x4
+ 920 0096 B4000000 		.4byte	.LASF13
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 22
+
+
+ 921 009a 02       		.uleb128 0x2
+ 922 009b 01       		.byte	0x1
+ 923 009c 08       		.byte	0x8
+ 924 009d 19020000 		.4byte	.LASF14
+ 925 00a1 02       		.uleb128 0x2
+ 926 00a2 04       		.byte	0x4
+ 927 00a3 07       		.byte	0x7
+ 928 00a4 F8010000 		.4byte	.LASF15
+ 929 00a8 05       		.uleb128 0x5
+ 930 00a9 04       		.byte	0x4
+ 931 00aa 2C000000 		.4byte	0x2c
+ 932 00ae 06       		.uleb128 0x6
+ 933 00af E2000000 		.4byte	.LASF16
+ 934 00b3 01       		.byte	0x1
+ 935 00b4 0B       		.byte	0xb
+ 936 00b5 00000000 		.4byte	.LFB63
+ 937 00b9 20000000 		.4byte	.LFE63-.LFB63
+ 938 00bd 01       		.uleb128 0x1
+ 939 00be 9C       		.byte	0x9c
+ 940 00bf DE000000 		.4byte	0xde
+ 941 00c3 07       		.uleb128 0x7
+ 942 00c4 7400     		.ascii	"t\000"
+ 943 00c6 01       		.byte	0x1
+ 944 00c7 0B       		.byte	0xb
+ 945 00c8 68000000 		.4byte	0x68
+ 946 00cc 00000000 		.4byte	.LLST0
+ 947 00d0 08       		.uleb128 0x8
+ 948 00d1 747400   		.ascii	"tt\000"
+ 949 00d4 01       		.byte	0x1
+ 950 00d5 0D       		.byte	0xd
+ 951 00d6 DE000000 		.4byte	0xde
+ 952 00da 02       		.uleb128 0x2
+ 953 00db 91       		.byte	0x91
+ 954 00dc 7C       		.sleb128 -4
+ 955 00dd 00       		.byte	0
+ 956 00de 09       		.uleb128 0x9
+ 957 00df 68000000 		.4byte	0x68
+ 958 00e3 06       		.uleb128 0x6
+ 959 00e4 1F000000 		.4byte	.LASF17
+ 960 00e8 01       		.byte	0x1
+ 961 00e9 1C       		.byte	0x1c
+ 962 00ea 00000000 		.4byte	.LFB65
+ 963 00ee 34000000 		.4byte	.LFE65-.LFB65
+ 964 00f2 01       		.uleb128 0x1
+ 965 00f3 9C       		.byte	0x9c
+ 966 00f4 8D010000 		.4byte	0x18d
+ 967 00f8 0A       		.uleb128 0xa
+ 968 00f9 08000000 		.4byte	.LVL2
+ 969 00fd A8080000 		.4byte	0x8a8
+ 970 0101 0B010000 		.4byte	0x10b
+ 971 0105 0B       		.uleb128 0xb
+ 972 0106 01       		.uleb128 0x1
+ 973 0107 50       		.byte	0x50
+ 974 0108 01       		.uleb128 0x1
+ 975 0109 31       		.byte	0x31
+ 976 010a 00       		.byte	0
+ 977 010b 0A       		.uleb128 0xa
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 23
+
+
+ 978 010c 0E000000 		.4byte	.LVL3
+ 979 0110 AE000000 		.4byte	0xae
+ 980 0114 1E010000 		.4byte	0x11e
+ 981 0118 0B       		.uleb128 0xb
+ 982 0119 01       		.uleb128 0x1
+ 983 011a 50       		.byte	0x50
+ 984 011b 01       		.uleb128 0x1
+ 985 011c 44       		.byte	0x44
+ 986 011d 00       		.byte	0
+ 987 011e 0A       		.uleb128 0xa
+ 988 011f 14000000 		.4byte	.LVL4
+ 989 0123 B9080000 		.4byte	0x8b9
+ 990 0127 31010000 		.4byte	0x131
+ 991 012b 0B       		.uleb128 0xb
+ 992 012c 01       		.uleb128 0x1
+ 993 012d 50       		.byte	0x50
+ 994 012e 01       		.uleb128 0x1
+ 995 012f 30       		.byte	0x30
+ 996 0130 00       		.byte	0
+ 997 0131 0A       		.uleb128 0xa
+ 998 0132 1A000000 		.4byte	.LVL5
+ 999 0136 AE000000 		.4byte	0xae
+ 1000 013a 44010000 		.4byte	0x144
+ 1001 013e 0B       		.uleb128 0xb
+ 1002 013f 01       		.uleb128 0x1
+ 1003 0140 50       		.byte	0x50
+ 1004 0141 01       		.uleb128 0x1
+ 1005 0142 44       		.byte	0x44
+ 1006 0143 00       		.byte	0
+ 1007 0144 0A       		.uleb128 0xa
+ 1008 0145 20000000 		.4byte	.LVL6
+ 1009 0149 A8080000 		.4byte	0x8a8
+ 1010 014d 57010000 		.4byte	0x157
+ 1011 0151 0B       		.uleb128 0xb
+ 1012 0152 01       		.uleb128 0x1
+ 1013 0153 50       		.byte	0x50
+ 1014 0154 01       		.uleb128 0x1
+ 1015 0155 30       		.byte	0x30
+ 1016 0156 00       		.byte	0
+ 1017 0157 0A       		.uleb128 0xa
+ 1018 0158 26000000 		.4byte	.LVL7
+ 1019 015c AE000000 		.4byte	0xae
+ 1020 0160 6A010000 		.4byte	0x16a
+ 1021 0164 0B       		.uleb128 0xb
+ 1022 0165 01       		.uleb128 0x1
+ 1023 0166 50       		.byte	0x50
+ 1024 0167 01       		.uleb128 0x1
+ 1025 0168 44       		.byte	0x44
+ 1026 0169 00       		.byte	0
+ 1027 016a 0A       		.uleb128 0xa
+ 1028 016b 2C000000 		.4byte	.LVL8
+ 1029 016f B9080000 		.4byte	0x8b9
+ 1030 0173 7D010000 		.4byte	0x17d
+ 1031 0177 0B       		.uleb128 0xb
+ 1032 0178 01       		.uleb128 0x1
+ 1033 0179 50       		.byte	0x50
+ 1034 017a 01       		.uleb128 0x1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 24
+
+
+ 1035 017b 31       		.byte	0x31
+ 1036 017c 00       		.byte	0
+ 1037 017d 0C       		.uleb128 0xc
+ 1038 017e 32000000 		.4byte	.LVL9
+ 1039 0182 AE000000 		.4byte	0xae
+ 1040 0186 0B       		.uleb128 0xb
+ 1041 0187 01       		.uleb128 0x1
+ 1042 0188 50       		.byte	0x50
+ 1043 0189 01       		.uleb128 0x1
+ 1044 018a 44       		.byte	0x44
+ 1045 018b 00       		.byte	0
+ 1046 018c 00       		.byte	0
+ 1047 018d 06       		.uleb128 0x6
+ 1048 018e 29000000 		.4byte	.LASF18
+ 1049 0192 01       		.byte	0x1
+ 1050 0193 4A       		.byte	0x4a
+ 1051 0194 00000000 		.4byte	.LFB69
+ 1052 0198 48000000 		.4byte	.LFE69-.LFB69
+ 1053 019c 01       		.uleb128 0x1
+ 1054 019d 9C       		.byte	0x9c
+ 1055 019e 40020000 		.4byte	0x240
+ 1056 01a2 0D       		.uleb128 0xd
+ 1057 01a3 13000000 		.4byte	.LASF19
+ 1058 01a7 01       		.byte	0x1
+ 1059 01a8 4A       		.byte	0x4a
+ 1060 01a9 2C000000 		.4byte	0x2c
+ 1061 01ad 1E000000 		.4byte	.LLST1
+ 1062 01b1 0E       		.uleb128 0xe
+ 1063 01b2 6900     		.ascii	"i\000"
+ 1064 01b4 01       		.byte	0x1
+ 1065 01b5 4C       		.byte	0x4c
+ 1066 01b6 2C000000 		.4byte	0x2c
+ 1067 01ba 47000000 		.4byte	.LLST2
+ 1068 01be 0A       		.uleb128 0xa
+ 1069 01bf 14000000 		.4byte	.LVL13
+ 1070 01c3 B9080000 		.4byte	0x8b9
+ 1071 01c7 D1010000 		.4byte	0x1d1
+ 1072 01cb 0B       		.uleb128 0xb
+ 1073 01cc 01       		.uleb128 0x1
+ 1074 01cd 50       		.byte	0x50
+ 1075 01ce 01       		.uleb128 0x1
+ 1076 01cf 31       		.byte	0x31
+ 1077 01d0 00       		.byte	0
+ 1078 01d1 0A       		.uleb128 0xa
+ 1079 01d2 1C000000 		.4byte	.LVL14
+ 1080 01d6 B9080000 		.4byte	0x8b9
+ 1081 01da E4010000 		.4byte	0x1e4
+ 1082 01de 0B       		.uleb128 0xb
+ 1083 01df 01       		.uleb128 0x1
+ 1084 01e0 50       		.byte	0x50
+ 1085 01e1 01       		.uleb128 0x1
+ 1086 01e2 30       		.byte	0x30
+ 1087 01e3 00       		.byte	0
+ 1088 01e4 0A       		.uleb128 0xa
+ 1089 01e5 22000000 		.4byte	.LVL15
+ 1090 01e9 AE000000 		.4byte	0xae
+ 1091 01ed F7010000 		.4byte	0x1f7
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 25
+
+
+ 1092 01f1 0B       		.uleb128 0xb
+ 1093 01f2 01       		.uleb128 0x1
+ 1094 01f3 50       		.byte	0x50
+ 1095 01f4 01       		.uleb128 0x1
+ 1096 01f5 44       		.byte	0x44
+ 1097 01f6 00       		.byte	0
+ 1098 01f7 0A       		.uleb128 0xa
+ 1099 01f8 28000000 		.4byte	.LVL16
+ 1100 01fc A8080000 		.4byte	0x8a8
+ 1101 0200 0A020000 		.4byte	0x20a
+ 1102 0204 0B       		.uleb128 0xb
+ 1103 0205 01       		.uleb128 0x1
+ 1104 0206 50       		.byte	0x50
+ 1105 0207 01       		.uleb128 0x1
+ 1106 0208 31       		.byte	0x31
+ 1107 0209 00       		.byte	0
+ 1108 020a 0A       		.uleb128 0xa
+ 1109 020b 2E000000 		.4byte	.LVL17
+ 1110 020f AE000000 		.4byte	0xae
+ 1111 0213 1D020000 		.4byte	0x21d
+ 1112 0217 0B       		.uleb128 0xb
+ 1113 0218 01       		.uleb128 0x1
+ 1114 0219 50       		.byte	0x50
+ 1115 021a 01       		.uleb128 0x1
+ 1116 021b 44       		.byte	0x44
+ 1117 021c 00       		.byte	0
+ 1118 021d 0A       		.uleb128 0xa
+ 1119 021e 38000000 		.4byte	.LVL20
+ 1120 0222 A8080000 		.4byte	0x8a8
+ 1121 0226 30020000 		.4byte	0x230
+ 1122 022a 0B       		.uleb128 0xb
+ 1123 022b 01       		.uleb128 0x1
+ 1124 022c 50       		.byte	0x50
+ 1125 022d 01       		.uleb128 0x1
+ 1126 022e 30       		.byte	0x30
+ 1127 022f 00       		.byte	0
+ 1128 0230 0C       		.uleb128 0xc
+ 1129 0231 3E000000 		.4byte	.LVL21
+ 1130 0235 AE000000 		.4byte	0xae
+ 1131 0239 0B       		.uleb128 0xb
+ 1132 023a 01       		.uleb128 0x1
+ 1133 023b 50       		.byte	0x50
+ 1134 023c 01       		.uleb128 0x1
+ 1135 023d 44       		.byte	0x44
+ 1136 023e 00       		.byte	0
+ 1137 023f 00       		.byte	0
+ 1138 0240 06       		.uleb128 0x6
+ 1139 0241 6C020000 		.4byte	.LASF20
+ 1140 0245 01       		.byte	0x1
+ 1141 0246 28       		.byte	0x28
+ 1142 0247 00000000 		.4byte	.LFB66
+ 1143 024b 28000000 		.4byte	.LFE66-.LFB66
+ 1144 024f 01       		.uleb128 0x1
+ 1145 0250 9C       		.byte	0x9c
+ 1146 0251 C4020000 		.4byte	0x2c4
+ 1147 0255 0A       		.uleb128 0xa
+ 1148 0256 08000000 		.4byte	.LVL24
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 26
+
+
+ 1149 025a B9080000 		.4byte	0x8b9
+ 1150 025e 68020000 		.4byte	0x268
+ 1151 0262 0B       		.uleb128 0xb
+ 1152 0263 01       		.uleb128 0x1
+ 1153 0264 50       		.byte	0x50
+ 1154 0265 01       		.uleb128 0x1
+ 1155 0266 30       		.byte	0x30
+ 1156 0267 00       		.byte	0
+ 1157 0268 0A       		.uleb128 0xa
+ 1158 0269 0E000000 		.4byte	.LVL25
+ 1159 026d AE000000 		.4byte	0xae
+ 1160 0271 7B020000 		.4byte	0x27b
+ 1161 0275 0B       		.uleb128 0xb
+ 1162 0276 01       		.uleb128 0x1
+ 1163 0277 50       		.byte	0x50
+ 1164 0278 01       		.uleb128 0x1
+ 1165 0279 44       		.byte	0x44
+ 1166 027a 00       		.byte	0
+ 1167 027b 0A       		.uleb128 0xa
+ 1168 027c 14000000 		.4byte	.LVL26
+ 1169 0280 A8080000 		.4byte	0x8a8
+ 1170 0284 8E020000 		.4byte	0x28e
+ 1171 0288 0B       		.uleb128 0xb
+ 1172 0289 01       		.uleb128 0x1
+ 1173 028a 50       		.byte	0x50
+ 1174 028b 01       		.uleb128 0x1
+ 1175 028c 31       		.byte	0x31
+ 1176 028d 00       		.byte	0
+ 1177 028e 0A       		.uleb128 0xa
+ 1178 028f 1A000000 		.4byte	.LVL27
+ 1179 0293 AE000000 		.4byte	0xae
+ 1180 0297 A1020000 		.4byte	0x2a1
+ 1181 029b 0B       		.uleb128 0xb
+ 1182 029c 01       		.uleb128 0x1
+ 1183 029d 50       		.byte	0x50
+ 1184 029e 01       		.uleb128 0x1
+ 1185 029f 44       		.byte	0x44
+ 1186 02a0 00       		.byte	0
+ 1187 02a1 0A       		.uleb128 0xa
+ 1188 02a2 20000000 		.4byte	.LVL28
+ 1189 02a6 B9080000 		.4byte	0x8b9
+ 1190 02aa B4020000 		.4byte	0x2b4
+ 1191 02ae 0B       		.uleb128 0xb
+ 1192 02af 01       		.uleb128 0x1
+ 1193 02b0 50       		.byte	0x50
+ 1194 02b1 01       		.uleb128 0x1
+ 1195 02b2 31       		.byte	0x31
+ 1196 02b3 00       		.byte	0
+ 1197 02b4 0C       		.uleb128 0xc
+ 1198 02b5 26000000 		.4byte	.LVL29
+ 1199 02b9 AE000000 		.4byte	0xae
+ 1200 02bd 0B       		.uleb128 0xb
+ 1201 02be 01       		.uleb128 0x1
+ 1202 02bf 50       		.byte	0x50
+ 1203 02c0 01       		.uleb128 0x1
+ 1204 02c1 44       		.byte	0x44
+ 1205 02c2 00       		.byte	0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 27
+
+
+ 1206 02c3 00       		.byte	0
+ 1207 02c4 06       		.uleb128 0x6
+ 1208 02c5 51000000 		.4byte	.LASF21
+ 1209 02c9 01       		.byte	0x1
+ 1210 02ca 32       		.byte	0x32
+ 1211 02cb 00000000 		.4byte	.LFB67
+ 1212 02cf 34000000 		.4byte	.LFE67-.LFB67
+ 1213 02d3 01       		.uleb128 0x1
+ 1214 02d4 9C       		.byte	0x9c
+ 1215 02d5 6E030000 		.4byte	0x36e
+ 1216 02d9 0A       		.uleb128 0xa
+ 1217 02da 08000000 		.4byte	.LVL30
+ 1218 02de A8080000 		.4byte	0x8a8
+ 1219 02e2 EC020000 		.4byte	0x2ec
+ 1220 02e6 0B       		.uleb128 0xb
+ 1221 02e7 01       		.uleb128 0x1
+ 1222 02e8 50       		.byte	0x50
+ 1223 02e9 01       		.uleb128 0x1
+ 1224 02ea 30       		.byte	0x30
+ 1225 02eb 00       		.byte	0
+ 1226 02ec 0A       		.uleb128 0xa
+ 1227 02ed 0E000000 		.4byte	.LVL31
+ 1228 02f1 AE000000 		.4byte	0xae
+ 1229 02f5 FF020000 		.4byte	0x2ff
+ 1230 02f9 0B       		.uleb128 0xb
+ 1231 02fa 01       		.uleb128 0x1
+ 1232 02fb 50       		.byte	0x50
+ 1233 02fc 01       		.uleb128 0x1
+ 1234 02fd 44       		.byte	0x44
+ 1235 02fe 00       		.byte	0
+ 1236 02ff 0A       		.uleb128 0xa
+ 1237 0300 14000000 		.4byte	.LVL32
+ 1238 0304 B9080000 		.4byte	0x8b9
+ 1239 0308 12030000 		.4byte	0x312
+ 1240 030c 0B       		.uleb128 0xb
+ 1241 030d 01       		.uleb128 0x1
+ 1242 030e 50       		.byte	0x50
+ 1243 030f 01       		.uleb128 0x1
+ 1244 0310 31       		.byte	0x31
+ 1245 0311 00       		.byte	0
+ 1246 0312 0A       		.uleb128 0xa
+ 1247 0313 1A000000 		.4byte	.LVL33
+ 1248 0317 AE000000 		.4byte	0xae
+ 1249 031b 25030000 		.4byte	0x325
+ 1250 031f 0B       		.uleb128 0xb
+ 1251 0320 01       		.uleb128 0x1
+ 1252 0321 50       		.byte	0x50
+ 1253 0322 01       		.uleb128 0x1
+ 1254 0323 44       		.byte	0x44
+ 1255 0324 00       		.byte	0
+ 1256 0325 0A       		.uleb128 0xa
+ 1257 0326 20000000 		.4byte	.LVL34
+ 1258 032a A8080000 		.4byte	0x8a8
+ 1259 032e 38030000 		.4byte	0x338
+ 1260 0332 0B       		.uleb128 0xb
+ 1261 0333 01       		.uleb128 0x1
+ 1262 0334 50       		.byte	0x50
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 28
+
+
+ 1263 0335 01       		.uleb128 0x1
+ 1264 0336 31       		.byte	0x31
+ 1265 0337 00       		.byte	0
+ 1266 0338 0A       		.uleb128 0xa
+ 1267 0339 26000000 		.4byte	.LVL35
+ 1268 033d AE000000 		.4byte	0xae
+ 1269 0341 4B030000 		.4byte	0x34b
+ 1270 0345 0B       		.uleb128 0xb
+ 1271 0346 01       		.uleb128 0x1
+ 1272 0347 50       		.byte	0x50
+ 1273 0348 01       		.uleb128 0x1
+ 1274 0349 44       		.byte	0x44
+ 1275 034a 00       		.byte	0
+ 1276 034b 0A       		.uleb128 0xa
+ 1277 034c 2C000000 		.4byte	.LVL36
+ 1278 0350 A8080000 		.4byte	0x8a8
+ 1279 0354 5E030000 		.4byte	0x35e
+ 1280 0358 0B       		.uleb128 0xb
+ 1281 0359 01       		.uleb128 0x1
+ 1282 035a 50       		.byte	0x50
+ 1283 035b 01       		.uleb128 0x1
+ 1284 035c 30       		.byte	0x30
+ 1285 035d 00       		.byte	0
+ 1286 035e 0C       		.uleb128 0xc
+ 1287 035f 32000000 		.4byte	.LVL37
+ 1288 0363 AE000000 		.4byte	0xae
+ 1289 0367 0B       		.uleb128 0xb
+ 1290 0368 01       		.uleb128 0x1
+ 1291 0369 50       		.byte	0x50
+ 1292 036a 01       		.uleb128 0x1
+ 1293 036b 44       		.byte	0x44
+ 1294 036c 00       		.byte	0
+ 1295 036d 00       		.byte	0
+ 1296 036e 06       		.uleb128 0x6
+ 1297 036f 26020000 		.4byte	.LASF22
+ 1298 0373 01       		.byte	0x1
+ 1299 0374 3E       		.byte	0x3e
+ 1300 0375 00000000 		.4byte	.LFB68
+ 1301 0379 34000000 		.4byte	.LFE68-.LFB68
+ 1302 037d 01       		.uleb128 0x1
+ 1303 037e 9C       		.byte	0x9c
+ 1304 037f 18040000 		.4byte	0x418
+ 1305 0383 0A       		.uleb128 0xa
+ 1306 0384 08000000 		.4byte	.LVL38
+ 1307 0388 A8080000 		.4byte	0x8a8
+ 1308 038c 96030000 		.4byte	0x396
+ 1309 0390 0B       		.uleb128 0xb
+ 1310 0391 01       		.uleb128 0x1
+ 1311 0392 50       		.byte	0x50
+ 1312 0393 01       		.uleb128 0x1
+ 1313 0394 30       		.byte	0x30
+ 1314 0395 00       		.byte	0
+ 1315 0396 0A       		.uleb128 0xa
+ 1316 0397 0E000000 		.4byte	.LVL39
+ 1317 039b AE000000 		.4byte	0xae
+ 1318 039f A9030000 		.4byte	0x3a9
+ 1319 03a3 0B       		.uleb128 0xb
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 29
+
+
+ 1320 03a4 01       		.uleb128 0x1
+ 1321 03a5 50       		.byte	0x50
+ 1322 03a6 01       		.uleb128 0x1
+ 1323 03a7 44       		.byte	0x44
+ 1324 03a8 00       		.byte	0
+ 1325 03a9 0A       		.uleb128 0xa
+ 1326 03aa 14000000 		.4byte	.LVL40
+ 1327 03ae B9080000 		.4byte	0x8b9
+ 1328 03b2 BC030000 		.4byte	0x3bc
+ 1329 03b6 0B       		.uleb128 0xb
+ 1330 03b7 01       		.uleb128 0x1
+ 1331 03b8 50       		.byte	0x50
+ 1332 03b9 01       		.uleb128 0x1
+ 1333 03ba 30       		.byte	0x30
+ 1334 03bb 00       		.byte	0
+ 1335 03bc 0A       		.uleb128 0xa
+ 1336 03bd 1A000000 		.4byte	.LVL41
+ 1337 03c1 AE000000 		.4byte	0xae
+ 1338 03c5 CF030000 		.4byte	0x3cf
+ 1339 03c9 0B       		.uleb128 0xb
+ 1340 03ca 01       		.uleb128 0x1
+ 1341 03cb 50       		.byte	0x50
+ 1342 03cc 01       		.uleb128 0x1
+ 1343 03cd 44       		.byte	0x44
+ 1344 03ce 00       		.byte	0
+ 1345 03cf 0A       		.uleb128 0xa
+ 1346 03d0 20000000 		.4byte	.LVL42
+ 1347 03d4 A8080000 		.4byte	0x8a8
+ 1348 03d8 E2030000 		.4byte	0x3e2
+ 1349 03dc 0B       		.uleb128 0xb
+ 1350 03dd 01       		.uleb128 0x1
+ 1351 03de 50       		.byte	0x50
+ 1352 03df 01       		.uleb128 0x1
+ 1353 03e0 31       		.byte	0x31
+ 1354 03e1 00       		.byte	0
+ 1355 03e2 0A       		.uleb128 0xa
+ 1356 03e3 26000000 		.4byte	.LVL43
+ 1357 03e7 AE000000 		.4byte	0xae
+ 1358 03eb F5030000 		.4byte	0x3f5
+ 1359 03ef 0B       		.uleb128 0xb
+ 1360 03f0 01       		.uleb128 0x1
+ 1361 03f1 50       		.byte	0x50
+ 1362 03f2 01       		.uleb128 0x1
+ 1363 03f3 44       		.byte	0x44
+ 1364 03f4 00       		.byte	0
+ 1365 03f5 0A       		.uleb128 0xa
+ 1366 03f6 2C000000 		.4byte	.LVL44
+ 1367 03fa A8080000 		.4byte	0x8a8
+ 1368 03fe 08040000 		.4byte	0x408
+ 1369 0402 0B       		.uleb128 0xb
+ 1370 0403 01       		.uleb128 0x1
+ 1371 0404 50       		.byte	0x50
+ 1372 0405 01       		.uleb128 0x1
+ 1373 0406 30       		.byte	0x30
+ 1374 0407 00       		.byte	0
+ 1375 0408 0C       		.uleb128 0xc
+ 1376 0409 32000000 		.4byte	.LVL45
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 30
+
+
+ 1377 040d AE000000 		.4byte	0xae
+ 1378 0411 0B       		.uleb128 0xb
+ 1379 0412 01       		.uleb128 0x1
+ 1380 0413 50       		.byte	0x50
+ 1381 0414 01       		.uleb128 0x1
+ 1382 0415 44       		.byte	0x44
+ 1383 0416 00       		.byte	0
+ 1384 0417 00       		.byte	0
+ 1385 0418 0F       		.uleb128 0xf
+ 1386 0419 46000000 		.4byte	.LASF24
+ 1387 041d 01       		.byte	0x1
+ 1388 041e 71       		.byte	0x71
+ 1389 041f 2C000000 		.4byte	0x2c
+ 1390 0423 00000000 		.4byte	.LFB71
+ 1391 0427 30000000 		.4byte	.LFE71-.LFB71
+ 1392 042b 01       		.uleb128 0x1
+ 1393 042c 9C       		.byte	0x9c
+ 1394 042d B6040000 		.4byte	0x4b6
+ 1395 0431 10       		.uleb128 0x10
+ 1396 0432 1E020000 		.4byte	.LASF23
+ 1397 0436 01       		.byte	0x1
+ 1398 0437 73       		.byte	0x73
+ 1399 0438 2C000000 		.4byte	0x2c
+ 1400 043c 01       		.uleb128 0x1
+ 1401 043d 54       		.byte	0x54
+ 1402 043e 0A       		.uleb128 0xa
+ 1403 043f 08000000 		.4byte	.LVL46
+ 1404 0443 B9080000 		.4byte	0x8b9
+ 1405 0447 51040000 		.4byte	0x451
+ 1406 044b 0B       		.uleb128 0xb
+ 1407 044c 01       		.uleb128 0x1
+ 1408 044d 50       		.byte	0x50
+ 1409 044e 01       		.uleb128 0x1
+ 1410 044f 31       		.byte	0x31
+ 1411 0450 00       		.byte	0
+ 1412 0451 0A       		.uleb128 0xa
+ 1413 0452 0E000000 		.4byte	.LVL47
+ 1414 0456 AE000000 		.4byte	0xae
+ 1415 045a 64040000 		.4byte	0x464
+ 1416 045e 0B       		.uleb128 0xb
+ 1417 045f 01       		.uleb128 0x1
+ 1418 0460 50       		.byte	0x50
+ 1419 0461 01       		.uleb128 0x1
+ 1420 0462 44       		.byte	0x44
+ 1421 0463 00       		.byte	0
+ 1422 0464 0A       		.uleb128 0xa
+ 1423 0465 14000000 		.4byte	.LVL48
+ 1424 0469 A8080000 		.4byte	0x8a8
+ 1425 046d 77040000 		.4byte	0x477
+ 1426 0471 0B       		.uleb128 0xb
+ 1427 0472 01       		.uleb128 0x1
+ 1428 0473 50       		.byte	0x50
+ 1429 0474 01       		.uleb128 0x1
+ 1430 0475 31       		.byte	0x31
+ 1431 0476 00       		.byte	0
+ 1432 0477 0A       		.uleb128 0xa
+ 1433 0478 1A000000 		.4byte	.LVL49
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 31
+
+
+ 1434 047c AE000000 		.4byte	0xae
+ 1435 0480 8A040000 		.4byte	0x48a
+ 1436 0484 0B       		.uleb128 0xb
+ 1437 0485 01       		.uleb128 0x1
+ 1438 0486 50       		.byte	0x50
+ 1439 0487 01       		.uleb128 0x1
+ 1440 0488 44       		.byte	0x44
+ 1441 0489 00       		.byte	0
+ 1442 048a 11       		.uleb128 0x11
+ 1443 048b 1E000000 		.4byte	.LVL50
+ 1444 048f CA080000 		.4byte	0x8ca
+ 1445 0493 0A       		.uleb128 0xa
+ 1446 0494 26000000 		.4byte	.LVL52
+ 1447 0498 A8080000 		.4byte	0x8a8
+ 1448 049c A6040000 		.4byte	0x4a6
+ 1449 04a0 0B       		.uleb128 0xb
+ 1450 04a1 01       		.uleb128 0x1
+ 1451 04a2 50       		.byte	0x50
+ 1452 04a3 01       		.uleb128 0x1
+ 1453 04a4 30       		.byte	0x30
+ 1454 04a5 00       		.byte	0
+ 1455 04a6 0C       		.uleb128 0xc
+ 1456 04a7 2C000000 		.4byte	.LVL53
+ 1457 04ab AE000000 		.4byte	0xae
+ 1458 04af 0B       		.uleb128 0xb
+ 1459 04b0 01       		.uleb128 0x1
+ 1460 04b1 50       		.byte	0x50
+ 1461 04b2 01       		.uleb128 0x1
+ 1462 04b3 44       		.byte	0x44
+ 1463 04b4 00       		.byte	0
+ 1464 04b5 00       		.byte	0
+ 1465 04b6 0F       		.uleb128 0xf
+ 1466 04b7 2E020000 		.4byte	.LASF25
+ 1467 04bb 01       		.byte	0x1
+ 1468 04bc 5D       		.byte	0x5d
+ 1469 04bd 2C000000 		.4byte	0x2c
+ 1470 04c1 00000000 		.4byte	.LFB70
+ 1471 04c5 40000000 		.4byte	.LFE70-.LFB70
+ 1472 04c9 01       		.uleb128 0x1
+ 1473 04ca 9C       		.byte	0x9c
+ 1474 04cb 50050000 		.4byte	0x550
+ 1475 04cf 0E       		.uleb128 0xe
+ 1476 04d0 6900     		.ascii	"i\000"
+ 1477 04d2 01       		.byte	0x1
+ 1478 04d3 5F       		.byte	0x5f
+ 1479 04d4 2C000000 		.4byte	0x2c
+ 1480 04d8 71000000 		.4byte	.LLST3
+ 1481 04dc 12       		.uleb128 0x12
+ 1482 04dd D9000000 		.4byte	.LASF26
+ 1483 04e1 01       		.byte	0x1
+ 1484 04e2 60       		.byte	0x60
+ 1485 04e3 2C000000 		.4byte	0x2c
+ 1486 04e7 9B000000 		.4byte	.LLST4
+ 1487 04eb 0A       		.uleb128 0xa
+ 1488 04ec 08000000 		.4byte	.LVL55
+ 1489 04f0 B9080000 		.4byte	0x8b9
+ 1490 04f4 FE040000 		.4byte	0x4fe
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 32
+
+
+ 1491 04f8 0B       		.uleb128 0xb
+ 1492 04f9 01       		.uleb128 0x1
+ 1493 04fa 50       		.byte	0x50
+ 1494 04fb 01       		.uleb128 0x1
+ 1495 04fc 31       		.byte	0x31
+ 1496 04fd 00       		.byte	0
+ 1497 04fe 0A       		.uleb128 0xa
+ 1498 04ff 14000000 		.4byte	.LVL57
+ 1499 0503 A8080000 		.4byte	0x8a8
+ 1500 0507 11050000 		.4byte	0x511
+ 1501 050b 0B       		.uleb128 0xb
+ 1502 050c 01       		.uleb128 0x1
+ 1503 050d 50       		.byte	0x50
+ 1504 050e 01       		.uleb128 0x1
+ 1505 050f 31       		.byte	0x31
+ 1506 0510 00       		.byte	0
+ 1507 0511 0A       		.uleb128 0xa
+ 1508 0512 1E000000 		.4byte	.LVL60
+ 1509 0516 AE000000 		.4byte	0xae
+ 1510 051a 24050000 		.4byte	0x524
+ 1511 051e 0B       		.uleb128 0xb
+ 1512 051f 01       		.uleb128 0x1
+ 1513 0520 50       		.byte	0x50
+ 1514 0521 01       		.uleb128 0x1
+ 1515 0522 44       		.byte	0x44
+ 1516 0523 00       		.byte	0
+ 1517 0524 11       		.uleb128 0x11
+ 1518 0525 22000000 		.4byte	.LVL61
+ 1519 0529 CA080000 		.4byte	0x8ca
+ 1520 052d 0A       		.uleb128 0xa
+ 1521 052e 2E000000 		.4byte	.LVL64
+ 1522 0532 A8080000 		.4byte	0x8a8
+ 1523 0536 40050000 		.4byte	0x540
+ 1524 053a 0B       		.uleb128 0xb
+ 1525 053b 01       		.uleb128 0x1
+ 1526 053c 50       		.byte	0x50
+ 1527 053d 01       		.uleb128 0x1
+ 1528 053e 30       		.byte	0x30
+ 1529 053f 00       		.byte	0
+ 1530 0540 0C       		.uleb128 0xc
+ 1531 0541 34000000 		.4byte	.LVL65
+ 1532 0545 AE000000 		.4byte	0xae
+ 1533 0549 0B       		.uleb128 0xb
+ 1534 054a 01       		.uleb128 0x1
+ 1535 054b 50       		.byte	0x50
+ 1536 054c 01       		.uleb128 0x1
+ 1537 054d 44       		.byte	0x44
+ 1538 054e 00       		.byte	0
+ 1539 054f 00       		.byte	0
+ 1540 0550 13       		.uleb128 0x13
+ 1541 0551 A7000000 		.4byte	.LASF43
+ 1542 0555 01       		.byte	0x1
+ 1543 0556 12       		.byte	0x12
+ 1544 0557 00000000 		.4byte	.LFB64
+ 1545 055b 24000000 		.4byte	.LFE64-.LFB64
+ 1546 055f 01       		.uleb128 0x1
+ 1547 0560 9C       		.byte	0x9c
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 33
+
+
+ 1548 0561 C3050000 		.4byte	0x5c3
+ 1549 0565 0A       		.uleb128 0xa
+ 1550 0566 08000000 		.4byte	.LVL68
+ 1551 056a A8080000 		.4byte	0x8a8
+ 1552 056e 78050000 		.4byte	0x578
+ 1553 0572 0B       		.uleb128 0xb
+ 1554 0573 01       		.uleb128 0x1
+ 1555 0574 50       		.byte	0x50
+ 1556 0575 01       		.uleb128 0x1
+ 1557 0576 31       		.byte	0x31
+ 1558 0577 00       		.byte	0
+ 1559 0578 0A       		.uleb128 0xa
+ 1560 0579 0E000000 		.4byte	.LVL69
+ 1561 057d AE000000 		.4byte	0xae
+ 1562 0581 8B050000 		.4byte	0x58b
+ 1563 0585 0B       		.uleb128 0xb
+ 1564 0586 01       		.uleb128 0x1
+ 1565 0587 50       		.byte	0x50
+ 1566 0588 01       		.uleb128 0x1
+ 1567 0589 44       		.byte	0x44
+ 1568 058a 00       		.byte	0
+ 1569 058b 0A       		.uleb128 0xa
+ 1570 058c 14000000 		.4byte	.LVL70
+ 1571 0590 A8080000 		.4byte	0x8a8
+ 1572 0594 9E050000 		.4byte	0x59e
+ 1573 0598 0B       		.uleb128 0xb
+ 1574 0599 01       		.uleb128 0x1
+ 1575 059a 50       		.byte	0x50
+ 1576 059b 01       		.uleb128 0x1
+ 1577 059c 30       		.byte	0x30
+ 1578 059d 00       		.byte	0
+ 1579 059e 0A       		.uleb128 0xa
+ 1580 059f 1C000000 		.4byte	.LVL71
+ 1581 05a3 AE000000 		.4byte	0xae
+ 1582 05a7 B3050000 		.4byte	0x5b3
+ 1583 05ab 0B       		.uleb128 0xb
+ 1584 05ac 01       		.uleb128 0x1
+ 1585 05ad 50       		.byte	0x50
+ 1586 05ae 03       		.uleb128 0x3
+ 1587 05af 0A       		.byte	0xa
+ 1588 05b0 D007     		.2byte	0x7d0
+ 1589 05b2 00       		.byte	0
+ 1590 05b3 0C       		.uleb128 0xc
+ 1591 05b4 22000000 		.4byte	.LVL72
+ 1592 05b8 A8080000 		.4byte	0x8a8
+ 1593 05bc 0B       		.uleb128 0xb
+ 1594 05bd 01       		.uleb128 0x1
+ 1595 05be 50       		.byte	0x50
+ 1596 05bf 01       		.uleb128 0x1
+ 1597 05c0 31       		.byte	0x31
+ 1598 05c1 00       		.byte	0
+ 1599 05c2 00       		.byte	0
+ 1600 05c3 14       		.uleb128 0x14
+ 1601 05c4 7D020000 		.4byte	.LASF29
+ 1602 05c8 01       		.byte	0x1
+ 1603 05c9 7E       		.byte	0x7e
+ 1604 05ca 81000000 		.4byte	0x81
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 34
+
+
+ 1605 05ce 00000000 		.4byte	.LFB72
+ 1606 05d2 20000000 		.4byte	.LFE72-.LFB72
+ 1607 05d6 01       		.uleb128 0x1
+ 1608 05d7 9C       		.byte	0x9c
+ 1609 05d8 13060000 		.4byte	0x613
+ 1610 05dc 0D       		.uleb128 0xd
+ 1611 05dd BB000000 		.4byte	.LASF27
+ 1612 05e1 01       		.byte	0x1
+ 1613 05e2 7E       		.byte	0x7e
+ 1614 05e3 81000000 		.4byte	0x81
+ 1615 05e7 DD000000 		.4byte	.LLST5
+ 1616 05eb 0D       		.uleb128 0xd
+ 1617 05ec 3C000000 		.4byte	.LASF28
+ 1618 05f0 01       		.byte	0x1
+ 1619 05f1 7E       		.byte	0x7e
+ 1620 05f2 81000000 		.4byte	0x81
+ 1621 05f6 FE000000 		.4byte	.LLST6
+ 1622 05fa 15       		.uleb128 0x15
+ 1623 05fb 6900     		.ascii	"i\000"
+ 1624 05fd 01       		.byte	0x1
+ 1625 05fe 80       		.byte	0x80
+ 1626 05ff 81000000 		.4byte	0x81
+ 1627 0603 0E       		.uleb128 0xe
+ 1628 0604 63726300 		.ascii	"crc\000"
+ 1629 0608 01       		.byte	0x1
+ 1630 0609 80       		.byte	0x80
+ 1631 060a 81000000 		.4byte	0x81
+ 1632 060e 27010000 		.4byte	.LLST7
+ 1633 0612 00       		.byte	0
+ 1634 0613 14       		.uleb128 0x14
+ 1635 0614 C4000000 		.4byte	.LASF30
+ 1636 0618 01       		.byte	0x1
+ 1637 0619 88       		.byte	0x88
+ 1638 061a 2C000000 		.4byte	0x2c
+ 1639 061e 00000000 		.4byte	.LFB73
+ 1640 0622 98000000 		.4byte	.LFE73-.LFB73
+ 1641 0626 01       		.uleb128 0x1
+ 1642 0627 9C       		.byte	0x9c
+ 1643 0628 69070000 		.4byte	0x769
+ 1644 062c 0D       		.uleb128 0xd
+ 1645 062d 0F020000 		.4byte	.LASF31
+ 1646 0631 01       		.byte	0x1
+ 1647 0632 88       		.byte	0x88
+ 1648 0633 2C000000 		.4byte	0x2c
+ 1649 0637 46010000 		.4byte	.LLST8
+ 1650 063b 0D       		.uleb128 0xd
+ 1651 063c CE000000 		.4byte	.LASF32
+ 1652 0640 01       		.byte	0x1
+ 1653 0641 88       		.byte	0x88
+ 1654 0642 2C000000 		.4byte	0x2c
+ 1655 0646 67010000 		.4byte	.LLST9
+ 1656 064a 0D       		.uleb128 0xd
+ 1657 064b 75020000 		.4byte	.LASF33
+ 1658 064f 01       		.byte	0x1
+ 1659 0650 88       		.byte	0x88
+ 1660 0651 A8000000 		.4byte	0xa8
+ 1661 0655 88010000 		.4byte	.LLST10
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 35
+
+
+ 1662 0659 0D       		.uleb128 0xd
+ 1663 065a 41000000 		.4byte	.LASF34
+ 1664 065e 01       		.byte	0x1
+ 1665 065f 88       		.byte	0x88
+ 1666 0660 2C000000 		.4byte	0x2c
+ 1667 0664 BC010000 		.4byte	.LLST11
+ 1668 0668 0E       		.uleb128 0xe
+ 1669 0669 6900     		.ascii	"i\000"
+ 1670 066b 01       		.byte	0x1
+ 1671 066c 8A       		.byte	0x8a
+ 1672 066d 2C000000 		.4byte	0x2c
+ 1673 0671 DD010000 		.4byte	.LLST12
+ 1674 0675 0E       		.uleb128 0xe
+ 1675 0676 70656300 		.ascii	"pec\000"
+ 1676 067a 01       		.byte	0x1
+ 1677 067b 8C       		.byte	0x8c
+ 1678 067c 81000000 		.4byte	0x81
+ 1679 0680 06020000 		.4byte	.LLST13
+ 1680 0684 0A       		.uleb128 0xa
+ 1681 0685 14000000 		.4byte	.LVL84
+ 1682 0689 C3050000 		.4byte	0x5c3
+ 1683 068d 9D060000 		.4byte	0x69d
+ 1684 0691 0B       		.uleb128 0xb
+ 1685 0692 01       		.uleb128 0x1
+ 1686 0693 51       		.byte	0x51
+ 1687 0694 02       		.uleb128 0x2
+ 1688 0695 74       		.byte	0x74
+ 1689 0696 00       		.sleb128 0
+ 1690 0697 0B       		.uleb128 0xb
+ 1691 0698 01       		.uleb128 0x1
+ 1692 0699 50       		.byte	0x50
+ 1693 069a 01       		.uleb128 0x1
+ 1694 069b 30       		.byte	0x30
+ 1695 069c 00       		.byte	0
+ 1696 069d 0A       		.uleb128 0xa
+ 1697 069e 1A000000 		.4byte	.LVL85
+ 1698 06a2 C3050000 		.4byte	0x5c3
+ 1699 06a6 B1060000 		.4byte	0x6b1
+ 1700 06aa 0B       		.uleb128 0xb
+ 1701 06ab 01       		.uleb128 0x1
+ 1702 06ac 51       		.byte	0x51
+ 1703 06ad 02       		.uleb128 0x2
+ 1704 06ae 76       		.byte	0x76
+ 1705 06af 00       		.sleb128 0
+ 1706 06b0 00       		.byte	0
+ 1707 06b1 11       		.uleb128 0x11
+ 1708 06b2 20000000 		.4byte	.LVL86
+ 1709 06b6 C3050000 		.4byte	0x5c3
+ 1710 06ba 0A       		.uleb128 0xa
+ 1711 06bb 26000000 		.4byte	.LVL87
+ 1712 06bf C3050000 		.4byte	0x5c3
+ 1713 06c3 CD060000 		.4byte	0x6cd
+ 1714 06c7 0B       		.uleb128 0xb
+ 1715 06c8 01       		.uleb128 0x1
+ 1716 06c9 51       		.byte	0x51
+ 1717 06ca 01       		.uleb128 0x1
+ 1718 06cb 30       		.byte	0x30
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 36
+
+
+ 1719 06cc 00       		.byte	0
+ 1720 06cd 11       		.uleb128 0x11
+ 1721 06ce 2C000000 		.4byte	.LVL89
+ 1722 06d2 E3000000 		.4byte	0xe3
+ 1723 06d6 0A       		.uleb128 0xa
+ 1724 06d7 36000000 		.4byte	.LVL90
+ 1725 06db 8D010000 		.4byte	0x18d
+ 1726 06df EF060000 		.4byte	0x6ef
+ 1727 06e3 0B       		.uleb128 0xb
+ 1728 06e4 01       		.uleb128 0x1
+ 1729 06e5 50       		.byte	0x50
+ 1730 06e6 07       		.uleb128 0x7
+ 1731 06e7 74       		.byte	0x74
+ 1732 06e8 00       		.sleb128 0
+ 1733 06e9 31       		.byte	0x31
+ 1734 06ea 24       		.byte	0x24
+ 1735 06eb 08       		.byte	0x8
+ 1736 06ec FE       		.byte	0xfe
+ 1737 06ed 1A       		.byte	0x1a
+ 1738 06ee 00       		.byte	0
+ 1739 06ef 11       		.uleb128 0x11
+ 1740 06f0 3A000000 		.4byte	.LVL91
+ 1741 06f4 18040000 		.4byte	0x418
+ 1742 06f8 11       		.uleb128 0x11
+ 1743 06f9 40000000 		.4byte	.LVL92
+ 1744 06fd 40020000 		.4byte	0x240
+ 1745 0701 0A       		.uleb128 0xa
+ 1746 0702 4E000000 		.4byte	.LVL93
+ 1747 0706 8D010000 		.4byte	0x18d
+ 1748 070a 15070000 		.4byte	0x715
+ 1749 070e 0B       		.uleb128 0xb
+ 1750 070f 01       		.uleb128 0x1
+ 1751 0710 50       		.byte	0x50
+ 1752 0711 02       		.uleb128 0x2
+ 1753 0712 76       		.byte	0x76
+ 1754 0713 00       		.sleb128 0
+ 1755 0714 00       		.byte	0
+ 1756 0715 11       		.uleb128 0x11
+ 1757 0716 52000000 		.4byte	.LVL94
+ 1758 071a 18040000 		.4byte	0x418
+ 1759 071e 11       		.uleb128 0x11
+ 1760 071f 5A000000 		.4byte	.LVL95
+ 1761 0723 40020000 		.4byte	0x240
+ 1762 0727 11       		.uleb128 0x11
+ 1763 0728 66000000 		.4byte	.LVL98
+ 1764 072c 8D010000 		.4byte	0x18d
+ 1765 0730 11       		.uleb128 0x11
+ 1766 0731 6A000000 		.4byte	.LVL99
+ 1767 0735 18040000 		.4byte	0x418
+ 1768 0739 0A       		.uleb128 0xa
+ 1769 073a 80000000 		.4byte	.LVL105
+ 1770 073e 8D010000 		.4byte	0x18d
+ 1771 0742 4D070000 		.4byte	0x74d
+ 1772 0746 0B       		.uleb128 0xb
+ 1773 0747 01       		.uleb128 0x1
+ 1774 0748 50       		.byte	0x50
+ 1775 0749 02       		.uleb128 0x2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 37
+
+
+ 1776 074a 78       		.byte	0x78
+ 1777 074b 00       		.sleb128 0
+ 1778 074c 00       		.byte	0
+ 1779 074d 11       		.uleb128 0x11
+ 1780 074e 84000000 		.4byte	.LVL106
+ 1781 0752 18040000 		.4byte	0x418
+ 1782 0756 11       		.uleb128 0x11
+ 1783 0757 8A000000 		.4byte	.LVL107
+ 1784 075b 40020000 		.4byte	0x240
+ 1785 075f 11       		.uleb128 0x11
+ 1786 0760 90000000 		.4byte	.LVL108
+ 1787 0764 40020000 		.4byte	0x240
+ 1788 0768 00       		.byte	0
+ 1789 0769 14       		.uleb128 0x14
+ 1790 076a 00000000 		.4byte	.LASF35
+ 1791 076e 01       		.byte	0x1
+ 1792 076f B4       		.byte	0xb4
+ 1793 0770 2C000000 		.4byte	0x2c
+ 1794 0774 00000000 		.4byte	.LFB74
+ 1795 0778 84000000 		.4byte	.LFE74-.LFB74
+ 1796 077c 01       		.uleb128 0x1
+ 1797 077d 9C       		.byte	0x9c
+ 1798 077e 76080000 		.4byte	0x876
+ 1799 0782 0D       		.uleb128 0xd
+ 1800 0783 0F020000 		.4byte	.LASF31
+ 1801 0787 01       		.byte	0x1
+ 1802 0788 B4       		.byte	0xb4
+ 1803 0789 2C000000 		.4byte	0x2c
+ 1804 078d 46020000 		.4byte	.LLST14
+ 1805 0791 0D       		.uleb128 0xd
+ 1806 0792 CE000000 		.4byte	.LASF32
+ 1807 0796 01       		.byte	0x1
+ 1808 0797 B4       		.byte	0xb4
+ 1809 0798 2C000000 		.4byte	0x2c
+ 1810 079c 67020000 		.4byte	.LLST15
+ 1811 07a0 0D       		.uleb128 0xd
+ 1812 07a1 75020000 		.4byte	.LASF33
+ 1813 07a5 01       		.byte	0x1
+ 1814 07a6 B4       		.byte	0xb4
+ 1815 07a7 A8000000 		.4byte	0xa8
+ 1816 07ab 88020000 		.4byte	.LLST16
+ 1817 07af 0D       		.uleb128 0xd
+ 1818 07b0 41000000 		.4byte	.LASF34
+ 1819 07b4 01       		.byte	0x1
+ 1820 07b5 B4       		.byte	0xb4
+ 1821 07b6 2C000000 		.4byte	0x2c
+ 1822 07ba BC020000 		.4byte	.LLST17
+ 1823 07be 0E       		.uleb128 0xe
+ 1824 07bf 6900     		.ascii	"i\000"
+ 1825 07c1 01       		.byte	0x1
+ 1826 07c2 B6       		.byte	0xb6
+ 1827 07c3 2C000000 		.4byte	0x2c
+ 1828 07c7 DD020000 		.4byte	.LLST18
+ 1829 07cb 11       		.uleb128 0x11
+ 1830 07cc 10000000 		.4byte	.LVL111
+ 1831 07d0 E3000000 		.4byte	0xe3
+ 1832 07d4 0A       		.uleb128 0xa
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 38
+
+
+ 1833 07d5 16000000 		.4byte	.LVL112
+ 1834 07d9 8D010000 		.4byte	0x18d
+ 1835 07dd E8070000 		.4byte	0x7e8
+ 1836 07e1 0B       		.uleb128 0xb
+ 1837 07e2 01       		.uleb128 0x1
+ 1838 07e3 50       		.byte	0x50
+ 1839 07e4 02       		.uleb128 0x2
+ 1840 07e5 77       		.byte	0x77
+ 1841 07e6 00       		.sleb128 0
+ 1842 07e7 00       		.byte	0
+ 1843 07e8 11       		.uleb128 0x11
+ 1844 07e9 1A000000 		.4byte	.LVL113
+ 1845 07ed 18040000 		.4byte	0x418
+ 1846 07f1 11       		.uleb128 0x11
+ 1847 07f2 20000000 		.4byte	.LVL114
+ 1848 07f6 40020000 		.4byte	0x240
+ 1849 07fa 0A       		.uleb128 0xa
+ 1850 07fb 2C000000 		.4byte	.LVL115
+ 1851 07ff 8D010000 		.4byte	0x18d
+ 1852 0803 0E080000 		.4byte	0x80e
+ 1853 0807 0B       		.uleb128 0xb
+ 1854 0808 01       		.uleb128 0x1
+ 1855 0809 50       		.byte	0x50
+ 1856 080a 02       		.uleb128 0x2
+ 1857 080b 78       		.byte	0x78
+ 1858 080c 00       		.sleb128 0
+ 1859 080d 00       		.byte	0
+ 1860 080e 11       		.uleb128 0x11
+ 1861 080f 30000000 		.4byte	.LVL116
+ 1862 0813 18040000 		.4byte	0x418
+ 1863 0817 11       		.uleb128 0x11
+ 1864 0818 38000000 		.4byte	.LVL117
+ 1865 081c 40020000 		.4byte	0x240
+ 1866 0820 11       		.uleb128 0x11
+ 1867 0821 3E000000 		.4byte	.LVL118
+ 1868 0825 E3000000 		.4byte	0xe3
+ 1869 0829 0A       		.uleb128 0xa
+ 1870 082a 46000000 		.4byte	.LVL119
+ 1871 082e 8D010000 		.4byte	0x18d
+ 1872 0832 3F080000 		.4byte	0x83f
+ 1873 0836 0B       		.uleb128 0xb
+ 1874 0837 01       		.uleb128 0x1
+ 1875 0838 50       		.byte	0x50
+ 1876 0839 04       		.uleb128 0x4
+ 1877 083a 77       		.byte	0x77
+ 1878 083b 00       		.sleb128 0
+ 1879 083c 31       		.byte	0x31
+ 1880 083d 21       		.byte	0x21
+ 1881 083e 00       		.byte	0
+ 1882 083f 11       		.uleb128 0x11
+ 1883 0840 4A000000 		.4byte	.LVL120
+ 1884 0844 18040000 		.4byte	0x418
+ 1885 0848 11       		.uleb128 0x11
+ 1886 0849 50000000 		.4byte	.LVL121
+ 1887 084d 40020000 		.4byte	0x240
+ 1888 0851 11       		.uleb128 0x11
+ 1889 0852 5A000000 		.4byte	.LVL124
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 39
+
+
+ 1890 0856 B6040000 		.4byte	0x4b6
+ 1891 085a 11       		.uleb128 0x11
+ 1892 085b 66000000 		.4byte	.LVL125
+ 1893 085f C4020000 		.4byte	0x2c4
+ 1894 0863 11       		.uleb128 0x11
+ 1895 0864 6C000000 		.4byte	.LVL126
+ 1896 0868 6E030000 		.4byte	0x36e
+ 1897 086c 11       		.uleb128 0x11
+ 1898 086d 7E000000 		.4byte	.LVL131
+ 1899 0871 40020000 		.4byte	0x240
+ 1900 0875 00       		.byte	0
+ 1901 0876 16       		.uleb128 0x16
+ 1902 0877 7F000000 		.4byte	.LASF36
+ 1903 087b 05       		.byte	0x5
+ 1904 087c 2A06     		.2byte	0x62a
+ 1905 087e 82080000 		.4byte	0x882
+ 1906 0882 09       		.uleb128 0x9
+ 1907 0883 76000000 		.4byte	0x76
+ 1908 0887 17       		.uleb128 0x17
+ 1909 0888 81000000 		.4byte	0x81
+ 1910 088c 97080000 		.4byte	0x897
+ 1911 0890 18       		.uleb128 0x18
+ 1912 0891 A1000000 		.4byte	0xa1
+ 1913 0895 0F       		.byte	0xf
+ 1914 0896 00       		.byte	0
+ 1915 0897 19       		.uleb128 0x19
+ 1916 0898 4B020000 		.4byte	.LASF37
+ 1917 089c 01       		.byte	0x1
+ 1918 089d 7D       		.byte	0x7d
+ 1919 089e 87080000 		.4byte	0x887
+ 1920 08a2 05       		.uleb128 0x5
+ 1921 08a3 03       		.byte	0x3
+ 1922 08a4 00000000 		.4byte	a_SM_PecTable
+ 1923 08a8 1A       		.uleb128 0x1a
+ 1924 08a9 59020000 		.4byte	.LASF38
+ 1925 08ad 06       		.byte	0x6
+ 1926 08ae 28       		.byte	0x28
+ 1927 08af B9080000 		.4byte	0x8b9
+ 1928 08b3 1B       		.uleb128 0x1b
+ 1929 08b4 81000000 		.4byte	0x81
+ 1930 08b8 00       		.byte	0
+ 1931 08b9 1A       		.uleb128 0x1a
+ 1932 08ba EE010000 		.4byte	.LASF39
+ 1933 08be 07       		.byte	0x7
+ 1934 08bf 28       		.byte	0x28
+ 1935 08c0 CA080000 		.4byte	0x8ca
+ 1936 08c4 1B       		.uleb128 0x1b
+ 1937 08c5 81000000 		.4byte	0x81
+ 1938 08c9 00       		.byte	0
+ 1939 08ca 1C       		.uleb128 0x1c
+ 1940 08cb EB000000 		.4byte	.LASF44
+ 1941 08cf 07       		.byte	0x7
+ 1942 08d0 2B       		.byte	0x2b
+ 1943 08d1 81000000 		.4byte	0x81
+ 1944 08d5 00       		.byte	0
+ 1945              		.section	.debug_abbrev,"",%progbits
+ 1946              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 40
+
+
+ 1947 0000 01       		.uleb128 0x1
+ 1948 0001 11       		.uleb128 0x11
+ 1949 0002 01       		.byte	0x1
+ 1950 0003 25       		.uleb128 0x25
+ 1951 0004 0E       		.uleb128 0xe
+ 1952 0005 13       		.uleb128 0x13
+ 1953 0006 0B       		.uleb128 0xb
+ 1954 0007 03       		.uleb128 0x3
+ 1955 0008 0E       		.uleb128 0xe
+ 1956 0009 1B       		.uleb128 0x1b
+ 1957 000a 0E       		.uleb128 0xe
+ 1958 000b 55       		.uleb128 0x55
+ 1959 000c 17       		.uleb128 0x17
+ 1960 000d 11       		.uleb128 0x11
+ 1961 000e 01       		.uleb128 0x1
+ 1962 000f 10       		.uleb128 0x10
+ 1963 0010 17       		.uleb128 0x17
+ 1964 0011 00       		.byte	0
+ 1965 0012 00       		.byte	0
+ 1966 0013 02       		.uleb128 0x2
+ 1967 0014 24       		.uleb128 0x24
+ 1968 0015 00       		.byte	0
+ 1969 0016 0B       		.uleb128 0xb
+ 1970 0017 0B       		.uleb128 0xb
+ 1971 0018 3E       		.uleb128 0x3e
+ 1972 0019 0B       		.uleb128 0xb
+ 1973 001a 03       		.uleb128 0x3
+ 1974 001b 0E       		.uleb128 0xe
+ 1975 001c 00       		.byte	0
+ 1976 001d 00       		.byte	0
+ 1977 001e 03       		.uleb128 0x3
+ 1978 001f 16       		.uleb128 0x16
+ 1979 0020 00       		.byte	0
+ 1980 0021 03       		.uleb128 0x3
+ 1981 0022 0E       		.uleb128 0xe
+ 1982 0023 3A       		.uleb128 0x3a
+ 1983 0024 0B       		.uleb128 0xb
+ 1984 0025 3B       		.uleb128 0x3b
+ 1985 0026 0B       		.uleb128 0xb
+ 1986 0027 49       		.uleb128 0x49
+ 1987 0028 13       		.uleb128 0x13
+ 1988 0029 00       		.byte	0
+ 1989 002a 00       		.byte	0
+ 1990 002b 04       		.uleb128 0x4
+ 1991 002c 24       		.uleb128 0x24
+ 1992 002d 00       		.byte	0
+ 1993 002e 0B       		.uleb128 0xb
+ 1994 002f 0B       		.uleb128 0xb
+ 1995 0030 3E       		.uleb128 0x3e
+ 1996 0031 0B       		.uleb128 0xb
+ 1997 0032 03       		.uleb128 0x3
+ 1998 0033 08       		.uleb128 0x8
+ 1999 0034 00       		.byte	0
+ 2000 0035 00       		.byte	0
+ 2001 0036 05       		.uleb128 0x5
+ 2002 0037 0F       		.uleb128 0xf
+ 2003 0038 00       		.byte	0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 41
+
+
+ 2004 0039 0B       		.uleb128 0xb
+ 2005 003a 0B       		.uleb128 0xb
+ 2006 003b 49       		.uleb128 0x49
+ 2007 003c 13       		.uleb128 0x13
+ 2008 003d 00       		.byte	0
+ 2009 003e 00       		.byte	0
+ 2010 003f 06       		.uleb128 0x6
+ 2011 0040 2E       		.uleb128 0x2e
+ 2012 0041 01       		.byte	0x1
+ 2013 0042 03       		.uleb128 0x3
+ 2014 0043 0E       		.uleb128 0xe
+ 2015 0044 3A       		.uleb128 0x3a
+ 2016 0045 0B       		.uleb128 0xb
+ 2017 0046 3B       		.uleb128 0x3b
+ 2018 0047 0B       		.uleb128 0xb
+ 2019 0048 27       		.uleb128 0x27
+ 2020 0049 19       		.uleb128 0x19
+ 2021 004a 11       		.uleb128 0x11
+ 2022 004b 01       		.uleb128 0x1
+ 2023 004c 12       		.uleb128 0x12
+ 2024 004d 06       		.uleb128 0x6
+ 2025 004e 40       		.uleb128 0x40
+ 2026 004f 18       		.uleb128 0x18
+ 2027 0050 9742     		.uleb128 0x2117
+ 2028 0052 19       		.uleb128 0x19
+ 2029 0053 01       		.uleb128 0x1
+ 2030 0054 13       		.uleb128 0x13
+ 2031 0055 00       		.byte	0
+ 2032 0056 00       		.byte	0
+ 2033 0057 07       		.uleb128 0x7
+ 2034 0058 05       		.uleb128 0x5
+ 2035 0059 00       		.byte	0
+ 2036 005a 03       		.uleb128 0x3
+ 2037 005b 08       		.uleb128 0x8
+ 2038 005c 3A       		.uleb128 0x3a
+ 2039 005d 0B       		.uleb128 0xb
+ 2040 005e 3B       		.uleb128 0x3b
+ 2041 005f 0B       		.uleb128 0xb
+ 2042 0060 49       		.uleb128 0x49
+ 2043 0061 13       		.uleb128 0x13
+ 2044 0062 02       		.uleb128 0x2
+ 2045 0063 17       		.uleb128 0x17
+ 2046 0064 00       		.byte	0
+ 2047 0065 00       		.byte	0
+ 2048 0066 08       		.uleb128 0x8
+ 2049 0067 34       		.uleb128 0x34
+ 2050 0068 00       		.byte	0
+ 2051 0069 03       		.uleb128 0x3
+ 2052 006a 08       		.uleb128 0x8
+ 2053 006b 3A       		.uleb128 0x3a
+ 2054 006c 0B       		.uleb128 0xb
+ 2055 006d 3B       		.uleb128 0x3b
+ 2056 006e 0B       		.uleb128 0xb
+ 2057 006f 49       		.uleb128 0x49
+ 2058 0070 13       		.uleb128 0x13
+ 2059 0071 02       		.uleb128 0x2
+ 2060 0072 18       		.uleb128 0x18
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 42
+
+
+ 2061 0073 00       		.byte	0
+ 2062 0074 00       		.byte	0
+ 2063 0075 09       		.uleb128 0x9
+ 2064 0076 35       		.uleb128 0x35
+ 2065 0077 00       		.byte	0
+ 2066 0078 49       		.uleb128 0x49
+ 2067 0079 13       		.uleb128 0x13
+ 2068 007a 00       		.byte	0
+ 2069 007b 00       		.byte	0
+ 2070 007c 0A       		.uleb128 0xa
+ 2071 007d 898201   		.uleb128 0x4109
+ 2072 0080 01       		.byte	0x1
+ 2073 0081 11       		.uleb128 0x11
+ 2074 0082 01       		.uleb128 0x1
+ 2075 0083 31       		.uleb128 0x31
+ 2076 0084 13       		.uleb128 0x13
+ 2077 0085 01       		.uleb128 0x1
+ 2078 0086 13       		.uleb128 0x13
+ 2079 0087 00       		.byte	0
+ 2080 0088 00       		.byte	0
+ 2081 0089 0B       		.uleb128 0xb
+ 2082 008a 8A8201   		.uleb128 0x410a
+ 2083 008d 00       		.byte	0
+ 2084 008e 02       		.uleb128 0x2
+ 2085 008f 18       		.uleb128 0x18
+ 2086 0090 9142     		.uleb128 0x2111
+ 2087 0092 18       		.uleb128 0x18
+ 2088 0093 00       		.byte	0
+ 2089 0094 00       		.byte	0
+ 2090 0095 0C       		.uleb128 0xc
+ 2091 0096 898201   		.uleb128 0x4109
+ 2092 0099 01       		.byte	0x1
+ 2093 009a 11       		.uleb128 0x11
+ 2094 009b 01       		.uleb128 0x1
+ 2095 009c 31       		.uleb128 0x31
+ 2096 009d 13       		.uleb128 0x13
+ 2097 009e 00       		.byte	0
+ 2098 009f 00       		.byte	0
+ 2099 00a0 0D       		.uleb128 0xd
+ 2100 00a1 05       		.uleb128 0x5
+ 2101 00a2 00       		.byte	0
+ 2102 00a3 03       		.uleb128 0x3
+ 2103 00a4 0E       		.uleb128 0xe
+ 2104 00a5 3A       		.uleb128 0x3a
+ 2105 00a6 0B       		.uleb128 0xb
+ 2106 00a7 3B       		.uleb128 0x3b
+ 2107 00a8 0B       		.uleb128 0xb
+ 2108 00a9 49       		.uleb128 0x49
+ 2109 00aa 13       		.uleb128 0x13
+ 2110 00ab 02       		.uleb128 0x2
+ 2111 00ac 17       		.uleb128 0x17
+ 2112 00ad 00       		.byte	0
+ 2113 00ae 00       		.byte	0
+ 2114 00af 0E       		.uleb128 0xe
+ 2115 00b0 34       		.uleb128 0x34
+ 2116 00b1 00       		.byte	0
+ 2117 00b2 03       		.uleb128 0x3
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 43
+
+
+ 2118 00b3 08       		.uleb128 0x8
+ 2119 00b4 3A       		.uleb128 0x3a
+ 2120 00b5 0B       		.uleb128 0xb
+ 2121 00b6 3B       		.uleb128 0x3b
+ 2122 00b7 0B       		.uleb128 0xb
+ 2123 00b8 49       		.uleb128 0x49
+ 2124 00b9 13       		.uleb128 0x13
+ 2125 00ba 02       		.uleb128 0x2
+ 2126 00bb 17       		.uleb128 0x17
+ 2127 00bc 00       		.byte	0
+ 2128 00bd 00       		.byte	0
+ 2129 00be 0F       		.uleb128 0xf
+ 2130 00bf 2E       		.uleb128 0x2e
+ 2131 00c0 01       		.byte	0x1
+ 2132 00c1 03       		.uleb128 0x3
+ 2133 00c2 0E       		.uleb128 0xe
+ 2134 00c3 3A       		.uleb128 0x3a
+ 2135 00c4 0B       		.uleb128 0xb
+ 2136 00c5 3B       		.uleb128 0x3b
+ 2137 00c6 0B       		.uleb128 0xb
+ 2138 00c7 27       		.uleb128 0x27
+ 2139 00c8 19       		.uleb128 0x19
+ 2140 00c9 49       		.uleb128 0x49
+ 2141 00ca 13       		.uleb128 0x13
+ 2142 00cb 11       		.uleb128 0x11
+ 2143 00cc 01       		.uleb128 0x1
+ 2144 00cd 12       		.uleb128 0x12
+ 2145 00ce 06       		.uleb128 0x6
+ 2146 00cf 40       		.uleb128 0x40
+ 2147 00d0 18       		.uleb128 0x18
+ 2148 00d1 9742     		.uleb128 0x2117
+ 2149 00d3 19       		.uleb128 0x19
+ 2150 00d4 01       		.uleb128 0x1
+ 2151 00d5 13       		.uleb128 0x13
+ 2152 00d6 00       		.byte	0
+ 2153 00d7 00       		.byte	0
+ 2154 00d8 10       		.uleb128 0x10
+ 2155 00d9 34       		.uleb128 0x34
+ 2156 00da 00       		.byte	0
+ 2157 00db 03       		.uleb128 0x3
+ 2158 00dc 0E       		.uleb128 0xe
+ 2159 00dd 3A       		.uleb128 0x3a
+ 2160 00de 0B       		.uleb128 0xb
+ 2161 00df 3B       		.uleb128 0x3b
+ 2162 00e0 0B       		.uleb128 0xb
+ 2163 00e1 49       		.uleb128 0x49
+ 2164 00e2 13       		.uleb128 0x13
+ 2165 00e3 02       		.uleb128 0x2
+ 2166 00e4 18       		.uleb128 0x18
+ 2167 00e5 00       		.byte	0
+ 2168 00e6 00       		.byte	0
+ 2169 00e7 11       		.uleb128 0x11
+ 2170 00e8 898201   		.uleb128 0x4109
+ 2171 00eb 00       		.byte	0
+ 2172 00ec 11       		.uleb128 0x11
+ 2173 00ed 01       		.uleb128 0x1
+ 2174 00ee 31       		.uleb128 0x31
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 44
+
+
+ 2175 00ef 13       		.uleb128 0x13
+ 2176 00f0 00       		.byte	0
+ 2177 00f1 00       		.byte	0
+ 2178 00f2 12       		.uleb128 0x12
+ 2179 00f3 34       		.uleb128 0x34
+ 2180 00f4 00       		.byte	0
+ 2181 00f5 03       		.uleb128 0x3
+ 2182 00f6 0E       		.uleb128 0xe
+ 2183 00f7 3A       		.uleb128 0x3a
+ 2184 00f8 0B       		.uleb128 0xb
+ 2185 00f9 3B       		.uleb128 0x3b
+ 2186 00fa 0B       		.uleb128 0xb
+ 2187 00fb 49       		.uleb128 0x49
+ 2188 00fc 13       		.uleb128 0x13
+ 2189 00fd 02       		.uleb128 0x2
+ 2190 00fe 17       		.uleb128 0x17
+ 2191 00ff 00       		.byte	0
+ 2192 0100 00       		.byte	0
+ 2193 0101 13       		.uleb128 0x13
+ 2194 0102 2E       		.uleb128 0x2e
+ 2195 0103 01       		.byte	0x1
+ 2196 0104 3F       		.uleb128 0x3f
+ 2197 0105 19       		.uleb128 0x19
+ 2198 0106 03       		.uleb128 0x3
+ 2199 0107 0E       		.uleb128 0xe
+ 2200 0108 3A       		.uleb128 0x3a
+ 2201 0109 0B       		.uleb128 0xb
+ 2202 010a 3B       		.uleb128 0x3b
+ 2203 010b 0B       		.uleb128 0xb
+ 2204 010c 27       		.uleb128 0x27
+ 2205 010d 19       		.uleb128 0x19
+ 2206 010e 11       		.uleb128 0x11
+ 2207 010f 01       		.uleb128 0x1
+ 2208 0110 12       		.uleb128 0x12
+ 2209 0111 06       		.uleb128 0x6
+ 2210 0112 40       		.uleb128 0x40
+ 2211 0113 18       		.uleb128 0x18
+ 2212 0114 9742     		.uleb128 0x2117
+ 2213 0116 19       		.uleb128 0x19
+ 2214 0117 01       		.uleb128 0x1
+ 2215 0118 13       		.uleb128 0x13
+ 2216 0119 00       		.byte	0
+ 2217 011a 00       		.byte	0
+ 2218 011b 14       		.uleb128 0x14
+ 2219 011c 2E       		.uleb128 0x2e
+ 2220 011d 01       		.byte	0x1
+ 2221 011e 3F       		.uleb128 0x3f
+ 2222 011f 19       		.uleb128 0x19
+ 2223 0120 03       		.uleb128 0x3
+ 2224 0121 0E       		.uleb128 0xe
+ 2225 0122 3A       		.uleb128 0x3a
+ 2226 0123 0B       		.uleb128 0xb
+ 2227 0124 3B       		.uleb128 0x3b
+ 2228 0125 0B       		.uleb128 0xb
+ 2229 0126 27       		.uleb128 0x27
+ 2230 0127 19       		.uleb128 0x19
+ 2231 0128 49       		.uleb128 0x49
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 45
+
+
+ 2232 0129 13       		.uleb128 0x13
+ 2233 012a 11       		.uleb128 0x11
+ 2234 012b 01       		.uleb128 0x1
+ 2235 012c 12       		.uleb128 0x12
+ 2236 012d 06       		.uleb128 0x6
+ 2237 012e 40       		.uleb128 0x40
+ 2238 012f 18       		.uleb128 0x18
+ 2239 0130 9742     		.uleb128 0x2117
+ 2240 0132 19       		.uleb128 0x19
+ 2241 0133 01       		.uleb128 0x1
+ 2242 0134 13       		.uleb128 0x13
+ 2243 0135 00       		.byte	0
+ 2244 0136 00       		.byte	0
+ 2245 0137 15       		.uleb128 0x15
+ 2246 0138 34       		.uleb128 0x34
+ 2247 0139 00       		.byte	0
+ 2248 013a 03       		.uleb128 0x3
+ 2249 013b 08       		.uleb128 0x8
+ 2250 013c 3A       		.uleb128 0x3a
+ 2251 013d 0B       		.uleb128 0xb
+ 2252 013e 3B       		.uleb128 0x3b
+ 2253 013f 0B       		.uleb128 0xb
+ 2254 0140 49       		.uleb128 0x49
+ 2255 0141 13       		.uleb128 0x13
+ 2256 0142 00       		.byte	0
+ 2257 0143 00       		.byte	0
+ 2258 0144 16       		.uleb128 0x16
+ 2259 0145 34       		.uleb128 0x34
+ 2260 0146 00       		.byte	0
+ 2261 0147 03       		.uleb128 0x3
+ 2262 0148 0E       		.uleb128 0xe
+ 2263 0149 3A       		.uleb128 0x3a
+ 2264 014a 0B       		.uleb128 0xb
+ 2265 014b 3B       		.uleb128 0x3b
+ 2266 014c 05       		.uleb128 0x5
+ 2267 014d 49       		.uleb128 0x49
+ 2268 014e 13       		.uleb128 0x13
+ 2269 014f 3F       		.uleb128 0x3f
+ 2270 0150 19       		.uleb128 0x19
+ 2271 0151 3C       		.uleb128 0x3c
+ 2272 0152 19       		.uleb128 0x19
+ 2273 0153 00       		.byte	0
+ 2274 0154 00       		.byte	0
+ 2275 0155 17       		.uleb128 0x17
+ 2276 0156 01       		.uleb128 0x1
+ 2277 0157 01       		.byte	0x1
+ 2278 0158 49       		.uleb128 0x49
+ 2279 0159 13       		.uleb128 0x13
+ 2280 015a 01       		.uleb128 0x1
+ 2281 015b 13       		.uleb128 0x13
+ 2282 015c 00       		.byte	0
+ 2283 015d 00       		.byte	0
+ 2284 015e 18       		.uleb128 0x18
+ 2285 015f 21       		.uleb128 0x21
+ 2286 0160 00       		.byte	0
+ 2287 0161 49       		.uleb128 0x49
+ 2288 0162 13       		.uleb128 0x13
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 46
+
+
+ 2289 0163 2F       		.uleb128 0x2f
+ 2290 0164 0B       		.uleb128 0xb
+ 2291 0165 00       		.byte	0
+ 2292 0166 00       		.byte	0
+ 2293 0167 19       		.uleb128 0x19
+ 2294 0168 34       		.uleb128 0x34
+ 2295 0169 00       		.byte	0
+ 2296 016a 03       		.uleb128 0x3
+ 2297 016b 0E       		.uleb128 0xe
+ 2298 016c 3A       		.uleb128 0x3a
+ 2299 016d 0B       		.uleb128 0xb
+ 2300 016e 3B       		.uleb128 0x3b
+ 2301 016f 0B       		.uleb128 0xb
+ 2302 0170 49       		.uleb128 0x49
+ 2303 0171 13       		.uleb128 0x13
+ 2304 0172 3F       		.uleb128 0x3f
+ 2305 0173 19       		.uleb128 0x19
+ 2306 0174 02       		.uleb128 0x2
+ 2307 0175 18       		.uleb128 0x18
+ 2308 0176 00       		.byte	0
+ 2309 0177 00       		.byte	0
+ 2310 0178 1A       		.uleb128 0x1a
+ 2311 0179 2E       		.uleb128 0x2e
+ 2312 017a 01       		.byte	0x1
+ 2313 017b 3F       		.uleb128 0x3f
+ 2314 017c 19       		.uleb128 0x19
+ 2315 017d 03       		.uleb128 0x3
+ 2316 017e 0E       		.uleb128 0xe
+ 2317 017f 3A       		.uleb128 0x3a
+ 2318 0180 0B       		.uleb128 0xb
+ 2319 0181 3B       		.uleb128 0x3b
+ 2320 0182 0B       		.uleb128 0xb
+ 2321 0183 27       		.uleb128 0x27
+ 2322 0184 19       		.uleb128 0x19
+ 2323 0185 3C       		.uleb128 0x3c
+ 2324 0186 19       		.uleb128 0x19
+ 2325 0187 01       		.uleb128 0x1
+ 2326 0188 13       		.uleb128 0x13
+ 2327 0189 00       		.byte	0
+ 2328 018a 00       		.byte	0
+ 2329 018b 1B       		.uleb128 0x1b
+ 2330 018c 05       		.uleb128 0x5
+ 2331 018d 00       		.byte	0
+ 2332 018e 49       		.uleb128 0x49
+ 2333 018f 13       		.uleb128 0x13
+ 2334 0190 00       		.byte	0
+ 2335 0191 00       		.byte	0
+ 2336 0192 1C       		.uleb128 0x1c
+ 2337 0193 2E       		.uleb128 0x2e
+ 2338 0194 00       		.byte	0
+ 2339 0195 3F       		.uleb128 0x3f
+ 2340 0196 19       		.uleb128 0x19
+ 2341 0197 03       		.uleb128 0x3
+ 2342 0198 0E       		.uleb128 0xe
+ 2343 0199 3A       		.uleb128 0x3a
+ 2344 019a 0B       		.uleb128 0xb
+ 2345 019b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 47
+
+
+ 2346 019c 0B       		.uleb128 0xb
+ 2347 019d 27       		.uleb128 0x27
+ 2348 019e 19       		.uleb128 0x19
+ 2349 019f 49       		.uleb128 0x49
+ 2350 01a0 13       		.uleb128 0x13
+ 2351 01a1 3C       		.uleb128 0x3c
+ 2352 01a2 19       		.uleb128 0x19
+ 2353 01a3 00       		.byte	0
+ 2354 01a4 00       		.byte	0
+ 2355 01a5 00       		.byte	0
+ 2356              		.section	.debug_loc,"",%progbits
+ 2357              	.Ldebug_loc0:
+ 2358              	.LLST0:
+ 2359 0000 00000000 		.4byte	.LVL0
+ 2360 0004 18000000 		.4byte	.LVL1
+ 2361 0008 0100     		.2byte	0x1
+ 2362 000a 50       		.byte	0x50
+ 2363 000b 18000000 		.4byte	.LVL1
+ 2364 000f 20000000 		.4byte	.LFE63
+ 2365 0013 0100     		.2byte	0x1
+ 2366 0015 50       		.byte	0x50
+ 2367 0016 00000000 		.4byte	0
+ 2368 001a 00000000 		.4byte	0
+ 2369              	.LLST1:
+ 2370 001e 00000000 		.4byte	.LVL10
+ 2371 0022 08000000 		.4byte	.LVL12
+ 2372 0026 0100     		.2byte	0x1
+ 2373 0028 50       		.byte	0x50
+ 2374 0029 08000000 		.4byte	.LVL12
+ 2375 002d 30000000 		.4byte	.LVL18
+ 2376 0031 0100     		.2byte	0x1
+ 2377 0033 55       		.byte	0x55
+ 2378 0034 32000000 		.4byte	.LVL19
+ 2379 0038 48000000 		.4byte	.LFE69
+ 2380 003c 0100     		.2byte	0x1
+ 2381 003e 55       		.byte	0x55
+ 2382 003f 00000000 		.4byte	0
+ 2383 0043 00000000 		.4byte	0
+ 2384              	.LLST2:
+ 2385 0047 04000000 		.4byte	.LVL11
+ 2386 004b 08000000 		.4byte	.LVL12
+ 2387 004f 0200     		.2byte	0x2
+ 2388 0051 30       		.byte	0x30
+ 2389 0052 9F       		.byte	0x9f
+ 2390 0053 08000000 		.4byte	.LVL12
+ 2391 0057 40000000 		.4byte	.LVL22
+ 2392 005b 0100     		.2byte	0x1
+ 2393 005d 54       		.byte	0x54
+ 2394 005e 42000000 		.4byte	.LVL23
+ 2395 0062 48000000 		.4byte	.LFE69
+ 2396 0066 0100     		.2byte	0x1
+ 2397 0068 54       		.byte	0x54
+ 2398 0069 00000000 		.4byte	0
+ 2399 006d 00000000 		.4byte	0
+ 2400              	.LLST3:
+ 2401 0071 08000000 		.4byte	.LVL55
+ 2402 0075 0E000000 		.4byte	.LVL56
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 48
+
+
+ 2403 0079 0200     		.2byte	0x2
+ 2404 007b 30       		.byte	0x30
+ 2405 007c 9F       		.byte	0x9f
+ 2406 007d 0E000000 		.4byte	.LVL56
+ 2407 0081 36000000 		.4byte	.LVL66
+ 2408 0085 0100     		.2byte	0x1
+ 2409 0087 55       		.byte	0x55
+ 2410 0088 38000000 		.4byte	.LVL67
+ 2411 008c 40000000 		.4byte	.LFE70
+ 2412 0090 0100     		.2byte	0x1
+ 2413 0092 55       		.byte	0x55
+ 2414 0093 00000000 		.4byte	0
+ 2415 0097 00000000 		.4byte	0
+ 2416              	.LLST4:
+ 2417 009b 02000000 		.4byte	.LVL54
+ 2418 009f 0E000000 		.4byte	.LVL56
+ 2419 00a3 0200     		.2byte	0x2
+ 2420 00a5 30       		.byte	0x30
+ 2421 00a6 9F       		.byte	0x9f
+ 2422 00a7 0E000000 		.4byte	.LVL56
+ 2423 00ab 16000000 		.4byte	.LVL58
+ 2424 00af 0100     		.2byte	0x1
+ 2425 00b1 54       		.byte	0x54
+ 2426 00b2 18000000 		.4byte	.LVL59
+ 2427 00b6 26000000 		.4byte	.LVL62
+ 2428 00ba 0100     		.2byte	0x1
+ 2429 00bc 54       		.byte	0x54
+ 2430 00bd 26000000 		.4byte	.LVL62
+ 2431 00c1 28000000 		.4byte	.LVL63
+ 2432 00c5 0300     		.2byte	0x3
+ 2433 00c7 74       		.byte	0x74
+ 2434 00c8 7F       		.sleb128 -1
+ 2435 00c9 9F       		.byte	0x9f
+ 2436 00ca 28000000 		.4byte	.LVL63
+ 2437 00ce 40000000 		.4byte	.LFE70
+ 2438 00d2 0100     		.2byte	0x1
+ 2439 00d4 54       		.byte	0x54
+ 2440 00d5 00000000 		.4byte	0
+ 2441 00d9 00000000 		.4byte	0
+ 2442              	.LLST5:
+ 2443 00dd 00000000 		.4byte	.LVL73
+ 2444 00e1 08000000 		.4byte	.LVL75
+ 2445 00e5 0100     		.2byte	0x1
+ 2446 00e7 50       		.byte	0x50
+ 2447 00e8 08000000 		.4byte	.LVL75
+ 2448 00ec 20000000 		.4byte	.LFE72
+ 2449 00f0 0400     		.2byte	0x4
+ 2450 00f2 F3       		.byte	0xf3
+ 2451 00f3 01       		.uleb128 0x1
+ 2452 00f4 50       		.byte	0x50
+ 2453 00f5 9F       		.byte	0x9f
+ 2454 00f6 00000000 		.4byte	0
+ 2455 00fa 00000000 		.4byte	0
+ 2456              	.LLST6:
+ 2457 00fe 00000000 		.4byte	.LVL73
+ 2458 0102 02000000 		.4byte	.LVL74
+ 2459 0106 0100     		.2byte	0x1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 49
+
+
+ 2460 0108 51       		.byte	0x51
+ 2461 0109 02000000 		.4byte	.LVL74
+ 2462 010d 0A000000 		.4byte	.LVL76
+ 2463 0111 0100     		.2byte	0x1
+ 2464 0113 51       		.byte	0x51
+ 2465 0114 0C000000 		.4byte	.LVL77
+ 2466 0118 0E000000 		.4byte	.LVL78
+ 2467 011c 0100     		.2byte	0x1
+ 2468 011e 51       		.byte	0x51
+ 2469 011f 00000000 		.4byte	0
+ 2470 0123 00000000 		.4byte	0
+ 2471              	.LLST7:
+ 2472 0127 00000000 		.4byte	.LVL73
+ 2473 012b 08000000 		.4byte	.LVL75
+ 2474 012f 0200     		.2byte	0x2
+ 2475 0131 30       		.byte	0x30
+ 2476 0132 9F       		.byte	0x9f
+ 2477 0133 08000000 		.4byte	.LVL75
+ 2478 0137 20000000 		.4byte	.LFE72
+ 2479 013b 0100     		.2byte	0x1
+ 2480 013d 50       		.byte	0x50
+ 2481 013e 00000000 		.4byte	0
+ 2482 0142 00000000 		.4byte	0
+ 2483              	.LLST8:
+ 2484 0146 00000000 		.4byte	.LVL80
+ 2485 014a 0E000000 		.4byte	.LVL82
+ 2486 014e 0100     		.2byte	0x1
+ 2487 0150 50       		.byte	0x50
+ 2488 0151 0E000000 		.4byte	.LVL82
+ 2489 0155 98000000 		.4byte	.LFE73
+ 2490 0159 0400     		.2byte	0x4
+ 2491 015b F3       		.byte	0xf3
+ 2492 015c 01       		.uleb128 0x1
+ 2493 015d 50       		.byte	0x50
+ 2494 015e 9F       		.byte	0x9f
+ 2495 015f 00000000 		.4byte	0
+ 2496 0163 00000000 		.4byte	0
+ 2497              	.LLST9:
+ 2498 0167 00000000 		.4byte	.LVL80
+ 2499 016b 10000000 		.4byte	.LVL83
+ 2500 016f 0100     		.2byte	0x1
+ 2501 0171 51       		.byte	0x51
+ 2502 0172 10000000 		.4byte	.LVL83
+ 2503 0176 98000000 		.4byte	.LFE73
+ 2504 017a 0400     		.2byte	0x4
+ 2505 017c F3       		.byte	0xf3
+ 2506 017d 01       		.uleb128 0x1
+ 2507 017e 51       		.byte	0x51
+ 2508 017f 9F       		.byte	0x9f
+ 2509 0180 00000000 		.4byte	0
+ 2510 0184 00000000 		.4byte	0
+ 2511              	.LLST10:
+ 2512 0188 00000000 		.4byte	.LVL80
+ 2513 018c 13000000 		.4byte	.LVL84-1
+ 2514 0190 0100     		.2byte	0x1
+ 2515 0192 52       		.byte	0x52
+ 2516 0193 13000000 		.4byte	.LVL84-1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 50
+
+
+ 2517 0197 60000000 		.4byte	.LVL97
+ 2518 019b 0100     		.2byte	0x1
+ 2519 019d 55       		.byte	0x55
+ 2520 019e 60000000 		.4byte	.LVL97
+ 2521 01a2 74000000 		.4byte	.LVL102
+ 2522 01a6 0100     		.2byte	0x1
+ 2523 01a8 56       		.byte	0x56
+ 2524 01a9 74000000 		.4byte	.LVL102
+ 2525 01ad 7A000000 		.4byte	.LVL104
+ 2526 01b1 0100     		.2byte	0x1
+ 2527 01b3 55       		.byte	0x55
+ 2528 01b4 00000000 		.4byte	0
+ 2529 01b8 00000000 		.4byte	0
+ 2530              	.LLST11:
+ 2531 01bc 00000000 		.4byte	.LVL80
+ 2532 01c0 13000000 		.4byte	.LVL84-1
+ 2533 01c4 0100     		.2byte	0x1
+ 2534 01c6 53       		.byte	0x53
+ 2535 01c7 13000000 		.4byte	.LVL84-1
+ 2536 01cb 98000000 		.4byte	.LFE73
+ 2537 01cf 0400     		.2byte	0x4
+ 2538 01d1 F3       		.byte	0xf3
+ 2539 01d2 01       		.uleb128 0x1
+ 2540 01d3 53       		.byte	0x53
+ 2541 01d4 9F       		.byte	0x9f
+ 2542 01d5 00000000 		.4byte	0
+ 2543 01d9 00000000 		.4byte	0
+ 2544              	.LLST12:
+ 2545 01dd 5E000000 		.4byte	.LVL96
+ 2546 01e1 6E000000 		.4byte	.LVL100
+ 2547 01e5 0100     		.2byte	0x1
+ 2548 01e7 54       		.byte	0x54
+ 2549 01e8 70000000 		.4byte	.LVL101
+ 2550 01ec 74000000 		.4byte	.LVL102
+ 2551 01f0 0100     		.2byte	0x1
+ 2552 01f2 54       		.byte	0x54
+ 2553 01f3 76000000 		.4byte	.LVL103
+ 2554 01f7 92000000 		.4byte	.LVL109
+ 2555 01fb 0100     		.2byte	0x1
+ 2556 01fd 54       		.byte	0x54
+ 2557 01fe 00000000 		.4byte	0
+ 2558 0202 00000000 		.4byte	0
+ 2559              	.LLST13:
+ 2560 0206 0C000000 		.4byte	.LVL81
+ 2561 020a 14000000 		.4byte	.LVL84
+ 2562 020e 0200     		.2byte	0x2
+ 2563 0210 30       		.byte	0x30
+ 2564 0211 9F       		.byte	0x9f
+ 2565 0212 14000000 		.4byte	.LVL84
+ 2566 0216 19000000 		.4byte	.LVL85-1
+ 2567 021a 0100     		.2byte	0x1
+ 2568 021c 50       		.byte	0x50
+ 2569 021d 1A000000 		.4byte	.LVL85
+ 2570 0221 1F000000 		.4byte	.LVL86-1
+ 2571 0225 0100     		.2byte	0x1
+ 2572 0227 50       		.byte	0x50
+ 2573 0228 20000000 		.4byte	.LVL86
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 51
+
+
+ 2574 022c 25000000 		.4byte	.LVL87-1
+ 2575 0230 0100     		.2byte	0x1
+ 2576 0232 50       		.byte	0x50
+ 2577 0233 28000000 		.4byte	.LVL88
+ 2578 0237 98000000 		.4byte	.LFE73
+ 2579 023b 0100     		.2byte	0x1
+ 2580 023d 58       		.byte	0x58
+ 2581 023e 00000000 		.4byte	0
+ 2582 0242 00000000 		.4byte	0
+ 2583              	.LLST14:
+ 2584 0246 00000000 		.4byte	.LVL110
+ 2585 024a 0F000000 		.4byte	.LVL111-1
+ 2586 024e 0100     		.2byte	0x1
+ 2587 0250 50       		.byte	0x50
+ 2588 0251 0F000000 		.4byte	.LVL111-1
+ 2589 0255 84000000 		.4byte	.LFE74
+ 2590 0259 0400     		.2byte	0x4
+ 2591 025b F3       		.byte	0xf3
+ 2592 025c 01       		.uleb128 0x1
+ 2593 025d 50       		.byte	0x50
+ 2594 025e 9F       		.byte	0x9f
+ 2595 025f 00000000 		.4byte	0
+ 2596 0263 00000000 		.4byte	0
+ 2597              	.LLST15:
+ 2598 0267 00000000 		.4byte	.LVL110
+ 2599 026b 0F000000 		.4byte	.LVL111-1
+ 2600 026f 0100     		.2byte	0x1
+ 2601 0271 51       		.byte	0x51
+ 2602 0272 0F000000 		.4byte	.LVL111-1
+ 2603 0276 84000000 		.4byte	.LFE74
+ 2604 027a 0400     		.2byte	0x4
+ 2605 027c F3       		.byte	0xf3
+ 2606 027d 01       		.uleb128 0x1
+ 2607 027e 51       		.byte	0x51
+ 2608 027f 9F       		.byte	0x9f
+ 2609 0280 00000000 		.4byte	0
+ 2610 0284 00000000 		.4byte	0
+ 2611              	.LLST16:
+ 2612 0288 00000000 		.4byte	.LVL110
+ 2613 028c 0F000000 		.4byte	.LVL111-1
+ 2614 0290 0100     		.2byte	0x1
+ 2615 0292 52       		.byte	0x52
+ 2616 0293 0F000000 		.4byte	.LVL111-1
+ 2617 0297 56000000 		.4byte	.LVL123
+ 2618 029b 0100     		.2byte	0x1
+ 2619 029d 55       		.byte	0x55
+ 2620 029e 56000000 		.4byte	.LVL123
+ 2621 02a2 74000000 		.4byte	.LVL129
+ 2622 02a6 0100     		.2byte	0x1
+ 2623 02a8 57       		.byte	0x57
+ 2624 02a9 74000000 		.4byte	.LVL129
+ 2625 02ad 84000000 		.4byte	.LFE74
+ 2626 02b1 0100     		.2byte	0x1
+ 2627 02b3 55       		.byte	0x55
+ 2628 02b4 00000000 		.4byte	0
+ 2629 02b8 00000000 		.4byte	0
+ 2630              	.LLST17:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 52
+
+
+ 2631 02bc 00000000 		.4byte	.LVL110
+ 2632 02c0 0F000000 		.4byte	.LVL111-1
+ 2633 02c4 0100     		.2byte	0x1
+ 2634 02c6 53       		.byte	0x53
+ 2635 02c7 0F000000 		.4byte	.LVL111-1
+ 2636 02cb 84000000 		.4byte	.LFE74
+ 2637 02cf 0400     		.2byte	0x4
+ 2638 02d1 F3       		.byte	0xf3
+ 2639 02d2 01       		.uleb128 0x1
+ 2640 02d3 53       		.byte	0x53
+ 2641 02d4 9F       		.byte	0x9f
+ 2642 02d5 00000000 		.4byte	0
+ 2643 02d9 00000000 		.4byte	0
+ 2644              	.LLST18:
+ 2645 02dd 54000000 		.4byte	.LVL122
+ 2646 02e1 6E000000 		.4byte	.LVL127
+ 2647 02e5 0100     		.2byte	0x1
+ 2648 02e7 54       		.byte	0x54
+ 2649 02e8 70000000 		.4byte	.LVL128
+ 2650 02ec 74000000 		.4byte	.LVL129
+ 2651 02f0 0100     		.2byte	0x1
+ 2652 02f2 54       		.byte	0x54
+ 2653 02f3 76000000 		.4byte	.LVL130
+ 2654 02f7 7E000000 		.4byte	.LVL131
+ 2655 02fb 0100     		.2byte	0x1
+ 2656 02fd 54       		.byte	0x54
+ 2657 02fe 00000000 		.4byte	0
+ 2658 0302 00000000 		.4byte	0
+ 2659              		.section	.debug_aranges,"",%progbits
+ 2660 0000 74000000 		.4byte	0x74
+ 2661 0004 0200     		.2byte	0x2
+ 2662 0006 00000000 		.4byte	.Ldebug_info0
+ 2663 000a 04       		.byte	0x4
+ 2664 000b 00       		.byte	0
+ 2665 000c 0000     		.2byte	0
+ 2666 000e 0000     		.2byte	0
+ 2667 0010 00000000 		.4byte	.LFB63
+ 2668 0014 20000000 		.4byte	.LFE63-.LFB63
+ 2669 0018 00000000 		.4byte	.LFB65
+ 2670 001c 34000000 		.4byte	.LFE65-.LFB65
+ 2671 0020 00000000 		.4byte	.LFB69
+ 2672 0024 48000000 		.4byte	.LFE69-.LFB69
+ 2673 0028 00000000 		.4byte	.LFB66
+ 2674 002c 28000000 		.4byte	.LFE66-.LFB66
+ 2675 0030 00000000 		.4byte	.LFB67
+ 2676 0034 34000000 		.4byte	.LFE67-.LFB67
+ 2677 0038 00000000 		.4byte	.LFB68
+ 2678 003c 34000000 		.4byte	.LFE68-.LFB68
+ 2679 0040 00000000 		.4byte	.LFB71
+ 2680 0044 30000000 		.4byte	.LFE71-.LFB71
+ 2681 0048 00000000 		.4byte	.LFB70
+ 2682 004c 40000000 		.4byte	.LFE70-.LFB70
+ 2683 0050 00000000 		.4byte	.LFB64
+ 2684 0054 24000000 		.4byte	.LFE64-.LFB64
+ 2685 0058 00000000 		.4byte	.LFB72
+ 2686 005c 20000000 		.4byte	.LFE72-.LFB72
+ 2687 0060 00000000 		.4byte	.LFB73
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 53
+
+
+ 2688 0064 98000000 		.4byte	.LFE73-.LFB73
+ 2689 0068 00000000 		.4byte	.LFB74
+ 2690 006c 84000000 		.4byte	.LFE74-.LFB74
+ 2691 0070 00000000 		.4byte	0
+ 2692 0074 00000000 		.4byte	0
+ 2693              		.section	.debug_ranges,"",%progbits
+ 2694              	.Ldebug_ranges0:
+ 2695 0000 00000000 		.4byte	.LFB63
+ 2696 0004 20000000 		.4byte	.LFE63
+ 2697 0008 00000000 		.4byte	.LFB65
+ 2698 000c 34000000 		.4byte	.LFE65
+ 2699 0010 00000000 		.4byte	.LFB69
+ 2700 0014 48000000 		.4byte	.LFE69
+ 2701 0018 00000000 		.4byte	.LFB66
+ 2702 001c 28000000 		.4byte	.LFE66
+ 2703 0020 00000000 		.4byte	.LFB67
+ 2704 0024 34000000 		.4byte	.LFE67
+ 2705 0028 00000000 		.4byte	.LFB68
+ 2706 002c 34000000 		.4byte	.LFE68
+ 2707 0030 00000000 		.4byte	.LFB71
+ 2708 0034 30000000 		.4byte	.LFE71
+ 2709 0038 00000000 		.4byte	.LFB70
+ 2710 003c 40000000 		.4byte	.LFE70
+ 2711 0040 00000000 		.4byte	.LFB64
+ 2712 0044 24000000 		.4byte	.LFE64
+ 2713 0048 00000000 		.4byte	.LFB72
+ 2714 004c 20000000 		.4byte	.LFE72
+ 2715 0050 00000000 		.4byte	.LFB73
+ 2716 0054 98000000 		.4byte	.LFE73
+ 2717 0058 00000000 		.4byte	.LFB74
+ 2718 005c 84000000 		.4byte	.LFE74
+ 2719 0060 00000000 		.4byte	0
+ 2720 0064 00000000 		.4byte	0
+ 2721              		.section	.debug_line,"",%progbits
+ 2722              	.Ldebug_line0:
+ 2723 0000 08030000 		.section	.debug_str,"MS",%progbits,1
+ 2723      02005F01 
+ 2723      00000201 
+ 2723      FB0E0D00 
+ 2723      01010101 
+ 2724              	.LASF35:
+ 2725 0000 4932435F 		.ascii	"I2C_Read\000"
+ 2725      52656164 
+ 2725      00
+ 2726              	.LASF9:
+ 2727 0009 5F5F696E 		.ascii	"__int32_t\000"
+ 2727      7433325F 
+ 2727      7400
+ 2728              	.LASF19:
+ 2729 0013 49324353 		.ascii	"I2CSendData\000"
+ 2729      656E6444 
+ 2729      61746100 
+ 2730              	.LASF17:
+ 2731 001f 4932435F 		.ascii	"I2C_Start\000"
+ 2731      53746172 
+ 2731      7400
+ 2732              	.LASF18:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 54
+
+
+ 2733 0029 4932435F 		.ascii	"I2C_sendbyte\000"
+ 2733      73656E64 
+ 2733      62797465 
+ 2733      00
+ 2734              	.LASF12:
+ 2735 0036 666C6F61 		.ascii	"float\000"
+ 2735      7400
+ 2736              	.LASF28:
+ 2737 003c 64617461 		.ascii	"data\000"
+ 2737      00
+ 2738              	.LASF34:
+ 2739 0041 73697A65 		.ascii	"size\000"
+ 2739      00
+ 2740              	.LASF24:
+ 2741 0046 52656365 		.ascii	"ReceiveACK\000"
+ 2741      69766541 
+ 2741      434B00
+ 2742              	.LASF21:
+ 2743 0051 4932435F 		.ascii	"I2C_nack\000"
+ 2743      6E61636B 
+ 2743      00
+ 2744              	.LASF5:
+ 2745 005a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2745      20756E73 
+ 2745      69676E65 
+ 2745      6420696E 
+ 2745      7400
+ 2746              	.LASF3:
+ 2747 006c 73686F72 		.ascii	"short unsigned int\000"
+ 2747      7420756E 
+ 2747      7369676E 
+ 2747      65642069 
+ 2747      6E7400
+ 2748              	.LASF36:
+ 2749 007f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2749      52784275 
+ 2749      66666572 
+ 2749      00
+ 2750              	.LASF41:
+ 2751 008c 2E5C6932 		.ascii	".\\i2c_core.c\000"
+ 2751      635F636F 
+ 2751      72652E63 
+ 2751      00
+ 2752              	.LASF1:
+ 2753 0099 756E7369 		.ascii	"unsigned char\000"
+ 2753      676E6564 
+ 2753      20636861 
+ 2753      7200
+ 2754              	.LASF43:
+ 2755 00a7 5359535F 		.ascii	"SYS_I2C_Init\000"
+ 2755      4932435F 
+ 2755      496E6974 
+ 2755      00
+ 2756              	.LASF13:
+ 2757 00b4 646F7562 		.ascii	"double\000"
+ 2757      6C6500
+ 2758              	.LASF27:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 55
+
+
+ 2759 00bb 70726576 		.ascii	"previous\000"
+ 2759      696F7573 
+ 2759      00
+ 2760              	.LASF30:
+ 2761 00c4 4932435F 		.ascii	"I2C_Write\000"
+ 2761      57726974 
+ 2761      6500
+ 2762              	.LASF32:
+ 2763 00ce 49324341 		.ascii	"I2CAddress\000"
+ 2763      64647265 
+ 2763      737300
+ 2764              	.LASF26:
+ 2765 00d9 75635244 		.ascii	"ucRDData\000"
+ 2765      44617461 
+ 2765      00
+ 2766              	.LASF16:
+ 2767 00e2 64656C61 		.ascii	"delay_us\000"
+ 2767      795F7573 
+ 2767      00
+ 2768              	.LASF44:
+ 2769 00eb 53444C5F 		.ascii	"SDL_Read\000"
+ 2769      52656164 
+ 2769      00
+ 2770              	.LASF8:
+ 2771 00f4 756E7369 		.ascii	"unsigned int\000"
+ 2771      676E6564 
+ 2771      20696E74 
+ 2771      00
+ 2772              	.LASF7:
+ 2773 0101 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2773      206C6F6E 
+ 2773      6720756E 
+ 2773      7369676E 
+ 2773      65642069 
+ 2774              	.LASF40:
+ 2775 0118 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2775      4320342E 
+ 2775      392E3320 
+ 2775      32303135 
+ 2775      30333033 
+ 2776 014b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2776      20726576 
+ 2776      6973696F 
+ 2776      6E203232 
+ 2776      31323230 
+ 2777 017e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2777      66756E63 
+ 2777      74696F6E 
+ 2777      2D736563 
+ 2777      74696F6E 
+ 2778              	.LASF42:
+ 2779 01a6 463A5C70 		.ascii	"F:\\project\\robot\\T1\\FW\\trunk\\robot_car_V5\\ca"
+ 2779      726F6A65 
+ 2779      63745C72 
+ 2779      6F626F74 
+ 2779      5C54315C 
+ 2780 01d2 722E6379 		.ascii	"r.cydsn\000"
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 56
+
+
+ 2780      64736E00 
+ 2781              	.LASF0:
+ 2782 01da 7369676E 		.ascii	"signed char\000"
+ 2782      65642063 
+ 2782      68617200 
+ 2783              	.LASF10:
+ 2784 01e6 696E7433 		.ascii	"int32_t\000"
+ 2784      325F7400 
+ 2785              	.LASF39:
+ 2786 01ee 53444C5F 		.ascii	"SDL_Write\000"
+ 2786      57726974 
+ 2786      6500
+ 2787              	.LASF15:
+ 2788 01f8 73697A65 		.ascii	"sizetype\000"
+ 2788      74797065 
+ 2788      00
+ 2789              	.LASF6:
+ 2790 0201 6C6F6E67 		.ascii	"long long int\000"
+ 2790      206C6F6E 
+ 2790      6720696E 
+ 2790      7400
+ 2791              	.LASF31:
+ 2792 020f 736C6176 		.ascii	"slave_add\000"
+ 2792      655F6164 
+ 2792      6400
+ 2793              	.LASF14:
+ 2794 0219 63686172 		.ascii	"char\000"
+ 2794      00
+ 2795              	.LASF23:
+ 2796 021e 6E616B66 		.ascii	"nakflag\000"
+ 2796      6C616700 
+ 2797              	.LASF22:
+ 2798 0226 4932435F 		.ascii	"I2C_ack\000"
+ 2798      61636B00 
+ 2799              	.LASF25:
+ 2800 022e 4932435F 		.ascii	"I2C_readbyte\000"
+ 2800      72656164 
+ 2800      62797465 
+ 2800      00
+ 2801              	.LASF2:
+ 2802 023b 73686F72 		.ascii	"short int\000"
+ 2802      7420696E 
+ 2802      7400
+ 2803              	.LASF11:
+ 2804 0245 75696E74 		.ascii	"uint8\000"
+ 2804      3800
+ 2805              	.LASF37:
+ 2806 024b 615F534D 		.ascii	"a_SM_PecTable\000"
+ 2806      5F506563 
+ 2806      5461626C 
+ 2806      6500
+ 2807              	.LASF38:
+ 2808 0259 53434C5F 		.ascii	"SCL_Write\000"
+ 2808      57726974 
+ 2808      6500
+ 2809              	.LASF4:
+ 2810 0263 6C6F6E67 		.ascii	"long int\000"
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccmbdjJx.s 			page 57
+
+
+ 2810      20696E74 
+ 2810      00
+ 2811              	.LASF20:
+ 2812 026c 4932435F 		.ascii	"I2C_Stop\000"
+ 2812      53746F70 
+ 2812      00
+ 2813              	.LASF33:
+ 2814 0275 49324344 		.ascii	"I2CData\000"
+ 2814      61746100 
+ 2815              	.LASF29:
+ 2816 027d 534D6275 		.ascii	"SMbus_GetCrc8\000"
+ 2816      735F4765 
+ 2816      74437263 
+ 2816      3800
+ 2817              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

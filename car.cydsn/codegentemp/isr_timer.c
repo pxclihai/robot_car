@@ -32,10 +32,12 @@ uint16 time_1ms;
 uint16 time_1ms_state;
 uint16 time_5ms;   
 uint8  time_5ms_state;
-uint16 time_1s;  
-uint16 time_1s_state;   
+uint16 time_55s;  
+uint16 time_55s_state;   
 uint16 time_100ms;
 uint16 time_100ms_state;   
+    #include "M_thickness.h"
+    #include "car.h"
 /* `#END` */
 
 #ifndef CYINT_IRQ_BASE
@@ -174,13 +176,24 @@ CY_ISR(isr_timer_Interrupt)
     /*  Place your Interrupt code here. */
     /* `#START isr_timer_Interrupt` */
     time_5ms++;
-    time_1s++;
+    if(g_Car.shutdown_flag == 1)
+    {
+        g_Car.shutdown_flag = 2 ;
+        time_55s = 0;
+    }
+    else
+    {
+        time_55s ++;
+    }
     time_1ms ++;
     time_100ms++;
-    if(time_1s >2000)
+   
+    if(time_55s >52000 && g_Car.shutdown_flag == 2)
     {
-        time_1s_state = 1;
-        time_1s = 0;
+        shutdown_50s();
+        time_55s_state = 1;
+        g_Car.shutdown_flag = 0;
+        time_55s = 0;
     }
       if(time_5ms > 5)
       {

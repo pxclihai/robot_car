@@ -1,0 +1,2440 @@
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_MOTOR_RIGHT.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.PWM_MOTOR_RIGHT_Enable,"ax",%progbits
+  19              		.align	2
+  20              		.global	PWM_MOTOR_RIGHT_Enable
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	PWM_MOTOR_RIGHT_Enable, %function
+  24              	PWM_MOTOR_RIGHT_Enable:
+  25              	.LFB2:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\PWM_MOTOR_RIGHT.c"
+   1:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * File Name: PWM_MOTOR_RIGHT.c
+   3:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+   5:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Description:
+   6:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  The compare value output may be configured to be active when the present
+  11:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  counter is less than or less than/equal to the compare value.
+  12:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  width wide when the counter is equal to zero.
+  14:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  15:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Note:
+  16:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  17:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************
+  18:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * the software package with which this file was provided.
+  22:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************/
+  23:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  24:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #include "PWM_MOTOR_RIGHT.h"
+  25:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  26:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /* Error message for removed <resource> through optimization */
+  27:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #ifdef PWM_MOTOR_RIGHT_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* PWM_MOTOR_RIGHT_PWMUDB_genblk1_ctrlreg__REMOVED */
+  31:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** uint8 PWM_MOTOR_RIGHT_initVar = 0u;
+  33:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  34:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  35:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+  36:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Function Name: PWM_MOTOR_RIGHT_Start
+  37:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************
+  38:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  39:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Summary:
+  40:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  The start function initializes the pwm with the default values, the
+  41:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  44:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Parameters:
+  45:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+  46:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  47:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Return:
+  48:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+  49:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  50:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Global variables:
+  51:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  PWM_MOTOR_RIGHT_initVar: Is modified when this function is called for the
+  52:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  54:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************/
+  55:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** void PWM_MOTOR_RIGHT_Start(void) 
+  56:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** {
+  57:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     if(PWM_MOTOR_RIGHT_initVar == 0u)
+  59:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+  60:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_Init();
+  61:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_initVar = 1u;
+  62:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+  63:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     PWM_MOTOR_RIGHT_Enable();
+  64:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  65:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** }
+  66:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  67:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  68:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+  69:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Function Name: PWM_MOTOR_RIGHT_Init
+  70:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************
+  71:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  72:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Summary:
+  73:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  PWM_MOTOR_RIGHT_Start().
+  76:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  77:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Parameters:
+  78:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+  79:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  80:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Return:
+  81:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+  82:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+  83:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************/
+  84:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** void PWM_MOTOR_RIGHT_Init(void) 
+  85:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** {
+  86:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UsingFixedFunction || PWM_MOTOR_RIGHT_UseControl)
+  87:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         uint8 ctrl;
+  88:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction || PWM_MOTOR_RIGHT_UseControl) */
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 3
+
+
+  89:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  90:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if(!PWM_MOTOR_RIGHT_UsingFixedFunction)
+  91:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(PWM_MOTOR_RIGHT_UseStatus)
+  92:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Interrupt State Backup for Critical Region*/
+  93:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             uint8 PWM_MOTOR_RIGHT_interruptState;
+  94:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UseStatus) */
+  95:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (!PWM_MOTOR_RIGHT_UsingFixedFunction) */
+  96:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+  97:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UsingFixedFunction)
+  98:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* You are allowed to write the compare value (FF only) */
+  99:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_CONTROL |= PWM_MOTOR_RIGHT_CFG0_MODE;
+ 100:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_DeadBand2_4)
+ 101:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_CONTROL |= PWM_MOTOR_RIGHT_CFG0_DB;
+ 102:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_DeadBand2_4) */
+ 103:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 104:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         ctrl = PWM_MOTOR_RIGHT_CONTROL3 & ((uint8 )(~PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK));
+ 105:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_CONTROL3 = ctrl | PWM_MOTOR_RIGHT_DEFAULT_COMPARE1_MODE;
+ 106:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 107:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_RT1 &= ((uint8)(~PWM_MOTOR_RIGHT_RT1_MASK));
+ 109:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_RT1 |= PWM_MOTOR_RIGHT_SYNC;
+ 110:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 111:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_RT1 &= ((uint8)(~PWM_MOTOR_RIGHT_SYNCDSI_MASK));
+ 113:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_RT1 |= PWM_MOTOR_RIGHT_SYNCDSI_EN;
+ 114:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 115:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #elif (PWM_MOTOR_RIGHT_UseControl)
+ 116:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* Set the default compare mode defined in the parameter */
+ 117:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         ctrl = PWM_MOTOR_RIGHT_CONTROL & ((uint8)(~PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK)) &
+ 118:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 ((uint8)(~PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK));
+ 119:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_CONTROL = ctrl | PWM_MOTOR_RIGHT_DEFAULT_COMPARE2_MODE |
+ 120:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                    PWM_MOTOR_RIGHT_DEFAULT_COMPARE1_MODE;
+ 121:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 122:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 123:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (!PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 124:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_Resolution == 8)
+ 125:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_AUX_CONTROLDP0 |= (PWM_MOTOR_RIGHT_AUX_CTRL_FIFO0_CLR);
+ 127:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else /* (PWM_MOTOR_RIGHT_Resolution == 16)*/
+ 128:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_AUX_CONTROLDP0 |= (PWM_MOTOR_RIGHT_AUX_CTRL_FIFO0_CLR);
+ 130:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_AUX_CONTROLDP1 |= (PWM_MOTOR_RIGHT_AUX_CTRL_FIFO0_CLR);
+ 131:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_Resolution == 8) */
+ 132:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 133:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_WriteCounter(PWM_MOTOR_RIGHT_INIT_PERIOD_VALUE);
+ 134:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (!PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 135:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 136:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     PWM_MOTOR_RIGHT_WritePeriod(PWM_MOTOR_RIGHT_INIT_PERIOD_VALUE);
+ 137:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 138:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_UseOneCompareMode)
+ 139:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_WriteCompare(PWM_MOTOR_RIGHT_INIT_COMPARE_VALUE1);
+ 140:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 141:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_WriteCompare1(PWM_MOTOR_RIGHT_INIT_COMPARE_VALUE1);
+ 142:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_WriteCompare2(PWM_MOTOR_RIGHT_INIT_COMPARE_VALUE2);
+ 143:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UseOneCompareMode) */
+ 144:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 145:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_KillModeMinTime)
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 4
+
+
+ 146:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_WriteKillTime(PWM_MOTOR_RIGHT_MinimumKillTime);
+ 147:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_KillModeMinTime) */
+ 148:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 149:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_DeadBandUsed)
+ 150:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_WriteDeadTime(PWM_MOTOR_RIGHT_INIT_DEAD_TIME);
+ 151:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_DeadBandUsed) */
+ 152:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 153:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UseStatus || PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 154:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_SetInterruptMode(PWM_MOTOR_RIGHT_INIT_INTERRUPTS_MODE);
+ 155:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UseStatus || PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 156:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 157:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 158:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_GLOBAL_ENABLE |= PWM_MOTOR_RIGHT_BLOCK_EN_MASK;
+ 160:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* Set the Interrupt source to come from the status register */
+ 161:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_CONTROL2 |= PWM_MOTOR_RIGHT_CTRL2_IRQ_SEL;
+ 162:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #else
+ 163:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(PWM_MOTOR_RIGHT_UseStatus)
+ 164:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 165:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Enter Critical Region*/
+ 167:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_interruptState = CyEnterCriticalSection();
+ 168:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_STATUS_AUX_CTRL |= PWM_MOTOR_RIGHT_STATUS_ACTL_INT_EN_MASK;
+ 170:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 171:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****              /* Exit Critical Region*/
+ 172:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CyExitCriticalSection(PWM_MOTOR_RIGHT_interruptState);
+ 173:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 174:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Clear the FIFO to enable the PWM_MOTOR_RIGHT_STATUS_FIFOFULL
+ 175:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                    bit to be set on FIFO full. */
+ 176:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_ClearFIFO();
+ 177:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UseStatus) */
+ 178:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 179:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** }
+ 180:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 181:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 182:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+ 183:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Function Name: PWM_MOTOR_RIGHT_Enable
+ 184:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************
+ 185:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 186:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Summary:
+ 187:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  Enables the PWM block operation
+ 188:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 189:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Parameters:
+ 190:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+ 191:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 192:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Return:
+ 193:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+ 194:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 195:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Side Effects:
+ 196:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  This works only if software enable mode is chosen
+ 197:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 198:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************/
+ 199:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** void PWM_MOTOR_RIGHT_Enable(void) 
+ 200:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** {
+  27              		.loc 1 200 0
+  28              		.cfi_startproc
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 5
+
+
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+ 201:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 203:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_GLOBAL_ENABLE |= PWM_MOTOR_RIGHT_BLOCK_EN_MASK;
+ 204:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_GLOBAL_STBY_ENABLE |= PWM_MOTOR_RIGHT_BLOCK_STBY_EN_MASK;
+ 205:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 206:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 207:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /* Enable the PWM from the control register  */
+ 208:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UseControl || PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 209:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_CONTROL |= PWM_MOTOR_RIGHT_CTRL_ENABLE;
+  32              		.loc 1 209 0
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  35 0004 43F08003 		orr	r3, r3, #128
+  36 0008 1370     		strb	r3, [r2]
+  37 000a 7047     		bx	lr
+  38              	.L3:
+  39              		.align	2
+  40              	.L2:
+  41 000c 78640040 		.word	1073767544
+  42              		.cfi_endproc
+  43              	.LFE2:
+  44              		.size	PWM_MOTOR_RIGHT_Enable, .-PWM_MOTOR_RIGHT_Enable
+  45              		.section	.text.PWM_MOTOR_RIGHT_Stop,"ax",%progbits
+  46              		.align	2
+  47              		.global	PWM_MOTOR_RIGHT_Stop
+  48              		.thumb
+  49              		.thumb_func
+  50              		.type	PWM_MOTOR_RIGHT_Stop, %function
+  51              	PWM_MOTOR_RIGHT_Stop:
+  52              	.LFB3:
+ 210:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UseControl || PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 211:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** }
+ 212:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 213:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 214:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+ 215:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Function Name: PWM_MOTOR_RIGHT_Stop
+ 216:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************
+ 217:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 218:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Summary:
+ 219:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  interrupts.
+ 221:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 222:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Parameters:
+ 223:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+ 224:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 225:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Return:
+ 226:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+ 227:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 228:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Side Effects:
+ 229:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  has no effect on the operation of the PWM
+ 231:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 232:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************/
+ 233:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** void PWM_MOTOR_RIGHT_Stop(void) 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 6
+
+
+ 234:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** {
+  53              		.loc 1 234 0
+  54              		.cfi_startproc
+  55              		@ args = 0, pretend = 0, frame = 0
+  56              		@ frame_needed = 0, uses_anonymous_args = 0
+  57              		@ link register save eliminated.
+ 235:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UseControl || PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 236:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_CONTROL &= ((uint8)(~PWM_MOTOR_RIGHT_CTRL_ENABLE));
+  58              		.loc 1 236 0
+  59 0000 024A     		ldr	r2, .L5
+  60 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  61 0004 03F07F03 		and	r3, r3, #127
+  62 0008 1370     		strb	r3, [r2]
+  63 000a 7047     		bx	lr
+  64              	.L6:
+  65              		.align	2
+  66              	.L5:
+  67 000c 78640040 		.word	1073767544
+  68              		.cfi_endproc
+  69              	.LFE3:
+  70              		.size	PWM_MOTOR_RIGHT_Stop, .-PWM_MOTOR_RIGHT_Stop
+  71              		.section	.text.PWM_MOTOR_RIGHT_WriteCounter,"ax",%progbits
+  72              		.align	2
+  73              		.global	PWM_MOTOR_RIGHT_WriteCounter
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	PWM_MOTOR_RIGHT_WriteCounter, %function
+  77              	PWM_MOTOR_RIGHT_WriteCounter:
+  78              	.LFB4:
+ 237:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UseControl || PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 238:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 239:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 241:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_GLOBAL_ENABLE &= ((uint8)(~PWM_MOTOR_RIGHT_BLOCK_EN_MASK));
+ 242:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_MOTOR_RIGHT_BLOCK_STBY_EN_MASK));
+ 243:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 244:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** }
+ 245:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 246:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_UseOneCompareMode)
+ 247:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_CompareMode1SW)
+ 248:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 249:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 250:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /*******************************************************************************
+ 251:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Function Name: PWM_MOTOR_RIGHT_SetCompareMode
+ 252:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         ********************************************************************************
+ 253:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 254:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Summary:
+ 255:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  Center Align Mode or One Output Mode.
+ 257:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 258:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Parameters:
+ 259:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *                defined in the H file as input arguments.
+ 261:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 262:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Return:
+ 263:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  None
+ 264:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 7
+
+
+ 265:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *******************************************************************************/
+ 266:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         void PWM_MOTOR_RIGHT_SetCompareMode(uint8 comparemode) 
+ 267:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         {
+ 268:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 269:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 270:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #if(0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE1_SHIFT)
+ 271:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_MOTOR_RIGHT_CTRL_C
+ 272:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #else
+ 273:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                     uint8 comparemodemasked = comparemode;
+ 274:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #endif /* (0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE1_SHIFT) */
+ 275:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 276:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_CONTROL3 &= ((uint8)(~PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK)); /*Clear
+ 277:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_CONTROL3 |= comparemodemasked;
+ 278:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 279:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #elif (PWM_MOTOR_RIGHT_UseControl)
+ 280:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 281:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #if(0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE1_SHIFT)
+ 282:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_MOTOR_RIGHT_CTRL_
+ 283:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                                 PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK;
+ 284:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #else
+ 285:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                     uint8 comparemode1masked = comparemode & PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK;
+ 286:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #endif /* (0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE1_SHIFT) */
+ 287:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 288:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #if(0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE2_SHIFT)
+ 289:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << PWM_MOTOR_RIGHT_CTRL_
+ 290:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                                PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK;
+ 291:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #else
+ 292:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                     uint8 comparemode2masked = comparemode & PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK;
+ 293:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 #endif /* (0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE2_SHIFT) */
+ 294:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 295:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 /*Clear existing mode */
+ 296:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_CONTROL &= ((uint8)(~(PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK |
+ 297:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                             PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK)));
+ 298:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 300:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #else
+ 301:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 uint8 temp = comparemode;
+ 302:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 303:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         }
+ 304:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* PWM_MOTOR_RIGHT_CompareMode1SW */
+ 305:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 306:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #else /* UseOneCompareMode */
+ 307:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 308:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_CompareMode1SW)
+ 309:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 310:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 311:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /*******************************************************************************
+ 312:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Function Name: PWM_MOTOR_RIGHT_SetCompareMode1
+ 313:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         ********************************************************************************
+ 314:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 315:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Summary:
+ 316:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 318:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Parameters:
+ 319:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *                defined in the H file as input arguments.
+ 321:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 8
+
+
+ 322:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Return:
+ 323:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  None
+ 324:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 325:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *******************************************************************************/
+ 326:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         void PWM_MOTOR_RIGHT_SetCompareMode1(uint8 comparemode) 
+ 327:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         {
+ 328:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #if(0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE1_SHIFT)
+ 329:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_MOTOR_RIGHT_CTRL_CMPMO
+ 330:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                            PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK;
+ 331:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #else
+ 332:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 uint8 comparemodemasked = comparemode & PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK;
+ 333:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #endif /* (0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE1_SHIFT) */
+ 334:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 335:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #if (PWM_MOTOR_RIGHT_UseControl)
+ 336:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_CONTROL &= ((uint8)(~PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK)); /*Clear 
+ 337:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_CONTROL |= comparemodemasked;
+ 338:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #endif /* (PWM_MOTOR_RIGHT_UseControl) */
+ 339:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         }
+ 340:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* PWM_MOTOR_RIGHT_CompareMode1SW */
+ 341:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 342:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_CompareMode2SW)
+ 343:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 344:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 345:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 346:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_SetCompareMode2
+ 347:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 348:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 349:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 350:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 352:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 353:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *                defined in the H file as input arguments.
+ 355:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 356:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 357:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 358:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 359:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 360:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_SetCompareMode2(uint8 comparemode) 
+ 361:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 362:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 363:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE2_SHIFT)
+ 364:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_MOTOR_RIGHT_CTRL_CMPMODE2_
+ 365:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                                  PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK;
+ 366:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 367:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             uint8 comparemodemasked = comparemode & PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK;
+ 368:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (0 != PWM_MOTOR_RIGHT_CTRL_CMPMODE2_SHIFT) */
+ 369:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 370:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_UseControl)
+ 371:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_CONTROL &= ((uint8)(~PWM_MOTOR_RIGHT_CTRL_CMPMODE2_MASK)); /*Clear exis
+ 372:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_CONTROL |= comparemodemasked;
+ 373:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UseControl) */
+ 374:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 375:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /*PWM_MOTOR_RIGHT_CompareMode2SW */
+ 376:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 377:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* UseOneCompareMode */
+ 378:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 9
+
+
+ 379:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 380:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (!PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 381:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 382:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 383:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 384:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_WriteCounter
+ 385:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 386:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 387:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 388:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  implemented for that currently running period and only that period. This API
+ 390:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  PWM implementation.
+ 392:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 393:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 394:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  counter:  The period new period counter value.
+ 395:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 396:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 397:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 398:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 399:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Side Effects:
+ 400:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 402:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 403:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_WriteCounter(uint16 counter) \
+ 404:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                        
+ 405:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+  79              		.loc 1 405 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 0, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84              	.LVL0:
+ 406:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         CY_SET_REG16(PWM_MOTOR_RIGHT_COUNTER_LSB_PTR, counter);
+  85              		.loc 1 406 0
+  86 0000 014B     		ldr	r3, .L8
+  87 0002 1880     		strh	r0, [r3]	@ movhi
+  88 0004 7047     		bx	lr
+  89              	.L9:
+  90 0006 00BF     		.align	2
+  91              	.L8:
+  92 0008 12680040 		.word	1073768466
+  93              		.cfi_endproc
+  94              	.LFE4:
+  95              		.size	PWM_MOTOR_RIGHT_WriteCounter, .-PWM_MOTOR_RIGHT_WriteCounter
+  96              		.section	.text.PWM_MOTOR_RIGHT_ReadCounter,"ax",%progbits
+  97              		.align	2
+  98              		.global	PWM_MOTOR_RIGHT_ReadCounter
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	PWM_MOTOR_RIGHT_ReadCounter, %function
+ 102              	PWM_MOTOR_RIGHT_ReadCounter:
+ 103              	.LFB5:
+ 407:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 408:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 409:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 410:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 10
+
+
+ 411:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadCounter
+ 412:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 413:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 414:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 415:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  if the counter is enabled or running.
+ 417:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 418:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 419:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 420:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 421:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 422:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  The current value of the counter.
+ 423:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 424:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 425:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint16 PWM_MOTOR_RIGHT_ReadCounter(void) 
+ 426:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 104              		.loc 1 426 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              		@ link register save eliminated.
+ 427:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* Force capture by reading Accumulator */
+ 428:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* Must first do a software capture to be able to read the counter */
+ 429:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****           (void)CY_GET_REG8(PWM_MOTOR_RIGHT_COUNTERCAP_LSB_PTR_8BIT);
+ 109              		.loc 1 430 0
+ 110 0000 024B     		ldr	r3, .L11
+ 111 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 431:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 432:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* Read the data from the FIFO */
+ 433:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (CY_GET_REG16(PWM_MOTOR_RIGHT_CAPTURE_LSB_PTR));
+ 112              		.loc 1 433 0
+ 113 0004 024B     		ldr	r3, .L11+4
+ 114 0006 1888     		ldrh	r0, [r3]
+ 434:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 115              		.loc 1 434 0
+ 116 0008 80B2     		uxth	r0, r0
+ 117 000a 7047     		bx	lr
+ 118              	.L12:
+ 119              		.align	2
+ 120              	.L11:
+ 121 000c 19640040 		.word	1073767449
+ 122 0010 B2680040 		.word	1073768626
+ 123              		.cfi_endproc
+ 124              	.LFE5:
+ 125              		.size	PWM_MOTOR_RIGHT_ReadCounter, .-PWM_MOTOR_RIGHT_ReadCounter
+ 126              		.section	.text.PWM_MOTOR_RIGHT_WritePeriod,"ax",%progbits
+ 127              		.align	2
+ 128              		.global	PWM_MOTOR_RIGHT_WritePeriod
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.type	PWM_MOTOR_RIGHT_WritePeriod, %function
+ 132              	PWM_MOTOR_RIGHT_WritePeriod:
+ 133              	.LFB6:
+ 435:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 436:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UseStatus)
+ 437:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 11
+
+
+ 438:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 439:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /*******************************************************************************
+ 440:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Function Name: PWM_MOTOR_RIGHT_ClearFIFO
+ 441:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         ********************************************************************************
+ 442:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 443:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Summary:
+ 444:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  This function clears all capture data from the capture FIFO
+ 445:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 446:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Parameters:
+ 447:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  None
+ 448:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 449:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         * Return:
+ 450:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *  None
+ 451:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *
+ 452:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         *******************************************************************************/
+ 453:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         void PWM_MOTOR_RIGHT_ClearFIFO(void) 
+ 454:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         {
+ 455:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             while(0u != (PWM_MOTOR_RIGHT_ReadStatusRegister() & PWM_MOTOR_RIGHT_STATUS_FIFONEMPTY))
+ 456:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             {
+ 457:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 (void)PWM_MOTOR_RIGHT_ReadCapture();
+ 458:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             }
+ 459:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         }
+ 460:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 461:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* PWM_MOTOR_RIGHT_UseStatus */
+ 462:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 463:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* !PWM_MOTOR_RIGHT_UsingFixedFunction */
+ 464:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 465:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 466:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+ 467:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Function Name: PWM_MOTOR_RIGHT_WritePeriod
+ 468:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************
+ 469:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 470:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Summary:
+ 471:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  This function is used to change the period of the counter.  The new period
+ 472:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  will be loaded the next time terminal count is detected.
+ 473:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 474:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Parameters:
+ 475:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *           will result in the counter remaining at zero.
+ 477:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 478:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Return:
+ 479:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+ 480:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 481:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************/
+ 482:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** void PWM_MOTOR_RIGHT_WritePeriod(uint16 period) 
+ 483:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** {
+ 134              		.loc 1 483 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+ 139              	.LVL1:
+ 484:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 485:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         CY_SET_REG16(PWM_MOTOR_RIGHT_PERIOD_LSB_PTR, (uint16)period);
+ 486:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #else
+ 487:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         CY_SET_REG16(PWM_MOTOR_RIGHT_PERIOD_LSB_PTR, period);
+ 140              		.loc 1 487 0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 12
+
+
+ 141 0000 014B     		ldr	r3, .L14
+ 142 0002 1880     		strh	r0, [r3]	@ movhi
+ 143 0004 7047     		bx	lr
+ 144              	.L15:
+ 145 0006 00BF     		.align	2
+ 146              	.L14:
+ 147 0008 92680040 		.word	1073768594
+ 148              		.cfi_endproc
+ 149              	.LFE6:
+ 150              		.size	PWM_MOTOR_RIGHT_WritePeriod, .-PWM_MOTOR_RIGHT_WritePeriod
+ 151              		.section	.text.PWM_MOTOR_RIGHT_WriteCompare1,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	PWM_MOTOR_RIGHT_WriteCompare1
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	PWM_MOTOR_RIGHT_WriteCompare1, %function
+ 157              	PWM_MOTOR_RIGHT_WriteCompare1:
+ 158              	.LFB7:
+ 488:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 489:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** }
+ 490:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 491:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_UseOneCompareMode)
+ 492:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 493:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 494:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 495:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_WriteCompare
+ 496:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 497:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 498:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 499:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  The compare output will be driven high when the present counter value is
+ 502:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Dither Mode.
+ 504:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 505:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 506:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  compare:  New compare value.
+ 507:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 508:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 509:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 510:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 511:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Side Effects:
+ 512:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 515:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 516:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_WriteCompare(uint16 compare) \
+ 517:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                        
+ 518:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 519:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 520:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 522:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR, compare);
+ 523:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 524:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 525:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if (PWM_MOTOR_RIGHT_PWMMode == PWM_MOTOR_RIGHT__B_PWM__DITHER)
+ 526:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 13
+
+
+ 527:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ 528:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #else
+ 529:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 531:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_PWMMode == PWM_MOTOR_RIGHT__B_PWM__DITHER) */
+ 532:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 533:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 534:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 535:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #else
+ 536:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 537:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 538:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 539:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_WriteCompare1
+ 540:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 541:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 542:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 543:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ 544:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  driven high when the present counter value is less than or less than or
+ 546:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  equal to the compare register, depending on the mode.
+ 547:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 548:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 549:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  compare:  New compare value.
+ 550:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 551:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 552:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 553:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 554:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 555:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_WriteCompare1(uint16 compare) \
+ 556:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                         
+ 557:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 159              		.loc 1 557 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 164              	.LVL2:
+ 558:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 559:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR, (uint16)compare);
+ 560:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 561:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR, compare);
+ 165              		.loc 1 561 0
+ 166 0000 014B     		ldr	r3, .L17
+ 167 0002 1880     		strh	r0, [r3]	@ movhi
+ 168 0004 7047     		bx	lr
+ 169              	.L18:
+ 170 0006 00BF     		.align	2
+ 171              	.L17:
+ 172 0008 52680040 		.word	1073768530
+ 173              		.cfi_endproc
+ 174              	.LFE7:
+ 175              		.size	PWM_MOTOR_RIGHT_WriteCompare1, .-PWM_MOTOR_RIGHT_WriteCompare1
+ 176              		.section	.text.PWM_MOTOR_RIGHT_WriteCompare2,"ax",%progbits
+ 177              		.align	2
+ 178              		.global	PWM_MOTOR_RIGHT_WriteCompare2
+ 179              		.thumb
+ 180              		.thumb_func
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 14
+
+
+ 181              		.type	PWM_MOTOR_RIGHT_WriteCompare2, %function
+ 182              	PWM_MOTOR_RIGHT_WriteCompare2:
+ 183              	.LFB8:
+ 562:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 563:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 564:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 565:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 566:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 567:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_WriteCompare2
+ 568:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 569:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 570:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 571:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  The compare output will be driven high when the present counter value is
+ 574:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  mode.
+ 576:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 577:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 578:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  compare:  New compare value.
+ 579:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 580:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 581:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 582:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 583:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 584:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_WriteCompare2(uint16 compare) \
+ 585:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                         
+ 586:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 184              		.loc 1 586 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 0
+ 187              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188              		@ link register save eliminated.
+ 189              	.LVL3:
+ 587:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 588:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE2_LSB_PTR, compare);
+ 589:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 590:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG16(PWM_MOTOR_RIGHT_COMPARE2_LSB_PTR, compare);
+ 190              		.loc 1 590 0
+ 191 0000 014B     		ldr	r3, .L20
+ 192 0002 1880     		strh	r0, [r3]	@ movhi
+ 193 0004 7047     		bx	lr
+ 194              	.L21:
+ 195 0006 00BF     		.align	2
+ 196              	.L20:
+ 197 0008 72680040 		.word	1073768562
+ 198              		.cfi_endproc
+ 199              	.LFE8:
+ 200              		.size	PWM_MOTOR_RIGHT_WriteCompare2, .-PWM_MOTOR_RIGHT_WriteCompare2
+ 201              		.section	.text.PWM_MOTOR_RIGHT_Init,"ax",%progbits
+ 202              		.align	2
+ 203              		.global	PWM_MOTOR_RIGHT_Init
+ 204              		.thumb
+ 205              		.thumb_func
+ 206              		.type	PWM_MOTOR_RIGHT_Init, %function
+ 207              	PWM_MOTOR_RIGHT_Init:
+ 208              	.LFB1:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 15
+
+
+  85:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if (PWM_MOTOR_RIGHT_UsingFixedFunction || PWM_MOTOR_RIGHT_UseControl)
+ 209              		.loc 1 85 0
+ 210              		.cfi_startproc
+ 211              		@ args = 0, pretend = 0, frame = 0
+ 212              		@ frame_needed = 0, uses_anonymous_args = 0
+ 213 0000 08B5     		push	{r3, lr}
+ 214              		.cfi_def_cfa_offset 8
+ 215              		.cfi_offset 3, -8
+ 216              		.cfi_offset 14, -4
+ 117:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 ((uint8)(~PWM_MOTOR_RIGHT_CTRL_CMPMODE1_MASK));
+ 217              		.loc 1 117 0
+ 218 0002 114A     		ldr	r2, .L24
+ 219 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 220 0006 03F0C003 		and	r3, r3, #192
+ 221              	.LVL4:
+ 119:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                    PWM_MOTOR_RIGHT_DEFAULT_COMPARE1_MODE;
+ 222              		.loc 1 119 0
+ 223 000a 43F00903 		orr	r3, r3, #9
+ 224              	.LVL5:
+ 225 000e 1370     		strb	r3, [r2]
+ 129:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_AUX_CONTROLDP1 |= (PWM_MOTOR_RIGHT_AUX_CTRL_FIFO0_CLR);
+ 226              		.loc 1 129 0
+ 227 0010 2132     		adds	r2, r2, #33
+ 228 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 229 0014 43F00103 		orr	r3, r3, #1
+ 230 0018 1370     		strb	r3, [r2]
+ 130:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_Resolution == 8) */
+ 231              		.loc 1 130 0
+ 232 001a 0132     		adds	r2, r2, #1
+ 233 001c 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 234 001e 43F00103 		orr	r3, r3, #1
+ 235 0022 1370     		strb	r3, [r2]
+ 133:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (!PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 236              		.loc 1 133 0
+ 237 0024 4FF47A70 		mov	r0, #1000
+ 238 0028 FFF7FEFF 		bl	PWM_MOTOR_RIGHT_WriteCounter
+ 239              	.LVL6:
+ 136:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 240              		.loc 1 136 0
+ 241 002c 4FF47A70 		mov	r0, #1000
+ 242 0030 FFF7FEFF 		bl	PWM_MOTOR_RIGHT_WritePeriod
+ 243              	.LVL7:
+ 141:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_WriteCompare2(PWM_MOTOR_RIGHT_INIT_COMPARE_VALUE2);
+ 244              		.loc 1 141 0
+ 245 0034 4FF46170 		mov	r0, #900
+ 246 0038 FFF7FEFF 		bl	PWM_MOTOR_RIGHT_WriteCompare1
+ 247              	.LVL8:
+ 142:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UseOneCompareMode) */
+ 248              		.loc 1 142 0
+ 249 003c 4FF46170 		mov	r0, #900
+ 250 0040 FFF7FEFF 		bl	PWM_MOTOR_RIGHT_WriteCompare2
+ 251              	.LVL9:
+ 252 0044 08BD     		pop	{r3, pc}
+ 253              	.L25:
+ 254 0046 00BF     		.align	2
+ 255              	.L24:
+ 256 0048 78640040 		.word	1073767544
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 16
+
+
+ 257              		.cfi_endproc
+ 258              	.LFE1:
+ 259              		.size	PWM_MOTOR_RIGHT_Init, .-PWM_MOTOR_RIGHT_Init
+ 260              		.section	.text.PWM_MOTOR_RIGHT_Start,"ax",%progbits
+ 261              		.align	2
+ 262              		.global	PWM_MOTOR_RIGHT_Start
+ 263              		.thumb
+ 264              		.thumb_func
+ 265              		.type	PWM_MOTOR_RIGHT_Start, %function
+ 266              	PWM_MOTOR_RIGHT_Start:
+ 267              	.LFB0:
+  56:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /* If not Initialized then initialize all required hardware and software */
+ 268              		.loc 1 56 0
+ 269              		.cfi_startproc
+ 270              		@ args = 0, pretend = 0, frame = 0
+ 271              		@ frame_needed = 0, uses_anonymous_args = 0
+ 272 0000 08B5     		push	{r3, lr}
+ 273              		.cfi_def_cfa_offset 8
+ 274              		.cfi_offset 3, -8
+ 275              		.cfi_offset 14, -4
+  58:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 276              		.loc 1 58 0
+ 277 0002 054B     		ldr	r3, .L29
+ 278 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 279 0006 23B9     		cbnz	r3, .L27
+  60:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         PWM_MOTOR_RIGHT_initVar = 1u;
+ 280              		.loc 1 60 0
+ 281 0008 FFF7FEFF 		bl	PWM_MOTOR_RIGHT_Init
+ 282              	.LVL10:
+  61:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 283              		.loc 1 61 0
+ 284 000c 0122     		movs	r2, #1
+ 285 000e 024B     		ldr	r3, .L29
+ 286 0010 1A70     		strb	r2, [r3]
+ 287              	.L27:
+  63:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 288              		.loc 1 63 0
+ 289 0012 FFF7FEFF 		bl	PWM_MOTOR_RIGHT_Enable
+ 290              	.LVL11:
+ 291 0016 08BD     		pop	{r3, pc}
+ 292              	.L30:
+ 293              		.align	2
+ 294              	.L29:
+ 295 0018 00000000 		.word	.LANCHOR0
+ 296              		.cfi_endproc
+ 297              	.LFE0:
+ 298              		.size	PWM_MOTOR_RIGHT_Start, .-PWM_MOTOR_RIGHT_Start
+ 299              		.section	.text.PWM_MOTOR_RIGHT_ReadControlRegister,"ax",%progbits
+ 300              		.align	2
+ 301              		.global	PWM_MOTOR_RIGHT_ReadControlRegister
+ 302              		.thumb
+ 303              		.thumb_func
+ 304              		.type	PWM_MOTOR_RIGHT_ReadControlRegister, %function
+ 305              	PWM_MOTOR_RIGHT_ReadControlRegister:
+ 306              	.LFB9:
+ 591:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 592:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 17
+
+
+ 593:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* UseOneCompareMode */
+ 594:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 595:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_DeadBandUsed)
+ 596:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 597:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 598:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 599:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_WriteDeadTime
+ 600:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 601:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 602:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 603:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 605:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 606:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  deadtime:  Number of counts for dead time
+ 607:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 608:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 609:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 610:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 611:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 612:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_WriteDeadTime(uint8 deadtime) 
+ 613:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 614:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(!PWM_MOTOR_RIGHT_DeadBand2_4)
+ 616:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             CY_SET_REG8(PWM_MOTOR_RIGHT_DEADBAND_COUNT_PTR, deadtime);
+ 617:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 618:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Otherwise the data has to be masked and offset */
+ 619:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Clear existing data */
+ 620:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             PWM_MOTOR_RIGHT_DEADBAND_COUNT &= ((uint8)(~PWM_MOTOR_RIGHT_DEADBAND_COUNT_MASK));
+ 621:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 622:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Set new dead time */
+ 623:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #if(PWM_MOTOR_RIGHT_DEADBAND_COUNT_SHIFT)
+ 624:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << PWM_MOTOR_RIGHT_DEADB
+ 625:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                                     PWM_MOTOR_RIGHT_DEADBAND_COUNT_MASK;
+ 626:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #else
+ 627:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 PWM_MOTOR_RIGHT_DEADBAND_COUNT |= deadtime & PWM_MOTOR_RIGHT_DEADBAND_COUNT_MASK;
+ 628:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #endif /* (PWM_MOTOR_RIGHT_DEADBAND_COUNT_SHIFT) */
+ 629:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 630:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (!PWM_MOTOR_RIGHT_DeadBand2_4) */
+ 631:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 632:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 633:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 634:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 635:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadDeadTime
+ 636:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 637:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 638:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 639:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 641:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 642:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 643:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 644:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 645:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Dead Band Counts
+ 646:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 647:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 648:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint8 PWM_MOTOR_RIGHT_ReadDeadTime(void) 
+ 649:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 18
+
+
+ 650:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(!PWM_MOTOR_RIGHT_DeadBand2_4)
+ 652:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             return (CY_GET_REG8(PWM_MOTOR_RIGHT_DEADBAND_COUNT_PTR));
+ 653:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 654:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 655:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             /* Otherwise the data has to be masked and offset */
+ 656:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #if(PWM_MOTOR_RIGHT_DEADBAND_COUNT_SHIFT)
+ 657:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 return ((uint8)(((uint8)(PWM_MOTOR_RIGHT_DEADBAND_COUNT & PWM_MOTOR_RIGHT_DEADBAND_
+ 658:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                                                                            PWM_MOTOR_RIGHT_DEADBAND
+ 659:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #else
+ 660:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****                 return (PWM_MOTOR_RIGHT_DEADBAND_COUNT & PWM_MOTOR_RIGHT_DEADBAND_COUNT_MASK);
+ 661:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             #endif /* (PWM_MOTOR_RIGHT_DEADBAND_COUNT_SHIFT) */
+ 662:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (!PWM_MOTOR_RIGHT_DeadBand2_4) */
+ 663:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 664:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* DeadBandUsed */
+ 665:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 666:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_UseStatus || PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 667:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 668:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 669:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 670:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_SetInterruptMode
+ 671:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 672:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 673:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 674:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  source status register.
+ 676:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 677:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 678:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ 679:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 680:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 681:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 682:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 683:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 684:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_SetInterruptMode(uint8 interruptMode) 
+ 685:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 686:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         CY_SET_REG8(PWM_MOTOR_RIGHT_STATUS_MASK_PTR, interruptMode);
+ 687:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 688:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 689:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 690:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 691:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadStatusRegister
+ 692:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 693:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 694:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 695:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  This function returns the current state of the status register.
+ 696:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 697:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 698:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 699:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 700:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 701:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [7:6] : Unused(0)
+ 703:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [5]   : Kill event output
+ 704:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [4]   : FIFO not empty
+ 705:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [3]   : FIFO full
+ 706:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [2]   : Terminal count
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 19
+
+
+ 707:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [1]   : Compare output 2
+ 708:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [0]   : Compare output 1
+ 709:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 710:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 711:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint8 PWM_MOTOR_RIGHT_ReadStatusRegister(void) 
+ 712:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 713:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (CY_GET_REG8(PWM_MOTOR_RIGHT_STATUS_PTR));
+ 714:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 715:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 716:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* (PWM_MOTOR_RIGHT_UseStatus || PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 717:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 718:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 719:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_UseControl)
+ 720:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 721:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 722:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 723:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadControlRegister
+ 724:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 725:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 726:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 727:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Returns the current state of the control register. This API is available
+ 728:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  only if the control register is not removed.
+ 729:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 730:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 731:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 732:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 733:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 734:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8 : Current control register value
+ 735:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 736:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 737:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint8 PWM_MOTOR_RIGHT_ReadControlRegister(void) 
+ 738:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 307              		.loc 1 738 0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 0
+ 310              		@ frame_needed = 0, uses_anonymous_args = 0
+ 311              		@ link register save eliminated.
+ 739:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         uint8 result;
+ 740:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 741:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         result = CY_GET_REG8(PWM_MOTOR_RIGHT_CONTROL_PTR);
+ 312              		.loc 1 741 0
+ 313 0000 014B     		ldr	r3, .L32
+ 314 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 315              	.LVL12:
+ 742:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (result);
+ 743:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 316              		.loc 1 743 0
+ 317 0004 7047     		bx	lr
+ 318              	.L33:
+ 319 0006 00BF     		.align	2
+ 320              	.L32:
+ 321 0008 78640040 		.word	1073767544
+ 322              		.cfi_endproc
+ 323              	.LFE9:
+ 324              		.size	PWM_MOTOR_RIGHT_ReadControlRegister, .-PWM_MOTOR_RIGHT_ReadControlRegister
+ 325              		.section	.text.PWM_MOTOR_RIGHT_WriteControlRegister,"ax",%progbits
+ 326              		.align	2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 20
+
+
+ 327              		.global	PWM_MOTOR_RIGHT_WriteControlRegister
+ 328              		.thumb
+ 329              		.thumb_func
+ 330              		.type	PWM_MOTOR_RIGHT_WriteControlRegister, %function
+ 331              	PWM_MOTOR_RIGHT_WriteControlRegister:
+ 332              	.LFB10:
+ 744:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 745:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 746:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 747:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_WriteControlRegister
+ 748:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 749:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 750:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 751:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  the control register is not removed.
+ 753:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 754:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 755:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [7]   : PWM Enable
+ 757:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [6]   : Reset
+ 758:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [5:3] : Compare Mode2
+ 759:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  [2:0] : Compare Mode2
+ 760:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 761:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 762:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 763:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 764:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 765:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     void PWM_MOTOR_RIGHT_WriteControlRegister(uint8 control) 
+ 766:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 333              		.loc 1 766 0
+ 334              		.cfi_startproc
+ 335              		@ args = 0, pretend = 0, frame = 0
+ 336              		@ frame_needed = 0, uses_anonymous_args = 0
+ 337              		@ link register save eliminated.
+ 338              	.LVL13:
+ 767:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         CY_SET_REG8(PWM_MOTOR_RIGHT_CONTROL_PTR, control);
+ 339              		.loc 1 767 0
+ 340 0000 014B     		ldr	r3, .L35
+ 341 0002 1870     		strb	r0, [r3]
+ 342 0004 7047     		bx	lr
+ 343              	.L36:
+ 344 0006 00BF     		.align	2
+ 345              	.L35:
+ 346 0008 78640040 		.word	1073767544
+ 347              		.cfi_endproc
+ 348              	.LFE10:
+ 349              		.size	PWM_MOTOR_RIGHT_WriteControlRegister, .-PWM_MOTOR_RIGHT_WriteControlRegister
+ 350              		.section	.text.PWM_MOTOR_RIGHT_ReadCapture,"ax",%progbits
+ 351              		.align	2
+ 352              		.global	PWM_MOTOR_RIGHT_ReadCapture
+ 353              		.thumb
+ 354              		.thumb_func
+ 355              		.type	PWM_MOTOR_RIGHT_ReadCapture, %function
+ 356              	PWM_MOTOR_RIGHT_ReadCapture:
+ 357              	.LFB11:
+ 768:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 769:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 21
+
+
+ 770:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* (PWM_MOTOR_RIGHT_UseControl) */
+ 771:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 772:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 773:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (!PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 774:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 775:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 776:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 777:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadCapture
+ 778:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 779:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 780:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 781:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Reads the capture value from the capture FIFO.
+ 782:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 783:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 784:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 785:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 786:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 787:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8/uint16: The current capture value
+ 788:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 789:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 790:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint16 PWM_MOTOR_RIGHT_ReadCapture(void) 
+ 791:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 358              		.loc 1 791 0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		@ link register save eliminated.
+ 792:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (CY_GET_REG16(PWM_MOTOR_RIGHT_CAPTURE_LSB_PTR));
+ 363              		.loc 1 792 0
+ 364 0000 014B     		ldr	r3, .L38
+ 365 0002 1888     		ldrh	r0, [r3]
+ 793:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 366              		.loc 1 793 0
+ 367 0004 80B2     		uxth	r0, r0
+ 368 0006 7047     		bx	lr
+ 369              	.L39:
+ 370              		.align	2
+ 371              	.L38:
+ 372 0008 B2680040 		.word	1073768626
+ 373              		.cfi_endproc
+ 374              	.LFE11:
+ 375              		.size	PWM_MOTOR_RIGHT_ReadCapture, .-PWM_MOTOR_RIGHT_ReadCapture
+ 376              		.section	.text.PWM_MOTOR_RIGHT_ReadCompare1,"ax",%progbits
+ 377              		.align	2
+ 378              		.global	PWM_MOTOR_RIGHT_ReadCompare1
+ 379              		.thumb
+ 380              		.thumb_func
+ 381              		.type	PWM_MOTOR_RIGHT_ReadCompare1, %function
+ 382              	PWM_MOTOR_RIGHT_ReadCompare1:
+ 383              	.LFB12:
+ 794:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 795:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* (!PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 796:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 797:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 798:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #if (PWM_MOTOR_RIGHT_UseOneCompareMode)
+ 799:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 800:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 22
+
+
+ 801:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 802:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadCompare
+ 803:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 804:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 805:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 806:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 809:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 810:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 811:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 812:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 813:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8/uint16: Current compare value
+ 814:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 815:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 816:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint16 PWM_MOTOR_RIGHT_ReadCompare(void) 
+ 817:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 818:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 819:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             return ((uint16)CY_GET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR));
+ 820:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #else
+ 821:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****             return (CY_GET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR));
+ 822:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 823:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 824:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 825:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #else
+ 826:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 827:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 828:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 829:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadCompare1
+ 830:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 831:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 832:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 833:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Reads the compare value for the compare1 output.
+ 834:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 835:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 836:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 837:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 838:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 839:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8/uint16: Current compare value.
+ 840:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 841:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 842:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint16 PWM_MOTOR_RIGHT_ReadCompare1(void) 
+ 843:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 384              		.loc 1 843 0
+ 385              		.cfi_startproc
+ 386              		@ args = 0, pretend = 0, frame = 0
+ 387              		@ frame_needed = 0, uses_anonymous_args = 0
+ 388              		@ link register save eliminated.
+ 844:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (CY_GET_REG16(PWM_MOTOR_RIGHT_COMPARE1_LSB_PTR));
+ 389              		.loc 1 844 0
+ 390 0000 014B     		ldr	r3, .L41
+ 391 0002 1888     		ldrh	r0, [r3]
+ 845:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 392              		.loc 1 845 0
+ 393 0004 80B2     		uxth	r0, r0
+ 394 0006 7047     		bx	lr
+ 395              	.L42:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 23
+
+
+ 396              		.align	2
+ 397              	.L41:
+ 398 0008 52680040 		.word	1073768530
+ 399              		.cfi_endproc
+ 400              	.LFE12:
+ 401              		.size	PWM_MOTOR_RIGHT_ReadCompare1, .-PWM_MOTOR_RIGHT_ReadCompare1
+ 402              		.section	.text.PWM_MOTOR_RIGHT_ReadCompare2,"ax",%progbits
+ 403              		.align	2
+ 404              		.global	PWM_MOTOR_RIGHT_ReadCompare2
+ 405              		.thumb
+ 406              		.thumb_func
+ 407              		.type	PWM_MOTOR_RIGHT_ReadCompare2, %function
+ 408              	PWM_MOTOR_RIGHT_ReadCompare2:
+ 409              	.LFB13:
+ 846:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 847:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 848:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     /*******************************************************************************
+ 849:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Function Name: PWM_MOTOR_RIGHT_ReadCompare2
+ 850:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     ********************************************************************************
+ 851:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 852:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Summary:
+ 853:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  Reads the compare value for the compare2 output.
+ 854:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 855:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Parameters:
+ 856:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  None
+ 857:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 858:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     * Return:
+ 859:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *  uint8/uint16: Current compare value.
+ 860:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *
+ 861:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     *******************************************************************************/
+ 862:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     uint16 PWM_MOTOR_RIGHT_ReadCompare2(void) 
+ 863:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     {
+ 410              		.loc 1 863 0
+ 411              		.cfi_startproc
+ 412              		@ args = 0, pretend = 0, frame = 0
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414              		@ link register save eliminated.
+ 864:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (CY_GET_REG16(PWM_MOTOR_RIGHT_COMPARE2_LSB_PTR));
+ 415              		.loc 1 864 0
+ 416 0000 014B     		ldr	r3, .L44
+ 417 0002 1888     		ldrh	r0, [r3]
+ 865:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     }
+ 418              		.loc 1 865 0
+ 419 0004 80B2     		uxth	r0, r0
+ 420 0006 7047     		bx	lr
+ 421              	.L45:
+ 422              		.align	2
+ 423              	.L44:
+ 424 0008 72680040 		.word	1073768562
+ 425              		.cfi_endproc
+ 426              	.LFE13:
+ 427              		.size	PWM_MOTOR_RIGHT_ReadCompare2, .-PWM_MOTOR_RIGHT_ReadCompare2
+ 428              		.section	.text.PWM_MOTOR_RIGHT_ReadPeriod,"ax",%progbits
+ 429              		.align	2
+ 430              		.global	PWM_MOTOR_RIGHT_ReadPeriod
+ 431              		.thumb
+ 432              		.thumb_func
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 24
+
+
+ 433              		.type	PWM_MOTOR_RIGHT_ReadPeriod, %function
+ 434              	PWM_MOTOR_RIGHT_ReadPeriod:
+ 435              	.LFB14:
+ 866:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 867:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** #endif /* (PWM_MOTOR_RIGHT_UseOneCompareMode) */
+ 868:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 869:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** 
+ 870:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** /*******************************************************************************
+ 871:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Function Name: PWM_MOTOR_RIGHT_ReadPeriod
+ 872:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** ********************************************************************************
+ 873:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 874:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Summary:
+ 875:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  Reads the period value used by the PWM hardware.
+ 876:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 877:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Parameters:
+ 878:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  None
+ 879:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 880:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** * Return:
+ 881:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *  uint8/16: Period value
+ 882:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *
+ 883:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** *******************************************************************************/
+ 884:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** uint16 PWM_MOTOR_RIGHT_ReadPeriod(void) 
+ 885:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** {
+ 436              		.loc 1 885 0
+ 437              		.cfi_startproc
+ 438              		@ args = 0, pretend = 0, frame = 0
+ 439              		@ frame_needed = 0, uses_anonymous_args = 0
+ 440              		@ link register save eliminated.
+ 886:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #if(PWM_MOTOR_RIGHT_UsingFixedFunction)
+ 887:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return ((uint16)CY_GET_REG16(PWM_MOTOR_RIGHT_PERIOD_LSB_PTR));
+ 888:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #else
+ 889:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****         return (CY_GET_REG16(PWM_MOTOR_RIGHT_PERIOD_LSB_PTR));
+ 441              		.loc 1 889 0
+ 442 0000 014B     		ldr	r3, .L47
+ 443 0002 1888     		ldrh	r0, [r3]
+ 890:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c ****     #endif /* (PWM_MOTOR_RIGHT_UsingFixedFunction) */
+ 891:.\Generated_Source\PSoC5/PWM_MOTOR_RIGHT.c **** }
+ 444              		.loc 1 891 0
+ 445 0004 80B2     		uxth	r0, r0
+ 446 0006 7047     		bx	lr
+ 447              	.L48:
+ 448              		.align	2
+ 449              	.L47:
+ 450 0008 92680040 		.word	1073768594
+ 451              		.cfi_endproc
+ 452              	.LFE14:
+ 453              		.size	PWM_MOTOR_RIGHT_ReadPeriod, .-PWM_MOTOR_RIGHT_ReadPeriod
+ 454              		.global	PWM_MOTOR_RIGHT_initVar
+ 455              		.bss
+ 456              		.set	.LANCHOR0,. + 0
+ 457              		.type	PWM_MOTOR_RIGHT_initVar, %object
+ 458              		.size	PWM_MOTOR_RIGHT_initVar, 1
+ 459              	PWM_MOTOR_RIGHT_initVar:
+ 460 0000 00       		.space	1
+ 461              		.text
+ 462              	.Letext0:
+ 463              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 25
+
+
+ 464              		.section	.debug_info,"",%progbits
+ 465              	.Ldebug_info0:
+ 466 0000 DC020000 		.4byte	0x2dc
+ 467 0004 0400     		.2byte	0x4
+ 468 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 469 000a 04       		.byte	0x4
+ 470 000b 01       		.uleb128 0x1
+ 471 000c 52010000 		.4byte	.LASF37
+ 472 0010 01       		.byte	0x1
+ 473 0011 9E020000 		.4byte	.LASF38
+ 474 0015 23020000 		.4byte	.LASF39
+ 475 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 476 001d 00000000 		.4byte	0
+ 477 0021 00000000 		.4byte	.Ldebug_line0
+ 478 0025 02       		.uleb128 0x2
+ 479 0026 01       		.byte	0x1
+ 480 0027 06       		.byte	0x6
+ 481 0028 75030000 		.4byte	.LASF0
+ 482 002c 02       		.uleb128 0x2
+ 483 002d 01       		.byte	0x1
+ 484 002e 08       		.byte	0x8
+ 485 002f BF000000 		.4byte	.LASF1
+ 486 0033 02       		.uleb128 0x2
+ 487 0034 02       		.byte	0x2
+ 488 0035 05       		.byte	0x5
+ 489 0036 2B030000 		.4byte	.LASF2
+ 490 003a 02       		.uleb128 0x2
+ 491 003b 02       		.byte	0x2
+ 492 003c 07       		.byte	0x7
+ 493 003d 22000000 		.4byte	.LASF3
+ 494 0041 02       		.uleb128 0x2
+ 495 0042 04       		.byte	0x4
+ 496 0043 05       		.byte	0x5
+ 497 0044 6C030000 		.4byte	.LASF4
+ 498 0048 02       		.uleb128 0x2
+ 499 0049 04       		.byte	0x4
+ 500 004a 07       		.byte	0x7
+ 501 004b D2000000 		.4byte	.LASF5
+ 502 004f 02       		.uleb128 0x2
+ 503 0050 08       		.byte	0x8
+ 504 0051 05       		.byte	0x5
+ 505 0052 C9020000 		.4byte	.LASF6
+ 506 0056 02       		.uleb128 0x2
+ 507 0057 08       		.byte	0x8
+ 508 0058 07       		.byte	0x7
+ 509 0059 05020000 		.4byte	.LASF7
+ 510 005d 03       		.uleb128 0x3
+ 511 005e 04       		.byte	0x4
+ 512 005f 05       		.byte	0x5
+ 513 0060 696E7400 		.ascii	"int\000"
+ 514 0064 02       		.uleb128 0x2
+ 515 0065 04       		.byte	0x4
+ 516 0066 07       		.byte	0x7
+ 517 0067 E0010000 		.4byte	.LASF8
+ 518 006b 04       		.uleb128 0x4
+ 519 006c E4000000 		.4byte	.LASF9
+ 520 0070 02       		.byte	0x2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 26
+
+
+ 521 0071 C2       		.byte	0xc2
+ 522 0072 2C000000 		.4byte	0x2c
+ 523 0076 04       		.uleb128 0x4
+ 524 0077 4B010000 		.4byte	.LASF10
+ 525 007b 02       		.byte	0x2
+ 526 007c C3       		.byte	0xc3
+ 527 007d 3A000000 		.4byte	0x3a
+ 528 0081 02       		.uleb128 0x2
+ 529 0082 04       		.byte	0x4
+ 530 0083 04       		.byte	0x4
+ 531 0084 8D000000 		.4byte	.LASF11
+ 532 0088 02       		.uleb128 0x2
+ 533 0089 08       		.byte	0x8
+ 534 008a 04       		.byte	0x4
+ 535 008b 2D010000 		.4byte	.LASF12
+ 536 008f 02       		.uleb128 0x2
+ 537 0090 01       		.byte	0x1
+ 538 0091 08       		.byte	0x8
+ 539 0092 11030000 		.4byte	.LASF13
+ 540 0096 05       		.uleb128 0x5
+ 541 0097 CD000000 		.4byte	.LASF14
+ 542 009b 02       		.byte	0x2
+ 543 009c 6C01     		.2byte	0x16c
+ 544 009e A2000000 		.4byte	0xa2
+ 545 00a2 06       		.uleb128 0x6
+ 546 00a3 6B000000 		.4byte	0x6b
+ 547 00a7 05       		.uleb128 0x5
+ 548 00a8 00000000 		.4byte	.LASF15
+ 549 00ac 02       		.byte	0x2
+ 550 00ad 6D01     		.2byte	0x16d
+ 551 00af B3000000 		.4byte	0xb3
+ 552 00b3 06       		.uleb128 0x6
+ 553 00b4 76000000 		.4byte	0x76
+ 554 00b8 02       		.uleb128 0x2
+ 555 00b9 04       		.byte	0x4
+ 556 00ba 07       		.byte	0x7
+ 557 00bb 79020000 		.4byte	.LASF16
+ 558 00bf 07       		.uleb128 0x7
+ 559 00c0 34010000 		.4byte	.LASF17
+ 560 00c4 01       		.byte	0x1
+ 561 00c5 C7       		.byte	0xc7
+ 562 00c6 00000000 		.4byte	.LFB2
+ 563 00ca 10000000 		.4byte	.LFE2-.LFB2
+ 564 00ce 01       		.uleb128 0x1
+ 565 00cf 9C       		.byte	0x9c
+ 566 00d0 07       		.uleb128 0x7
+ 567 00d1 06000000 		.4byte	.LASF18
+ 568 00d5 01       		.byte	0x1
+ 569 00d6 E9       		.byte	0xe9
+ 570 00d7 00000000 		.4byte	.LFB3
+ 571 00db 10000000 		.4byte	.LFE3-.LFB3
+ 572 00df 01       		.uleb128 0x1
+ 573 00e0 9C       		.byte	0x9c
+ 574 00e1 08       		.uleb128 0x8
+ 575 00e2 57020000 		.4byte	.LASF19
+ 576 00e6 01       		.byte	0x1
+ 577 00e7 9301     		.2byte	0x193
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 27
+
+
+ 578 00e9 00000000 		.4byte	.LFB4
+ 579 00ed 0C000000 		.4byte	.LFE4-.LFB4
+ 580 00f1 01       		.uleb128 0x1
+ 581 00f2 9C       		.byte	0x9c
+ 582 00f3 06010000 		.4byte	0x106
+ 583 00f7 09       		.uleb128 0x9
+ 584 00f8 93000000 		.4byte	.LASF21
+ 585 00fc 01       		.byte	0x1
+ 586 00fd 9301     		.2byte	0x193
+ 587 00ff 76000000 		.4byte	0x76
+ 588 0103 01       		.uleb128 0x1
+ 589 0104 50       		.byte	0x50
+ 590 0105 00       		.byte	0
+ 591 0106 0A       		.uleb128 0xa
+ 592 0107 35030000 		.4byte	.LASF32
+ 593 010b 01       		.byte	0x1
+ 594 010c A901     		.2byte	0x1a9
+ 595 010e 76000000 		.4byte	0x76
+ 596 0112 00000000 		.4byte	.LFB5
+ 597 0116 14000000 		.4byte	.LFE5-.LFB5
+ 598 011a 01       		.uleb128 0x1
+ 599 011b 9C       		.byte	0x9c
+ 600 011c 08       		.uleb128 0x8
+ 601 011d 35000000 		.4byte	.LASF20
+ 602 0121 01       		.byte	0x1
+ 603 0122 E201     		.2byte	0x1e2
+ 604 0124 00000000 		.4byte	.LFB6
+ 605 0128 0C000000 		.4byte	.LFE6-.LFB6
+ 606 012c 01       		.uleb128 0x1
+ 607 012d 9C       		.byte	0x9c
+ 608 012e 41010000 		.4byte	0x141
+ 609 0132 09       		.uleb128 0x9
+ 610 0133 1B000000 		.4byte	.LASF22
+ 611 0137 01       		.byte	0x1
+ 612 0138 E201     		.2byte	0x1e2
+ 613 013a 76000000 		.4byte	0x76
+ 614 013e 01       		.uleb128 0x1
+ 615 013f 50       		.byte	0x50
+ 616 0140 00       		.byte	0
+ 617 0141 08       		.uleb128 0x8
+ 618 0142 51000000 		.4byte	.LASF23
+ 619 0146 01       		.byte	0x1
+ 620 0147 2B02     		.2byte	0x22b
+ 621 0149 00000000 		.4byte	.LFB7
+ 622 014d 0C000000 		.4byte	.LFE7-.LFB7
+ 623 0151 01       		.uleb128 0x1
+ 624 0152 9C       		.byte	0x9c
+ 625 0153 66010000 		.4byte	0x166
+ 626 0157 09       		.uleb128 0x9
+ 627 0158 81030000 		.4byte	.LASF24
+ 628 015c 01       		.byte	0x1
+ 629 015d 2B02     		.2byte	0x22b
+ 630 015f 76000000 		.4byte	0x76
+ 631 0163 01       		.uleb128 0x1
+ 632 0164 50       		.byte	0x50
+ 633 0165 00       		.byte	0
+ 634 0166 08       		.uleb128 0x8
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 28
+
+
+ 635 0167 6F000000 		.4byte	.LASF25
+ 636 016b 01       		.byte	0x1
+ 637 016c 4802     		.2byte	0x248
+ 638 016e 00000000 		.4byte	.LFB8
+ 639 0172 0C000000 		.4byte	.LFE8-.LFB8
+ 640 0176 01       		.uleb128 0x1
+ 641 0177 9C       		.byte	0x9c
+ 642 0178 8B010000 		.4byte	0x18b
+ 643 017c 09       		.uleb128 0x9
+ 644 017d 81030000 		.4byte	.LASF24
+ 645 0181 01       		.byte	0x1
+ 646 0182 4802     		.2byte	0x248
+ 647 0184 76000000 		.4byte	0x76
+ 648 0188 01       		.uleb128 0x1
+ 649 0189 50       		.byte	0x50
+ 650 018a 00       		.byte	0
+ 651 018b 0B       		.uleb128 0xb
+ 652 018c 16030000 		.4byte	.LASF26
+ 653 0190 01       		.byte	0x1
+ 654 0191 54       		.byte	0x54
+ 655 0192 00000000 		.4byte	.LFB1
+ 656 0196 4C000000 		.4byte	.LFE1-.LFB1
+ 657 019a 01       		.uleb128 0x1
+ 658 019b 9C       		.byte	0x9c
+ 659 019c 00020000 		.4byte	0x200
+ 660 01a0 0C       		.uleb128 0xc
+ 661 01a1 74020000 		.4byte	.LASF28
+ 662 01a5 01       		.byte	0x1
+ 663 01a6 57       		.byte	0x57
+ 664 01a7 6B000000 		.4byte	0x6b
+ 665 01ab 00000000 		.4byte	.LLST0
+ 666 01af 0D       		.uleb128 0xd
+ 667 01b0 2C000000 		.4byte	.LVL6
+ 668 01b4 E1000000 		.4byte	0xe1
+ 669 01b8 C4010000 		.4byte	0x1c4
+ 670 01bc 0E       		.uleb128 0xe
+ 671 01bd 01       		.uleb128 0x1
+ 672 01be 50       		.byte	0x50
+ 673 01bf 03       		.uleb128 0x3
+ 674 01c0 0A       		.byte	0xa
+ 675 01c1 E803     		.2byte	0x3e8
+ 676 01c3 00       		.byte	0
+ 677 01c4 0D       		.uleb128 0xd
+ 678 01c5 34000000 		.4byte	.LVL7
+ 679 01c9 1C010000 		.4byte	0x11c
+ 680 01cd D9010000 		.4byte	0x1d9
+ 681 01d1 0E       		.uleb128 0xe
+ 682 01d2 01       		.uleb128 0x1
+ 683 01d3 50       		.byte	0x50
+ 684 01d4 03       		.uleb128 0x3
+ 685 01d5 0A       		.byte	0xa
+ 686 01d6 E803     		.2byte	0x3e8
+ 687 01d8 00       		.byte	0
+ 688 01d9 0D       		.uleb128 0xd
+ 689 01da 3C000000 		.4byte	.LVL8
+ 690 01de 41010000 		.4byte	0x141
+ 691 01e2 EE010000 		.4byte	0x1ee
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 29
+
+
+ 692 01e6 0E       		.uleb128 0xe
+ 693 01e7 01       		.uleb128 0x1
+ 694 01e8 50       		.byte	0x50
+ 695 01e9 03       		.uleb128 0x3
+ 696 01ea 0A       		.byte	0xa
+ 697 01eb 8403     		.2byte	0x384
+ 698 01ed 00       		.byte	0
+ 699 01ee 0F       		.uleb128 0xf
+ 700 01ef 44000000 		.4byte	.LVL9
+ 701 01f3 66010000 		.4byte	0x166
+ 702 01f7 0E       		.uleb128 0xe
+ 703 01f8 01       		.uleb128 0x1
+ 704 01f9 50       		.byte	0x50
+ 705 01fa 03       		.uleb128 0x3
+ 706 01fb 0A       		.byte	0xa
+ 707 01fc 8403     		.2byte	0x384
+ 708 01fe 00       		.byte	0
+ 709 01ff 00       		.byte	0
+ 710 0200 0B       		.uleb128 0xb
+ 711 0201 17010000 		.4byte	.LASF27
+ 712 0205 01       		.byte	0x1
+ 713 0206 37       		.byte	0x37
+ 714 0207 00000000 		.4byte	.LFB0
+ 715 020b 1C000000 		.4byte	.LFE0-.LFB0
+ 716 020f 01       		.uleb128 0x1
+ 717 0210 9C       		.byte	0x9c
+ 718 0211 28020000 		.4byte	0x228
+ 719 0215 10       		.uleb128 0x10
+ 720 0216 0C000000 		.4byte	.LVL10
+ 721 021a 8B010000 		.4byte	0x18b
+ 722 021e 10       		.uleb128 0x10
+ 723 021f 16000000 		.4byte	.LVL11
+ 724 0223 BF000000 		.4byte	0xbf
+ 725 0227 00       		.byte	0
+ 726 0228 11       		.uleb128 0x11
+ 727 0229 9B000000 		.4byte	.LASF40
+ 728 022d 01       		.byte	0x1
+ 729 022e E102     		.2byte	0x2e1
+ 730 0230 6B000000 		.4byte	0x6b
+ 731 0234 00000000 		.4byte	.LFB9
+ 732 0238 0C000000 		.4byte	.LFE9-.LFB9
+ 733 023c 01       		.uleb128 0x1
+ 734 023d 9C       		.byte	0x9c
+ 735 023e 51020000 		.4byte	0x251
+ 736 0242 12       		.uleb128 0x12
+ 737 0243 1C020000 		.4byte	.LASF29
+ 738 0247 01       		.byte	0x1
+ 739 0248 E302     		.2byte	0x2e3
+ 740 024a 6B000000 		.4byte	0x6b
+ 741 024e 01       		.uleb128 0x1
+ 742 024f 50       		.byte	0x50
+ 743 0250 00       		.byte	0
+ 744 0251 08       		.uleb128 0x8
+ 745 0252 F2000000 		.4byte	.LASF30
+ 746 0256 01       		.byte	0x1
+ 747 0257 FD02     		.2byte	0x2fd
+ 748 0259 00000000 		.4byte	.LFB10
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 30
+
+
+ 749 025d 0C000000 		.4byte	.LFE10-.LFB10
+ 750 0261 01       		.uleb128 0x1
+ 751 0262 9C       		.byte	0x9c
+ 752 0263 76020000 		.4byte	0x276
+ 753 0267 09       		.uleb128 0x9
+ 754 0268 EA000000 		.4byte	.LASF31
+ 755 026c 01       		.byte	0x1
+ 756 026d FD02     		.2byte	0x2fd
+ 757 026f 6B000000 		.4byte	0x6b
+ 758 0273 01       		.uleb128 0x1
+ 759 0274 50       		.byte	0x50
+ 760 0275 00       		.byte	0
+ 761 0276 0A       		.uleb128 0xa
+ 762 0277 82020000 		.4byte	.LASF33
+ 763 027b 01       		.byte	0x1
+ 764 027c 1603     		.2byte	0x316
+ 765 027e 76000000 		.4byte	0x76
+ 766 0282 00000000 		.4byte	.LFB11
+ 767 0286 0C000000 		.4byte	.LFE11-.LFB11
+ 768 028a 01       		.uleb128 0x1
+ 769 028b 9C       		.byte	0x9c
+ 770 028c 0A       		.uleb128 0xa
+ 771 028d D7020000 		.4byte	.LASF34
+ 772 0291 01       		.byte	0x1
+ 773 0292 4A03     		.2byte	0x34a
+ 774 0294 76000000 		.4byte	0x76
+ 775 0298 00000000 		.4byte	.LFB12
+ 776 029c 0C000000 		.4byte	.LFE12-.LFB12
+ 777 02a0 01       		.uleb128 0x1
+ 778 02a1 9C       		.byte	0x9c
+ 779 02a2 0A       		.uleb128 0xa
+ 780 02a3 F4020000 		.4byte	.LASF35
+ 781 02a7 01       		.byte	0x1
+ 782 02a8 5E03     		.2byte	0x35e
+ 783 02aa 76000000 		.4byte	0x76
+ 784 02ae 00000000 		.4byte	.LFB13
+ 785 02b2 0C000000 		.4byte	.LFE13-.LFB13
+ 786 02b6 01       		.uleb128 0x1
+ 787 02b7 9C       		.byte	0x9c
+ 788 02b8 0A       		.uleb128 0xa
+ 789 02b9 51030000 		.4byte	.LASF36
+ 790 02bd 01       		.byte	0x1
+ 791 02be 7403     		.2byte	0x374
+ 792 02c0 76000000 		.4byte	0x76
+ 793 02c4 00000000 		.4byte	.LFB14
+ 794 02c8 0C000000 		.4byte	.LFE14-.LFB14
+ 795 02cc 01       		.uleb128 0x1
+ 796 02cd 9C       		.byte	0x9c
+ 797 02ce 13       		.uleb128 0x13
+ 798 02cf ED010000 		.4byte	.LASF41
+ 799 02d3 01       		.byte	0x1
+ 800 02d4 20       		.byte	0x20
+ 801 02d5 6B000000 		.4byte	0x6b
+ 802 02d9 05       		.uleb128 0x5
+ 803 02da 03       		.byte	0x3
+ 804 02db 00000000 		.4byte	PWM_MOTOR_RIGHT_initVar
+ 805 02df 00       		.byte	0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 31
+
+
+ 806              		.section	.debug_abbrev,"",%progbits
+ 807              	.Ldebug_abbrev0:
+ 808 0000 01       		.uleb128 0x1
+ 809 0001 11       		.uleb128 0x11
+ 810 0002 01       		.byte	0x1
+ 811 0003 25       		.uleb128 0x25
+ 812 0004 0E       		.uleb128 0xe
+ 813 0005 13       		.uleb128 0x13
+ 814 0006 0B       		.uleb128 0xb
+ 815 0007 03       		.uleb128 0x3
+ 816 0008 0E       		.uleb128 0xe
+ 817 0009 1B       		.uleb128 0x1b
+ 818 000a 0E       		.uleb128 0xe
+ 819 000b 55       		.uleb128 0x55
+ 820 000c 17       		.uleb128 0x17
+ 821 000d 11       		.uleb128 0x11
+ 822 000e 01       		.uleb128 0x1
+ 823 000f 10       		.uleb128 0x10
+ 824 0010 17       		.uleb128 0x17
+ 825 0011 00       		.byte	0
+ 826 0012 00       		.byte	0
+ 827 0013 02       		.uleb128 0x2
+ 828 0014 24       		.uleb128 0x24
+ 829 0015 00       		.byte	0
+ 830 0016 0B       		.uleb128 0xb
+ 831 0017 0B       		.uleb128 0xb
+ 832 0018 3E       		.uleb128 0x3e
+ 833 0019 0B       		.uleb128 0xb
+ 834 001a 03       		.uleb128 0x3
+ 835 001b 0E       		.uleb128 0xe
+ 836 001c 00       		.byte	0
+ 837 001d 00       		.byte	0
+ 838 001e 03       		.uleb128 0x3
+ 839 001f 24       		.uleb128 0x24
+ 840 0020 00       		.byte	0
+ 841 0021 0B       		.uleb128 0xb
+ 842 0022 0B       		.uleb128 0xb
+ 843 0023 3E       		.uleb128 0x3e
+ 844 0024 0B       		.uleb128 0xb
+ 845 0025 03       		.uleb128 0x3
+ 846 0026 08       		.uleb128 0x8
+ 847 0027 00       		.byte	0
+ 848 0028 00       		.byte	0
+ 849 0029 04       		.uleb128 0x4
+ 850 002a 16       		.uleb128 0x16
+ 851 002b 00       		.byte	0
+ 852 002c 03       		.uleb128 0x3
+ 853 002d 0E       		.uleb128 0xe
+ 854 002e 3A       		.uleb128 0x3a
+ 855 002f 0B       		.uleb128 0xb
+ 856 0030 3B       		.uleb128 0x3b
+ 857 0031 0B       		.uleb128 0xb
+ 858 0032 49       		.uleb128 0x49
+ 859 0033 13       		.uleb128 0x13
+ 860 0034 00       		.byte	0
+ 861 0035 00       		.byte	0
+ 862 0036 05       		.uleb128 0x5
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 32
+
+
+ 863 0037 16       		.uleb128 0x16
+ 864 0038 00       		.byte	0
+ 865 0039 03       		.uleb128 0x3
+ 866 003a 0E       		.uleb128 0xe
+ 867 003b 3A       		.uleb128 0x3a
+ 868 003c 0B       		.uleb128 0xb
+ 869 003d 3B       		.uleb128 0x3b
+ 870 003e 05       		.uleb128 0x5
+ 871 003f 49       		.uleb128 0x49
+ 872 0040 13       		.uleb128 0x13
+ 873 0041 00       		.byte	0
+ 874 0042 00       		.byte	0
+ 875 0043 06       		.uleb128 0x6
+ 876 0044 35       		.uleb128 0x35
+ 877 0045 00       		.byte	0
+ 878 0046 49       		.uleb128 0x49
+ 879 0047 13       		.uleb128 0x13
+ 880 0048 00       		.byte	0
+ 881 0049 00       		.byte	0
+ 882 004a 07       		.uleb128 0x7
+ 883 004b 2E       		.uleb128 0x2e
+ 884 004c 00       		.byte	0
+ 885 004d 3F       		.uleb128 0x3f
+ 886 004e 19       		.uleb128 0x19
+ 887 004f 03       		.uleb128 0x3
+ 888 0050 0E       		.uleb128 0xe
+ 889 0051 3A       		.uleb128 0x3a
+ 890 0052 0B       		.uleb128 0xb
+ 891 0053 3B       		.uleb128 0x3b
+ 892 0054 0B       		.uleb128 0xb
+ 893 0055 27       		.uleb128 0x27
+ 894 0056 19       		.uleb128 0x19
+ 895 0057 11       		.uleb128 0x11
+ 896 0058 01       		.uleb128 0x1
+ 897 0059 12       		.uleb128 0x12
+ 898 005a 06       		.uleb128 0x6
+ 899 005b 40       		.uleb128 0x40
+ 900 005c 18       		.uleb128 0x18
+ 901 005d 9742     		.uleb128 0x2117
+ 902 005f 19       		.uleb128 0x19
+ 903 0060 00       		.byte	0
+ 904 0061 00       		.byte	0
+ 905 0062 08       		.uleb128 0x8
+ 906 0063 2E       		.uleb128 0x2e
+ 907 0064 01       		.byte	0x1
+ 908 0065 3F       		.uleb128 0x3f
+ 909 0066 19       		.uleb128 0x19
+ 910 0067 03       		.uleb128 0x3
+ 911 0068 0E       		.uleb128 0xe
+ 912 0069 3A       		.uleb128 0x3a
+ 913 006a 0B       		.uleb128 0xb
+ 914 006b 3B       		.uleb128 0x3b
+ 915 006c 05       		.uleb128 0x5
+ 916 006d 27       		.uleb128 0x27
+ 917 006e 19       		.uleb128 0x19
+ 918 006f 11       		.uleb128 0x11
+ 919 0070 01       		.uleb128 0x1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 33
+
+
+ 920 0071 12       		.uleb128 0x12
+ 921 0072 06       		.uleb128 0x6
+ 922 0073 40       		.uleb128 0x40
+ 923 0074 18       		.uleb128 0x18
+ 924 0075 9742     		.uleb128 0x2117
+ 925 0077 19       		.uleb128 0x19
+ 926 0078 01       		.uleb128 0x1
+ 927 0079 13       		.uleb128 0x13
+ 928 007a 00       		.byte	0
+ 929 007b 00       		.byte	0
+ 930 007c 09       		.uleb128 0x9
+ 931 007d 05       		.uleb128 0x5
+ 932 007e 00       		.byte	0
+ 933 007f 03       		.uleb128 0x3
+ 934 0080 0E       		.uleb128 0xe
+ 935 0081 3A       		.uleb128 0x3a
+ 936 0082 0B       		.uleb128 0xb
+ 937 0083 3B       		.uleb128 0x3b
+ 938 0084 05       		.uleb128 0x5
+ 939 0085 49       		.uleb128 0x49
+ 940 0086 13       		.uleb128 0x13
+ 941 0087 02       		.uleb128 0x2
+ 942 0088 18       		.uleb128 0x18
+ 943 0089 00       		.byte	0
+ 944 008a 00       		.byte	0
+ 945 008b 0A       		.uleb128 0xa
+ 946 008c 2E       		.uleb128 0x2e
+ 947 008d 00       		.byte	0
+ 948 008e 3F       		.uleb128 0x3f
+ 949 008f 19       		.uleb128 0x19
+ 950 0090 03       		.uleb128 0x3
+ 951 0091 0E       		.uleb128 0xe
+ 952 0092 3A       		.uleb128 0x3a
+ 953 0093 0B       		.uleb128 0xb
+ 954 0094 3B       		.uleb128 0x3b
+ 955 0095 05       		.uleb128 0x5
+ 956 0096 27       		.uleb128 0x27
+ 957 0097 19       		.uleb128 0x19
+ 958 0098 49       		.uleb128 0x49
+ 959 0099 13       		.uleb128 0x13
+ 960 009a 11       		.uleb128 0x11
+ 961 009b 01       		.uleb128 0x1
+ 962 009c 12       		.uleb128 0x12
+ 963 009d 06       		.uleb128 0x6
+ 964 009e 40       		.uleb128 0x40
+ 965 009f 18       		.uleb128 0x18
+ 966 00a0 9742     		.uleb128 0x2117
+ 967 00a2 19       		.uleb128 0x19
+ 968 00a3 00       		.byte	0
+ 969 00a4 00       		.byte	0
+ 970 00a5 0B       		.uleb128 0xb
+ 971 00a6 2E       		.uleb128 0x2e
+ 972 00a7 01       		.byte	0x1
+ 973 00a8 3F       		.uleb128 0x3f
+ 974 00a9 19       		.uleb128 0x19
+ 975 00aa 03       		.uleb128 0x3
+ 976 00ab 0E       		.uleb128 0xe
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 34
+
+
+ 977 00ac 3A       		.uleb128 0x3a
+ 978 00ad 0B       		.uleb128 0xb
+ 979 00ae 3B       		.uleb128 0x3b
+ 980 00af 0B       		.uleb128 0xb
+ 981 00b0 27       		.uleb128 0x27
+ 982 00b1 19       		.uleb128 0x19
+ 983 00b2 11       		.uleb128 0x11
+ 984 00b3 01       		.uleb128 0x1
+ 985 00b4 12       		.uleb128 0x12
+ 986 00b5 06       		.uleb128 0x6
+ 987 00b6 40       		.uleb128 0x40
+ 988 00b7 18       		.uleb128 0x18
+ 989 00b8 9742     		.uleb128 0x2117
+ 990 00ba 19       		.uleb128 0x19
+ 991 00bb 01       		.uleb128 0x1
+ 992 00bc 13       		.uleb128 0x13
+ 993 00bd 00       		.byte	0
+ 994 00be 00       		.byte	0
+ 995 00bf 0C       		.uleb128 0xc
+ 996 00c0 34       		.uleb128 0x34
+ 997 00c1 00       		.byte	0
+ 998 00c2 03       		.uleb128 0x3
+ 999 00c3 0E       		.uleb128 0xe
+ 1000 00c4 3A       		.uleb128 0x3a
+ 1001 00c5 0B       		.uleb128 0xb
+ 1002 00c6 3B       		.uleb128 0x3b
+ 1003 00c7 0B       		.uleb128 0xb
+ 1004 00c8 49       		.uleb128 0x49
+ 1005 00c9 13       		.uleb128 0x13
+ 1006 00ca 02       		.uleb128 0x2
+ 1007 00cb 17       		.uleb128 0x17
+ 1008 00cc 00       		.byte	0
+ 1009 00cd 00       		.byte	0
+ 1010 00ce 0D       		.uleb128 0xd
+ 1011 00cf 898201   		.uleb128 0x4109
+ 1012 00d2 01       		.byte	0x1
+ 1013 00d3 11       		.uleb128 0x11
+ 1014 00d4 01       		.uleb128 0x1
+ 1015 00d5 31       		.uleb128 0x31
+ 1016 00d6 13       		.uleb128 0x13
+ 1017 00d7 01       		.uleb128 0x1
+ 1018 00d8 13       		.uleb128 0x13
+ 1019 00d9 00       		.byte	0
+ 1020 00da 00       		.byte	0
+ 1021 00db 0E       		.uleb128 0xe
+ 1022 00dc 8A8201   		.uleb128 0x410a
+ 1023 00df 00       		.byte	0
+ 1024 00e0 02       		.uleb128 0x2
+ 1025 00e1 18       		.uleb128 0x18
+ 1026 00e2 9142     		.uleb128 0x2111
+ 1027 00e4 18       		.uleb128 0x18
+ 1028 00e5 00       		.byte	0
+ 1029 00e6 00       		.byte	0
+ 1030 00e7 0F       		.uleb128 0xf
+ 1031 00e8 898201   		.uleb128 0x4109
+ 1032 00eb 01       		.byte	0x1
+ 1033 00ec 11       		.uleb128 0x11
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 35
+
+
+ 1034 00ed 01       		.uleb128 0x1
+ 1035 00ee 31       		.uleb128 0x31
+ 1036 00ef 13       		.uleb128 0x13
+ 1037 00f0 00       		.byte	0
+ 1038 00f1 00       		.byte	0
+ 1039 00f2 10       		.uleb128 0x10
+ 1040 00f3 898201   		.uleb128 0x4109
+ 1041 00f6 00       		.byte	0
+ 1042 00f7 11       		.uleb128 0x11
+ 1043 00f8 01       		.uleb128 0x1
+ 1044 00f9 31       		.uleb128 0x31
+ 1045 00fa 13       		.uleb128 0x13
+ 1046 00fb 00       		.byte	0
+ 1047 00fc 00       		.byte	0
+ 1048 00fd 11       		.uleb128 0x11
+ 1049 00fe 2E       		.uleb128 0x2e
+ 1050 00ff 01       		.byte	0x1
+ 1051 0100 3F       		.uleb128 0x3f
+ 1052 0101 19       		.uleb128 0x19
+ 1053 0102 03       		.uleb128 0x3
+ 1054 0103 0E       		.uleb128 0xe
+ 1055 0104 3A       		.uleb128 0x3a
+ 1056 0105 0B       		.uleb128 0xb
+ 1057 0106 3B       		.uleb128 0x3b
+ 1058 0107 05       		.uleb128 0x5
+ 1059 0108 27       		.uleb128 0x27
+ 1060 0109 19       		.uleb128 0x19
+ 1061 010a 49       		.uleb128 0x49
+ 1062 010b 13       		.uleb128 0x13
+ 1063 010c 11       		.uleb128 0x11
+ 1064 010d 01       		.uleb128 0x1
+ 1065 010e 12       		.uleb128 0x12
+ 1066 010f 06       		.uleb128 0x6
+ 1067 0110 40       		.uleb128 0x40
+ 1068 0111 18       		.uleb128 0x18
+ 1069 0112 9742     		.uleb128 0x2117
+ 1070 0114 19       		.uleb128 0x19
+ 1071 0115 01       		.uleb128 0x1
+ 1072 0116 13       		.uleb128 0x13
+ 1073 0117 00       		.byte	0
+ 1074 0118 00       		.byte	0
+ 1075 0119 12       		.uleb128 0x12
+ 1076 011a 34       		.uleb128 0x34
+ 1077 011b 00       		.byte	0
+ 1078 011c 03       		.uleb128 0x3
+ 1079 011d 0E       		.uleb128 0xe
+ 1080 011e 3A       		.uleb128 0x3a
+ 1081 011f 0B       		.uleb128 0xb
+ 1082 0120 3B       		.uleb128 0x3b
+ 1083 0121 05       		.uleb128 0x5
+ 1084 0122 49       		.uleb128 0x49
+ 1085 0123 13       		.uleb128 0x13
+ 1086 0124 02       		.uleb128 0x2
+ 1087 0125 18       		.uleb128 0x18
+ 1088 0126 00       		.byte	0
+ 1089 0127 00       		.byte	0
+ 1090 0128 13       		.uleb128 0x13
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 36
+
+
+ 1091 0129 34       		.uleb128 0x34
+ 1092 012a 00       		.byte	0
+ 1093 012b 03       		.uleb128 0x3
+ 1094 012c 0E       		.uleb128 0xe
+ 1095 012d 3A       		.uleb128 0x3a
+ 1096 012e 0B       		.uleb128 0xb
+ 1097 012f 3B       		.uleb128 0x3b
+ 1098 0130 0B       		.uleb128 0xb
+ 1099 0131 49       		.uleb128 0x49
+ 1100 0132 13       		.uleb128 0x13
+ 1101 0133 3F       		.uleb128 0x3f
+ 1102 0134 19       		.uleb128 0x19
+ 1103 0135 02       		.uleb128 0x2
+ 1104 0136 18       		.uleb128 0x18
+ 1105 0137 00       		.byte	0
+ 1106 0138 00       		.byte	0
+ 1107 0139 00       		.byte	0
+ 1108              		.section	.debug_loc,"",%progbits
+ 1109              	.Ldebug_loc0:
+ 1110              	.LLST0:
+ 1111 0000 0A000000 		.4byte	.LVL4
+ 1112 0004 0E000000 		.4byte	.LVL5
+ 1113 0008 0100     		.2byte	0x1
+ 1114 000a 53       		.byte	0x53
+ 1115 000b 00000000 		.4byte	0
+ 1116 000f 00000000 		.4byte	0
+ 1117              		.section	.debug_aranges,"",%progbits
+ 1118 0000 8C000000 		.4byte	0x8c
+ 1119 0004 0200     		.2byte	0x2
+ 1120 0006 00000000 		.4byte	.Ldebug_info0
+ 1121 000a 04       		.byte	0x4
+ 1122 000b 00       		.byte	0
+ 1123 000c 0000     		.2byte	0
+ 1124 000e 0000     		.2byte	0
+ 1125 0010 00000000 		.4byte	.LFB2
+ 1126 0014 10000000 		.4byte	.LFE2-.LFB2
+ 1127 0018 00000000 		.4byte	.LFB3
+ 1128 001c 10000000 		.4byte	.LFE3-.LFB3
+ 1129 0020 00000000 		.4byte	.LFB4
+ 1130 0024 0C000000 		.4byte	.LFE4-.LFB4
+ 1131 0028 00000000 		.4byte	.LFB5
+ 1132 002c 14000000 		.4byte	.LFE5-.LFB5
+ 1133 0030 00000000 		.4byte	.LFB6
+ 1134 0034 0C000000 		.4byte	.LFE6-.LFB6
+ 1135 0038 00000000 		.4byte	.LFB7
+ 1136 003c 0C000000 		.4byte	.LFE7-.LFB7
+ 1137 0040 00000000 		.4byte	.LFB8
+ 1138 0044 0C000000 		.4byte	.LFE8-.LFB8
+ 1139 0048 00000000 		.4byte	.LFB1
+ 1140 004c 4C000000 		.4byte	.LFE1-.LFB1
+ 1141 0050 00000000 		.4byte	.LFB0
+ 1142 0054 1C000000 		.4byte	.LFE0-.LFB0
+ 1143 0058 00000000 		.4byte	.LFB9
+ 1144 005c 0C000000 		.4byte	.LFE9-.LFB9
+ 1145 0060 00000000 		.4byte	.LFB10
+ 1146 0064 0C000000 		.4byte	.LFE10-.LFB10
+ 1147 0068 00000000 		.4byte	.LFB11
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 37
+
+
+ 1148 006c 0C000000 		.4byte	.LFE11-.LFB11
+ 1149 0070 00000000 		.4byte	.LFB12
+ 1150 0074 0C000000 		.4byte	.LFE12-.LFB12
+ 1151 0078 00000000 		.4byte	.LFB13
+ 1152 007c 0C000000 		.4byte	.LFE13-.LFB13
+ 1153 0080 00000000 		.4byte	.LFB14
+ 1154 0084 0C000000 		.4byte	.LFE14-.LFB14
+ 1155 0088 00000000 		.4byte	0
+ 1156 008c 00000000 		.4byte	0
+ 1157              		.section	.debug_ranges,"",%progbits
+ 1158              	.Ldebug_ranges0:
+ 1159 0000 00000000 		.4byte	.LFB2
+ 1160 0004 10000000 		.4byte	.LFE2
+ 1161 0008 00000000 		.4byte	.LFB3
+ 1162 000c 10000000 		.4byte	.LFE3
+ 1163 0010 00000000 		.4byte	.LFB4
+ 1164 0014 0C000000 		.4byte	.LFE4
+ 1165 0018 00000000 		.4byte	.LFB5
+ 1166 001c 14000000 		.4byte	.LFE5
+ 1167 0020 00000000 		.4byte	.LFB6
+ 1168 0024 0C000000 		.4byte	.LFE6
+ 1169 0028 00000000 		.4byte	.LFB7
+ 1170 002c 0C000000 		.4byte	.LFE7
+ 1171 0030 00000000 		.4byte	.LFB8
+ 1172 0034 0C000000 		.4byte	.LFE8
+ 1173 0038 00000000 		.4byte	.LFB1
+ 1174 003c 4C000000 		.4byte	.LFE1
+ 1175 0040 00000000 		.4byte	.LFB0
+ 1176 0044 1C000000 		.4byte	.LFE0
+ 1177 0048 00000000 		.4byte	.LFB9
+ 1178 004c 0C000000 		.4byte	.LFE9
+ 1179 0050 00000000 		.4byte	.LFB10
+ 1180 0054 0C000000 		.4byte	.LFE10
+ 1181 0058 00000000 		.4byte	.LFB11
+ 1182 005c 0C000000 		.4byte	.LFE11
+ 1183 0060 00000000 		.4byte	.LFB12
+ 1184 0064 0C000000 		.4byte	.LFE12
+ 1185 0068 00000000 		.4byte	.LFB13
+ 1186 006c 0C000000 		.4byte	.LFE13
+ 1187 0070 00000000 		.4byte	.LFB14
+ 1188 0074 0C000000 		.4byte	.LFE14
+ 1189 0078 00000000 		.4byte	0
+ 1190 007c 00000000 		.4byte	0
+ 1191              		.section	.debug_line,"",%progbits
+ 1192              	.Ldebug_line0:
+ 1193 0000 69010000 		.section	.debug_str,"MS",%progbits,1
+ 1193      02004E00 
+ 1193      00000201 
+ 1193      FB0E0D00 
+ 1193      01010101 
+ 1194              	.LASF15:
+ 1195 0000 72656731 		.ascii	"reg16\000"
+ 1195      3600
+ 1196              	.LASF18:
+ 1197 0006 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_Stop\000"
+ 1197      4D4F544F 
+ 1197      525F5249 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 38
+
+
+ 1197      4748545F 
+ 1197      53746F70 
+ 1198              	.LASF22:
+ 1199 001b 70657269 		.ascii	"period\000"
+ 1199      6F6400
+ 1200              	.LASF3:
+ 1201 0022 73686F72 		.ascii	"short unsigned int\000"
+ 1201      7420756E 
+ 1201      7369676E 
+ 1201      65642069 
+ 1201      6E7400
+ 1202              	.LASF20:
+ 1203 0035 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_WritePeriod\000"
+ 1203      4D4F544F 
+ 1203      525F5249 
+ 1203      4748545F 
+ 1203      57726974 
+ 1204              	.LASF23:
+ 1205 0051 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_WriteCompare1\000"
+ 1205      4D4F544F 
+ 1205      525F5249 
+ 1205      4748545F 
+ 1205      57726974 
+ 1206              	.LASF25:
+ 1207 006f 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_WriteCompare2\000"
+ 1207      4D4F544F 
+ 1207      525F5249 
+ 1207      4748545F 
+ 1207      57726974 
+ 1208              	.LASF11:
+ 1209 008d 666C6F61 		.ascii	"float\000"
+ 1209      7400
+ 1210              	.LASF21:
+ 1211 0093 636F756E 		.ascii	"counter\000"
+ 1211      74657200 
+ 1212              	.LASF40:
+ 1213 009b 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_ReadControlRegister\000"
+ 1213      4D4F544F 
+ 1213      525F5249 
+ 1213      4748545F 
+ 1213      52656164 
+ 1214              	.LASF1:
+ 1215 00bf 756E7369 		.ascii	"unsigned char\000"
+ 1215      676E6564 
+ 1215      20636861 
+ 1215      7200
+ 1216              	.LASF14:
+ 1217 00cd 72656738 		.ascii	"reg8\000"
+ 1217      00
+ 1218              	.LASF5:
+ 1219 00d2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1219      20756E73 
+ 1219      69676E65 
+ 1219      6420696E 
+ 1219      7400
+ 1220              	.LASF9:
+ 1221 00e4 75696E74 		.ascii	"uint8\000"
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 39
+
+
+ 1221      3800
+ 1222              	.LASF31:
+ 1223 00ea 636F6E74 		.ascii	"control\000"
+ 1223      726F6C00 
+ 1224              	.LASF30:
+ 1225 00f2 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_WriteControlRegister\000"
+ 1225      4D4F544F 
+ 1225      525F5249 
+ 1225      4748545F 
+ 1225      57726974 
+ 1226              	.LASF27:
+ 1227 0117 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_Start\000"
+ 1227      4D4F544F 
+ 1227      525F5249 
+ 1227      4748545F 
+ 1227      53746172 
+ 1228              	.LASF12:
+ 1229 012d 646F7562 		.ascii	"double\000"
+ 1229      6C6500
+ 1230              	.LASF17:
+ 1231 0134 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_Enable\000"
+ 1231      4D4F544F 
+ 1231      525F5249 
+ 1231      4748545F 
+ 1231      456E6162 
+ 1232              	.LASF10:
+ 1233 014b 75696E74 		.ascii	"uint16\000"
+ 1233      313600
+ 1234              	.LASF37:
+ 1235 0152 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1235      4320342E 
+ 1235      392E3320 
+ 1235      32303135 
+ 1235      30333033 
+ 1236 0185 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1236      20726576 
+ 1236      6973696F 
+ 1236      6E203232 
+ 1236      31323230 
+ 1237 01b8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1237      66756E63 
+ 1237      74696F6E 
+ 1237      2D736563 
+ 1237      74696F6E 
+ 1238              	.LASF8:
+ 1239 01e0 756E7369 		.ascii	"unsigned int\000"
+ 1239      676E6564 
+ 1239      20696E74 
+ 1239      00
+ 1240              	.LASF41:
+ 1241 01ed 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_initVar\000"
+ 1241      4D4F544F 
+ 1241      525F5249 
+ 1241      4748545F 
+ 1241      696E6974 
+ 1242              	.LASF7:
+ 1243 0205 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 40
+
+
+ 1243      206C6F6E 
+ 1243      6720756E 
+ 1243      7369676E 
+ 1243      65642069 
+ 1244              	.LASF29:
+ 1245 021c 72657375 		.ascii	"result\000"
+ 1245      6C7400
+ 1246              	.LASF39:
+ 1247 0223 463A5C70 		.ascii	"F:\\project\\robot\\T1\\FW\\trunk\\robot_car_V5\\ca"
+ 1247      726F6A65 
+ 1247      63745C72 
+ 1247      6F626F74 
+ 1247      5C54315C 
+ 1248 024f 722E6379 		.ascii	"r.cydsn\000"
+ 1248      64736E00 
+ 1249              	.LASF19:
+ 1250 0257 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_WriteCounter\000"
+ 1250      4D4F544F 
+ 1250      525F5249 
+ 1250      4748545F 
+ 1250      57726974 
+ 1251              	.LASF28:
+ 1252 0274 6374726C 		.ascii	"ctrl\000"
+ 1252      00
+ 1253              	.LASF16:
+ 1254 0279 73697A65 		.ascii	"sizetype\000"
+ 1254      74797065 
+ 1254      00
+ 1255              	.LASF33:
+ 1256 0282 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_ReadCapture\000"
+ 1256      4D4F544F 
+ 1256      525F5249 
+ 1256      4748545F 
+ 1256      52656164 
+ 1257              	.LASF38:
+ 1258 029e 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PWM_MOTOR_RIGHT.c\000"
+ 1258      6E657261 
+ 1258      7465645F 
+ 1258      536F7572 
+ 1258      63655C50 
+ 1259              	.LASF6:
+ 1260 02c9 6C6F6E67 		.ascii	"long long int\000"
+ 1260      206C6F6E 
+ 1260      6720696E 
+ 1260      7400
+ 1261              	.LASF34:
+ 1262 02d7 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_ReadCompare1\000"
+ 1262      4D4F544F 
+ 1262      525F5249 
+ 1262      4748545F 
+ 1262      52656164 
+ 1263              	.LASF35:
+ 1264 02f4 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_ReadCompare2\000"
+ 1264      4D4F544F 
+ 1264      525F5249 
+ 1264      4748545F 
+ 1264      52656164 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEHfG1h.s 			page 41
+
+
+ 1265              	.LASF13:
+ 1266 0311 63686172 		.ascii	"char\000"
+ 1266      00
+ 1267              	.LASF26:
+ 1268 0316 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_Init\000"
+ 1268      4D4F544F 
+ 1268      525F5249 
+ 1268      4748545F 
+ 1268      496E6974 
+ 1269              	.LASF2:
+ 1270 032b 73686F72 		.ascii	"short int\000"
+ 1270      7420696E 
+ 1270      7400
+ 1271              	.LASF32:
+ 1272 0335 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_ReadCounter\000"
+ 1272      4D4F544F 
+ 1272      525F5249 
+ 1272      4748545F 
+ 1272      52656164 
+ 1273              	.LASF36:
+ 1274 0351 50574D5F 		.ascii	"PWM_MOTOR_RIGHT_ReadPeriod\000"
+ 1274      4D4F544F 
+ 1274      525F5249 
+ 1274      4748545F 
+ 1274      52656164 
+ 1275              	.LASF4:
+ 1276 036c 6C6F6E67 		.ascii	"long int\000"
+ 1276      20696E74 
+ 1276      00
+ 1277              	.LASF0:
+ 1278 0375 7369676E 		.ascii	"signed char\000"
+ 1278      65642063 
+ 1278      68617200 
+ 1279              	.LASF24:
+ 1280 0381 636F6D70 		.ascii	"compare\000"
+ 1280      61726500 
+ 1281              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

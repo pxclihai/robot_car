@@ -1,0 +1,1323 @@
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"bq20Z75.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.GetCrc8,"ax",%progbits
+  19              		.align	2
+  20              		.global	GetCrc8
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	GetCrc8, %function
+  24              	GetCrc8:
+  25              	.LFB63:
+  26              		.file 1 ".\\bq20Z75.c"
+   1:.\bq20Z75.c   **** #include <stdio.h>
+   2:.\bq20Z75.c   **** #include "i2c_core.h"
+   3:.\bq20Z75.c   **** #include "bq20Z75.h"
+   4:.\bq20Z75.c   **** uint8_t GetCrc8(uint8_t chkSum, uint8_t crcData);
+   5:.\bq20Z75.c   **** #define POLYNOME 0x07
+   6:.\bq20Z75.c   **** uint8_t GetCrc8(uint8_t chkSum, uint8_t crcData)
+   7:.\bq20Z75.c   **** {
+  27              		.loc 1 7 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+   8:.\bq20Z75.c   ****     uint8_t j = 8; // Counter for 8 shifts
+   9:.\bq20Z75.c   ****     chkSum ^= crcData; // Initial XOR
+  33              		.loc 1 9 0
+  34 0000 4840     		eors	r0, r0, r1
+  35              	.LVL1:
+   8:.\bq20Z75.c   ****     uint8_t j = 8; // Counter for 8 shifts
+  36              		.loc 1 8 0
+  37 0002 0823     		movs	r3, #8
+  38              	.LVL2:
+  39              	.L4:
+  10:.\bq20Z75.c   ****     do
+  11:.\bq20Z75.c   ****     {
+  12:.\bq20Z75.c   ****         if (!(chkSum& 0x80)) // Check MSB
+  40              		.loc 1 12 0
+  41 0004 10F0800F 		tst	r0, #128
+  42 0008 02D1     		bne	.L2
+  13:.\bq20Z75.c   ****         {
+  14:.\bq20Z75.c   ****         chkSum = chkSum<< 1; // If MSB = 0, shift left
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 2
+
+
+  43              		.loc 1 14 0
+  44 000a 4000     		lsls	r0, r0, #1
+  45              	.LVL3:
+  46 000c C0B2     		uxtb	r0, r0
+  47              	.LVL4:
+  48 000e 03E0     		b	.L3
+  49              	.L2:
+  15:.\bq20Z75.c   ****         }
+  16:.\bq20Z75.c   ****         else
+  17:.\bq20Z75.c   ****         {
+  18:.\bq20Z75.c   ****         chkSum = (chkSum<< 1) ^ POLYNOME; // If MSB = 1, shift and XOR
+  50              		.loc 1 18 0
+  51 0010 4000     		lsls	r0, r0, #1
+  52              	.LVL5:
+  53 0012 80F00700 		eor	r0, r0, #7
+  54 0016 C0B2     		uxtb	r0, r0
+  55              	.LVL6:
+  56              	.L3:
+  19:.\bq20Z75.c   ****         }
+  20:.\bq20Z75.c   ****     }while (--j); // Continue for 8 bitsreturnchkSum; // Return final value
+  57              		.loc 1 20 0
+  58 0018 013B     		subs	r3, r3, #1
+  59              	.LVL7:
+  60 001a 13F0FF03 		ands	r3, r3, #255
+  61              	.LVL8:
+  62 001e F1D1     		bne	.L4
+  21:.\bq20Z75.c   ****     return chkSum;
+  22:.\bq20Z75.c   **** }
+  63              		.loc 1 22 0
+  64 0020 7047     		bx	lr
+  65              		.cfi_endproc
+  66              	.LFE63:
+  67              		.size	GetCrc8, .-GetCrc8
+  68 0022 00BF     		.section	.text.bq20Z75_read_in,"ax",%progbits
+  69              		.align	2
+  70              		.global	bq20Z75_read_in
+  71              		.thumb
+  72              		.thumb_func
+  73              		.type	bq20Z75_read_in, %function
+  74              	bq20Z75_read_in:
+  75              	.LFB64:
+  23:.\bq20Z75.c   **** int bq20Z75_read_in( unsigned char addr )
+  24:.\bq20Z75.c   **** {
+  76              		.loc 1 24 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 8
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
+  80              	.LVL9:
+  81 0000 00B5     		push	{lr}
+  82              		.cfi_def_cfa_offset 4
+  83              		.cfi_offset 14, -4
+  84 0002 83B0     		sub	sp, sp, #12
+  85              		.cfi_def_cfa_offset 16
+  25:.\bq20Z75.c   **** 		unsigned char I2CData[2];
+  26:.\bq20Z75.c   **** 		int temp;
+  27:.\bq20Z75.c   **** 		int size;
+  28:.\bq20Z75.c   **** 		
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 3
+
+
+  29:.\bq20Z75.c   **** 		size = I2C_Read( addr, 6, I2CData, 2 );
+  86              		.loc 1 29 0
+  87 0004 0621     		movs	r1, #6
+  88 0006 01AA     		add	r2, sp, #4
+  89 0008 0223     		movs	r3, #2
+  90 000a FFF7FEFF 		bl	I2C_Read
+  91              	.LVL10:
+  30:.\bq20Z75.c   **** 		
+  31:.\bq20Z75.c   **** 		if( size != 2 )
+  92              		.loc 1 31 0
+  93 000e 0228     		cmp	r0, #2
+  94 0010 0AD1     		bne	.L7
+  32:.\bq20Z75.c   **** 		{
+  33:.\bq20Z75.c   **** 			//	printf("mlx90614 read failed!\r\n");
+  34:.\bq20Z75.c   **** 				return -1;
+  35:.\bq20Z75.c   **** 		}
+  36:.\bq20Z75.c   **** 		temp = (I2CData[1] << 8 | I2CData[0])*2;
+  95              		.loc 1 36 0
+  96 0012 9DF80500 		ldrb	r0, [sp, #5]	@ zero_extendqisi2
+  97              	.LVL11:
+  98 0016 9DF80430 		ldrb	r3, [sp, #4]	@ zero_extendqisi2
+  99 001a 43EA0020 		orr	r0, r3, r0, lsl #8
+ 100 001e 4000     		lsls	r0, r0, #1
+ 101              	.LVL12:
+  37:.\bq20Z75.c   **** 		temp -= 27315;
+ 102              		.loc 1 37 0
+ 103 0020 A0F5D540 		sub	r0, r0, #27264
+ 104              	.LVL13:
+ 105 0024 3338     		subs	r0, r0, #51
+ 106              	.LVL14:
+  38:.\bq20Z75.c   **** 	//    UART_net_PutArray(I2CData,2);
+  39:.\bq20Z75.c   **** 		return temp;
+ 107              		.loc 1 39 0
+ 108 0026 01E0     		b	.L6
+ 109              	.LVL15:
+ 110              	.L7:
+  34:.\bq20Z75.c   **** 		}
+ 111              		.loc 1 34 0
+ 112 0028 4FF0FF30 		mov	r0, #-1
+ 113              	.LVL16:
+ 114              	.L6:
+  40:.\bq20Z75.c   ****         
+  41:.\bq20Z75.c   **** }
+ 115              		.loc 1 41 0
+ 116 002c 03B0     		add	sp, sp, #12
+ 117              		.cfi_def_cfa_offset 4
+ 118              		@ sp needed
+ 119 002e 5DF804FB 		ldr	pc, [sp], #4
+ 120              		.cfi_endproc
+ 121              	.LFE64:
+ 122              		.size	bq20Z75_read_in, .-bq20Z75_read_in
+ 123 0032 00BF     		.section	.text.bq20Z75_read_out,"ax",%progbits
+ 124              		.align	2
+ 125              		.global	bq20Z75_read_out
+ 126              		.thumb
+ 127              		.thumb_func
+ 128              		.type	bq20Z75_read_out, %function
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 4
+
+
+ 129              	bq20Z75_read_out:
+ 130              	.LFB65:
+  42:.\bq20Z75.c   **** 
+  43:.\bq20Z75.c   ****  uint8 PEC;
+  44:.\bq20Z75.c   **** int bq20Z75_read_out( unsigned char addr ,unsigned char command )
+  45:.\bq20Z75.c   **** {
+ 131              		.loc 1 45 0
+ 132              		.cfi_startproc
+ 133              		@ args = 0, pretend = 0, frame = 8
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 135              	.LVL17:
+ 136 0000 30B5     		push	{r4, r5, lr}
+ 137              		.cfi_def_cfa_offset 12
+ 138              		.cfi_offset 4, -12
+ 139              		.cfi_offset 5, -8
+ 140              		.cfi_offset 14, -4
+ 141 0002 83B0     		sub	sp, sp, #12
+ 142              		.cfi_def_cfa_offset 24
+ 143 0004 0C46     		mov	r4, r1
+  46:.\bq20Z75.c   ****     
+  47:.\bq20Z75.c   **** 		unsigned char I2CData[3];
+  48:.\bq20Z75.c   **** 		int size;
+  49:.\bq20Z75.c   **** 		int temp;
+  50:.\bq20Z75.c   ****        
+  51:.\bq20Z75.c   **** 		size = I2C_Read( addr, command, I2CData, 3 );
+ 144              		.loc 1 51 0
+ 145 0006 01AA     		add	r2, sp, #4
+ 146 0008 0323     		movs	r3, #3
+ 147 000a FFF7FEFF 		bl	I2C_Read
+ 148              	.LVL18:
+  52:.\bq20Z75.c   **** 		
+  53:.\bq20Z75.c   **** 		if( size != 3 )
+ 149              		.loc 1 53 0
+ 150 000e 0328     		cmp	r0, #3
+ 151 0010 1ED1     		bne	.L11
+  54:.\bq20Z75.c   **** 		{
+  55:.\bq20Z75.c   **** 			//	printf("mlx90614 read failed!\r\n");
+  56:.\bq20Z75.c   **** 				return -1;
+  57:.\bq20Z75.c   **** 		}
+  58:.\bq20Z75.c   ****         PEC=0;
+  59:.\bq20Z75.c   ****         PEC = GetCrc8(PEC,0x16);
+ 152              		.loc 1 59 0
+ 153 0012 0020     		movs	r0, #0
+ 154              	.LVL19:
+ 155 0014 1621     		movs	r1, #22
+ 156 0016 FFF7FEFF 		bl	GetCrc8
+ 157              	.LVL20:
+  60:.\bq20Z75.c   ****         PEC = GetCrc8(PEC,command);
+ 158              		.loc 1 60 0
+ 159 001a 2146     		mov	r1, r4
+ 160 001c FFF7FEFF 		bl	GetCrc8
+ 161              	.LVL21:
+  61:.\bq20Z75.c   ****         PEC = GetCrc8(PEC,0x16|0x01);
+ 162              		.loc 1 61 0
+ 163 0020 1721     		movs	r1, #23
+ 164 0022 FFF7FEFF 		bl	GetCrc8
+ 165              	.LVL22:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 5
+
+
+  62:.\bq20Z75.c   ****         PEC = GetCrc8(PEC,I2CData[0]);
+ 166              		.loc 1 62 0
+ 167 0026 9DF80440 		ldrb	r4, [sp, #4]	@ zero_extendqisi2
+ 168 002a 2146     		mov	r1, r4
+ 169 002c FFF7FEFF 		bl	GetCrc8
+ 170              	.LVL23:
+  63:.\bq20Z75.c   ****         PEC = GetCrc8(PEC,I2CData[1]);
+ 171              		.loc 1 63 0
+ 172 0030 9DF80550 		ldrb	r5, [sp, #5]	@ zero_extendqisi2
+ 173 0034 2946     		mov	r1, r5
+ 174 0036 FFF7FEFF 		bl	GetCrc8
+ 175              	.LVL24:
+ 176 003a 084B     		ldr	r3, .L14
+ 177 003c 1870     		strb	r0, [r3]
+  64:.\bq20Z75.c   ****         temp = (I2CData[1] << 8 | I2CData[0]);
+ 178              		.loc 1 64 0
+ 179 003e 44EA0524 		orr	r4, r4, r5, lsl #8
+ 180              	.LVL25:
+  65:.\bq20Z75.c   ****         if(PEC != I2CData[2])
+ 181              		.loc 1 65 0
+ 182 0042 9DF80630 		ldrb	r3, [sp, #6]	@ zero_extendqisi2
+ 183 0046 9842     		cmp	r0, r3
+ 184 0048 05D0     		beq	.L12
+  66:.\bq20Z75.c   ****         {
+  67:.\bq20Z75.c   ****             return -1;
+ 185              		.loc 1 67 0
+ 186 004a 4FF0FF30 		mov	r0, #-1
+ 187 004e 03E0     		b	.L10
+ 188              	.LVL26:
+ 189              	.L11:
+  56:.\bq20Z75.c   **** 		}
+ 190              		.loc 1 56 0
+ 191 0050 4FF0FF30 		mov	r0, #-1
+ 192              	.LVL27:
+ 193 0054 00E0     		b	.L10
+ 194              	.LVL28:
+ 195              	.L12:
+  68:.\bq20Z75.c   ****         }
+  69:.\bq20Z75.c   **** 		//temp = (I2CData[1] << 8 | I2CData[0])*2;
+  70:.\bq20Z75.c   ****         
+  71:.\bq20Z75.c   ****         
+  72:.\bq20Z75.c   ****       //  PEC = I2CData[2];
+  73:.\bq20Z75.c   **** 		//temp -= 27315;
+  74:.\bq20Z75.c   **** 		
+  75:.\bq20Z75.c   **** 		return temp;
+ 196              		.loc 1 75 0
+ 197 0056 2046     		mov	r0, r4
+ 198              	.LVL29:
+ 199              	.L10:
+  76:.\bq20Z75.c   ****         
+  77:.\bq20Z75.c   **** }
+ 200              		.loc 1 77 0
+ 201 0058 03B0     		add	sp, sp, #12
+ 202              		.cfi_def_cfa_offset 12
+ 203              		@ sp needed
+ 204 005a 30BD     		pop	{r4, r5, pc}
+ 205              	.L15:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 6
+
+
+ 206              		.align	2
+ 207              	.L14:
+ 208 005c 00000000 		.word	PEC
+ 209              		.cfi_endproc
+ 210              	.LFE65:
+ 211              		.size	bq20Z75_read_out, .-bq20Z75_read_out
+ 212              		.comm	PEC,1,1
+ 213              		.text
+ 214              	.Letext0:
+ 215              		.file 2 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 216              		.file 3 "d:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 217              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 218              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 219              		.file 6 ".\\i2c_core.h"
+ 220              		.section	.debug_info,"",%progbits
+ 221              	.Ldebug_info0:
+ 222 0000 BB020000 		.4byte	0x2bb
+ 223 0004 0400     		.2byte	0x4
+ 224 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 225 000a 04       		.byte	0x4
+ 226 000b 01       		.uleb128 0x1
+ 227 000c 9D000000 		.4byte	.LASF29
+ 228 0010 01       		.byte	0x1
+ 229 0011 8B010000 		.4byte	.LASF30
+ 230 0015 57010000 		.4byte	.LASF31
+ 231 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 232 001d 00000000 		.4byte	0
+ 233 0021 00000000 		.4byte	.Ldebug_line0
+ 234 0025 02       		.uleb128 0x2
+ 235 0026 01       		.byte	0x1
+ 236 0027 06       		.byte	0x6
+ 237 0028 4E000000 		.4byte	.LASF0
+ 238 002c 03       		.uleb128 0x3
+ 239 002d 09000000 		.4byte	.LASF4
+ 240 0031 02       		.byte	0x2
+ 241 0032 1D       		.byte	0x1d
+ 242 0033 37000000 		.4byte	0x37
+ 243 0037 02       		.uleb128 0x2
+ 244 0038 01       		.byte	0x1
+ 245 0039 08       		.byte	0x8
+ 246 003a 88000000 		.4byte	.LASF1
+ 247 003e 02       		.uleb128 0x2
+ 248 003f 02       		.byte	0x2
+ 249 0040 05       		.byte	0x5
+ 250 0041 CC010000 		.4byte	.LASF2
+ 251 0045 02       		.uleb128 0x2
+ 252 0046 02       		.byte	0x2
+ 253 0047 07       		.byte	0x7
+ 254 0048 2D000000 		.4byte	.LASF3
+ 255 004c 03       		.uleb128 0x3
+ 256 004d 1B000000 		.4byte	.LASF5
+ 257 0051 02       		.byte	0x2
+ 258 0052 3F       		.byte	0x3f
+ 259 0053 57000000 		.4byte	0x57
+ 260 0057 02       		.uleb128 0x2
+ 261 0058 04       		.byte	0x4
+ 262 0059 05       		.byte	0x5
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 7
+
+
+ 263 005a DC010000 		.4byte	.LASF6
+ 264 005e 02       		.uleb128 0x2
+ 265 005f 04       		.byte	0x4
+ 266 0060 07       		.byte	0x7
+ 267 0061 5F000000 		.4byte	.LASF7
+ 268 0065 02       		.uleb128 0x2
+ 269 0066 08       		.byte	0x8
+ 270 0067 05       		.byte	0x5
+ 271 0068 A8010000 		.4byte	.LASF8
+ 272 006c 02       		.uleb128 0x2
+ 273 006d 08       		.byte	0x8
+ 274 006e 07       		.byte	0x7
+ 275 006f 38010000 		.4byte	.LASF9
+ 276 0073 04       		.uleb128 0x4
+ 277 0074 04       		.byte	0x4
+ 278 0075 05       		.byte	0x5
+ 279 0076 696E7400 		.ascii	"int\000"
+ 280 007a 02       		.uleb128 0x2
+ 281 007b 04       		.byte	0x4
+ 282 007c 07       		.byte	0x7
+ 283 007d 2B010000 		.4byte	.LASF10
+ 284 0081 02       		.uleb128 0x2
+ 285 0082 04       		.byte	0x4
+ 286 0083 07       		.byte	0x7
+ 287 0084 9F010000 		.4byte	.LASF11
+ 288 0088 05       		.uleb128 0x5
+ 289 0089 04       		.byte	0x4
+ 290 008a 37000000 		.4byte	0x37
+ 291 008e 02       		.uleb128 0x2
+ 292 008f 01       		.byte	0x1
+ 293 0090 08       		.byte	0x8
+ 294 0091 B6010000 		.4byte	.LASF12
+ 295 0095 06       		.uleb128 0x6
+ 296 0096 37000000 		.4byte	0x37
+ 297 009a A5000000 		.4byte	0xa5
+ 298 009e 07       		.uleb128 0x7
+ 299 009f 81000000 		.4byte	0x81
+ 300 00a3 02       		.byte	0x2
+ 301 00a4 00       		.byte	0
+ 302 00a5 03       		.uleb128 0x3
+ 303 00a6 4F010000 		.4byte	.LASF13
+ 304 00aa 03       		.byte	0x3
+ 305 00ab 15       		.byte	0x15
+ 306 00ac 2C000000 		.4byte	0x2c
+ 307 00b0 03       		.uleb128 0x3
+ 308 00b1 97010000 		.4byte	.LASF14
+ 309 00b5 03       		.byte	0x3
+ 310 00b6 2C       		.byte	0x2c
+ 311 00b7 4C000000 		.4byte	0x4c
+ 312 00bb 03       		.uleb128 0x3
+ 313 00bc D6010000 		.4byte	.LASF15
+ 314 00c0 04       		.byte	0x4
+ 315 00c1 C2       		.byte	0xc2
+ 316 00c2 37000000 		.4byte	0x37
+ 317 00c6 02       		.uleb128 0x2
+ 318 00c7 04       		.byte	0x4
+ 319 00c8 04       		.byte	0x4
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 8
+
+
+ 320 00c9 48000000 		.4byte	.LASF16
+ 321 00cd 02       		.uleb128 0x2
+ 322 00ce 08       		.byte	0x8
+ 323 00cf 04       		.byte	0x4
+ 324 00d0 96000000 		.4byte	.LASF17
+ 325 00d4 08       		.uleb128 0x8
+ 326 00d5 25000000 		.4byte	.LASF20
+ 327 00d9 01       		.byte	0x1
+ 328 00da 06       		.byte	0x6
+ 329 00db A5000000 		.4byte	0xa5
+ 330 00df 00000000 		.4byte	.LFB63
+ 331 00e3 22000000 		.4byte	.LFE63-.LFB63
+ 332 00e7 01       		.uleb128 0x1
+ 333 00e8 9C       		.byte	0x9c
+ 334 00e9 17010000 		.4byte	0x117
+ 335 00ed 09       		.uleb128 0x9
+ 336 00ee E5010000 		.4byte	.LASF18
+ 337 00f2 01       		.byte	0x1
+ 338 00f3 06       		.byte	0x6
+ 339 00f4 A5000000 		.4byte	0xa5
+ 340 00f8 00000000 		.4byte	.LLST0
+ 341 00fc 0A       		.uleb128 0xa
+ 342 00fd 13000000 		.4byte	.LASF19
+ 343 0101 01       		.byte	0x1
+ 344 0102 06       		.byte	0x6
+ 345 0103 A5000000 		.4byte	0xa5
+ 346 0107 01       		.uleb128 0x1
+ 347 0108 51       		.byte	0x51
+ 348 0109 0B       		.uleb128 0xb
+ 349 010a 6A00     		.ascii	"j\000"
+ 350 010c 01       		.byte	0x1
+ 351 010d 08       		.byte	0x8
+ 352 010e A5000000 		.4byte	0xa5
+ 353 0112 34000000 		.4byte	.LLST1
+ 354 0116 00       		.byte	0
+ 355 0117 08       		.uleb128 0x8
+ 356 0118 F4010000 		.4byte	.LASF21
+ 357 011c 01       		.byte	0x1
+ 358 011d 17       		.byte	0x17
+ 359 011e 73000000 		.4byte	0x73
+ 360 0122 00000000 		.4byte	.LFB64
+ 361 0126 32000000 		.4byte	.LFE64-.LFB64
+ 362 012a 01       		.uleb128 0x1
+ 363 012b 9C       		.byte	0x9c
+ 364 012c 86010000 		.4byte	0x186
+ 365 0130 09       		.uleb128 0x9
+ 366 0131 76000000 		.4byte	.LASF22
+ 367 0135 01       		.byte	0x1
+ 368 0136 17       		.byte	0x17
+ 369 0137 37000000 		.4byte	0x37
+ 370 013b 53000000 		.4byte	.LLST2
+ 371 013f 0C       		.uleb128 0xc
+ 372 0140 EC010000 		.4byte	.LASF23
+ 373 0144 01       		.byte	0x1
+ 374 0145 19       		.byte	0x19
+ 375 0146 86010000 		.4byte	0x186
+ 376 014a 02       		.uleb128 0x2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 9
+
+
+ 377 014b 91       		.byte	0x91
+ 378 014c 74       		.sleb128 -12
+ 379 014d 0D       		.uleb128 0xd
+ 380 014e 71000000 		.4byte	.LASF24
+ 381 0152 01       		.byte	0x1
+ 382 0153 1A       		.byte	0x1a
+ 383 0154 73000000 		.4byte	0x73
+ 384 0158 74000000 		.4byte	.LLST3
+ 385 015c 0D       		.uleb128 0xd
+ 386 015d 5A000000 		.4byte	.LASF25
+ 387 0161 01       		.byte	0x1
+ 388 0162 1B       		.byte	0x1b
+ 389 0163 73000000 		.4byte	0x73
+ 390 0167 96000000 		.4byte	.LLST4
+ 391 016b 0E       		.uleb128 0xe
+ 392 016c 0E000000 		.4byte	.LVL10
+ 393 0170 9E020000 		.4byte	0x29e
+ 394 0174 0F       		.uleb128 0xf
+ 395 0175 01       		.uleb128 0x1
+ 396 0176 53       		.byte	0x53
+ 397 0177 01       		.uleb128 0x1
+ 398 0178 32       		.byte	0x32
+ 399 0179 0F       		.uleb128 0xf
+ 400 017a 01       		.uleb128 0x1
+ 401 017b 52       		.byte	0x52
+ 402 017c 02       		.uleb128 0x2
+ 403 017d 91       		.byte	0x91
+ 404 017e 74       		.sleb128 -12
+ 405 017f 0F       		.uleb128 0xf
+ 406 0180 01       		.uleb128 0x1
+ 407 0181 51       		.byte	0x51
+ 408 0182 01       		.uleb128 0x1
+ 409 0183 36       		.byte	0x36
+ 410 0184 00       		.byte	0
+ 411 0185 00       		.byte	0
+ 412 0186 06       		.uleb128 0x6
+ 413 0187 37000000 		.4byte	0x37
+ 414 018b 96010000 		.4byte	0x196
+ 415 018f 07       		.uleb128 0x7
+ 416 0190 81000000 		.4byte	0x81
+ 417 0194 01       		.byte	0x1
+ 418 0195 00       		.byte	0
+ 419 0196 08       		.uleb128 0x8
+ 420 0197 BB010000 		.4byte	.LASF26
+ 421 019b 01       		.byte	0x1
+ 422 019c 2C       		.byte	0x2c
+ 423 019d 73000000 		.4byte	0x73
+ 424 01a1 00000000 		.4byte	.LFB65
+ 425 01a5 60000000 		.4byte	.LFE65-.LFB65
+ 426 01a9 01       		.uleb128 0x1
+ 427 01aa 9C       		.byte	0x9c
+ 428 01ab 7C020000 		.4byte	0x27c
+ 429 01af 09       		.uleb128 0x9
+ 430 01b0 76000000 		.4byte	.LASF22
+ 431 01b4 01       		.byte	0x1
+ 432 01b5 2C       		.byte	0x2c
+ 433 01b6 37000000 		.4byte	0x37
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 10
+
+
+ 434 01ba BE000000 		.4byte	.LLST5
+ 435 01be 09       		.uleb128 0x9
+ 436 01bf 40000000 		.4byte	.LASF27
+ 437 01c3 01       		.byte	0x1
+ 438 01c4 2C       		.byte	0x2c
+ 439 01c5 37000000 		.4byte	0x37
+ 440 01c9 DF000000 		.4byte	.LLST6
+ 441 01cd 0C       		.uleb128 0xc
+ 442 01ce EC010000 		.4byte	.LASF23
+ 443 01d2 01       		.byte	0x1
+ 444 01d3 2F       		.byte	0x2f
+ 445 01d4 95000000 		.4byte	0x95
+ 446 01d8 02       		.uleb128 0x2
+ 447 01d9 91       		.byte	0x91
+ 448 01da 6C       		.sleb128 -20
+ 449 01db 0D       		.uleb128 0xd
+ 450 01dc 5A000000 		.4byte	.LASF25
+ 451 01e0 01       		.byte	0x1
+ 452 01e1 30       		.byte	0x30
+ 453 01e2 73000000 		.4byte	0x73
+ 454 01e6 00010000 		.4byte	.LLST7
+ 455 01ea 0D       		.uleb128 0xd
+ 456 01eb 71000000 		.4byte	.LASF24
+ 457 01ef 01       		.byte	0x1
+ 458 01f0 31       		.byte	0x31
+ 459 01f1 73000000 		.4byte	0x73
+ 460 01f5 28010000 		.4byte	.LLST8
+ 461 01f9 10       		.uleb128 0x10
+ 462 01fa 0E000000 		.4byte	.LVL18
+ 463 01fe 9E020000 		.4byte	0x29e
+ 464 0202 18020000 		.4byte	0x218
+ 465 0206 0F       		.uleb128 0xf
+ 466 0207 01       		.uleb128 0x1
+ 467 0208 53       		.byte	0x53
+ 468 0209 01       		.uleb128 0x1
+ 469 020a 33       		.byte	0x33
+ 470 020b 0F       		.uleb128 0xf
+ 471 020c 01       		.uleb128 0x1
+ 472 020d 52       		.byte	0x52
+ 473 020e 02       		.uleb128 0x2
+ 474 020f 91       		.byte	0x91
+ 475 0210 6C       		.sleb128 -20
+ 476 0211 0F       		.uleb128 0xf
+ 477 0212 01       		.uleb128 0x1
+ 478 0213 51       		.byte	0x51
+ 479 0214 02       		.uleb128 0x2
+ 480 0215 74       		.byte	0x74
+ 481 0216 00       		.sleb128 0
+ 482 0217 00       		.byte	0
+ 483 0218 10       		.uleb128 0x10
+ 484 0219 1A000000 		.4byte	.LVL20
+ 485 021d D4000000 		.4byte	0xd4
+ 486 0221 30020000 		.4byte	0x230
+ 487 0225 0F       		.uleb128 0xf
+ 488 0226 01       		.uleb128 0x1
+ 489 0227 51       		.byte	0x51
+ 490 0228 01       		.uleb128 0x1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 11
+
+
+ 491 0229 46       		.byte	0x46
+ 492 022a 0F       		.uleb128 0xf
+ 493 022b 01       		.uleb128 0x1
+ 494 022c 50       		.byte	0x50
+ 495 022d 01       		.uleb128 0x1
+ 496 022e 30       		.byte	0x30
+ 497 022f 00       		.byte	0
+ 498 0230 10       		.uleb128 0x10
+ 499 0231 20000000 		.4byte	.LVL21
+ 500 0235 D4000000 		.4byte	0xd4
+ 501 0239 44020000 		.4byte	0x244
+ 502 023d 0F       		.uleb128 0xf
+ 503 023e 01       		.uleb128 0x1
+ 504 023f 51       		.byte	0x51
+ 505 0240 02       		.uleb128 0x2
+ 506 0241 74       		.byte	0x74
+ 507 0242 00       		.sleb128 0
+ 508 0243 00       		.byte	0
+ 509 0244 10       		.uleb128 0x10
+ 510 0245 26000000 		.4byte	.LVL22
+ 511 0249 D4000000 		.4byte	0xd4
+ 512 024d 57020000 		.4byte	0x257
+ 513 0251 0F       		.uleb128 0xf
+ 514 0252 01       		.uleb128 0x1
+ 515 0253 51       		.byte	0x51
+ 516 0254 01       		.uleb128 0x1
+ 517 0255 47       		.byte	0x47
+ 518 0256 00       		.byte	0
+ 519 0257 10       		.uleb128 0x10
+ 520 0258 30000000 		.4byte	.LVL23
+ 521 025c D4000000 		.4byte	0xd4
+ 522 0260 6B020000 		.4byte	0x26b
+ 523 0264 0F       		.uleb128 0xf
+ 524 0265 01       		.uleb128 0x1
+ 525 0266 51       		.byte	0x51
+ 526 0267 02       		.uleb128 0x2
+ 527 0268 74       		.byte	0x74
+ 528 0269 00       		.sleb128 0
+ 529 026a 00       		.byte	0
+ 530 026b 0E       		.uleb128 0xe
+ 531 026c 3A000000 		.4byte	.LVL24
+ 532 0270 D4000000 		.4byte	0xd4
+ 533 0274 0F       		.uleb128 0xf
+ 534 0275 01       		.uleb128 0x1
+ 535 0276 51       		.byte	0x51
+ 536 0277 02       		.uleb128 0x2
+ 537 0278 75       		.byte	0x75
+ 538 0279 00       		.sleb128 0
+ 539 027a 00       		.byte	0
+ 540 027b 00       		.byte	0
+ 541 027c 11       		.uleb128 0x11
+ 542 027d 7B000000 		.4byte	.LASF28
+ 543 0281 05       		.byte	0x5
+ 544 0282 2A06     		.2byte	0x62a
+ 545 0284 88020000 		.4byte	0x288
+ 546 0288 12       		.uleb128 0x12
+ 547 0289 B0000000 		.4byte	0xb0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 12
+
+
+ 548 028d 13       		.uleb128 0x13
+ 549 028e 50454300 		.ascii	"PEC\000"
+ 550 0292 01       		.byte	0x1
+ 551 0293 2B       		.byte	0x2b
+ 552 0294 BB000000 		.4byte	0xbb
+ 553 0298 05       		.uleb128 0x5
+ 554 0299 03       		.byte	0x3
+ 555 029a 00000000 		.4byte	PEC
+ 556 029e 14       		.uleb128 0x14
+ 557 029f 00000000 		.4byte	.LASF32
+ 558 02a3 06       		.byte	0x6
+ 559 02a4 08       		.byte	0x8
+ 560 02a5 37000000 		.4byte	0x37
+ 561 02a9 15       		.uleb128 0x15
+ 562 02aa 37000000 		.4byte	0x37
+ 563 02ae 15       		.uleb128 0x15
+ 564 02af 37000000 		.4byte	0x37
+ 565 02b3 15       		.uleb128 0x15
+ 566 02b4 88000000 		.4byte	0x88
+ 567 02b8 15       		.uleb128 0x15
+ 568 02b9 37000000 		.4byte	0x37
+ 569 02bd 00       		.byte	0
+ 570 02be 00       		.byte	0
+ 571              		.section	.debug_abbrev,"",%progbits
+ 572              	.Ldebug_abbrev0:
+ 573 0000 01       		.uleb128 0x1
+ 574 0001 11       		.uleb128 0x11
+ 575 0002 01       		.byte	0x1
+ 576 0003 25       		.uleb128 0x25
+ 577 0004 0E       		.uleb128 0xe
+ 578 0005 13       		.uleb128 0x13
+ 579 0006 0B       		.uleb128 0xb
+ 580 0007 03       		.uleb128 0x3
+ 581 0008 0E       		.uleb128 0xe
+ 582 0009 1B       		.uleb128 0x1b
+ 583 000a 0E       		.uleb128 0xe
+ 584 000b 55       		.uleb128 0x55
+ 585 000c 17       		.uleb128 0x17
+ 586 000d 11       		.uleb128 0x11
+ 587 000e 01       		.uleb128 0x1
+ 588 000f 10       		.uleb128 0x10
+ 589 0010 17       		.uleb128 0x17
+ 590 0011 00       		.byte	0
+ 591 0012 00       		.byte	0
+ 592 0013 02       		.uleb128 0x2
+ 593 0014 24       		.uleb128 0x24
+ 594 0015 00       		.byte	0
+ 595 0016 0B       		.uleb128 0xb
+ 596 0017 0B       		.uleb128 0xb
+ 597 0018 3E       		.uleb128 0x3e
+ 598 0019 0B       		.uleb128 0xb
+ 599 001a 03       		.uleb128 0x3
+ 600 001b 0E       		.uleb128 0xe
+ 601 001c 00       		.byte	0
+ 602 001d 00       		.byte	0
+ 603 001e 03       		.uleb128 0x3
+ 604 001f 16       		.uleb128 0x16
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 13
+
+
+ 605 0020 00       		.byte	0
+ 606 0021 03       		.uleb128 0x3
+ 607 0022 0E       		.uleb128 0xe
+ 608 0023 3A       		.uleb128 0x3a
+ 609 0024 0B       		.uleb128 0xb
+ 610 0025 3B       		.uleb128 0x3b
+ 611 0026 0B       		.uleb128 0xb
+ 612 0027 49       		.uleb128 0x49
+ 613 0028 13       		.uleb128 0x13
+ 614 0029 00       		.byte	0
+ 615 002a 00       		.byte	0
+ 616 002b 04       		.uleb128 0x4
+ 617 002c 24       		.uleb128 0x24
+ 618 002d 00       		.byte	0
+ 619 002e 0B       		.uleb128 0xb
+ 620 002f 0B       		.uleb128 0xb
+ 621 0030 3E       		.uleb128 0x3e
+ 622 0031 0B       		.uleb128 0xb
+ 623 0032 03       		.uleb128 0x3
+ 624 0033 08       		.uleb128 0x8
+ 625 0034 00       		.byte	0
+ 626 0035 00       		.byte	0
+ 627 0036 05       		.uleb128 0x5
+ 628 0037 0F       		.uleb128 0xf
+ 629 0038 00       		.byte	0
+ 630 0039 0B       		.uleb128 0xb
+ 631 003a 0B       		.uleb128 0xb
+ 632 003b 49       		.uleb128 0x49
+ 633 003c 13       		.uleb128 0x13
+ 634 003d 00       		.byte	0
+ 635 003e 00       		.byte	0
+ 636 003f 06       		.uleb128 0x6
+ 637 0040 01       		.uleb128 0x1
+ 638 0041 01       		.byte	0x1
+ 639 0042 49       		.uleb128 0x49
+ 640 0043 13       		.uleb128 0x13
+ 641 0044 01       		.uleb128 0x1
+ 642 0045 13       		.uleb128 0x13
+ 643 0046 00       		.byte	0
+ 644 0047 00       		.byte	0
+ 645 0048 07       		.uleb128 0x7
+ 646 0049 21       		.uleb128 0x21
+ 647 004a 00       		.byte	0
+ 648 004b 49       		.uleb128 0x49
+ 649 004c 13       		.uleb128 0x13
+ 650 004d 2F       		.uleb128 0x2f
+ 651 004e 0B       		.uleb128 0xb
+ 652 004f 00       		.byte	0
+ 653 0050 00       		.byte	0
+ 654 0051 08       		.uleb128 0x8
+ 655 0052 2E       		.uleb128 0x2e
+ 656 0053 01       		.byte	0x1
+ 657 0054 3F       		.uleb128 0x3f
+ 658 0055 19       		.uleb128 0x19
+ 659 0056 03       		.uleb128 0x3
+ 660 0057 0E       		.uleb128 0xe
+ 661 0058 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 14
+
+
+ 662 0059 0B       		.uleb128 0xb
+ 663 005a 3B       		.uleb128 0x3b
+ 664 005b 0B       		.uleb128 0xb
+ 665 005c 27       		.uleb128 0x27
+ 666 005d 19       		.uleb128 0x19
+ 667 005e 49       		.uleb128 0x49
+ 668 005f 13       		.uleb128 0x13
+ 669 0060 11       		.uleb128 0x11
+ 670 0061 01       		.uleb128 0x1
+ 671 0062 12       		.uleb128 0x12
+ 672 0063 06       		.uleb128 0x6
+ 673 0064 40       		.uleb128 0x40
+ 674 0065 18       		.uleb128 0x18
+ 675 0066 9742     		.uleb128 0x2117
+ 676 0068 19       		.uleb128 0x19
+ 677 0069 01       		.uleb128 0x1
+ 678 006a 13       		.uleb128 0x13
+ 679 006b 00       		.byte	0
+ 680 006c 00       		.byte	0
+ 681 006d 09       		.uleb128 0x9
+ 682 006e 05       		.uleb128 0x5
+ 683 006f 00       		.byte	0
+ 684 0070 03       		.uleb128 0x3
+ 685 0071 0E       		.uleb128 0xe
+ 686 0072 3A       		.uleb128 0x3a
+ 687 0073 0B       		.uleb128 0xb
+ 688 0074 3B       		.uleb128 0x3b
+ 689 0075 0B       		.uleb128 0xb
+ 690 0076 49       		.uleb128 0x49
+ 691 0077 13       		.uleb128 0x13
+ 692 0078 02       		.uleb128 0x2
+ 693 0079 17       		.uleb128 0x17
+ 694 007a 00       		.byte	0
+ 695 007b 00       		.byte	0
+ 696 007c 0A       		.uleb128 0xa
+ 697 007d 05       		.uleb128 0x5
+ 698 007e 00       		.byte	0
+ 699 007f 03       		.uleb128 0x3
+ 700 0080 0E       		.uleb128 0xe
+ 701 0081 3A       		.uleb128 0x3a
+ 702 0082 0B       		.uleb128 0xb
+ 703 0083 3B       		.uleb128 0x3b
+ 704 0084 0B       		.uleb128 0xb
+ 705 0085 49       		.uleb128 0x49
+ 706 0086 13       		.uleb128 0x13
+ 707 0087 02       		.uleb128 0x2
+ 708 0088 18       		.uleb128 0x18
+ 709 0089 00       		.byte	0
+ 710 008a 00       		.byte	0
+ 711 008b 0B       		.uleb128 0xb
+ 712 008c 34       		.uleb128 0x34
+ 713 008d 00       		.byte	0
+ 714 008e 03       		.uleb128 0x3
+ 715 008f 08       		.uleb128 0x8
+ 716 0090 3A       		.uleb128 0x3a
+ 717 0091 0B       		.uleb128 0xb
+ 718 0092 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 15
+
+
+ 719 0093 0B       		.uleb128 0xb
+ 720 0094 49       		.uleb128 0x49
+ 721 0095 13       		.uleb128 0x13
+ 722 0096 02       		.uleb128 0x2
+ 723 0097 17       		.uleb128 0x17
+ 724 0098 00       		.byte	0
+ 725 0099 00       		.byte	0
+ 726 009a 0C       		.uleb128 0xc
+ 727 009b 34       		.uleb128 0x34
+ 728 009c 00       		.byte	0
+ 729 009d 03       		.uleb128 0x3
+ 730 009e 0E       		.uleb128 0xe
+ 731 009f 3A       		.uleb128 0x3a
+ 732 00a0 0B       		.uleb128 0xb
+ 733 00a1 3B       		.uleb128 0x3b
+ 734 00a2 0B       		.uleb128 0xb
+ 735 00a3 49       		.uleb128 0x49
+ 736 00a4 13       		.uleb128 0x13
+ 737 00a5 02       		.uleb128 0x2
+ 738 00a6 18       		.uleb128 0x18
+ 739 00a7 00       		.byte	0
+ 740 00a8 00       		.byte	0
+ 741 00a9 0D       		.uleb128 0xd
+ 742 00aa 34       		.uleb128 0x34
+ 743 00ab 00       		.byte	0
+ 744 00ac 03       		.uleb128 0x3
+ 745 00ad 0E       		.uleb128 0xe
+ 746 00ae 3A       		.uleb128 0x3a
+ 747 00af 0B       		.uleb128 0xb
+ 748 00b0 3B       		.uleb128 0x3b
+ 749 00b1 0B       		.uleb128 0xb
+ 750 00b2 49       		.uleb128 0x49
+ 751 00b3 13       		.uleb128 0x13
+ 752 00b4 02       		.uleb128 0x2
+ 753 00b5 17       		.uleb128 0x17
+ 754 00b6 00       		.byte	0
+ 755 00b7 00       		.byte	0
+ 756 00b8 0E       		.uleb128 0xe
+ 757 00b9 898201   		.uleb128 0x4109
+ 758 00bc 01       		.byte	0x1
+ 759 00bd 11       		.uleb128 0x11
+ 760 00be 01       		.uleb128 0x1
+ 761 00bf 31       		.uleb128 0x31
+ 762 00c0 13       		.uleb128 0x13
+ 763 00c1 00       		.byte	0
+ 764 00c2 00       		.byte	0
+ 765 00c3 0F       		.uleb128 0xf
+ 766 00c4 8A8201   		.uleb128 0x410a
+ 767 00c7 00       		.byte	0
+ 768 00c8 02       		.uleb128 0x2
+ 769 00c9 18       		.uleb128 0x18
+ 770 00ca 9142     		.uleb128 0x2111
+ 771 00cc 18       		.uleb128 0x18
+ 772 00cd 00       		.byte	0
+ 773 00ce 00       		.byte	0
+ 774 00cf 10       		.uleb128 0x10
+ 775 00d0 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 16
+
+
+ 776 00d3 01       		.byte	0x1
+ 777 00d4 11       		.uleb128 0x11
+ 778 00d5 01       		.uleb128 0x1
+ 779 00d6 31       		.uleb128 0x31
+ 780 00d7 13       		.uleb128 0x13
+ 781 00d8 01       		.uleb128 0x1
+ 782 00d9 13       		.uleb128 0x13
+ 783 00da 00       		.byte	0
+ 784 00db 00       		.byte	0
+ 785 00dc 11       		.uleb128 0x11
+ 786 00dd 34       		.uleb128 0x34
+ 787 00de 00       		.byte	0
+ 788 00df 03       		.uleb128 0x3
+ 789 00e0 0E       		.uleb128 0xe
+ 790 00e1 3A       		.uleb128 0x3a
+ 791 00e2 0B       		.uleb128 0xb
+ 792 00e3 3B       		.uleb128 0x3b
+ 793 00e4 05       		.uleb128 0x5
+ 794 00e5 49       		.uleb128 0x49
+ 795 00e6 13       		.uleb128 0x13
+ 796 00e7 3F       		.uleb128 0x3f
+ 797 00e8 19       		.uleb128 0x19
+ 798 00e9 3C       		.uleb128 0x3c
+ 799 00ea 19       		.uleb128 0x19
+ 800 00eb 00       		.byte	0
+ 801 00ec 00       		.byte	0
+ 802 00ed 12       		.uleb128 0x12
+ 803 00ee 35       		.uleb128 0x35
+ 804 00ef 00       		.byte	0
+ 805 00f0 49       		.uleb128 0x49
+ 806 00f1 13       		.uleb128 0x13
+ 807 00f2 00       		.byte	0
+ 808 00f3 00       		.byte	0
+ 809 00f4 13       		.uleb128 0x13
+ 810 00f5 34       		.uleb128 0x34
+ 811 00f6 00       		.byte	0
+ 812 00f7 03       		.uleb128 0x3
+ 813 00f8 08       		.uleb128 0x8
+ 814 00f9 3A       		.uleb128 0x3a
+ 815 00fa 0B       		.uleb128 0xb
+ 816 00fb 3B       		.uleb128 0x3b
+ 817 00fc 0B       		.uleb128 0xb
+ 818 00fd 49       		.uleb128 0x49
+ 819 00fe 13       		.uleb128 0x13
+ 820 00ff 3F       		.uleb128 0x3f
+ 821 0100 19       		.uleb128 0x19
+ 822 0101 02       		.uleb128 0x2
+ 823 0102 18       		.uleb128 0x18
+ 824 0103 00       		.byte	0
+ 825 0104 00       		.byte	0
+ 826 0105 14       		.uleb128 0x14
+ 827 0106 2E       		.uleb128 0x2e
+ 828 0107 01       		.byte	0x1
+ 829 0108 3F       		.uleb128 0x3f
+ 830 0109 19       		.uleb128 0x19
+ 831 010a 03       		.uleb128 0x3
+ 832 010b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 17
+
+
+ 833 010c 3A       		.uleb128 0x3a
+ 834 010d 0B       		.uleb128 0xb
+ 835 010e 3B       		.uleb128 0x3b
+ 836 010f 0B       		.uleb128 0xb
+ 837 0110 27       		.uleb128 0x27
+ 838 0111 19       		.uleb128 0x19
+ 839 0112 49       		.uleb128 0x49
+ 840 0113 13       		.uleb128 0x13
+ 841 0114 3C       		.uleb128 0x3c
+ 842 0115 19       		.uleb128 0x19
+ 843 0116 00       		.byte	0
+ 844 0117 00       		.byte	0
+ 845 0118 15       		.uleb128 0x15
+ 846 0119 05       		.uleb128 0x5
+ 847 011a 00       		.byte	0
+ 848 011b 49       		.uleb128 0x49
+ 849 011c 13       		.uleb128 0x13
+ 850 011d 00       		.byte	0
+ 851 011e 00       		.byte	0
+ 852 011f 00       		.byte	0
+ 853              		.section	.debug_loc,"",%progbits
+ 854              	.Ldebug_loc0:
+ 855              	.LLST0:
+ 856 0000 00000000 		.4byte	.LVL0
+ 857 0004 02000000 		.4byte	.LVL1
+ 858 0008 0100     		.2byte	0x1
+ 859 000a 50       		.byte	0x50
+ 860 000b 02000000 		.4byte	.LVL1
+ 861 000f 0C000000 		.4byte	.LVL3
+ 862 0013 0100     		.2byte	0x1
+ 863 0015 50       		.byte	0x50
+ 864 0016 0E000000 		.4byte	.LVL4
+ 865 001a 12000000 		.4byte	.LVL5
+ 866 001e 0100     		.2byte	0x1
+ 867 0020 50       		.byte	0x50
+ 868 0021 18000000 		.4byte	.LVL6
+ 869 0025 22000000 		.4byte	.LFE63
+ 870 0029 0100     		.2byte	0x1
+ 871 002b 50       		.byte	0x50
+ 872 002c 00000000 		.4byte	0
+ 873 0030 00000000 		.4byte	0
+ 874              	.LLST1:
+ 875 0034 00000000 		.4byte	.LVL0
+ 876 0038 04000000 		.4byte	.LVL2
+ 877 003c 0200     		.2byte	0x2
+ 878 003e 38       		.byte	0x38
+ 879 003f 9F       		.byte	0x9f
+ 880 0040 04000000 		.4byte	.LVL2
+ 881 0044 1E000000 		.4byte	.LVL8
+ 882 0048 0100     		.2byte	0x1
+ 883 004a 53       		.byte	0x53
+ 884 004b 00000000 		.4byte	0
+ 885 004f 00000000 		.4byte	0
+ 886              	.LLST2:
+ 887 0053 00000000 		.4byte	.LVL9
+ 888 0057 0D000000 		.4byte	.LVL10-1
+ 889 005b 0100     		.2byte	0x1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 18
+
+
+ 890 005d 50       		.byte	0x50
+ 891 005e 0D000000 		.4byte	.LVL10-1
+ 892 0062 32000000 		.4byte	.LFE64
+ 893 0066 0400     		.2byte	0x4
+ 894 0068 F3       		.byte	0xf3
+ 895 0069 01       		.uleb128 0x1
+ 896 006a 50       		.byte	0x50
+ 897 006b 9F       		.byte	0x9f
+ 898 006c 00000000 		.4byte	0
+ 899 0070 00000000 		.4byte	0
+ 900              	.LLST3:
+ 901 0074 20000000 		.4byte	.LVL12
+ 902 0078 24000000 		.4byte	.LVL13
+ 903 007c 0100     		.2byte	0x1
+ 904 007e 50       		.byte	0x50
+ 905 007f 24000000 		.4byte	.LVL13
+ 906 0083 26000000 		.4byte	.LVL14
+ 907 0087 0500     		.2byte	0x5
+ 908 0089 70       		.byte	0x70
+ 909 008a 80D501   		.sleb128 27264
+ 910 008d 9F       		.byte	0x9f
+ 911 008e 00000000 		.4byte	0
+ 912 0092 00000000 		.4byte	0
+ 913              	.LLST4:
+ 914 0096 0E000000 		.4byte	.LVL10
+ 915 009a 16000000 		.4byte	.LVL11
+ 916 009e 0600     		.2byte	0x6
+ 917 00a0 70       		.byte	0x70
+ 918 00a1 00       		.sleb128 0
+ 919 00a2 08       		.byte	0x8
+ 920 00a3 FF       		.byte	0xff
+ 921 00a4 1A       		.byte	0x1a
+ 922 00a5 9F       		.byte	0x9f
+ 923 00a6 28000000 		.4byte	.LVL15
+ 924 00aa 2C000000 		.4byte	.LVL16
+ 925 00ae 0600     		.2byte	0x6
+ 926 00b0 70       		.byte	0x70
+ 927 00b1 00       		.sleb128 0
+ 928 00b2 08       		.byte	0x8
+ 929 00b3 FF       		.byte	0xff
+ 930 00b4 1A       		.byte	0x1a
+ 931 00b5 9F       		.byte	0x9f
+ 932 00b6 00000000 		.4byte	0
+ 933 00ba 00000000 		.4byte	0
+ 934              	.LLST5:
+ 935 00be 00000000 		.4byte	.LVL17
+ 936 00c2 0D000000 		.4byte	.LVL18-1
+ 937 00c6 0100     		.2byte	0x1
+ 938 00c8 50       		.byte	0x50
+ 939 00c9 0D000000 		.4byte	.LVL18-1
+ 940 00cd 60000000 		.4byte	.LFE65
+ 941 00d1 0400     		.2byte	0x4
+ 942 00d3 F3       		.byte	0xf3
+ 943 00d4 01       		.uleb128 0x1
+ 944 00d5 50       		.byte	0x50
+ 945 00d6 9F       		.byte	0x9f
+ 946 00d7 00000000 		.4byte	0
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 19
+
+
+ 947 00db 00000000 		.4byte	0
+ 948              	.LLST6:
+ 949 00df 00000000 		.4byte	.LVL17
+ 950 00e3 0D000000 		.4byte	.LVL18-1
+ 951 00e7 0100     		.2byte	0x1
+ 952 00e9 51       		.byte	0x51
+ 953 00ea 0D000000 		.4byte	.LVL18-1
+ 954 00ee 60000000 		.4byte	.LFE65
+ 955 00f2 0400     		.2byte	0x4
+ 956 00f4 F3       		.byte	0xf3
+ 957 00f5 01       		.uleb128 0x1
+ 958 00f6 51       		.byte	0x51
+ 959 00f7 9F       		.byte	0x9f
+ 960 00f8 00000000 		.4byte	0
+ 961 00fc 00000000 		.4byte	0
+ 962              	.LLST7:
+ 963 0100 0E000000 		.4byte	.LVL18
+ 964 0104 14000000 		.4byte	.LVL19
+ 965 0108 0600     		.2byte	0x6
+ 966 010a 70       		.byte	0x70
+ 967 010b 00       		.sleb128 0
+ 968 010c 08       		.byte	0x8
+ 969 010d FF       		.byte	0xff
+ 970 010e 1A       		.byte	0x1a
+ 971 010f 9F       		.byte	0x9f
+ 972 0110 50000000 		.4byte	.LVL26
+ 973 0114 54000000 		.4byte	.LVL27
+ 974 0118 0600     		.2byte	0x6
+ 975 011a 70       		.byte	0x70
+ 976 011b 00       		.sleb128 0
+ 977 011c 08       		.byte	0x8
+ 978 011d FF       		.byte	0xff
+ 979 011e 1A       		.byte	0x1a
+ 980 011f 9F       		.byte	0x9f
+ 981 0120 00000000 		.4byte	0
+ 982 0124 00000000 		.4byte	0
+ 983              	.LLST8:
+ 984 0128 42000000 		.4byte	.LVL25
+ 985 012c 50000000 		.4byte	.LVL26
+ 986 0130 0100     		.2byte	0x1
+ 987 0132 54       		.byte	0x54
+ 988 0133 56000000 		.4byte	.LVL28
+ 989 0137 58000000 		.4byte	.LVL29
+ 990 013b 0100     		.2byte	0x1
+ 991 013d 54       		.byte	0x54
+ 992 013e 00000000 		.4byte	0
+ 993 0142 00000000 		.4byte	0
+ 994              		.section	.debug_aranges,"",%progbits
+ 995 0000 2C000000 		.4byte	0x2c
+ 996 0004 0200     		.2byte	0x2
+ 997 0006 00000000 		.4byte	.Ldebug_info0
+ 998 000a 04       		.byte	0x4
+ 999 000b 00       		.byte	0
+ 1000 000c 0000     		.2byte	0
+ 1001 000e 0000     		.2byte	0
+ 1002 0010 00000000 		.4byte	.LFB63
+ 1003 0014 22000000 		.4byte	.LFE63-.LFB63
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 20
+
+
+ 1004 0018 00000000 		.4byte	.LFB64
+ 1005 001c 32000000 		.4byte	.LFE64-.LFB64
+ 1006 0020 00000000 		.4byte	.LFB65
+ 1007 0024 60000000 		.4byte	.LFE65-.LFB65
+ 1008 0028 00000000 		.4byte	0
+ 1009 002c 00000000 		.4byte	0
+ 1010              		.section	.debug_ranges,"",%progbits
+ 1011              	.Ldebug_ranges0:
+ 1012 0000 00000000 		.4byte	.LFB63
+ 1013 0004 22000000 		.4byte	.LFE63
+ 1014 0008 00000000 		.4byte	.LFB64
+ 1015 000c 32000000 		.4byte	.LFE64
+ 1016 0010 00000000 		.4byte	.LFB65
+ 1017 0014 60000000 		.4byte	.LFE65
+ 1018 0018 00000000 		.4byte	0
+ 1019 001c 00000000 		.4byte	0
+ 1020              		.section	.debug_line,"",%progbits
+ 1021              	.Ldebug_line0:
+ 1022 0000 AC010000 		.section	.debug_str,"MS",%progbits,1
+ 1022      02005C01 
+ 1022      00000201 
+ 1022      FB0E0D00 
+ 1022      01010101 
+ 1023              	.LASF32:
+ 1024 0000 4932435F 		.ascii	"I2C_Read\000"
+ 1024      52656164 
+ 1024      00
+ 1025              	.LASF4:
+ 1026 0009 5F5F7569 		.ascii	"__uint8_t\000"
+ 1026      6E74385F 
+ 1026      7400
+ 1027              	.LASF19:
+ 1028 0013 63726344 		.ascii	"crcData\000"
+ 1028      61746100 
+ 1029              	.LASF5:
+ 1030 001b 5F5F696E 		.ascii	"__int32_t\000"
+ 1030      7433325F 
+ 1030      7400
+ 1031              	.LASF20:
+ 1032 0025 47657443 		.ascii	"GetCrc8\000"
+ 1032      72633800 
+ 1033              	.LASF3:
+ 1034 002d 73686F72 		.ascii	"short unsigned int\000"
+ 1034      7420756E 
+ 1034      7369676E 
+ 1034      65642069 
+ 1034      6E7400
+ 1035              	.LASF27:
+ 1036 0040 636F6D6D 		.ascii	"command\000"
+ 1036      616E6400 
+ 1037              	.LASF16:
+ 1038 0048 666C6F61 		.ascii	"float\000"
+ 1038      7400
+ 1039              	.LASF0:
+ 1040 004e 7369676E 		.ascii	"signed char\000"
+ 1040      65642063 
+ 1040      68617200 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 21
+
+
+ 1041              	.LASF25:
+ 1042 005a 73697A65 		.ascii	"size\000"
+ 1042      00
+ 1043              	.LASF7:
+ 1044 005f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1044      20756E73 
+ 1044      69676E65 
+ 1044      6420696E 
+ 1044      7400
+ 1045              	.LASF24:
+ 1046 0071 74656D70 		.ascii	"temp\000"
+ 1046      00
+ 1047              	.LASF22:
+ 1048 0076 61646472 		.ascii	"addr\000"
+ 1048      00
+ 1049              	.LASF28:
+ 1050 007b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1050      52784275 
+ 1050      66666572 
+ 1050      00
+ 1051              	.LASF1:
+ 1052 0088 756E7369 		.ascii	"unsigned char\000"
+ 1052      676E6564 
+ 1052      20636861 
+ 1052      7200
+ 1053              	.LASF17:
+ 1054 0096 646F7562 		.ascii	"double\000"
+ 1054      6C6500
+ 1055              	.LASF29:
+ 1056 009d 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1056      4320342E 
+ 1056      392E3320 
+ 1056      32303135 
+ 1056      30333033 
+ 1057 00d0 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1057      20726576 
+ 1057      6973696F 
+ 1057      6E203232 
+ 1057      31323230 
+ 1058 0103 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1058      66756E63 
+ 1058      74696F6E 
+ 1058      2D736563 
+ 1058      74696F6E 
+ 1059              	.LASF10:
+ 1060 012b 756E7369 		.ascii	"unsigned int\000"
+ 1060      676E6564 
+ 1060      20696E74 
+ 1060      00
+ 1061              	.LASF9:
+ 1062 0138 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1062      206C6F6E 
+ 1062      6720756E 
+ 1062      7369676E 
+ 1062      65642069 
+ 1063              	.LASF13:
+ 1064 014f 75696E74 		.ascii	"uint8_t\000"
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 22
+
+
+ 1064      385F7400 
+ 1065              	.LASF31:
+ 1066 0157 463A5C70 		.ascii	"F:\\project\\robot\\T1\\FW\\trunk\\robot_car_V5\\ca"
+ 1066      726F6A65 
+ 1066      63745C72 
+ 1066      6F626F74 
+ 1066      5C54315C 
+ 1067 0183 722E6379 		.ascii	"r.cydsn\000"
+ 1067      64736E00 
+ 1068              	.LASF30:
+ 1069 018b 2E5C6271 		.ascii	".\\bq20Z75.c\000"
+ 1069      32305A37 
+ 1069      352E6300 
+ 1070              	.LASF14:
+ 1071 0197 696E7433 		.ascii	"int32_t\000"
+ 1071      325F7400 
+ 1072              	.LASF11:
+ 1073 019f 73697A65 		.ascii	"sizetype\000"
+ 1073      74797065 
+ 1073      00
+ 1074              	.LASF8:
+ 1075 01a8 6C6F6E67 		.ascii	"long long int\000"
+ 1075      206C6F6E 
+ 1075      6720696E 
+ 1075      7400
+ 1076              	.LASF12:
+ 1077 01b6 63686172 		.ascii	"char\000"
+ 1077      00
+ 1078              	.LASF26:
+ 1079 01bb 62713230 		.ascii	"bq20Z75_read_out\000"
+ 1079      5A37355F 
+ 1079      72656164 
+ 1079      5F6F7574 
+ 1079      00
+ 1080              	.LASF2:
+ 1081 01cc 73686F72 		.ascii	"short int\000"
+ 1081      7420696E 
+ 1081      7400
+ 1082              	.LASF15:
+ 1083 01d6 75696E74 		.ascii	"uint8\000"
+ 1083      3800
+ 1084              	.LASF6:
+ 1085 01dc 6C6F6E67 		.ascii	"long int\000"
+ 1085      20696E74 
+ 1085      00
+ 1086              	.LASF18:
+ 1087 01e5 63686B53 		.ascii	"chkSum\000"
+ 1087      756D00
+ 1088              	.LASF23:
+ 1089 01ec 49324344 		.ascii	"I2CData\000"
+ 1089      61746100 
+ 1090              	.LASF21:
+ 1091 01f4 62713230 		.ascii	"bq20Z75_read_in\000"
+ 1091      5A37355F 
+ 1091      72656164 
+ 1091      5F696E00 
+ 1092              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccWnKGJh.s 			page 23
+
+

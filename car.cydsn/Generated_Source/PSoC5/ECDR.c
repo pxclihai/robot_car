@@ -199,9 +199,9 @@ void ECDR_Stop(void)
 *  of the 32-bit counter, when Counter size equal 32-bit.
 *
 *******************************************************************************/
-int16 ECDR_GetCounter(void) 
+int32 ECDR_GetCounter(void) 
 {
-    int16 count;
+    int32 count;
     uint16 tmpCnt;
 
     #if (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_32_BIT)
@@ -224,7 +224,7 @@ int16 ECDR_GetCounter(void)
             tmpCnt = ECDR_Cnt16_ReadCounter();
         #endif  /* ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT */
 
-        count = (int16) ((int32) tmpCnt -
+        count = (int32) ((int32) tmpCnt -
                 (int32) ECDR_COUNTER_INIT_VALUE);
 
     #endif /* ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_32_BIT */ 
@@ -255,7 +255,7 @@ int16 ECDR_GetCounter(void)
 *  No.
 *
 *******************************************************************************/
-void ECDR_SetCounter(int16 value) 
+void ECDR_SetCounter(int32 value) 
 {
     #if ((ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_8_BIT) || \
          (ECDR_COUNTER_SIZE == ECDR_COUNTER_SIZE_16_BIT))

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
   29:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** * Summary:
   30:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** * Parameters:  
@@ -80,31 +80,32 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
   33              		.loc 1 41 0
   34 0000 044A     		ldr	r2, .L2
   35 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  36 0004 03F0FB03 		and	r3, r3, #251
+  36 0004 03F07F03 		and	r3, r3, #127
   37              	.LVL1:
   42:.\Generated_Source\PSoC5/PTZ_UP_DIR.c ****     PTZ_UP_DIR_DR = staticBits | ((uint8)(value << PTZ_UP_DIR_SHIFT) & PTZ_UP_DIR_MASK);
   38              		.loc 1 42 0
-  39 0008 8000     		lsls	r0, r0, #2
+  39 0008 C001     		lsls	r0, r0, #7
   40              	.LVL2:
-  41 000a 00F00400 		and	r0, r0, #4
-  42 000e 1843     		orrs	r0, r0, r3
-  43 0010 1070     		strb	r0, [r2]
-  44 0012 7047     		bx	lr
-  45              	.L3:
-  46              		.align	2
-  47              	.L2:
-  48 0014 F0510040 		.word	1073762800
-  49              		.cfi_endproc
-  50              	.LFE0:
-  51              		.size	PTZ_UP_DIR_Write, .-PTZ_UP_DIR_Write
-  52              		.section	.text.PTZ_UP_DIR_SetDriveMode,"ax",%progbits
-  53              		.align	2
-  54              		.global	PTZ_UP_DIR_SetDriveMode
-  55              		.thumb
-  56              		.thumb_func
-  57              		.type	PTZ_UP_DIR_SetDriveMode, %function
-  58              	PTZ_UP_DIR_SetDriveMode:
-  59              	.LFB1:
+  41 000a C0B2     		uxtb	r0, r0
+  42 000c 0343     		orrs	r3, r3, r0
+  43              	.LVL3:
+  44 000e 1370     		strb	r3, [r2]
+  45 0010 7047     		bx	lr
+  46              	.L3:
+  47 0012 00BF     		.align	2
+  48              	.L2:
+  49 0014 30510040 		.word	1073762608
+  50              		.cfi_endproc
+  51              	.LFE0:
+  52              		.size	PTZ_UP_DIR_Write, .-PTZ_UP_DIR_Write
+  53              		.section	.text.PTZ_UP_DIR_SetDriveMode,"ax",%progbits
+  54              		.align	2
+  55              		.global	PTZ_UP_DIR_SetDriveMode
+  56              		.thumb
+  57              		.thumb_func
+  58              		.type	PTZ_UP_DIR_SetDriveMode, %function
+  59              	PTZ_UP_DIR_SetDriveMode:
+  60              	.LFB1:
   43:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** }
   44:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 
   45:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 
@@ -117,10 +118,10 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
   52:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** * 
   53:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** * Parameters:  
   54:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  mode:  Change the pins to one of the following drive modes.
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 3
+
+
   55:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 3
-
-
   56:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  PTZ_UP_DIR_DM_STRONG     Strong Drive 
   57:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  PTZ_UP_DIR_DM_OD_HI      Open Drain, Drives High 
   58:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  PTZ_UP_DIR_DM_OD_LO      Open Drain, Drives Low 
@@ -136,37 +137,37 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
   68:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *******************************************************************************/
   69:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** void PTZ_UP_DIR_SetDriveMode(uint8 mode) 
   70:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** {
-  60              		.loc 1 70 0
-  61              		.cfi_startproc
-  62              		@ args = 0, pretend = 0, frame = 0
-  63              		@ frame_needed = 0, uses_anonymous_args = 0
-  64              		@ link register save eliminated.
-  65              	.LVL3:
+  61              		.loc 1 70 0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  66              	.LVL4:
   71:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 	CyPins_SetPinDriveMode(PTZ_UP_DIR_0, mode);
-  66              		.loc 1 71 0
-  67 0000 044A     		ldr	r2, .L5
-  68 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  69 0004 03F0F103 		and	r3, r3, #241
-  70 0008 00F00E00 		and	r0, r0, #14
-  71              	.LVL4:
-  72 000c 1843     		orrs	r0, r0, r3
-  73 000e 1070     		strb	r0, [r2]
-  74 0010 7047     		bx	lr
-  75              	.L6:
-  76 0012 00BF     		.align	2
-  77              	.L5:
-  78 0014 7A500040 		.word	1073762426
-  79              		.cfi_endproc
-  80              	.LFE1:
-  81              		.size	PTZ_UP_DIR_SetDriveMode, .-PTZ_UP_DIR_SetDriveMode
-  82              		.section	.text.PTZ_UP_DIR_Read,"ax",%progbits
-  83              		.align	2
-  84              		.global	PTZ_UP_DIR_Read
-  85              		.thumb
-  86              		.thumb_func
-  87              		.type	PTZ_UP_DIR_Read, %function
-  88              	PTZ_UP_DIR_Read:
-  89              	.LFB2:
+  67              		.loc 1 71 0
+  68 0000 044A     		ldr	r2, .L5
+  69 0002 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  70 0004 03F0F103 		and	r3, r3, #241
+  71 0008 00F00E00 		and	r0, r0, #14
+  72              	.LVL5:
+  73 000c 1843     		orrs	r0, r0, r3
+  74 000e 1070     		strb	r0, [r2]
+  75 0010 7047     		bx	lr
+  76              	.L6:
+  77 0012 00BF     		.align	2
+  78              	.L5:
+  79 0014 1F500040 		.word	1073762335
+  80              		.cfi_endproc
+  81              	.LFE1:
+  82              		.size	PTZ_UP_DIR_SetDriveMode, .-PTZ_UP_DIR_SetDriveMode
+  83              		.section	.text.PTZ_UP_DIR_Read,"ax",%progbits
+  84              		.align	2
+  85              		.global	PTZ_UP_DIR_Read
+  86              		.thumb
+  87              		.thumb_func
+  88              		.type	PTZ_UP_DIR_Read, %function
+  89              	PTZ_UP_DIR_Read:
+  90              	.LFB2:
   72:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** }
   73:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 
   74:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 
@@ -177,10 +178,10 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
   79:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** * Summary:
   80:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  Read the current value on the pins of the Digital Port in right justified 
   81:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  form.
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 4
+
+
   82:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 4
-
-
   83:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** * Parameters:  
   84:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  None
   85:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *
@@ -193,34 +194,34 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
   92:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *******************************************************************************/
   93:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** uint8 PTZ_UP_DIR_Read(void) 
   94:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** {
-  90              		.loc 1 94 0
-  91              		.cfi_startproc
-  92              		@ args = 0, pretend = 0, frame = 0
-  93              		@ frame_needed = 0, uses_anonymous_args = 0
-  94              		@ link register save eliminated.
+  91              		.loc 1 94 0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+  94              		@ frame_needed = 0, uses_anonymous_args = 0
+  95              		@ link register save eliminated.
   95:.\Generated_Source\PSoC5/PTZ_UP_DIR.c ****     return (PTZ_UP_DIR_PS & PTZ_UP_DIR_MASK) >> PTZ_UP_DIR_SHIFT;
-  95              		.loc 1 95 0
-  96 0000 024B     		ldr	r3, .L8
-  97 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  96              		.loc 1 95 0
+  97 0000 014B     		ldr	r3, .L8
+  98 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
   96:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** }
-  98              		.loc 1 96 0
-  99 0004 C0F38000 		ubfx	r0, r0, #2, #1
- 100 0008 7047     		bx	lr
- 101              	.L9:
- 102 000a 00BF     		.align	2
- 103              	.L8:
- 104 000c F1510040 		.word	1073762801
- 105              		.cfi_endproc
- 106              	.LFE2:
- 107              		.size	PTZ_UP_DIR_Read, .-PTZ_UP_DIR_Read
- 108              		.section	.text.PTZ_UP_DIR_ReadDataReg,"ax",%progbits
- 109              		.align	2
- 110              		.global	PTZ_UP_DIR_ReadDataReg
- 111              		.thumb
- 112              		.thumb_func
- 113              		.type	PTZ_UP_DIR_ReadDataReg, %function
- 114              	PTZ_UP_DIR_ReadDataReg:
- 115              	.LFB3:
+  99              		.loc 1 96 0
+ 100 0004 C009     		lsrs	r0, r0, #7
+ 101 0006 7047     		bx	lr
+ 102              	.L9:
+ 103              		.align	2
+ 104              	.L8:
+ 105 0008 31510040 		.word	1073762609
+ 106              		.cfi_endproc
+ 107              	.LFE2:
+ 108              		.size	PTZ_UP_DIR_Read, .-PTZ_UP_DIR_Read
+ 109              		.section	.text.PTZ_UP_DIR_ReadDataReg,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	PTZ_UP_DIR_ReadDataReg
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	PTZ_UP_DIR_ReadDataReg, %function
+ 115              	PTZ_UP_DIR_ReadDataReg:
+ 116              	.LFB3:
   97:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 
   98:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** 
   99:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** /*******************************************************************************
@@ -237,176 +238,175 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
  110:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  Returns the current value assigned to the Digital Port's data output register
  111:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *  
  112:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** *******************************************************************************/
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 5
+
+
  113:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** uint8 PTZ_UP_DIR_ReadDataReg(void) 
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 5
-
-
  114:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** {
- 116              		.loc 1 114 0
- 117              		.cfi_startproc
- 118              		@ args = 0, pretend = 0, frame = 0
- 119              		@ frame_needed = 0, uses_anonymous_args = 0
- 120              		@ link register save eliminated.
+ 117              		.loc 1 114 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 0, uses_anonymous_args = 0
+ 121              		@ link register save eliminated.
  115:.\Generated_Source\PSoC5/PTZ_UP_DIR.c ****     return (PTZ_UP_DIR_DR & PTZ_UP_DIR_MASK) >> PTZ_UP_DIR_SHIFT;
- 121              		.loc 1 115 0
- 122 0000 024B     		ldr	r3, .L11
- 123 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 122              		.loc 1 115 0
+ 123 0000 014B     		ldr	r3, .L11
+ 124 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  116:.\Generated_Source\PSoC5/PTZ_UP_DIR.c **** }
- 124              		.loc 1 116 0
- 125 0004 C0F38000 		ubfx	r0, r0, #2, #1
- 126 0008 7047     		bx	lr
- 127              	.L12:
- 128 000a 00BF     		.align	2
- 129              	.L11:
- 130 000c F0510040 		.word	1073762800
- 131              		.cfi_endproc
- 132              	.LFE3:
- 133              		.size	PTZ_UP_DIR_ReadDataReg, .-PTZ_UP_DIR_ReadDataReg
- 134              		.text
- 135              	.Letext0:
- 136              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
- 137              		.section	.debug_info,"",%progbits
- 138              	.Ldebug_info0:
- 139 0000 1A010000 		.4byte	0x11a
- 140 0004 0400     		.2byte	0x4
- 141 0006 00000000 		.4byte	.Ldebug_abbrev0
- 142 000a 04       		.byte	0x4
- 143 000b 01       		.uleb128 0x1
- 144 000c 8E000000 		.4byte	.LASF20
- 145 0010 01       		.byte	0x1
- 146 0011 81010000 		.4byte	.LASF21
- 147 0015 45010000 		.4byte	.LASF22
- 148 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 149 001d 00000000 		.4byte	0
- 150 0021 00000000 		.4byte	.Ldebug_line0
- 151 0025 02       		.uleb128 0x2
- 152 0026 01       		.byte	0x1
- 153 0027 06       		.byte	0x6
- 154 0028 D8010000 		.4byte	.LASF0
- 155 002c 02       		.uleb128 0x2
- 156 002d 01       		.byte	0x1
- 157 002e 08       		.byte	0x8
- 158 002f 28000000 		.4byte	.LASF1
- 159 0033 02       		.uleb128 0x2
- 160 0034 02       		.byte	0x2
- 161 0035 05       		.byte	0x5
- 162 0036 A7010000 		.4byte	.LASF2
- 163 003a 02       		.uleb128 0x2
- 164 003b 02       		.byte	0x2
- 165 003c 07       		.byte	0x7
- 166 003d 4D000000 		.4byte	.LASF3
- 167 0041 02       		.uleb128 0x2
- 168 0042 04       		.byte	0x4
- 169 0043 05       		.byte	0x5
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 6
+ 125              		.loc 1 116 0
+ 126 0004 C009     		lsrs	r0, r0, #7
+ 127 0006 7047     		bx	lr
+ 128              	.L12:
+ 129              		.align	2
+ 130              	.L11:
+ 131 0008 30510040 		.word	1073762608
+ 132              		.cfi_endproc
+ 133              	.LFE3:
+ 134              		.size	PTZ_UP_DIR_ReadDataReg, .-PTZ_UP_DIR_ReadDataReg
+ 135              		.text
+ 136              	.Letext0:
+ 137              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 138              		.section	.debug_info,"",%progbits
+ 139              	.Ldebug_info0:
+ 140 0000 1C010000 		.4byte	0x11c
+ 141 0004 0400     		.2byte	0x4
+ 142 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 143 000a 04       		.byte	0x4
+ 144 000b 01       		.uleb128 0x1
+ 145 000c 8E000000 		.4byte	.LASF20
+ 146 0010 01       		.byte	0x1
+ 147 0011 8C010000 		.4byte	.LASF21
+ 148 0015 45010000 		.4byte	.LASF22
+ 149 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 150 001d 00000000 		.4byte	0
+ 151 0021 00000000 		.4byte	.Ldebug_line0
+ 152 0025 02       		.uleb128 0x2
+ 153 0026 01       		.byte	0x1
+ 154 0027 06       		.byte	0x6
+ 155 0028 E3010000 		.4byte	.LASF0
+ 156 002c 02       		.uleb128 0x2
+ 157 002d 01       		.byte	0x1
+ 158 002e 08       		.byte	0x8
+ 159 002f 28000000 		.4byte	.LASF1
+ 160 0033 02       		.uleb128 0x2
+ 161 0034 02       		.byte	0x2
+ 162 0035 05       		.byte	0x5
+ 163 0036 B2010000 		.4byte	.LASF2
+ 164 003a 02       		.uleb128 0x2
+ 165 003b 02       		.byte	0x2
+ 166 003c 07       		.byte	0x7
+ 167 003d 4D000000 		.4byte	.LASF3
+ 168 0041 02       		.uleb128 0x2
+ 169 0042 04       		.byte	0x4
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 6
 
 
- 170 0044 B7010000 		.4byte	.LASF4
- 171 0048 02       		.uleb128 0x2
- 172 0049 04       		.byte	0x4
- 173 004a 07       		.byte	0x7
- 174 004b 3B000000 		.4byte	.LASF5
- 175 004f 02       		.uleb128 0x2
- 176 0050 08       		.byte	0x8
- 177 0051 05       		.byte	0x5
- 178 0052 6E010000 		.4byte	.LASF6
- 179 0056 02       		.uleb128 0x2
- 180 0057 08       		.byte	0x8
- 181 0058 07       		.byte	0x7
- 182 0059 29010000 		.4byte	.LASF7
- 183 005d 03       		.uleb128 0x3
- 184 005e 04       		.byte	0x4
- 185 005f 05       		.byte	0x5
- 186 0060 696E7400 		.ascii	"int\000"
- 187 0064 02       		.uleb128 0x2
- 188 0065 04       		.byte	0x4
- 189 0066 07       		.byte	0x7
- 190 0067 1C010000 		.4byte	.LASF8
- 191 006b 04       		.uleb128 0x4
- 192 006c B1010000 		.4byte	.LASF12
- 193 0070 02       		.byte	0x2
- 194 0071 C2       		.byte	0xc2
- 195 0072 2C000000 		.4byte	0x2c
- 196 0076 02       		.uleb128 0x2
- 197 0077 04       		.byte	0x4
- 198 0078 04       		.byte	0x4
- 199 0079 22000000 		.4byte	.LASF9
- 200 007d 02       		.uleb128 0x2
- 201 007e 08       		.byte	0x8
- 202 007f 04       		.byte	0x4
- 203 0080 60000000 		.4byte	.LASF10
- 204 0084 02       		.uleb128 0x2
- 205 0085 01       		.byte	0x1
- 206 0086 08       		.byte	0x8
- 207 0087 7C010000 		.4byte	.LASF11
- 208 008b 05       		.uleb128 0x5
- 209 008c 36000000 		.4byte	.LASF13
- 210 0090 02       		.byte	0x2
- 211 0091 6C01     		.2byte	0x16c
- 212 0093 97000000 		.4byte	0x97
- 213 0097 06       		.uleb128 0x6
- 214 0098 6B000000 		.4byte	0x6b
- 215 009c 07       		.uleb128 0x7
- 216 009d 11000000 		.4byte	.LASF14
- 217 00a1 01       		.byte	0x1
- 218 00a2 27       		.byte	0x27
- 219 00a3 00000000 		.4byte	.LFB0
- 220 00a7 18000000 		.4byte	.LFE0-.LFB0
- 221 00ab 01       		.uleb128 0x1
- 222 00ac 9C       		.byte	0x9c
- 223 00ad CE000000 		.4byte	0xce
- 224 00b1 08       		.uleb128 0x8
- 225 00b2 00000000 		.4byte	.LASF16
- 226 00b6 01       		.byte	0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 7
+ 170 0043 05       		.byte	0x5
+ 171 0044 C2010000 		.4byte	.LASF4
+ 172 0048 02       		.uleb128 0x2
+ 173 0049 04       		.byte	0x4
+ 174 004a 07       		.byte	0x7
+ 175 004b 3B000000 		.4byte	.LASF5
+ 176 004f 02       		.uleb128 0x2
+ 177 0050 08       		.byte	0x8
+ 178 0051 05       		.byte	0x5
+ 179 0052 79010000 		.4byte	.LASF6
+ 180 0056 02       		.uleb128 0x2
+ 181 0057 08       		.byte	0x8
+ 182 0058 07       		.byte	0x7
+ 183 0059 29010000 		.4byte	.LASF7
+ 184 005d 03       		.uleb128 0x3
+ 185 005e 04       		.byte	0x4
+ 186 005f 05       		.byte	0x5
+ 187 0060 696E7400 		.ascii	"int\000"
+ 188 0064 02       		.uleb128 0x2
+ 189 0065 04       		.byte	0x4
+ 190 0066 07       		.byte	0x7
+ 191 0067 1C010000 		.4byte	.LASF8
+ 192 006b 04       		.uleb128 0x4
+ 193 006c BC010000 		.4byte	.LASF12
+ 194 0070 02       		.byte	0x2
+ 195 0071 C2       		.byte	0xc2
+ 196 0072 2C000000 		.4byte	0x2c
+ 197 0076 02       		.uleb128 0x2
+ 198 0077 04       		.byte	0x4
+ 199 0078 04       		.byte	0x4
+ 200 0079 22000000 		.4byte	.LASF9
+ 201 007d 02       		.uleb128 0x2
+ 202 007e 08       		.byte	0x8
+ 203 007f 04       		.byte	0x4
+ 204 0080 60000000 		.4byte	.LASF10
+ 205 0084 02       		.uleb128 0x2
+ 206 0085 01       		.byte	0x1
+ 207 0086 08       		.byte	0x8
+ 208 0087 87010000 		.4byte	.LASF11
+ 209 008b 05       		.uleb128 0x5
+ 210 008c 36000000 		.4byte	.LASF13
+ 211 0090 02       		.byte	0x2
+ 212 0091 6C01     		.2byte	0x16c
+ 213 0093 97000000 		.4byte	0x97
+ 214 0097 06       		.uleb128 0x6
+ 215 0098 6B000000 		.4byte	0x6b
+ 216 009c 07       		.uleb128 0x7
+ 217 009d 11000000 		.4byte	.LASF14
+ 218 00a1 01       		.byte	0x1
+ 219 00a2 27       		.byte	0x27
+ 220 00a3 00000000 		.4byte	.LFB0
+ 221 00a7 18000000 		.4byte	.LFE0-.LFB0
+ 222 00ab 01       		.uleb128 0x1
+ 223 00ac 9C       		.byte	0x9c
+ 224 00ad D0000000 		.4byte	0xd0
+ 225 00b1 08       		.uleb128 0x8
+ 226 00b2 00000000 		.4byte	.LASF16
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 7
 
 
- 227 00b7 27       		.byte	0x27
- 228 00b8 6B000000 		.4byte	0x6b
- 229 00bc 00000000 		.4byte	.LLST0
- 230 00c0 09       		.uleb128 0x9
- 231 00c1 06000000 		.4byte	.LASF23
- 232 00c5 01       		.byte	0x1
- 233 00c6 29       		.byte	0x29
- 234 00c7 6B000000 		.4byte	0x6b
- 235 00cb 01       		.uleb128 0x1
- 236 00cc 53       		.byte	0x53
- 237 00cd 00       		.byte	0
- 238 00ce 07       		.uleb128 0x7
- 239 00cf C0010000 		.4byte	.LASF15
- 240 00d3 01       		.byte	0x1
- 241 00d4 45       		.byte	0x45
- 242 00d5 00000000 		.4byte	.LFB1
- 243 00d9 18000000 		.4byte	.LFE1-.LFB1
- 244 00dd 01       		.uleb128 0x1
- 245 00de 9C       		.byte	0x9c
- 246 00df F3000000 		.4byte	0xf3
- 247 00e3 08       		.uleb128 0x8
- 248 00e4 40010000 		.4byte	.LASF17
- 249 00e8 01       		.byte	0x1
- 250 00e9 45       		.byte	0x45
- 251 00ea 6B000000 		.4byte	0x6b
- 252 00ee 21000000 		.4byte	.LLST1
- 253 00f2 00       		.byte	0
- 254 00f3 0A       		.uleb128 0xa
- 255 00f4 7E000000 		.4byte	.LASF18
- 256 00f8 01       		.byte	0x1
- 257 00f9 5D       		.byte	0x5d
- 258 00fa 6B000000 		.4byte	0x6b
- 259 00fe 00000000 		.4byte	.LFB2
- 260 0102 10000000 		.4byte	.LFE2-.LFB2
- 261 0106 01       		.uleb128 0x1
- 262 0107 9C       		.byte	0x9c
- 263 0108 0A       		.uleb128 0xa
- 264 0109 67000000 		.4byte	.LASF19
- 265 010d 01       		.byte	0x1
- 266 010e 71       		.byte	0x71
- 267 010f 6B000000 		.4byte	0x6b
- 268 0113 00000000 		.4byte	.LFB3
- 269 0117 10000000 		.4byte	.LFE3-.LFB3
- 270 011b 01       		.uleb128 0x1
- 271 011c 9C       		.byte	0x9c
- 272 011d 00       		.byte	0
+ 227 00b6 01       		.byte	0x1
+ 228 00b7 27       		.byte	0x27
+ 229 00b8 6B000000 		.4byte	0x6b
+ 230 00bc 00000000 		.4byte	.LLST0
+ 231 00c0 09       		.uleb128 0x9
+ 232 00c1 06000000 		.4byte	.LASF23
+ 233 00c5 01       		.byte	0x1
+ 234 00c6 29       		.byte	0x29
+ 235 00c7 6B000000 		.4byte	0x6b
+ 236 00cb 21000000 		.4byte	.LLST1
+ 237 00cf 00       		.byte	0
+ 238 00d0 07       		.uleb128 0x7
+ 239 00d1 CB010000 		.4byte	.LASF15
+ 240 00d5 01       		.byte	0x1
+ 241 00d6 45       		.byte	0x45
+ 242 00d7 00000000 		.4byte	.LFB1
+ 243 00db 18000000 		.4byte	.LFE1-.LFB1
+ 244 00df 01       		.uleb128 0x1
+ 245 00e0 9C       		.byte	0x9c
+ 246 00e1 F5000000 		.4byte	0xf5
+ 247 00e5 08       		.uleb128 0x8
+ 248 00e6 40010000 		.4byte	.LASF17
+ 249 00ea 01       		.byte	0x1
+ 250 00eb 45       		.byte	0x45
+ 251 00ec 6B000000 		.4byte	0x6b
+ 252 00f0 34000000 		.4byte	.LLST2
+ 253 00f4 00       		.byte	0
+ 254 00f5 0A       		.uleb128 0xa
+ 255 00f6 7E000000 		.4byte	.LASF18
+ 256 00fa 01       		.byte	0x1
+ 257 00fb 5D       		.byte	0x5d
+ 258 00fc 6B000000 		.4byte	0x6b
+ 259 0100 00000000 		.4byte	.LFB2
+ 260 0104 0C000000 		.4byte	.LFE2-.LFB2
+ 261 0108 01       		.uleb128 0x1
+ 262 0109 9C       		.byte	0x9c
+ 263 010a 0A       		.uleb128 0xa
+ 264 010b 67000000 		.4byte	.LASF19
+ 265 010f 01       		.byte	0x1
+ 266 0110 71       		.byte	0x71
+ 267 0111 6B000000 		.4byte	0x6b
+ 268 0115 00000000 		.4byte	.LFB3
+ 269 0119 0C000000 		.4byte	.LFE3-.LFB3
+ 270 011d 01       		.uleb128 0x1
+ 271 011e 9C       		.byte	0x9c
+ 272 011f 00       		.byte	0
  273              		.section	.debug_abbrev,"",%progbits
  274              	.Ldebug_abbrev0:
  275 0000 01       		.uleb128 0x1
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
  281 0006 0B       		.uleb128 0xb
  282 0007 03       		.uleb128 0x3
  283 0008 0E       		.uleb128 0xe
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 8
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 8
 
 
  284 0009 1B       		.uleb128 0x1b
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
  338 003f 49       		.uleb128 0x49
  339 0040 13       		.uleb128 0x13
  340 0041 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 9
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 9
 
 
  341 0042 00       		.byte	0
@@ -538,13 +538,13 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
  395 0079 0B       		.uleb128 0xb
  396 007a 3B       		.uleb128 0x3b
  397 007b 0B       		.uleb128 0xb
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 10
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 10
 
 
  398 007c 49       		.uleb128 0x49
  399 007d 13       		.uleb128 0x13
  400 007e 02       		.uleb128 0x2
- 401 007f 18       		.uleb128 0x18
+ 401 007f 17       		.uleb128 0x17
  402 0080 00       		.byte	0
  403 0081 00       		.byte	0
  404 0082 0A       		.uleb128 0xa
@@ -590,184 +590,196 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 1
  444 0019 00000000 		.4byte	0
  445 001d 00000000 		.4byte	0
  446              	.LLST1:
- 447 0021 00000000 		.4byte	.LVL3
- 448 0025 0C000000 		.4byte	.LVL4
+ 447 0021 08000000 		.4byte	.LVL1
+ 448 0025 0E000000 		.4byte	.LVL3
  449 0029 0100     		.2byte	0x1
- 450 002b 50       		.byte	0x50
- 451 002c 0C000000 		.4byte	.LVL4
- 452 0030 18000000 		.4byte	.LFE1
- 453 0034 0400     		.2byte	0x4
- 454 0036 F3       		.byte	0xf3
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 11
+ 450 002b 53       		.byte	0x53
+ 451 002c 00000000 		.4byte	0
+ 452 0030 00000000 		.4byte	0
+ 453              	.LLST2:
+ 454 0034 00000000 		.4byte	.LVL4
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 11
 
 
- 455 0037 01       		.uleb128 0x1
- 456 0038 50       		.byte	0x50
- 457 0039 9F       		.byte	0x9f
- 458 003a 00000000 		.4byte	0
- 459 003e 00000000 		.4byte	0
- 460              		.section	.debug_aranges,"",%progbits
- 461 0000 34000000 		.4byte	0x34
- 462 0004 0200     		.2byte	0x2
- 463 0006 00000000 		.4byte	.Ldebug_info0
- 464 000a 04       		.byte	0x4
- 465 000b 00       		.byte	0
- 466 000c 0000     		.2byte	0
- 467 000e 0000     		.2byte	0
- 468 0010 00000000 		.4byte	.LFB0
- 469 0014 18000000 		.4byte	.LFE0-.LFB0
- 470 0018 00000000 		.4byte	.LFB1
- 471 001c 18000000 		.4byte	.LFE1-.LFB1
- 472 0020 00000000 		.4byte	.LFB2
- 473 0024 10000000 		.4byte	.LFE2-.LFB2
- 474 0028 00000000 		.4byte	.LFB3
- 475 002c 10000000 		.4byte	.LFE3-.LFB3
- 476 0030 00000000 		.4byte	0
- 477 0034 00000000 		.4byte	0
- 478              		.section	.debug_ranges,"",%progbits
- 479              	.Ldebug_ranges0:
- 480 0000 00000000 		.4byte	.LFB0
- 481 0004 18000000 		.4byte	.LFE0
- 482 0008 00000000 		.4byte	.LFB1
- 483 000c 18000000 		.4byte	.LFE1
- 484 0010 00000000 		.4byte	.LFB2
- 485 0014 10000000 		.4byte	.LFE2
- 486 0018 00000000 		.4byte	.LFB3
- 487 001c 10000000 		.4byte	.LFE3
- 488 0020 00000000 		.4byte	0
- 489 0024 00000000 		.4byte	0
- 490              		.section	.debug_line,"",%progbits
- 491              	.Ldebug_line0:
- 492 0000 95000000 		.section	.debug_str,"MS",%progbits,1
- 492      02004900 
- 492      00000201 
- 492      FB0E0D00 
- 492      01010101 
- 493              	.LASF16:
- 494 0000 76616C75 		.ascii	"value\000"
- 494      6500
- 495              	.LASF23:
- 496 0006 73746174 		.ascii	"staticBits\000"
- 496      69634269 
- 496      747300
- 497              	.LASF14:
- 498 0011 50545A5F 		.ascii	"PTZ_UP_DIR_Write\000"
- 498      55505F44 
- 498      49525F57 
- 498      72697465 
- 498      00
- 499              	.LASF9:
- 500 0022 666C6F61 		.ascii	"float\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 12
+ 455 0038 0C000000 		.4byte	.LVL5
+ 456 003c 0100     		.2byte	0x1
+ 457 003e 50       		.byte	0x50
+ 458 003f 0C000000 		.4byte	.LVL5
+ 459 0043 18000000 		.4byte	.LFE1
+ 460 0047 0400     		.2byte	0x4
+ 461 0049 F3       		.byte	0xf3
+ 462 004a 01       		.uleb128 0x1
+ 463 004b 50       		.byte	0x50
+ 464 004c 9F       		.byte	0x9f
+ 465 004d 00000000 		.4byte	0
+ 466 0051 00000000 		.4byte	0
+ 467              		.section	.debug_aranges,"",%progbits
+ 468 0000 34000000 		.4byte	0x34
+ 469 0004 0200     		.2byte	0x2
+ 470 0006 00000000 		.4byte	.Ldebug_info0
+ 471 000a 04       		.byte	0x4
+ 472 000b 00       		.byte	0
+ 473 000c 0000     		.2byte	0
+ 474 000e 0000     		.2byte	0
+ 475 0010 00000000 		.4byte	.LFB0
+ 476 0014 18000000 		.4byte	.LFE0-.LFB0
+ 477 0018 00000000 		.4byte	.LFB1
+ 478 001c 18000000 		.4byte	.LFE1-.LFB1
+ 479 0020 00000000 		.4byte	.LFB2
+ 480 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 481 0028 00000000 		.4byte	.LFB3
+ 482 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 483 0030 00000000 		.4byte	0
+ 484 0034 00000000 		.4byte	0
+ 485              		.section	.debug_ranges,"",%progbits
+ 486              	.Ldebug_ranges0:
+ 487 0000 00000000 		.4byte	.LFB0
+ 488 0004 18000000 		.4byte	.LFE0
+ 489 0008 00000000 		.4byte	.LFB1
+ 490 000c 18000000 		.4byte	.LFE1
+ 491 0010 00000000 		.4byte	.LFB2
+ 492 0014 0C000000 		.4byte	.LFE2
+ 493 0018 00000000 		.4byte	.LFB3
+ 494 001c 0C000000 		.4byte	.LFE3
+ 495 0020 00000000 		.4byte	0
+ 496 0024 00000000 		.4byte	0
+ 497              		.section	.debug_line,"",%progbits
+ 498              	.Ldebug_line0:
+ 499 0000 95000000 		.section	.debug_str,"MS",%progbits,1
+ 499      02004900 
+ 499      00000201 
+ 499      FB0E0D00 
+ 499      01010101 
+ 500              	.LASF16:
+ 501 0000 76616C75 		.ascii	"value\000"
+ 501      6500
+ 502              	.LASF23:
+ 503 0006 73746174 		.ascii	"staticBits\000"
+ 503      69634269 
+ 503      747300
+ 504              	.LASF14:
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 12
 
 
- 500      7400
- 501              	.LASF1:
- 502 0028 756E7369 		.ascii	"unsigned char\000"
- 502      676E6564 
- 502      20636861 
- 502      7200
- 503              	.LASF13:
- 504 0036 72656738 		.ascii	"reg8\000"
- 504      00
- 505              	.LASF5:
- 506 003b 6C6F6E67 		.ascii	"long unsigned int\000"
- 506      20756E73 
- 506      69676E65 
- 506      6420696E 
- 506      7400
- 507              	.LASF3:
- 508 004d 73686F72 		.ascii	"short unsigned int\000"
- 508      7420756E 
- 508      7369676E 
- 508      65642069 
- 508      6E7400
- 509              	.LASF10:
- 510 0060 646F7562 		.ascii	"double\000"
- 510      6C6500
- 511              	.LASF19:
- 512 0067 50545A5F 		.ascii	"PTZ_UP_DIR_ReadDataReg\000"
- 512      55505F44 
- 512      49525F52 
- 512      65616444 
- 512      61746152 
- 513              	.LASF18:
- 514 007e 50545A5F 		.ascii	"PTZ_UP_DIR_Read\000"
- 514      55505F44 
- 514      49525F52 
- 514      65616400 
- 515              	.LASF20:
- 516 008e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
- 516      4320342E 
- 516      392E3320 
- 516      32303135 
- 516      30333033 
- 517 00c1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
- 517      20726576 
- 517      6973696F 
- 517      6E203232 
- 517      31323230 
- 518 00f4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 518      66756E63 
- 518      74696F6E 
- 518      2D736563 
- 518      74696F6E 
- 519              	.LASF8:
- 520 011c 756E7369 		.ascii	"unsigned int\000"
- 520      676E6564 
- 520      20696E74 
- 520      00
- 521              	.LASF7:
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\ccxnTKov.s 			page 13
+ 505 0011 50545A5F 		.ascii	"PTZ_UP_DIR_Write\000"
+ 505      55505F44 
+ 505      49525F57 
+ 505      72697465 
+ 505      00
+ 506              	.LASF9:
+ 507 0022 666C6F61 		.ascii	"float\000"
+ 507      7400
+ 508              	.LASF1:
+ 509 0028 756E7369 		.ascii	"unsigned char\000"
+ 509      676E6564 
+ 509      20636861 
+ 509      7200
+ 510              	.LASF13:
+ 511 0036 72656738 		.ascii	"reg8\000"
+ 511      00
+ 512              	.LASF5:
+ 513 003b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 513      20756E73 
+ 513      69676E65 
+ 513      6420696E 
+ 513      7400
+ 514              	.LASF3:
+ 515 004d 73686F72 		.ascii	"short unsigned int\000"
+ 515      7420756E 
+ 515      7369676E 
+ 515      65642069 
+ 515      6E7400
+ 516              	.LASF10:
+ 517 0060 646F7562 		.ascii	"double\000"
+ 517      6C6500
+ 518              	.LASF19:
+ 519 0067 50545A5F 		.ascii	"PTZ_UP_DIR_ReadDataReg\000"
+ 519      55505F44 
+ 519      49525F52 
+ 519      65616444 
+ 519      61746152 
+ 520              	.LASF18:
+ 521 007e 50545A5F 		.ascii	"PTZ_UP_DIR_Read\000"
+ 521      55505F44 
+ 521      49525F52 
+ 521      65616400 
+ 522              	.LASF20:
+ 523 008e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 523      4320342E 
+ 523      392E3320 
+ 523      32303135 
+ 523      30333033 
+ 524 00c1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 524      20726576 
+ 524      6973696F 
+ 524      6E203232 
+ 524      31323230 
+ 525 00f4 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 525      66756E63 
+ 525      74696F6E 
+ 525      2D736563 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 13
 
 
- 522 0129 6C6F6E67 		.ascii	"long long unsigned int\000"
- 522      206C6F6E 
- 522      6720756E 
- 522      7369676E 
- 522      65642069 
- 523              	.LASF17:
- 524 0140 6D6F6465 		.ascii	"mode\000"
- 524      00
- 525              	.LASF22:
- 526 0145 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car_V5\\car.cydsn\000"
- 526      6F626F74 
- 526      5C676974 
- 526      5F636F64 
- 526      655C726F 
- 527              	.LASF6:
- 528 016e 6C6F6E67 		.ascii	"long long int\000"
- 528      206C6F6E 
- 528      6720696E 
- 528      7400
- 529              	.LASF11:
- 530 017c 63686172 		.ascii	"char\000"
- 530      00
- 531              	.LASF21:
- 532 0181 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PTZ_UP_DIR.c\000"
- 532      6E657261 
- 532      7465645F 
- 532      536F7572 
- 532      63655C50 
- 533              	.LASF2:
- 534 01a7 73686F72 		.ascii	"short int\000"
- 534      7420696E 
- 534      7400
- 535              	.LASF12:
- 536 01b1 75696E74 		.ascii	"uint8\000"
- 536      3800
- 537              	.LASF4:
- 538 01b7 6C6F6E67 		.ascii	"long int\000"
- 538      20696E74 
+ 525      74696F6E 
+ 526              	.LASF8:
+ 527 011c 756E7369 		.ascii	"unsigned int\000"
+ 527      676E6564 
+ 527      20696E74 
+ 527      00
+ 528              	.LASF7:
+ 529 0129 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 529      206C6F6E 
+ 529      6720756E 
+ 529      7369676E 
+ 529      65642069 
+ 530              	.LASF17:
+ 531 0140 6D6F6465 		.ascii	"mode\000"
+ 531      00
+ 532              	.LASF22:
+ 533 0145 463A5C70 		.ascii	"F:\\project\\robot\\T1\\FW\\trunk\\robot_car_V5\\ca"
+ 533      726F6A65 
+ 533      63745C72 
+ 533      6F626F74 
+ 533      5C54315C 
+ 534 0171 722E6379 		.ascii	"r.cydsn\000"
+ 534      64736E00 
+ 535              	.LASF6:
+ 536 0179 6C6F6E67 		.ascii	"long long int\000"
+ 536      206C6F6E 
+ 536      6720696E 
+ 536      7400
+ 537              	.LASF11:
+ 538 0187 63686172 		.ascii	"char\000"
  538      00
- 539              	.LASF15:
- 540 01c0 50545A5F 		.ascii	"PTZ_UP_DIR_SetDriveMode\000"
- 540      55505F44 
- 540      49525F53 
- 540      65744472 
- 540      6976654D 
- 541              	.LASF0:
- 542 01d8 7369676E 		.ascii	"signed char\000"
- 542      65642063 
- 542      68617200 
- 543              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 539              	.LASF21:
+ 540 018c 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PTZ_UP_DIR.c\000"
+ 540      6E657261 
+ 540      7465645F 
+ 540      536F7572 
+ 540      63655C50 
+ 541              	.LASF2:
+ 542 01b2 73686F72 		.ascii	"short int\000"
+ 542      7420696E 
+ 542      7400
+ 543              	.LASF12:
+ 544 01bc 75696E74 		.ascii	"uint8\000"
+ 544      3800
+ 545              	.LASF4:
+ 546 01c2 6C6F6E67 		.ascii	"long int\000"
+ 546      20696E74 
+ 546      00
+ 547              	.LASF15:
+ 548 01cb 50545A5F 		.ascii	"PTZ_UP_DIR_SetDriveMode\000"
+ 548      55505F44 
+ 548      49525F53 
+ 548      65744472 
+ 548      6976654D 
+ 549              	.LASF0:
+ 550 01e3 7369676E 		.ascii	"signed char\000"
+ 550      65642063 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccEbVPpH.s 			page 14
+
+
+ 550      68617200 
+ 551              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -29,7 +29,7 @@
     #error Component QuadDec_v3_0 requires cy_boot v3.0 or later
 #endif /* (CY_PSOC5LP) */
 
-#define ECDR_COUNTER_SIZE               (16u)
+#define ECDR_COUNTER_SIZE               (32u)
 #define ECDR_COUNTER_SIZE_8_BIT         (8u)
 #define ECDR_COUNTER_SIZE_16_BIT        (16u)
 #define ECDR_COUNTER_SIZE_32_BIT        (32u)
@@ -75,8 +75,8 @@ void  ECDR_Enable(void) ;
 uint8 ECDR_GetEvents(void) ;
 void  ECDR_SetInterruptMask(uint8 mask) ;
 uint8 ECDR_GetInterruptMask(void) ;
-int16 ECDR_GetCounter(void) ;
-void  ECDR_SetCounter(int16 value)
+int32 ECDR_GetCounter(void) ;
+void  ECDR_SetCounter(int32 value)
 ;
 void  ECDR_Sleep(void) ;
 void  ECDR_Wakeup(void) ;

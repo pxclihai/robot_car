@@ -19,6 +19,8 @@
 #include "led.h"
 #include "wave_distance.h"
 #include "M_thickness.h"
+
+
 int16 Get_Gap_ADvalue(void);
 int16 contronl_steering(uint16 set_position,uint16 cur_postion,uint16 step);
 
@@ -32,18 +34,23 @@ int16 encoder;
 uint8 event;
 
 
-struct Timer Data_exchange_timer;
-struct Timer Time_1s;
-struct Timer Cal_battery_timer;
-struct Timer Car_control_timer;
-struct Timer Car_hearting_timer;
-struct Timer WAVE_timer;
-struct Timer LED_timer;
-struct Timer ECDR_timer;
-struct Timer M_timer;
-void WAVE_loop();
+struct Timer Data_exchange_timer;   
+struct Timer Time_1s;              
+struct Timer Cal_battery_timer;    
+struct Timer Car_control_timer;    
+struct Timer Car_hearting_timer;   
+struct Timer WAVE_timer;          
+struct Timer LED_timer;           
+struct Timer ECDR_timer;          
+struct Timer M_timer;              
+struct Timer M_50s;
+void WAVE_loop();               
 void Cal_time();
 void ECDR_loop();
+
+void M_PWR(uint8 temp_switch);
+extern uint16 time_55s_state;   
+
 
 int main()
 {
@@ -61,8 +68,13 @@ int main()
     isr_tx_net_Start();
     isr_rx_jy_Start();
     isr_rx_ch_Start();
-    PWM_MOTOR_Init();
-    PWM_MOTOR_Start();
+    PWM_MOTOR_LEFT_Init();
+    PWM_MOTOR_LEFT_Start();
+    
+    
+    PWM_MOTOR_RIGHT_Init();
+    PWM_MOTOR_RIGHT_Start();
+    
     PWM_LED_1_Init();
     PWM_LED_1_Start();
     PWM_LED_2_Init();
@@ -81,12 +93,27 @@ int main()
     ///////////////////
     ///////////////// 
     CONTRAL_LIDAR_Write(1);
-    WAVE_Start();
+//    WAVE_Start();
     CyGlobalIntEnable; /* Enable global interrupts. */
  
     Lidar_init();
     Car_init();   
-
+    ////test
+//    PWM1_Write(1);
+//    CyDelay(500);
+//    IN2_Write(0);
+//    CyDelay(500);
+//    PWM2_Write(1);
+//    IN4_Write(0);
+//
+//    CyDelay(500);
+// 
+//    CyDelay(500);
+//    IN4_Write(0);
+    
+    
+    
+    ////
     timer_init (&Data_exchange_timer, DT_Data_Exchange, 1000, 10);
     timer_start(&Data_exchange_timer);
     
@@ -102,37 +129,24 @@ int main()
     timer_init (&Car_control_timer, Car_Control_Loop, 150,2);
     timer_start(&Car_control_timer);
     
-    timer_init (&WAVE_timer, WAVE_loop, 50, 200);
-    timer_start(&WAVE_timer);
+//    timer_init (&WAVE_timer, WAVE_loop, 50, 200);
+//    timer_start(&WAVE_timer);
     CyDelay(500);
     timer_init (&LED_timer, LED_loop, 1500, 500);
     timer_start(&LED_timer);
     
     timer_init (&ECDR_timer, ECDR_loop, 100, 500);
     timer_start(&ECDR_timer);
-    timer_init (&M_timer, Control_M_loop, 500, 500);
+    timer_init (&M_timer, Control_M_loop, 500, 1000);
     timer_start(&M_timer);
-//    M_PWR_Write(0);
-//    CyDelay(1000);
-//    M_PWR_Write(1);
-//    CyDelay(1000);
-//    M_PWR_Write(0);
-//  //    CyDelay(1000);
-//    CyDelay(1000);
-//    M_UP_Write(1);
-//    M_DOWN_Write(1);
-//    M_ZERO_Write(1);
-    g_Car.M_Command = 4;
 
-
-   // M_DOWN_Write(0);
-//    CyDelay(50);
- //  LED_SET_NUM(3);
+    
+    g_Car.M_Command = M_POWER_ON;
+    
     for(;;)
     {
         /* Place your application code here. */
-         
-        timer_loop();     
+        timer_loop();  
     }   
 }
 void ECDR_loop()
@@ -141,6 +155,8 @@ void ECDR_loop()
 }
 void WAVE_loop()
 {
-   K103_read_distance();
+   // K103_read_distance();
 }
+
+
 /* [] END OF FILE */

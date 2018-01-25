@@ -170,7 +170,7 @@ CY_ISR(isr_rx_ch_Interrupt)
     /* `#START isr_rx_ch_Interrupt` */
     uint8 data; 
     data = UART_CH_GetChar();
-    
+    M_Data_Receive_Prepare(data);
     
     /* `#END` */
 }

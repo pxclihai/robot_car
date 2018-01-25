@@ -42,6 +42,7 @@ typedef struct
     enum CAR_DIR set_dir;
     enum CAR_DIR set_ptz_dir;
     enum CAR_DIR pre_dir;
+    enum CAR_DIR set_push_dir;
     uint16 set_car_speed;
     S_WHEEL  left_front_wheel;
     S_WHEEL  left_behind_wheel;
@@ -55,9 +56,20 @@ typedef struct
     uint16   distance_front;  
     uint16   distance_back;
     uint8    measure_distance_flag;
-    int16    Xkm;
+    int32    Xkm;
     uint8    M_Command;
+    uint16    M_value;
+    uint8    M_radix;
+    uint32   M_result;
+    uint8    fallback_mode;
     S_SYSTEMINFO systeminfo;
+    uint8   shutdown_flag;
+    uint16  speed_control_preiod;
+    uint8   liheqi;
+        int16 A_V;
+int16 batteryTemp;
+int16 current;
+int16 cap;
 }S_CAR;
 
 

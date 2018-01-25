@@ -41,6 +41,7 @@ void LED_loop()
           PWM_LED_2_WriteCompare(0);
           PWM_LED_3_WriteCompare(0);
           PWM_LED_4_WriteCompare(0);
+        debug_time_Write(0);
         }  
         else if(led_togle == 2)
         {   
@@ -48,6 +49,7 @@ void LED_loop()
           PWM_LED_2_WriteCompare(10000);
           PWM_LED_3_WriteCompare(10000);
           PWM_LED_4_WriteCompare(10000);
+           debug_time_Write(1);
           led_togle = 0;
           led_num--;
         }
@@ -65,6 +67,7 @@ void LED_loop()
        }
       led_per = led_cur;
     }
+
     
 
 }

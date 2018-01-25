@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
   29:.\Generated_Source\PSoC5/WAVE_PM.c **** #endif /* (WAVE_FF_IMPLEMENTED) */
   30:.\Generated_Source\PSoC5/WAVE_PM.c **** 
   31:.\Generated_Source\PSoC5/WAVE_PM.c **** #if (WAVE_TIMEOUT_ENABLED)
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/WAVE_PM.c ****     WAVE_DEFAULT_TMOUT_PERIOD,
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
   32              		.loc 1 80 0
   33 0000 084B     		ldr	r3, .L2
   34 0002 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 3
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 3
 
 
   35 0004 084B     		ldr	r3, .L2+4
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
   96:.\Generated_Source\PSoC5/WAVE_PM.c ****     *  2) Wait unti I2C is ready go to Sleep; !!
   97:.\Generated_Source\PSoC5/WAVE_PM.c ****     *  3) These bits are cleared on wake up.
   98:.\Generated_Source\PSoC5/WAVE_PM.c ****     */
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 4
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 4
 
 
   99:.\Generated_Source\PSoC5/WAVE_PM.c ****     /* Wait when block is ready for sleep */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
   74              		.loc 1 152 0
   75              		.cfi_startproc
   76              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 5
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 5
 
 
   77              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  112              	WAVE_RestoreConfig:
  113              	.LFB2:
  172:.\Generated_Source\PSoC5/WAVE_PM.c **** }
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 6
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 6
 
 
  173:.\Generated_Source\PSoC5/WAVE_PM.c **** 
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  126 000a 0DD0     		beq	.L10
  215:.\Generated_Source\PSoC5/WAVE_PM.c ****     /* Low power mode was Sleep - backup regulator is enabled */
  216:.\Generated_Source\PSoC5/WAVE_PM.c ****     {
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 7
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 7
 
 
  217:.\Generated_Source\PSoC5/WAVE_PM.c ****         /* Enable backup regulator in active mode */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  155 0036 D978     		ldrb	r1, [r3, #3]	@ zero_extendqisi2
  156 0038 0C3A     		subs	r2, r2, #12
  157 003a 1170     		strb	r1, [r2]
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 8
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 8
 
 
  243:.\Generated_Source\PSoC5/WAVE_PM.c ****         WAVE_CLKDIV1_REG = WAVE_backup.clkDiv1;
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  269:.\Generated_Source\PSoC5/WAVE_PM.c **** * Function Name: WAVE_Wakeup
  270:.\Generated_Source\PSoC5/WAVE_PM.c **** ********************************************************************************
  271:.\Generated_Source\PSoC5/WAVE_PM.c **** *
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 9
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 9
 
 
  272:.\Generated_Source\PSoC5/WAVE_PM.c **** * Summary:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  308:.\Generated_Source\PSoC5/WAVE_PM.c ****         WAVE_EnableInt();
  204              		.loc 1 308 0
  205 0010 4FF40042 		mov	r2, #32768
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 10
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 10
 
 
  206 0014 024B     		ldr	r3, .L18+4
@@ -580,7 +580,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  242 000b 01       		.uleb128 0x1
  243 000c BA000000 		.4byte	.LASF29
  244 0010 01       		.byte	0x1
- 245 0011 40020000 		.4byte	.LASF30
+ 245 0011 4B020000 		.4byte	.LASF30
  246 0015 A7010000 		.4byte	.LASF31
  247 0019 00000000 		.4byte	.Ldebug_ranges0+0
  248 001d 00000000 		.4byte	0
@@ -588,7 +588,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  250 0025 02       		.uleb128 0x2
  251 0026 01       		.byte	0x1
  252 0027 06       		.byte	0x6
- 253 0028 34020000 		.4byte	.LASF0
+ 253 0028 3F020000 		.4byte	.LASF0
  254 002c 02       		.uleb128 0x2
  255 002d 01       		.byte	0x1
  256 002e 08       		.byte	0x8
@@ -596,9 +596,9 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  258 0033 02       		.uleb128 0x2
  259 0034 02       		.byte	0x2
  260 0035 05       		.byte	0x5
- 261 0036 04020000 		.4byte	.LASF2
+ 261 0036 0F020000 		.4byte	.LASF2
  262 003a 02       		.uleb128 0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 11
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 11
 
 
  263 003b 02       		.byte	0x2
@@ -607,7 +607,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  266 0041 02       		.uleb128 0x2
  267 0042 04       		.byte	0x4
  268 0043 05       		.byte	0x5
- 269 0044 14020000 		.4byte	.LASF4
+ 269 0044 1F020000 		.4byte	.LASF4
  270 0048 02       		.uleb128 0x2
  271 0049 04       		.byte	0x4
  272 004a 07       		.byte	0x7
@@ -615,7 +615,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  274 004f 02       		.uleb128 0x2
  275 0050 08       		.byte	0x8
  276 0051 05       		.byte	0x5
- 277 0052 D9010000 		.4byte	.LASF6
+ 277 0052 E4010000 		.4byte	.LASF6
  278 0056 02       		.uleb128 0x2
  279 0057 08       		.byte	0x8
  280 0058 07       		.byte	0x7
@@ -629,7 +629,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  288 0066 07       		.byte	0x7
  289 0067 51010000 		.4byte	.LASF8
  290 006b 04       		.uleb128 0x4
- 291 006c 0E020000 		.4byte	.LASF9
+ 291 006c 19020000 		.4byte	.LASF9
  292 0070 02       		.byte	0x2
  293 0071 C2       		.byte	0xc2
  294 0072 2C000000 		.4byte	0x2c
@@ -654,11 +654,11 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  313 009a 02       		.uleb128 0x2
  314 009b 01       		.byte	0x1
  315 009c 08       		.byte	0x8
- 316 009d E7010000 		.4byte	.LASF14
+ 316 009d F2010000 		.4byte	.LASF14
  317 00a1 05       		.uleb128 0x5
  318 00a2 6A000000 		.4byte	.LASF15
  319 00a6 02       		.byte	0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 12
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 12
 
 
  320 00a7 6C01     		.2byte	0x16c
@@ -675,20 +675,20 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  331 00c3 02       		.uleb128 0x2
  332 00c4 04       		.byte	0x4
  333 00c5 07       		.byte	0x7
- 334 00c6 D0010000 		.4byte	.LASF17
+ 334 00c6 DB010000 		.4byte	.LASF17
  335 00ca 07       		.uleb128 0x7
  336 00cb 06       		.byte	0x6
  337 00cc 03       		.byte	0x3
  338 00cd 76       		.byte	0x76
  339 00ce 1B010000 		.4byte	0x11b
  340 00d2 08       		.uleb128 0x8
- 341 00d3 1D020000 		.4byte	.LASF18
+ 341 00d3 28020000 		.4byte	.LASF18
  342 00d7 03       		.byte	0x3
  343 00d8 78       		.byte	0x78
  344 00d9 6B000000 		.4byte	0x6b
  345 00dd 00       		.byte	0
  346 00de 08       		.uleb128 0x8
- 347 00df EC010000 		.4byte	.LASF19
+ 347 00df F7010000 		.4byte	.LASF19
  348 00e3 03       		.byte	0x3
  349 00e4 7B       		.byte	0x7b
  350 00e5 6B000000 		.4byte	0x6b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  374 0115 6B000000 		.4byte	0x6b
  375 0119 05       		.byte	0x5
  376 011a 00       		.byte	0
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 13
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 13
 
 
  377 011b 04       		.uleb128 0x4
@@ -735,7 +735,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  388 0135 01       		.uleb128 0x1
  389 0136 9C       		.byte	0x9c
  390 0137 0B       		.uleb128 0xb
- 391 0138 29020000 		.4byte	.LASF24
+ 391 0138 34020000 		.4byte	.LASF24
  392 013c 01       		.byte	0x1
  393 013d 97       		.byte	0x97
  394 013e 00000000 		.4byte	.LFB1
@@ -751,7 +751,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  404 015a 26010000 		.4byte	0x126
  405 015e 00       		.byte	0
  406 015f 0B       		.uleb128 0xb
- 407 0160 F1010000 		.4byte	.LASF25
+ 407 0160 FC010000 		.4byte	.LASF25
  408 0164 01       		.byte	0x1
  409 0165 D1       		.byte	0xd1
  410 0166 00000000 		.4byte	.LFB2
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  431 019c 2C01     		.2byte	0x12c
  432 019e 00000000 		.4byte	.LFB3
  433 01a2 24000000 		.4byte	.LFE3-.LFB3
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 14
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 14
 
 
  434 01a6 01       		.uleb128 0x1
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  488 000c 17       		.uleb128 0x17
  489 000d 11       		.uleb128 0x11
  490 000e 01       		.uleb128 0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 15
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 15
 
 
  491 000f 10       		.uleb128 0x10
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  545 0045 00       		.byte	0
  546 0046 49       		.uleb128 0x49
  547 0047 13       		.uleb128 0x13
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 16
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 16
 
 
  548 0048 00       		.byte	0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  602 007e 3B       		.uleb128 0x3b
  603 007f 0B       		.uleb128 0xb
  604 0080 27       		.uleb128 0x27
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 17
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 17
 
 
  605 0081 19       		.uleb128 0x19
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  659 00bb 49       		.uleb128 0x49
  660 00bc 13       		.uleb128 0x13
  661 00bd 02       		.uleb128 0x2
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 18
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 18
 
 
  662 00be 17       		.uleb128 0x17
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  716 00f5 3B       		.uleb128 0x3b
  717 00f6 0B       		.uleb128 0xb
  718 00f7 27       		.uleb128 0x27
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 19
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 19
 
 
  719 00f8 19       		.uleb128 0x19
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  773 0000 10000000 		.4byte	.LVL2
  774 0004 1D000000 		.4byte	.LVL3-1
  775 0008 0100     		.2byte	0x1
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 20
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 20
 
 
  776 000a 50       		.byte	0x50
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  819      7369676E 
  819      65642069 
  819      6E7400
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 21
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 21
 
 
  820              	.LASF32:
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  845      32303135 
  845      30333033 
  846 00ed 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 22
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 22
 
 
  846      20726576 
@@ -1302,62 +1302,64 @@ ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 1
  861      63616C53 
  861      65637469 
  862              	.LASF31:
- 863 01a7 443A5C72 		.ascii	"D:\\robot\\git_code\\robot_car_V5\\car.cydsn\000"
+ 863 01a7 463A5C70 		.ascii	"F:\\project\\robot\\T1\\FW\\trunk\\robot_car_V5\\ca"
+ 863      726F6A65 
+ 863      63745C72 
  863      6F626F74 
- 863      5C676974 
- 863      5F636F64 
- 863      655C726F 
- 864              	.LASF17:
- 865 01d0 73697A65 		.ascii	"sizetype\000"
- 865      74797065 
- 865      00
- 866              	.LASF6:
- 867 01d9 6C6F6E67 		.ascii	"long long int\000"
- 867      206C6F6E 
- 867      6720696E 
- 867      7400
- 868              	.LASF14:
- 869 01e7 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\pxc\AppData\Local\Temp\cchsIViO.s 			page 23
+ 863      5C54315C 
+ 864 01d3 722E6379 		.ascii	"r.cydsn\000"
+ 864      64736E00 
+ 865              	.LASF17:
+ 866 01db 73697A65 		.ascii	"sizetype\000"
+ 866      74797065 
+ 866      00
+ 867              	.LASF6:
+ 868 01e4 6C6F6E67 		.ascii	"long long int\000"
+ 868      206C6F6E 
+ 868      6720696E 
+ 868      7400
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccrn7usi.s 			page 23
 
 
- 869      00
- 870              	.LASF19:
- 871 01ec 78636667 		.ascii	"xcfg\000"
- 871      00
- 872              	.LASF25:
- 873 01f1 57415645 		.ascii	"WAVE_RestoreConfig\000"
- 873      5F526573 
- 873      746F7265 
- 873      436F6E66 
- 873      696700
- 874              	.LASF2:
- 875 0204 73686F72 		.ascii	"short int\000"
- 875      7420696E 
- 875      7400
- 876              	.LASF9:
- 877 020e 75696E74 		.ascii	"uint8\000"
- 877      3800
- 878              	.LASF4:
- 879 0214 6C6F6E67 		.ascii	"long int\000"
- 879      20696E74 
- 879      00
- 880              	.LASF18:
- 881 021d 656E6162 		.ascii	"enableState\000"
- 881      6C655374 
- 881      61746500 
- 882              	.LASF24:
- 883 0229 57415645 		.ascii	"WAVE_Sleep\000"
- 883      5F536C65 
- 883      657000
- 884              	.LASF0:
- 885 0234 7369676E 		.ascii	"signed char\000"
- 885      65642063 
- 885      68617200 
- 886              	.LASF30:
- 887 0240 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WAVE_PM.c\000"
- 887      6E657261 
- 887      7465645F 
- 887      536F7572 
- 887      63655C50 
- 888              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ 869              	.LASF14:
+ 870 01f2 63686172 		.ascii	"char\000"
+ 870      00
+ 871              	.LASF19:
+ 872 01f7 78636667 		.ascii	"xcfg\000"
+ 872      00
+ 873              	.LASF25:
+ 874 01fc 57415645 		.ascii	"WAVE_RestoreConfig\000"
+ 874      5F526573 
+ 874      746F7265 
+ 874      436F6E66 
+ 874      696700
+ 875              	.LASF2:
+ 876 020f 73686F72 		.ascii	"short int\000"
+ 876      7420696E 
+ 876      7400
+ 877              	.LASF9:
+ 878 0219 75696E74 		.ascii	"uint8\000"
+ 878      3800
+ 879              	.LASF4:
+ 880 021f 6C6F6E67 		.ascii	"long int\000"
+ 880      20696E74 
+ 880      00
+ 881              	.LASF18:
+ 882 0228 656E6162 		.ascii	"enableState\000"
+ 882      6C655374 
+ 882      61746500 
+ 883              	.LASF24:
+ 884 0234 57415645 		.ascii	"WAVE_Sleep\000"
+ 884      5F536C65 
+ 884      657000
+ 885              	.LASF0:
+ 886 023f 7369676E 		.ascii	"signed char\000"
+ 886      65642063 
+ 886      68617200 
+ 887              	.LASF30:
+ 888 024b 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WAVE_PM.c\000"
+ 888      6E657261 
+ 888      7465645F 
+ 888      536F7572 
+ 888      63655C50 
+ 889              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

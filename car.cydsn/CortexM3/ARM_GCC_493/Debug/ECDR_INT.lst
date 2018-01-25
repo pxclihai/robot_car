@@ -1,0 +1,586 @@
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ECDR_INT.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ECDR_ISR,"ax",%progbits
+  19              		.align	2
+  20              		.global	ECDR_ISR
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ECDR_ISR, %function
+  24              	ECDR_ISR:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\ECDR_INT.c"
+   1:.\Generated_Source\PSoC5/ECDR_INT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/ECDR_INT.c **** * File Name: ECDR_INT.c
+   3:.\Generated_Source\PSoC5/ECDR_INT.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+   5:.\Generated_Source\PSoC5/ECDR_INT.c **** * Description:
+   6:.\Generated_Source\PSoC5/ECDR_INT.c **** *  This file contains the Interrupt Service Routine (ISR) for the Quadrature
+   7:.\Generated_Source\PSoC5/ECDR_INT.c **** *  Decoder component.
+   8:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+   9:.\Generated_Source\PSoC5/ECDR_INT.c **** * Note:
+  10:.\Generated_Source\PSoC5/ECDR_INT.c **** *  None.
+  11:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+  12:.\Generated_Source\PSoC5/ECDR_INT.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/ECDR_INT.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/ECDR_INT.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:.\Generated_Source\PSoC5/ECDR_INT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC5/ECDR_INT.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/ECDR_INT.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  19:.\Generated_Source\PSoC5/ECDR_INT.c **** #include "ECDR.h"
+  20:.\Generated_Source\PSoC5/ECDR_INT.c **** #include "ECDR_PVT.h"
+  21:.\Generated_Source\PSoC5/ECDR_INT.c **** #include "cyapicallbacks.h"
+  22:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  23:.\Generated_Source\PSoC5/ECDR_INT.c **** volatile int32 ECDR_count32SoftPart = 0;
+  24:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  25:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  26:.\Generated_Source\PSoC5/ECDR_INT.c **** /*******************************************************************************
+  27:.\Generated_Source\PSoC5/ECDR_INT.c **** * FUNCTION NAME: void ECDR_ISR
+  28:.\Generated_Source\PSoC5/ECDR_INT.c **** ********************************************************************************
+  29:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+  30:.\Generated_Source\PSoC5/ECDR_INT.c **** * Summary:
+  31:.\Generated_Source\PSoC5/ECDR_INT.c **** *  Interrupt Service Routine for Quadrature Decoder Component.
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+  33:.\Generated_Source\PSoC5/ECDR_INT.c **** * Parameters:
+  34:.\Generated_Source\PSoC5/ECDR_INT.c **** *  None.
+  35:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+  36:.\Generated_Source\PSoC5/ECDR_INT.c **** * Return:
+  37:.\Generated_Source\PSoC5/ECDR_INT.c **** *  None.
+  38:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+  39:.\Generated_Source\PSoC5/ECDR_INT.c **** * Global variables:
+  40:.\Generated_Source\PSoC5/ECDR_INT.c **** *  ECDR_count32SoftPart - modified to update hi 16 bit for current
+  41:.\Generated_Source\PSoC5/ECDR_INT.c **** *  value of the 32-bit counter, when Counter size equal 32-bit.
+  42:.\Generated_Source\PSoC5/ECDR_INT.c **** *  ECDR_swStatus - modified with the updated values of STATUS
+  43:.\Generated_Source\PSoC5/ECDR_INT.c **** *  register.
+  44:.\Generated_Source\PSoC5/ECDR_INT.c **** *
+  45:.\Generated_Source\PSoC5/ECDR_INT.c **** *******************************************************************************/
+  46:.\Generated_Source\PSoC5/ECDR_INT.c **** CY_ISR( ECDR_ISR )
+  47:.\Generated_Source\PSoC5/ECDR_INT.c **** {
+  27              		.loc 1 47 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  48:.\Generated_Source\PSoC5/ECDR_INT.c ****    uint8 ECDR_swStatus;
+  49:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  50:.\Generated_Source\PSoC5/ECDR_INT.c ****    ECDR_swStatus = ECDR_STATUS_REG;
+  32              		.loc 1 50 0
+  33 0000 0D4B     		ldr	r3, .L5
+  34 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  35 0004 DBB2     		uxtb	r3, r3
+  36              	.LVL0:
+  51:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  52:.\Generated_Source\PSoC5/ECDR_INT.c ****     #ifdef ECDR_ISR_ENTRY_CALLBACK
+  53:.\Generated_Source\PSoC5/ECDR_INT.c ****         ECDR_ISR_EntryCallback();
+  54:.\Generated_Source\PSoC5/ECDR_INT.c ****     #endif /* ECDR_ISR_ENTRY_CALLBACK */
+  55:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  56:.\Generated_Source\PSoC5/ECDR_INT.c ****     /* User code required at start of ISR */
+  57:.\Generated_Source\PSoC5/ECDR_INT.c ****     /* `#START ECDR_ISR_START` */
+  58:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  59:.\Generated_Source\PSoC5/ECDR_INT.c ****     /* `#END` */
+  60:.\Generated_Source\PSoC5/ECDR_INT.c **** 
+  61:.\Generated_Source\PSoC5/ECDR_INT.c ****     if (0u != (ECDR_swStatus & ECDR_COUNTER_OVERFLOW))
+  37              		.loc 1 61 0
+  38 0006 13F0010F 		tst	r3, #1
+  39 000a 06D0     		beq	.L2
+  62:.\Generated_Source\PSoC5/ECDR_INT.c ****     {
+  63:.\Generated_Source\PSoC5/ECDR_INT.c ****         ECDR_count32SoftPart += (int32) ECDR_COUNTER_MAX_VALUE;
+  40              		.loc 1 63 0
+  41 000c 0B49     		ldr	r1, .L5+4
+  42 000e 0A68     		ldr	r2, [r1]
+  43 0010 02F5FF42 		add	r2, r2, #32640
+  44 0014 7F32     		adds	r2, r2, #127
+  45 0016 0A60     		str	r2, [r1]
+  46 0018 07E0     		b	.L3
+  47              	.L2:
+  64:.\Generated_Source\PSoC5/ECDR_INT.c ****     }
+  65:.\Generated_Source\PSoC5/ECDR_INT.c ****     else if (0u != (ECDR_swStatus & ECDR_COUNTER_UNDERFLOW))
+  48              		.loc 1 65 0
+  49 001a 13F0020F 		tst	r3, #2
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 3
+
+
+  50 001e 04D0     		beq	.L3
+  66:.\Generated_Source\PSoC5/ECDR_INT.c ****     {
+  67:.\Generated_Source\PSoC5/ECDR_INT.c ****         ECDR_count32SoftPart -= (int32) ECDR_COUNTER_INIT_VALUE;
+  51              		.loc 1 67 0
+  52 0020 0649     		ldr	r1, .L5+4
+  53 0022 0A68     		ldr	r2, [r1]
+  54 0024 A2F50042 		sub	r2, r2, #32768
+  55 0028 0A60     		str	r2, [r1]
+  56              	.L3:
+  68:.\Generated_Source\PSoC5/ECDR_INT.c ****     }
+  69:.\Generated_Source\PSoC5/ECDR_INT.c ****     else
+  70:.\Generated_Source\PSoC5/ECDR_INT.c ****     {
+  71:.\Generated_Source\PSoC5/ECDR_INT.c ****         /* Nothing to do here */
+  72:.\Generated_Source\PSoC5/ECDR_INT.c ****     }
+  73:.\Generated_Source\PSoC5/ECDR_INT.c ****     
+  74:.\Generated_Source\PSoC5/ECDR_INT.c ****     if (0u != (ECDR_swStatus & ECDR_COUNTER_RESET))
+  57              		.loc 1 74 0
+  58 002a 13F0040F 		tst	r3, #4
+  59 002e 02D0     		beq	.L1
+  75:.\Generated_Source\PSoC5/ECDR_INT.c ****     {
+  76:.\Generated_Source\PSoC5/ECDR_INT.c ****         ECDR_count32SoftPart = 0;
+  60              		.loc 1 76 0
+  61 0030 0022     		movs	r2, #0
+  62 0032 024B     		ldr	r3, .L5+4
+  63              	.LVL1:
+  64 0034 1A60     		str	r2, [r3]
+  65              	.L1:
+  66 0036 7047     		bx	lr
+  67              	.L6:
+  68              		.align	2
+  69              	.L5:
+  70 0038 65640040 		.word	1073767525
+  71 003c 00000000 		.word	.LANCHOR0
+  72              		.cfi_endproc
+  73              	.LFE0:
+  74              		.size	ECDR_ISR, .-ECDR_ISR
+  75              		.global	ECDR_count32SoftPart
+  76              		.bss
+  77              		.align	2
+  78              		.set	.LANCHOR0,. + 0
+  79              		.type	ECDR_count32SoftPart, %object
+  80              		.size	ECDR_count32SoftPart, 4
+  81              	ECDR_count32SoftPart:
+  82 0000 00000000 		.space	4
+  83              		.text
+  84              	.Letext0:
+  85              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+  86              		.section	.debug_info,"",%progbits
+  87              	.Ldebug_info0:
+  88 0000 E6000000 		.4byte	0xe6
+  89 0004 0400     		.2byte	0x4
+  90 0006 00000000 		.4byte	.Ldebug_abbrev0
+  91 000a 04       		.byte	0x4
+  92 000b 01       		.uleb128 0x1
+  93 000c 69000000 		.4byte	.LASF16
+  94 0010 01       		.byte	0x1
+  95 0011 81010000 		.4byte	.LASF17
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 4
+
+
+  96 0015 F7000000 		.4byte	.LASF18
+  97 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  98 001d 00000000 		.4byte	0
+  99 0021 00000000 		.4byte	.Ldebug_line0
+ 100 0025 02       		.uleb128 0x2
+ 101 0026 04       		.byte	0x4
+ 102 0027 05       		.byte	0x5
+ 103 0028 696E7400 		.ascii	"int\000"
+ 104 002c 03       		.uleb128 0x3
+ 105 002d 04       		.byte	0x4
+ 106 002e 07       		.byte	0x7
+ 107 002f 0E000000 		.4byte	.LASF0
+ 108 0033 03       		.uleb128 0x3
+ 109 0034 01       		.byte	0x1
+ 110 0035 06       		.byte	0x6
+ 111 0036 6F010000 		.4byte	.LASF1
+ 112 003a 03       		.uleb128 0x3
+ 113 003b 01       		.byte	0x1
+ 114 003c 08       		.byte	0x8
+ 115 003d 2B010000 		.4byte	.LASF2
+ 116 0041 03       		.uleb128 0x3
+ 117 0042 02       		.byte	0x2
+ 118 0043 05       		.byte	0x5
+ 119 0044 48000000 		.4byte	.LASF3
+ 120 0048 03       		.uleb128 0x3
+ 121 0049 02       		.byte	0x2
+ 122 004a 07       		.byte	0x7
+ 123 004b 5C010000 		.4byte	.LASF4
+ 124 004f 03       		.uleb128 0x3
+ 125 0050 04       		.byte	0x4
+ 126 0051 05       		.byte	0x5
+ 127 0052 3E010000 		.4byte	.LASF5
+ 128 0056 03       		.uleb128 0x3
+ 129 0057 04       		.byte	0x4
+ 130 0058 07       		.byte	0x7
+ 131 0059 36000000 		.4byte	.LASF6
+ 132 005d 03       		.uleb128 0x3
+ 133 005e 08       		.byte	0x8
+ 134 005f 05       		.byte	0x5
+ 135 0060 00000000 		.4byte	.LASF7
+ 136 0064 03       		.uleb128 0x3
+ 137 0065 08       		.byte	0x8
+ 138 0066 07       		.byte	0x7
+ 139 0067 52000000 		.4byte	.LASF8
+ 140 006b 03       		.uleb128 0x3
+ 141 006c 04       		.byte	0x4
+ 142 006d 07       		.byte	0x7
+ 143 006e B3010000 		.4byte	.LASF9
+ 144 0072 03       		.uleb128 0x3
+ 145 0073 01       		.byte	0x1
+ 146 0074 08       		.byte	0x8
+ 147 0075 39010000 		.4byte	.LASF10
+ 148 0079 04       		.uleb128 0x4
+ 149 007a 30000000 		.4byte	.LASF11
+ 150 007e 02       		.byte	0x2
+ 151 007f C2       		.byte	0xc2
+ 152 0080 3A000000 		.4byte	0x3a
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 5
+
+
+ 153 0084 04       		.uleb128 0x4
+ 154 0085 BC010000 		.4byte	.LASF12
+ 155 0089 02       		.byte	0x2
+ 156 008a C7       		.byte	0xc7
+ 157 008b 4F000000 		.4byte	0x4f
+ 158 008f 03       		.uleb128 0x3
+ 159 0090 04       		.byte	0x4
+ 160 0091 04       		.byte	0x4
+ 161 0092 7B010000 		.4byte	.LASF13
+ 162 0096 03       		.uleb128 0x3
+ 163 0097 08       		.byte	0x8
+ 164 0098 04       		.byte	0x4
+ 165 0099 55010000 		.4byte	.LASF14
+ 166 009d 05       		.uleb128 0x5
+ 167 009e A5010000 		.4byte	.LASF15
+ 168 00a2 02       		.byte	0x2
+ 169 00a3 6C01     		.2byte	0x16c
+ 170 00a5 A9000000 		.4byte	0xa9
+ 171 00a9 06       		.uleb128 0x6
+ 172 00aa 79000000 		.4byte	0x79
+ 173 00ae 07       		.uleb128 0x7
+ 174 00af AA010000 		.4byte	.LASF19
+ 175 00b3 01       		.byte	0x1
+ 176 00b4 2E       		.byte	0x2e
+ 177 00b5 00000000 		.4byte	.LFB0
+ 178 00b9 40000000 		.4byte	.LFE0-.LFB0
+ 179 00bd 01       		.uleb128 0x1
+ 180 00be 9C       		.byte	0x9c
+ 181 00bf D3000000 		.4byte	0xd3
+ 182 00c3 08       		.uleb128 0x8
+ 183 00c4 47010000 		.4byte	.LASF20
+ 184 00c8 01       		.byte	0x1
+ 185 00c9 30       		.byte	0x30
+ 186 00ca 79000000 		.4byte	0x79
+ 187 00ce 00000000 		.4byte	.LLST0
+ 188 00d2 00       		.byte	0
+ 189 00d3 09       		.uleb128 0x9
+ 190 00d4 1B000000 		.4byte	.LASF21
+ 191 00d8 01       		.byte	0x1
+ 192 00d9 17       		.byte	0x17
+ 193 00da E4000000 		.4byte	0xe4
+ 194 00de 05       		.uleb128 0x5
+ 195 00df 03       		.byte	0x3
+ 196 00e0 00000000 		.4byte	ECDR_count32SoftPart
+ 197 00e4 06       		.uleb128 0x6
+ 198 00e5 84000000 		.4byte	0x84
+ 199 00e9 00       		.byte	0
+ 200              		.section	.debug_abbrev,"",%progbits
+ 201              	.Ldebug_abbrev0:
+ 202 0000 01       		.uleb128 0x1
+ 203 0001 11       		.uleb128 0x11
+ 204 0002 01       		.byte	0x1
+ 205 0003 25       		.uleb128 0x25
+ 206 0004 0E       		.uleb128 0xe
+ 207 0005 13       		.uleb128 0x13
+ 208 0006 0B       		.uleb128 0xb
+ 209 0007 03       		.uleb128 0x3
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 6
+
+
+ 210 0008 0E       		.uleb128 0xe
+ 211 0009 1B       		.uleb128 0x1b
+ 212 000a 0E       		.uleb128 0xe
+ 213 000b 55       		.uleb128 0x55
+ 214 000c 17       		.uleb128 0x17
+ 215 000d 11       		.uleb128 0x11
+ 216 000e 01       		.uleb128 0x1
+ 217 000f 10       		.uleb128 0x10
+ 218 0010 17       		.uleb128 0x17
+ 219 0011 00       		.byte	0
+ 220 0012 00       		.byte	0
+ 221 0013 02       		.uleb128 0x2
+ 222 0014 24       		.uleb128 0x24
+ 223 0015 00       		.byte	0
+ 224 0016 0B       		.uleb128 0xb
+ 225 0017 0B       		.uleb128 0xb
+ 226 0018 3E       		.uleb128 0x3e
+ 227 0019 0B       		.uleb128 0xb
+ 228 001a 03       		.uleb128 0x3
+ 229 001b 08       		.uleb128 0x8
+ 230 001c 00       		.byte	0
+ 231 001d 00       		.byte	0
+ 232 001e 03       		.uleb128 0x3
+ 233 001f 24       		.uleb128 0x24
+ 234 0020 00       		.byte	0
+ 235 0021 0B       		.uleb128 0xb
+ 236 0022 0B       		.uleb128 0xb
+ 237 0023 3E       		.uleb128 0x3e
+ 238 0024 0B       		.uleb128 0xb
+ 239 0025 03       		.uleb128 0x3
+ 240 0026 0E       		.uleb128 0xe
+ 241 0027 00       		.byte	0
+ 242 0028 00       		.byte	0
+ 243 0029 04       		.uleb128 0x4
+ 244 002a 16       		.uleb128 0x16
+ 245 002b 00       		.byte	0
+ 246 002c 03       		.uleb128 0x3
+ 247 002d 0E       		.uleb128 0xe
+ 248 002e 3A       		.uleb128 0x3a
+ 249 002f 0B       		.uleb128 0xb
+ 250 0030 3B       		.uleb128 0x3b
+ 251 0031 0B       		.uleb128 0xb
+ 252 0032 49       		.uleb128 0x49
+ 253 0033 13       		.uleb128 0x13
+ 254 0034 00       		.byte	0
+ 255 0035 00       		.byte	0
+ 256 0036 05       		.uleb128 0x5
+ 257 0037 16       		.uleb128 0x16
+ 258 0038 00       		.byte	0
+ 259 0039 03       		.uleb128 0x3
+ 260 003a 0E       		.uleb128 0xe
+ 261 003b 3A       		.uleb128 0x3a
+ 262 003c 0B       		.uleb128 0xb
+ 263 003d 3B       		.uleb128 0x3b
+ 264 003e 05       		.uleb128 0x5
+ 265 003f 49       		.uleb128 0x49
+ 266 0040 13       		.uleb128 0x13
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 7
+
+
+ 267 0041 00       		.byte	0
+ 268 0042 00       		.byte	0
+ 269 0043 06       		.uleb128 0x6
+ 270 0044 35       		.uleb128 0x35
+ 271 0045 00       		.byte	0
+ 272 0046 49       		.uleb128 0x49
+ 273 0047 13       		.uleb128 0x13
+ 274 0048 00       		.byte	0
+ 275 0049 00       		.byte	0
+ 276 004a 07       		.uleb128 0x7
+ 277 004b 2E       		.uleb128 0x2e
+ 278 004c 01       		.byte	0x1
+ 279 004d 3F       		.uleb128 0x3f
+ 280 004e 19       		.uleb128 0x19
+ 281 004f 03       		.uleb128 0x3
+ 282 0050 0E       		.uleb128 0xe
+ 283 0051 3A       		.uleb128 0x3a
+ 284 0052 0B       		.uleb128 0xb
+ 285 0053 3B       		.uleb128 0x3b
+ 286 0054 0B       		.uleb128 0xb
+ 287 0055 27       		.uleb128 0x27
+ 288 0056 19       		.uleb128 0x19
+ 289 0057 11       		.uleb128 0x11
+ 290 0058 01       		.uleb128 0x1
+ 291 0059 12       		.uleb128 0x12
+ 292 005a 06       		.uleb128 0x6
+ 293 005b 40       		.uleb128 0x40
+ 294 005c 18       		.uleb128 0x18
+ 295 005d 9742     		.uleb128 0x2117
+ 296 005f 19       		.uleb128 0x19
+ 297 0060 01       		.uleb128 0x1
+ 298 0061 13       		.uleb128 0x13
+ 299 0062 00       		.byte	0
+ 300 0063 00       		.byte	0
+ 301 0064 08       		.uleb128 0x8
+ 302 0065 34       		.uleb128 0x34
+ 303 0066 00       		.byte	0
+ 304 0067 03       		.uleb128 0x3
+ 305 0068 0E       		.uleb128 0xe
+ 306 0069 3A       		.uleb128 0x3a
+ 307 006a 0B       		.uleb128 0xb
+ 308 006b 3B       		.uleb128 0x3b
+ 309 006c 0B       		.uleb128 0xb
+ 310 006d 49       		.uleb128 0x49
+ 311 006e 13       		.uleb128 0x13
+ 312 006f 02       		.uleb128 0x2
+ 313 0070 17       		.uleb128 0x17
+ 314 0071 00       		.byte	0
+ 315 0072 00       		.byte	0
+ 316 0073 09       		.uleb128 0x9
+ 317 0074 34       		.uleb128 0x34
+ 318 0075 00       		.byte	0
+ 319 0076 03       		.uleb128 0x3
+ 320 0077 0E       		.uleb128 0xe
+ 321 0078 3A       		.uleb128 0x3a
+ 322 0079 0B       		.uleb128 0xb
+ 323 007a 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 8
+
+
+ 324 007b 0B       		.uleb128 0xb
+ 325 007c 49       		.uleb128 0x49
+ 326 007d 13       		.uleb128 0x13
+ 327 007e 3F       		.uleb128 0x3f
+ 328 007f 19       		.uleb128 0x19
+ 329 0080 02       		.uleb128 0x2
+ 330 0081 18       		.uleb128 0x18
+ 331 0082 00       		.byte	0
+ 332 0083 00       		.byte	0
+ 333 0084 00       		.byte	0
+ 334              		.section	.debug_loc,"",%progbits
+ 335              	.Ldebug_loc0:
+ 336              	.LLST0:
+ 337 0000 06000000 		.4byte	.LVL0
+ 338 0004 34000000 		.4byte	.LVL1
+ 339 0008 0100     		.2byte	0x1
+ 340 000a 53       		.byte	0x53
+ 341 000b 00000000 		.4byte	0
+ 342 000f 00000000 		.4byte	0
+ 343              		.section	.debug_aranges,"",%progbits
+ 344 0000 1C000000 		.4byte	0x1c
+ 345 0004 0200     		.2byte	0x2
+ 346 0006 00000000 		.4byte	.Ldebug_info0
+ 347 000a 04       		.byte	0x4
+ 348 000b 00       		.byte	0
+ 349 000c 0000     		.2byte	0
+ 350 000e 0000     		.2byte	0
+ 351 0010 00000000 		.4byte	.LFB0
+ 352 0014 40000000 		.4byte	.LFE0-.LFB0
+ 353 0018 00000000 		.4byte	0
+ 354 001c 00000000 		.4byte	0
+ 355              		.section	.debug_ranges,"",%progbits
+ 356              	.Ldebug_ranges0:
+ 357 0000 00000000 		.4byte	.LFB0
+ 358 0004 40000000 		.4byte	.LFE0
+ 359 0008 00000000 		.4byte	0
+ 360 000c 00000000 		.4byte	0
+ 361              		.section	.debug_line,"",%progbits
+ 362              	.Ldebug_line0:
+ 363 0000 65000000 		.section	.debug_str,"MS",%progbits,1
+ 363      02004700 
+ 363      00000201 
+ 363      FB0E0D00 
+ 363      01010101 
+ 364              	.LASF7:
+ 365 0000 6C6F6E67 		.ascii	"long long int\000"
+ 365      206C6F6E 
+ 365      6720696E 
+ 365      7400
+ 366              	.LASF0:
+ 367 000e 756E7369 		.ascii	"unsigned int\000"
+ 367      676E6564 
+ 367      20696E74 
+ 367      00
+ 368              	.LASF21:
+ 369 001b 45434452 		.ascii	"ECDR_count32SoftPart\000"
+ 369      5F636F75 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 9
+
+
+ 369      6E743332 
+ 369      536F6674 
+ 369      50617274 
+ 370              	.LASF11:
+ 371 0030 75696E74 		.ascii	"uint8\000"
+ 371      3800
+ 372              	.LASF6:
+ 373 0036 6C6F6E67 		.ascii	"long unsigned int\000"
+ 373      20756E73 
+ 373      69676E65 
+ 373      6420696E 
+ 373      7400
+ 374              	.LASF3:
+ 375 0048 73686F72 		.ascii	"short int\000"
+ 375      7420696E 
+ 375      7400
+ 376              	.LASF8:
+ 377 0052 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 377      206C6F6E 
+ 377      6720756E 
+ 377      7369676E 
+ 377      65642069 
+ 378              	.LASF16:
+ 379 0069 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 379      4320342E 
+ 379      392E3320 
+ 379      32303135 
+ 379      30333033 
+ 380 009c 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 380      20726576 
+ 380      6973696F 
+ 380      6E203232 
+ 380      31323230 
+ 381 00cf 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 381      66756E63 
+ 381      74696F6E 
+ 381      2D736563 
+ 381      74696F6E 
+ 382              	.LASF18:
+ 383 00f7 463A5C70 		.ascii	"F:\\project\\robot\\T1\\FW\\trunk\\robot_car_V5\\ca"
+ 383      726F6A65 
+ 383      63745C72 
+ 383      6F626F74 
+ 383      5C54315C 
+ 384 0123 722E6379 		.ascii	"r.cydsn\000"
+ 384      64736E00 
+ 385              	.LASF2:
+ 386 012b 756E7369 		.ascii	"unsigned char\000"
+ 386      676E6564 
+ 386      20636861 
+ 386      7200
+ 387              	.LASF10:
+ 388 0139 63686172 		.ascii	"char\000"
+ 388      00
+ 389              	.LASF5:
+ 390 013e 6C6F6E67 		.ascii	"long int\000"
+ 390      20696E74 
+ARM GAS  C:\Users\PANXIA~1\AppData\Local\Temp\ccodsaJV.s 			page 10
+
+
+ 390      00
+ 391              	.LASF20:
+ 392 0147 45434452 		.ascii	"ECDR_swStatus\000"
+ 392      5F737753 
+ 392      74617475 
+ 392      7300
+ 393              	.LASF14:
+ 394 0155 646F7562 		.ascii	"double\000"
+ 394      6C6500
+ 395              	.LASF4:
+ 396 015c 73686F72 		.ascii	"short unsigned int\000"
+ 396      7420756E 
+ 396      7369676E 
+ 396      65642069 
+ 396      6E7400
+ 397              	.LASF1:
+ 398 016f 7369676E 		.ascii	"signed char\000"
+ 398      65642063 
+ 398      68617200 
+ 399              	.LASF13:
+ 400 017b 666C6F61 		.ascii	"float\000"
+ 400      7400
+ 401              	.LASF17:
+ 402 0181 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ECDR_INT.c\000"
+ 402      6E657261 
+ 402      7465645F 
+ 402      536F7572 
+ 402      63655C50 
+ 403              	.LASF15:
+ 404 01a5 72656738 		.ascii	"reg8\000"
+ 404      00
+ 405              	.LASF19:
+ 406 01aa 45434452 		.ascii	"ECDR_ISR\000"
+ 406      5F495352 
+ 406      00
+ 407              	.LASF9:
+ 408 01b3 73697A65 		.ascii	"sizetype\000"
+ 408      74797065 
+ 408      00
+ 409              	.LASF12:
+ 410 01bc 696E7433 		.ascii	"int32\000"
+ 410      3200
+ 411              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

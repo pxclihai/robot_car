@@ -10,8 +10,9 @@
  * ========================================
 */
 #include "battery.h"
-
-
+#include "i2c_core.h"
+#include "bq20Z75.h"
+#include "car.h"
 
 
 int16 retADCValue1[SampleNum] = {0};
@@ -67,9 +68,32 @@ int16 Get_Battery_ADvalue(uint8 channal)
 
 void Cal_Battery_loop()
 {
-    C_V = Get_Battery_ADvalue(C_CHANANL);
-    D_V = Get_Battery_ADvalue(D_CHANANL);
-    P_V = Get_Battery_ADvalue(P_CHANANL);   
+    int ok; 
+    ok = bq20Z75_read_out(0x16,0x0e);
+    if(ok != -1)
+    {
+       g_Car.cap = ok;
+    }
+    ok = bq20Z75_read_out(0x16,0x08);
+    if(ok != -1)
+    {
+       g_Car.batteryTemp = ok;
+    }
+     ok = bq20Z75_read_out(0x16,0x09);
+    if(ok != -1)
+    {
+       g_Car.A_V = ok;
+    }
+     ok = bq20Z75_read_out(0x16,0x0a);
+    if(ok != -1)
+    {
+       g_Car.current = ok;
+    }
+ 
+  
+//    C_V = Get_Battery_ADvalue(C_CHANANL);
+//    D_V = Get_Battery_ADvalue(D_CHANANL);
+//    P_V = Get_Battery_ADvalue(P_CHANANL);   
 }
 ///* [] END OF FILE */
 //
